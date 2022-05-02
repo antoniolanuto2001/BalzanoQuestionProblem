@@ -10,6 +10,9 @@ import javax.swing.UIManager;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
+import javax.swing.border.EtchedBorder;
 
 public class MainWindows {
 
@@ -52,6 +55,7 @@ public class MainWindows {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panelMainButton = new JPanel();
+		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
@@ -67,12 +71,63 @@ public class MainWindows {
 		panelMainButton.add(testLabel2);
 		
 		JButton buttonCpu = new JButton("Scheduling  Processi");
+		buttonCpu.setBackground(new Color(204, 204, 255));
+		buttonCpu.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonCpu.setForeground(new Color(0, 0, 0));
 		buttonCpu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonCpu.setBounds(343, 120, 215, 77);
+		buttonCpu.setBounds(260, 190, 215, 77);
 		panelMainButton.add(buttonCpu);
+		
+		JButton buttonHashing = new JButton("Hashing");
+		buttonHashing.setBackground(new Color(153, 204, 255));
+		buttonHashing.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonHashing.setForeground(new Color(0, 0, 0));
+		buttonHashing.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonHashing.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonHashing.setBounds(563, 190, 215, 77);
+		panelMainButton.add(buttonHashing);
+		
+		JButton buttonFiloACena = new JButton("Filosofi a Cena");
+		buttonFiloACena.setForeground(Color.BLACK);
+		buttonFiloACena.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonFiloACena.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonFiloACena.setBackground(new Color(153, 255, 153));
+		buttonFiloACena.setBounds(260, 347, 215, 77);
+		panelMainButton.add(buttonFiloACena);
+		
+		JButton buttonSemafori = new JButton("Semafori");
+		buttonSemafori.setForeground(Color.BLACK);
+		buttonSemafori.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonSemafori.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonSemafori.setBackground(new Color(255, 102, 102));
+		buttonSemafori.setBounds(876, 190, 215, 77);
+		panelMainButton.add(buttonSemafori);
+		
+		JButton buttonPaginazioneDellaMemoria = new JButton("Paginazione Della Memoria");
+		buttonPaginazioneDellaMemoria.setForeground(Color.BLACK);
+		buttonPaginazioneDellaMemoria.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonPaginazioneDellaMemoria.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonPaginazioneDellaMemoria.setBackground(new Color(255, 153, 153));
+		buttonPaginazioneDellaMemoria.setBounds(884, 332, 215, 77);
+		panelMainButton.add(buttonPaginazioneDellaMemoria);
+		
+		JButton buttonSchedulingHd = new JButton("Scheduling  HD");
+		buttonSchedulingHd.setForeground(Color.BLACK);
+		buttonSchedulingHd.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonSchedulingHd.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonSchedulingHd.setBackground(new Color(255, 153, 204));
+		buttonSchedulingHd.setBounds(576, 456, 215, 77);
+		panelMainButton.add(buttonSchedulingHd);
+		
+		
+		
+		
 	}
 }
