@@ -66,7 +66,7 @@ public class MainWindows {
 		panelMainButton.add(testLabel1);
 		
 		JLabel testLabel2 = new JLabel("<3 ");
-		testLabel2.setForeground(new Color(255, 0, 51));
+		testLabel2.setForeground(new Color(255, 51, 51));
 		testLabel2.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		testLabel2.setBounds(660, 367, 41, 35);
 		panelMainButton.add(testLabel2);
