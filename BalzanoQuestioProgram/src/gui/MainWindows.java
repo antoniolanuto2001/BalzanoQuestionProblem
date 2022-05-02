@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindows {
 
@@ -62,5 +65,14 @@ public class MainWindows {
 		testLabel2.setFont(new Font("Segoe UI", Font.BOLD, 17));
 		testLabel2.setBounds(660, 367, 41, 35);
 		panelMainButton.add(testLabel2);
+		
+		JButton buttonCpu = new JButton("Scheduling  Processi");
+		buttonCpu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonCpu.setBounds(343, 120, 215, 77);
+		panelMainButton.add(buttonCpu);
 	}
 }
