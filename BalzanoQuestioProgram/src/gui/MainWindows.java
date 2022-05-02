@@ -53,12 +53,12 @@ public class MainWindows {
 		
 		JLabel testLabel1 = new JLabel("Ciao Erasmo ed Biagio");
 		testLabel1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		testLabel1.setBounds(143, 106, 143, 41);
+		testLabel1.setBounds(610, 332, 143, 41);
 		panelMainButton.add(testLabel1);
 		
 		JLabel testLabel2 = new JLabel("<3 ");
 		testLabel2.setFont(new Font("Segoe UI", Font.BOLD, 17));
-		testLabel2.setBounds(193, 141, 41, 35);
+		testLabel2.setBounds(660, 367, 41, 35);
 		panelMainButton.add(testLabel2);
 	}
 }
