@@ -16,6 +16,7 @@ public class MainWindows {
 	 * Launch the application.
 	 * @author Antonio Lanuto
 	 * @author Erasmo Prosciutto
+	 * @author Biagio Scotto
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
