@@ -60,5 +60,9 @@ public class PaginazioneMemoria extends JFrame {
 		buttonIndietro.setBounds(434, 377, 128, 46);
 		panelMainButton.add(buttonIndietro);
 		
+		JLabel lblNewLabel = new JLabel("sono biagio");
+		lblNewLabel.setBounds(585, 454, 98, 52);
+		panelMainButton.add(lblNewLabel);
+		
 	}
 }
