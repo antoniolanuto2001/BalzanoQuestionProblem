@@ -3,26 +3,25 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class SchProcessi extends JFrame {
+public class SchHD extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
-
 	/**
 	 * Create the frame.
 	 */
-	public SchProcessi(JFrame framechiamante) 
+	public SchHD(JFrame framechiamante) 
 	{
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,7 +37,7 @@ public class SchProcessi extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		JLabel labelSchemata = new JLabel("Scheduler Processi Schermata");
+		JLabel labelSchemata = new JLabel("Scheduler HD");
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		labelSchemata.setBounds(604, 355, 245, 89);
 		panelMainButton.add(labelSchemata);
@@ -60,4 +59,6 @@ public class SchProcessi extends JFrame {
 		panelMainButton.add(buttonIndietro);
 		
 	}
+
+
 }

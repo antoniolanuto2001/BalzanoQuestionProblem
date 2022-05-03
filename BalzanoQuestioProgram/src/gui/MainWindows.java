@@ -94,8 +94,13 @@ public class MainWindows {
 		buttonHashing.setBackground(new Color(153, 204, 255));
 		buttonHashing.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonHashing.setForeground(new Color(0, 0, 0));
-		buttonHashing.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		buttonHashing.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Hashing frameDachiamareProcessi= new Hashing(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
 			}
 		});
 		buttonHashing.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -108,6 +113,16 @@ public class MainWindows {
 		buttonFiloACena.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonFiloACena.setBackground(new Color(153, 255, 153));
 		buttonFiloACena.setBounds(260, 347, 215, 77);
+		buttonFiloACena.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Filosofi frameDachiamareProcessi= new Filosofi(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+		});
+		
 		panelMainButton.add(buttonFiloACena);
 		
 		JButton buttonSemafori = new JButton("Semafori");
@@ -116,6 +131,16 @@ public class MainWindows {
 		buttonSemafori.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSemafori.setBackground(new Color(255, 102, 102));
 		buttonSemafori.setBounds(876, 190, 215, 77);
+		buttonSemafori.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Semafori frameDachiamareProcessi= new Semafori(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+		});
+		
 		panelMainButton.add(buttonSemafori);
 		
 		JButton buttonPaginazioneDellaMemoria = new JButton("Paginazione Della Memoria");
@@ -124,6 +149,15 @@ public class MainWindows {
 		buttonPaginazioneDellaMemoria.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonPaginazioneDellaMemoria.setBackground(new Color(255, 153, 153));
 		buttonPaginazioneDellaMemoria.setBounds(884, 332, 215, 77);
+		buttonPaginazioneDellaMemoria.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PaginazioneMemoria frameDachiamareProcessi= new PaginazioneMemoria(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+		});	
 		panelMainButton.add(buttonPaginazioneDellaMemoria);
 		
 		JButton buttonSchedulingHd = new JButton("Scheduling  HD");
@@ -132,6 +166,16 @@ public class MainWindows {
 		buttonSchedulingHd.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSchedulingHd.setBackground(new Color(255, 153, 204));
 		buttonSchedulingHd.setBounds(576, 456, 215, 77);
+		buttonSchedulingHd.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SchHD frameDachiamareProcessi= new SchHD(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+		});
+		
 		panelMainButton.add(buttonSchedulingHd);
 		
 		
