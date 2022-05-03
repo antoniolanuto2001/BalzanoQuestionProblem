@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EtchedBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainWindows {
 
@@ -72,13 +74,18 @@ public class MainWindows {
 		panelMainButton.add(testLabel2);
 		
 		JButton buttonCpu = new JButton("Scheduling  Processi");
+		buttonCpu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+		});
 		buttonCpu.setBackground(new Color(204, 204, 255));
 		buttonCpu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonCpu.setForeground(new Color(0, 0, 0));
-		buttonCpu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonCpu.setBounds(260, 190, 215, 77);
 		panelMainButton.add(buttonCpu);
