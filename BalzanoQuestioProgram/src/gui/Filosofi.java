@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Filosofi extends JFrame {
 
@@ -44,8 +46,13 @@ public class Filosofi extends JFrame {
 		panelMainButton.add(labelSchemata);
 		
 		JButton buttonIndietro = new JButton("Indietro");
+		buttonIndietro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonIndietro.setBackground(new Color(153, 204, 255));
+		buttonIndietro.setOpaque(true);
 		buttonIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
