@@ -89,12 +89,14 @@ public class MainWindows {
 		buttonCpu.setForeground(new Color(0, 0, 0));
 		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonCpu.setBounds(260, 190, 215, 77);
+		buttonCpu.setOpaque(true);
 		panelMainButton.add(buttonCpu);
 		
 		JButton buttonHashing = new JButton("Hashing");
 		buttonHashing.setBackground(new Color(153, 204, 255));
 		buttonHashing.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonHashing.setForeground(new Color(0, 0, 0));
+		buttonHashing.setOpaque(true);
 		buttonHashing.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -114,6 +116,7 @@ public class MainWindows {
 		buttonFiloACena.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonFiloACena.setBackground(new Color(153, 255, 153));
 		buttonFiloACena.setBounds(260, 347, 215, 77);
+		buttonFiloACena.setOpaque(true);
 		buttonFiloACena.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -131,6 +134,7 @@ public class MainWindows {
 		buttonSemafori.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonSemafori.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSemafori.setBackground(new Color(255, 102, 102));
+		buttonSemafori.setOpaque(true);
 		buttonSemafori.setBounds(876, 190, 215, 77);
 		buttonSemafori.addMouseListener(new MouseAdapter() {
 			@Override
@@ -149,6 +153,7 @@ public class MainWindows {
 		buttonPaginazioneDellaMemoria.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonPaginazioneDellaMemoria.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonPaginazioneDellaMemoria.setBackground(new Color(255, 153, 153));
+		buttonPaginazioneDellaMemoria.setOpaque(true);
 		buttonPaginazioneDellaMemoria.setBounds(884, 332, 215, 77);
 		buttonPaginazioneDellaMemoria.addMouseListener(new MouseAdapter() {
 			@Override
@@ -166,6 +171,7 @@ public class MainWindows {
 		buttonSchedulingHd.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonSchedulingHd.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSchedulingHd.setBackground(new Color(255, 153, 204));
+		buttonSchedulingHd.setOpaque(true);
 		buttonSchedulingHd.setBounds(576, 456, 215, 77);
 		buttonSchedulingHd.addMouseListener(new MouseAdapter() {
 			@Override
