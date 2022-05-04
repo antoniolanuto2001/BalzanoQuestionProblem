@@ -25,7 +25,7 @@ public class MainWindows {
 	 * @author Antonio Lanuto
 	 * @author Erasmo Prosciutto
 	 * @author Biagio Scotto
-	 * ciao mi chiamo dora 
+	 * test da erasmo
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
