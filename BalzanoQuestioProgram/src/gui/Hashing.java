@@ -47,6 +47,7 @@ public class Hashing extends JFrame {
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonIndietro.setBackground(new Color(153, 204, 255));
+		buttonIndietro.setOpaque(true);
 		buttonIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
