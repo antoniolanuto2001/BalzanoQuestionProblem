@@ -28,6 +28,8 @@ import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberTickUnit;
+import org.jfree.chart.axis.SymbolAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -112,6 +114,7 @@ public class SchProcessi extends JFrame {
             true,
             false
     );
+	
 	
 	//private TimeSeriesCollection timeCollection;
 
@@ -212,6 +215,14 @@ public class SchProcessi extends JFrame {
         panelMainButton.add(panel_6);
         panel_6.setLayout(null);
         
+        String[] grade =  new String[5];
+        grade[0] = "";
+        grade[1] = "Processo 1";
+        grade[2] = "Processo 2";
+        grade[3] = "Processo 3";
+        grade[4] = "Processo 4";
+        SymbolAxis rangeAxis = new SymbolAxis("", grade);
+
         /*GRAFICO 1*/        
         XYPlot plot1 = chart1.getXYPlot();
         XYLineAndShapeRenderer renderer1 = new XYLineAndShapeRenderer();
@@ -240,6 +251,10 @@ public class SchProcessi extends JFrame {
         });
         chartPanel1.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel1.setBackground(Color.white);
+        
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot1.setRangeAxis(rangeAxis);
         
         /*GRAFICO 2*/
         XYPlot plot2 = chart2.getXYPlot();
@@ -270,6 +285,10 @@ public class SchProcessi extends JFrame {
         chartPanel2.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel2.setBackground(Color.white);
         
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot2.setRangeAxis(rangeAxis);
+        
         /*GRAFICO 3*/
         XYPlot plot3 = chart3.getXYPlot();
         XYLineAndShapeRenderer renderer3 = new XYLineAndShapeRenderer();
@@ -298,6 +317,10 @@ public class SchProcessi extends JFrame {
         });
         chartPanel3.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel3.setBackground(Color.white);
+        
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot3.setRangeAxis(rangeAxis);
         
         /*GRAFICO 4*/
         XYPlot plot4 = chart4.getXYPlot();
@@ -328,8 +351,10 @@ public class SchProcessi extends JFrame {
         chartPanel4.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel4.setBackground(Color.white);
         
-        
-        
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot4.setRangeAxis(rangeAxis);
+                
 	    
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(1129, 97, 265, 648);
@@ -500,12 +525,12 @@ public class SchProcessi extends JFrame {
 				model1.setValueAt(value,i,1);
 				int value2 = random.nextInt(30 + 0) + 0;
 				model1.setValueAt(value2,i,2);	
-				if(i==0) { series0.add(value,"P"+(i+1)); series0.add(value+value2,"P"+(i+1));}
-				else if(i==1) { series1.add(value,"P"+(i+1)); series1.add(value+value2,"P"+(i+1));}
-				else if(i==2) { series2.add(value,"P"+(i+1)); series2.add(value+value2,"P"+(i+1));}
-				else if(i==3) { series3.add(value,"P"+(i+1)); series3.add(value+value2,"P"+(i+1));}
-				else if(i==4) { series4.add(value,"P"+(i+1)); series4.add(value+value2,"P"+(i+1));}
-				else if(i==5) { series5.add(value,"P"+(i+1)); series5.add(value+value2,"P"+(i+1));}
+				if(i==0) { series0.add(value,i+1); series0.add(value+value2,i+1);}
+				else if(i==1) { series1.add(value,i+1); series1.add(value+value2,i+1);}
+				else if(i==2) { series2.add(value,i+1); series2.add(value+value2,i+1);}
+				else if(i==3) { series3.add(value,i+1); series3.add(value+value2,i+1);}
+				else if(i==4) { series4.add(value,i+1); series4.add(value+value2,i+1);}
+				else if(i==5) { series5.add(value,i+1); series5.add(value+value2,i+1);}
 
 				//AGGIUNGI CHECKBOX
 				//Aggiungi lista 
@@ -597,6 +622,10 @@ public class SchProcessi extends JFrame {
         });
         chartPanel1.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel1.setBackground(Color.white);
+     
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot1.setRangeAxis(rangeAxis);
         
         /*GRAFICO 2*/
         XYPlot plot2 = chart2.getXYPlot();
@@ -626,6 +655,10 @@ public class SchProcessi extends JFrame {
         });
         chartPanel2.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel2.setBackground(Color.white);
+
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot2.setRangeAxis(rangeAxis);
         
         /*GRAFICO 3*/
         XYPlot plot3 = chart3.getXYPlot();
@@ -656,6 +689,10 @@ public class SchProcessi extends JFrame {
         chartPanel3.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel3.setBackground(Color.white);
         
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot3.setRangeAxis(rangeAxis);
+        
         /*GRAFICO 4*/
         XYPlot plot4 = chart4.getXYPlot();
         XYLineAndShapeRenderer renderer4 = new XYLineAndShapeRenderer();
@@ -684,6 +721,10 @@ public class SchProcessi extends JFrame {
         });
         chartPanel4.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel4.setBackground(Color.white);
+        
+        rangeAxis.setTickUnit(new NumberTickUnit(1));
+        rangeAxis.setRange(0,grade.length);
+        plot4.setRangeAxis(rangeAxis);
         
                       	
 			}
