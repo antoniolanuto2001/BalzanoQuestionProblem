@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="D:/scuola/Universita/SistemiOperativi/BalzanoQuestion/BalzanoQuestioProgram/src/jfreechart-1.0.19-demo.jar"/>
 	<classpathentry kind="lib" path="D:/scuola/Universita/SistemiOperativi/BalzanoQuestion/BalzanoQuestioProgram/src/jcommon-1.0.8.jar"/>
+	<classpathentry kind="lib" path="C:/Users/biagi/Desktop/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

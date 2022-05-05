@@ -20,6 +20,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -39,6 +45,7 @@ public class SchProcessi extends JFrame {
 	private JPanel contentPane;
 	private JFrame frame;
 	private String scelta="0";
+	XYSeries series = new XYSeries("XYGraph");
 
 	//private TimeSeriesCollection timeCollection;
 
@@ -268,6 +275,46 @@ public class SchProcessi extends JFrame {
 			}
 		}
 		});
+		
+
+        
+        //Creo punti (X,Y)
+        series.add(1, 1);
+        series.add(1, 2);
+        series.add(2, 1);
+        series.add(3, 9);
+        series.add(4, 10);
+        
+        // Aggiungo la serie di punti  al dataset
+        XYSeriesCollection dataset = new XYSeriesCollection();
+        dataset.addSeries(series);
+        
+        // Genero il grafico
+        JFreeChart chart = ChartFactory.createXYLineChart(
+        "XY Chart", // Titolo
+        "x-axis",   // Etichetta asse X
+        "y-axis",   // Etichetta asse Y 
+        dataset,    // Dataset
+        PlotOrientation.VERTICAL, // Orientamento grafico
+        true,       // Mostra Legenda
+        true,       // Usa tooltips
+        false       // Dice se il grafico deve generare un URL
+        );
+       /* ChartUtilities.
+        JPanel panel = new JPanel();
+        panel.setBackground(new Color(255, 102, 51));
+        panel.setBounds(50, 64, 955, 888); 
+        frame.getContentPane().add(panel); 
+        panel.setLayout(null); 
+        //Absolute Layout
+        XYSeries series = new XYSeries("XY Chart");
+        XYSeriesCollection dataset = new XYSeriesCollection(series); 
+        JFreeChart chart = ChartFactory.createTimeSeriesChart("Testing Chart", "Date", "Average Profit", dataset); */
+        ChartPanel chartPanel = new ChartPanel((JFreeChart) null);
+        chartPanel.setChart(chart);
+        chartPanel.setBounds(39, 193, 419, 309);
+        panelMainButton.add(chartPanel);
+        frame.setVisible(true); 
 		//	});
 		
 	}
