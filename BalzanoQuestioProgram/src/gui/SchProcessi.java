@@ -20,13 +20,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -47,7 +40,7 @@ public class SchProcessi extends JFrame {
 	private JFrame frame;
 	private String scelta="0";
 
-	private TimeSeriesCollection timeCollection;
+	//private TimeSeriesCollection timeCollection;
 
 
 	/**
@@ -118,9 +111,6 @@ public class SchProcessi extends JFrame {
 		buttonEsci.setBounds(138, 697, 128, 46);
 		panelMainButton.add(buttonEsci);
 		
-		/*buttonGenera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-		*/	
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(1129, 97, 265, 656);
 		panelMainButton.add(panel_1);
@@ -173,7 +163,8 @@ public class SchProcessi extends JFrame {
 		final JTable table = new JTable();
 		scroll.setViewportView(table);
 		
-		DefaultTableModel model1 = new DefaultTableModel() {
+		DefaultTableModel model1 = new DefaultTableModel()
+		{
 			public Class<?> getColumnClass(int column){
 				switch(column) {
 				case 0:
@@ -241,26 +232,35 @@ public class SchProcessi extends JFrame {
 		table.getColumnModel().getColumn(1).setPreferredWidth(100);
 		table.getColumnModel().getColumn(2).setPreferredWidth(100);
 
-		comboBox.addActionListener(new ActionListener() {
+		comboBox.addActionListener(new ActionListener() 
+		{
 			public void actionPerformed(ActionEvent e) {
 				scelta= (String) comboBox.getSelectedItem();
 			
 		int r=Integer.valueOf(scelta);
-		if (r!=0) {			
-			for (int i=0;i<r;i++) { 
-			
-			Random random = new Random();
-			int value = random.nextInt(30 + 0) + 0;
-			model1.addRow(new Object[0]);
-			model1.setValueAt("P"+(i+1),i,0);
-			model1.setValueAt(value,i,1);
-			value = random.nextInt(30 + 0) + 0;
-			model1.setValueAt(value,i,2);
-			
-		//AGGIUNGI CHECKBOX
-		//Aggiungi lista 
-				}
+		if (r!=0) 
+		{			
+			int rowCount = table.getRowCount();
+			//Remove rows one by one from the end of the table
+			for (int i = rowCount - 1; i >= 0; i--) {
+			    model1.removeRow(i);
+			}	
+			for (int i=0;i<r;i++) 
+			{ 
+		
+				Random random = new Random();
+				int value = random.nextInt(30 + 0) + 0;
+				model1.addRow(new Object[0]);
+				model1.setValueAt("P"+(i+1),i,0);
+				model1.setValueAt(value,i,1);
+				value = random.nextInt(30 + 0) + 0;
+				model1.setValueAt(value,i,2);		
+				//AGGIUNGI CHECKBOX
+				//Aggiungi lista 
 			}
+		}
+		
+		
 		if (r!=0) {			
 			for (int i=0;i<r;i++) { 
 				
