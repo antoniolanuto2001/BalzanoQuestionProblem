@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,6 +43,8 @@ public class Filosofi extends JFrame {
 		frame=this;
 		Thread threadClassico[] = new Thread[5];
 		Thread threadAtomico[] = new Thread[5];
+		ImageIcon imageReady = new ImageIcon(this.getClass().getResource("/img/readyProva.png"));
+		ImageIcon imageAttesa = new ImageIcon(this.getClass().getResource("/img/attesaProva.png"));
 		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
@@ -65,6 +68,11 @@ public class Filosofi extends JFrame {
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
+		
+		JLabel labelFilosofo1 = new JLabel("New label");
+		labelFilosofo1.setBounds(95, 298, 94, 88);
+		panelMainButton.add(labelFilosofo1);
+		labelFilosofo1.setIcon(imageAttesa);
 		
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.addActionListener(new ActionListener() {
@@ -122,6 +130,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioClassico.isSelected()) 
 				{
+					labelFilosofo1.setIcon(imageAttesa);
 					for (int i = 0; i < threadClassico.length; i++) 
 					{
 						filosofiAtomici[i].stop();
@@ -147,6 +156,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioAtomico.isSelected()) 
 				{
+					labelFilosofo1.setIcon(imageReady);
 					for (int i = 0; i < threadAtomico.length; i++) 
 					{
 						filosofiClassica[i].stop();
@@ -164,8 +174,6 @@ public class Filosofi extends JFrame {
 		
 		
 		
+		
 	}
-	
-
-	
 }
