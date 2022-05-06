@@ -58,10 +58,17 @@ public class FilosofiClassica implements Runnable
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra
         }
     }
+    /**
+     * @brief Funzione che Stopa Esecuzione del thread associato
+     */
     public void stop()
     {
     	exit = false;
     }
+    /**
+     * @brief Funzione che Riavvia l' Esecuzione del thread associato
+     */
+    
     public void resume()
     {
     	exit = true;

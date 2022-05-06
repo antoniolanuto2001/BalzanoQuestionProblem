@@ -115,14 +115,18 @@ public class Filosofi extends JFrame {
 			}
 		});
 		radioClassico.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		radioClassico.setBounds(1126, 177, 175, 34);
+		radioClassico.setBounds(1123, 366, 175, 34);
 		groupSceltaStrategiaFilosofi.add(radioClassico);
 		panelMainButton.add(radioClassico);
 		
 		JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
-		radioAtomico.setBounds(1126, 214, 175, 34);
+		radioAtomico.setBounds(1123, 403, 175, 34);
 		groupSceltaStrategiaFilosofi.add(radioAtomico);
 		panelMainButton.add(radioAtomico);
+		
+		JRadioButton radioDefault = new JRadioButton("Nessuna");
+		radioDefault.setBounds(1123, 327, 175, 36);
+		panelMainButton.add(radioDefault);
 		
 	}
 }
