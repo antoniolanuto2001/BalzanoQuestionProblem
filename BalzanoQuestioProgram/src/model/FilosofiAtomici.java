@@ -3,6 +3,7 @@ package model;
 public class FilosofiAtomici implements Runnable
 {
     final int index;                        // indice locale del filosofo
+    private boolean exit;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaAtomica tavolaAtomica= new TavolaAtomica(NTHREAD); // monitor statico/condiviso
     
@@ -10,7 +11,7 @@ public class FilosofiAtomici implements Runnable
    public FilosofiAtomici(int i) 
    {
 	   index=i;
-	   
+	   exit = true;
    } 
    
    @Override
@@ -29,7 +30,7 @@ public class FilosofiAtomici implements Runnable
     // il filosofo pensa e mangia come al solito
     void codiceFilosofoAtomico(int index) throws InterruptedException 
     {
-        while(true) 
+        while(exit) 
         {
             // PENSA 
             System.out.println("Filosofo " + index +" pensa");
@@ -40,5 +41,20 @@ public class FilosofiAtomici implements Runnable
             Thread.sleep(3000);
             tavolaAtomica.deposita(index);  // deposita le bacchette
         }
+    }
+    /**
+     * @brief Funzione che Stopa Esecuzione del thread associato
+     */
+    public void stop()
+    {
+    	exit = false;
+    }
+    /**
+     * @brief Funzione che Riavvia l' Esecuzione del thread associato
+     */
+    
+    public void resume()
+    {
+    	exit = true;
     }
 }

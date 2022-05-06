@@ -44,6 +44,11 @@ public class Filosofi extends JFrame {
 		{
 			filosofiClassica[i] = new FilosofiClassica(i);
 		}
+		FilosofiAtomici filosofiAtomici[] = new FilosofiAtomici[5];
+		for (int i = 0; i < filosofiClassica.length; i++) 
+		{
+			filosofiAtomici[i] = new FilosofiAtomici(i);
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
 		contentPane = new JPanel();
@@ -89,6 +94,23 @@ public class Filosofi extends JFrame {
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
 		ButtonGroup groupSceltaStrategiaFilosofi = new ButtonGroup();
+		JRadioButton radioDefault = new JRadioButton("Nessuna");
+		radioDefault.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+					for (int i = 0; i < filosofiClassica.length; i++) 
+					{
+						filosofiClassica[i].stop();
+						filosofiAtomici[i].stop();
+						System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
+					}
+			}
+		});
+		radioDefault.setBounds(1161, 324, 175, 36);
+		groupSceltaStrategiaFilosofi.add(radioDefault);
+		panelMainButton.add(radioDefault);
 		JRadioButton radioClassico = new JRadioButton("Schema Classico");
 		radioClassico.addMouseListener(new MouseAdapter() {
 			@Override
@@ -98,35 +120,45 @@ public class Filosofi extends JFrame {
 				{
 					for (int i = 0; i < threadClassico.length; i++) 
 					{
+						filosofiAtomici[i].stop();
+						System.out.println("Ho interotto Esecuzione dei filosofi atomici " + i);
 						filosofiClassica[i].resume();
 						threadClassico[i]= new Thread(filosofiClassica[i]);
 						threadClassico[i].start();
 					}
 				}
-				else 
-				{
-					for (int i = 0; i < filosofiClassica.length; i++) 
-					{
-						filosofiClassica[i].stop();
-						System.out.println("Ho interotto Esecuzione del " + i);
-					}
-				}
+				
 			    
 			}
 		});
 		radioClassico.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		radioClassico.setBounds(1123, 366, 175, 34);
+		radioClassico.setBounds(1161, 363, 175, 34);
 		groupSceltaStrategiaFilosofi.add(radioClassico);
 		panelMainButton.add(radioClassico);
 		
 		JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
-		radioAtomico.setBounds(1123, 403, 175, 34);
+		radioAtomico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if (radioAtomico.isSelected()) 
+				{
+					for (int i = 0; i < threadAtomico.length; i++) 
+					{
+						filosofiClassica[i].stop();
+						System.out.println("Ho interotto Esecuzione dei filosofi Classici" + i);
+						filosofiAtomici[i].resume();
+						threadAtomico[i]= new Thread(filosofiAtomici[i]);
+						threadAtomico[i].start();
+					}
+				}
+			}
+		});
+		radioAtomico.setBounds(1161, 400, 175, 34);
 		groupSceltaStrategiaFilosofi.add(radioAtomico);
 		panelMainButton.add(radioAtomico);
 		
-		JRadioButton radioDefault = new JRadioButton("Nessuna");
-		radioDefault.setBounds(1123, 327, 175, 36);
-		panelMainButton.add(radioDefault);
+		
 		
 	}
 }
