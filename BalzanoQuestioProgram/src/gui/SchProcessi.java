@@ -9,11 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -55,6 +58,8 @@ import javax.swing.JCheckBox;
 import java.awt.Canvas;
 import java.awt.GridLayout;
 
+import java.awt.Desktop;
+
 public class SchProcessi extends JFrame {
 
 	private JPanel contentPane;
@@ -71,9 +76,10 @@ public class SchProcessi extends JFrame {
 	XYSeriesCollection dataset2 = new XYSeriesCollection();
 	XYSeriesCollection dataset3 = new XYSeriesCollection();
 	XYSeriesCollection dataset4 = new XYSeriesCollection();
-
 	XYSeriesCollection dataset = new XYSeriesCollection();
 
+	ArrayList<XYSeries> arraySeries=new ArrayList<XYSeries>();
+	
 	JFreeChart chart1 = ChartFactory.createXYLineChart(
             "GRAFICO FCFS",
             "",
@@ -114,8 +120,17 @@ public class SchProcessi extends JFrame {
             true,
             false
     );
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
 	
-	
+	private int i=0;
+
 	//private TimeSeriesCollection timeCollection;
 
 
@@ -158,7 +173,7 @@ public class SchProcessi extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(51, 204, 255));
-		panel.setBounds(0, 0, 1416, 89);
+		panel.setBounds(0, 0, 1416, 75);
 		panelMainButton.add(panel);
 		panel.setLayout(null);
 		
@@ -166,16 +181,16 @@ public class SchProcessi extends JFrame {
 		labelTitolo.setForeground(new Color(0, 0, 0));
 		labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
-		labelTitolo.setBounds(0, 10, 1416, 63);
+		labelTitolo.setBounds(0, 0, 1416, 73);
 		panel.add(labelTitolo);
 		
 		JTextArea txtrUniversitDegliStudi = new JTextArea();
-		txtrUniversitDegliStudi.setBounds(1151, 0, 265, 89);
+		txtrUniversitDegliStudi.setBounds(1151, 0, 265, 73);
 		panel.add(txtrUniversitDegliStudi);
 		txtrUniversitDegliStudi.setBackground(new Color(0, 204, 255));
 		txtrUniversitDegliStudi.setText("UNIversit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\nProgettisti: Lanuto, Prosciutto, Scotto\r\n");
 		txtrUniversitDegliStudi.setLineWrap(true);
-		txtrUniversitDegliStudi.setFont(new Font("Cambria", Font.PLAIN, 14));
+		txtrUniversitDegliStudi.setFont(new Font("Cambria", Font.PLAIN, 13));
 		txtrUniversitDegliStudi.setEditable(false);
 		
 		JButton buttonGenera = new JButton("Genera Esercizio");
@@ -186,6 +201,17 @@ public class SchProcessi extends JFrame {
 		panelMainButton.add(buttonGenera);
 		
 		JButton btnSlideArgomento = new JButton("Slide Argomento");
+		btnSlideArgomento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				File file = new File("C:\\Users\\biagi\\Desktop\\13° SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
+				try {
+					Desktop.getDesktop().open(file);
+				} catch (IOException e1) {
+					JOptionPane.showMessageDialog(contentPane,"FILE NON PRESENTE");
+					e1.printStackTrace();
+				}
+			}
+		});
 	    btnSlideArgomento.setOpaque(true);
 	    btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
 	    btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -215,12 +241,14 @@ public class SchProcessi extends JFrame {
         panelMainButton.add(panel_6);
         panel_6.setLayout(null);
         
-        String[] grade =  new String[5];
+        String[] grade =  new String[7];
         grade[0] = "";
         grade[1] = "Processo 1";
         grade[2] = "Processo 2";
         grade[3] = "Processo 3";
         grade[4] = "Processo 4";
+        grade[5] = "Processo 5";
+        grade[6] = "Processo 6";
         SymbolAxis rangeAxis = new SymbolAxis("", grade);
 
         /*GRAFICO 1*/        
@@ -251,6 +279,25 @@ public class SchProcessi extends JFrame {
         });
         chartPanel1.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel1.setBackground(Color.white);
+        chartPanel1.setLayout(null);
+        
+        JLabel lblNewLabel = new JLabel("Tempo di attesa medio:");
+        lblNewLabel.setBounds(10, 10, 132, 13);
+        chartPanel1.add(lblNewLabel);
+        
+        JLabel lblCambiDiContesto = new JLabel("Cambi di contesto: ");
+        lblCambiDiContesto.setBounds(10, 27, 115, 13);
+        chartPanel1.add(lblCambiDiContesto);
+        
+        textField = new JTextField();
+        textField.setBounds(152, 10, 42, 13);
+        chartPanel1.add(textField);
+        textField.setColumns(10);
+        
+        textField_1 = new JTextField();
+        textField_1.setColumns(10);
+        textField_1.setBounds(152, 27, 42, 13);
+        chartPanel1.add(textField_1);
         
         rangeAxis.setTickUnit(new NumberTickUnit(1));
         rangeAxis.setRange(0,grade.length);
@@ -284,6 +331,25 @@ public class SchProcessi extends JFrame {
         });
         chartPanel2.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel2.setBackground(Color.white);
+        chartPanel2.setLayout(null);
+        
+        JLabel lblNewLabel_3 = new JLabel("Tempo di attesa medio:");
+        lblNewLabel_3.setBounds(10, 10, 135, 13);
+        chartPanel2.add(lblNewLabel_3);
+        
+        textField_2 = new JTextField();
+        textField_2.setColumns(10);
+        textField_2.setBounds(155, 7, 44, 13);
+        chartPanel2.add(textField_2);
+        
+        JLabel lblCambiDiContesto_1 = new JLabel("Cambi di contesto: ");
+        lblCambiDiContesto_1.setBounds(10, 27, 115, 13);
+        chartPanel2.add(lblCambiDiContesto_1);
+        
+        textField_7 = new JTextField();
+        textField_7.setColumns(10);
+        textField_7.setBounds(155, 24, 44, 13);
+        chartPanel2.add(textField_7);
         
         rangeAxis.setTickUnit(new NumberTickUnit(1));
         rangeAxis.setRange(0,grade.length);
@@ -317,6 +383,25 @@ public class SchProcessi extends JFrame {
         });
         chartPanel3.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel3.setBackground(Color.white);
+        chartPanel3.setLayout(null);
+        
+        JLabel lblNewLabel_1 = new JLabel("Tempo di attesa medio:");
+        lblNewLabel_1.setBounds(10, 10, 132, 13);
+        chartPanel3.add(lblNewLabel_1);
+        
+        textField_4 = new JTextField();
+        textField_4.setColumns(10);
+        textField_4.setBounds(152, 10, 41, 13);
+        chartPanel3.add(textField_4);
+        
+        JLabel lblCambiDiContesto_3 = new JLabel("Cambi di contesto: ");
+        lblCambiDiContesto_3.setBounds(10, 27, 115, 13);
+        chartPanel3.add(lblCambiDiContesto_3);
+        
+        textField_5 = new JTextField();
+        textField_5.setColumns(10);
+        textField_5.setBounds(152, 27, 41, 13);
+        chartPanel3.add(textField_5);
         
         rangeAxis.setTickUnit(new NumberTickUnit(1));
         rangeAxis.setRange(0,grade.length);
@@ -350,6 +435,55 @@ public class SchProcessi extends JFrame {
         });
         chartPanel4.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
         chartPanel4.setBackground(Color.white);
+        chartPanel4.setLayout(null);
+        
+        JLabel lblNewLabel_2 = new JLabel("Tempo di attesa medio:");
+        lblNewLabel_2.setBounds(10, 10, 132, 13);
+        chartPanel4.add(lblNewLabel_2);
+        
+        textField_3 = new JTextField();
+        textField_3.setColumns(10);
+        textField_3.setBounds(152, 10, 46, 13);
+        chartPanel4.add(textField_3);
+        
+        JLabel lblCambiDiContesto_2 = new JLabel("Cambi di contesto: ");
+        lblCambiDiContesto_2.setBounds(10, 27, 115, 13);
+        chartPanel4.add(lblCambiDiContesto_2);
+        
+        textField_6 = new JTextField();
+        textField_6.setColumns(10);
+        textField_6.setBounds(152, 27, 46, 13);
+        chartPanel4.add(textField_6);
+        
+        JLabel lblNewLabel_4 = new JLabel("Tempo per processo:");
+        lblNewLabel_4.setBounds(372, 10, 125, 13);
+        chartPanel4.add(lblNewLabel_4);
+        
+        JButton btnNewButton_3_2 = new JButton("0");
+        btnNewButton_3_2.setBounds(420, 27, 57, 21);
+        chartPanel4.add(btnNewButton_3_2);
+                
+        JButton btnNewButton_3 = new JButton("<");
+        btnNewButton_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		btnNewButton_3_2.setText(String.valueOf(i-1));
+        		i=i-1;
+        	}
+        });
+        btnNewButton_3.setBounds(371, 27, 46, 21);
+        chartPanel4.add(btnNewButton_3);
+        
+        JButton btnNewButton_3_1 = new JButton(">");
+        btnNewButton_3_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		btnNewButton_3_2.setText(String.valueOf(i+1));
+        		i=i+1;
+        	}
+        });
+        btnNewButton_3_1.setBounds(481, 27, 46, 21);
+        chartPanel4.add(btnNewButton_3_1);
+        
+       
         
         rangeAxis.setTickUnit(new NumberTickUnit(1));
         rangeAxis.setRange(0,grade.length);
@@ -407,6 +541,7 @@ public class SchProcessi extends JFrame {
 		panel_3.add(scroll);
 		
 		final JTable table = new JTable();
+		table.setColumnSelectionAllowed(true);
 		scroll.setViewportView(table);
 		
 		DefaultTableModel model1 = new DefaultTableModel()
@@ -458,7 +593,22 @@ public class SchProcessi extends JFrame {
 		panel_4.add(chckbxAttivaModifiche);
 		
 		JButton btnNewButton_2 = new JButton("Salva Modifiche");
-		btnNewButton_2.setBounds(110, 33, 125, 21);
+		/*btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scelta= (String) comboBox.getSelectedItem();
+				int r=Integer.valueOf(scelta);
+				for(int i=0; i<r;i++) {
+					int z=table.get;
+				}
+				
+	    		if(z>=0) {    	
+	    			model.setValueAt(textField.getText(), z, 7);
+	    			model.setValueAt(textArea.getText(), z, 6);
+	    		}
+			}
+		});
+		*/
+		btnNewButton_2.setBounds(100, 33, 125, 21);
 		panel_4.add(btnNewButton_2);
 		
 		JLabel lblPlot = new JLabel("Plot");
@@ -539,12 +689,31 @@ public class SchProcessi extends JFrame {
 		
 		 dataset1.removeAllSeries();
 			
-		if(series0.getItemCount() !=0) dataset1.addSeries(series0);
-	        if(series1.getItemCount() !=0) dataset1.addSeries(series1);
-	        if(series2.getItemCount() !=0) dataset1.addSeries(series2);
-	        if(series3.getItemCount() !=0) dataset1.addSeries(series3);
-	        if(series4.getItemCount() !=0) dataset1.addSeries(series4);
-	        if(series5.getItemCount() !=0) dataset1.addSeries(series5);
+		 	if(series0.getItemCount() !=0) {
+		 		dataset1.addSeries(series0);
+		        arraySeries.add(series0);
+		 	}
+	        if(series1.getItemCount() !=0) {
+	        	dataset1.addSeries(series1);
+		        arraySeries.add(series1);
+	        }
+	        if(series2.getItemCount() !=0) {
+	        	dataset1.addSeries(series2);
+		        arraySeries.add(series2);
+	        }
+	        if(series3.getItemCount() !=0) {
+	        	dataset1.addSeries(series3);
+		        arraySeries.add(series3);
+	        }
+	        if(series4.getItemCount() !=0) {
+	        	dataset1.addSeries(series4);
+		        arraySeries.add(series4);
+	        }
+	        if(series5.getItemCount() !=0) {
+	        	dataset1.addSeries(series5);
+		        arraySeries.add(series5);
+	        }
+	        
 		}
 		});
 				
@@ -554,7 +723,7 @@ public class SchProcessi extends JFrame {
 			
 
 		chart1 = ChartFactory.createXYLineChart(
-                "Average salary per age",
+                "First-come, First-served",
                 "",
                 ""  ,
                 dataset1,
@@ -606,7 +775,7 @@ public class SchProcessi extends JFrame {
         plot1.setDomainGridlinesVisible(true);
         plot1.setDomainGridlinePaint(Color.BLACK);
         chart1.getLegend().setFrame(BlockBorder.NONE);
-        chart1.setTitle(new TextTitle("Average Salary per Age",
+        chart1.setTitle(new TextTitle("First-come, First-served",
         new Font("Serif", java.awt.Font.BOLD, 18)
         )
         );
@@ -639,7 +808,7 @@ public class SchProcessi extends JFrame {
         plot2.setDomainGridlinesVisible(true);
         plot2.setDomainGridlinePaint(Color.BLACK);
         chart2.getLegend().setFrame(BlockBorder.NONE);
-        chart2.setTitle(new TextTitle("Average Salary per Age",
+        chart2.setTitle(new TextTitle("Shortest Job First",
         new Font("Serif", java.awt.Font.BOLD, 18)
         )
         );
@@ -672,7 +841,7 @@ public class SchProcessi extends JFrame {
         plot3.setDomainGridlinesVisible(true);
         plot3.setDomainGridlinePaint(Color.BLACK);
         chart3.getLegend().setFrame(BlockBorder.NONE);
-        chart3.setTitle(new TextTitle("Average Salary per Age",
+        chart3.setTitle(new TextTitle("Shortest Job First Preemptive",
         new Font("Serif", java.awt.Font.BOLD, 18)
         )
         );
@@ -705,7 +874,7 @@ public class SchProcessi extends JFrame {
         plot4.setDomainGridlinesVisible(true);
         plot4.setDomainGridlinePaint(Color.BLACK);
         chart4.getLegend().setFrame(BlockBorder.NONE);
-        chart4.setTitle(new TextTitle("Average Salary per Age",
+        chart4.setTitle(new TextTitle("Round Robin",
         new Font("Serif", java.awt.Font.BOLD, 18)
         )
         );
@@ -735,4 +904,86 @@ public class SchProcessi extends JFrame {
 			/*}
 		});*/
 	}
+	
+	XYSeriesCollection FCFS(ArrayList<XYSeries> serie) {
+		
+		
+		int n = serie.size();
+		int pid[] = new int[n];   // process ids
+		int ar[] = new int[n];     // arrival times
+		int bt[] = new int[n];     // burst or execution times
+		int ct[] = new int[n];     // completion times
+		int ta[] = new int[n];     // turn around times
+		int wt[] = new int[n];     // waiting times
+		int temp;
+		float avgwt=0,avgta=0;
+		
+		XYSeries series;
+		int arrivo,durata;
+		
+		for(int i = 0; i < n; i++)
+		{
+		//System.out.println("enter process " + (i+1) + " arrival time: ");
+		series=serie.get(i);
+		arrivo=(int) series.getX(0);
+		durata=(int) series.getX(1);
+		ar[i] = arrivo;
+		//System.out.println("enter process " + (i+1) + " brust time: ");
+		bt[i] = durata;
+		pid[i] = i+1;
+		}
+		 
+		//sorting according to arrival times
+		for(int i = 0 ; i <n; i++)
+		{
+		for(int  j=0;  j < n-(i+1) ; j++)
+		{
+		if( ar[j] > ar[j+1] )
+		{
+		temp = ar[j];
+		ar[j] = ar[j+1];
+		ar[j+1] = temp;
+		temp = bt[j];
+		bt[j] = bt[j+1];
+		bt[j+1] = temp;
+		temp = pid[j];
+		pid[j] = pid[j+1];
+		pid[j+1] = temp;
+		}
+		}
+		}
+		// finding completion times
+		for(int  i = 0 ; i < n; i++)
+		{
+		if( i == 0)
+		{
+		ct[i] = ar[i] + bt[i];
+		}
+		else
+		{
+		if( ar[i] > ct[i-1])
+		{
+		ct[i] = ar[i] + bt[i];
+		}
+		else
+		ct[i] = ct[i-1] + bt[i];
+		}
+		ta[i] = ct[i] - ar[i] ;          // turnaround time= completion time- arrival time
+		wt[i] = ta[i] - bt[i] ;          // waiting time= turnaround time- burst time
+		avgwt += wt[i] ;               // total waiting time
+		avgta += ta[i] ;               // total turnaround time
+		}
+		//System.out.println("\npid  arrival  brust  complete turn waiting");
+		for(int  i = 0 ; i< n;  i++)
+		{
+		System.out.println(pid[i] + "  \t " + ar[i] + "\t" + bt[i] + "\t" + ct[i] + "\t" + ta[i] + "\t"  + wt[i] ) ;
+		}
+		//sc.close();
+		System.out.println("\naverage waiting time: "+ (avgwt/n));     // printing average waiting time.
+		System.out.println("average turnaround time:"+(avgta/n));    // printing average turnaround time.
+		return dataset ;
+		}
+		
+		
+		
 }
