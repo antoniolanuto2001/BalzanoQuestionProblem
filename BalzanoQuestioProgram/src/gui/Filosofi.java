@@ -4,11 +4,10 @@ import model.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Iterator;
+
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -17,10 +16,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.AttributeSet.ColorAttribute;
+
+import com.orsonpdf.GraphicsStateDictionary;
+
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
 
@@ -28,15 +33,13 @@ public class Filosofi extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
-	private boolean continuaEsecuzione;
-
+	private JPanel panelMainButton = new JPanel();
 	/**
 	 * Create the frame.
 	 */
 	public Filosofi(JFrame framechiamante) 
 	{
 		frame=this;
-		continuaEsecuzione=false;
 		Thread threadClassico[] = new Thread[5];
 		Thread threadAtomico[] = new Thread[5];
 		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
@@ -56,7 +59,8 @@ public class Filosofi extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panelMainButton = new JPanel();
+		
+		
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
@@ -161,4 +165,7 @@ public class Filosofi extends JFrame {
 		
 		
 	}
+	
+
+	
 }
