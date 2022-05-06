@@ -3,8 +3,9 @@ package model;
 
 public class FilosofiClassica implements Runnable 
 {
-    static final int NTHREAD=5;             // numero di filosofi
     final int index;                        // indice locale del filosofo
+    private boolean exit;
+    static final int NTHREAD=5;             // numero di filosofi
     static TavolaClassica tavolaClassica= new TavolaClassica(NTHREAD);   // monitor statico/condiviso
     
     /**
@@ -15,6 +16,7 @@ public class FilosofiClassica implements Runnable
     public FilosofiClassica(int i)
     {
         index = i;
+        exit = true;
     }
     
     // il thread esegue il codiceFilosofo a meno di interruzioni
@@ -37,7 +39,7 @@ public class FilosofiClassica implements Runnable
     // il filosofo pensa e mangia come al solito
     void codiceFilosofoClassico(int index) throws InterruptedException 
     {
-        while(true)
+        while (exit)
         {
             // PENSA 
             System.out.println("Filosofo " + index +" pensa");
@@ -56,7 +58,14 @@ public class FilosofiClassica implements Runnable
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra
         }
     }
-   
+    public void stop()
+    {
+    	exit = false;
+    }
+    public void resume()
+    {
+    	exit = true;
+    }
    
 }
 

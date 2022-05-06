@@ -2,13 +2,15 @@ package model;
 
 public class FilosofiAtomici implements Runnable
 {
- 	static final int NTHREAD=5;             // numero di filosofi
     final int index;                        // indice locale del filosofo
+    static final int NTHREAD=5;             // numero di filosofi
     static TavolaAtomica tavolaAtomica= new TavolaAtomica(NTHREAD); // monitor statico/condiviso
+    
     
    public FilosofiAtomici(int i) 
    {
 	   index=i;
+	   
    } 
    
    @Override

@@ -8,7 +8,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Iterator;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,6 +19,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JRadioButton;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 
 
@@ -24,6 +28,7 @@ public class Filosofi extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	private boolean continuaEsecuzione;
 
 	/**
 	 * Create the frame.
@@ -31,6 +36,14 @@ public class Filosofi extends JFrame {
 	public Filosofi(JFrame framechiamante) 
 	{
 		frame=this;
+		continuaEsecuzione=false;
+		Thread threadClassico[] = new Thread[5];
+		Thread threadAtomico[] = new Thread[5];
+		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
+		for (int i = 0; i < filosofiClassica.length; i++) 
+		{
+			filosofiClassica[i] = new FilosofiClassica(i);
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
 		contentPane = new JPanel();
@@ -43,11 +56,6 @@ public class Filosofi extends JFrame {
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
-		
-		JLabel labelSchemata = new JLabel("Filosofi a cena ");
-		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		labelSchemata.setBounds(604, 355, 245, 89);
-		panelMainButton.add(labelSchemata);
 		
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.addActionListener(new ActionListener() {
@@ -67,14 +75,54 @@ public class Filosofi extends JFrame {
 			}
 		});
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonIndietro.setBounds(434, 377, 128, 46);
+		buttonIndietro.setBounds(10, 135, 128, 46);
 		panelMainButton.add(buttonIndietro);
-		Thread t[] = new Thread[5];
-	    // crea NTHREAD filosofi e li esegue
-	    for(int i=0;i<5;i++) 
-	    {
-	      t[i] = new Thread(new FilosofiAtomici(i));
-	      t[i].start();
-	    }
+		
+		JPanel panelSuperiore = new JPanel();
+		panelSuperiore.setBackground(new Color(204, 204, 255));
+		panelSuperiore.setBounds(0, 0, 1414, 124);
+		panelMainButton.add(panelSuperiore);
+		panelSuperiore.setLayout(null);
+		
+		JLabel labelSchemata = new JLabel("Filosofi A Cena ");
+		labelSchemata.setBounds(531, 11, 404, 89);
+		panelSuperiore.add(labelSchemata);
+		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		ButtonGroup groupSceltaStrategiaFilosofi = new ButtonGroup();
+		JRadioButton radioClassico = new JRadioButton("Schema Classico");
+		radioClassico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				if (radioClassico.isSelected()) 
+				{
+					for (int i = 0; i < threadClassico.length; i++) 
+					{
+						filosofiClassica[i].resume();
+						threadClassico[i]= new Thread(filosofiClassica[i]);
+						threadClassico[i].start();
+					}
+				}
+				else 
+				{
+					for (int i = 0; i < filosofiClassica.length; i++) 
+					{
+						filosofiClassica[i].stop();
+						System.out.println("Ho interotto Esecuzione del " + i);
+					}
+				}
+			    
+			}
+		});
+		radioClassico.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		radioClassico.setBounds(1126, 177, 175, 34);
+		groupSceltaStrategiaFilosofi.add(radioClassico);
+		panelMainButton.add(radioClassico);
+		
+		JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
+		radioAtomico.setBounds(1126, 214, 175, 34);
+		groupSceltaStrategiaFilosofi.add(radioAtomico);
+		panelMainButton.add(radioAtomico);
+		
 	}
 }
