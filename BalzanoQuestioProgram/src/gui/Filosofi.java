@@ -1,5 +1,7 @@
 package gui;
 
+import model.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -15,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+
 
 public class Filosofi extends JFrame {
 
@@ -65,6 +69,12 @@ public class Filosofi extends JFrame {
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonIndietro.setBounds(434, 377, 128, 46);
 		panelMainButton.add(buttonIndietro);
-		
+		Thread t[] = new Thread[5];
+	    // crea NTHREAD filosofi e li esegue
+	    for(int i=0;i<5;i++) 
+	    {
+	      t[i] = new Thread(new FilosofiAtomici(i));
+	      t[i].start();
+	    }
 	}
 }
