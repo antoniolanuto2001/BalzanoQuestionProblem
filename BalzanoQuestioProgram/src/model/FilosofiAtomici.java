@@ -5,6 +5,9 @@ public class FilosofiAtomici implements Runnable
     final int index;                        // indice locale del filosofo
     private boolean exit;
     public boolean pronto;
+    public int tempoPensa;
+    public int tempoMangia;
+    public int tempoEsecuzione;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaAtomica tavolaAtomica= new TavolaAtomica(NTHREAD); // monitor statico/condiviso
     
@@ -13,6 +16,9 @@ public class FilosofiAtomici implements Runnable
    {
 	   index=i;
 	   exit = true;
+	   tempoPensa=500;
+       tempoMangia=800;
+       tempoEsecuzione=500;
    } 
    
    @Override
@@ -33,15 +39,16 @@ public class FilosofiAtomici implements Runnable
     {
         while(exit) 
         {
+        	Thread.sleep(tempoEsecuzione);
             // PENSA 
         	pronto = false;
             System.out.println("Filosofo " + index +" pensa");
-            Thread.sleep(800);
+            Thread.sleep(tempoPensa);
             tavolaAtomica.raccogli(index);  // raccoglie atomicamente le bacchette
             //MANGIA
             pronto=true;
             System.out.println("Filosofo " + index +" mangia");
-            Thread.sleep(800);
+            Thread.sleep(tempoMangia);
             tavolaAtomica.deposita(index);  // deposita le bacchette
             pronto = false;
         }
