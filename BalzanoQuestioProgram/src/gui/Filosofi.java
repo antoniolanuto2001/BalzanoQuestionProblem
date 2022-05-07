@@ -4,9 +4,13 @@ import model.*;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
@@ -96,7 +100,7 @@ public class Filosofi extends JFrame {
 		});
 		
 		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
-		labelFilosofo2.setBounds(361, 183, 94, 98);
+		labelFilosofo2.setBounds(361, 191, 94, 98);
 		labelFilosofo2.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo2);
 		
@@ -324,7 +328,40 @@ public class Filosofi extends JFrame {
 		labelTavola.setIcon(imageTavola);
 		panelMainButton.add(labelTavola);
 		
+		JButton buttonEsci = new JButton("Esci");
+		buttonEsci.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		buttonEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonEsci.setBackground(new Color(255, 204, 0));
+		buttonEsci.setBounds(141, 134, 128, 48);
+		panelMainButton.add(buttonEsci);
 		
+		JButton btnSlideArgomento = new JButton("Slide Argomento");
+		btnSlideArgomento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://youtu.be/0HjA3ZC_KmE?t=114"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+	    btnSlideArgomento.setOpaque(true);
+	    btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
+	    btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
+	    btnSlideArgomento.setBackground(new Color(153, 255, 255));
+	    btnSlideArgomento.setBounds(279, 134, 128, 48);
+        panelMainButton.add(btnSlideArgomento);
+        frame.setVisible(true); 
 		
 		
 	}

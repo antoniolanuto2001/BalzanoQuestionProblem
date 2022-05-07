@@ -17,6 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -203,11 +205,14 @@ public class SchProcessi extends JFrame {
 		JButton btnSlideArgomento = new JButton("Slide Argomento");
 		btnSlideArgomento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File file = new File("C:\\Users\\biagi\\Desktop\\13° SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
+				Desktop d = Desktop.getDesktop();
 				try {
-					Desktop.getDesktop().open(file);
+					d.browse(new URI ("https://youtu.be/0HjA3ZC_KmE?t=114"));
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(contentPane,"FILE NON PRESENTE");
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
