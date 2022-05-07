@@ -43,8 +43,10 @@ public class Filosofi extends JFrame {
 		frame=this;
 		Thread threadClassico[] = new Thread[5];
 		Thread threadAtomico[] = new Thread[5];
-		ImageIcon imageReady = new ImageIcon(this.getClass().getResource("/img/readyProva.png"));
-		ImageIcon imageAttesa = new ImageIcon(this.getClass().getResource("/img/attesaProva.png"));
+		ImageIcon imageReady = new ImageIcon(this.getClass().getResource("/img/readyIcon.png"));
+		ImageIcon imageNormal = new ImageIcon(this.getClass().getResource("/img/normaleIcon.png"));
+		ImageIcon imageAttesa = new ImageIcon(this.getClass().getResource("/img/attesaIcon.png"));
+		ImageIcon imageTavola = new ImageIcon(this.getClass().getResource("/img/tavolaIcon.png"));
 		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
@@ -69,8 +71,8 @@ public class Filosofi extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		JLabel labelFilosofo1 = new JLabel("New label");
-		labelFilosofo1.setBounds(95, 298, 94, 88);
+		JLabel labelFilosofo1 = new JLabel("Filosofo1");
+		labelFilosofo1.setBounds(63, 277, 94, 98);
 		panelMainButton.add(labelFilosofo1);
 		labelFilosofo1.setIcon(imageAttesa);
 		
@@ -91,6 +93,22 @@ public class Filosofi extends JFrame {
 				frame.dispose();
 			}
 		});
+		
+		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
+		labelFilosofo2.setBounds(308, 164, 94, 98);
+		panelMainButton.add(labelFilosofo2);
+		
+		JLabel labelFilosofo3 = new JLabel("Filosofo 3");
+		labelFilosofo3.setBounds(577, 298, 94, 98);
+		panelMainButton.add(labelFilosofo3);
+		
+		JLabel labelFilosofo4 = new JLabel("Filosofo 4");
+		labelFilosofo4.setBounds(493, 582, 94, 98);
+		panelMainButton.add(labelFilosofo4);
+		
+		JLabel labelFilosofo5 = new JLabel("Filosofo 4");
+		labelFilosofo5.setBounds(127, 582, 94, 98);
+		panelMainButton.add(labelFilosofo5);
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonIndietro.setBounds(10, 135, 128, 46);
 		panelMainButton.add(buttonIndietro);
@@ -171,6 +189,11 @@ public class Filosofi extends JFrame {
 		radioAtomico.setBounds(1161, 400, 175, 34);
 		groupSceltaStrategiaFilosofi.add(radioAtomico);
 		panelMainButton.add(radioAtomico);
+		
+		JLabel labelTavola = new JLabel("tavola");
+		labelTavola.setBounds(117, 251, 482, 371);
+		labelTavola.setIcon(imageTavola);
+		panelMainButton.add(labelTavola);
 		
 		
 		
