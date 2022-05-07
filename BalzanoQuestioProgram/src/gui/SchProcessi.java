@@ -17,6 +17,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -203,16 +205,19 @@ public class SchProcessi extends JFrame {
 		JButton btnSlideArgomento = new JButton("Slide Argomento");
 		btnSlideArgomento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File file = new File("C:\\Users\\biagi\\Desktop\\13° SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
+				Desktop d = Desktop.getDesktop();
 				try {
-					Desktop.getDesktop().open(file);
+					d.browse(new URI ("https://youtu.be/0HjA3ZC_KmE?t=114"));
 				} catch (IOException e1) {
-					JOptionPane.showMessageDialog(contentPane,"FILE NON PRESENTE");
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-	    btnSlideArgomento.setOpaque(true);
+		btnSlideArgomento.setOpaque(true);
 	    btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
 	    btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
 	    btnSlideArgomento.setBackground(new Color(153, 255, 255));
@@ -675,7 +680,8 @@ public class SchProcessi extends JFrame {
 				model1.setValueAt(value,i,1);
 				int value2 = random.nextInt(30 + 0) + 0;
 				model1.setValueAt(value2,i,2);	
-				if(i==0) { series0.add(value,i+1); series0.add(value+value2,i+1);}
+			
+					 if(i==0) { series0.add(value,i+1); series0.add(value+value2,i+1);}
 				else if(i==1) { series1.add(value,i+1); series1.add(value+value2,i+1);}
 				else if(i==2) { series2.add(value,i+1); series2.add(value+value2,i+1);}
 				else if(i==3) { series3.add(value,i+1); series3.add(value+value2,i+1);}
@@ -721,7 +727,7 @@ public class SchProcessi extends JFrame {
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			
-
+				
 		chart1 = ChartFactory.createXYLineChart(
                 "First-come, First-served",
                 "",

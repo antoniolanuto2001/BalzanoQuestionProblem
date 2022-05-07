@@ -342,12 +342,12 @@ public class PaginazioneMemoria extends JFrame {
 			panel_3.setLayout(null);
 			panel_3.setBorder(BorderFactory.createLineBorder(Color.black));
 			
-			JLabel lblNumeroDiProcessi = new JLabel("Slot Memoria Disponibili");
-			lblNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNumeroDiProcessi.setForeground(new Color(0, 0, 0));
-			lblNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 14));
-			lblNumeroDiProcessi.setBounds(0, 2, 181, 23);
-			panel_3.add(lblNumeroDiProcessi);
+			JLabel lblSlotMemoria = new JLabel("Slot Memoria Disponibili");
+			lblSlotMemoria.setHorizontalAlignment(SwingConstants.CENTER);
+			lblSlotMemoria.setForeground(new Color(0, 0, 0));
+			lblSlotMemoria.setFont(new Font("Arial", Font.BOLD, 14));
+			lblSlotMemoria.setBounds(0, 2, 181, 23);
+			panel_3.add(lblSlotMemoria);
 			
 			JComboBox comboBox = new JComboBox();
 			comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -364,6 +364,7 @@ public class PaginazioneMemoria extends JFrame {
 			panel_3.add(lblSuccessioneDiRiferimento);
 			
 			stringaNumeri = new JTextField();
+			stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
 			stringaNumeri.setBounds(10, 107, 225, 19);
@@ -371,15 +372,31 @@ public class PaginazioneMemoria extends JFrame {
 			stringaNumeri.setColumns(10);
 			
 			JCheckBox chckbxAttivaModifiche = new JCheckBox("Attiva modifiche");
+			chckbxAttivaModifiche.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					stringaNumeri.setEditable(true);
+				}
+			});
 			chckbxAttivaModifiche.setBounds(10, 156, 136, 21);
 			panel_3.add(chckbxAttivaModifiche);
 			chckbxAttivaModifiche.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			
 			JButton btnNewButton_2 = new JButton("Salva");
+			btnNewButton_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					stringaNumeri.setText(stringaNumeri.getText());
+					stringaNumeri.setEditable(false);
+				}
+			});
 			btnNewButton_2.setBounds(152, 157, 83, 21);
 			panel_3.add(btnNewButton_2);
 			
 			JButton btnPlay = new JButton("ESEGUI");
+			btnPlay.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.out.println(stringaNumeri.getText());
+				}
+			});
 			btnPlay.setBounds(63, 195, 118, 21);
 			panel_3.add(btnPlay);
 			btnPlay.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -395,7 +412,8 @@ public class PaginazioneMemoria extends JFrame {
 			JButton btnGeneraSuccessione = new JButton("Genera successione");
 			btnGeneraSuccessione.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					for (int i=0;i<20;i++) { 
+					stringaNumeri.setText("");
+					for (int i=0;i<18;i++) { 
 						
 						Random random = new Random();
 						int value = random.nextInt(10 + 0) + 0;
@@ -427,6 +445,31 @@ public class PaginazioneMemoria extends JFrame {
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHelp.setForeground(Color.RED);
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+			JPanel panel_6 = new JPanel();
+			panel_6.setLayout(null);
+			panel_6.setBounds(5, 153, 1114, 600);
+			panelMainButton.add(panel_6);
+			
+			JPanel panel_7 = new JPanel();
+			panel_7.setLayout(null);
+			panel_7.setBounds(0, 0, 548, 295);
+			panel_6.add(panel_7);
+			
+			JPanel panel_8 = new JPanel();
+			panel_8.setLayout(null);
+			panel_8.setBounds(556, 0, 548, 295);
+			panel_6.add(panel_8);
+			
+			JPanel panel_9 = new JPanel();
+			panel_9.setLayout(null);
+			panel_9.setBounds(0, 305, 548, 295);
+			panel_6.add(panel_9);
+			
+			JPanel panel_10 = new JPanel();
+			panel_10.setLayout(null);
+			panel_10.setBounds(558, 305, 548, 295);
+			panel_6.add(panel_10);
 			
 			
 		}
