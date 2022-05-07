@@ -4,6 +4,7 @@ public class FilosofiAtomici implements Runnable
 {
     final int index;                        // indice locale del filosofo
     private boolean exit;
+    public boolean pronto;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaAtomica tavolaAtomica= new TavolaAtomica(NTHREAD); // monitor statico/condiviso
     
@@ -33,13 +34,16 @@ public class FilosofiAtomici implements Runnable
         while(exit) 
         {
             // PENSA 
+        	pronto = false;
             System.out.println("Filosofo " + index +" pensa");
-            Thread.sleep(1000);
+            Thread.sleep(800);
             tavolaAtomica.raccogli(index);  // raccoglie atomicamente le bacchette
             //MANGIA
+            pronto=true;
             System.out.println("Filosofo " + index +" mangia");
-            Thread.sleep(3000);
+            Thread.sleep(800);
             tavolaAtomica.deposita(index);  // deposita le bacchette
+            pronto = false;
         }
     }
     /**
@@ -48,6 +52,7 @@ public class FilosofiAtomici implements Runnable
     public void stop()
     {
     	exit = false;
+    	pronto = false;
     }
     /**
      * @brief Funzione che Riavvia l' Esecuzione del thread associato
@@ -56,5 +61,6 @@ public class FilosofiAtomici implements Runnable
     public void resume()
     {
     	exit = true;
+    	pronto = false;
     }
 }

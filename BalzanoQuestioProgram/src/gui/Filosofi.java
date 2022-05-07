@@ -7,7 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+import java.util.Iterator;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -35,6 +35,7 @@ public class Filosofi extends JFrame {
 	private JPanel contentPane;
 	private JFrame frame;
 	private JPanel panelMainButton = new JPanel();
+	private Boolean continuaBoolean = false;
 	/**
 	 * Create the frame.
 	 */
@@ -72,9 +73,9 @@ public class Filosofi extends JFrame {
 		panelMainButton.setLayout(null);
 		
 		JLabel labelFilosofo1 = new JLabel("Filosofo1");
-		labelFilosofo1.setBounds(63, 277, 94, 98);
+		labelFilosofo1.setBounds(115, 318, 94, 98);
 		panelMainButton.add(labelFilosofo1);
-		labelFilosofo1.setIcon(imageAttesa);
+		labelFilosofo1.setIcon(imageNormal);
 		
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.addActionListener(new ActionListener() {
@@ -95,19 +96,23 @@ public class Filosofi extends JFrame {
 		});
 		
 		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
-		labelFilosofo2.setBounds(308, 164, 94, 98);
+		labelFilosofo2.setBounds(361, 183, 94, 98);
+		labelFilosofo2.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo2);
 		
 		JLabel labelFilosofo3 = new JLabel("Filosofo 3");
-		labelFilosofo3.setBounds(577, 298, 94, 98);
+		labelFilosofo3.setBounds(599, 318, 94, 98);
+		labelFilosofo3.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo3);
 		
 		JLabel labelFilosofo4 = new JLabel("Filosofo 4");
-		labelFilosofo4.setBounds(493, 582, 94, 98);
+		labelFilosofo4.setBounds(539, 599, 94, 98);
+		labelFilosofo4.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo4);
 		
 		JLabel labelFilosofo5 = new JLabel("Filosofo 4");
-		labelFilosofo5.setBounds(127, 582, 94, 98);
+		labelFilosofo5.setBounds(175, 610, 94, 98);
+		labelFilosofo5.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo5);
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonIndietro.setBounds(10, 135, 128, 46);
@@ -129,13 +134,19 @@ public class Filosofi extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
-					for (int i = 0; i < filosofiClassica.length; i++) 
-					{
-						filosofiClassica[i].stop();
-						filosofiAtomici[i].stop();
-						System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
-					}
+				continuaBoolean=false;
+				labelFilosofo1.setIcon(imageNormal);
+				labelFilosofo2.setIcon(imageNormal);
+				labelFilosofo3.setIcon(imageNormal);
+				labelFilosofo4.setIcon(imageNormal);
+				labelFilosofo5.setIcon(imageNormal);
+				for (int i = 0; i < filosofiClassica.length; i++) 
+				{
+					
+					filosofiClassica[i].stop();
+					filosofiAtomici[i].stop();
+					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
+				}
 			}
 		});
 		radioDefault.setBounds(1161, 324, 175, 36);
@@ -148,7 +159,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioClassico.isSelected()) 
 				{
-					labelFilosofo1.setIcon(imageAttesa);
+					continuaBoolean=false;
 					for (int i = 0; i < threadClassico.length; i++) 
 					{
 						filosofiAtomici[i].stop();
@@ -157,6 +168,65 @@ public class Filosofi extends JFrame {
 						threadClassico[i]= new Thread(filosofiClassica[i]);
 						threadClassico[i].start();
 					}
+					continuaBoolean=true;
+					Thread threadCambiaFiloClassico= new Thread(new Runnable() 
+					{
+						@Override
+						public void run() 
+						{
+							// TODO Auto-generated method stub
+							while (continuaBoolean) 
+							{
+								//Filosofo 1 
+								if (filosofiClassica[0].pronto==true) 
+								{
+									labelFilosofo1.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo1.setIcon(imageAttesa);
+								}
+								//Filosofo 2
+								if (filosofiClassica[1].pronto==true) 
+								{
+									labelFilosofo2.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo2.setIcon(imageAttesa);
+								}
+								//Filosofo 3
+								if (filosofiClassica[2].pronto==true) 
+								{
+									labelFilosofo3.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo3.setIcon(imageAttesa);
+								}
+								//Filosofo 4
+								if (filosofiClassica[3].pronto==true) 
+								{
+									labelFilosofo4.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo4.setIcon(imageAttesa);
+								}
+								//Filosofo 5
+								if (filosofiClassica[4].pronto==true) 
+								{
+									labelFilosofo5.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo5.setIcon(imageAttesa);
+								}
+								
+							}
+						}
+					});
+					threadCambiaFiloClassico.start();
 				}
 				
 			    
@@ -174,7 +244,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioAtomico.isSelected()) 
 				{
-					labelFilosofo1.setIcon(imageReady);
+					continuaBoolean=false;
 					for (int i = 0; i < threadAtomico.length; i++) 
 					{
 						filosofiClassica[i].stop();
@@ -183,6 +253,65 @@ public class Filosofi extends JFrame {
 						threadAtomico[i]= new Thread(filosofiAtomici[i]);
 						threadAtomico[i].start();
 					}
+					continuaBoolean=true;
+					Thread threadCambiaFiloAtomico= new Thread(new Runnable() 
+					{
+						@Override
+						public void run() 
+						{
+							// TODO Auto-generated method stub
+							while (continuaBoolean) 
+							{
+								//Filosofo 1 
+								if (filosofiAtomici[0].pronto==true) 
+								{
+									labelFilosofo1.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo1.setIcon(imageAttesa);
+								}
+								//Filosofo 2
+								if (filosofiAtomici[1].pronto==true) 
+								{
+									labelFilosofo2.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo2.setIcon(imageAttesa);
+								}
+								//Filosofo 3
+								if (filosofiAtomici[2].pronto==true) 
+								{
+									labelFilosofo3.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo3.setIcon(imageAttesa);
+								}
+								//Filosofo 4
+								if (filosofiAtomici[3].pronto==true) 
+								{
+									labelFilosofo4.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo4.setIcon(imageAttesa);
+								}
+								//Filosofo 5
+								if (filosofiAtomici[4].pronto==true) 
+								{
+									labelFilosofo5.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo5.setIcon(imageAttesa);
+								}
+								
+							}
+						}
+					});
+					threadCambiaFiloAtomico.start();
 				}
 			}
 		});
@@ -191,7 +320,7 @@ public class Filosofi extends JFrame {
 		panelMainButton.add(radioAtomico);
 		
 		JLabel labelTavola = new JLabel("tavola");
-		labelTavola.setBounds(117, 251, 482, 371);
+		labelTavola.setBounds(165, 292, 482, 371);
 		labelTavola.setIcon(imageTavola);
 		panelMainButton.add(labelTavola);
 		
@@ -199,4 +328,5 @@ public class Filosofi extends JFrame {
 		
 		
 	}
+	
 }
