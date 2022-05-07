@@ -1,10 +1,12 @@
 package model;
 
+import java.nio.file.ProviderNotFoundException;
 
 public class FilosofiClassica implements Runnable 
 {
     final int index;                        // indice locale del filosofo
     private boolean exit;
+    public boolean pronto;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaClassica tavolaClassica= new TavolaClassica(NTHREAD);   // monitor statico/condiviso
     
@@ -17,6 +19,7 @@ public class FilosofiClassica implements Runnable
     {
         index = i;
         exit = true;
+        pronto = false;
     }
     
     // il thread esegue il codiceFilosofo a meno di interruzioni
@@ -43,19 +46,21 @@ public class FilosofiClassica implements Runnable
         {
             // PENSA 
             System.out.println("Filosofo " + index +" pensa");
-            Thread.sleep(1000);
-            
+            Thread.sleep(200);
+            pronto = false;
             tavolaClassica.raccogli_sx(index);   // raccoglie la bacchetta sinistra
             // Decommentare per forzare lo stallo
             //Thread.sleep(1000);
             tavolaClassica.raccogli_dx(index);   // raccoglie la bacchetta destra
 
             //MANGIA
+            pronto = true;
             System.out.println("Filosofo " + index +" mangia");
-            Thread.sleep(1000);
+            Thread.sleep(200);
 
             tavolaClassica.deposita_sx(index);   // deposita la bacchetta sinistra
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra
+            pronto = false;
         }
     }
     /**
@@ -64,6 +69,7 @@ public class FilosofiClassica implements Runnable
     public void stop()
     {
     	exit = false;
+    	pronto = false;
     }
     /**
      * @brief Funzione che Riavvia l' Esecuzione del thread associato
@@ -72,6 +78,7 @@ public class FilosofiClassica implements Runnable
     public void resume()
     {
     	exit = true;
+    	pronto = false;
     }
    
 }
