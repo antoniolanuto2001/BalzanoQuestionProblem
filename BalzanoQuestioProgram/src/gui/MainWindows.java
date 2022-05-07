@@ -78,7 +78,7 @@ public class MainWindows {
 		buttonCpu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
+				SchProcessiNuovoDiProva frameDachiamareProcessi= new SchProcessiNuovoDiProva(frame);
 				frameDachiamareProcessi.setVisible(true);	
 				frame.setVisible(false);
 				
