@@ -867,12 +867,11 @@ public class SchProcessiNuovoDiProva extends JFrame {
         	
         	if(selectSoluzione==true) {
         		g.setColor(Color.red);
-            	
             	for(int l=0;l<dataset.size();l++) {        		
-            		
-            		if(l%2==0) {
+
+            		//if(l%2==0) {
             			g.drawString("O",30+dataset.get(l).ritornaPunti().get(0)*15,92-l*15);
-            		}
+            		//}
             	}
 
             	/*for(int l=0;l<dataset.size();l++) {
