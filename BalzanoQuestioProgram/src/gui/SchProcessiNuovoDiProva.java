@@ -200,6 +200,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_7.add(lblFirstcomeFirstserved);
 		
 		JCheckBox chckbxMostraSoluzione = new JCheckBox("Mostra Soluzione");
+		chckbxMostraSoluzione.setEnabled(false);
 		chckbxMostraSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		chckbxMostraSoluzione.setBounds(513, 3, 150, 25);
 		panel_7.add(chckbxMostraSoluzione);
@@ -238,6 +239,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_7_1.add(lblFirstcomeFirstserved_1);
 		
 		JCheckBox chckbxMostraSoluzione_1 = new JCheckBox("Mostra Soluzione");
+		chckbxMostraSoluzione_1.setEnabled(false);
 		chckbxMostraSoluzione_1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		chckbxMostraSoluzione_1.setBounds(513, 3, 150, 25);
 		panel_7_1.add(chckbxMostraSoluzione_1);
@@ -276,6 +278,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_7_2.add(lblFirstcomeFirstserved_2);
 		
 		JCheckBox chckbxMostraSoluzione_2 = new JCheckBox("Mostra Soluzione");
+		chckbxMostraSoluzione_2.setEnabled(false);
 		chckbxMostraSoluzione_2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		chckbxMostraSoluzione_2.setBounds(513, 3, 150, 25);
 		panel_7_2.add(chckbxMostraSoluzione_2);
@@ -314,6 +317,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_7_3.add(lblFirstcomeFirstserved_3);
 		
 		JCheckBox chckbxMostraSoluzione_3 = new JCheckBox("Mostra Soluzione");
+		chckbxMostraSoluzione_3.setEnabled(false);
 		chckbxMostraSoluzione_3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		chckbxMostraSoluzione_3.setBounds(513, 3, 150, 25);
 		panel_7_3.add(chckbxMostraSoluzione_3);
@@ -534,7 +538,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 							lineesSJFP.add(punti);
 							lineesRR.add(punti);
 							
-							distanza.creaDistanza(b, i+1);
+							distanza.creaDistanza(i+1,a,b);
 							lineesFCFS.add(distanza);
 							lineesSJF.add(distanza);
 							lineesSJFP.add(distanza);
@@ -560,6 +564,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_4.add(chckbxAttivaModifiche);
 		
 		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra soluzione sempre");
+		chkbkMostraAllSoluzione.setEnabled(false);
 		chkbkMostraAllSoluzione.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			boolean test1= chkbkMostraAllSoluzione.isSelected();
@@ -659,6 +664,11 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		buttonGenera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				chkbkMostraAllSoluzione.setEnabled(false);
+				chckbxMostraSoluzione.setEnabled(false);
+				chckbxMostraSoluzione_1.setEnabled(false);
+				chckbxMostraSoluzione_2.setEnabled(false);
+				chckbxMostraSoluzione_3.setEnabled(false);
 				lineesFCFS.clear();
 				lineesSJF.clear();
 				lineesSJFP.clear();
@@ -673,6 +683,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 				btnEsegui.setEnabled(false);
 				chckbxAttivaModifiche.setSelected(false);
 				btnSalvaModifica.setEnabled(false);
+				chkbkMostraAllSoluzione.setSelected(false);
 				chckbxMostraSoluzione.setSelected(false);
 				chckbxMostraSoluzione_1.setSelected(false);
 				chckbxMostraSoluzione_2.setSelected(false);
@@ -712,6 +723,12 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		comboBox.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) {
+				chkbkMostraAllSoluzione.setEnabled(false);
+				chckbxMostraSoluzione.setEnabled(false);
+				chckbxMostraSoluzione_1.setEnabled(false);
+				chckbxMostraSoluzione_2.setEnabled(false);
+				chckbxMostraSoluzione_3.setEnabled(false);
+				
 				lineesFCFS.clear();
 				lineesSJF.clear();
 				lineesSJFP.clear();
@@ -726,6 +743,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 				btnEsegui.setEnabled(false);
 				chckbxAttivaModifiche.setSelected(false);
 				btnSalvaModifica.setEnabled(false);
+				chkbkMostraAllSoluzione.setSelected(false);
 				chckbxMostraSoluzione.setSelected(false);
 				chckbxMostraSoluzione_1.setSelected(false);
 				chckbxMostraSoluzione_2.setSelected(false);
@@ -764,6 +782,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		btnEsegui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnEsegui.setEnabled(false);
+				chkbkMostraAllSoluzione.setSelected(false);
 				chckbxMostraSoluzione.setSelected(false);
 				chckbxMostraSoluzione_1.setSelected(false);
 				chckbxMostraSoluzione_2.setSelected(false);
@@ -800,7 +819,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 						lineesSJFP.add(punti);
 						lineesRR.add(punti);
 						
-						distanza.creaDistanza(b, i+1);
+						distanza.creaDistanza(i+1,a,b);
 						lineesFCFS.add(distanza);
 						lineesSJF.add(distanza);
 						lineesSJFP.add(distanza);
@@ -809,6 +828,12 @@ public class SchProcessiNuovoDiProva extends JFrame {
 					}
 						
 				}
+				chkbkMostraAllSoluzione.setEnabled(true);
+				chckbxMostraSoluzione.setEnabled(true);
+				chckbxMostraSoluzione_1.setEnabled(true);
+				chckbxMostraSoluzione_2.setEnabled(true);
+				chckbxMostraSoluzione_3.setEnabled(true);
+
 			}
 		});
 		
@@ -988,10 +1013,12 @@ public class SchProcessiNuovoDiProva extends JFrame {
     
     
     ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs){
-    	
+        ArrayList<CreaLinee> FCFS= new ArrayList<CreaLinee>();
     	for(int l=0;l<lineefcfs.size();l++) {        		
     		if(l%2!=0) {
-    		System.out.println(	lineefcfs.get(l).ritornaLinee().get(0));
+    		System.out.println(	lineefcfs.get(l).ritornaLinee().get(0)+" "+	lineefcfs.get(l).ritornaLinee().get(1)+" "+lineefcfs.get(l).ritornaLinee().get(2));
+
+
     		}
     	}
     	
