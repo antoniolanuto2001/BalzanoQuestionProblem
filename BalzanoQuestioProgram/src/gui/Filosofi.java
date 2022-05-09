@@ -74,6 +74,7 @@ public class Filosofi extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setTitle("Balzano Question Problem : Filosofi a Cena");
 		setContentPane(contentPane);
 		
 		
@@ -87,24 +88,6 @@ public class Filosofi extends JFrame {
 		labelFilosofo1.setBounds(115, 318, 94, 98);
 		panelMainButton.add(labelFilosofo1);
 		labelFilosofo1.setIcon(imageNormal);
-		
-		JButton buttonIndietro = new JButton("Indietro");
-		buttonIndietro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonIndietro.setBackground(new Color(153, 204, 255));
-		buttonIndietro.setOpaque(true);
-		buttonIndietro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				framechiamante.setVisible(true);
-				frame.setVisible(false);
-				frame.dispose();
-			}
-		});
 		
 		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
 		labelFilosofo2.setBounds(361, 191, 94, 98);
@@ -125,9 +108,38 @@ public class Filosofi extends JFrame {
 		labelFilosofo5.setBounds(175, 610, 94, 98);
 		labelFilosofo5.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo5);
+		
+		
+		JButton buttonIndietro = new JButton("Indietro");
+		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
+		buttonIndietro.setBackground(new Color(153, 204, 255));
+		buttonIndietro.setOpaque(true);
+		buttonIndietro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				continuaBoolean=false;
+				labelFilosofo1.setIcon(imageNormal);
+				labelFilosofo2.setIcon(imageNormal);
+				labelFilosofo3.setIcon(imageNormal);
+				labelFilosofo4.setIcon(imageNormal);
+				labelFilosofo5.setIcon(imageNormal);
+				for (int i = 0; i < filosofiClassica.length; i++) 
+				{
+					
+					filosofiClassica[i].stop();
+					filosofiAtomici[i].stop();
+					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
+				}
+				framechiamante.setVisible(true);
+				frame.setVisible(false);
+				frame.dispose();
+			}
+		});
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonIndietro.setBounds(10, 135, 128, 46);
 		panelMainButton.add(buttonIndietro);
+		
 		
 		JPanel panelSuperiore = new JPanel();
 		panelSuperiore.setBackground(new Color(204, 204, 255));
@@ -457,7 +469,7 @@ public class Filosofi extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Desktop d = Desktop.getDesktop();
 				try {
-					d.browse(new URI ("https://youtu.be/0HjA3ZC_KmE?t=114"));
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=248"));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
