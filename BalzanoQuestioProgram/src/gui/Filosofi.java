@@ -25,7 +25,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.plaf.DimensionUIResource;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
-import com.orsonpdf.GraphicsStateDictionary;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -47,6 +46,7 @@ public class Filosofi extends JFrame {
 	private JFrame frame;
 	private JPanel panelMainButton = new JPanel();
 	private Boolean continuaBoolean = false;
+	private Boolean deadlockBoolean = false;
 	/**
 	 * Create the frame.
 	 */
@@ -59,6 +59,7 @@ public class Filosofi extends JFrame {
 		ImageIcon imageNormal = new ImageIcon(this.getClass().getResource("/img/normaleIcon.png"));
 		ImageIcon imageAttesa = new ImageIcon(this.getClass().getResource("/img/attesaIcon.png"));
 		ImageIcon imageTavola = new ImageIcon(this.getClass().getResource("/img/tavolaIcon.png"));
+		ImageIcon imageDeadLock = new ImageIcon(this.getClass().getResource("/img/deadlockIcon.png"));
 		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
@@ -84,7 +85,7 @@ public class Filosofi extends JFrame {
 		panelMainButton.setLayout(null);
 		
 		JLabel labelFilosofo1 = new JLabel("Filosofo1");
-		labelFilosofo1.setBounds(115, 318, 94, 98);
+		labelFilosofo1.setBounds(216, 307, 94, 98);
 		panelMainButton.add(labelFilosofo1);
 		labelFilosofo1.setIcon(imageNormal);
 		
@@ -107,22 +108,22 @@ public class Filosofi extends JFrame {
 		});
 		
 		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
-		labelFilosofo2.setBounds(361, 191, 94, 98);
+		labelFilosofo2.setBounds(462, 180, 94, 98);
 		labelFilosofo2.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo2);
 		
 		JLabel labelFilosofo3 = new JLabel("Filosofo 3");
-		labelFilosofo3.setBounds(599, 318, 94, 98);
+		labelFilosofo3.setBounds(700, 307, 94, 98);
 		labelFilosofo3.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo3);
 		
 		JLabel labelFilosofo4 = new JLabel("Filosofo 4");
-		labelFilosofo4.setBounds(539, 599, 94, 98);
+		labelFilosofo4.setBounds(640, 588, 94, 98);
 		labelFilosofo4.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo4);
 		
 		JLabel labelFilosofo5 = new JLabel("Filosofo 4");
-		labelFilosofo5.setBounds(175, 610, 94, 98);
+		labelFilosofo5.setBounds(276, 599, 94, 98);
 		labelFilosofo5.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo5);
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -137,7 +138,7 @@ public class Filosofi extends JFrame {
 
         JSlider sliderVelocitaMangia = new JSlider(1,5,3);
        
-        sliderVelocitaMangia.setBounds(1106, 334, 206, 60);
+        sliderVelocitaMangia.setBounds(996, 439, 206, 60);
         sliderVelocitaMangia.setPreferredSize(new Dimension(250, 60));
         sliderVelocitaMangia.setPaintTrack(true);
         sliderVelocitaMangia.setPaintLabels(true);
@@ -153,21 +154,32 @@ public class Filosofi extends JFrame {
         sliderVelocitaPensa.setPaintLabels(true);
         sliderVelocitaPensa.setMinorTickSpacing(3);
         sliderVelocitaPensa.setMajorTickSpacing(1);
-        sliderVelocitaPensa.setBounds(1106, 447, 206, 60);
+        sliderVelocitaPensa.setBounds(996, 552, 206, 60);
         panelMainButton.add(sliderVelocitaPensa);
 		
 		JLabel labelSchemata = new JLabel("Filosofi A Cena ");
 		labelSchemata.setBounds(531, 11, 404, 89);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		
+		JLabel labelTavola = new JLabel("tavola");
+		labelTavola.setBounds(266, 281, 482, 371);
+		labelTavola.setIcon(imageTavola);
+		panelMainButton.add(labelTavola);
 		ButtonGroup groupSceltaStrategiaFilosofi = new ButtonGroup();
 		JRadioButton radioDefault = new JRadioButton("Nessuno");
+		radioDefault.setToolTipText("Filosofi fermi senza mangiare ");
 		radioDefault.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		radioDefault.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
 				continuaBoolean=false;
+				if (deadlockBoolean) 
+				{
+					deadlockBoolean=false;
+					labelTavola.setIcon(imageTavola);
+				}
 				labelFilosofo1.setIcon(imageNormal);
 				labelFilosofo2.setIcon(imageNormal);
 				labelFilosofo3.setIcon(imageNormal);
@@ -182,10 +194,13 @@ public class Filosofi extends JFrame {
 				}
 			}
 		});
-		radioDefault.setBounds(1106, 180, 175, 36);
+		radioDefault.setBounds(996, 239, 175, 36);
 		groupSceltaStrategiaFilosofi.add(radioDefault);
 		panelMainButton.add(radioDefault);
+		
+		
 		JRadioButton radioClassico = new JRadioButton("Schema Classico");
+		radioClassico.setToolTipText("Ogni filosofo aspetta prende la bacchetta di sinistra ed aspetto quella di destra");
 		radioClassico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -193,19 +208,24 @@ public class Filosofi extends JFrame {
 				if (radioClassico.isSelected()) 
 				{
 					continuaBoolean=false;
+					if (deadlockBoolean) 
+					{
+						deadlockBoolean=false;
+						labelTavola.setIcon(imageTavola);
+					}
 					for (int i = 0; i < threadClassico.length; i++) 
 					{
 						filosofiAtomici[i].stop();
-						
 						System.out.println("Ho interotto Esecuzione dei filosofi atomici " + i);
 						filosofiClassica[i].resume();
+						//Slider Velocita Mangia
 						if(1==sliderVelocitaMangia.getValue())
 						{
-							filosofiClassica[i].tempoMangia=1200;
+							filosofiClassica[i].tempoMangia=3000;
 						}
 						else if (2==sliderVelocitaMangia.getValue()) 
 						{
-							filosofiClassica[i].tempoMangia=1000;
+							filosofiClassica[i].tempoMangia=1500;
 						}
 						else if (3==sliderVelocitaMangia.getValue()) 
 						{
@@ -219,13 +239,14 @@ public class Filosofi extends JFrame {
 						{
 							filosofiClassica[i].tempoMangia=100;
 						}
+						//Slider Velocita Pensa
 						if(1==sliderVelocitaPensa.getValue())
 						{
-							filosofiClassica[i].tempoPensa=1200;
+							filosofiClassica[i].tempoPensa=3000;
 						}
 						else if (2==sliderVelocitaPensa.getValue()) 
 						{
-							filosofiClassica[i].tempoPensa=1000;
+							filosofiClassica[i].tempoPensa=1500;
 						}
 						else if (3==sliderVelocitaPensa.getValue()) 
 						{
@@ -249,7 +270,7 @@ public class Filosofi extends JFrame {
 						public void run() 
 						{
 							// TODO Auto-generated method stub
-							while (continuaBoolean) 
+							while (continuaBoolean && filosofiClassica[0].deadlockCheck==false) 
 							{
 								//Filosofo 1 
 								if (filosofiClassica[0].pronto==true) 
@@ -296,7 +317,16 @@ public class Filosofi extends JFrame {
 								{
 									labelFilosofo5.setIcon(imageAttesa);
 								}
-								
+								if (filosofiClassica[0].deadlockCheck==true)
+								{
+									labelFilosofo1.setIcon(imageNormal);
+									labelFilosofo2.setIcon(imageNormal);
+									labelFilosofo3.setIcon(imageNormal);
+									labelFilosofo4.setIcon(imageNormal);
+									labelFilosofo5.setIcon(imageNormal);
+									labelTavola.setIcon(imageDeadLock);
+									deadlockBoolean=true;
+								}
 							}
 						}
 					});
@@ -307,11 +337,12 @@ public class Filosofi extends JFrame {
 			}
 		});
 		radioClassico.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		radioClassico.setBounds(1106, 219, 175, 36);
+		radioClassico.setBounds(996, 278, 175, 36);
 		groupSceltaStrategiaFilosofi.add(radioClassico);
 		panelMainButton.add(radioClassico);
 		
 		JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
+		radioAtomico.setToolTipText("Ogni filosofo aspetta e posa entrambi le bacchette conteporaneamente");
 		radioAtomico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -319,16 +350,21 @@ public class Filosofi extends JFrame {
 				if (radioAtomico.isSelected()) 
 				{
 					continuaBoolean=false;
+					if (deadlockBoolean) 
+					{
+						deadlockBoolean=false;
+						labelTavola.setIcon(imageTavola);
+					}
 					for (int i = 0; i < threadAtomico.length; i++) 
 					{
 						filosofiClassica[i].stop();
 						if(1==sliderVelocitaPensa.getValue())
 						{
-							filosofiAtomici[i].tempoPensa=1200;
+							filosofiAtomici[i].tempoPensa=3000;
 						}
 						else if (2==sliderVelocitaPensa.getValue()) 
 						{
-							filosofiAtomici[i].tempoPensa=1000;
+							filosofiAtomici[i].tempoPensa=1500;
 						}
 						else if (3==sliderVelocitaPensa.getValue()) 
 						{
@@ -344,11 +380,11 @@ public class Filosofi extends JFrame {
 						}
 						if(1==sliderVelocitaMangia.getValue())
 						{
-							filosofiAtomici[i].tempoMangia=1200;
+							filosofiAtomici[i].tempoMangia=3000;
 						}
 						else if (2==sliderVelocitaMangia.getValue()) 
 						{
-							filosofiAtomici[i].tempoMangia=1000;
+							filosofiAtomici[i].tempoMangia=1500;
 						}
 						else if (3==sliderVelocitaMangia.getValue()) 
 						{
@@ -368,6 +404,7 @@ public class Filosofi extends JFrame {
 						threadAtomico[i]= new Thread(filosofiAtomici[i]);
 						threadAtomico[i].start();
 					}
+
 					continuaBoolean=true;
 					Thread threadCambiaFiloAtomico= new Thread(new Runnable() 
 					{
@@ -430,15 +467,12 @@ public class Filosofi extends JFrame {
 				}
 			}
 		});
-		radioAtomico.setBounds(1106, 262, 175, 36);
+		radioAtomico.setBounds(996, 321, 175, 36);
 		radioAtomico.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		groupSceltaStrategiaFilosofi.add(radioAtomico);
 		panelMainButton.add(radioAtomico);
 		
-		JLabel labelTavola = new JLabel("tavola");
-		labelTavola.setBounds(165, 292, 482, 371);
-		labelTavola.setIcon(imageTavola);
-		panelMainButton.add(labelTavola);
+		
 		
 		JButton buttonEsci = new JButton("Esci");
 		buttonEsci.addActionListener(new ActionListener() {
@@ -446,6 +480,12 @@ public class Filosofi extends JFrame {
 				System.exit(0);
 			}
 		});
+		
+		JRadioButton radioCoda = new JRadioButton("Schema Coda");
+		radioCoda.setToolTipText("Ogni filosofo aspetta e posa entrambi le bacchette conteporaneamente");
+		radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		radioCoda.setBounds(996, 361, 206, 44);
+		panelMainButton.add(radioCoda);
 		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonEsci.setBackground(new Color(255, 204, 0));
@@ -482,14 +522,15 @@ public class Filosofi extends JFrame {
         		{
         			for (int i = 0; i < filosofiClassica.length; i++) 
 					{
-						
+						filosofiClassica[i].stop();
+						filosofiClassica[i].resume();
 						if(1==sliderVelocitaMangia.getValue())
 						{
-							filosofiClassica[i].tempoMangia=1200;
+							filosofiClassica[i].tempoMangia=3000;
 						}
 						else if (2==sliderVelocitaMangia.getValue()) 
 						{
-							filosofiClassica[i].tempoMangia=1000;
+							filosofiClassica[i].tempoMangia=1500;
 						}
 						else if (3==sliderVelocitaMangia.getValue()) 
 						{
@@ -503,6 +544,7 @@ public class Filosofi extends JFrame {
 						{
 							filosofiClassica[i].tempoMangia=300;
 						}
+						
 					}
 				} 
         		else if (radioAtomico.isSelected())
@@ -512,11 +554,11 @@ public class Filosofi extends JFrame {
 						
 						if(1==sliderVelocitaMangia.getValue())
 						{
-							filosofiAtomici[i].tempoMangia=1200;
+							filosofiAtomici[i].tempoMangia=3000;
 						}
 						else if (2==sliderVelocitaMangia.getValue()) 
 						{
-							filosofiAtomici[i].tempoMangia=1000;
+							filosofiAtomici[i].tempoMangia=1200;
 						}
 						else if (3==sliderVelocitaMangia.getValue()) 
 						{
@@ -539,12 +581,12 @@ public class Filosofi extends JFrame {
      
         JLabel labelSliderMangia = new JLabel("Velocita Mangia : ");
         labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 11));
-        labelSliderMangia.setBounds(1106, 305, 143, 30);
+        labelSliderMangia.setBounds(996, 410, 143, 30);
         panelMainButton.add(labelSliderMangia);
         
         JLabel labelSliderPensa = new JLabel("Velocita Pensa  : ");
         labelSliderPensa.setFont(new Font("Segoe UI", Font.BOLD, 11));
-        labelSliderPensa.setBounds(1106, 417, 143, 30);
+        labelSliderPensa.setBounds(996, 522, 143, 30);
         panelMainButton.add(labelSliderPensa);
         
         sliderVelocitaPensa.addMouseListener(new MouseAdapter() {
@@ -556,13 +598,14 @@ public class Filosofi extends JFrame {
         			for (int i = 0; i < filosofiClassica.length; i++) 
 					{
 						
+        				filosofiClassica[i].stop();
 						if(1==sliderVelocitaPensa.getValue())
 						{
-							filosofiClassica[i].tempoPensa=1200;
+							filosofiClassica[i].tempoPensa=3000;
 						}
 						else if (2==sliderVelocitaPensa.getValue()) 
 						{
-							filosofiClassica[i].tempoPensa=1000;
+							filosofiClassica[i].tempoPensa=1200;
 						}
 						else if (3==sliderVelocitaPensa.getValue()) 
 						{
@@ -577,6 +620,11 @@ public class Filosofi extends JFrame {
 							filosofiClassica[i].tempoPensa=300;
 						}
 					}
+        			for (int i = 0; i < filosofiClassica.length; i++) 
+    				{
+        				filosofiClassica[i].resume();
+    					
+    				}
 				} 
         		else if (radioAtomico.isSelected())
         		{
@@ -585,7 +633,7 @@ public class Filosofi extends JFrame {
 						
 						if(1==sliderVelocitaPensa.getValue())
 						{
-							filosofiAtomici[i].tempoPensa=1200;
+							filosofiAtomici[i].tempoPensa=3000;
 						}
 						else if (2==sliderVelocitaPensa.getValue()) 
 						{

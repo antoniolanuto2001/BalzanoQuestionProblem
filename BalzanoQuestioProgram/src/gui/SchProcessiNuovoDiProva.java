@@ -1,4 +1,4 @@
-//FGEYFGEWUGFUREGFUIASFGHRG
+
 
 package gui;
 
@@ -133,7 +133,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		JLabel labelTitolo = new JLabel("Scheduling della CPU");
 		labelTitolo.setForeground(new Color(0, 0, 0));
 		labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-		labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
+		labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 50));
 		labelTitolo.setBounds(0, 0, 1416, 73);
 		panel.add(labelTitolo);
 		
@@ -143,7 +143,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		txtrUniversitDegliStudi.setBackground(new Color(51, 204, 255));
 		txtrUniversitDegliStudi.setText("UNIversit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\nProgettisti: Lanuto, Prosciutto, Scotto\r\n");
 		txtrUniversitDegliStudi.setLineWrap(true);
-		txtrUniversitDegliStudi.setFont(new Font("Cambria", Font.PLAIN, 13));
+		txtrUniversitDegliStudi.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		txtrUniversitDegliStudi.setEditable(false);
 		
 
