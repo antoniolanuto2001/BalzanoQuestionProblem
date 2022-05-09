@@ -11,12 +11,14 @@ public class CreaLinee {
 	ArrayList<Integer> punti=new ArrayList<Integer>();
 	ArrayList<Integer> linee=new ArrayList<Integer>();
 
-	public ArrayList<Integer> creaDistanza(int x1, int y1) {
+	public ArrayList<Integer> creaDistanza(int processo, int arrivo,int durata) {
 		
-		this.x1=x1;
-		this.y1=y1;
-		linee.add(Integer.valueOf(x1));
+		y1=processo;
+		x1=arrivo;
+		x2=durata;
 		linee.add(Integer.valueOf(y1));
+		linee.add(Integer.valueOf(x1));
+		linee.add(Integer.valueOf(x2));
 
 		return linee;
 	}
