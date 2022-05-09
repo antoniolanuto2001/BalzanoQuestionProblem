@@ -1,4 +1,5 @@
-//ciao
+// RENDERE NON SPOSTABILI LE COLONEE DELLA TABELLA
+
 package gui;
 
 import java.awt.BorderLayout;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
@@ -577,7 +579,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 				chckbxMostraSoluzione_3.setSelected(true);
 				
 				boolean test= chckbxMostraSoluzione.isSelected();
-				lineesFCFS=creaFCFS(lineesFCFS);
+				lineesFCFS=creaFCFS(lineesFCFS,lineesFCFS);
 				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
 				
 				boolean test2= chckbxMostraSoluzione_1.isSelected();
@@ -781,6 +783,12 @@ public class SchProcessiNuovoDiProva extends JFrame {
 
 		btnEsegui.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				chckbxAttivaModifiche.setSelected(false);
+				btnSalvaModifica.setEnabled(false);
+				table.setEnabled(false);
+				ModifyDurata.setEnabled(false);
+				ModifyArrivo.setEnabled(false);
+				ModifyProcess.setEnabled(false);
 				btnEsegui.setEnabled(false);
 				chkbkMostraAllSoluzione.setSelected(false);
 				chckbxMostraSoluzione.setSelected(false);
@@ -840,7 +848,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		chckbxMostraSoluzione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean test= chckbxMostraSoluzione.isSelected();
-				lineesFCFS=creaFCFS(lineesFCFS);
+				lineesFCFS=creaFCFS(lineesFCFS,lineesFCFS);
 				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
 			}
 		});
@@ -1012,21 +1020,29 @@ public class SchProcessiNuovoDiProva extends JFrame {
     }
     
     
-    ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs){
-        ArrayList<CreaLinee> FCFS= new ArrayList<CreaLinee>();
-    	for(int l=0;l<lineefcfs.size();l++) {        		
+    ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs,ArrayList<CreaLinee> TMP ){
+    	//CON ARRAY ORDINATO PER ARRIVO AGGIUNGERE ALL'ARRIVO DEL SUCCESSIVO LA DURATA DEL PRECEDENTE
+
+    	ArrayList<CreaLinee> FCFS= new ArrayList<CreaLinee>();
+		
+    	for(int l=0;l<lineefcfs.size();l++) {  
     		if(l%2!=0) {
-    		System.out.println(	lineefcfs.get(l).ritornaLinee().get(0)+" "+	lineefcfs.get(l).ritornaLinee().get(1)+" "+lineefcfs.get(l).ritornaLinee().get(2));
-
-
+    			FCFS.add(lineefcfs.get(l));
     		}
     	}
-    	
-		return lineefcfs;
+    	return FCFS;
 	}
     
     ArrayList<CreaLinee> creaSJF(ArrayList<CreaLinee> lineesjf){
-		return lineesjf;
+    	//NON NE HO IDEA
+    	ArrayList<CreaLinee> SJF= new ArrayList<CreaLinee>();
+		
+    	for(int l=0;l<lineesjf.size();l++) {  
+    		if(l%2!=0) {
+    			SJF.add(lineesjf.get(l));
+    		}
+    	}
+		return SJF;
 	}
     
     ArrayList<CreaLinee> creaSJFP(ArrayList<CreaLinee> lineesjfp){
@@ -1034,6 +1050,46 @@ public class SchProcessiNuovoDiProva extends JFrame {
 	}
     
     ArrayList<CreaLinee> creaRR(ArrayList<CreaLinee> lineerr){
-		return lineerr;
+    	//CON ARRAY ORDINATO PER ARRIVO INSERIRE IN ARRAY NP,ARRIVO+DURATAPREC,DURATA-Q FINCHE' DURATA>0
+
+    	ArrayList<CreaLinee> RR= new ArrayList<CreaLinee>();
+		
+    	for(int l=0;l<lineerr.size();l++) {  
+    		if(l%2!=0) {
+    			RR.add(lineerr.get(l));
+    		}
+    	}
+		return RR;	
 	}
 }
+//System.out.println(	"P"+lineefcfs.get(l).ritornaLinee().get(0)+" A"+	lineefcfs.get(l).ritornaLinee().get(1)+" D"+lineefcfs.get(l).ritornaLinee().get(2));
+/*for(int k=0;k<TMP.size();k++) { 
+	if(k%2!=0) {
+		
+	if((TMP.get(k).ritornaLinee().get(1))<min) {
+		min=TMP.get(k).ritornaLinee().get(1);
+		min2=TMP.get(k);
+	
+	}
+	
+  }
+}
+if(min2!=null) {
+	//System.out.println(	"P1");
+	for(int a=0;a<FCFS.size();a++) { 
+
+		if((min2.ritornaLinee().get(0))==(FCFS.get(a).ritornaLinee().get(0))) {
+
+			flag=1;
+		}
+	}
+	if(flag==0) {
+
+	FCFS.add(min2);
+	System.out.println(	"P"+FCFS.get(0)+min2);
+
+	System.out.println(	"P"+FCFS.get(0).ritornaLinee().get(0)+" A"+	FCFS.get(0).ritornaLinee().get(1)+" D"+FCFS.get(0).ritornaLinee().get(2));
+
+	min=16;
+	}
+}*/
