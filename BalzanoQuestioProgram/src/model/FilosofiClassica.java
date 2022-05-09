@@ -10,6 +10,8 @@ public class FilosofiClassica implements Runnable
     public int tempoPensa;
     public int tempoMangia;
     public int tempoEsecuzione;
+    public boolean deadlockCheck;
+    private int iterazioniDeadlock;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaClassica tavolaClassica= new TavolaClassica(NTHREAD);   // monitor statico/condiviso
     
@@ -23,9 +25,11 @@ public class FilosofiClassica implements Runnable
         index = i;
         exit = true;
         pronto = false;
+        deadlockCheck=false;
         tempoPensa=500;
         tempoMangia=800;
         tempoEsecuzione=500;
+        iterazioniDeadlock=0;
     }
     
     // il thread esegue il codiceFilosofo a meno di interruzioni
@@ -37,7 +41,9 @@ public class FilosofiClassica implements Runnable
     {
         try 
         { 
+        	System.out.println("Il filosofo "+index+" e' partito ");
             codiceFilosofoClassico(index);
+           
         } 
         catch (InterruptedException e)
         {
@@ -50,23 +56,34 @@ public class FilosofiClassica implements Runnable
     {
         while (exit)
         {
-        	Thread.sleep(tempoEsecuzione);
         	// PENSA 
-            System.out.println("Filosofo " + index +" pensa");
-            Thread.sleep(tempoPensa);
-            pronto = false;
+        	pronto = false;
+        	 Thread.sleep(tempoPensa);
+             System.out.println("Filosofo  [" + index +"] pensa a :  "+ tempoPensa + "  velocita ");
             tavolaClassica.raccogli_sx(index);   // raccoglie la bacchetta sinistra
+    
             // Decommentare per forzare lo stallo
             //Thread.sleep(1000);
             tavolaClassica.raccogli_dx(index);   // raccoglie la bacchetta destra
-
+            if (tempoPensa==tempoMangia &&tempoMangia==3000) 
+            {
+				iterazioniDeadlock++;
+				if (iterazioniDeadlock==3) 
+				{
+					deadlockCheck=true;
+					stop();
+				}
+			}
+            else 
+            {
+            	iterazioniDeadlock=0;
+			}
             //MANGIA
             pronto = true;
-            System.out.println("Filosofo " + index +" mangia");
             Thread.sleep(tempoMangia);
+            System.out.println("Filosofo [" + index + "] mangia a : "+ tempoPensa + "  velocita ");
             tavolaClassica.deposita_sx(index);   // deposita la bacchetta sinistra
-            tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra
-            
+            tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra 
             pronto = false;
         }
     }
@@ -77,6 +94,7 @@ public class FilosofiClassica implements Runnable
     {
     	exit = false;
     	pronto = false;
+    	iterazioniDeadlock=0;
     }
     /**
      * @brief Funzione che Riavvia l' Esecuzione del thread associato
@@ -86,6 +104,8 @@ public class FilosofiClassica implements Runnable
     {
     	exit = true;
     	pronto = false;
+    	iterazioniDeadlock=0;
+    	deadlockCheck=false;
     }
    
 }
