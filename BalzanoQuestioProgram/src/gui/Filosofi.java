@@ -25,7 +25,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.plaf.DimensionUIResource;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
-import com.orsonpdf.GraphicsStateDictionary;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
