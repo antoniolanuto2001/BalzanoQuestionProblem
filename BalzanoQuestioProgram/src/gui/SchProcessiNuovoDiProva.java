@@ -1,25 +1,16 @@
 package gui;
 
-import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.Graphics;
-import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -28,29 +19,6 @@ import java.util.Random;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
-import javax.swing.text.AttributeSet.ColorAttribute;
-
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartMouseListener;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.axis.SymbolAxis;
-import org.jfree.chart.block.BlockBorder;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.IntervalCategoryDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
-import com.orsonpdf.GraphicsStateDictionary;
-
 import model.CreaLinee;
 
 import javax.swing.SwingConstants;
@@ -65,11 +33,7 @@ import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
-import java.awt.Canvas;
-import java.awt.GridLayout;
-
 import java.awt.Desktop;
-import java.awt.Dimension;
 
 public class SchProcessiNuovoDiProva extends JFrame {
 
@@ -97,7 +61,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		setTitle("Applicativo esercizi Sistemi Operativi I: Scheduling della CPU");
+		setTitle("Balzano Question Problem : Scheduling della CPU");
 
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -139,7 +103,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		txtrUniversitDegliStudi.setBounds(1152, 0, 251, 73);
 		panel.add(txtrUniversitDegliStudi);
 		txtrUniversitDegliStudi.setBackground(new Color(51, 204, 255));
-		txtrUniversitDegliStudi.setText("UNIversit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\nProgettisti: Lanuto, Prosciutto, Scotto\r\n");
+		txtrUniversitDegliStudi.setText("Universit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\n Devoloper: Lanuto, Prosciutto, Scotto\r\n");
 		txtrUniversitDegliStudi.setLineWrap(true);
 		txtrUniversitDegliStudi.setFont(new Font("Cambria", Font.PLAIN, 13));
 		txtrUniversitDegliStudi.setEditable(false);
@@ -157,7 +121,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Desktop d = Desktop.getDesktop();
 				try {
-					d.browse(new URI ("https://youtu.be/0HjA3ZC_KmE?t=114"));
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
