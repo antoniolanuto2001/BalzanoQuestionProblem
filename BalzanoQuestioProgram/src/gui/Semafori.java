@@ -32,7 +32,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JScrollPane;
 
 public class Semafori extends JFrame {
+	//test
+	//verifica commit
 
+	
 	private JPanel contentPane;
 	private JFrame frame;
 	private JTextField TextFieldNumProcessi;
