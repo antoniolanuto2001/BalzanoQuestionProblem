@@ -1,5 +1,3 @@
-//FGEYFGEWUGFUREGFUIASFGHRG
-
 package gui;
 
 import java.awt.BasicStroke;
@@ -148,9 +146,9 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		
 
 		JButton buttonGenera = new JButton("Genera Esercizio");
-		buttonGenera.setFont(new Font("Arial", Font.BOLD, 15));
+		buttonGenera.setFont(new Font("Arial", Font.BOLD, 13));
 		buttonGenera.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonGenera.setBackground(new Color(51, 204, 0));
+		buttonGenera.setBackground(new Color(0, 255, 51));
 		buttonGenera.setBounds(10, 85, 157, 48);
 		panelMainButton.add(buttonGenera);
 		
@@ -414,7 +412,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_1.add(labelEditor);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(10, 95, 245, 208);
+		panel_3.setBounds(10, 95, 245, 201);
 		panel_1.add(panel_3);
 		panel_3.setLayout(null);
 		panel_3.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -438,8 +436,8 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		panel_3.add(scroll);
 		
 		final JTable table = new JTable();
-		table.setEnabled(false);
 		table.setCellSelectionEnabled(true);
+		table.setEnabled(false);
 		table.setFont(new Font("Arial", Font.BOLD, 12));
 		scroll.setViewportView(table);
 		
@@ -465,11 +463,16 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		table.setModel(model1);
 		
 		JPanel panel_4 = new JPanel();
-		panel_4.setBounds(10, 338, 245, 66);
+		panel_4.setBounds(10, 328, 245, 94);
 		panel_1.add(panel_4);
 		panel_4.setLayout(null);
 		panel_4.setBorder(BorderFactory.createLineBorder(Color.black));
 
+		JButton btnEsegui = new JButton("Esegui");
+		btnEsegui.setEnabled(false);
+		btnEsegui.setBounds(16, 63, 77, 21);
+		panel_4.add(btnEsegui);
+		
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 		chckbxGriglia.setSelected(true);
 		chckbxGriglia.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -497,10 +500,16 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		ModifyDurata.setBounds(135, 173, 40, 20);
 		panel_3.add(ModifyDurata);
 		
+		JButton btnSalvaModifica = new JButton("Salva Modifiche");
+		btnSalvaModifica.setEnabled(false);
+		btnSalvaModifica.setBounds(103, 63, 125, 21);
+		panel_4.add(btnSalvaModifica);
+		
 		JCheckBox chckbxAttivaModifiche = new JCheckBox("Attiva modifiche");
 		chckbxAttivaModifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(table.getRowCount()>0){
 				boolean test= chckbxAttivaModifiche.isSelected();
 				if(test==true) {	
 					table.setEnabled(true);
@@ -515,17 +524,127 @@ public class SchProcessiNuovoDiProva extends JFrame {
 					ModifyProcess.setEnabled(false);
 
 				}	
+				btnSalvaModifica.setEnabled(true);
+				btnSalvaModifica.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						chckbxMostraSoluzione.setSelected(false);
+						chckbxMostraSoluzione_1.setSelected(false);
+						chckbxMostraSoluzione_2.setSelected(false);
+						chckbxMostraSoluzione_3.setSelected(false);
+						lineesFCFS.clear();
+						lineesSJF.clear();
+						lineesSJFP.clear();
+						lineesRR.clear();
+						jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
+						jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),lineesSJF,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
+						jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),lineesSJFP,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
+						jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),lineesRR,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
+
+
+						table.setEnabled(false);
+						chckbxAttivaModifiche.setSelected(false);
+						ModifyDurata.setEnabled(false);
+						ModifyArrivo.setEnabled(false);
+						ModifyProcess.setEnabled(false);
+						
+						for(int i=0;i<6;i++) {
+			    		if(table.getValueAt(i,0).equals(ModifyProcess.getText())) {    	
+			    			model1.setValueAt(ModifyArrivo.getText(),i, 1);
+			    			model1.setValueAt(ModifyDurata.getText(),i, 2);
+			    		}
+						}
+						
+						for (int i=0;i<table.getRowCount();i++) 
+						{ 
+							if(Boolean.valueOf((table.getValueAt(i, 3)).toString())==false) {
+						    int a=Integer.valueOf((table.getValueAt(i, 1)).toString());
+						    int b=Integer.valueOf((table.getValueAt(i, 2)).toString());
+
+						    CreaLinee punti=new CreaLinee();
+						    CreaLinee distanza=new CreaLinee();
+
+							punti.creaPunti(a,i+1);
+							lineesFCFS.add(punti);
+							lineesSJF.add(punti);
+							lineesSJFP.add(punti);
+							lineesRR.add(punti);
+							
+							distanza.creaDistanza(b, i+1);
+							lineesFCFS.add(distanza);
+							lineesSJF.add(distanza);
+							lineesSJFP.add(distanza);
+							lineesRR.add(distanza);
+							}
+						}
+						
+			    		ModifyDurata.setText("");
+						ModifyArrivo.setText("");
+						ModifyProcess.setText("");
+						btnSalvaModifica.setEnabled(false);
+
+					}
+					
+				});
+				}
+				else chckbxAttivaModifiche.setSelected(false);
+
 			}
 		});
 		chckbxAttivaModifiche.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		chckbxAttivaModifiche.setBounds(100, 6, 140, 21);
 		panel_4.add(chckbxAttivaModifiche);
 		
+		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra soluzione sempre");
+		chkbkMostraAllSoluzione.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			boolean test1= chkbkMostraAllSoluzione.isSelected();
+
+			if(test1==true) {
+					
+				chckbxMostraSoluzione.setSelected(true);
+				chckbxMostraSoluzione_1.setSelected(true);
+				chckbxMostraSoluzione_2.setSelected(true);
+				chckbxMostraSoluzione_3.setSelected(true);
+				
+				boolean test= chckbxMostraSoluzione.isSelected();
+				lineesFCFS=creaFCFS(lineesFCFS);
+				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
+				
+				boolean test2= chckbxMostraSoluzione_1.isSelected();
+				lineesSJF=creaSJF(lineesSJF);
+				jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),lineesSJF,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
+					
+				boolean test3= chckbxMostraSoluzione_2.isSelected();
+				lineesSJFP=creaSJFP(lineesSJFP);
+				jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),lineesSJFP,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
+					
+				boolean test4= chckbxMostraSoluzione_3.isSelected();
+				lineesRR=creaRR(lineesRR);
+				jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),lineesRR,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
+			}
+			else {
+				chckbxMostraSoluzione.setSelected(false);
+				chckbxMostraSoluzione_1.setSelected(false);
+				chckbxMostraSoluzione_2.setSelected(false);
+				chckbxMostraSoluzione_3.setSelected(false);
+			
+				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),null,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),null,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),null,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),null,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
+
+			}
+		}
+		});
+		chkbkMostraAllSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+		chkbkMostraAllSoluzione.setBounds(6, 32, 222, 21);
+		panel_4.add(chkbkMostraAllSoluzione);
+		
 		JLabel lblPlot = new JLabel("Plot");
 		lblPlot.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlot.setForeground(Color.RED);
 		lblPlot.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblPlot.setBounds(0, 313, 265, 25);
+		lblPlot.setBounds(0, 303, 265, 25);
 		panel_1.add(lblPlot);
 		
 		JPanel panel_5 = new JPanel();
@@ -546,7 +665,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
 		txtrHelpArea.setEditable(false);
 		
 		JLabel lblHelp = new JLabel("Help");
-		lblHelp.setBounds(10, 414, 245, 25);
+		lblHelp.setBounds(10, 422, 245, 25);
 		panel_1.add(lblHelp);
 		lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHelp.setForeground(Color.RED);
@@ -574,6 +693,112 @@ public class SchProcessiNuovoDiProva extends JFrame {
 				
 		buttonGenera.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				lineesFCFS.clear();
+				lineesSJF.clear();
+				lineesSJFP.clear();
+				lineesRR.clear();
+
+				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),lineesSJF,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),lineesSJFP,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),lineesRR,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
+
+				scelta= (String) comboBox.getSelectedItem();
+				btnEsegui.setEnabled(false);
+				chckbxAttivaModifiche.setSelected(false);
+				btnSalvaModifica.setEnabled(false);
+				chckbxMostraSoluzione.setSelected(false);
+				chckbxMostraSoluzione_1.setSelected(false);
+				chckbxMostraSoluzione_2.setSelected(false);
+				chckbxMostraSoluzione_3.setSelected(false);
+				table.setEnabled(false);
+				ModifyDurata.setEnabled(false);
+				ModifyArrivo.setEnabled(false);
+				ModifyProcess.setEnabled(false);
+		int r=Integer.valueOf(scelta);
+		
+		if (r>=0) 
+		{			
+			int rowCount = table.getRowCount();
+			for (int i = rowCount - 1; i >= 0; i--) {
+			    model1.removeRow(i);
+			}	
+			for (int i=0;i<r;i++) 
+			{ 
+		
+				Random random = new Random();
+				int value = random.nextInt(15 + 0) + 0;
+				model1.addRow(new Object[0]);
+				model1.setValueAt("P"+(i+1),i,0);
+				model1.setValueAt(value,i,1);
+				int value2 = random.nextInt(15 + 0) + 0;
+				model1.setValueAt(value2,i,2);	
+				model1.setValueAt(false,i,3);
+			}
+		}
+		
+		btnEsegui.setEnabled(true);
+		
+		}
+		});
+		
+		
+		comboBox.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) {
+				lineesFCFS.clear();
+				lineesSJF.clear();
+				lineesSJFP.clear();
+				lineesRR.clear();
+
+				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),lineesSJF,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),lineesSJFP,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
+				jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),lineesRR,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
+
+				scelta= (String) comboBox.getSelectedItem();
+				btnEsegui.setEnabled(false);
+				chckbxAttivaModifiche.setSelected(false);
+				btnSalvaModifica.setEnabled(false);
+				chckbxMostraSoluzione.setSelected(false);
+				chckbxMostraSoluzione_1.setSelected(false);
+				chckbxMostraSoluzione_2.setSelected(false);
+				chckbxMostraSoluzione_3.setSelected(false);
+				table.setEnabled(false);
+				ModifyDurata.setEnabled(false);
+				ModifyArrivo.setEnabled(false);
+				ModifyProcess.setEnabled(false);
+		int r=Integer.valueOf(scelta);
+		
+		if (r>=0) 
+		{			
+			int rowCount = table.getRowCount();
+			for (int i = rowCount - 1; i >= 0; i--) {
+			    model1.removeRow(i);
+			}	
+			for (int i=0;i<r;i++) 
+			{ 
+		
+				Random random = new Random();
+				int value = random.nextInt(15 + 0) + 0;
+				model1.addRow(new Object[0]);
+				model1.setValueAt("P"+(i+1),i,0);
+				model1.setValueAt(value,i,1);
+				int value2 = random.nextInt(15 + 0) + 0;
+				model1.setValueAt(value2,i,2);	
+				model1.setValueAt(false,i,3);
+			}
+		}
+		
+		btnEsegui.setEnabled(true);
+		
+		}
+		});
+
+		btnEsegui.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnEsegui.setEnabled(false);
 				chckbxMostraSoluzione.setSelected(false);
 				chckbxMostraSoluzione_1.setSelected(false);
 				chckbxMostraSoluzione_2.setSelected(false);
@@ -595,136 +820,32 @@ public class SchProcessiNuovoDiProva extends JFrame {
 				
 				if (r>=0) 
 				{			
-					int rowCount = table.getRowCount();
-					for (int i = rowCount - 1; i >= 0; i--) {
-					    model1.removeRow(i);
-					}	
-					for (int i=0;i<r;i++) 
+					for (int i=0;i<table.getRowCount();i++) 
 					{ 
+						if(Boolean.valueOf((table.getValueAt(i, 3)).toString())==false) {
+					    int a=Integer.valueOf((table.getValueAt(i, 1)).toString());
+					    int b=Integer.valueOf((table.getValueAt(i, 2)).toString());
+
 					    CreaLinee punti=new CreaLinee();
 					    CreaLinee distanza=new CreaLinee();
 
-						Random random = new Random();
-						int value = random.nextInt(15 + 0) + 0;
-						model1.addRow(new Object[0]);
-						model1.setValueAt("P"+(i+1),i,0);
-						model1.setValueAt(value,i,1);
-						int value2 = random.nextInt(15 + 0) + 0;
-						model1.setValueAt(value2,i,2);	
-						model1.setValueAt(false,i,3);
-
-						punti.creaPunti(value,i+1);
+						punti.creaPunti(a,i+1);
 						lineesFCFS.add(punti);
 						lineesSJF.add(punti);
 						lineesSJFP.add(punti);
 						lineesRR.add(punti);
 						
-						distanza.creaDistanza(value2, i+1);
+						distanza.creaDistanza(b, i+1);
 						lineesFCFS.add(distanza);
 						lineesSJF.add(distanza);
 						lineesSJFP.add(distanza);
 						lineesRR.add(distanza);
+						}
 					}
+						
 				}
-				
 			}
 		});
-		
-		
-		/*comboBox.addActionListener(new ActionListener() 
-		{
-			public void actionPerformed(ActionEvent e) {
-				scelta= (String) comboBox.getSelectedItem();
-			
-		int r=Integer.valueOf(scelta);
-		
-		if (r>=0) 
-		{			
-			int rowCount = table.getRowCount();
-			for (int i = rowCount - 1; i >= 0; i--) {
-			    model1.removeRow(i);
-			}	
-			for (int i=0;i<r;i++) 
-			{ 
-		
-				Random random = new Random();
-				int value = random.nextInt(30 + 0) + 0;
-				model1.addRow(new Object[0]);
-				model1.setValueAt("P"+(i+1),i,0);
-				model1.setValueAt(value,i,1);
-				int value2 = random.nextInt(30 + 0) + 0;
-				model1.setValueAt(value2,i,2);	
-				model1.setValueAt(false,i,3);
-			}
-		}
-		
-		 
-	        
-		}
-		});*/
-		
-		JButton btnSalvaModifica = new JButton("Salva Modifiche");
-		btnSalvaModifica.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				chckbxMostraSoluzione.setSelected(false);
-				chckbxMostraSoluzione_1.setSelected(false);
-				chckbxMostraSoluzione_2.setSelected(false);
-				chckbxMostraSoluzione_3.setSelected(false);
-				lineesFCFS.clear();
-				lineesSJF.clear();
-				lineesSJFP.clear();
-				lineesRR.clear();
-				jPanelFCFS2.disegnaGriglia(jPanelFCFS2.getGraphics(),lineesFCFS,chckbxMostraSoluzione.isSelected(), chckbxGriglia.isSelected());
-				jPanelFCFS3.disegnaGriglia(jPanelFCFS3.getGraphics(),lineesSJF,chckbxMostraSoluzione_1.isSelected(), chckbxGriglia.isSelected());
-				jPanelFCFS4.disegnaGriglia(jPanelFCFS4.getGraphics(),lineesSJFP,chckbxMostraSoluzione_2.isSelected(), chckbxGriglia.isSelected());
-				jPanelFCFS5.disegnaGriglia(jPanelFCFS5.getGraphics(),lineesRR,chckbxMostraSoluzione_3.isSelected(), chckbxGriglia.isSelected());
-
-
-				table.setEnabled(false);
-				chckbxAttivaModifiche.setSelected(false);
-				ModifyDurata.setEnabled(false);
-				ModifyArrivo.setEnabled(false);
-				ModifyProcess.setEnabled(false);
-				
-				for(int i=0;i<6;i++) {
-	    		if(table.getValueAt(i,0).equals(ModifyProcess.getText())) {    	
-	    			model1.setValueAt(ModifyArrivo.getText(),i, 1);
-	    			model1.setValueAt(ModifyDurata.getText(),i, 2);
-	    		}
-				}
-				
-				for (int i=0;i<table.getRowCount();i++) 
-				{ 
-					if(Boolean.valueOf((table.getValueAt(i, 3)).toString())==false) {
-				    int a=Integer.valueOf((table.getValueAt(i, 1)).toString());
-				    int b=Integer.valueOf((table.getValueAt(i, 2)).toString());
-
-				    CreaLinee punti=new CreaLinee();
-				    CreaLinee distanza=new CreaLinee();
-
-					punti.creaPunti(a,i+1);
-					lineesFCFS.add(punti);
-					lineesSJF.add(punti);
-					lineesSJFP.add(punti);
-					lineesRR.add(punti);
-					
-					distanza.creaDistanza(b, i+1);
-					lineesFCFS.add(distanza);
-					lineesSJF.add(distanza);
-					lineesSJFP.add(distanza);
-					lineesRR.add(distanza);
-					}
-				}
-				
-	    		ModifyDurata.setText("");
-				ModifyArrivo.setText("");
-				ModifyProcess.setText("");
-				
-			}
-		});
-		
-		btnSalvaModifica.setBounds(100, 33, 125, 21);
-		panel_4.add(btnSalvaModifica);
 		
 		chckbxMostraSoluzione.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -834,21 +955,36 @@ public class SchProcessiNuovoDiProva extends JFrame {
         	g.setColor(Color.lightGray);
 
         	if(selectGriglia==true) {
-        	for(i=0;i<120;) {
-            	g.drawLine(0,h-i, l,h-i);
-        		i=i+15;
-        	}
-        	g.setColor(Color.BLUE);
-        	g.drawLine(0,h-15, l,h-15);
-        	g.setColor(Color.lightGray);
+        		for(i=0;i<120;) {
+        			g.drawLine(0,h-i, l,h-i);
+        			i=i+15;
+        		}
+        		g.setColor(Color.BLUE);
+        		g.drawLine(0,h-15, l,h-15);
+        		g.setColor(Color.lightGray);
 
-        	for(j=0;j<1075;) {
-        		g.drawLine(l-j,0,l-j,h);
-        		j=j+15;
+        		for(j=0;j<1075;) {
+        			g.drawLine(l-j,0,l-j,h);
+        			j=j+15;
+        		}
+        		g.setColor(Color.BLUE);
+        		g.drawLine(l-j+15,0,l-j+15,h);
         	}
-        	g.setColor(Color.BLUE);
-    		g.drawLine(l-j+15,0,l-j+15,h);
-        	}
+        	else {
+        		for(i=0;i<120;) {
+            		i=i+15;
+            	}
+            	g.setColor(Color.BLUE);
+            	g.drawLine(0,h-15, l,h-15);
+
+            	for(j=0;j<1075;) {
+            		j=j+15;
+            	}
+            	g.setColor(Color.BLUE);
+        		g.drawLine(l-j+15,0,l-j+15,h);
+            }        		
+        	
+        	
         	g.setFont(new Font("Times New Roman", Font.BOLD, 11));
         	g.setColor(Color.black);
         	g.drawString("P1",3,92);
@@ -867,11 +1003,11 @@ public class SchProcessiNuovoDiProva extends JFrame {
         	
         	if(selectSoluzione==true) {
         		g.setColor(Color.red);
+            	
             	for(int l=0;l<dataset.size();l++) {        		
-
-            		//if(l%2==0) {
-            			g.drawString("O",30+dataset.get(l).ritornaPunti().get(0)*15,92-l*15);
-            		//}
+            		if(l%2==0) {
+            			g.drawString("O",30+dataset.get(l).ritornaPunti().get(0)*15,92-l/2*15);
+            		}
             	}
 
             	/*for(int l=0;l<dataset.size();l++) {
@@ -887,6 +1023,13 @@ public class SchProcessiNuovoDiProva extends JFrame {
     
     
     ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs){
+    	
+    	for(int l=0;l<lineefcfs.size();l++) {        		
+    		if(l%2!=0) {
+    		System.out.println(	lineefcfs.get(l).ritornaLinee().get(0));
+    		}
+    	}
+    	
 		return lineefcfs;
 	}
     
