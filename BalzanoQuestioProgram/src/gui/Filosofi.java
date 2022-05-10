@@ -55,6 +55,7 @@ public class Filosofi extends JFrame {
 		frame=this;
 		Thread threadClassico[] = new Thread[5];
 		Thread threadAtomico[] = new Thread[5];
+		Thread threadCoda[]=new Thread[5];
 		ImageIcon imageReady = new ImageIcon(this.getClass().getResource("/img/readyIcon.png"));
 		ImageIcon imageNormal = new ImageIcon(this.getClass().getResource("/img/normaleIcon.png"));
 		ImageIcon imageAttesa = new ImageIcon(this.getClass().getResource("/img/attesaIcon.png"));
@@ -69,6 +70,12 @@ public class Filosofi extends JFrame {
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
 			filosofiAtomici[i] = new FilosofiAtomici(i);
+		}
+		FilosofiCoda filosofiCoda[]= new FilosofiCoda[5];
+		for (int i = 0; i < filosofiCoda.length; i++) 
+		{
+			filosofiCoda[i]= new FilosofiCoda(i);
+			
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
@@ -130,6 +137,7 @@ public class Filosofi extends JFrame {
 					
 					filosofiClassica[i].stop();
 					filosofiAtomici[i].stop();
+					filosofiCoda[i].stop();
 					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
 				}
 				framechiamante.setVisible(true);
@@ -202,6 +210,7 @@ public class Filosofi extends JFrame {
 					
 					filosofiClassica[i].stop();
 					filosofiAtomici[i].stop();
+					filosofiCoda[i].stop();
 					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
 				}
 			}
@@ -228,7 +237,8 @@ public class Filosofi extends JFrame {
 					for (int i = 0; i < threadClassico.length; i++) 
 					{
 						filosofiAtomici[i].stop();
-						System.out.println("Ho interotto Esecuzione dei filosofi atomici " + i);
+						filosofiCoda[i].stop();
+						System.out.println("Ho interotto Esecuzione dei filosofi atomici - coda " + i);
 						filosofiClassica[i].resume();
 						//Slider Velocita Mangia
 						if(1==sliderVelocitaMangia.getValue())
@@ -370,6 +380,8 @@ public class Filosofi extends JFrame {
 					for (int i = 0; i < threadAtomico.length; i++) 
 					{
 						filosofiClassica[i].stop();
+						filosofiCoda[i].stop();
+						System.out.println("Ho interotto Esecuzione dei filosofi classici - coda " + i);
 						if(1==sliderVelocitaPensa.getValue())
 						{
 							filosofiAtomici[i].tempoPensa=3000;
@@ -410,9 +422,7 @@ public class Filosofi extends JFrame {
 						{
 							filosofiAtomici[i].tempoMangia=300;
 						}
-						System.out.println("Ho interotto Esecuzione dei filosofi Classici" + i);
 						filosofiAtomici[i].resume();
-						
 						threadAtomico[i]= new Thread(filosofiAtomici[i]);
 						threadAtomico[i].start();
 					}
@@ -494,6 +504,129 @@ public class Filosofi extends JFrame {
 		});
 		
 		JRadioButton radioCoda = new JRadioButton("Schema Coda");
+		radioCoda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (radioCoda.isSelected()) 
+				{
+					continuaBoolean=false;
+					if (deadlockBoolean) 
+					{
+						deadlockBoolean=false;
+						labelTavola.setIcon(imageTavola);
+					}
+					for (int i = 0; i < threadCoda.length; i++) 
+					{
+						filosofiClassica[i].stop();
+						filosofiAtomici[i].stop();
+						System.out.println("Ho interotto Esecuzione dei filosofi atomici - classici" + i);
+						if(1==sliderVelocitaPensa.getValue())
+						{
+							filosofiCoda[i].tempoPensa=3000;
+						}
+						else if (2==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=1500;
+						}
+						else if (3==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=800;
+						}
+						else if (4==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=500;
+						}
+						else 
+						{
+							filosofiCoda[i].tempoPensa=300;
+						}
+						if(1==sliderVelocitaMangia.getValue())
+						{
+							filosofiCoda[i].tempoMangia=3000;
+						}
+						else if (2==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=1500;
+						}
+						else if (3==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=800;
+						}
+						else if (4==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=500;
+						}
+						else 
+						{
+							filosofiCoda[i].tempoMangia=300;
+						}
+						filosofiCoda[i].resume();
+						threadAtomico[i]= new Thread(filosofiCoda[i]);
+						threadAtomico[i].start();
+					}
+
+					continuaBoolean=true;
+					Thread threadCambiaFiloCoda= new Thread(new Runnable() 
+					{
+						@Override
+						public void run() 
+						{
+							// TODO Auto-generated method stub
+							while (continuaBoolean) 
+							{
+								//Filosofo 1 
+								if (filosofiCoda[0].pronto==true) 
+								{
+									labelFilosofo1.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo1.setIcon(imageAttesa);
+								}
+								//Filosofo 2
+								if (filosofiCoda[1].pronto==true) 
+								{
+									labelFilosofo2.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo2.setIcon(imageAttesa);
+								}
+								//Filosofo 3
+								if (filosofiCoda[2].pronto==true) 
+								{
+									labelFilosofo3.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo3.setIcon(imageAttesa);
+								}
+								//Filosofo 4
+								if (filosofiCoda[3].pronto==true) 
+								{
+									labelFilosofo4.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo4.setIcon(imageAttesa);
+								}
+								//Filosofo 5
+								if (filosofiCoda[4].pronto==true) 
+								{
+									labelFilosofo5.setIcon(imageReady);
+								}
+								else 
+								{
+									labelFilosofo5.setIcon(imageAttesa);
+								}
+								
+							}
+						}
+					});
+					threadCambiaFiloCoda.start();
+				}
+			}
+		});
 		radioCoda.setToolTipText("Solo 4 Filosofi possono sedersi conteporaneamente");
 		radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		radioCoda.setBounds(996, 361, 206, 44);
@@ -587,6 +720,33 @@ public class Filosofi extends JFrame {
 						}
 					}
 				}
+        		else if (radioCoda.isSelected())
+        		{
+        			for (int i = 0; i < filosofiCoda.length; i++) 
+					{
+				
+	        			if(1==sliderVelocitaMangia.getValue())
+						{
+							filosofiCoda[i].tempoMangia=3000;
+						}
+						else if (2==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=1200;
+						}
+						else if (3==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=800;
+						}
+						else if (4==sliderVelocitaMangia.getValue()) 
+						{
+							filosofiCoda[i].tempoMangia=500;
+						}
+						else 
+						{
+							filosofiCoda[i].tempoMangia=300;
+						}
+					}
+				}
         	}
         });
 
@@ -665,6 +825,34 @@ public class Filosofi extends JFrame {
 							filosofiAtomici[i].tempoPensa=300;
 						}
 					}
+				}
+        		else if (radioCoda.isSelected())
+        		{
+        			for (int i = 0; i < filosofiCoda.length; i++) 
+					{
+				
+	        			if(1==sliderVelocitaPensa.getValue())
+						{
+							filosofiCoda[i].tempoPensa=3000;
+						}
+						else if (2==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=1200;
+						}
+						else if (3==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=800;
+						}
+						else if (4==sliderVelocitaPensa.getValue()) 
+						{
+							filosofiCoda[i].tempoPensa=500;
+						}
+						else 
+						{
+							filosofiCoda[i].tempoPensa=300;
+						}
+					}
+
 				}
         	}
         });
