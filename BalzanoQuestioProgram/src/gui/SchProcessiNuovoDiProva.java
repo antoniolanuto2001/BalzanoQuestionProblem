@@ -913,7 +913,6 @@ public class SchProcessiNuovoDiProva extends JFrame {
 	}
     
     ArrayList<CreaLinee> creaRR(ArrayList<CreaLinee> lineerr){
-<<<<<<< HEAD
     	//CON ARRAY ORDINATO PER ARRIVO INSERIRE IN ARRAY NP,ARRIVO+DURATAPREC,DURATA-Q FINCHE' DURATA>0
 
     	ArrayList<CreaLinee> RR= new ArrayList<CreaLinee>();
