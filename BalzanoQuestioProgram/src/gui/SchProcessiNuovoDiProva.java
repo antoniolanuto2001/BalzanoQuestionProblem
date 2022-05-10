@@ -1030,7 +1030,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
     			FCFS.add(lineefcfs.get(l));
     		}
     	}
-    	return FCFS;
+    	return lineefcfs;
 	}
     
     ArrayList<CreaLinee> creaSJF(ArrayList<CreaLinee> lineesjf){
@@ -1059,7 +1059,7 @@ public class SchProcessiNuovoDiProva extends JFrame {
     			RR.add(lineerr.get(l));
     		}
     	}
-		return RR;	
+		return lineerr;	
 	}
 }
 //System.out.println(	"P"+lineefcfs.get(l).ritornaLinee().get(0)+" A"+	lineefcfs.get(l).ritornaLinee().get(1)+" D"+lineefcfs.get(l).ritornaLinee().get(2));
