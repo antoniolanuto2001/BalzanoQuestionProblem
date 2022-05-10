@@ -33,25 +33,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartMouseListener;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.axis.SymbolAxis;
-import org.jfree.chart.block.BlockBorder;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.category.IntervalCategoryDataset;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
-import com.orsonpdf.GraphicsStateDictionary;
 
 import model.CreaLinee;
 
@@ -886,7 +867,6 @@ public class SchProcessiNuovoDiProva extends JFrame {
     }
     
     
-<<<<<<< HEAD
     ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs,ArrayList<CreaLinee> TMP ){
     	//CON ARRAY ORDINATO PER ARRIVO AGGIUNGERE ALL'ARRIVO DEL SUCCESSIVO LA DURATA DEL PRECEDENTE
 
@@ -898,10 +878,9 @@ public class SchProcessiNuovoDiProva extends JFrame {
     		}
     	}
     	return lineefcfs;
-=======
+    }
     ArrayList<CreaLinee> creaFCFS(ArrayList<CreaLinee> lineefcfs){
 		return lineefcfs;
->>>>>>> branch 'master' of https://github.com/antoniolanuto2001/BalzanoQuestionProblem
 	}
     
     ArrayList<CreaLinee> creaSJF(ArrayList<CreaLinee> lineesjf){
@@ -923,8 +902,5 @@ public class SchProcessiNuovoDiProva extends JFrame {
     		}
     	}
 		return lineerr;	
-=======
-		return lineerr;
->>>>>>> branch 'master' of https://github.com/antoniolanuto2001/BalzanoQuestionProblem
 	}
 }

@@ -12,8 +12,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -35,11 +33,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+
+
 public class PaginazioneMemoria extends JFrame {
 
 		private JPanel contentPane;
 		private JFrame frame;
-		private String scelta="0";	
+		private String scelta="0";
+
 		private int i=0;
 		private JTextField stringaNumeri;
 
@@ -115,14 +116,11 @@ public class PaginazioneMemoria extends JFrame {
 			JButton btnSlideArgomento = new JButton("Slide Argomento");
 			btnSlideArgomento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Desktop d = Desktop.getDesktop();
+					File file = new File("C:\\Users\\biagi\\Desktop\\13° SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
 					try {
-						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
+						Desktop.getDesktop().open(file);
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
-						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(contentPane,"FILE NON PRESENTE");
 						e1.printStackTrace();
 					}
 				}
@@ -146,7 +144,8 @@ public class PaginazioneMemoria extends JFrame {
 			buttonEsci.setBackground(new Color(255, 204, 0));
 			buttonEsci.setBounds(453, 95, 128, 48);
 			panelMainButton.add(buttonEsci);
-	        
+	        	                       
+		    
 			JPanel panel_1 = new JPanel();
 			panel_1.setBounds(1129, 97, 265, 648);
 			panelMainButton.add(panel_1);
@@ -287,6 +286,26 @@ public class PaginazioneMemoria extends JFrame {
 			panel_6.setLayout(null);
 			panel_6.setBounds(5, 153, 1114, 600);
 			panelMainButton.add(panel_6);
+			
+			JPanel panel_7 = new JPanel();
+			panel_7.setLayout(null);
+			panel_7.setBounds(0, 0, 548, 295);
+			panel_6.add(panel_7);
+			
+			JPanel panel_8 = new JPanel();
+			panel_8.setLayout(null);
+			panel_8.setBounds(556, 0, 548, 295);
+			panel_6.add(panel_8);
+			
+			JPanel panel_9 = new JPanel();
+			panel_9.setLayout(null);
+			panel_9.setBounds(0, 305, 548, 295);
+			panel_6.add(panel_9);
+			
+			JPanel panel_10 = new JPanel();
+			panel_10.setLayout(null);
+			panel_10.setBounds(558, 305, 548, 295);
+			panel_6.add(panel_10);
 			
 			
 		}
