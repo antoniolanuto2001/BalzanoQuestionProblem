@@ -2,9 +2,12 @@ package model;
 
 import java.nio.file.ProviderNotFoundException;
 
+import javax.swing.JTextArea;
+
 public class FilosofiClassica implements Runnable 
 {
-    final int index;                        // indice locale del filosofo
+    final int index;       // indice locale del filosofo
+    public JTextArea textAreaLog ;
     private boolean exit;
     public boolean pronto;
     public int tempoPensa;
@@ -20,11 +23,12 @@ public class FilosofiClassica implements Runnable
      * 
      * @param i Index del Filosofo
      */
-    public FilosofiClassica(int i)
+    public FilosofiClassica(int i ,JTextArea logEntraneTextArea)
     {
         index = i;
         exit = true;
         pronto = false;
+        textAreaLog=logEntraneTextArea;
         deadlockCheck=false;
         tempoPensa=500;
         tempoMangia=800;
@@ -59,8 +63,9 @@ public class FilosofiClassica implements Runnable
         	// PENSA 
         	pronto = false;
         	 Thread.sleep(tempoPensa);
-             System.out.println("Filosofo  [" + index +"] pensa a :  "+ tempoPensa + "  velocita ");
-            tavolaClassica.raccogli_sx(index);   // raccoglie la bacchetta sinistra
+             System.out.println("Filosofo ["+ index +"] pensa a :  "+ tempoPensa + "  velocita ");
+             textAreaLog.append("Filosofo ["+ index +"] pensa ... \n");
+             tavolaClassica.raccogli_sx(index);   // raccoglie la bacchetta sinistra
     
             // Decommentare per forzare lo stallo
             //Thread.sleep(1000);
@@ -82,6 +87,7 @@ public class FilosofiClassica implements Runnable
             pronto = true;
             Thread.sleep(tempoMangia);
             System.out.println("Filosofo [" + index + "] mangia a : "+ tempoMangia + "  velocita ");
+            textAreaLog.append("Filosofo [" + index + "] mangia ...\n");
             tavolaClassica.deposita_sx(index);   // deposita la bacchetta sinistra
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra 
             pronto = false;

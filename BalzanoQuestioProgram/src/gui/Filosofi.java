@@ -23,8 +23,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.DimensionUIResource;
+import javax.swing.plaf.ScrollPaneUI;
 import javax.swing.text.AttributeSet.ColorAttribute;
-
+import javax.swing.text.DefaultCaret;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -32,16 +33,20 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JProgressBar;
 import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
 import javax.swing.JList;
 import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 
 
 public class Filosofi extends JFrame {
 
+	public 	JTextArea textAreaLog;
 	private JPanel contentPane;
 	private JFrame frame;
 	private JPanel panelMainButton = new JPanel();
@@ -53,6 +58,7 @@ public class Filosofi extends JFrame {
 	public Filosofi(JFrame framechiamante) 
 	{
 		frame=this;
+		textAreaLog = new JTextArea();
 		Thread threadClassico[] = new Thread[5];
 		Thread threadAtomico[] = new Thread[5];
 		Thread threadCoda[]=new Thread[5];
@@ -64,7 +70,7 @@ public class Filosofi extends JFrame {
 		FilosofiClassica filosofiClassica[] = new FilosofiClassica[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
-			filosofiClassica[i] = new FilosofiClassica(i);
+			filosofiClassica[i] = new FilosofiClassica(i,textAreaLog);
 		}
 		FilosofiAtomici filosofiAtomici[] = new FilosofiAtomici[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
@@ -92,31 +98,47 @@ public class Filosofi extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
+		
 		JLabel labelFilosofo1 = new JLabel("Filosofo1");
-		labelFilosofo1.setBounds(216, 307, 94, 98);
+		labelFilosofo1.setBounds(364, 308, 94, 98);
 		panelMainButton.add(labelFilosofo1);
 		labelFilosofo1.setIcon(imageNormal);
 		
 		JLabel labelFilosofo2 = new JLabel("Filosofo 2 ");
-		labelFilosofo2.setBounds(462, 180, 94, 98);
+		labelFilosofo2.setBounds(610, 181, 94, 98);
 		labelFilosofo2.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo2);
 		
 		JLabel labelFilosofo3 = new JLabel("Filosofo 3");
-		labelFilosofo3.setBounds(700, 307, 94, 98);
+		labelFilosofo3.setBounds(848, 308, 94, 98);
 		labelFilosofo3.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo3);
 		
 		JLabel labelFilosofo4 = new JLabel("Filosofo 4");
-		labelFilosofo4.setBounds(640, 588, 94, 98);
+		labelFilosofo4.setBounds(788, 589, 94, 98);
 		labelFilosofo4.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo4);
 		
 		JLabel labelFilosofo5 = new JLabel("Filosofo 4");
-		labelFilosofo5.setBounds(276, 599, 94, 98);
+		labelFilosofo5.setBounds(424, 600, 94, 98);
 		labelFilosofo5.setIcon(imageNormal);
 		panelMainButton.add(labelFilosofo5);
 		
+		JScrollPane scroll= new JScrollPane();
+		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroll.setBounds(10, 247, 344, 462);
+		scroll.setPreferredSize(new DimensionUIResource(344, 5000));
+		
+		
+        textAreaLog.setBorder(new LineBorder(new Color(0, 0, 0)));
+        textAreaLog.setBackground(new Color(255, 255, 255));
+        textAreaLog.setFont(new Font("Arial", Font.PLAIN, 13));
+        textAreaLog.setBounds(10, 247, 344, 462);
+        scroll.setViewportView(textAreaLog);
+        DefaultCaret caret = (DefaultCaret)textAreaLog.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		
+        panelMainButton.add(scroll);
 		
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -125,7 +147,7 @@ public class Filosofi extends JFrame {
 		buttonIndietro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
-			{
+			{	
 				continuaBoolean=false;
 				labelFilosofo1.setIcon(imageNormal);
 				labelFilosofo2.setIcon(imageNormal);
@@ -156,9 +178,18 @@ public class Filosofi extends JFrame {
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
 
+		JTextArea txtrUniversitDegliStudi = new JTextArea();
+		txtrUniversitDegliStudi.setBounds(1125, 11, 278, 102);
+		txtrUniversitDegliStudi.setBackground(new Color(204, 204, 255));
+		txtrUniversitDegliStudi.setText("Universit\u00E0 degli studi di Napoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\nDevoloper: Lanuto, Prosciutto, Scotto\r\n");
+		txtrUniversitDegliStudi.setLineWrap(true);
+		txtrUniversitDegliStudi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		txtrUniversitDegliStudi.setEditable(false);
+		panelSuperiore.add(txtrUniversitDegliStudi);
+		
         JSlider sliderVelocitaMangia = new JSlider(1,5,3);
        
-        sliderVelocitaMangia.setBounds(996, 439, 206, 60);
+        sliderVelocitaMangia.setBounds(1144, 440, 206, 60);
         sliderVelocitaMangia.setPreferredSize(new Dimension(250, 60));
         sliderVelocitaMangia.setPaintTrack(true);
         sliderVelocitaMangia.setPaintLabels(true);
@@ -174,7 +205,7 @@ public class Filosofi extends JFrame {
         sliderVelocitaPensa.setPaintLabels(true);
         sliderVelocitaPensa.setMinorTickSpacing(3);
         sliderVelocitaPensa.setMajorTickSpacing(1);
-        sliderVelocitaPensa.setBounds(996, 552, 206, 60);
+        sliderVelocitaPensa.setBounds(1144, 553, 206, 60);
         panelMainButton.add(sliderVelocitaPensa);
 		
 		JLabel labelSchemata = new JLabel("Filosofi A Cena ");
@@ -183,7 +214,7 @@ public class Filosofi extends JFrame {
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
 		
 		JLabel labelTavola = new JLabel("tavola");
-		labelTavola.setBounds(266, 281, 482, 371);
+		labelTavola.setBounds(414, 282, 482, 371);
 		labelTavola.setIcon(imageTavola);
 		panelMainButton.add(labelTavola);
 		ButtonGroup groupSceltaStrategiaFilosofi = new ButtonGroup();
@@ -213,9 +244,11 @@ public class Filosofi extends JFrame {
 					filosofiCoda[i].stop();
 					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
 				}
+				textAreaLog.setText("Reset Text     \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+				textAreaLog.setText("Reset Filosofi ... \1 \n");
 			}
 		});
-		radioDefault.setBounds(996, 239, 175, 36);
+		radioDefault.setBounds(1144, 240, 175, 36);
 		groupSceltaStrategiaFilosofi.add(radioDefault);
 		panelMainButton.add(radioDefault);
 		
@@ -228,6 +261,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioClassico.isSelected()) 
 				{
+					textAreaLog.setText("Modalita Schema Classico Attivata : \n");
 					continuaBoolean=false;
 					if (deadlockBoolean) 
 					{
@@ -297,46 +331,57 @@ public class Filosofi extends JFrame {
 								//Filosofo 1 
 								if (filosofiClassica[0].pronto==true) 
 								{
+									
+										
 									labelFilosofo1.setIcon(imageReady);
 								}
 								else 
 								{
+									
 									labelFilosofo1.setIcon(imageAttesa);
 								}
 								//Filosofo 2
 								if (filosofiClassica[1].pronto==true) 
 								{
+									
 									labelFilosofo2.setIcon(imageReady);
 								}
 								else 
 								{
+									
 									labelFilosofo2.setIcon(imageAttesa);
 								}
 								//Filosofo 3
 								if (filosofiClassica[2].pronto==true) 
 								{
+									
 									labelFilosofo3.setIcon(imageReady);
 								}
 								else 
 								{
+									
 									labelFilosofo3.setIcon(imageAttesa);
 								}
 								//Filosofo 4
 								if (filosofiClassica[3].pronto==true) 
 								{
+									
 									labelFilosofo4.setIcon(imageReady);
 								}
 								else 
 								{
+									
 									labelFilosofo4.setIcon(imageAttesa);
 								}
 								//Filosofo 5
 								if (filosofiClassica[4].pronto==true) 
 								{
+									
 									labelFilosofo5.setIcon(imageReady);
 								}
 								else 
 								{
+									
 									labelFilosofo5.setIcon(imageAttesa);
 								}
 								if (filosofiClassica[0].deadlockCheck==true)
@@ -359,7 +404,7 @@ public class Filosofi extends JFrame {
 			}
 		});
 		radioClassico.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		radioClassico.setBounds(996, 278, 175, 36);
+		radioClassico.setBounds(1144, 279, 175, 36);
 		groupSceltaStrategiaFilosofi.add(radioClassico);
 		panelMainButton.add(radioClassico);
 		
@@ -489,7 +534,7 @@ public class Filosofi extends JFrame {
 				}
 			}
 		});
-		radioAtomico.setBounds(996, 321, 175, 36);
+		radioAtomico.setBounds(1144, 322, 175, 36);
 		radioAtomico.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		groupSceltaStrategiaFilosofi.add(radioAtomico);
 		panelMainButton.add(radioAtomico);
@@ -629,7 +674,7 @@ public class Filosofi extends JFrame {
 		});
 		radioCoda.setToolTipText("Solo 4 Filosofi possono sedersi conteporaneamente");
 		radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		radioCoda.setBounds(996, 361, 206, 44);
+		radioCoda.setBounds(1144, 362, 206, 44);
 		groupSceltaStrategiaFilosofi.add(radioCoda);
 		panelMainButton.add(radioCoda);
 		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -754,13 +799,20 @@ public class Filosofi extends JFrame {
      
         JLabel labelSliderMangia = new JLabel("Velocita Mangia : ");
         labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 11));
-        labelSliderMangia.setBounds(996, 410, 143, 30);
+        labelSliderMangia.setBounds(1144, 411, 143, 30);
         panelMainButton.add(labelSliderMangia);
         
         JLabel labelSliderPensa = new JLabel("Velocita Pensa  : ");
         labelSliderPensa.setFont(new Font("Segoe UI", Font.BOLD, 11));
-        labelSliderPensa.setBounds(996, 522, 143, 30);
+        labelSliderPensa.setBounds(1144, 523, 143, 30);
         panelMainButton.add(labelSliderPensa);
+        
+        
+        
+        JLabel labelLog = new JLabel("LOG Degli Eventi : ");
+        labelLog.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelLog.setBounds(10, 205, 163, 36);
+        panelMainButton.add(labelLog);
         
         sliderVelocitaPensa.addMouseListener(new MouseAdapter() {
         	@Override
