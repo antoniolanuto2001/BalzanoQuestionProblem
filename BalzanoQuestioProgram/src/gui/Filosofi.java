@@ -494,9 +494,10 @@ public class Filosofi extends JFrame {
 		});
 		
 		JRadioButton radioCoda = new JRadioButton("Schema Coda");
-		radioCoda.setToolTipText("Ogni filosofo aspetta e posa entrambi le bacchette conteporaneamente");
+		radioCoda.setToolTipText("Solo 4 Filosofi possono sedersi conteporaneamente");
 		radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		radioCoda.setBounds(996, 361, 206, 44);
+		groupSceltaStrategiaFilosofi.add(radioCoda);
 		panelMainButton.add(radioCoda);
 		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonEsci.setBorder(new LineBorder(new Color(0, 0, 0)));

@@ -81,7 +81,7 @@ public class FilosofiClassica implements Runnable
             //MANGIA
             pronto = true;
             Thread.sleep(tempoMangia);
-            System.out.println("Filosofo [" + index + "] mangia a : "+ tempoPensa + "  velocita ");
+            System.out.println("Filosofo [" + index + "] mangia a : "+ tempoMangia + "  velocita ");
             tavolaClassica.deposita_sx(index);   // deposita la bacchetta sinistra
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra 
             pronto = false;
