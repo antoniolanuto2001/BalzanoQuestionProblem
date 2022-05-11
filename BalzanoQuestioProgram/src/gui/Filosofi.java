@@ -208,10 +208,7 @@ public class Filosofi extends JFrame {
         sliderVelocitaPensa.setBounds(1144, 553, 206, 60);
         panelMainButton.add(sliderVelocitaPensa);
 		
-		JLabel labelSchemata = new JLabel("Filosofi A Cena ");
-		labelSchemata.setBounds(531, 11, 404, 89);
-		panelSuperiore.add(labelSchemata);
-		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		
 		
 		JLabel labelTavola = new JLabel("tavola");
 		labelTavola.setBounds(414, 282, 482, 371);

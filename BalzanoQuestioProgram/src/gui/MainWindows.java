@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -56,23 +57,20 @@ public class MainWindows {
 		frame.setBounds(100, 100, 1440, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Balzano Question Problem");
+		ImageIcon imageSfondo = new ImageIcon(this.getClass().getResource("/img/desktopIcon2.png"));
 		
 		JPanel panelMainButton = new JPanel();
-		panelMainButton.setForeground(new Color(153, 204, 255));
+		panelMainButton.setBackground(new Color(187, 222, 251));
 		panelMainButton.setBounds(0, 0, 1440, 800);
+		
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		JLabel testLabel1 = new JLabel("Ciao Erasmo ed Biagio");
-		testLabel1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		testLabel1.setBounds(610, 332, 143, 41);
-		panelMainButton.add(testLabel1);
-		
-		JLabel testLabel2 = new JLabel("<3 ");
-		testLabel2.setForeground(new Color(255, 51, 51));
-		testLabel2.setFont(new Font("Segoe UI", Font.BOLD, 17));
-		testLabel2.setBounds(660, 367, 41, 35);
-		panelMainButton.add(testLabel2);
+		JLabel labelSfondo = new JLabel("");
+		labelSfondo.setBounds(0, 111, 1430, 437);
+		labelSfondo.setIcon(imageSfondo);
+		panelMainButton.add(labelSfondo);
 		
 		JButton buttonCpu = new JButton("Scheduling  Processi");
 		buttonCpu.addMouseListener(new MouseAdapter() {
@@ -88,9 +86,10 @@ public class MainWindows {
 		buttonCpu.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonCpu.setForeground(new Color(0, 0, 0));
 		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonCpu.setBounds(260, 190, 215, 77);
+		buttonCpu.setBounds(1186, 633, 215, 77);
 		buttonCpu.setOpaque(true);
 		panelMainButton.add(buttonCpu);
+		
 		
 		JButton buttonHashing = new JButton("Hashing");
 		buttonHashing.setBackground(new Color(153, 204, 255));
@@ -107,7 +106,7 @@ public class MainWindows {
 			}
 		});
 		buttonHashing.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonHashing.setBounds(563, 190, 215, 77);
+		buttonHashing.setBounds(961, 633, 215, 77);
 		panelMainButton.add(buttonHashing);
 		
 		JButton buttonFiloACena = new JButton("Filosofi a Cena");
@@ -115,7 +114,7 @@ public class MainWindows {
 		buttonFiloACena.setFont(new Font("Segoe UI", Font.BOLD, 14));
 		buttonFiloACena.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonFiloACena.setBackground(new Color(153, 255, 153));
-		buttonFiloACena.setBounds(260, 347, 215, 77);
+		buttonFiloACena.setBounds(510, 633, 215, 77);
 		buttonFiloACena.setOpaque(true);
 		buttonFiloACena.addMouseListener(new MouseAdapter() {
 			@Override
@@ -135,7 +134,7 @@ public class MainWindows {
 		buttonSemafori.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSemafori.setBackground(new Color(255, 102, 102));
 		buttonSemafori.setOpaque(true);
-		buttonSemafori.setBounds(876, 190, 215, 77);
+		buttonSemafori.setBounds(281, 633, 215, 77);
 		buttonSemafori.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -154,7 +153,7 @@ public class MainWindows {
 		buttonPaginazioneDellaMemoria.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonPaginazioneDellaMemoria.setBackground(new Color(255, 153, 153));
 		buttonPaginazioneDellaMemoria.setOpaque(true);
-		buttonPaginazioneDellaMemoria.setBounds(884, 332, 215, 77);
+		buttonPaginazioneDellaMemoria.setBounds(56, 633, 215, 77);
 		buttonPaginazioneDellaMemoria.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -172,7 +171,7 @@ public class MainWindows {
 		buttonSchedulingHd.setBorder(new LineBorder(new Color(0, 0, 0)));
 		buttonSchedulingHd.setBackground(new Color(255, 153, 204));
 		buttonSchedulingHd.setOpaque(true);
-		buttonSchedulingHd.setBounds(576, 456, 215, 77);
+		buttonSchedulingHd.setBounds(736, 633, 215, 77);
 		buttonSchedulingHd.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -184,6 +183,7 @@ public class MainWindows {
 		});
 		
 		panelMainButton.add(buttonSchedulingHd);
+	
 		
 		
 		
