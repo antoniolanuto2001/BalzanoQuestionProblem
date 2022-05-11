@@ -96,7 +96,6 @@ public class Panel2 extends JPanel {
     		g.drawLine(l-j+15,0,l-j+15,h);
         }        		
     	
-    	
     	g.setFont(new Font("Times New Roman", Font.BOLD, 11));
     	g.setColor(Color.black);
     	g.drawString("P1",13,92);

@@ -43,7 +43,6 @@ public class CreaLinee implements Comparable<CreaLinee>{
 		return linee;
 	}
 	
-	
 	public int getProcesso() {
 		return processo;
 	}

@@ -784,6 +784,7 @@ public class SchProcessi extends JFrame {
 					i=i+3;
 				}
 				/*
+				 * 
 				//CREAZIONE FCFS
 				for(int l=0;l<lineaFCFS.length;l++) {  
 
