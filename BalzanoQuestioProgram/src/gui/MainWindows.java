@@ -56,6 +56,7 @@ public class MainWindows {
 		frame.setBounds(100, 100, 1440, 800);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Balzano Question Problem : Main Menu");
 		
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -78,7 +79,7 @@ public class MainWindows {
 		buttonCpu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SchProcessiNuovoDiProva frameDachiamareProcessi= new SchProcessiNuovoDiProva(frame);
+				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
 				frameDachiamareProcessi.setVisible(true);	
 				frame.setVisible(false);
 				

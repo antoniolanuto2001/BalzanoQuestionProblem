@@ -4,37 +4,74 @@ package model;
 
 import java.util.ArrayList;
 
-public class CreaLinee {
+public class CreaLinee implements Comparable<CreaLinee>{
 	
-	int x1,x2,y1,y2;
+	int arrivo,durata, processo;
+	
 	ArrayList<Integer> punti=new ArrayList<Integer>();
 	ArrayList<Integer> linee=new ArrayList<Integer>();
 
-	public ArrayList<Integer> creaDistanza(int processo, int arrivo,int durata) {
+	public CreaLinee(int x1, int y1) {
+		this.processo=x1;
+		this.arrivo=y1;
+	}
+	
+	public CreaLinee(int processo, int arrivo,int durata) {
+		this.processo=processo;
+		this.arrivo=arrivo;
+		this.durata=durata;
+	}
+	public void creaDistanza(int processo, int arrivo,int durata) {
 		
-		y1=processo;
-		x1=arrivo;
-		x2=durata;
-		linee.add(Integer.valueOf(y1));
-		linee.add(Integer.valueOf(x1));
-		linee.add(Integer.valueOf(x2));
+		linee.add(Integer.valueOf(processo));
+		linee.add(Integer.valueOf(arrivo));
+		linee.add(Integer.valueOf(durata));
 
-		return linee;
 	}
 
-	public ArrayList<Integer> creaPunti(int x1, int y1) {
+	public void creaPunti(int arrivo, int processo) {
 		
-		this.x1=x1;
-		this.y1=y1;
-		punti.add(Integer.valueOf(x1));
-		punti.add(Integer.valueOf(y1));
+		punti.add(Integer.valueOf(arrivo));
+		punti.add(Integer.valueOf(processo));
 
-		return punti;
 	}
+	
 	public ArrayList<Integer> ritornaPunti(){
 		return punti;
 	}
 	public ArrayList<Integer> ritornaLinee(){
 		return linee;
 	}
+	
+	
+	public int getProcesso() {
+		return processo;
+	}
+	public int getArrivo() {
+		return arrivo;
+	}
+	public int getDurata() {
+		return durata;
+	}
+	
+	public void setProcesso(int processo) {
+		this.processo=processo;
+	}
+	public void setArrivo(int arrivo) {
+		this.arrivo=arrivo;
+	}
+	public void setDurata(int durata) {
+		this.durata=durata;
+	}
+	
+	public int compareTo(CreaLinee linea)
+    {
+        if (this.arrivo != linea.getArrivo()) {
+            return this.arrivo - linea.getArrivo();
+        }
+        Integer k=Integer.valueOf( this.processo);
+        Integer l=Integer.valueOf( linea.getProcesso());
+
+        return k.compareTo(l);
+    }
 }
