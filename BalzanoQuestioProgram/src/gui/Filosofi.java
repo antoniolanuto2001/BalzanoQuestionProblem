@@ -75,12 +75,12 @@ public class Filosofi extends JFrame {
 		FilosofiAtomici filosofiAtomici[] = new FilosofiAtomici[5];
 		for (int i = 0; i < filosofiClassica.length; i++) 
 		{
-			filosofiAtomici[i] = new FilosofiAtomici(i);
+			filosofiAtomici[i] = new FilosofiAtomici(i,textAreaLog);
 		}
 		FilosofiCoda filosofiCoda[]= new FilosofiCoda[5];
 		for (int i = 0; i < filosofiCoda.length; i++) 
 		{
-			filosofiCoda[i]= new FilosofiCoda(i);
+			filosofiCoda[i]= new FilosofiCoda(i,textAreaLog);
 			
 		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -244,8 +244,8 @@ public class Filosofi extends JFrame {
 					filosofiCoda[i].stop();
 					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
 				}
-				textAreaLog.setText("Reset Text     \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-				textAreaLog.setText("Reset Filosofi ... \1 \n");
+				textAreaLog.setText("Reset Filosofi ...  \n");
+				textAreaLog.append("I filosofi che potrebbero seguire stanno terminando\nesecuzione da precedenti Thread\n");
 			}
 		});
 		radioDefault.setBounds(1144, 240, 175, 36);
@@ -416,6 +416,7 @@ public class Filosofi extends JFrame {
 			{
 				if (radioAtomico.isSelected()) 
 				{
+					textAreaLog.setText("Modalita Schema Atomico Attivata : \n");
 					continuaBoolean=false;
 					if (deadlockBoolean) 
 					{
@@ -554,9 +555,10 @@ public class Filosofi extends JFrame {
 			{
 				if (radioCoda.isSelected()) 
 				{
+					textAreaLog.setText("Modalita Schema a Coda Attivata : \n");
 					continuaBoolean=false;
 					if (deadlockBoolean) 
-					{
+					{	
 						deadlockBoolean=false;
 						labelTavola.setIcon(imageTavola);
 					}
@@ -709,6 +711,7 @@ public class Filosofi extends JFrame {
         	@Override
         	public void mouseReleased(MouseEvent e) 
         	{
+        		textAreaLog.append("Velocita Cambiata In Fase di Mangia: \n");
         		if (radioClassico.isSelected()) 
         		{
         			for (int i = 0; i < filosofiClassica.length; i++) 
@@ -818,6 +821,7 @@ public class Filosofi extends JFrame {
         	@Override
         	public void mouseReleased(MouseEvent e) 
         	{
+        		textAreaLog.append("Velocita Cambiata In Fase di Pensa: \n");
         		if (radioClassico.isSelected()) 
         		{
         			for (int i = 0; i < filosofiClassica.length; i++) 

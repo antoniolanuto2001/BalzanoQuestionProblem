@@ -9,12 +9,12 @@ public class FilosofiClassica implements Runnable
     final int index;       // indice locale del filosofo
     public JTextArea textAreaLog ;
     private boolean exit;
+    private int iterazioniDeadlock;
     public boolean pronto;
     public int tempoPensa;
     public int tempoMangia;
     public int tempoEsecuzione;
     public boolean deadlockCheck;
-    private int iterazioniDeadlock;
     static final int NTHREAD=5;             // numero di filosofi
     static TavolaClassica tavolaClassica= new TavolaClassica(NTHREAD);   // monitor statico/condiviso
     
@@ -63,8 +63,8 @@ public class FilosofiClassica implements Runnable
         	// PENSA 
         	pronto = false;
         	 Thread.sleep(tempoPensa);
-             System.out.println("Filosofo ["+ index +"] pensa a :  "+ tempoPensa + "  velocita ");
-             textAreaLog.append("Filosofo ["+ index +"] pensa ... \n");
+             System.out.println("Filosofo Classico ["+ index +"] pensa a :  "+ tempoPensa + "  velocita ");
+             textAreaLog.append("Filosofo Classico ["+ index +"] pensa ... \n");
              tavolaClassica.raccogli_sx(index);   // raccoglie la bacchetta sinistra
     
             // Decommentare per forzare lo stallo
@@ -87,7 +87,7 @@ public class FilosofiClassica implements Runnable
             pronto = true;
             Thread.sleep(tempoMangia);
             System.out.println("Filosofo [" + index + "] mangia a : "+ tempoMangia + "  velocita ");
-            textAreaLog.append("Filosofo [" + index + "] mangia ...\n");
+            textAreaLog.append("Filosofo Classico [" + index + "] mangia ...\n");
             tavolaClassica.deposita_sx(index);   // deposita la bacchetta sinistra
             tavolaClassica.deposita_dx(index);   // deposita la bacchetta destra 
             pronto = false;
