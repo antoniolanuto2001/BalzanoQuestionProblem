@@ -722,6 +722,15 @@ public class SchProcessi extends JFrame {
 	//EVENTO SU BOTTONE GENERA GRAFICI
 		btnGeneraGrafici.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+				jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+				jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+				jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+				
+				arrayLinea.clear();
+				arrayPunti.clear();
+				FCFS.clear();
+				
 				chckbxMostraSoluzioneFCFS.setEnabled(true);
 				chckbxMostraSoluzioneSJF.setEnabled(true);
 				chckbxMostraSoluzioneSJFP.setEnabled(true);
@@ -753,7 +762,8 @@ public class SchProcessi extends JFrame {
 				
 				
 				for(int i=0;i<tabellaProcessi.getRowCount();i++) {
-					if((Boolean)tabellaProcessi.getValueAt(i, 3)==false) {
+					if(Boolean.valueOf((tabellaProcessi.getValueAt(i, 3)).toString())==false) {
+						System.out.println(Boolean.valueOf((tabellaProcessi.getValueAt(i, 3)).toString()));
 						String num=(String) tabellaProcessi.getValueAt(i, 0);
 						int numero=Integer.valueOf(num.substring(1));
 						
@@ -849,14 +859,31 @@ public class SchProcessi extends JFrame {
 				}
 		});
 		
-	//EVENTO BOTTONE SALVA MODIFICHE
+	//EVENTO BOTTONE SALVA MODIFICHE TABELLA "OK"
 		modificaTabella.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String num=ModifyProcess.getSelectedItem().toString();
 				int numero=Integer.valueOf(num.substring(1));
-				model1.setValueAt(ModifyProcess.getSelectedItem(),numero , 0);
-				model1.setValueAt(ModifyArrivo.getSelectedItem(),numero , 1);
-				model1.setValueAt(ModifyDurata.getSelectedItem(),numero , 2);
+				model1.setValueAt(String.valueOf(ModifyProcess.getSelectedItem()),numero-1 , 0);
+				model1.setValueAt(Integer.valueOf((String) ModifyArrivo.getSelectedItem()),numero-1 , 1);
+				model1.setValueAt(Integer.valueOf((String) ModifyDurata.getSelectedItem()),numero-1 , 2);
+				System.out.println(Boolean.valueOf((tabellaProcessi.getValueAt(numero-1, 3)).toString()));
+
+			}
+		});
+
+		btnSalvaModifica.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				btnGeneraGrafici.setEnabled(true);
+				chckbxAttivaModifiche.setEnabled(false);
+				chckbxAttivaModifiche.setSelected(false);
+				tabellaProcessi.setEnabled(false);
+				ModifyArrivo.setEnabled(false);
+				ModifyProcess.setEnabled(false);
+				ModifyDurata.setEnabled(false);
+				btnSalvaModifica.setEnabled(false);
+				modificaTabella.setEnabled(false);	
+				chkbkMostraAllSoluzione.setEnabled(true);
 			}
 		});
 		
@@ -872,7 +899,8 @@ public class SchProcessi extends JFrame {
 					ModifyDurata.setEnabled(true);
 					btnSalvaModifica.setEnabled(true);
 					modificaTabella.setEnabled(true);
-
+					chkbkMostraAllSoluzione.setEnabled(false);
+					chkbkMostraAllSoluzione.setSelected(false);
 				}
 				if(chckbxAttivaModifiche.isSelected()==false) {
 					tabellaProcessi.setEnabled(false);
@@ -881,6 +909,7 @@ public class SchProcessi extends JFrame {
 					ModifyDurata.setEnabled(false);
 					btnSalvaModifica.setEnabled(false);
 					modificaTabella.setEnabled(false);
+					chkbkMostraAllSoluzione.setEnabled(true);
 
 				}
 			}
