@@ -123,9 +123,12 @@ public class Panel2 extends JPanel {
 
     		for(int l=0;l<lineesFCFSarray.size();l++) {    
         			g.drawString("O",30+lineesFCFSarray.get(l).getArrivo()*15,92-l*15);
-        		
         	}
 
+    		for(int l=0;l<lineesFCFS.size();l++) {    
+    			System.out.println("x"+lineesFCFS.get(l).getArrivo()+" y"+lineesFCFS.get(l).getProcesso()+" x"+lineesFCFS.get(l).getDurata()+" y"+lineesFCFS.get(l).getProcesso());
+    			g.drawString("X",30+lineesFCFS.get(l).getArrivo()*15,92-l*15);
+    	}
     	}
 	}
 	

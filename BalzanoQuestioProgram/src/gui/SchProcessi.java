@@ -783,7 +783,7 @@ public class SchProcessi extends JFrame {
 					arrayLineeFCFS[i+2]=lineaFCFS[l].getDurata();
 					i=i+3;
 				}
-				
+				/*
 				//CREAZIONE FCFS
 				for(int l=0;l<lineaFCFS.length;l++) {  
 
@@ -792,7 +792,7 @@ public class SchProcessi extends JFrame {
 					}
 					FCFS.add(lineaFCFS[l]);
 				    System.out.println("P"+lineaFCFS[l].getProcesso()+" A"+lineaFCFS[l].getArrivo()+" D"+lineaFCFS[l].getDurata());
-				}
+				}*/
 			}
 		});
 
