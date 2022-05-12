@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
-import java.util.regex.Pattern;
 
 import javax.swing.border.LineBorder;
 import javax.swing.event.MenuKeyEvent;
@@ -150,24 +149,25 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
-			pannelloTitolo.setBackground(new Color(51, 204, 255));
-			pannelloTitolo.setBounds(0, 0, 1416, 75);
+		pannelloTitolo.setBorder(new LineBorder(new Color(0, 204, 0), 10));
+			pannelloTitolo.setBackground(new Color(255, 255, 255));
+			pannelloTitolo.setBounds(0, 0, 1151, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
 			
 		//TITOLO
 		JLabel labelTitolo = new JLabel("Paginazione della memoria");
-			labelTitolo.setForeground(new Color(0, 0, 0));
+			labelTitolo.setForeground(new Color(0, 204, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
-			labelTitolo.setBounds(0, 0, 1416, 73);
+			labelTitolo.setBounds(0, 0, 1141, 73);
 			pannelloTitolo.add(labelTitolo);
 		
 		//TESTO CON VARIE INFO SUL PROGETTO
 		JTextArea testoInfoProgetto = new JTextArea();
-			testoInfoProgetto.setBounds(1152, 0, 251, 73);
-			pannelloTitolo.add(testoInfoProgetto);
-			testoInfoProgetto.setBackground(new Color(51, 204, 255));
+			testoInfoProgetto.setBounds(1151, 0, 265, 75);
+			pannelloPrincipale.add(testoInfoProgetto);
+			testoInfoProgetto.setBackground(new Color(0, 204, 0));
 			testoInfoProgetto.setText("Universit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\n Devoloper: Lanuto, Prosciutto, Scotto\r\n");
 			testoInfoProgetto.setLineWrap(true);
 			testoInfoProgetto.setFont(new Font("Cambria", Font.PLAIN, 13));
@@ -432,10 +432,12 @@ public class PaginazioneDellaMemoria extends JFrame {
 			stringaNumeri.addPropertyChangeListener("value",this);
 *//*
 			NumberFormat longFormat = NumberFormat.getIntegerInstance();
+
 			NumberFormatter numberFormatter = new NumberFormatter(longFormat);
 			numberFormatter.setValueClass(Long.class); //optional, ensures you will always get a long value
 			numberFormatter.setAllowsInvalid(false); //this is the key!!
 			numberFormatter.setMinimum(0l); //Optional
+
 			JFormattedTextField stringaNumeri = new JFormattedTextField(numberFormatter);
 			//stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
@@ -446,6 +448,16 @@ public class PaginazioneDellaMemoria extends JFrame {
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
 		
+			stringaNumeri.addKeyListener(new KeyAdapter() {
+		         public void keyTyped(KeyEvent e) {
+		             char c = e.getKeyChar();
+		             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+		                  e.consume();  //Ignora l'evento
+		             }
+		         }
+		      });
+			
+
 			chckbxAttivaModifiche.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 
@@ -462,14 +474,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 					}
 				}
 			});
-			stringaNumeri.addKeyListener(new KeyAdapter() {
-		         public void keyTyped(KeyEvent e) {
-		             char c = e.getKeyChar();
-		             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
-		                  e.consume();  //Ignora l'evento
-		             }
-		         }
-		      });
 			
 			salvaModifiche.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -510,3 +514,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 	
 	}
 }
+
+
+
+/*
+* Costruttore con unico parametro il limite della textfield
+*/
+		
