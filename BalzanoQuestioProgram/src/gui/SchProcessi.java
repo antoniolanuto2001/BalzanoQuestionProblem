@@ -26,7 +26,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet.ColorAttribute;
 
-import model.Panel2;
+import model.PanelGraficiSchProcessi;
 import model.CreaLinee;
 
 import javax.swing.SwingConstants;
@@ -83,8 +83,8 @@ public class SchProcessi extends JFrame {
 /**						BOTTONI PANNELLO PRINCIPALE							*/
 		//BOTTONE INDIETRO	
 		JButton btnIndietro = new JButton("Indietro");
-			btnIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnIndietro.setBackground(new Color(153, 204, 255));
+			btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
+			btnIndietro.setBackground(new Color(255, 255, 255));
 			btnIndietro.setOpaque(true);
 			btnIndietro.addMouseListener(new MouseAdapter() {
 				@Override
@@ -101,8 +101,8 @@ public class SchProcessi extends JFrame {
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Tabella Processi");
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
-			btnGenera.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnGenera.setBackground(new Color(0, 255, 51));
+			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
+			btnGenera.setBackground(new Color(255, 255, 255));
 			btnGenera.setBounds(974, 86, 157, 48);
 			pannelloPrincipale.add(btnGenera);
 		
@@ -122,8 +122,8 @@ public class SchProcessi extends JFrame {
 			});
 			btnSlideArgomento.setOpaque(true);
 			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnSlideArgomento.setBackground(new Color(153, 255, 255));
+			btnSlideArgomento.setBorder(new LineBorder(new Color(0, 204, 255), 4));
+			btnSlideArgomento.setBackground(new Color(255, 255, 255));
 			btnSlideArgomento.setBounds(239, 85, 128, 48);
 			pannelloPrincipale.add(btnSlideArgomento);
 			frame.setVisible(true); 
@@ -136,15 +136,15 @@ public class SchProcessi extends JFrame {
 				}
 			});
 			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnEsci.setBackground(new Color(255, 204, 0));
+			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+			btnEsci.setBackground(new Color(255, 255, 255));
 			btnEsci.setBounds(10, 85, 81, 48);
 			pannelloPrincipale.add(btnEsci);
 		
 		//BOTTONE INFO SULL'USO DELL'APP	
 		JButton btnInfouso = new JButton("Info/Uso");
 			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0)));
+			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 			btnInfouso.setBackground(new Color(255, 255, 255));
 			btnInfouso.setBounds(377, 85, 81, 48);
 			pannelloPrincipale.add(btnInfouso);
@@ -152,23 +152,24 @@ public class SchProcessi extends JFrame {
 			
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
-			pannelloTitolo.setBackground(new Color(51, 204, 255));
-			pannelloTitolo.setBounds(0, 0, 1416, 75);
+			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
+			pannelloTitolo.setBackground(Color.WHITE);
+			pannelloTitolo.setBounds(0, 0, 1191, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
 			
 		//TITOLO
 		JLabel labelTitolo = new JLabel("Scheduling della CPU");
-			labelTitolo.setForeground(new Color(0, 0, 0));
+			labelTitolo.setForeground(new Color(51, 204, 255));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
-			labelTitolo.setBounds(0, 0, 1416, 73);
+			labelTitolo.setBounds(0, 0, 1180, 73);
 			pannelloTitolo.add(labelTitolo);
 		
 		//TESTO CON VARIE INFO SUL PROGETTO
 		JTextArea testoInfoProgetto = new JTextArea();
-			testoInfoProgetto.setBounds(1152, 0, 251, 73);
-			pannelloTitolo.add(testoInfoProgetto);
+			testoInfoProgetto.setBounds(1190, 0, 226, 75);
+			pannelloPrincipale.add(testoInfoProgetto);
 			testoInfoProgetto.setBackground(new Color(51, 204, 255));
 			testoInfoProgetto.setText("Universit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\n Devoloper: Lanuto, Prosciutto, Scotto\r\n");
 			testoInfoProgetto.setLineWrap(true);
@@ -239,7 +240,7 @@ public class SchProcessi extends JFrame {
 			pannelloSJF.add(lblShortestJobFirts);
 		
 		JCheckBox chckbxMostraSoluzioneSJF = new JCheckBox("Mostra Soluzione");
-		chckbxMostraSoluzioneSJF.setEnabled(false);
+			chckbxMostraSoluzioneSJF.setEnabled(false);
 			chckbxMostraSoluzioneSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			chckbxMostraSoluzioneSJF.setBounds(513, 3, 150, 25);
 			pannelloSJF.add(chckbxMostraSoluzioneSJF);
@@ -362,28 +363,28 @@ public class SchProcessi extends JFrame {
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
 		//GRAFICO FCFS
-		Panel2 jPanelFCFS = new Panel2();
+		PanelGraficiSchProcessi jPanelFCFS = new PanelGraficiSchProcessi();
 			jPanelFCFS.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFCFS.setBounds(10, 27, 1100, 118);
 			jPanelFCFS.setLayout(null);
 			pannelloFCFS.add(jPanelFCFS);
 
 		//GRAFICO SJF
-		Panel2 jPanelSJF = new Panel2();
+		PanelGraficiSchProcessi jPanelSJF = new PanelGraficiSchProcessi();
 			jPanelSJF.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelSJF.setLayout(null);
 			jPanelSJF.setBounds(10, 27, 1100, 118);
 			pannelloSJF.add(jPanelSJF);
 
 		//GRAFICO SJFP
-		Panel2 jPanelSJFP = new Panel2();
+		PanelGraficiSchProcessi jPanelSJFP = new PanelGraficiSchProcessi();
 			jPanelSJFP.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelSJFP.setLayout(null);
 			jPanelSJFP.setBounds(10, 27, 1100, 118);
 			pannelloSJFP.add(jPanelSJFP);
 		
 		//GRAFICO RR
-		Panel2 jPanelRR = new Panel2();
+		PanelGraficiSchProcessi jPanelRR = new PanelGraficiSchProcessi();
 			jPanelRR.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelRR.setLayout(null);
 			jPanelRR.setBounds(10, 27, 1100, 118);
@@ -397,7 +398,7 @@ public class SchProcessi extends JFrame {
 			pannelloDiControllo.setBounds(1141, 85, 265, 668);
 			pannelloPrincipale.add(pannelloDiControllo);
 			pannelloDiControllo.setLayout(null);
-			pannelloDiControllo.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
 		
 		JPanel pannellodicontrolloTitolo = new JPanel();
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
@@ -424,7 +425,7 @@ public class SchProcessi extends JFrame {
 			pannelloEDITOR.setBounds(10, 95, 245, 218);
 			pannelloDiControllo.add(pannelloEDITOR);
 			pannelloEDITOR.setLayout(null);
-			pannelloEDITOR.setBorder(BorderFactory.createLineBorder(Color.black));
+			pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JLabel lblNumeroDiProcessi = new JLabel("Numero di processi");
 			lblNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
@@ -499,7 +500,7 @@ public class SchProcessi extends JFrame {
 			PannelloPLOT.setBounds(10, 348, 245, 94);
 			pannelloDiControllo.add(PannelloPLOT);
 			PannelloPLOT.setLayout(null);
-			PannelloPLOT.setBorder(BorderFactory.createLineBorder(Color.black));
+			PannelloPLOT.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 			chckbxGriglia.setSelected(true);
@@ -539,10 +540,10 @@ public class SchProcessi extends JFrame {
 		
 		JButton btnGeneraGrafici = new JButton("GENERA GRAFICI");
 			btnGeneraGrafici.setEnabled(false);
-			btnGeneraGrafici.setBackground(new Color(102, 204, 255));
-			btnGeneraGrafici.setBorder(new LineBorder(Color.black));
+			btnGeneraGrafici.setBackground(new Color(255, 255, 255));
+			btnGeneraGrafici.setBorder(new LineBorder(new Color(51, 204, 255), 4));
 			btnGeneraGrafici.setFont(new Font("Arial", Font.BOLD, 15));
-			btnGeneraGrafici.setBounds(10, 187, 225, 21);
+			btnGeneraGrafici.setBounds(10, 183, 225, 28);
 			pannelloEDITOR.add(btnGeneraGrafici);
 			
 		JButton btnSalvaModifica = new JButton("Salva Modifiche");

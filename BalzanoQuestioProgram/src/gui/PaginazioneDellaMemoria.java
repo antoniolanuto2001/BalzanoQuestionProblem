@@ -16,17 +16,21 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.Key;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
+import javax.swing.event.MenuKeyEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.AttributeSet.ColorAttribute;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.NumberFormatter;
 
-import model.Panel2;
+import model.PanelGraficiPaginazioneMemoria;
 import model.CreaLinee;
 
 import javax.swing.SwingConstants;
@@ -38,6 +42,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
@@ -277,31 +282,31 @@ public class PaginazioneDellaMemoria extends JFrame {
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
 		//GRAFICO FCFS
-		Panel2 jPanelFCFS = new Panel2();
+		PanelGraficiPaginazioneMemoria jPanelFCFS = new PanelGraficiPaginazioneMemoria();
 			jPanelFCFS.setBackground(new java.awt.Color(255, 255, 255));
-			jPanelFCFS.setBounds(10, 27, 1100, 118);
+			jPanelFCFS.setBounds(615, 27, 500, 118);
 			jPanelFCFS.setLayout(null);
 			pannelloFCFS.add(jPanelFCFS);
 
 		//GRAFICO SJF
-		Panel2 jPanelSJF = new Panel2();
+		PanelGraficiPaginazioneMemoria jPanelSJF = new PanelGraficiPaginazioneMemoria();
 			jPanelSJF.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelSJF.setLayout(null);
-			jPanelSJF.setBounds(10, 27, 1100, 118);
+			jPanelSJF.setBounds(615, 27, 500, 118);
 			pannelloSJF.add(jPanelSJF);
 
 		//GRAFICO SJFP
-		Panel2 jPanelSJFP = new Panel2();
+		PanelGraficiPaginazioneMemoria jPanelSJFP = new PanelGraficiPaginazioneMemoria();
 			jPanelSJFP.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelSJFP.setLayout(null);
-			jPanelSJFP.setBounds(10, 27, 1100, 118);
+			jPanelSJFP.setBounds(615, 27, 500, 118);
 			pannelloSJFP.add(jPanelSJFP);
 		
 		//GRAFICO RR
-		Panel2 jPanelRR = new Panel2();
+		PanelGraficiPaginazioneMemoria jPanelRR = new PanelGraficiPaginazioneMemoria();
 			jPanelRR.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelRR.setLayout(null);
-			jPanelRR.setBounds(711, 22, 400, 118);
+			jPanelRR.setBounds(615, 27, 500, 118);
 			pannelloRR.add(jPanelRR);
 			
 /**						PANNELLO DI CONTROLLO						*/		
@@ -413,45 +418,77 @@ public class PaginazioneDellaMemoria extends JFrame {
 			panel_3.add(stringaNumeri);
 			stringaNumeri.setColumns(10);
 		
+			/*
+			JFormattedTextField stringaNumeri=new JFormattedTextField();
+			stringaNumeri.setEditable(false);
+			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
+			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
+			stringaNumeri.setBounds(10, 107, 225, 19);
+			panel_3.add(stringaNumeri);
+			stringaNumeri.setColumns(10);
+			
+			stringaNumeri.setValue(new Integer(stringaNumeri.getText()));
+			stringaNumeri.addPropertyChangeListener("value",this);
+*//*
+			NumberFormat longFormat = NumberFormat.getIntegerInstance();
+
+			NumberFormatter numberFormatter = new NumberFormatter(longFormat);
+			numberFormatter.setValueClass(Long.class); //optional, ensures you will always get a long value
+			numberFormatter.setAllowsInvalid(false); //this is the key!!
+			numberFormatter.setMinimum(0l); //Optional
+
+			JFormattedTextField stringaNumeri = new JFormattedTextField(numberFormatter);
+			//stringaNumeri.setEditable(false);
+			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
+			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
+			stringaNumeri.setBounds(10, 107, 225, 19);
+			panel_3.add(stringaNumeri);
+			*/
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
-			
+		
 			chckbxAttivaModifiche.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+
 					salvaModifiche.setEnabled(true);
+					chckbxAttivaModifiche.setEnabled(true);
 
 					if(chckbxAttivaModifiche.isSelected()==false) {
 						salvaModifiche.doClick();
 					}
 					else {
 						stringaNumeri.setEditable(true);
+					    String stringa=stringaNumeri.getText();
+
 						stringaNumeri.addKeyListener(new KeyAdapter() {
 							@Override
 							public void keyPressed(KeyEvent e) {
-
-								if(e.getKeyCode()<48 || e.getKeyCode()>57 ) {
-									System.out.println("ciao"+e.getKeyCode());
+								
+								e.consume();
+								
+									
+		/*						if(e.getKeyCode()<48 || e.getKeyCode()>57 ) {
 
 									if(e.getKeyCode()!=32 && e.getKeyCode()!=8 && e.getKeyCode()!=10)
 									{
-										System.out.println("mamma"+e.getKeyCode());
 									salvaModifiche.setEnabled(false);
 									chckbxAttivaModifiche.setEnabled(false);
-									int k=stringaNumeri.getColumns();
-									/*try {
-										System.out.println("mamma"+k);
-
-										stringaNumeri.setText(stringaNumeri.getText(0, k-1));
-									} catch (BadLocationException e1) {
-										// TODO Auto-generated catch block
-										e1.printStackTrace();
-									}*/
+									stringaNumeri.setText(stringa);
+*/
+									/*
 								    String stringa=stringaNumeri.getText();
+									int k=stringa.length();
+									System.out.println(stringaNumeri.getText());
 								    String f = stringa.substring(0, k-1);
-									stringaNumeri.setText(f);
+									System.out.println(f);
 
+									stringaNumeri.setText(f);
+									System.out.println(stringaNumeri.getText());
+									salvaModifiche.setEnabled(true);
+									chckbxAttivaModifiche.setEnabled(true);
+									
 								} 
-								}
+								}*/
 							}
 						});
 						generaGrafici.setEnabled(false);
