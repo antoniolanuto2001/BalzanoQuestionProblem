@@ -50,7 +50,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	g.drawString("P5",13,32);
 	g.drawString("P6",13,17);
 	int count=2;
-	for( k=01;k<70;k++){
+	for( k=01;k<71;k++){
 		if(k<10)g.drawString(" 0"+String.valueOf(k)+" ",12+count*15,115);
 		else g.drawString(" "+String.valueOf(k)+" ",12+count*15,115);
 		count++;
@@ -105,7 +105,7 @@ public class PanelGraficiSchProcessi extends JPanel {
     	g.drawString("P6",13,17);
 	
     	int count=2;
-    	for( k=01;k<70;k++){
+    	for( k=01;k<71;k++){
     		if(k<10)g.drawString(" 0"+String.valueOf(k)+" ",12+count*15,115);
     		else g.drawString(" "+String.valueOf(k)+" ",12+count*15,115);
     		count++;

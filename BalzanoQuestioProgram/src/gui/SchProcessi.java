@@ -402,14 +402,14 @@ public class SchProcessi extends JFrame {
 		
 		JPanel pannellodicontrolloTitolo = new JPanel();
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
-			pannellodicontrolloTitolo.setBackground(new Color(255, 204, 51));
+			pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
 			pannellodicontrolloTitolo.setLayout(null);
-			pannellodicontrolloTitolo.setBorder(BorderFactory.createRaisedBevelBorder());
+			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(255, 204, 0), 4));
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
-			labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
-			labelPnlCtrl.setBounds(0, 0, 245, 54);
+		labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
+			labelPnlCtrl.setBounds(10, 10, 225, 34);
 			pannellodicontrolloTitolo.add(labelPnlCtrl);
 			labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
 		

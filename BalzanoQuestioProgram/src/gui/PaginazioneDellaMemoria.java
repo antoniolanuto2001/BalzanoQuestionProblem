@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.swing.border.LineBorder;
 import javax.swing.event.MenuKeyEvent;
@@ -431,12 +432,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 			stringaNumeri.addPropertyChangeListener("value",this);
 *//*
 			NumberFormat longFormat = NumberFormat.getIntegerInstance();
-
 			NumberFormatter numberFormatter = new NumberFormatter(longFormat);
 			numberFormatter.setValueClass(Long.class); //optional, ensures you will always get a long value
 			numberFormatter.setAllowsInvalid(false); //this is the key!!
 			numberFormatter.setMinimum(0l); //Optional
-
 			JFormattedTextField stringaNumeri = new JFormattedTextField(numberFormatter);
 			//stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
@@ -458,43 +457,19 @@ public class PaginazioneDellaMemoria extends JFrame {
 					}
 					else {
 						stringaNumeri.setEditable(true);
-					    String stringa=stringaNumeri.getText();
 
-						stringaNumeri.addKeyListener(new KeyAdapter() {
-							@Override
-							public void keyPressed(KeyEvent e) {
-								
-								e.consume();
-								
-									
-		/*						if(e.getKeyCode()<48 || e.getKeyCode()>57 ) {
-
-									if(e.getKeyCode()!=32 && e.getKeyCode()!=8 && e.getKeyCode()!=10)
-									{
-									salvaModifiche.setEnabled(false);
-									chckbxAttivaModifiche.setEnabled(false);
-									stringaNumeri.setText(stringa);
-*/
-									/*
-								    String stringa=stringaNumeri.getText();
-									int k=stringa.length();
-									System.out.println(stringaNumeri.getText());
-								    String f = stringa.substring(0, k-1);
-									System.out.println(f);
-
-									stringaNumeri.setText(f);
-									System.out.println(stringaNumeri.getText());
-									salvaModifiche.setEnabled(true);
-									chckbxAttivaModifiche.setEnabled(true);
-									
-								} 
-								}*/
-							}
-						});
 						generaGrafici.setEnabled(false);
 					}
 				}
 			});
+			stringaNumeri.addKeyListener(new KeyAdapter() {
+		         public void keyTyped(KeyEvent e) {
+		             char c = e.getKeyChar();
+		             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+		                  e.consume();  //Ignora l'evento
+		             }
+		         }
+		      });
 			
 			salvaModifiche.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -535,9 +510,3 @@ public class PaginazioneDellaMemoria extends JFrame {
 	
 	}
 }
-
-
-
-/*
-* Costruttore con unico parametro il limite della textfield
-*/
