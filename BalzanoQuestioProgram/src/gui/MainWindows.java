@@ -12,10 +12,15 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Desktop;
+
 import javax.swing.border.LineBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class MainWindows {
 
@@ -69,6 +74,19 @@ public class MainWindows {
 		panelMainButton.setLayout(null);
 		
 		JLabel labelSfondo = new JLabel("");
+		labelSfondo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://sites.google.com/site/walterbalzano/didattica/sistemi-operativi"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		labelSfondo.setBounds(89, 135, 1259, 356);
 		labelSfondo.setIcon(imageSfondo);
 		panelMainButton.add(labelSfondo);
@@ -184,6 +202,10 @@ public class MainWindows {
 		});
 		
 		panelMainButton.add(buttonSchedulingHd);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(264, 227, 46, 14);
+		panelMainButton.add(label);
 	
 		
 		
