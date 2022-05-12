@@ -1,5 +1,6 @@
 // RENDERE NON SPOSTABILI LE COLONEE DELLA TABELLA
 
+
 package gui;
 
 import java.awt.BorderLayout;
