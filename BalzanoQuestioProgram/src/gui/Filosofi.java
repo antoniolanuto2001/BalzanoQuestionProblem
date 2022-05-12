@@ -144,8 +144,8 @@ public class Filosofi extends JFrame {
         panelMainButton.add(scroll);
 		
 		JButton buttonIndietro = new JButton("Indietro");
-		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonIndietro.setBackground(new Color(153, 204, 255));
+		buttonIndietro.setBorder(new LineBorder(new Color(102, 204, 255), 4));
+		buttonIndietro.setBackground(new Color(255, 255, 255));
 		buttonIndietro.setOpaque(true);
 		buttonIndietro.addMouseListener(new MouseAdapter() {
 			@Override
@@ -176,22 +176,23 @@ public class Filosofi extends JFrame {
 		
 		
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBorder(new LineBorder(new Color(255,100,130), 5));
-		panelSuperiore.setBackground(new Color(230, 230, 250));
+		panelSuperiore.setBackground(Color.WHITE);
+		panelSuperiore.setBorder(new LineBorder(new Color(255, 0, 153), 10));
 		panelSuperiore.setBounds(0, 0, 1414, 124);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
 		
 		JLabel labelSchemata = new JLabel("FILOSOFI A CENA ");
+		labelSchemata.setBackground(Color.LIGHT_GRAY);
+		labelSchemata.setForeground(new Color(255, 0, 153));
 		labelSchemata.setHorizontalAlignment(SwingConstants.CENTER);
-		labelSchemata.setBounds(465, 16, 423, 89);
-		labelSchemata.setBorder(BorderFactory.createRaisedBevelBorder());
+		labelSchemata.setBounds(20, 16, 1384, 89);
+		labelSchemata.setBorder(null);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
 		
 		JTextArea txtrUniversitDegliStudi = new JTextArea();
 		txtrUniversitDegliStudi.setBounds(1126, 16, 278, 89);
-		txtrUniversitDegliStudi.setBackground(new Color (230, 230, 250));
 		txtrUniversitDegliStudi.setText("Universit\u00E0 degli studi di Napoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\nDevoloper: Lanuto, Prosciutto, Scotto\r\n");
 		txtrUniversitDegliStudi.setLineWrap(true);
 		txtrUniversitDegliStudi.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -215,8 +216,8 @@ public class Filosofi extends JFrame {
 			}
 		});
 		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonEsci.setBackground(new Color(255, 204, 0));
+		buttonEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+		buttonEsci.setBackground(new Color(255, 255, 255));
 		buttonEsci.setBounds(3, 146, 114, 48);
 		panelMainButton.add(buttonEsci);
 		
@@ -237,8 +238,8 @@ public class Filosofi extends JFrame {
 		});
 	    btnSlideArgomento.setOpaque(true);
 	    btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-	    btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
-	    btnSlideArgomento.setBackground(new Color(153, 255, 255));
+	    btnSlideArgomento.setBorder(new LineBorder(new Color(51, 102, 255), 4));
+	    btnSlideArgomento.setBackground(new Color(255, 255, 255));
 	    btnSlideArgomento.setBounds(999, 146, 128, 48);
         panelMainButton.add(btnSlideArgomento);
 
@@ -258,7 +259,7 @@ public class Filosofi extends JFrame {
         
         JLabel labelLog = new JLabel("LOG Degli Eventi : ");
         labelLog.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        labelLog.setBounds(10, 205, 163, 36);
+        labelLog.setBounds(10, 210, 172, 36);
         panelMainButton.add(labelLog);
         
         JButton buttonVideo = new JButton("Video Youtube");
@@ -278,8 +279,8 @@ public class Filosofi extends JFrame {
 				}
         	}
         });
-        buttonVideo.setBorder(new LineBorder(new Color(0, 0, 0)));
-        buttonVideo.setBackground(new Color(221, 160, 221));
+        buttonVideo.setBorder(new LineBorder(new Color(153, 102, 255), 4));
+        buttonVideo.setBackground(new Color(255, 255, 255));
         buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
         buttonVideo.setBounds(848, 147, 138, 46);
         panelMainButton.add(buttonVideo);
@@ -305,14 +306,12 @@ public class Filosofi extends JFrame {
 		labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
 		
 		 JPanel panelModalita = new JPanel();
-		 panelModalita.setBackground(new Color(230, 230, 250));
 		 panelModalita.setBounds(10, 105, 245, 166);
 	        panelModalita.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
 	        panelDiControllo.add(panelModalita);
 	        panelModalita.setLayout(null);
 	        
 		JRadioButton radioDefault = new JRadioButton("Nessuno");
-		radioDefault.setBackground(new Color(230, 230, 250));
 		radioDefault.setBounds(6, 7, 175, 36);
 		panelModalita.add(radioDefault);
 		radioDefault.setToolTipText("Filosofi fermi senza mangiare ");
@@ -367,7 +366,6 @@ public class Filosofi extends JFrame {
         sliderVelocitaMangia.setMinorTickSpacing(3);
         
         JRadioButton radioCoda = new JRadioButton("Schema Coda");
-        radioCoda.setBackground(new Color(230, 230, 250));
         radioCoda.setBounds(6, 115, 206, 44);
         panelModalita.add(radioCoda);
         radioCoda.addActionListener(new ActionListener() {
@@ -499,7 +497,6 @@ public class Filosofi extends JFrame {
         groupSceltaStrategiaFilosofi.add(radioCoda);
         
         JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
-        radioAtomico.setBackground(new Color(230, 230, 250));
         radioAtomico.setBounds(6,85, 175, 36);
         panelModalita.add(radioAtomico);
         radioAtomico.setToolTipText("Ogni filosofo aspetta e posa entrambi le bacchette conteporaneamente");
@@ -633,7 +630,6 @@ public class Filosofi extends JFrame {
         
         
         JRadioButton radioClassico = new JRadioButton("Schema Classico");
-        radioClassico.setBackground(new Color(230, 230, 250));
         radioClassico.setBounds(6, 46, 175, 36);
         panelModalita.add(radioClassico);
         radioClassico.setToolTipText("Ogni filosofo aspetta prende la bacchetta di sinistra ed aspetto quella di destra");
