@@ -88,8 +88,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 /**						BOTTONI PANNELLO PRINCIPALE							*/
 		//BOTTONE INDIETRO	
 		JButton btnIndietro = new JButton("Indietro");
-			btnIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnIndietro.setBackground(new Color(153, 204, 255));
+			btnIndietro.setBorder(new LineBorder(new Color(102, 204, 255), 4));
+			btnIndietro.setBackground(new Color(255, 255, 255));
 			btnIndietro.setOpaque(true);
 			btnIndietro.addMouseListener(new MouseAdapter() {
 				@Override
@@ -119,8 +119,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 			});
 			btnSlideArgomento.setOpaque(true);
 			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnSlideArgomento.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnSlideArgomento.setBackground(new Color(153, 255, 255));
+			btnSlideArgomento.setBorder(new LineBorder(new Color(153, 102, 255), 4));
+			btnSlideArgomento.setBackground(new Color(255, 255, 255));
 			btnSlideArgomento.setBounds(239, 85, 128, 48);
 			pannelloPrincipale.add(btnSlideArgomento);
 			frame.setVisible(true); 
@@ -133,17 +133,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 			});
 			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
-			btnEsci.setBackground(new Color(255, 204, 0));
+			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+			btnEsci.setBackground(new Color(255, 255, 255));
 			btnEsci.setBounds(10, 85, 81, 48);
 			pannelloPrincipale.add(btnEsci);
 		
 		//BOTTONE INFO SULL'USO DELL'APP	
 		JButton btnInfouso = new JButton("Info/Uso");
 			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0)));
+			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(377, 85, 81, 48);
+			btnInfouso.setBounds(525, 85, 81, 48);
 			pannelloPrincipale.add(btnInfouso);
 
 			
@@ -151,27 +151,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel pannelloTitolo = new JPanel();
 		pannelloTitolo.setBorder(new LineBorder(new Color(0, 204, 0), 10));
 			pannelloTitolo.setBackground(new Color(255, 255, 255));
-			pannelloTitolo.setBounds(0, 0, 1151, 75);
+			pannelloTitolo.setBounds(0, 0, 1406, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
 			
 		//TITOLO
-		JLabel labelTitolo = new JLabel("Paginazione della memoria");
-			labelTitolo.setForeground(new Color(0, 204, 0));
+		JLabel labelTitolo = new JLabel("PAGINAZIONE DELLA MEMORIA");
+			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-			labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
-			labelTitolo.setBounds(0, 0, 1141, 73);
+			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
+			labelTitolo.setBounds(0, 0, 1406, 73);
 			pannelloTitolo.add(labelTitolo);
-		
-		//TESTO CON VARIE INFO SUL PROGETTO
-		JTextArea testoInfoProgetto = new JTextArea();
-			testoInfoProgetto.setBounds(1151, 0, 265, 75);
-			pannelloPrincipale.add(testoInfoProgetto);
-			testoInfoProgetto.setBackground(new Color(0, 204, 0));
-			testoInfoProgetto.setText("Universit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\n Devoloper: Lanuto, Prosciutto, Scotto\r\n");
-			testoInfoProgetto.setLineWrap(true);
-			testoInfoProgetto.setFont(new Font("Cambria", Font.PLAIN, 13));
-			testoInfoProgetto.setEditable(false);
 		
 
 /*INIZIO GUI COMPLICATA*/		
@@ -186,25 +176,25 @@ public class PaginazioneDellaMemoria extends JFrame {
         JPanel pannelloFCFS = new JPanel();
 			pannelloFCFS.setBounds(10, 0, 1121, 150);
 			pannelloGrafici.add(pannelloFCFS);
-			pannelloFCFS.setLayout(null);
 			pannelloFCFS.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloFCFS.setLayout(null);
 
 		JLabel FIFO = new JLabel("FIFO");
+		FIFO.setBounds(10, 0, 489, 25);
 			FIFO.setHorizontalAlignment(SwingConstants.CENTER);
 			FIFO.setForeground(Color.RED);
 			FIFO.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			FIFO.setBounds(10, 0, 489, 25);
 			pannelloFCFS.add(FIFO);
 		
-		JLabel lblTAMFCFS = new JLabel("Page faults:");
-			lblTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMFCFS.setBounds(670, 3, 150, 25);
-			pannelloFCFS.add(lblTAMFCFS);
+		JLabel lblPF = new JLabel("Page faults:");
+		lblPF.setBounds(670, 3, 86, 25);
+			lblPF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			pannelloFCFS.add(lblPF);
 		
-		JLabel DatoTAMFCFS = new JLabel("");
-			DatoTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMFCFS.setBounds(821, 3, 45, 25);
-			pannelloFCFS.add(DatoTAMFCFS);
+		JLabel DatoPF = new JLabel("");
+		DatoPF.setBounds(753, 3, 45, 25);
+			DatoPF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			pannelloFCFS.add(DatoPF);
 		
 		//PANNELLO SHORTEST JOB FIRST
 		JPanel pannelloSJF = new JPanel();
@@ -222,12 +212,12 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 		JLabel lblTAMSJF = new JLabel("Page faults:");
 			lblTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMSJF.setBounds(670, 3, 150, 25);
+			lblTAMSJF.setBounds(670, 3, 78, 25);
 			pannelloSJF.add(lblTAMSJF);
 		
 		JLabel DatoTAMSJF = new JLabel("");
 			DatoTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMSJF.setBounds(821, 3, 45, 25);
+			DatoTAMSJF.setBounds(758, 3, 45, 25);
 			pannelloSJF.add(DatoTAMSJF);
 		
 		//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
@@ -284,8 +274,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 		//GRAFICO FCFS
 		PanelGraficiPaginazioneMemoria jPanelFCFS = new PanelGraficiPaginazioneMemoria();
-			jPanelFCFS.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFCFS.setBounds(615, 27, 500, 118);
+			jPanelFCFS.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFCFS.setLayout(null);
 			pannelloFCFS.add(jPanelFCFS);
 
@@ -314,14 +304,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel panelDiControllo = new JPanel();
 			panelDiControllo.setLayout(null);
-			panelDiControllo.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
-			panelDiControllo.setBounds(1141, 85, 265, 648);
+			panelDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
+			panelDiControllo.setBounds(1141, 85, 265, 668);
 			pannelloPrincipale.add(panelDiControllo);
 			
 		JPanel panel_2 = new JPanel();
 			panel_2.setLayout(null);
-			panel_2.setBorder(BorderFactory.createRaisedBevelBorder());
-			panel_2.setBackground(new Color(255, 204, 51));
+			panel_2.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+			panel_2.setBackground(new Color(255, 255, 255));
 			panel_2.setBounds(10, 10, 245, 54);
 			panelDiControllo.add(panel_2);
 			
@@ -340,7 +330,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel panel_3 = new JPanel();
 			panel_3.setLayout(null);
-			panel_3.setBorder(BorderFactory.createLineBorder(Color.black));
+			panel_3.setBorder(new LineBorder(new Color(255, 204, 0), 2));
 			panel_3.setBounds(10, 95, 245, 224);
 			panelDiControllo.add(panel_3);
 			
@@ -352,7 +342,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			panel_3.add(lblSlotMemoria);
 			
 		JComboBox SceltaSlotDisponibili = new JComboBox();
-		SceltaSlotDisponibili.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
+			SceltaSlotDisponibili.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
 			SceltaSlotDisponibili.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			SceltaSlotDisponibili.setBackground(Color.WHITE);
 			SceltaSlotDisponibili.setBounds(185, 2, 50, 21);
@@ -366,85 +356,86 @@ public class PaginazioneDellaMemoria extends JFrame {
 			panel_3.add(lblSuccessioneDiRiferimento);
 			
 		JCheckBox chckbxAttivaModifiche = new JCheckBox("Attiva modifiche");
-		chckbxAttivaModifiche.setEnabled(false);
+			chckbxAttivaModifiche.setEnabled(false);
 			chckbxAttivaModifiche.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			chckbxAttivaModifiche.setBounds(10, 156, 136, 21);
 			panel_3.add(chckbxAttivaModifiche);
 			
 		JButton salvaModifiche = new JButton("Salva");
-		salvaModifiche.setEnabled(false);
+			salvaModifiche.setEnabled(false);
 			salvaModifiche.setBounds(152, 157, 83, 21);
 			panel_3.add(salvaModifiche);
 			
 		JButton generaGrafici = new JButton("GENERA GRAFICI");
-		generaGrafici.setBackground(new Color(204, 255, 255));
+			generaGrafici.setBorder(new LineBorder(new Color(0, 204, 0), 2));
+			generaGrafici.setBackground(new Color(255, 255, 255));
 			generaGrafici.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			generaGrafici.setBounds(10, 195, 225, 21);
 			panel_3.add(generaGrafici);
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
+		btnGeneraSuccessione.setBackground(new Color(255, 255, 255));
+			btnGeneraSuccessione.setBorder(new LineBorder(new Color(0, 204, 255), 2));
 			btnGeneraSuccessione.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnGeneraSuccessione.setBounds(10, 76, 225, 21);
+			btnGeneraSuccessione.setBounds(10, 76, 225, 32);
 			panel_3.add(btnGeneraSuccessione);
 			
 		JPanel panel_5 = new JPanel();
 			panel_5.setLayout(null);
-			panel_5.setBounds(10, 329, 245, 309);
+			panel_5.setBounds(10, 354, 245, 284);
 			panelDiControllo.add(panel_5);
 			
-		JLabel lblHelp = new JLabel("Help");
-			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
-			lblHelp.setForeground(Color.RED);
-			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblHelp.setBounds(0, 0, 245, 25);
-			panel_5.add(lblHelp);
-			
-		JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 298, 225, -269);
-			panel_5.add(scrollPane);
-			
+		JScrollPane scrollPaneHelp = new JScrollPane();
+			scrollPaneHelp.setBounds(0, 0, 245, 284);
+			scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			panel_5.add(scrollPaneHelp);
+		
 		JTextArea txtrHelpArea = new JTextArea();
-			txtrHelpArea.setText("FIFO (First In First Out).\r\nE' la pi\u00F9 semplice, si tiene traccia in una tabella di quando \u00E8 stata allocata un'area di memoria. Quando vi \u00E8 una nuova richiesta di allocazione di pagine di memoria, se c'\u00E8 ancora spazio in memoria principale, semplicemente viene allocata la nuova pagina, altrimenti si consulta mediante la tabella quali sono le pagine allocate da pi\u00F9 tempo e si spostano in memoria secondaria.\r\nQuesto algoritmo \u00E8 molto semplice e di rapida esecuzione ma ha lo svantaggio di spostare in memoria secondaria le pagine pi\u00F9 vecchie anche se sono utilizzate di frequente.\r\nLRU (Least Recently Used)\r\nVengono sostituite le pagine usate meno di recente, poich\u00E8 queste hanno buona probabilit\u00E0 di non essere nuovamente utilizzate nell'immediato.\r\nOPT\r\nSi sostituisce la pagina che non si user\u00E0 per il periodo di tempo pi\u00F9 lungo. Non \u00E8 possibile conoscere in anticipo la successione dei riferimenti, viene usato principalmente per studi comparativi, per valutare le prestazioni degli algoritmi.");
+			scrollPaneHelp.setViewportView(txtrHelpArea);
+			txtrHelpArea.setWrapStyleWord(true);
 			txtrHelpArea.setLineWrap(true);
+			txtrHelpArea.setText("FIFO (First In First Out).\r\nE' la pi\u00F9 semplice, si tiene traccia in una tabella di quando \u00E8 stata allocata un'area di memoria. Quando vi \u00E8 una nuova richiesta di allocazione di pagine di memoria, se c'\u00E8 ancora spazio in memoria principale, semplicemente viene allocata la nuova pagina, altrimenti si consulta mediante la tabella quali sono le pagine allocate da pi\u00F9 tempo e si spostano in memoria secondaria.\r\nQuesto algoritmo \u00E8 molto semplice e di rapida esecuzione ma ha lo svantaggio di spostare in memoria secondaria le pagine pi\u00F9 vecchie anche se sono utilizzate di frequente.\r\nLRU (Least Recently Used)\r\nVengono sostituite le pagine usate meno di recente, poich\u00E8 queste hanno buona probabilit\u00E0 di non essere nuovamente utilizzate nell'immediato.\r\nOPT\r\nSi sostituisce la pagina che non si user\u00E0 per il periodo di tempo pi\u00F9 lungo. Non \u00E8 possibile conoscere in anticipo la successione dei riferimenti, viene usato principalmente per studi comparativi, per valutare le prestazioni degli algoritmi.");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
 			txtrHelpArea.setEditable(false);
-			txtrHelpArea.setBounds(0, 27, 245, 282);
-			panel_5.add(txtrHelpArea);
 		
 		JTextField stringaNumeri = new JTextField();
 			stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
-			stringaNumeri.setBounds(10, 107, 225, 19);
+			stringaNumeri.setBounds(10, 115, 225, 19);
 			panel_3.add(stringaNumeri);
 			stringaNumeri.setColumns(10);
 		
-			/*
-			JFormattedTextField stringaNumeri=new JFormattedTextField();
-			stringaNumeri.setEditable(false);
-			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
-			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
-			stringaNumeri.setBounds(10, 107, 225, 19);
-			panel_3.add(stringaNumeri);
-			stringaNumeri.setColumns(10);
+		JLabel lblHelp = new JLabel("Help");
+		lblHelp.setBounds(10, 329, 245, 25);
+		panelDiControllo.add(lblHelp);
+		lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHelp.setForeground(Color.RED);
+		lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
-			stringaNumeri.setValue(new Integer(stringaNumeri.getText()));
-			stringaNumeri.addPropertyChangeListener("value",this);
-*//*
-			NumberFormat longFormat = NumberFormat.getIntegerInstance();
-
-			NumberFormatter numberFormatter = new NumberFormatter(longFormat);
-			numberFormatter.setValueClass(Long.class); //optional, ensures you will always get a long value
-			numberFormatter.setAllowsInvalid(false); //this is the key!!
-			numberFormatter.setMinimum(0l); //Optional
-
-			JFormattedTextField stringaNumeri = new JFormattedTextField(numberFormatter);
-			//stringaNumeri.setEditable(false);
-			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
-			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
-			stringaNumeri.setBounds(10, 107, 225, 19);
-			panel_3.add(stringaNumeri);
-			*/
+		JButton buttonVideo = new JButton("Videolezione");
+			buttonVideo.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("https://youtu.be/s8fpbXN92Tk"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+			buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
+			buttonVideo.setBackground(Color.WHITE);
+			buttonVideo.setBounds(377, 86, 138, 46);
+			pannelloPrincipale.add(buttonVideo);
+		
+			
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
 		
@@ -486,9 +477,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 			});
 			
+
+		
+			
 			generaGrafici.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.out.println(stringaNumeri.getText());
+					scelta= (String) SceltaSlotDisponibili.getSelectedItem();
+					int k=Integer.valueOf(scelta);
+					
+					for(int i=0;i<k;i++) {
+						
+						JLabel lblNewLabel = new JLabel("12");
+						lblNewLabel.setBounds(10, 10+30*k, 30, 30);
+						pannelloFCFS.add(lblNewLabel);
+						
+					}
 				}
 			});
 			

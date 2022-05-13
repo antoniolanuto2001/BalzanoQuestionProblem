@@ -206,54 +206,6 @@ public class MainWindows {
 		
 		panelMainButton.add(buttonSchedulingHd);
 		
-		JButton btnVideolezioni = new JButton("Videolezioni");
-		btnVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnVideolezioni.setBorder(new LineBorder(new Color(153, 0, 0), 4));
-		btnVideolezioni.setBackground(Color.WHITE);
-		btnVideolezioni.setBounds(293, 9, 138, 46);
-		panelMainButton.add(btnVideolezioni);
-		
-		JButton btnSlideCorso = new JButton("Slide Corso");
-		btnSlideCorso.setOpaque(true);
-		btnSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnSlideCorso.setBorder(new LineBorder(new Color(255, 204, 0), 4));
-		btnSlideCorso.setBackground(Color.WHITE);
-		btnSlideCorso.setBounds(441, 8, 128, 48);
-		panelMainButton.add(btnSlideCorso);
-		
-		JButton btnEsci = new JButton("Esci");
-		btnEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		btnEsci.setOpaque(true);
-		btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnEsci.setBorder(new LineBorder(Color.RED, 4));
-		btnEsci.setBackground(Color.WHITE);
-		btnEsci.setBounds(10, 8, 128, 48);
-		panelMainButton.add(btnEsci);
-		
-		JButton btnSitoWeb = new JButton("Sito Web");
-		btnSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		btnSitoWeb.setBorder(new LineBorder(new Color(153, 0, 255), 4));
-		btnSitoWeb.setBackground(Color.WHITE);
-		btnSitoWeb.setBounds(148, 9, 138, 46);
-		panelMainButton.add(btnSitoWeb);
-		btnSitoWeb.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Desktop d = Desktop.getDesktop();
-				try {
-					d.browse(new URI ("https://sites.google.com/site/walterbalzano/didattica/sistemi-operativi"));
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		
 		JLabel lblNewLabel = new JLabel("Paginazione Della Memoria");
 		lblNewLabel.setBounds(66, 668, 195, 23);
 		panelMainButton.add(lblNewLabel);
@@ -289,6 +241,71 @@ public class MainWindows {
 		panelMainButton.add(lblSemafori);
 		lblSemafori.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSemafori.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel lblEsci = new JLabel("ESCI");
+		lblEsci.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		lblEsci.setForeground(Color.BLACK);
+		lblEsci.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEsci.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblEsci.setBounds(10, 10, 128, 23);
+		panelMainButton.add(lblEsci);
+		
+		JLabel lblSitoWeb = new JLabel("SITO WEB");
+		lblSitoWeb.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://sites.google.com/site/walterbalzano/didattica/sistemi-operativi"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSitoWeb.setForeground(Color.BLACK);
+		lblSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblSitoWeb.setBounds(134, 10, 138, 23);
+		panelMainButton.add(lblSitoWeb);
+		
+		JLabel lblVideolezioni = new JLabel("VIDEOLEZIONI");
+		lblVideolezioni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://www.youtube.com/channel/UCQWnq8ucak-M5D27I3yfwiw"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVideolezioni.setForeground(Color.BLACK);
+		lblVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblVideolezioni.setBounds(281, 10, 138, 23);
+		panelMainButton.add(lblVideolezioni);
+		
+		JLabel lblSlideCorso = new JLabel("SLIDE CORSO");
+		lblSlideCorso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		lblSlideCorso.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSlideCorso.setForeground(Color.BLACK);
+		lblSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblSlideCorso.setBounds(429, 10, 128, 23);
+		panelMainButton.add(lblSlideCorso);
 	
 		
 		

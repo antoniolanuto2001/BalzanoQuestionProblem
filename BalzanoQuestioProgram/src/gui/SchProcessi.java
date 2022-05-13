@@ -1,6 +1,4 @@
 // RENDERE NON SPOSTABILI LE COLONEE DELLA TABELLA
-
-
 package gui;
 
 import java.awt.BorderLayout;
@@ -40,6 +38,8 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import java.awt.Desktop;
 import java.beans.PropertyChangeListener;
@@ -130,11 +130,6 @@ public class SchProcessi extends JFrame {
 	        
 		//BOTTONE ESCI
 		JButton btnEsci = new JButton("Esci");
-			btnEsci.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
-				}
-			});
 			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
 			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
 			btnEsci.setBackground(new Color(255, 255, 255));
@@ -143,38 +138,56 @@ public class SchProcessi extends JFrame {
 		
 		//BOTTONE INFO SULL'USO DELL'APP	
 		JButton btnInfouso = new JButton("Info/Uso");
+			btnEsci.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+		
 			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
 			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(377, 85, 81, 48);
+			btnInfouso.setBounds(525, 85, 81, 48);
 			pannelloPrincipale.add(btnInfouso);
-
+			
+		JButton buttonVideo = new JButton("Videolezione");
+	        buttonVideo.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("https://youtu.be/OP_pscPLeio"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        });
+	        buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
+	        buttonVideo.setBackground(new Color(255, 255, 255));
+	        buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+	        buttonVideo.setBounds(377, 86, 138, 46);
+	        pannelloPrincipale.add(buttonVideo);
+	        
 			
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
 			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
 			pannelloTitolo.setBackground(Color.WHITE);
-			pannelloTitolo.setBounds(0, 0, 1191, 75);
+			pannelloTitolo.setBounds(0, 0, 1406, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
 			
 		//TITOLO
-		JLabel labelTitolo = new JLabel("Scheduling della CPU");
-			labelTitolo.setForeground(new Color(51, 204, 255));
+		JLabel labelTitolo = new JLabel("SCHEDULING DELLA CPU");
+			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
-			labelTitolo.setFont(new Font("Times New Roman", Font.BOLD, 50));
-			labelTitolo.setBounds(0, 0, 1180, 73);
+			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
+			labelTitolo.setBounds(0, 0, 1408, 73);
 			pannelloTitolo.add(labelTitolo);
-		
-		//TESTO CON VARIE INFO SUL PROGETTO
-		JTextArea testoInfoProgetto = new JTextArea();
-			testoInfoProgetto.setBounds(1190, 0, 226, 75);
-			pannelloPrincipale.add(testoInfoProgetto);
-			testoInfoProgetto.setBackground(new Color(51, 204, 255));
-			testoInfoProgetto.setText("Universit\u00E0 degli studi di NApoli\r\nAnno Accademico: 2021/2022\r\nProfessore: Walter Balzano\r\n Devoloper: Lanuto, Prosciutto, Scotto\r\n");
-			testoInfoProgetto.setLineWrap(true);
-			testoInfoProgetto.setFont(new Font("Cambria", Font.PLAIN, 13));
-			testoInfoProgetto.setEditable(false);
 		
 
 /*INIZIO GUI COMPLICATA*/		
@@ -320,7 +333,7 @@ public class SchProcessi extends JFrame {
 			pannelloRR.add(lblRoundRobin);
 		
 		JCheckBox chckbxMostraSoluzioneRR = new JCheckBox("Mostra Soluzione");
-		chckbxMostraSoluzioneRR.setEnabled(false);
+			chckbxMostraSoluzioneRR.setEnabled(false);
 			chckbxMostraSoluzioneRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			chckbxMostraSoluzioneRR.setBounds(513, 3, 150, 25);
 			pannelloRR.add(chckbxMostraSoluzioneRR);
@@ -351,7 +364,7 @@ public class SchProcessi extends JFrame {
 			pannelloRR.add(lblQRR);
 		
 		JComboBox comboBoxQRR = new JComboBox();
-		comboBoxQRR.setEnabled(false);
+			comboBoxQRR.setEnabled(false);
 			comboBoxQRR.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 			comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxQRR.setBackground(Color.WHITE);
@@ -404,12 +417,12 @@ public class SchProcessi extends JFrame {
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
 			pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
-			pannellodicontrolloTitolo.setLayout(null);
 			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+		pannellodicontrolloTitolo.setLayout(null);
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
-		labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
-			labelPnlCtrl.setBounds(10, 10, 225, 34);
+		labelPnlCtrl.setBounds(10, 10, 225, 34);
+			labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
 			pannellodicontrolloTitolo.add(labelPnlCtrl);
 			labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
 		
@@ -572,12 +585,14 @@ public class SchProcessi extends JFrame {
 		
 		//PANNELLO HELP
 		JPanel pannelloHelp = new JPanel();
+			pannelloHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			pannelloHelp.setBounds(10, 469, 245, 189);
 			pannelloDiControllo.add(pannelloHelp);
 			pannelloHelp.setLayout(null);
 		
 		JScrollPane scrollPaneHelp = new JScrollPane();
 			scrollPaneHelp.setBounds(0, 0, 245, 189);
+			scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			pannelloHelp.add(scrollPaneHelp);
 		
 		JTextArea txtrHelpArea = new JTextArea();
@@ -594,9 +609,11 @@ public class SchProcessi extends JFrame {
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHelp.setForeground(Color.RED);
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
-			
+						
 	//EVENTO SU BOTTONE GENERA TABELLA PROCESSI
 		btnGenera.addMouseListener(new MouseAdapter() {
 			@Override
