@@ -95,7 +95,7 @@ public class Semafori extends JFrame {
 		
 		TextFieldNumProcessi = new JTextField();
 		TextFieldNumProcessi.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		TextFieldNumProcessi.setBounds(10, 32, 121, 21);
+		TextFieldNumProcessi.setBounds(10, 32, 126, 21);
 		desktopPane.add(TextFieldNumProcessi);
 		TextFieldNumProcessi.setText("Numero Processi:");
 		TextFieldNumProcessi.setColumns(10);
@@ -113,13 +113,14 @@ public class Semafori extends JFrame {
 		JComboBox NumSemaforiComboBox = new JComboBox();
 		NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
 		NumSemaforiComboBox.setMaximumRowCount(2);
-		NumSemaforiComboBox.setBounds(132, 97, 37, 20);
+		NumSemaforiComboBox.setBounds(132, 97, 47, 20);
 		desktopPane.add(NumSemaforiComboBox);
 		
 		JComboBox NumProcessiComboBox = new JComboBox();
+		
 		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
 		
-		NumProcessiComboBox.setBounds(126, 32, 43, 21);
+		NumProcessiComboBox.setBounds(132, 32, 47, 21);
 		desktopPane.add(NumProcessiComboBox);
 		
 		
@@ -159,5 +160,58 @@ public class Semafori extends JFrame {
 		GeneraEsercizioJButton.setBounds(181, 99, 143, 46);
 		panelMainButton.add(GeneraEsercizioJButton);
 		
+		
+
+		
+		JScrollPane scroll= new JScrollPane();
+		scroll.setBounds(197, 350, 225, 136);
+		panelMainButton.add(scroll);
+		
+		JTable table = new JTable();
+		table.setColumnSelectionAllowed(true);
+		DefaultTableModel model1 = new DefaultTableModel()
+		{
+			public Class<?> getColumnClass(int column){
+				switch(column) {
+				case 0:
+					return Integer.class;
+				case 1:
+					return Integer.class;
+				case 2:
+					return Integer.class;
+				default:
+					return Integer.class;
+					
+				}
+			}
+		};
+		model1.addColumn("Processo");
+		model1.addColumn("Arrivo");
+		model1.addColumn("Durata");	
+		table.setModel(model1);
+		model1.addRow(new Object[]{"1", "pippo", "pluto"});
+		
+		scroll.setViewportView(table);
+
+		NumProcessiComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
+				int sceltaNumero= Integer.valueOf(sceltaNumeroString);
+				int rowCount = table.getRowCount();
+
+				//rimuove tutte le righe precedenti
+				for (int i = rowCount - 1; i >= 0; i--) 
+				{
+			    	model1.removeRow(i);
+				}
+				for (int i=0;i<sceltaNumero;i++) 
+				{ 
+					model1.addRow(new Object[0]);
+					model1.setValueAt("P"+(i+1),i,0);
+
+				}	
+			}
+		});
+
 	}
 }
