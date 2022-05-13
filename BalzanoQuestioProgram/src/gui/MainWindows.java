@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Desktop;
 
 import javax.swing.border.LineBorder;
+import javax.swing.text.AttributeSet.ColorAttribute;
 import javax.swing.border.EtchedBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -67,9 +68,13 @@ public class MainWindows {
 		frame.setTitle("Balzano Question Problem : Main Menu");
 		frame.setTitle("Balzano Question Problem");
 		ImageIcon imageSfondo = new ImageIcon(this.getClass().getResource("/img/desktopIcon4.png"));
-		
+		ImageIcon imagePaginazione = new ImageIcon(this.getClass().getResource("/img/paginazioneIcon1.png"));
+		ImageIcon imageCPU = new ImageIcon(this.getClass().getResource("/img/cpuIcon1.png"));
+		ImageIcon imageFilosofi = new ImageIcon(this.getClass().getResource("/img/filosofoIcon1.png"));
+		ImageIcon imageHashing = new ImageIcon(this.getClass().getResource("/img/hashingIcon1.png"));
+		ImageIcon imageHD = new ImageIcon(this.getClass().getResource("/img/hdIcon1.png"));
+		ImageIcon imageSemafori = new ImageIcon(this.getClass().getResource("/img/semaforoIcon1.png"));
 		JPanel panelMainButton = new JPanel();
-		panelMainButton.setBorder(new LineBorder(new Color(0, 0, 0), 3));
 		panelMainButton.setBackground(new Color(187, 222, 251));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		
@@ -94,169 +99,44 @@ public class MainWindows {
 		labelSfondo.setIcon(imageSfondo);
 		panelMainButton.add(labelSfondo);
 		
-		JButton buttonCpu = new JButton("Scheduling  Processi");
-		buttonCpu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});
-		buttonCpu.setBackground(new Color(255, 255, 255));
-		buttonCpu.setBorder(new LineBorder(new Color(0, 204, 255), 6));
-		buttonCpu.setForeground(new Color(0, 0, 0));
-		buttonCpu.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonCpu.setBounds(281, 559, 215, 99);
-		buttonCpu.setOpaque(true);
-		panelMainButton.add(buttonCpu);
+		JLabel labelScrittaPaginazione = new JLabel("Paginazione Della Memoria");
+		labelScrittaPaginazione.setBounds(234, 626, 195, 23);
+		panelMainButton.add(labelScrittaPaginazione);
+		labelScrittaPaginazione.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaPaginazione.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
+		JLabel labelScrittaSchProcessi = new JLabel("Scheduling  Processi");
+		labelScrittaSchProcessi.setBounds(415, 626, 195, 23);
+		panelMainButton.add(labelScrittaSchProcessi);
+		labelScrittaSchProcessi.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaSchProcessi.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		JButton buttonHashing = new JButton("Hashing");
-		buttonHashing.setBackground(new Color(255, 255, 255));
-		buttonHashing.setBorder(new LineBorder(new Color(153, 0, 255), 6));
-		buttonHashing.setForeground(new Color(0, 0, 0));
-		buttonHashing.setOpaque(true);
-		buttonHashing.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Hashing frameDachiamareProcessi= new Hashing(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});
-		buttonHashing.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonHashing.setBounds(731, 559, 215, 99);
-		panelMainButton.add(buttonHashing);
+		JLabel labelScrittaFilosofi = new JLabel("Filosofi a Cena");
+		labelScrittaFilosofi.setBounds(574, 626, 195, 23);
+		panelMainButton.add(labelScrittaFilosofi);
+		labelScrittaFilosofi.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaFilosofi.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		JButton buttonFiloACena = new JButton("Filosofi a Cena");
-		buttonFiloACena.setForeground(Color.BLACK);
-		buttonFiloACena.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonFiloACena.setBorder(new LineBorder(new Color(255, 0, 153), 6));
-		buttonFiloACena.setBackground(new Color(255, 255, 255));
-		buttonFiloACena.setBounds(506, 559, 215, 99);
-		buttonFiloACena.setOpaque(true);
-		buttonFiloACena.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Filosofi frameDachiamareProcessi= new Filosofi(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});
+		JLabel labelScrittaHashing = new JLabel("Hashing");
+		labelScrittaHashing.setBounds(719, 626, 195, 23);
+		panelMainButton.add(labelScrittaHashing);
+		labelScrittaHashing.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaHashing.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		panelMainButton.add(buttonFiloACena);
+		JLabel labelScrittaHD = new JLabel("Scheduling  HD");
+		labelScrittaHD.setBounds(876, 626, 205, 23);
+		panelMainButton.add(labelScrittaHD);
+		labelScrittaHD.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaHD.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		JButton buttonSemafori = new JButton("Semafori");
-		buttonSemafori.setForeground(Color.BLACK);
-		buttonSemafori.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonSemafori.setBorder(new LineBorder(new Color(255, 204, 0), 6));
-		buttonSemafori.setBackground(new Color(255, 255, 255));
-		buttonSemafori.setOpaque(true);
-		buttonSemafori.setBounds(1181, 559, 215, 99);
-		buttonSemafori.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Semafori frameDachiamareProcessi= new Semafori(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});
+		JLabel labelScrittaSemafori = new JLabel("Semafori");
+		labelScrittaSemafori.setBounds(1023, 627, 195, 23);
+		panelMainButton.add(labelScrittaSemafori);
+		labelScrittaSemafori.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaSemafori.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		panelMainButton.add(buttonSemafori);
-		
-		JButton buttonPaginazioneDellaMemoria = new JButton("Paginazione Della Memoria");
-		buttonPaginazioneDellaMemoria.setForeground(Color.BLACK);
-		buttonPaginazioneDellaMemoria.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonPaginazioneDellaMemoria.setBorder(new LineBorder(new Color(0, 204, 0), 6));
-		buttonPaginazioneDellaMemoria.setBackground(new Color(255, 255, 255));
-		buttonPaginazioneDellaMemoria.setOpaque(true);
-		buttonPaginazioneDellaMemoria.setBounds(56, 559, 215, 99);
-		buttonPaginazioneDellaMemoria.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				PaginazioneDellaMemoria frameDachiamareProcessi= new PaginazioneDellaMemoria(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});	
-		panelMainButton.add(buttonPaginazioneDellaMemoria);
-		
-		JButton buttonSchedulingHd = new JButton("Scheduling  HD");
-		buttonSchedulingHd.setForeground(Color.BLACK);
-		buttonSchedulingHd.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonSchedulingHd.setBorder(new LineBorder(new Color(0, 102, 255), 6));
-		buttonSchedulingHd.setBackground(new Color(255, 255, 255));
-		buttonSchedulingHd.setOpaque(true);
-		buttonSchedulingHd.setBounds(956, 559, 215, 99);
-		buttonSchedulingHd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				SchHD frameDachiamareProcessi= new SchHD(frame);
-				frameDachiamareProcessi.setVisible(true);	
-				frame.setVisible(false);
-				
-			}
-		});
-		
-		panelMainButton.add(buttonSchedulingHd);
-		
-		JLabel lblNewLabel = new JLabel("Paginazione Della Memoria");
-		lblNewLabel.setBounds(66, 668, 195, 23);
-		panelMainButton.add(lblNewLabel);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblSchedulingProcessi = new JLabel("Scheduling  Processi");
-		lblSchedulingProcessi.setBounds(291, 668, 195, 23);
-		panelMainButton.add(lblSchedulingProcessi);
-		lblSchedulingProcessi.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSchedulingProcessi.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblFilosofiACena = new JLabel("Filosofi a Cena");
-		lblFilosofiACena.setBounds(516, 668, 195, 23);
-		panelMainButton.add(lblFilosofiACena);
-		lblFilosofiACena.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFilosofiACena.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblHashing = new JLabel("Hashing");
-		lblHashing.setBounds(741, 668, 195, 23);
-		panelMainButton.add(lblHashing);
-		lblHashing.setHorizontalAlignment(SwingConstants.CENTER);
-		lblHashing.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblSchedulingHd = new JLabel("Scheduling  HD");
-		lblSchedulingHd.setBounds(966, 668, 205, 23);
-		panelMainButton.add(lblSchedulingHd);
-		lblSchedulingHd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSchedulingHd.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblSemafori = new JLabel("Semafori");
-		lblSemafori.setBounds(1191, 668, 195, 23);
-		panelMainButton.add(lblSemafori);
-		lblSemafori.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSemafori.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		
-		JLabel lblEsci = new JLabel("ESCI");
-		lblEsci.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
-			}
-		});
-		lblEsci.setForeground(Color.BLACK);
-		lblEsci.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEsci.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblEsci.setBounds(10, 10, 128, 23);
-		panelMainButton.add(lblEsci);
-		
-		JLabel lblSitoWeb = new JLabel("SITO WEB");
-		lblSitoWeb.addMouseListener(new MouseAdapter() {
+		JLabel labelSitoWeb = new JLabel("SITO WEB");
+		labelSitoWeb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Desktop d = Desktop.getDesktop();
@@ -268,15 +148,24 @@ public class MainWindows {
 					e1.printStackTrace();
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelSitoWeb.setForeground(new Color (255,127,80));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelSitoWeb.setForeground(Color.BLACK);
+			}
 		});
-		lblSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSitoWeb.setForeground(Color.BLACK);
-		lblSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblSitoWeb.setBounds(134, 10, 138, 23);
-		panelMainButton.add(lblSitoWeb);
+		labelSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSitoWeb.setForeground(Color.BLACK);
+		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		labelSitoWeb.setBounds(400, 11, 138, 23);
+		panelMainButton.add(labelSitoWeb);
 		
-		JLabel lblVideolezioni = new JLabel("VIDEOLEZIONI");
-		lblVideolezioni.addMouseListener(new MouseAdapter() {
+		JLabel labelVideolezioni = new JLabel("VIDEOLEZIONI");
+		labelVideolezioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Desktop d = Desktop.getDesktop();
@@ -288,24 +177,190 @@ public class MainWindows {
 					e1.printStackTrace();
 				}
 			}
-		});
-		lblVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVideolezioni.setForeground(Color.BLACK);
-		lblVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblVideolezioni.setBounds(281, 10, 138, 23);
-		panelMainButton.add(lblVideolezioni);
-		
-		JLabel lblSlideCorso = new JLabel("SLIDE CORSO");
-		lblSlideCorso.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelVideolezioni.setForeground(new Color (255,127,80));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelVideolezioni.setForeground(Color.BLACK);
 			}
 		});
-		lblSlideCorso.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSlideCorso.setForeground(Color.BLACK);
-		lblSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 20));
-		lblSlideCorso.setBounds(429, 10, 128, 23);
-		panelMainButton.add(lblSlideCorso);
+		labelVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		labelVideolezioni.setForeground(Color.BLACK);
+		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		labelVideolezioni.setBounds(644, 11, 138, 23);
+		panelMainButton.add(labelVideolezioni);
+		
+		JLabel labellSlideCorso = new JLabel("SLIDE CORSO");
+		labellSlideCorso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+		
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labellSlideCorso.setForeground(new Color (255,127,80));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labellSlideCorso.setForeground(Color.BLACK);
+			}
+		});
+		labellSlideCorso.setHorizontalAlignment(SwingConstants.CENTER);
+		labellSlideCorso.setForeground(Color.BLACK);
+		labellSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		labellSlideCorso.setBounds(879, 11, 128, 23);
+		panelMainButton.add(labellSlideCorso);
+		
+		JLabel labelPaginazione = new JLabel("Paginzione Icon");
+		labelPaginazione.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PaginazioneDellaMemoria frameDachiamareProcessi= new PaginazioneDellaMemoria(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaPaginazione.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaPaginazione.setForeground(Color.BLACK);
+			}
+		});
+		labelPaginazione.setIcon(imagePaginazione);
+		labelPaginazione.setBounds(274, 516, 117, 99);
+		panelMainButton.add(labelPaginazione);
+		
+		JLabel labelCpu = new JLabel("Cpu Icon");
+		labelCpu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaSchProcessi.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaSchProcessi.setForeground(Color.BLACK);
+			}
+		});
+		labelCpu.setBounds(453, 516, 117, 99);
+		labelCpu.setIcon(imageCPU);
+		panelMainButton.add(labelCpu);
+		
+		JLabel labelFilosofo = new JLabel("Filosofo Icon");
+		labelFilosofo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Filosofi frameDachiamareProcessi= new Filosofi(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaFilosofi.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaFilosofi.setForeground(Color.BLACK);
+			}
+		});
+		labelFilosofo.setBounds(612, 516, 117, 99);
+		labelFilosofo.setIcon(imageFilosofi);
+		panelMainButton.add(labelFilosofo);
+		
+		JLabel labelHashing = new JLabel("Hashing Icon");
+		labelHashing.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Hashing frameDachiamareProcessi= new Hashing(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaHashing.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaHashing.setForeground(Color.BLACK);
+			}
+		});
+		labelHashing.setBounds(757, 519, 117, 99);
+		labelHashing.setIcon(imageHashing);
+		panelMainButton.add(labelHashing);
+		
+		JLabel labelHD = new JLabel("Sch HD");
+		labelHD.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SchHD frameDachiamareProcessi= new SchHD(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaHD.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaHD.setForeground(Color.BLACK);
+			}
+		});
+		labelHD.setBounds(912, 528, 117, 99);
+		labelHD.setIcon(imageHD);
+		panelMainButton.add(labelHD);
+		
+		JLabel labelSemaforo = new JLabel("Semafori");
+		labelSemaforo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Semafori frameDachiamareProcessi= new Semafori(frame);
+				frameDachiamareProcessi.setVisible(true);	
+				frame.setVisible(false);
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaSemafori.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelScrittaSemafori.setForeground(Color.BLACK);
+			}
+		});
+		labelSemaforo.setBounds(1064, 523, 117, 99);
+		labelSemaforo.setIcon(imageSemafori);
+		panelMainButton.add(labelSemaforo);
 	
 		
 		

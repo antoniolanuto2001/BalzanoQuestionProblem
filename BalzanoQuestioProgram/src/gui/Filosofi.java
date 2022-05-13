@@ -184,7 +184,7 @@ public class Filosofi extends JFrame {
 		
 		JLabel labelSchemata = new JLabel("FILOSOFI A CENA ");
 		labelSchemata.setBackground(Color.LIGHT_GRAY);
-		labelSchemata.setForeground(new Color(255, 0, 153));
+		labelSchemata.setForeground(Color.BLACK);
 		labelSchemata.setHorizontalAlignment(SwingConstants.CENTER);
 		labelSchemata.setBounds(20, 16, 1384, 89);
 		labelSchemata.setBorder(null);
