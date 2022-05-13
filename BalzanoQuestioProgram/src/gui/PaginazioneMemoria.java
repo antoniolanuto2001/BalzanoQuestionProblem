@@ -33,20 +33,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartMouseEvent;
-import org.jfree.chart.ChartMouseListener;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberTickUnit;
-import org.jfree.chart.axis.SymbolAxis;
-import org.jfree.chart.block.BlockBorder;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.chart.title.TextTitle;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
+
 
 public class PaginazioneMemoria extends JFrame {
 
@@ -54,61 +41,6 @@ public class PaginazioneMemoria extends JFrame {
 		private JFrame frame;
 		private String scelta="0";
 
-		XYSeries series0 = new XYSeries("P1");
-		XYSeries series1 = new XYSeries("P2");
-		XYSeries series2 = new XYSeries("P3");
-		XYSeries series3 = new XYSeries("P4");
-		XYSeries series4 = new XYSeries("P5");
-		XYSeries series5 = new XYSeries("P6");
-		XYSeriesCollection dataset1 = new XYSeriesCollection();
-		XYSeriesCollection dataset2 = new XYSeriesCollection();
-		XYSeriesCollection dataset3 = new XYSeriesCollection();
-		XYSeriesCollection dataset4 = new XYSeriesCollection();
-		XYSeriesCollection dataset = new XYSeriesCollection();
-
-		ArrayList<XYSeries> arraySeries=new ArrayList<XYSeries>();
-		
-		JFreeChart chart1 = ChartFactory.createXYLineChart(
-	            "GRAFICO FCFS",
-	            "",
-	            ""  ,
-	            dataset,
-	            PlotOrientation.VERTICAL,
-	            true,
-	            true,
-	            false
-	    );
-		JFreeChart chart2 = ChartFactory.createXYLineChart(
-	            "GRAFICO SJF",
-	            "",
-	            ""  ,
-	            dataset,
-	            PlotOrientation.VERTICAL,
-	            true,
-	            true,
-	            false
-	    );
-		JFreeChart chart3 = ChartFactory.createXYLineChart(
-	            "GRAFICO SJFP",
-	            "",
-	            ""  ,
-	            dataset,
-	            PlotOrientation.VERTICAL,
-	            true,
-	            true,
-	            false
-	    );
-		JFreeChart chart4 = ChartFactory.createXYLineChart(
-	            "GRAFICO RR",
-	            "",
-	            ""  ,
-	            dataset,
-	            PlotOrientation.VERTICAL,
-	            true,
-	            true,
-	            false
-	    );
-		
 		private int i=0;
 		private JTextField stringaNumeri;
 
@@ -184,7 +116,7 @@ public class PaginazioneMemoria extends JFrame {
 			JButton btnSlideArgomento = new JButton("Slide Argomento");
 			btnSlideArgomento.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					File file = new File("C:\\Users\\biagi\\Desktop\\13° SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
+					File file = new File("C:\\Users\\biagi\\Desktop\\13ï¿½ SO\\APPBalzano\\BalzanoQuestionProblem\\BalzanoQuestioProgram\\src\\gui\\SLIDE6.pdf");
 					try {
 						Desktop.getDesktop().open(file);
 					} catch (IOException e1) {
@@ -212,103 +144,7 @@ public class PaginazioneMemoria extends JFrame {
 			buttonEsci.setBackground(new Color(255, 204, 0));
 			buttonEsci.setBounds(453, 95, 128, 48);
 			panelMainButton.add(buttonEsci);
-	        
-	        String[] grade =  new String[7];
-	        grade[0] = "";
-	        grade[1] = "Processo 1";
-	        grade[2] = "Processo 2";
-	        grade[3] = "Processo 3";
-	        grade[4] = "Processo 4";
-	        grade[5] = "Processo 5";
-	        grade[6] = "Processo 6";
-	        SymbolAxis rangeAxis = new SymbolAxis("", grade);
-
-	        /*GRAFICO 1*/        
-	        XYPlot plot1 = chart1.getXYPlot();
-	        XYLineAndShapeRenderer renderer1 = new XYLineAndShapeRenderer();
-	        renderer1.setSeriesPaint(0, Color.RED);
-	        renderer1.setSeriesStroke(0, new BasicStroke(2.0f));
-	        plot1.setRenderer(renderer1);
-	        plot1.setBackgroundPaint(Color.white);
-	        plot1.setRangeGridlinesVisible(true);
-	        plot1.setRangeGridlinePaint(Color.BLACK);
-	        plot1.setDomainGridlinesVisible(true);
-	        plot1.setDomainGridlinePaint(Color.BLACK);
-	        chart1.getLegend().setFrame(BlockBorder.NONE);
-	        chart1.setTitle(new TextTitle("GRAFICO FCFS",
-	        new Font("Serif", java.awt.Font.BOLD, 18)
-	        )
-	        );
-	        
-	        rangeAxis.setTickUnit(new NumberTickUnit(1));
-	        rangeAxis.setRange(0,grade.length);
-	        plot1.setRangeAxis(rangeAxis);
-	        
-	        /*GRAFICO 2*/
-	        XYPlot plot2 = chart2.getXYPlot();
-	        XYLineAndShapeRenderer renderer2 = new XYLineAndShapeRenderer();
-	        renderer2.setSeriesPaint(0, Color.RED);
-	        renderer2.setSeriesStroke(0, new BasicStroke(2.0f));
-	        plot2.setRenderer(renderer2);
-	        plot2.setBackgroundPaint(Color.white);
-	        plot2.setRangeGridlinesVisible(true);
-	        plot2.setRangeGridlinePaint(Color.BLACK);
-	        plot2.setDomainGridlinesVisible(true);
-	        plot2.setDomainGridlinePaint(Color.BLACK);
-	        chart2.getLegend().setFrame(BlockBorder.NONE);
-	        chart2.setTitle(new TextTitle("GRAFICO SJF",
-	        new Font("Serif", java.awt.Font.BOLD, 18)
-	        )
-	        );
-	        
-	        rangeAxis.setTickUnit(new NumberTickUnit(1));
-	        rangeAxis.setRange(0,grade.length);
-	        plot2.setRangeAxis(rangeAxis);
-	        
-	        /*GRAFICO 3*/
-	        XYPlot plot3 = chart3.getXYPlot();
-	        XYLineAndShapeRenderer renderer3 = new XYLineAndShapeRenderer();
-	        renderer3.setSeriesPaint(0, Color.RED);
-	        renderer3.setSeriesStroke(0, new BasicStroke(2.0f));
-	        plot3.setRenderer(renderer3);
-	        plot3.setBackgroundPaint(Color.white);
-	        plot3.setRangeGridlinesVisible(true);
-	        plot3.setRangeGridlinePaint(Color.BLACK);
-	        plot3.setDomainGridlinesVisible(true);
-	        plot3.setDomainGridlinePaint(Color.BLACK);
-	        chart3.getLegend().setFrame(BlockBorder.NONE);
-	        chart3.setTitle(new TextTitle("GRAFICO SJFP",
-	        new Font("Serif", java.awt.Font.BOLD, 18)
-	        )
-	        );
-	        
-	        rangeAxis.setTickUnit(new NumberTickUnit(1));
-	        rangeAxis.setRange(0,grade.length);
-	        plot3.setRangeAxis(rangeAxis);
-	        
-	        /*GRAFICO 4*/
-	        XYPlot plot4 = chart4.getXYPlot();
-	        XYLineAndShapeRenderer renderer4 = new XYLineAndShapeRenderer();
-	        renderer4.setSeriesPaint(0, Color.RED);
-	        renderer4.setSeriesStroke(0, new BasicStroke(2.0f));
-	        plot4.setRenderer(renderer4);
-	        plot4.setBackgroundPaint(Color.white);
-	        plot4.setRangeGridlinesVisible(true);
-	        plot4.setRangeGridlinePaint(Color.BLACK);
-	        plot4.setDomainGridlinesVisible(true);
-	        plot4.setDomainGridlinePaint(Color.BLACK);
-	        chart4.getLegend().setFrame(BlockBorder.NONE);
-	        chart4.setTitle(new TextTitle("GRAFICO RR",
-	        new Font("Serif", java.awt.Font.BOLD, 18)
-	        )
-	        );
-	        
-	       
-	        
-	        rangeAxis.setTickUnit(new NumberTickUnit(1));
-	        rangeAxis.setRange(0,grade.length);
-	        plot4.setRangeAxis(rangeAxis);
-	                
+	        	                       
 		    
 			JPanel panel_1 = new JPanel();
 			panel_1.setBounds(1129, 97, 265, 648);

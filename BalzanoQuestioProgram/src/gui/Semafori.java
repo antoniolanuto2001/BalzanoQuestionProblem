@@ -7,12 +7,20 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class Semafori extends JFrame {
 
@@ -68,11 +76,11 @@ public class Semafori extends JFrame {
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		desktopPane.setBackground(SystemColor.controlHighlight);
+		desktopPane.setBackground(Color.RED);
 		desktopPane.setBounds(929, 160, 353, 156);
 		panelMainButton.add(desktopPane);
 		
-		TextFieldNumProcessi = new JTextField();
+		JTextField TextFieldNumProcessi = new JTextField();
 		TextFieldNumProcessi.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		TextFieldNumProcessi.setBounds(10, 32, 126, 21);
 		desktopPane.add(TextFieldNumProcessi);
@@ -97,6 +105,7 @@ public class Semafori extends JFrame {
 		
 		JComboBox NumProcessiComboBox = new JComboBox();
 		
+		
 		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
 		
 		NumProcessiComboBox.setBounds(132, 32, 47, 21);
@@ -104,7 +113,7 @@ public class Semafori extends JFrame {
 		
 		
 		
-		txtNumeroSemafori = new JTextField();
+		JTextField txtNumeroSemafori = new JTextField();
 		txtNumeroSemafori.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		txtNumeroSemafori.setText("Numero Semafori:");
 		txtNumeroSemafori.setBounds(10, 97, 126, 20);
@@ -171,9 +180,11 @@ public class Semafori extends JFrame {
 		model1.addRow(new Object[]{"1", "pippo", "pluto"});
 		
 		scroll.setViewportView(table);
-
-		NumProcessiComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		
+		NumProcessiComboBox.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e)
+			{
 				String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
 				int sceltaNumero= Integer.valueOf(sceltaNumeroString);
 				int rowCount = table.getRowCount();
@@ -187,10 +198,8 @@ public class Semafori extends JFrame {
 				{ 
 					model1.addRow(new Object[0]);
 					model1.setValueAt("P"+(i+1),i,0);
-
-				}	
+				}
 			}
 		});
-
 	}
 }
