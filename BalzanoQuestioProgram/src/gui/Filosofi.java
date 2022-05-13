@@ -513,11 +513,561 @@ public class Filosofi extends JFrame {
 	    btnSlideArgomento.setBackground(new Color(153, 255, 255));
 	    btnSlideArgomento.setBounds(279, 134, 128, 48);
         panelMainButton.add(btnSlideArgomento);
+
+     
+     
+        JLabel labelSliderMangia = new JLabel("Velocita Mangia : ");
+        labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelSliderMangia.setBounds(1144, 411, 143, 30);
+        panelMainButton.add(labelSliderMangia);
+        
+        JLabel labelSliderPensa = new JLabel("Velocita Pensa  : ");
+        labelSliderPensa.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelSliderPensa.setBounds(1144, 523, 143, 30);
+        panelMainButton.add(labelSliderPensa);
+        
+        
+        
+        JLabel labelLog = new JLabel("LOG Degli Eventi : ");
+        labelLog.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        labelLog.setBounds(10, 210, 172, 36);
+        panelMainButton.add(labelLog);
+        
+        JButton buttonVideo = new JButton("Video Youtube");
+       
+        buttonVideo.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=9113"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        });
+        buttonVideo.setBorder(new LineBorder(new Color(153, 102, 255), 4));
+        buttonVideo.setBackground(new Color(255, 255, 255));
+        buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        buttonVideo.setBounds(848, 147, 138, 46);
+        panelMainButton.add(buttonVideo);
+        
+        JPanel panelDiControllo = new JPanel();
+		panelDiControllo.setBounds(1137, 134, 265, 617);
+		
+		panelDiControllo.setLayout(null);
+		panelDiControllo.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+		panelMainButton.add(panelDiControllo);
+		
+		JPanel pannellodicontrolloTitolo = new JPanel();
+		pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
+		pannellodicontrolloTitolo.setBackground(new Color(255, 204, 51));
+		panelDiControllo.add(pannellodicontrolloTitolo);
+		pannellodicontrolloTitolo.setLayout(null);
+		pannellodicontrolloTitolo.setBorder(BorderFactory.createRaisedBevelBorder());
+		
+		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
+		labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPnlCtrl.setBounds(0, 0, 245, 54);
+		pannellodicontrolloTitolo.add(labelPnlCtrl);
+		labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
+		
+		 JPanel panelModalita = new JPanel();
+		 panelModalita.setBounds(10, 105, 245, 166);
+	        panelModalita.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+	        panelDiControllo.add(panelModalita);
+	        panelModalita.setLayout(null);
+	        
+		JRadioButton radioDefault = new JRadioButton("Nessuno");
+		radioDefault.setBounds(6, 7, 175, 36);
+		panelModalita.add(radioDefault);
+		radioDefault.setToolTipText("Filosofi fermi senza mangiare ");
+		radioDefault.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		radioDefault.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				continuaBoolean=false;
+				if (deadlockBoolean) 
+				{
+					deadlockBoolean=false;
+					labelTavola.setIcon(imageTavola);
+				}
+				labelFilosofo1.setIcon(imageNormal);
+				labelFilosofo2.setIcon(imageNormal);
+				labelFilosofo3.setIcon(imageNormal);
+				labelFilosofo4.setIcon(imageNormal);
+				labelFilosofo5.setIcon(imageNormal);
+				for (int i = 0; i < filosofiClassica.length; i++) 
+				{
+					
+					filosofiClassica[i].stop();
+					filosofiAtomici[i].stop();
+					filosofiCoda[i].stop();
+					System.out.println("Ho interotto Esecuzione di entrambi i filosofi " + i);
+				}
+				textAreaLog.setText("Reset Filosofi ...  \n");
+				textAreaLog.append("I filosofi che potrebbero seguire stanno terminando\nesecuzione da precedenti Thread\n");
+			}
+		});
+		groupSceltaStrategiaFilosofi.add(radioDefault);
+		
+		JSlider sliderVelocitaPensa = new JSlider(1, 5, 3);
+		sliderVelocitaPensa.setBounds(33, 418, 206, 60);
+		panelDiControllo.add(sliderVelocitaPensa);
+		sliderVelocitaPensa.setPreferredSize(new Dimension(250, 60));
+		sliderVelocitaPensa.setPaintTrack(true);
+		sliderVelocitaPensa.setPaintTicks(true);
+		sliderVelocitaPensa.setPaintLabels(true);
+		sliderVelocitaPensa.setMinorTickSpacing(3);
+		sliderVelocitaPensa.setMajorTickSpacing(1);
+		
+        JSlider sliderVelocitaMangia = new JSlider(1,5,3);
+        sliderVelocitaMangia.setBounds(33, 305, 206, 60);
+        panelDiControllo.add(sliderVelocitaMangia);
+        sliderVelocitaMangia.setPreferredSize(new Dimension(250, 60));
+        sliderVelocitaMangia.setPaintTrack(true);
+        sliderVelocitaMangia.setPaintLabels(true);
+        sliderVelocitaMangia.setPaintTicks(true);
+        sliderVelocitaMangia.setMajorTickSpacing(1);
+        sliderVelocitaMangia.setMinorTickSpacing(3);
+        
+        JRadioButton radioCoda = new JRadioButton("Schema Coda");
+        radioCoda.setBounds(6, 115, 206, 44);
+        panelModalita.add(radioCoda);
+        radioCoda.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) 
+        	{
+        		if (radioCoda.isSelected()) 
+        		{
+        			textAreaLog.setText("Modalita Schema a Coda Attivata : \n");
+        			continuaBoolean=false;
+        			if (deadlockBoolean) 
+        			{	
+        				deadlockBoolean=false;
+        				labelTavola.setIcon(imageTavola);
+        			}
+        			for (int i = 0; i < threadCoda.length; i++) 
+        			{
+        				filosofiClassica[i].stop();
+        				filosofiAtomici[i].stop();
+        				System.out.println("Ho interotto Esecuzione dei filosofi atomici - classici" + i);
+        				if(1==sliderVelocitaPensa.getValue())
+        				{
+        					filosofiCoda[i].tempoPensa=3000;
+        				}
+        				else if (2==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiCoda[i].tempoPensa=1500;
+        				}
+        				else if (3==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiCoda[i].tempoPensa=800;
+        				}
+        				else if (4==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiCoda[i].tempoPensa=500;
+        				}
+        				else 
+        				{
+        					filosofiCoda[i].tempoPensa=300;
+        				}
+        				if(1==sliderVelocitaMangia.getValue())
+        				{
+        					filosofiCoda[i].tempoMangia=3000;
+        				}
+        				else if (2==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiCoda[i].tempoMangia=1500;
+        				}
+        				else if (3==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiCoda[i].tempoMangia=800;
+        				}
+        				else if (4==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiCoda[i].tempoMangia=500;
+        				}
+        				else 
+        				{
+        					filosofiCoda[i].tempoMangia=300;
+        				}
+        				filosofiCoda[i].resume();
+        				threadAtomico[i]= new Thread(filosofiCoda[i]);
+        				threadAtomico[i].start();
+        			}
+
+        			continuaBoolean=true;
+        			Thread threadCambiaFiloCoda= new Thread(new Runnable() 
+        			{
+        				@Override
+        				public void run() 
+        				{
+        					// TODO Auto-generated method stub
+        					while (continuaBoolean) 
+        					{
+        						//Filosofo 1 
+        						if (filosofiCoda[0].pronto==true) 
+        						{
+        							labelFilosofo1.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo1.setIcon(imageAttesa);
+        						}
+        						//Filosofo 2
+        						if (filosofiCoda[1].pronto==true) 
+        						{
+        							labelFilosofo2.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo2.setIcon(imageAttesa);
+        						}
+        						//Filosofo 3
+        						if (filosofiCoda[2].pronto==true) 
+        						{
+        							labelFilosofo3.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo3.setIcon(imageAttesa);
+        						}
+        						//Filosofo 4
+        						if (filosofiCoda[3].pronto==true) 
+        						{
+        							labelFilosofo4.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo4.setIcon(imageAttesa);
+        						}
+        						//Filosofo 5
+        						if (filosofiCoda[4].pronto==true) 
+        						{
+        							labelFilosofo5.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo5.setIcon(imageAttesa);
+        						}
+        						
+        					}
+        				}
+        			});
+        			threadCambiaFiloCoda.start();
+        		}
+        	}
+        });
+        radioCoda.setToolTipText("Solo 4 Filosofi possono sedersi conteporaneamente");
+        radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        groupSceltaStrategiaFilosofi.add(radioCoda);
+        
+        JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
+        radioAtomico.setBounds(6,85, 175, 36);
+        panelModalita.add(radioAtomico);
+        radioAtomico.setToolTipText("Ogni filosofo aspetta e posa entrambi le bacchette conteporaneamente");
+        radioAtomico.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) 
+        	{
+        		if (radioAtomico.isSelected()) 
+        		{
+        			textAreaLog.setText("Modalita Schema Atomico Attivata : \n");
+        			continuaBoolean=false;
+        			if (deadlockBoolean) 
+        			{
+        				deadlockBoolean=false;
+        				labelTavola.setIcon(imageTavola);
+        			}
+        			for (int i = 0; i < threadAtomico.length; i++) 
+        			{
+        				filosofiClassica[i].stop();
+        				filosofiCoda[i].stop();
+        				System.out.println("Ho interotto Esecuzione dei filosofi classici - coda " + i);
+        				if(1==sliderVelocitaPensa.getValue())
+        				{
+        					filosofiAtomici[i].tempoPensa=3000;
+        				}
+        				else if (2==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoPensa=1500;
+        				}
+        				else if (3==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoPensa=800;
+        				}
+        				else if (4==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoPensa=500;
+        				}
+        				else 
+        				{
+        					filosofiAtomici[i].tempoPensa=300;
+        				}
+        				if(1==sliderVelocitaMangia.getValue())
+        				{
+        					filosofiAtomici[i].tempoMangia=3000;
+        				}
+        				else if (2==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoMangia=1500;
+        				}
+        				else if (3==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoMangia=800;
+        				}
+        				else if (4==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiAtomici[i].tempoMangia=500;
+        				}
+        				else 
+        				{
+        					filosofiAtomici[i].tempoMangia=300;
+        				}
+        				filosofiAtomici[i].resume();
+        				threadAtomico[i]= new Thread(filosofiAtomici[i]);
+        				threadAtomico[i].start();
+        			}
+
+        			continuaBoolean=true;
+        			Thread threadCambiaFiloAtomico= new Thread(new Runnable() 
+        			{
+        				@Override
+        				public void run() 
+        				{
+        					// TODO Auto-generated method stub
+        					while (continuaBoolean) 
+        					{
+        						//Filosofo 1 
+        						if (filosofiAtomici[0].pronto==true) 
+        						{
+        							labelFilosofo1.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo1.setIcon(imageAttesa);
+        						}
+        						//Filosofo 2
+        						if (filosofiAtomici[1].pronto==true) 
+        						{
+        							labelFilosofo2.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo2.setIcon(imageAttesa);
+        						}
+        						//Filosofo 3
+        						if (filosofiAtomici[2].pronto==true) 
+        						{
+        							labelFilosofo3.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo3.setIcon(imageAttesa);
+        						}
+        						//Filosofo 4
+        						if (filosofiAtomici[3].pronto==true) 
+        						{
+        							labelFilosofo4.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo4.setIcon(imageAttesa);
+        						}
+        						//Filosofo 5
+        						if (filosofiAtomici[4].pronto==true) 
+        						{
+        							labelFilosofo5.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							labelFilosofo5.setIcon(imageAttesa);
+        						}
+        						
+        					}
+        				}
+        			});
+        			threadCambiaFiloAtomico.start();
+        		}
+        	}
+        });
+        radioAtomico.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        groupSceltaStrategiaFilosofi.add(radioAtomico);
+        
+        
+        JRadioButton radioClassico = new JRadioButton("Schema Classico");
+        radioClassico.setBounds(6, 46, 175, 36);
+        panelModalita.add(radioClassico);
+        radioClassico.setToolTipText("Ogni filosofo aspetta prende la bacchetta di sinistra ed aspetto quella di destra");
+        radioClassico.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) 
+        	{
+        		if (radioClassico.isSelected()) 
+        		{
+        			textAreaLog.setText("Modalita Schema Classico Attivata : \n");
+        			continuaBoolean=false;
+        			if (deadlockBoolean) 
+        			{
+        				deadlockBoolean=false;
+        				labelTavola.setIcon(imageTavola);
+        			}
+        			for (int i = 0; i < threadClassico.length; i++) 
+        			{
+        				filosofiAtomici[i].stop();
+        				filosofiCoda[i].stop();
+        				System.out.println("Ho interotto Esecuzione dei filosofi atomici - coda " + i);
+        				filosofiClassica[i].resume();
+        				//Slider Velocita Mangia
+        				if(1==sliderVelocitaMangia.getValue())
+        				{
+        					filosofiClassica[i].tempoMangia=3000;
+        				}
+        				else if (2==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiClassica[i].tempoMangia=1500;
+        				}
+        				else if (3==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiClassica[i].tempoMangia=800;
+        				}
+        				else if (4==sliderVelocitaMangia.getValue()) 
+        				{
+        					filosofiClassica[i].tempoMangia=500;
+        				}
+        				else 
+        				{
+        					filosofiClassica[i].tempoMangia=100;
+        				}
+        				//Slider Velocita Pensa
+        				if(1==sliderVelocitaPensa.getValue())
+        				{
+        					filosofiClassica[i].tempoPensa=3000;
+        				}
+        				else if (2==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiClassica[i].tempoPensa=1500;
+        				}
+        				else if (3==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiClassica[i].tempoPensa=800;
+        				}
+        				else if (4==sliderVelocitaPensa.getValue()) 
+        				{
+        					filosofiClassica[i].tempoPensa=500;
+        				}
+        				else 
+        				{
+        					filosofiClassica[i].tempoPensa=300;
+        				}
+        				threadClassico[i]= new Thread(filosofiClassica[i]);
+        				threadClassico[i].start();
+        			}
+        			continuaBoolean=true;
+        			Thread threadCambiaFiloClassico= new Thread(new Runnable() 
+        			{
+        				@Override
+        				public void run() 
+        				{
+        					// TODO Auto-generated method stub
+        					while (continuaBoolean && filosofiClassica[0].deadlockCheck==false) 
+        					{
+        						//Filosofo 1 
+        						if (filosofiClassica[0].pronto==true) 
+        						{
+        							
+        								
+        							labelFilosofo1.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							
+        							labelFilosofo1.setIcon(imageAttesa);
+        						}
+        						//Filosofo 2
+        						if (filosofiClassica[1].pronto==true) 
+        						{
+        							
+        							labelFilosofo2.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							
+        							labelFilosofo2.setIcon(imageAttesa);
+        						}
+        						//Filosofo 3
+        						if (filosofiClassica[2].pronto==true) 
+        						{
+        							
+        							labelFilosofo3.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							
+        							labelFilosofo3.setIcon(imageAttesa);
+        						}
+        						//Filosofo 4
+        						if (filosofiClassica[3].pronto==true) 
+        						{
+        							
+        							labelFilosofo4.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							
+        							labelFilosofo4.setIcon(imageAttesa);
+        						}
+        						//Filosofo 5
+        						if (filosofiClassica[4].pronto==true) 
+        						{
+        							
+        							labelFilosofo5.setIcon(imageReady);
+        						}
+        						else 
+        						{
+        							
+        							labelFilosofo5.setIcon(imageAttesa);
+        						}
+        						if (filosofiClassica[0].deadlockCheck==true)
+        						{
+        							labelFilosofo1.setIcon(imageNormal);
+        							labelFilosofo2.setIcon(imageNormal);
+        							labelFilosofo3.setIcon(imageNormal);
+        							labelFilosofo4.setIcon(imageNormal);
+        							labelFilosofo5.setIcon(imageNormal);
+        							labelTavola.setIcon(imageDeadLock);
+        							deadlockBoolean=true;
+        						}
+        					}
+        				}
+        			});
+        			threadCambiaFiloClassico.start();
+        		}
+        		
+        	    
+        	}
+        });
+        radioClassico.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        groupSceltaStrategiaFilosofi.add(radioClassico);
+        
+        JLabel labelStrategia = new JLabel("Strategia :");
+        labelStrategia.setForeground(new Color(0, 0, 0));
+        labelStrategia.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        labelStrategia.setBounds(10, 75, 142, 25);
+        panelDiControllo.add(labelStrategia);
+        
+       
         
         sliderVelocitaMangia.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseReleased(MouseEvent e) 
         	{
+        		textAreaLog.append("Velocita Cambiata In Fase di Mangia: \n");
         		if (radioClassico.isSelected()) 
         		{
         			for (int i = 0; i < filosofiClassica.length; i++) 

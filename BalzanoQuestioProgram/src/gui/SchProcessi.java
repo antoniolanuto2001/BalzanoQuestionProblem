@@ -148,7 +148,179 @@ public class SchProcessi extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		setTitle("Applicativo esercizi Sistemi Operativi I: Scheduling della CPU");
+		setTitle("Balzano Question Problem : Scheduling della CPU");
+
+/**							PANNELLO PRINCIPALE								*/
+		JPanel pannelloPrincipale = new JPanel();
+			pannelloPrincipale.setForeground(new Color(153, 204, 255));
+			pannelloPrincipale.setBounds(0, 0, 1440, 800);
+			frame.getContentPane().add(pannelloPrincipale);
+			pannelloPrincipale.setLayout(null);
+
+/**						BOTTONI PANNELLO PRINCIPALE							*/
+		//BOTTONE INDIETRO	
+		JButton btnIndietro = new JButton("Indietro");
+			btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
+			btnIndietro.setBackground(new Color(255, 255, 255));
+			btnIndietro.setOpaque(true);
+			btnIndietro.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					framechiamante.setVisible(true);
+					frame.setVisible(false);
+					frame.dispose();
+				}
+			});
+			btnIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			btnIndietro.setBounds(101, 85, 128, 48);
+			pannelloPrincipale.add(btnIndietro);
+	
+		//BOTTONE GENERA
+		JButton btnGenera = new JButton("Genera Tabella Processi");
+			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
+			btnGenera.setBackground(new Color(255, 255, 255));
+			btnGenera.setBounds(974, 86, 157, 48);
+			pannelloPrincipale.add(btnGenera);
+		
+		//BOTTONE SLIDE ARGOMENTO
+		JButton btnSlideArgomento = new JButton("Slide Argomento");
+			btnSlideArgomento.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						e1.printStackTrace();
+					}
+				}
+			});
+			btnSlideArgomento.setOpaque(true);
+			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			btnSlideArgomento.setBorder(new LineBorder(new Color(0, 204, 255), 4));
+			btnSlideArgomento.setBackground(new Color(255, 255, 255));
+			btnSlideArgomento.setBounds(239, 85, 128, 48);
+			pannelloPrincipale.add(btnSlideArgomento);
+			frame.setVisible(true); 
+	        
+		//BOTTONE ESCI
+		JButton btnEsci = new JButton("Esci");
+			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+			btnEsci.setBackground(new Color(255, 255, 255));
+			btnEsci.setBounds(10, 85, 81, 48);
+			pannelloPrincipale.add(btnEsci);
+		
+		//BOTTONE INFO SULL'USO DELL'APP	
+		JButton btnInfouso = new JButton("Info/Uso");
+			btnEsci.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+		
+			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+			btnInfouso.setBackground(new Color(255, 255, 255));
+			btnInfouso.setBounds(525, 85, 81, 48);
+			pannelloPrincipale.add(btnInfouso);
+			
+		JButton buttonVideo = new JButton("Videolezione");
+	        buttonVideo.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("https://youtu.be/OP_pscPLeio"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        });
+	        buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
+	        buttonVideo.setBackground(new Color(255, 255, 255));
+	        buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
+	        buttonVideo.setBounds(377, 86, 138, 46);
+	        pannelloPrincipale.add(buttonVideo);
+	        
+			
+/**							PANNELLO TITOLO									*/
+		JPanel pannelloTitolo = new JPanel();
+			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
+			pannelloTitolo.setBackground(Color.WHITE);
+			pannelloTitolo.setBounds(0, 0, 1406, 75);
+			pannelloPrincipale.add(pannelloTitolo);
+			pannelloTitolo.setLayout(null);
+			
+		//TITOLO
+		JLabel labelTitolo = new JLabel("SCHEDULING DELLA CPU");
+			labelTitolo.setForeground(new Color(0, 0, 0));
+			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
+			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
+			labelTitolo.setBounds(0, 0, 1408, 73);
+			pannelloTitolo.add(labelTitolo);
+		
+
+/*INIZIO GUI COMPLICATA*/		
+
+/**							PANNELLO GRAFICI								*/
+		JPanel pannelloGrafici = new JPanel();
+	        pannelloGrafici.setBounds(0, 143, 1131, 620);
+	        pannelloPrincipale.add(pannelloGrafici);
+	        pannelloGrafici.setLayout(null);
+        
+        //PANNELLO FIRST-COME,FIRST-SERVED
+        JPanel pannelloFCFS = new JPanel();
+			pannelloFCFS.setBounds(10, 0, 1121, 150);
+			pannelloGrafici.add(pannelloFCFS);
+			pannelloFCFS.setLayout(null);
+			pannelloFCFS.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+
+		JLabel lblFirstcomeFirstserved = new JLabel("First-Come, First-Served");
+			lblFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
+			lblFirstcomeFirstserved.setForeground(Color.RED);
+			lblFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblFirstcomeFirstserved.setBounds(10, 0, 489, 25);
+			pannelloFCFS.add(lblFirstcomeFirstserved);
+		
+		JCheckBox chckbxMostraSoluzioneFCFS = new JCheckBox("Mostra Soluzione");
+			chckbxMostraSoluzioneFCFS.setEnabled(false);
+			chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			chckbxMostraSoluzioneFCFS.setBounds(513, 3, 150, 25);
+			pannelloFCFS.add(chckbxMostraSoluzioneFCFS);
+		
+		JLabel lblTAMFCFS = new JLabel("Tempo di attesa medio:");
+			lblTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblTAMFCFS.setBounds(670, 3, 150, 25);
+			pannelloFCFS.add(lblTAMFCFS);
+		
+		JLabel DatoTAMFCFS = new JLabel("");
+			DatoTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			DatoTAMFCFS.setBounds(821, 3, 45, 25);
+			pannelloFCFS.add(DatoTAMFCFS);
+			
+		JLabel lblCDCFCFS = new JLabel("Cambi di contesto: ");
+			lblCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblCDCFCFS.setBounds(887, 3, 130, 25);
+			pannelloFCFS.add(lblCDCFCFS);
+		
+		JLabel DatoCDCFCFS = new JLabel("");
+			DatoCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			DatoCDCFCFS.setBounds(1014, 3, 45, 25);
+			pannelloFCFS.add(DatoCDCFCFS);
+		
+		//PANNELLO SHORTEST JOB FIRST
+		JPanel pannelloSJF = new JPanel();
+			pannelloSJF.setBounds(10, 153, 1121, 150);
+			pannelloGrafici.add(pannelloSJF);
+			pannelloSJF.setLayout(null);
+			pannelloSJF.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
 
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -501,12 +673,12 @@ public class SchProcessi extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(10, 10, 245, 54);
-		panel_2.setBackground(new Color(255, 204, 51));
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
-		panel_2.setBorder(BorderFactory.createRaisedBevelBorder());
+		JPanel pannellodicontrolloTitolo = new JPanel();
+			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
+			pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
+			pannelloDiControllo.add(pannellodicontrolloTitolo);
+			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+		pannellodicontrolloTitolo.setLayout(null);
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
 		labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);

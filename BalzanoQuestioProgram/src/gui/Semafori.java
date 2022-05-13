@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,30 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.JSpinner;
-import javax.swing.JToggleButton;
-import javax.swing.JComboBox;
-import javax.swing.JTextField;
-import javax.swing.JInternalFrame;
-import javax.swing.JDesktopPane;
-import javax.swing.Box;
-import java.awt.SystemColor;
-import javax.swing.UIManager;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTable;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.JScrollPane;
 
 public class Semafori extends JFrame {
-	//nuovotest
-	
+
 	private JPanel contentPane;
 	private JFrame frame;
-	private JTextField TextFieldNumProcessi;
-	private JTextField txtNumeroSemafori;
 
 	/**
 	 * Create the frame.
@@ -54,15 +34,14 @@ public class Semafori extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panelMainButton = new JPanel();
-		panelMainButton.setBackground(SystemColor.control);
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
-		frame.getContentPane().add(panelMainButton, BorderLayout.CENTER);
+		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
 		JLabel labelSchemata = new JLabel("Semafori");
-		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 28));
-		labelSchemata.setBounds(718, 11, 137, 38);
+		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		labelSchemata.setBounds(604, 355, 245, 89);
 		panelMainButton.add(labelSchemata);
 		
 		JButton buttonIndietro = new JButton("Indietro");
@@ -79,9 +58,10 @@ public class Semafori extends JFrame {
 			}
 		});
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonIndietro.setBounds(30, 99, 128, 46);
+		buttonIndietro.setBounds(434, 377, 128, 46);
 		panelMainButton.add(buttonIndietro);
 		
+<<<<<<< HEAD
 		JLabel lblNewLabel = new JLabel("Pannello di controllo");
 		lblNewLabel.setBounds(1041, 136, 137, 27);
 		panelMainButton.add(lblNewLabel);
@@ -213,5 +193,7 @@ public class Semafori extends JFrame {
 			}
 		});
 
+=======
+>>>>>>> branch 'master' of https://github.com/antoniolanuto2001/BalzanoQuestionProblem.git
 	}
 }

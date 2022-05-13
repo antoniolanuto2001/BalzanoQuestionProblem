@@ -1,9 +1,12 @@
 package model;
 
+import javax.swing.JTextArea;
+
 public class FilosofiAtomici implements Runnable
 {
     final int index;                        // indice locale del filosofo
     private boolean exit;
+    public JTextArea textAreaLog ;
     public boolean pronto;
     public int tempoPensa;
     public int tempoMangia;
@@ -12,10 +15,11 @@ public class FilosofiAtomici implements Runnable
     static TavolaAtomica tavolaAtomica= new TavolaAtomica(NTHREAD); // monitor statico/condiviso
     
     
-   public FilosofiAtomici(int i) 
+   public FilosofiAtomici(int i ,JTextArea logEntraneTextArea) 
    {
 	   index=i;
 	   exit = true;
+	   textAreaLog=logEntraneTextArea;
 	   tempoPensa=500;
        tempoMangia=800;
        tempoEsecuzione=500;
@@ -42,12 +46,17 @@ public class FilosofiAtomici implements Runnable
         	Thread.sleep(tempoEsecuzione);
             // PENSA 
         	pronto = false;
-            System.out.println("Filosofo " + index +" pensa");
+            System.out.println("Filosofo Atomico" + index +" pensa");
             Thread.sleep(tempoPensa);
+            
+            
+            
+            textAreaLog.append("Filosofo Atomico ["+ index +"] pensa ... \n");
             tavolaAtomica.raccogli(index);  // raccoglie atomicamente le bacchette
             //MANGIA
             pronto=true;
-            System.out.println("Filosofo " + index +" mangia");
+            System.out.println("Filosofo Atomico" + index +" mangia");
+            textAreaLog.append("Filosofo Atomico [" + index + "] mangia ...\n");
             Thread.sleep(tempoMangia);
             tavolaAtomica.deposita(index);  // deposita le bacchette
             pronto = false;

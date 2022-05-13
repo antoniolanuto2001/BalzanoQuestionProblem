@@ -64,10 +64,130 @@ public class MainWindows {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		JLabel testLabel1 = new JLabel("Ciao Erasmo ed Biagio");
-		testLabel1.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		testLabel1.setBounds(610, 332, 143, 41);
-		panelMainButton.add(testLabel1);
+		JLabel labelSfondo = new JLabel("");
+		labelSfondo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://sites.google.com/site/walterbalzano/didattica/sistemi-operativi"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		labelSfondo.setBounds(89, 135, 1259, 356);
+		labelSfondo.setIcon(imageSfondo);
+		panelMainButton.add(labelSfondo);
+		
+		JLabel labelScrittaPaginazione = new JLabel("Paginazione Della Memoria");
+		labelScrittaPaginazione.setBounds(234, 626, 195, 23);
+		panelMainButton.add(labelScrittaPaginazione);
+		labelScrittaPaginazione.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaPaginazione.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelScrittaSchProcessi = new JLabel("Scheduling  Processi");
+		labelScrittaSchProcessi.setBounds(415, 626, 195, 23);
+		panelMainButton.add(labelScrittaSchProcessi);
+		labelScrittaSchProcessi.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaSchProcessi.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelScrittaFilosofi = new JLabel("Filosofi a Cena");
+		labelScrittaFilosofi.setBounds(574, 626, 195, 23);
+		panelMainButton.add(labelScrittaFilosofi);
+		labelScrittaFilosofi.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaFilosofi.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelScrittaHashing = new JLabel("Hashing");
+		labelScrittaHashing.setBounds(719, 626, 195, 23);
+		panelMainButton.add(labelScrittaHashing);
+		labelScrittaHashing.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaHashing.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelScrittaHD = new JLabel("Scheduling  HD");
+		labelScrittaHD.setBounds(876, 626, 205, 23);
+		panelMainButton.add(labelScrittaHD);
+		labelScrittaHD.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaHD.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelScrittaSemafori = new JLabel("Semafori");
+		labelScrittaSemafori.setBounds(1023, 627, 195, 23);
+		panelMainButton.add(labelScrittaSemafori);
+		labelScrittaSemafori.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaSemafori.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		JLabel labelSitoWeb = new JLabel("SITO WEB");
+		labelSitoWeb.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://sites.google.com/site/walterbalzano/didattica/sistemi-operativi"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelSitoWeb.setForeground(new Color (255,127,80));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelSitoWeb.setForeground(Color.BLACK);
+			}
+		});
+		labelSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
+		labelSitoWeb.setForeground(Color.BLACK);
+		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		labelSitoWeb.setBounds(400, 11, 138, 23);
+		panelMainButton.add(labelSitoWeb);
+		
+		JLabel labelVideolezioni = new JLabel("VIDEOLEZIONI");
+		labelVideolezioni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://www.youtube.com/channel/UCQWnq8ucak-M5D27I3yfwiw"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelVideolezioni.setForeground(new Color (255,127,80));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				labelVideolezioni.setForeground(Color.BLACK);
+			}
+		});
+		labelVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
+		labelVideolezioni.setForeground(Color.BLACK);
+		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		labelVideolezioni.setBounds(644, 11, 138, 23);
+		panelMainButton.add(labelVideolezioni);
+		
+		JLabel labellSlideCorso = new JLabel("SLIDE CORSO");
+		labellSlideCorso.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf"));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					e1.printStackTrace();
+				}
 		
 		JLabel testLabel2 = new JLabel("<3 ");
 		testLabel2.setForeground(new Color(255, 51, 51));
@@ -100,8 +220,9 @@ public class MainWindows {
 		buttonHashing.setOpaque(true);
 		buttonHashing.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				Hashing frameDachiamareProcessi= new Hashing(frame);
+			public void mouseClicked(MouseEvent e) 
+			{
+				SchProcessi frameDachiamareProcessi= new SchProcessi(frame);
 				frameDachiamareProcessi.setVisible(true);	
 				frame.setVisible(false);
 				
