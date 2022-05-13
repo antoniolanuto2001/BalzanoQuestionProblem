@@ -61,7 +61,6 @@ public class Semafori extends JFrame {
 		buttonIndietro.setBounds(434, 377, 128, 46);
 		panelMainButton.add(buttonIndietro);
 		
-<<<<<<< HEAD
 		JLabel lblNewLabel = new JLabel("Pannello di controllo");
 		lblNewLabel.setBounds(1041, 136, 137, 27);
 		panelMainButton.add(lblNewLabel);
@@ -193,7 +192,5 @@ public class Semafori extends JFrame {
 			}
 		});
 
-=======
->>>>>>> branch 'master' of https://github.com/antoniolanuto2001/BalzanoQuestionProblem.git
 	}
 }
