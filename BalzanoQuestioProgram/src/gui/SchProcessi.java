@@ -49,6 +49,7 @@ import java.awt.event.ContainerEvent;
 import java.beans.VetoableChangeListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.border.MatteBorder;
 
 public class SchProcessi extends JFrame {
 
@@ -62,8 +63,7 @@ public class SchProcessi extends JFrame {
 	ArrayList<CreaLinee> SJFP=new ArrayList<CreaLinee>();
 	ArrayList<CreaLinee> RR=new ArrayList<CreaLinee>();
 
-	public SchProcessi(JFrame framechiamante) 
-	{
+public SchProcessi(JFrame framechiamante) {
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
@@ -83,8 +83,8 @@ public class SchProcessi extends JFrame {
 /**						BOTTONI PANNELLO PRINCIPALE							*/
 		//BOTTONE INDIETRO	
 		JButton btnIndietro = new JButton("Indietro");
+		btnIndietro.setBackground(new Color(255, 255, 255));
 			btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
-			btnIndietro.setBackground(new Color(255, 255, 255));
 			btnIndietro.setOpaque(true);
 			btnIndietro.addMouseListener(new MouseAdapter() {
 				@Override
@@ -203,7 +203,7 @@ public class SchProcessi extends JFrame {
 			pannelloFCFS.setBounds(10, 0, 1121, 150);
 			pannelloGrafici.add(pannelloFCFS);
 			pannelloFCFS.setLayout(null);
-			pannelloFCFS.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloFCFS.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
 		JLabel lblFirstcomeFirstserved = new JLabel("First-Come, First-Served");
 			lblFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
@@ -243,7 +243,7 @@ public class SchProcessi extends JFrame {
 			pannelloSJF.setBounds(10, 153, 1121, 150);
 			pannelloGrafici.add(pannelloSJF);
 			pannelloSJF.setLayout(null);
-			pannelloSJF.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloSJF.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
 		JLabel lblShortestJobFirts = new JLabel("Shortest Job First");
 			lblShortestJobFirts.setHorizontalAlignment(SwingConstants.CENTER);
@@ -281,7 +281,7 @@ public class SchProcessi extends JFrame {
 		//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
 		JPanel pannelloSJFP = new JPanel();
 			pannelloSJFP.setLayout(null);
-			pannelloSJFP.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloSJFP.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 			pannelloSJFP.setBounds(10, 306, 1121, 150);
 			pannelloGrafici.add(pannelloSJFP);
 		
@@ -293,7 +293,7 @@ public class SchProcessi extends JFrame {
 			pannelloSJFP.add(lblShortestJobFirstPreemptive);
 		
 		JCheckBox chckbxMostraSoluzioneSJFP = new JCheckBox("Mostra Soluzione");
-		chckbxMostraSoluzioneSJFP.setEnabled(false);
+			chckbxMostraSoluzioneSJFP.setEnabled(false);
 			chckbxMostraSoluzioneSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			chckbxMostraSoluzioneSJFP.setBounds(513, 3, 150, 25);
 			pannelloSJFP.add(chckbxMostraSoluzioneSJFP);
@@ -321,7 +321,7 @@ public class SchProcessi extends JFrame {
 		//PANNELLO ROUND ROBIN
 		JPanel pannelloRR = new JPanel();
 			pannelloRR.setLayout(null);
-			pannelloRR.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloRR.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 			pannelloRR.setBounds(10, 459, 1121, 150);
 			pannelloGrafici.add(pannelloRR);
 		
@@ -372,7 +372,6 @@ public class SchProcessi extends JFrame {
 			pannelloRR.add(comboBoxQRR);
 			
 			
-			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
 		//GRAFICO FCFS
@@ -403,7 +402,6 @@ public class SchProcessi extends JFrame {
 			jPanelRR.setBounds(10, 27, 1100, 118);
 			pannelloRR.add(jPanelRR);
 
-
    
 /**							PANNELLI DI CONTROLLO							*/			
 		//PANNELLO DI CONTROLLO
@@ -411,17 +409,17 @@ public class SchProcessi extends JFrame {
 			pannelloDiControllo.setBounds(1141, 85, 265, 668);
 			pannelloPrincipale.add(pannelloDiControllo);
 			pannelloDiControllo.setLayout(null);
-			pannelloDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
+			//pannelloDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
 		
 		JPanel pannellodicontrolloTitolo = new JPanel();
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
 			pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
-			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(255, 204, 0), 4));
-		pannellodicontrolloTitolo.setLayout(null);
+			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(0, 204, 255), 4));
+			pannellodicontrolloTitolo.setLayout(null);
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
-		labelPnlCtrl.setBounds(10, 10, 225, 34);
+			labelPnlCtrl.setBounds(10, 10, 225, 34);
 			labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
 			pannellodicontrolloTitolo.add(labelPnlCtrl);
 			labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
@@ -438,7 +436,7 @@ public class SchProcessi extends JFrame {
 			pannelloEDITOR.setBounds(10, 95, 245, 218);
 			pannelloDiControllo.add(pannelloEDITOR);
 			pannelloEDITOR.setLayout(null);
-			pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			//pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JLabel lblNumeroDiProcessi = new JLabel("Numero di processi");
 			lblNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
@@ -513,7 +511,7 @@ public class SchProcessi extends JFrame {
 			PannelloPLOT.setBounds(10, 348, 245, 94);
 			pannelloDiControllo.add(PannelloPLOT);
 			PannelloPLOT.setLayout(null);
-			PannelloPLOT.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			//PannelloPLOT.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 			chckbxGriglia.setSelected(true);
@@ -592,7 +590,7 @@ public class SchProcessi extends JFrame {
 		
 		JScrollPane scrollPaneHelp = new JScrollPane();
 			scrollPaneHelp.setBounds(0, 0, 245, 189);
-			scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			//scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			pannelloHelp.add(scrollPaneHelp);
 		
 		JTextArea txtrHelpArea = new JTextArea();
@@ -902,7 +900,6 @@ public class SchProcessi extends JFrame {
 				ModifyDurata.setEnabled(false);
 				btnSalvaModifica.setEnabled(false);
 				modificaTabella.setEnabled(false);	
-				chkbkMostraAllSoluzione.setEnabled(true);
 			}
 		});
 		
@@ -918,8 +915,19 @@ public class SchProcessi extends JFrame {
 					ModifyDurata.setEnabled(true);
 					btnSalvaModifica.setEnabled(true);
 					modificaTabella.setEnabled(true);
+					if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+					if(chckbxMostraSoluzioneFCFS.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+					if(chckbxMostraSoluzioneSJF.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+					if(chckbxMostraSoluzioneSJFP.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+					if(chckbxMostraSoluzioneRR.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+
 					chkbkMostraAllSoluzione.setEnabled(false);
 					chkbkMostraAllSoluzione.setSelected(false);
+					chckbxMostraSoluzioneFCFS.setEnabled(false);
+					chckbxMostraSoluzioneSJF.setEnabled(false);
+					chckbxMostraSoluzioneSJFP.setEnabled(false);
+					chckbxMostraSoluzioneRR.setEnabled(false);
+					comboBoxQRR.setEnabled(false);
 				}
 				if(chckbxAttivaModifiche.isSelected()==false) {
 					tabellaProcessi.setEnabled(false);
@@ -929,6 +937,13 @@ public class SchProcessi extends JFrame {
 					btnSalvaModifica.setEnabled(false);
 					modificaTabella.setEnabled(false);
 					chkbkMostraAllSoluzione.setEnabled(true);
+					chkbkMostraAllSoluzione.setEnabled(true);
+					chkbkMostraAllSoluzione.setSelected(true);
+					chckbxMostraSoluzioneFCFS.setEnabled(true);
+					chckbxMostraSoluzioneSJF.setEnabled(true);
+					chckbxMostraSoluzioneSJFP.setEnabled(true);
+					chckbxMostraSoluzioneRR.setEnabled(true);
+					comboBoxQRR.setEnabled(true);
 
 				}
 			}

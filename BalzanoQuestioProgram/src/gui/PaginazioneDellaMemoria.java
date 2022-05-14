@@ -54,6 +54,7 @@ import java.awt.event.ContainerEvent;
 import java.beans.VetoableChangeListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.border.MatteBorder;
 
 public class PaginazioneDellaMemoria extends JFrame {
 
@@ -149,9 +150,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
-		pannelloTitolo.setBorder(new LineBorder(new Color(0, 204, 0), 10));
+		pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 10));
 			pannelloTitolo.setBackground(new Color(255, 255, 255));
-			pannelloTitolo.setBounds(0, 0, 1406, 75);
+			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
 			
@@ -160,7 +161,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
-			labelTitolo.setBounds(0, 0, 1406, 73);
+			labelTitolo.setBounds(0, 0, 1419, 73);
 			pannelloTitolo.add(labelTitolo);
 		
 
@@ -174,9 +175,10 @@ public class PaginazioneDellaMemoria extends JFrame {
         
         //PANNELLO FIRST-COME,FIRST-SERVED
         JPanel pannelloFCFS = new JPanel();
+        pannelloFCFS.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 			pannelloFCFS.setBounds(10, 0, 1121, 150);
 			pannelloGrafici.add(pannelloFCFS);
-			pannelloFCFS.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			//pannelloFCFS.setBorder(new LineBorder(new Color(0, 204, 0), 2));
 			pannelloFCFS.setLayout(null);
 
 		JLabel FIFO = new JLabel("FIFO");
@@ -198,16 +200,16 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 		//PANNELLO SHORTEST JOB FIRST
 		JPanel pannelloSJF = new JPanel();
-			pannelloSJF.setBounds(10, 153, 1121, 150);
+			pannelloSJF.setBounds(10, 146, 1121, 157);
 			pannelloGrafici.add(pannelloSJF);
 			pannelloSJF.setLayout(null);
-			pannelloSJF.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
+			pannelloSJF.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
 		JLabel OPT = new JLabel("OPT");
 			OPT.setHorizontalAlignment(SwingConstants.CENTER);
 			OPT.setForeground(Color.RED);
 			OPT.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			OPT.setBounds(10, 0, 489, 25);
+			OPT.setBounds(10, 3, 489, 25);
 			pannelloSJF.add(OPT);
 		
 		JLabel lblTAMSJF = new JLabel("Page faults:");
@@ -223,15 +225,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 		//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
 		JPanel pannelloSJFP = new JPanel();
 			pannelloSJFP.setLayout(null);
-			pannelloSJFP.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
-			pannelloSJFP.setBounds(10, 306, 1121, 150);
+			pannelloSJFP.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+			pannelloSJFP.setBounds(10, 299, 1121, 157);
 			pannelloGrafici.add(pannelloSJFP);
 		
 		JLabel LRU = new JLabel("LRU");
 			LRU.setHorizontalAlignment(SwingConstants.CENTER);
 			LRU.setForeground(Color.RED);
 			LRU.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			LRU.setBounds(10, 0, 489, 25);
+			LRU.setBounds(10, 3, 489, 25);
 			pannelloSJFP.add(LRU);
 		
 		JLabel lblTAMSJFP = new JLabel("Page faults:");
@@ -247,15 +249,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 		//PANNELLO ROUND ROBIN
 		JPanel pannelloRR = new JPanel();
 			pannelloRR.setLayout(null);
-			pannelloRR.setBorder(BorderFactory.createLineBorder(new Color(255, 204, 51),2));
-			pannelloRR.setBounds(10, 459, 1121, 150);
+			pannelloRR.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+			pannelloRR.setBounds(10, 452, 1121, 157);
 			pannelloGrafici.add(pannelloRR);
 		
 		JLabel clock = new JLabel("Clock");
 			clock.setHorizontalAlignment(SwingConstants.CENTER);
 			clock.setForeground(Color.RED);
 			clock.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			clock.setBounds(10, 0, 489, 25);
+			clock.setBounds(10, 3, 489, 25);
 			pannelloRR.add(clock);
 		
 		JLabel lblTAMRR = new JLabel("Page faults:");
@@ -304,14 +306,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel panelDiControllo = new JPanel();
 			panelDiControllo.setLayout(null);
-			panelDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
+			//panelDiControllo.setBorder(new LineBorder(new Color(0, 153, 0)));
 			panelDiControllo.setBounds(1141, 85, 265, 668);
 			pannelloPrincipale.add(panelDiControllo);
 			
 		JPanel panel_2 = new JPanel();
 			panel_2.setLayout(null);
-			panel_2.setBorder(new LineBorder(new Color(255, 204, 0), 4));
-			panel_2.setBackground(new Color(255, 255, 255));
+			panel_2.setBorder(new LineBorder(new Color(0, 153, 0), 3));
+			//panel_2.setBackground(new Color(255, 255, 255));
 			panel_2.setBounds(10, 10, 245, 54);
 			panelDiControllo.add(panel_2);
 			
@@ -330,7 +332,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel panel_3 = new JPanel();
 			panel_3.setLayout(null);
-			panel_3.setBorder(new LineBorder(new Color(255, 204, 0), 2));
+			//panel_3.setBorder(new LineBorder(new Color(255, 204, 0), 2));
 			panel_3.setBounds(10, 95, 245, 224);
 			panelDiControllo.add(panel_3);
 			
@@ -387,7 +389,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JScrollPane scrollPaneHelp = new JScrollPane();
 			scrollPaneHelp.setBounds(0, 0, 245, 284);
-			scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			//scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			panel_5.add(scrollPaneHelp);
 		
 		JTextArea txtrHelpArea = new JTextArea();
@@ -523,4 +525,3 @@ public class PaginazioneDellaMemoria extends JFrame {
 /*
 * Costruttore con unico parametro il limite della textfield
 */
-		
