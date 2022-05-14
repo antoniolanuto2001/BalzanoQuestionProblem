@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -21,6 +22,16 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import model.Semaforo;
+
+import java.awt.SystemColor;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ActionEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.event.PopupMenuEvent;
 
 public class Semafori extends JFrame {
 
@@ -47,14 +58,24 @@ public class Semafori extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		JLabel labelSchemata = new JLabel("Semafori");
-		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		labelSchemata.setBounds(604, 355, 245, 89);
+		//modified
+		JLabel labelSchemata = new JLabel(" Semafori ");
+		labelSchemata.setBounds(573, 11, 320, 89);
 		panelMainButton.add(labelSchemata);
+		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		
+		
+		//added
+		JPanel panelSuperiore = new JPanel();
+		panelSuperiore.setBackground(SystemColor.activeCaption);
+		panelSuperiore.setBounds(0, 0, 1414, 124);
+		panelMainButton.add(panelSuperiore);
+		panelSuperiore.setLayout(null);
+		
 		
 		JButton buttonIndietro = new JButton("Indietro");
 		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonIndietro.setBackground(new Color(153, 204, 255));
+		buttonIndietro.setBackground(SystemColor.inactiveCaption);
 		buttonIndietro.setOpaque(true);
 		buttonIndietro.addMouseListener(new MouseAdapter() {
 			@Override
@@ -66,18 +87,42 @@ public class Semafori extends JFrame {
 			}
 		});
 		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonIndietro.setBounds(434, 377, 128, 46);
+		buttonIndietro.setBounds(10, 135, 128, 46);
 		panelMainButton.add(buttonIndietro);
 		
+		
+		
+		
+		
+		JButton GeneraEsercizioJButton = new JButton("Genera Esercizio");
+		GeneraEsercizioJButton.setBackground(SystemColor.inactiveCaption);
+		GeneraEsercizioJButton.setOpaque(true);
+		GeneraEsercizioJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		GeneraEsercizioJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		GeneraEsercizioJButton.setBounds(155, 135, 143, 46);
+		panelMainButton.add(GeneraEsercizioJButton);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JLabel lblNewLabel = new JLabel("Pannello di controllo");
-		lblNewLabel.setBounds(1041, 136, 137, 27);
+		lblNewLabel.setBounds(1168, 168, 137, 27);
 		panelMainButton.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		desktopPane.setBackground(Color.RED);
-		desktopPane.setBounds(929, 160, 353, 156);
+		desktopPane.setBackground(SystemColor.inactiveCaption);
+		desktopPane.setBounds(1051, 200, 353, 156);
 		panelMainButton.add(desktopPane);
 		
 		JTextField TextFieldNumProcessi = new JTextField();
@@ -97,11 +142,63 @@ public class Semafori extends JFrame {
 		desktopPane.add(StartPauseToggleButton);
 		StartPauseToggleButton.setBackground(new Color(255, 255, 255));
 		
+		
 		JComboBox NumSemaforiComboBox = new JComboBox();
 		NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
 		NumSemaforiComboBox.setMaximumRowCount(2);
 		NumSemaforiComboBox.setBounds(132, 97, 47, 20);
 		desktopPane.add(NumSemaforiComboBox);
+		
+		
+		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
+		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex1.setBounds(239, 625, 79, 14);
+		panelMainButton.add(JLabelTextMutex1);
+		
+		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
+		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex2.setBounds(573, 625, 79, 14);
+		panelMainButton.add(JLabelTextMutex2);
+		JLabelTextMutex2.setVisible(false);
+		
+		//creating a default semaphore graphic
+		JPanel PannelloGraficaSemaforo1 = new Semaforo();
+		PannelloGraficaSemaforo1.setBounds(65, 527, 164, 213);
+		panelMainButton.add(PannelloGraficaSemaforo1);
+		
+		
+		//second semaphore graphic
+		JPanel PannelloGraficaSemaforo2 = new Semaforo();
+		PannelloGraficaSemaforo2.setBounds(395,527,164,213);
+		panelMainButton.add(PannelloGraficaSemaforo2);
+		PannelloGraficaSemaforo2.setVisible(false);
+		
+		NumSemaforiComboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				
+				Object item = NumSemaforiComboBox.getSelectedItem();
+				
+				if("2".equals(item))
+				{
+					PannelloGraficaSemaforo2.setVisible(true);
+					JLabelTextMutex2.setVisible(true);
+					
+				}else if("1".equals(item))
+				{
+					PannelloGraficaSemaforo2.setVisible(false);
+					JLabelTextMutex2.setVisible(false);
+				}
+					
+			}
+		});
+		
+	
+		
+		
+	
+		
 		
 		JComboBox NumProcessiComboBox = new JComboBox();
 		
@@ -140,23 +237,17 @@ public class Semafori extends JFrame {
 		SviluppatoriJLabel.setBounds(1118, 722, 269, 18);
 		panelMainButton.add(SviluppatoriJLabel);
 		
-		JButton GeneraEsercizioJButton = new JButton("Genera Esercizio");
-		GeneraEsercizioJButton.setBackground(new Color(153, 204, 255));
-		GeneraEsercizioJButton.setOpaque(true);
-		GeneraEsercizioJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GeneraEsercizioJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GeneraEsercizioJButton.setBounds(181, 99, 143, 46);
-		panelMainButton.add(GeneraEsercizioJButton);
+	
 		
 		
 
 		
-		JScrollPane scroll= new JScrollPane();
-		scroll.setBounds(197, 350, 225, 136);
-		panelMainButton.add(scroll);
+		JScrollPane scrollTabella= new JScrollPane();
+		scrollTabella.setBounds(81, 403, 1032, 103);
+		panelMainButton.add(scrollTabella);
 		
-		JTable table = new JTable();
-		table.setColumnSelectionAllowed(true);
+		JTable tabella = new JTable();
+		tabella.setColumnSelectionAllowed(true);
 		DefaultTableModel model1 = new DefaultTableModel()
 		{
 			public Class<?> getColumnClass(int column){
@@ -173,33 +264,66 @@ public class Semafori extends JFrame {
 				}
 			}
 		};
-		model1.addColumn("Processo");
-		model1.addColumn("Arrivo");
-		model1.addColumn("Durata");	
-		table.setModel(model1);
-		model1.addRow(new Object[]{"1", "pippo", "pluto"});
+		model1.addColumn("Nome Processo");
+		model1.addColumn("Inizio Processo");
+		model1.addColumn("Fine Processo");
+		model1.addColumn("Inizio Zona Critica 1");	
+		model1.addColumn("Fine Zona Critica 1");	
+		model1.addColumn("Inizio Zona Critica 2");	
+		model1.addColumn("Fine Zona Critica 2");
+		model1.addColumn("Inizio Zona Critica 3");	
+		model1.addColumn("Fine Zona Critica 3");
+		tabella.setModel(model1);
+		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
 		
-		scroll.setViewportView(table);
+		scrollTabella.setViewportView(tabella);
 		
-		NumProcessiComboBox.addMouseListener(new MouseAdapter() {
+		
+		
+		
+		
+		
+		
+		
+		NumProcessiComboBox.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e)
+			public void actionPerformed(ActionEvent e)
 			{
 				String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
 				int sceltaNumero= Integer.valueOf(sceltaNumeroString);
-				int rowCount = table.getRowCount();
+				int rowCount = tabella.getRowCount();
+				int columnCount = tabella.getColumnCount();
 
 				//rimuove tutte le righe precedenti
 				for (int i = rowCount - 1; i >= 0; i--) 
 				{
 			    	model1.removeRow(i);
 				}
+				//ricrea la tabella
 				for (int i=0;i<sceltaNumero;i++) 
 				{ 
 					model1.addRow(new Object[0]);
 					model1.setValueAt("P"+(i+1),i,0);
+					
+					
+					//setting default values
+					for(int j=1; j<columnCount; j++) {
+						
+						if(j==2)
+							model1.setValueAt("300",i,j);
+						else
+							model1.setValueAt("0", i, j);
+					}
 				}
+				
+				
+				
 			}
 		});
+		
+		
+		
+		
+		
 	}
 }
