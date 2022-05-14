@@ -100,42 +100,42 @@ public class MainWindows {
 		panelMainButton.add(labelSfondo);
 		
 		JLabel labelScrittaPaginazione = new JLabel("PAGINAZIONE DELLA MEMORIA");
-		labelScrittaPaginazione.setForeground(new Color(153, 0, 51));
+		labelScrittaPaginazione.setForeground(new Color(0, 0, 0));
 		labelScrittaPaginazione.setBounds(234, 626, 195, 23);
 		panelMainButton.add(labelScrittaPaginazione);
 		labelScrittaPaginazione.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaPaginazione.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
 		JLabel labelScrittaSchProcessi = new JLabel("SCHEDULING DEI PROCESSI");
-		labelScrittaSchProcessi.setForeground(new Color(153, 0, 51));
+		labelScrittaSchProcessi.setForeground(new Color(0, 0, 0));
 		labelScrittaSchProcessi.setBounds(415, 626, 195, 23);
 		panelMainButton.add(labelScrittaSchProcessi);
 		labelScrittaSchProcessi.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaSchProcessi.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
 		JLabel labelScrittaFilosofi = new JLabel("FILOSOFI A CENA");
-		labelScrittaFilosofi.setForeground(new Color(153, 0, 51));
+		labelScrittaFilosofi.setForeground(new Color(0, 0, 0));
 		labelScrittaFilosofi.setBounds(574, 626, 195, 23);
 		panelMainButton.add(labelScrittaFilosofi);
 		labelScrittaFilosofi.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaFilosofi.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
 		JLabel labelScrittaHashing = new JLabel("HASHING");
-		labelScrittaHashing.setForeground(new Color(153, 0, 51));
+		labelScrittaHashing.setForeground(new Color(0, 0, 0));
 		labelScrittaHashing.setBounds(719, 626, 195, 23);
 		panelMainButton.add(labelScrittaHashing);
 		labelScrittaHashing.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaHashing.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
 		JLabel labelScrittaHD = new JLabel("SCHEDULING HD");
-		labelScrittaHD.setForeground(new Color(153, 0, 51));
+		labelScrittaHD.setForeground(new Color(0, 0, 0));
 		labelScrittaHD.setBounds(876, 626, 205, 23);
 		panelMainButton.add(labelScrittaHD);
 		labelScrittaHD.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaHD.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
 		JLabel labelScrittaSemafori = new JLabel("SEMAFORI");
-		labelScrittaSemafori.setForeground(new Color(153, 0, 51));
+		labelScrittaSemafori.setForeground(new Color(0, 0, 0));
 		labelScrittaSemafori.setBounds(1023, 627, 195, 23);
 		panelMainButton.add(labelScrittaSemafori);
 		labelScrittaSemafori.setHorizontalAlignment(SwingConstants.CENTER);
@@ -166,8 +166,8 @@ public class MainWindows {
 		});
 		labelSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
 		labelSitoWeb.setForeground(new Color(153, 0, 51));
-		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 40));
-		labelSitoWeb.setBounds(333, 11, 205, 54);
+		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 28));
+		labelSitoWeb.setBounds(329, 11, 205, 54);
 		panelMainButton.add(labelSitoWeb);
 		
 		JLabel labelVideolezioni = new JLabel("VIDEOLEZIONI");
@@ -195,8 +195,8 @@ public class MainWindows {
 		});
 		labelVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
 		labelVideolezioni.setForeground(new Color(153, 0, 51));
-		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 40));
-		labelVideolezioni.setBounds(574, 11, 371, 54);
+		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 28));
+		labelVideolezioni.setBounds(573, 11, 279, 54);
 		panelMainButton.add(labelVideolezioni);
 		
 		JLabel labellSlideCorso = new JLabel("SLIDE CORSO");
@@ -225,8 +225,8 @@ public class MainWindows {
 		});
 		labellSlideCorso.setHorizontalAlignment(SwingConstants.CENTER);
 		labellSlideCorso.setForeground(new Color(153, 0, 51));
-		labellSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 40));
-		labellSlideCorso.setBounds(938, 11, 371, 54);
+		labellSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 28));
+		labellSlideCorso.setBounds(874, 11, 247, 54);
 		panelMainButton.add(labellSlideCorso);
 		
 		JLabel labelPaginazione = new JLabel("Paginzione Icon");
@@ -245,7 +245,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaPaginazione.setForeground(new Color(153, 0, 51));
+				labelScrittaPaginazione.setForeground(Color.BLACK);
 			}
 		});
 		labelPaginazione.setIcon(imagePaginazione);
@@ -269,7 +269,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaSchProcessi.setForeground(new Color(153, 0, 51));
+				labelScrittaSchProcessi.setForeground(Color.BLACK);
 			}
 		});
 		labelCpu.setBounds(453, 516, 117, 99);
@@ -292,7 +292,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaFilosofi.setForeground(new Color(153, 0, 51));
+				labelScrittaFilosofi.setForeground(Color.BLACK);
 			}
 		});
 		labelFilosofo.setBounds(612, 516, 117, 99);
@@ -315,7 +315,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaHashing.setForeground(new Color(153, 0, 51));
+				labelScrittaHashing.setForeground(Color.BLACK);
 			}
 		});
 		labelHashing.setBounds(757, 519, 117, 99);
@@ -338,7 +338,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaHD.setForeground(new Color(153, 0, 51));
+				labelScrittaHD.setForeground(Color.BLACK);
 			}
 		});
 		labelHD.setBounds(912, 528, 117, 99);
@@ -361,7 +361,7 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelScrittaSemafori.setForeground(new Color(153, 0, 51));
+				labelScrittaSemafori.setForeground(Color.BLACK);
 			}
 		});
 		labelSemaforo.setBounds(1064, 523, 117, 99);
