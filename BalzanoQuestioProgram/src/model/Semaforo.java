@@ -13,7 +13,7 @@ public class Semaforo extends JPanel{
 	
 	public Semaforo()
 	{
-		//160-260
+		//160-260 default settings for size
 		light.setPreferredSize(new Dimension(160,260));
 		add(light);
 	}

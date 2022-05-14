@@ -177,17 +177,20 @@ public class Semafori extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
-				
 				Object item = NumSemaforiComboBox.getSelectedItem();
 				
 				if("2".equals(item))
 				{
+					//visibilità semaforo
 					PannelloGraficaSemaforo2.setVisible(true);
+					//visibilità testo
 					JLabelTextMutex2.setVisible(true);
 					
 				}else if("1".equals(item))
 				{
+					//visibilità semaforo
 					PannelloGraficaSemaforo2.setVisible(false);
+					//visibilità testo
 					JLabelTextMutex2.setVisible(false);
 				}
 					

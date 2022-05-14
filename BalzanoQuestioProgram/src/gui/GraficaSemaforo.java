@@ -10,6 +10,8 @@ public class GraficaSemaforo extends JComponent
 	Color go = Color.gray;
 	Color stop = Color.gray;
 	
+	//primo tipo
+	
 	/*public void paint(Graphics g)
 	{
 		g.setColor(Color.black);
@@ -30,7 +32,7 @@ public class GraficaSemaforo extends JComponent
 	
 	
 	
-	
+	//secondo tipo
     public void paint(Graphics g)
     {
         g.drawRect(0, 0, 150, 250);
