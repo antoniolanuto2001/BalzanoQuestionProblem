@@ -3,10 +3,15 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -92,15 +97,57 @@ public class Semafori extends JFrame {
 		
 		
 		
+	
 		
 		
-		JButton GeneraEsercizioJButton = new JButton("Genera Esercizio");
-		GeneraEsercizioJButton.setBackground(SystemColor.inactiveCaption);
-		GeneraEsercizioJButton.setOpaque(true);
-		GeneraEsercizioJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GeneraEsercizioJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GeneraEsercizioJButton.setBounds(155, 135, 143, 46);
-		panelMainButton.add(GeneraEsercizioJButton);
+		
+		JButton SlideArgomentoJButton = new JButton("Slide Argomento");
+		SlideArgomentoJButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=232"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		SlideArgomentoJButton.setBackground(SystemColor.inactiveCaption);
+		SlideArgomentoJButton.setOpaque(true);
+		SlideArgomentoJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		SlideArgomentoJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		SlideArgomentoJButton.setBounds(331,135,143,46);
+		panelMainButton.add(SlideArgomentoJButton);
+		
+		JButton VideoLezioneJButton = new JButton("VideoLezione");
+		VideoLezioneJButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+		 		Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=5976"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		VideoLezioneJButton.setBackground(SystemColor.inactiveCaption);
+		VideoLezioneJButton.setOpaque(true);
+		VideoLezioneJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		VideoLezioneJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		VideoLezioneJButton.setBounds(509,135,143,46);
+		panelMainButton.add(VideoLezioneJButton);
 		
 		
 		
@@ -324,6 +371,103 @@ public class Semafori extends JFrame {
 			}
 		});
 		
+		
+		
+		
+		JButton GeneraEsercizioJButton = new JButton("Genera Esercizio");
+		GeneraEsercizioJButton.setBackground(SystemColor.inactiveCaption);
+		GeneraEsercizioJButton.setOpaque(true);
+		GeneraEsercizioJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
+		GeneraEsercizioJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		GeneraEsercizioJButton.setBounds(155, 135, 143, 46);
+		panelMainButton.add(GeneraEsercizioJButton);
+		
+		GeneraEsercizioJButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int rowCount = tabella.getRowCount();
+				int columnCount = tabella.getColumnCount();
+				int randomNum=0;
+				int start_processo=0;
+				int end_processo=0;
+				int start_critica1=0,start_critica2=0,start_critica3=0;
+				int end_critica1=0,end_critica2=0;
+		
+				
+				//algoritmo di generazione valori 
+				for(int i=0; i<rowCount; i++) {
+					for(int j=1; j<columnCount; j++) {
+					
+						//inizio processo
+						if(j==1)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(1, 50);
+							start_processo=randomNum;
+						}
+						
+						//fine processo
+						if(j==2)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(270, 300);
+							end_processo=randomNum;
+						}
+						
+						//inizio zona critica 1
+					
+						if(j==3)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(55, 80);
+							start_critica1=randomNum;
+						}
+						
+						//fine zona critica 1
+						if(j==4)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(100, 140);
+							end_critica1=randomNum;
+						}
+						
+						
+						//inizio zona critica 2
+						//start zona critica 2: >end zona critica 1 && compreso tra 160-184
+						if(j==5)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(160, 184);
+							start_critica2=randomNum;
+						}
+						
+						//fine zona critica 2
+						//end zona critica 2: > start zona critica 2 && compreso tra 195-230
+						if(j==6)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(195, 230);
+							end_critica2=randomNum;
+						}
+						
+						//inizio zona critica 3
+						//start zona critica 3: >end zona critica 2 && compreso tra 238-268
+						if(j==7)
+						{
+							
+							randomNum= ThreadLocalRandom.current().nextInt(238, 268);
+							start_critica3=randomNum;
+						}
+						
+						//fine zona critica 3
+						//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
+						if(j==8)
+						{
+							randomNum= ThreadLocalRandom.current().nextInt(275,287);	
+						}
+						
+						
+						
+						model1.setValueAt(randomNum, i, j);
+					}
+				}
+				
+			}
+		});
 		
 		
 		
