@@ -1,8 +1,14 @@
 package model;
 
+/**
+ * 
+ * @author Antonio Lanuto
+ * @param Parola
+ *
+ */
 public class parolaHashing
 {
-	public String parola;
+	public String parola; 
 	public int indexString;
 	public int indexParola;
 	public int risultatoFinale;
@@ -73,5 +79,5 @@ public class parolaHashing
 		}
 		return risultatoFinale;
 	}
-
+	
 }
