@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.geom.*;
 
 import javax.swing.JPanel;
 
@@ -17,6 +20,7 @@ public class PanelGraficiSchProcessi extends JPanel {
    	public void paintComponent(Graphics g){
 
 	super.paintComponent(g); 
+
 	//setBackground(Color.white); 
 	intervalloX=l/((float)xMax-xMin);
 	intervalloY=h/((float)yMax-yMin);
@@ -114,19 +118,25 @@ public class PanelGraficiSchProcessi extends JPanel {
 	
 	
 	
-	public void disegnaSoluzione(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<CreaLinee>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
+	public void disegnaSoluzione(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
 
     	if(selectSoluzione==true) {
-    		g.setColor(Color.red);
+    		
+    		for(int l=0;l<lineesFCFS.size();) {   
+        		g.setColor(new Color(0, 204, 0));
+    			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
+    			if(lineesFCFS.get(l+1)==3) g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+
+    			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+    			l=l+4;
+    			}
+    		g.setColor(Color.blue);
 
     		for(int l=0;l<lineesFCFSarray.size();l++) {    
-        			g.drawString("O",30+lineesFCFSarray.get(l).getArrivo()*15,92-l*15);
+        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,92-l*15);
         	}
 
-    		for(int l=0;l<lineesFCFS.size();l++) {    
-    			System.out.println("x"+lineesFCFS.get(l).getArrivo()+" y"+lineesFCFS.get(l).getProcesso()+" x"+lineesFCFS.get(l).getDurata()+" y"+lineesFCFS.get(l).getProcesso());
-    			g.drawString("X",30+lineesFCFS.get(l).getArrivo()*15,92-l*15);
-    	}
     	}
 	}
 	

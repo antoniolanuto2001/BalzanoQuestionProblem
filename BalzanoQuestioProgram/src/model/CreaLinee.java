@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class CreaLinee implements Comparable<CreaLinee>{
 	
 	int arrivo,durata, processo;
-	
+	int x,y;
 	ArrayList<Integer> punti=new ArrayList<Integer>();
 	ArrayList<Integer> linee=new ArrayList<Integer>();
 
@@ -25,13 +25,6 @@ public class CreaLinee implements Comparable<CreaLinee>{
 		linee.add(Integer.valueOf(processo));
 		linee.add(Integer.valueOf(arrivo));
 		linee.add(Integer.valueOf(durata));
-
-	}
-
-	public void creaPunti(int arrivo, int processo) {
-		
-		punti.add(Integer.valueOf(arrivo));
-		punti.add(Integer.valueOf(processo));
 
 	}
 	
