@@ -29,7 +29,7 @@ public class parolaHashing
         int sum = 0;
         for (int i = 0; i < charArray.length; i++)
         {
-                int a = Integer.parseInt(String.valueOf(charArray[i]));
+                int a = charArray[i];
                 sum = sum + a;
             
         }
@@ -44,7 +44,7 @@ public class parolaHashing
         int sum = 0;
         for (int i = 0; i < charArray.length; i++)
         {
-                int a = Integer.parseInt(String.valueOf(charArray[i]));
+                int a = charArray[i];
                 a=(int)Math.pow(a, 2);
                 sum = sum + a;
             
@@ -75,7 +75,7 @@ public class parolaHashing
 	{
 		if (risultatoIntermedio!=0)
 		{
-			risultatoFinale = (risultatoIntermedio + (int)Math.pow(risultatoIntermedio, 2) % 8);
+			risultatoFinale = (risultatoIntermedio + (23 * 23) ) % 8;
 		}
 		return risultatoFinale;
 	}
