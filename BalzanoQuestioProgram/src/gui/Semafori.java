@@ -585,6 +585,7 @@ public class Semafori extends JFrame {
 	        	}
 	        });
 	        
+	        //icona
 	        GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
 	        GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
 	        panelMainButton.add(GeneraEsercizioIcon);
