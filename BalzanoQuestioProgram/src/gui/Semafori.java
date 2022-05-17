@@ -90,13 +90,6 @@ public class Semafori extends JFrame {
 		
 		
 		
-		JLabel labelHelpIcon = new JLabel("Help");
-		labelHelpIcon.setBounds(1451, 0, 34, 46);
-		panelSuperiore.add(labelHelpIcon);
-		labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-		
-		
-		
 		
 		   JLabel labelIndietroIcon = new JLabel("Indietro");
 	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
@@ -605,6 +598,13 @@ public class Semafori extends JFrame {
 	        IndicatoreTempoFin1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
 	        IndicatoreTempoFin1.setBounds(305, 709, 64, 14);
 	        panelMainButton.add(IndicatoreTempoFin1);
+	        
+	        
+	        
+	        JLabel labelHelpIcon = new JLabel("Help");
+	        labelHelpIcon.setBounds(1343, 460, 34, 46);
+	        panelMainButton.add(labelHelpIcon);
+	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 	        
 	       
 	       
