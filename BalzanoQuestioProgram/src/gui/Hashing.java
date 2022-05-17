@@ -2,11 +2,15 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -62,75 +66,46 @@ public class Hashing extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBackground(new Color(153, 204, 255));
-		panelSuperiore.setBounds(0, 0, 1414, 124);
+		panelSuperiore.setBorder(new LineBorder(new Color (30, 136, 229), 5));
+		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
 		
-		JLabel labelSchemata = new JLabel(" Hashing ");
-		labelSchemata.setBounds(573, 11, 320, 89);
+		JLabel labelSchemata = new JLabel("HASHING");
+		labelSchemata.setBounds(559, 0, 262, 73);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
 		
-		JButton buttonIndietro = new JButton("Indietro");
-		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonIndietro.setBackground(new Color(153, 204, 255));
-		buttonIndietro.setOpaque(true);
-		buttonIndietro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				framechiamante.setVisible(true);
-				frame.setVisible(false);
-				frame.dispose();
-			}
-		});
-		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonIndietro.setBounds(148, 135, 128, 46);
-		panelMainButton.add(buttonIndietro);
-		
 		JTextArea textParoleBase = new JTextArea();
-		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 15));
+		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 18));
 		textParoleBase.setEditable(false);
 		textParoleBase.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleBase.setBounds(115, 250, 199, 303);
+		textParoleBase.setBounds(50, 250, 210, 406);
 		panelMainButton.add(textParoleBase);
-		
-		JButton buttonEsci = new JButton("Esci");
-		buttonEsci.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonEsci.setBackground(new Color(204, 204, 255));
-		buttonEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonEsci.setLocation(10, 135);
-		buttonEsci.setSize(128, 46);
-		buttonEsci.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		panelMainButton.add(buttonEsci);
 		
 		JPanel panelControllo = new JPanel();
 		panelControllo.setBorder(new LineBorder(new Color(255, 102, 51), 2));
-		panelControllo.setBounds(1117, 135, 274, 605);
+		panelControllo.setBounds(1130, 76, 274, 664);
 		panelMainButton.add(panelControllo);
 		panelControllo.setLayout(null);
 		
-		JLabel labelgenerale = new JLabel("Plot :");
+		JLabel labelgenerale = new JLabel("       Plot :");
+		labelgenerale.setForeground(Color.RED);
 		labelgenerale.setVerticalAlignment(SwingConstants.BOTTOM);
-		labelgenerale.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		labelgenerale.setBounds(10, 21, 122, 26);
+		labelgenerale.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelgenerale.setBounds(68, 58, 122, 26);
 		panelControllo.add(labelgenerale);
 		
 		JPanel panelPlot = new JPanel();
 		panelPlot.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelPlot.setBounds(10, 48, 254, 169);
+		panelPlot.setBounds(10, 85, 254, 169);
 		panelControllo.add(panelPlot);
 		panelPlot.setLayout(null);
 		
 		JButton buttonGeneraEsempio = new JButton("Genera Esempio");
 		
-		buttonGeneraEsempio.setBackground(new Color(153, 255, 102));
-		buttonGeneraEsempio.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		
+		buttonGeneraEsempio.setBorder(new LineBorder(Color.RED, 2, true));
 		buttonGeneraEsempio.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		buttonGeneraEsempio.setBounds(69, 78, 127, 34);
 		panelPlot.add(buttonGeneraEsempio);
@@ -142,13 +117,13 @@ public class Hashing extends JFrame {
 		comboBoxSceltaNParole.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		comboBoxSceltaNParole.setBackground(new Color(255, 255, 255));
 		comboBoxSceltaNParole.setModel(new DefaultComboBoxModel(new String[] {"9","8","7","6", "5", "4"}));
-		comboBoxSceltaNParole.setBounds(146, 41, 50, 21);
+		comboBoxSceltaNParole.setBounds(167, 46, 50, 21);
 		panelPlot.add(comboBoxSceltaNParole);
 		
 		JLabel labelGrandezza = new JLabel("Grandezza Dizionario : ");
 		labelGrandezza.setEnabled(false);
 		labelGrandezza.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		labelGrandezza.setBounds(10, 40, 126, 22);
+		labelGrandezza.setBounds(31, 45, 126, 22);
 		panelPlot.add(labelGrandezza);
 		
 		JLabel labelPlay = new JLabel(">");
@@ -164,7 +139,7 @@ public class Hashing extends JFrame {
 		JPanel panelSomma = new JPanel();
 		panelSomma.setLayout(null);
 		panelSomma.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelSomma.setBounds(10, 242, 254, 135);
+		panelSomma.setBounds(10, 279, 254, 135);
 		panelControllo.add(panelSomma);
 		
 		JRadioButton radioSommaNormale = new JRadioButton("Somma di Caratteri");
@@ -182,22 +157,122 @@ public class Hashing extends JFrame {
 		radioSommaMultipla.setBounds(6, 74, 213, 31);
 		panelSomma.add(radioSommaMultipla);
 		
-		JLabel labelSomma = new JLabel("Somma : ");
+		JLabel labelSomma = new JLabel("    Somma : ");
+		labelSomma.setForeground(Color.RED);
 		labelSomma.setVerticalAlignment(SwingConstants.BOTTOM);
-		labelSomma.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		labelSomma.setBounds(10, 216, 122, 26);
+		labelSomma.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelSomma.setBounds(68, 253, 122, 26);
 		panelControllo.add(labelSomma);
 		
+		JLabel labelScrittaIndietro = new JLabel(" Indietro");
+        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        labelScrittaIndietro.setBounds(12, 132, 53, 12);
+        panelMainButton.add(labelScrittaIndietro);
+        
+        JLabel labelIndietroIcon = new JLabel("Exit");
+        labelIndietroIcon.addMouseListener(new MouseAdapter() {
+        	@Override
+			public void mouseClicked(MouseEvent e) 
+			{	
+				framechiamante.setVisible(true);
+				frame.setVisible(false);
+				frame.dispose();
+			}
+        	@Override
+        	public void mouseEntered(MouseEvent e) 
+        	{
+        		labelScrittaIndietro.setForeground(Color.RED);
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) 
+        	{
+        		labelScrittaIndietro.setForeground(Color.BLACK);
+        	}
+        });
+        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
+        labelIndietroIcon.setBounds(10, 84, 53, 46);
+        panelMainButton.add(labelIndietroIcon);
+        
+        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
+        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        labelScrittaYoutube.setBounds(918, 132, 82, 12);
+        panelMainButton.add(labelScrittaYoutube);
+        JLabel labelYoutubeIcon = new JLabel("Youtube");
+        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=9113"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        	@Override
+        	public void mouseEntered(MouseEvent e) 
+        	{
+        		labelScrittaYoutube.setForeground(Color.RED);
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) 
+        	{
+        		labelScrittaYoutube.setForeground(Color.BLACK);
+        	}
+        });
+        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
+        labelYoutubeIcon.setBounds(933, 84, 53, 46);
+        panelMainButton.add(labelYoutubeIcon);
+        
+        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        labelScrittaSlide.setBounds(1007, 132, 95, 15);
+        panelMainButton.add(labelScrittaSlide);
+        JLabel labelSlideIcon = new JLabel("Slide");
+        labelSlideIcon.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mouseClicked(MouseEvent e) {
+        		Desktop d = Desktop.getDesktop();
+				try {
+					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=248"));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (URISyntaxException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        	}
+        	@Override
+        	public void mouseEntered(MouseEvent e) 
+        	{
+        		labelScrittaSlide.setForeground(Color.RED);
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) 
+        	{
+        		labelScrittaSlide.setForeground(Color.BLACK);
+        	}
+        });
+        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
+        labelSlideIcon.setBounds(1027, 84, 53, 46);
+        panelMainButton.add(labelSlideIcon);
+        
+      
 		JLabel labelCodifica = new JLabel("Codifica :");
+		labelCodifica.setForeground(Color.RED);
 		labelCodifica.setVerticalAlignment(SwingConstants.BOTTOM);
-		labelCodifica.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		labelCodifica.setBounds(10, 388, 122, 26);
+		labelCodifica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+		labelCodifica.setBounds(91, 425, 122, 26);
 		panelControllo.add(labelCodifica);
 		
 		JPanel panelCodifica = new JPanel();
 		panelCodifica.setLayout(null);
 		panelCodifica.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelCodifica.setBounds(10, 414, 254, 180);
+		panelCodifica.setBounds(10, 451, 254, 180);
 		panelControllo.add(panelCodifica);
 		
 		JRadioButton radioXmod = new JRadioButton("x Mod 8");
@@ -229,31 +304,31 @@ public class Hashing extends JFrame {
 		
 		JLabel labelDizionario = new JLabel("Dizionario :");
 		labelDizionario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelDizionario.setBounds(115, 210, 116, 29);
+		labelDizionario.setBounds(50, 210, 116, 29);
 		panelMainButton.add(labelDizionario);
 		
 		JTextArea textParoleSommate = new JTextArea();
-		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 15));
+		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 18));
 		textParoleSommate.setEditable(false);
 		textParoleSommate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleSommate.setBounds(430, 250, 199, 303);
+		textParoleSommate.setBounds(417, 250, 210, 406);
 		panelMainButton.add(textParoleSommate);
 		
 		JLabel labelCodifica1 = new JLabel("Somma : ");
 		labelCodifica1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelCodifica1.setBounds(430, 210, 116, 29);
+		labelCodifica1.setBounds(411, 210, 116, 29);
 		panelMainButton.add(labelCodifica1);
 		
 		JLabel labelSomma2 = new JLabel("Codifica :");
 		labelSomma2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelSomma2.setBounds(736, 210, 116, 29);
+		labelSomma2.setBounds(812, 210, 116, 29);
 		panelMainButton.add(labelSomma2);
 		
 		JTextArea textParoleCodificate = new JTextArea();
-		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 15));
+		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 18));
 		textParoleCodificate.setEditable(false);
 		textParoleCodificate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleCodificate.setBounds(736, 250, 199, 303);
+		textParoleCodificate.setBounds(814, 250, 199, 406);
 		panelMainButton.add(textParoleCodificate);
 		buttonGeneraEsempio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 

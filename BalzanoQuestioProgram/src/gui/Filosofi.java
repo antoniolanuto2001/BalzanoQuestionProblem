@@ -146,9 +146,8 @@ public class Filosofi extends JFrame {
 		
 		
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBackground(new Color(230, 240, 240));
 		panelSuperiore.setBorder(new LineBorder(new Color(149, 117, 205), 9));
-		panelSuperiore.setBounds(0, 0, 1414, 124);
+		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
 		
@@ -156,7 +155,7 @@ public class Filosofi extends JFrame {
 		labelSchemata.setBackground(Color.LIGHT_GRAY);
 		labelSchemata.setForeground(Color.BLACK);
 		labelSchemata.setHorizontalAlignment(SwingConstants.CENTER);
-		labelSchemata.setBounds(20, 16, 1384, 89);
+		labelSchemata.setBounds(324, 11, 678, 62);
 		labelSchemata.setBorder(null);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
@@ -173,11 +172,11 @@ public class Filosofi extends JFrame {
         
         JLabel labelLog = new JLabel("LOG Degli Eventi : ");
         labelLog.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        labelLog.setBounds(10, 210, 172, 36);
+        labelLog.setBounds(10, 155, 172, 36);
         panelMainButton.add(labelLog);
         
         JPanel panelDiControllo = new JPanel();
-		panelDiControllo.setBounds(1112, 134, 290, 617);
+		panelDiControllo.setBounds(1112, 84, 290, 667);
 		
 		panelDiControllo.setLayout(null);
 		panelDiControllo.setBorder(new LineBorder(new Color(179, 157, 219), 3, true));
@@ -702,40 +701,10 @@ public class Filosofi extends JFrame {
         labelVelocit.setFont(new Font("Segoe UI", Font.BOLD, 16));
         labelVelocit.setBounds(20, 302, 142, 25);
         panelDiControllo.add(labelVelocit);
-                
-               
-        
-        JLabel labelScrittaIconEsci = new JLabel("    Esci");
-        labelScrittaIconEsci.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIconEsci.setBounds(10, 183, 53, 12);
-        panelMainButton.add(labelScrittaIconEsci);
-        
-        JLabel labelEsciIcon = new JLabel("Exit");
-        labelEsciIcon.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) 
-        	{
-        		System.exit(0);
-        	}
-        	@Override
-        	public void mouseEntered(MouseEvent e) 
-        	{
-        		labelScrittaIconEsci.setForeground(Color.RED);
-        	}
-        	@Override
-        	public void mouseExited(MouseEvent e) 
-        	{
-        		labelScrittaIconEsci.setForeground(Color.BLACK);
-        	}
-
-        });
-        labelEsciIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/esciIcon1.png")));
-        labelEsciIcon.setBounds(10, 135, 53, 46);
-        panelMainButton.add(labelEsciIcon);
         
         JLabel labelScrittaIndietro = new JLabel(" Indietro");
         labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIndietro.setBounds(75, 183, 53, 12);
+        labelScrittaIndietro.setBounds(12, 132, 53, 12);
         panelMainButton.add(labelScrittaIndietro);
         
         JLabel labelIndietroIcon = new JLabel("Exit");
@@ -773,12 +742,12 @@ public class Filosofi extends JFrame {
         	}
         });
         labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
-        labelIndietroIcon.setBounds(73, 135, 53, 46);
+        labelIndietroIcon.setBounds(10, 84, 53, 46);
         panelMainButton.add(labelIndietroIcon);
         
         JLabel labelScrittaYoutube = new JLabel("Video Youtube");
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaYoutube.setBounds(146, 183, 82, 12);
+        labelScrittaYoutube.setBounds(918, 132, 82, 12);
         panelMainButton.add(labelScrittaYoutube);
         JLabel labelYoutubeIcon = new JLabel("Youtube");
         labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -807,12 +776,12 @@ public class Filosofi extends JFrame {
         	}
         });
         labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-        labelYoutubeIcon.setBounds(161, 135, 53, 46);
+        labelYoutubeIcon.setBounds(933, 84, 53, 46);
         panelMainButton.add(labelYoutubeIcon);
         
         JLabel labelScrittaSlide = new JLabel("Slide Argomento");
         labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaSlide.setBounds(235, 183, 95, 15);
+        labelScrittaSlide.setBounds(1007, 132, 95, 15);
         panelMainButton.add(labelScrittaSlide);
         JLabel labelSlideIcon = new JLabel("Slide");
         labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -841,7 +810,7 @@ public class Filosofi extends JFrame {
         	}
         });
         labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-        labelSlideIcon.setBounds(255, 135, 53, 46);
+        labelSlideIcon.setBounds(1027, 84, 53, 46);
         panelMainButton.add(labelSlideIcon);
         
       
