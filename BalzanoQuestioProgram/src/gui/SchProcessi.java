@@ -897,11 +897,26 @@ public SchProcessi(JFrame framechiamante) {
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				btnGeneraGrafici.setBackground(new Color(51, 204, 255));
+				if (btnGeneraGrafici.isEnabled()) 
+				{
+					btnGeneraGrafici.setBackground(new Color(51, 204, 255));
+				}
+				
+				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				btnGeneraGrafici.setBackground(new Color(255, 255, 255));
+				
+				if (btnGeneraGrafici.isEnabled()) 
+				{
+					btnGeneraGrafici.setBackground(new Color(255, 255, 255));
+				}
+				else 
+				{
+					btnGeneraGrafici.setBackground(new Color(255, 255, 255));
+				}
+				
+				
 			}
 		});
 
