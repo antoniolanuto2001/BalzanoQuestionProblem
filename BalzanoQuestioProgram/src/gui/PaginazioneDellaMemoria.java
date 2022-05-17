@@ -45,6 +45,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import java.awt.Desktop;
 import java.beans.PropertyChangeListener;
@@ -80,74 +81,45 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloPrincipale.setBounds(0, 0, 1440, 800);
 			frame.getContentPane().add(pannelloPrincipale);
 			pannelloPrincipale.setLayout(null);
-
-/**						BOTTONI PANNELLO PRINCIPALE							*/
-		//BOTTONE INDIETRO	
-		JButton btnIndietro = new JButton("Indietro");
-			btnIndietro.setBorder(new LineBorder(new Color(102, 204, 255), 4));
-			btnIndietro.setBackground(new Color(255, 255, 255));
-			btnIndietro.setOpaque(true);
-			btnIndietro.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					framechiamante.setVisible(true);
+	        
+	        JLabel labelScrittaIndietro = new JLabel(" Indietro");
+	        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaIndietro.setBounds(10, 120, 53, 12);
+	        pannelloPrincipale.add(labelScrittaIndietro);
+	        
+	        JLabel labelIndietroIcon = new JLabel("Exit");
+	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		framechiamante.setVisible(true);
 					frame.setVisible(false);
 					frame.dispose();
 				}
-			});
-			btnIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnIndietro.setBounds(101, 85, 128, 48);
-			pannelloPrincipale.add(btnIndietro);
-		
-		//BOTTONE SLIDE ARGOMENTO
-		JButton btnSlideArgomento = new JButton("Slide Argomento");
-			btnSlideArgomento.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					Desktop d = Desktop.getDesktop();
-					try {
-						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
-						e1.printStackTrace();
-					}
-				}
-			});
-			btnSlideArgomento.setOpaque(true);
-			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnSlideArgomento.setBorder(new LineBorder(new Color(153, 102, 255), 4));
-			btnSlideArgomento.setBackground(new Color(255, 255, 255));
-			btnSlideArgomento.setBounds(239, 85, 128, 48);
-			pannelloPrincipale.add(btnSlideArgomento);
-			frame.setVisible(true); 
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaIndietro.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaIndietro.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
+	        labelIndietroIcon.setBounds(10, 75, 53, 46);
+	        pannelloPrincipale.add(labelIndietroIcon);
 	        
-		//BOTTONE ESCI
-		JButton btnEsci = new JButton("Esci");
-			btnEsci.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
-				}
-			});
-			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
-			btnEsci.setBackground(new Color(255, 255, 255));
-			btnEsci.setBounds(10, 85, 81, 48);
-			pannelloPrincipale.add(btnEsci);
-		
-		//BOTTONE INFO SULL'USO DELL'APP	
-		JButton btnInfouso = new JButton("Info/Uso");
-			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(525, 85, 81, 48);
-			pannelloPrincipale.add(btnInfouso);
-
-		//BOTTONE VIDEOLEZIONI	
-		JButton buttonVideo = new JButton("Videolezione");
-			buttonVideo.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					Desktop d = Desktop.getDesktop();
+	        JLabel labelScrittaYoutube = new JLabel("Videolezione");
+	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
+	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaYoutube.setBounds(73, 120, 95, 12);
+	        pannelloPrincipale.add(labelScrittaYoutube);
+	        JLabel labelYoutubeIcon = new JLabel("Youtube");
+	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
 					try {
 						d.browse(new URI ("https://youtu.be/s8fpbXN92Tk"));
 					} catch (IOException e1) {
@@ -157,15 +129,56 @@ public class PaginazioneDellaMemoria extends JFrame {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-				}
-			});
-			buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
-			buttonVideo.setBackground(Color.WHITE);
-			buttonVideo.setBounds(377, 86, 138, 46);
-			pannelloPrincipale.add(buttonVideo);
-		
-			
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
+	        labelYoutubeIcon.setBounds(93, 75, 53, 46);
+	        pannelloPrincipale.add(labelYoutubeIcon);
+	        
+	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaSlide.setBounds(166, 119, 95, 15);
+	        pannelloPrincipale.add(labelScrittaSlide);
+	        JLabel labelSlideIcon = new JLabel("Slide");
+	        labelSlideIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
+	        labelSlideIcon.setBounds(185, 75, 53, 46);
+	        pannelloPrincipale.add(labelSlideIcon);
+	
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
 		pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 10));

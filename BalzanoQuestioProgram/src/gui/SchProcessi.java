@@ -85,114 +85,42 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloPrincipale.setBounds(0, 0, 1440, 800);
 			frame.getContentPane().add(pannelloPrincipale);
 			pannelloPrincipale.setLayout(null);
-
-/**						BOTTONI PANNELLO PRINCIPALE							*/
-		//BOTTONE INDIETRO	
-		JLabel btnIndietro = new JLabel("Indietro");
-		btnIndietro.setHorizontalAlignment(SwingConstants.CENTER);
-			//btnIndietro.setBackground(new Color(255, 255, 255));
-			//btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
-			btnIndietro.setOpaque(true);
-			btnIndietro.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					framechiamante.setVisible(true);
+	        
+	        JLabel labelScrittaIndietro = new JLabel(" Indietro");
+	        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaIndietro.setBounds(10, 120, 53, 12);
+	        pannelloPrincipale.add(labelScrittaIndietro);
+	        
+	        JLabel labelIndietroIcon = new JLabel("Exit");
+	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		framechiamante.setVisible(true);
 					frame.setVisible(false);
 					frame.dispose();
 				}
-				@Override
-				public void mouseEntered(MouseEvent e) 
-				{
-					btnIndietro.setForeground(new Color(102, 51, 204));
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					btnIndietro.setForeground(Color.black);
-				}
-			});
-			btnIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnIndietro.setBounds(101, 85, 128, 28);
-			pannelloPrincipale.add(btnIndietro);
-	
-		//BOTTONE GENERA
-		JButton btnGenera = new JButton("Genera Tabella Processi");
-			btnGenera.setBackground(Color.WHITE);
-			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
-			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
-			//btnGenera.setBackground(new Color(255, 255, 255));
-			btnGenera.setBounds(974, 86, 157, 48);
-			pannelloPrincipale.add(btnGenera);
-		
-		//BOTTONE SLIDE ARGOMENTO
-		JLabel btnSlideArgomento = new JLabel("Slide Argomento");
-		btnSlideArgomento.setHorizontalAlignment(SwingConstants.CENTER);
-			btnSlideArgomento.addMouseListener(new MouseAdapter() {
 	        	@Override
-	        	public void mouseClicked(MouseEvent e) {
-					Desktop d = Desktop.getDesktop();
-					try {
-						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
-						e1.printStackTrace();
-					}
-				}
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaIndietro.setForeground(Color.RED);
+	        	}
 	        	@Override
-				public void mouseEntered(MouseEvent e) 
-				{
-	        		btnSlideArgomento.setForeground(new Color(0, 204, 255));
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					btnSlideArgomento.setForeground(Color.black);
-				}
-			});
-			btnSlideArgomento.setOpaque(true);
-			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			//btnSlideArgomento.setBorder(new LineBorder(new Color(0, 204, 255), 4));
-			//btnSlideArgomento.setBackground(new Color(255, 255, 255));
-			btnSlideArgomento.setBounds(239, 85, 128, 28);
-			pannelloPrincipale.add(btnSlideArgomento);
-			frame.setVisible(true); 
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaIndietro.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
+	        labelIndietroIcon.setBounds(10, 75, 53, 46);
+	        pannelloPrincipale.add(labelIndietroIcon);
 	        
-		//BOTTONE ESCI
-		JLabel btnEsci = new JLabel("Esci");
-			btnEsci.setHorizontalAlignment(SwingConstants.CENTER);
-			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			//btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
-			btnEsci.setBackground(new Color(255, 255, 255));
-			btnEsci.setBounds(10, 85, 81, 28);
-			pannelloPrincipale.add(btnEsci);
-			btnEsci.addMouseListener(new MouseAdapter() {
-	        	@Override
-	        	public void mouseClicked(MouseEvent e) {
-					System.exit(0);
-				}
-	        	@Override
-				public void mouseEntered(MouseEvent e) 
-				{
-	        		btnEsci.setForeground(new Color(255, 204, 0));
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					btnEsci.setForeground(Color.black);
-				}
-			});
-		
-		//BOTTONE INFO SULL'USO DELL'APP	
-		JLabel btnInfouso = new JLabel("Info/Uso");
-			btnInfouso.setHorizontalAlignment(SwingConstants.CENTER);
-			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			//btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(525, 85, 81, 28);
-			pannelloPrincipale.add(btnInfouso);
-			
-		//BOTTONE VIDEO 	
-		JLabel buttonVideo = new JLabel("Videolezione");
-			buttonVideo.setHorizontalAlignment(SwingConstants.CENTER);
-	        buttonVideo.addMouseListener(new MouseAdapter() {
+	        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
+	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
+	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaYoutube.setBounds(133, 120, 95, 12);
+	        pannelloPrincipale.add(labelScrittaYoutube);
+	        JLabel labelYoutubeIcon = new JLabel("Youtube");
+	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
 	        		Desktop d = Desktop.getDesktop();
@@ -207,20 +135,72 @@ public SchProcessi(JFrame framechiamante) {
 					}
 	        	}
 	        	@Override
-				public void mouseEntered(MouseEvent e) 
-				{
-	        		buttonVideo.setForeground(new Color(153, 51, 0));
-				}
-				@Override
-				public void mouseExited(MouseEvent e) {
-					buttonVideo.setForeground(Color.black);
-				}
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.BLACK);
+	        	}
 	        });
-	        //buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
-	        buttonVideo.setBackground(new Color(255, 255, 255));
-	        buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
-	        buttonVideo.setBounds(377, 86, 138, 28);
-	        pannelloPrincipale.add(buttonVideo);
+	        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
+	        labelYoutubeIcon.setBounds(150, 75, 53, 46);
+	        pannelloPrincipale.add(labelYoutubeIcon);
+	        
+	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaSlide.setBounds(226, 120, 95, 15);
+	        pannelloPrincipale.add(labelScrittaSlide);
+	        JLabel labelSlideIcon = new JLabel("Slide");
+	        labelSlideIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
+	        labelSlideIcon.setBounds(243, 75, 53, 46);
+	        pannelloPrincipale.add(labelSlideIcon);
+	
+		//BOTTONE GENERA
+		JButton btnGenera = new JButton("Genera Tabella Processi");
+			btnGenera.setBackground(Color.WHITE);
+			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
+			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
+			//btnGenera.setBackground(new Color(255, 255, 255));
+			btnGenera.setBounds(974, 86, 157, 48);
+			pannelloPrincipale.add(btnGenera);
+			frame.setVisible(true);
+		
+		//BOTTONE INFO SULL'USO DELL'APP	
+		JLabel btnInfouso = new JLabel("Info/Uso");
+			btnInfouso.setHorizontalAlignment(SwingConstants.CENTER);
+			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
+			//btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+			btnInfouso.setBackground(new Color(255, 255, 255));
+			btnInfouso.setBounds(73, 82, 81, 28);
+			pannelloPrincipale.add(btnInfouso);
 	        
 			
 /**							PANNELLO TITOLO									*/
@@ -642,7 +622,7 @@ public SchProcessi(JFrame framechiamante) {
 			scrollPaneHelp.setBounds(0, 0, 245, 189);
 			//scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			pannelloHelp.add(scrollPaneHelp);
-		
+        	
 		JTextArea txtrHelpArea = new JTextArea();
 			scrollPaneHelp.setViewportView(txtrHelpArea);
 			txtrHelpArea.setWrapStyleWord(true);
@@ -650,7 +630,7 @@ public SchProcessi(JFrame framechiamante) {
 			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso è il piu' semplice degli algoritmi di scheduling della CPU ed è basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevità. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso è spesso detto \"shortest remaining time first\"; è uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in più la capacità di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantità fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti è trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
 			txtrHelpArea.setEditable(false);
-		
+		                
 		JLabel lblHelp = new JLabel("Spiegazioni argomento");
 			lblHelp.setBounds(10, 444, 245, 25);
 			pannelloDiControllo.add(lblHelp);
