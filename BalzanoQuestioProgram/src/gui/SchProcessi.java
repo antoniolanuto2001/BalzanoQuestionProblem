@@ -1,9 +1,10 @@
 // RENDERE NON SPOSTABILI LE COLONEE DELLA TABELLA
+//controllo sui valori inseriti nella tabella a mano in attiva modifiche
+//controllo sugli eventi che spariscono le cose
 package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,7 +19,6 @@ import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
@@ -35,28 +35,24 @@ import javax.swing.JTextArea;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import java.awt.Desktop;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import java.beans.VetoableChangeListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.AncestorListener;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class SchProcessi extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
 	private String scelta="0";
+	
 	ArrayList<CreaLinee> arrayPunti= new ArrayList<CreaLinee>();
 	ArrayList<CreaLinee> arrayLinea= new ArrayList<CreaLinee>();
 	ArrayList<Integer> FCFS=new ArrayList<Integer>();
@@ -92,9 +88,10 @@ public SchProcessi(JFrame framechiamante) {
 
 /**						BOTTONI PANNELLO PRINCIPALE							*/
 		//BOTTONE INDIETRO	
-		JButton btnIndietro = new JButton("Indietro");
-		btnIndietro.setBackground(new Color(255, 255, 255));
-			btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
+		JLabel btnIndietro = new JLabel("Indietro");
+		btnIndietro.setHorizontalAlignment(SwingConstants.CENTER);
+			//btnIndietro.setBackground(new Color(255, 255, 255));
+			//btnIndietro.setBorder(new LineBorder(new Color(102, 51, 204), 4));
 			btnIndietro.setOpaque(true);
 			btnIndietro.addMouseListener(new MouseAdapter() {
 				@Override
@@ -103,23 +100,35 @@ public SchProcessi(JFrame framechiamante) {
 					frame.setVisible(false);
 					frame.dispose();
 				}
+				@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+					btnIndietro.setForeground(new Color(102, 51, 204));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					btnIndietro.setForeground(Color.black);
+				}
 			});
 			btnIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnIndietro.setBounds(101, 85, 128, 48);
+			btnIndietro.setBounds(101, 85, 128, 28);
 			pannelloPrincipale.add(btnIndietro);
 	
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Tabella Processi");
+			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
-			btnGenera.setBackground(new Color(255, 255, 255));
+			//btnGenera.setBackground(new Color(255, 255, 255));
 			btnGenera.setBounds(974, 86, 157, 48);
 			pannelloPrincipale.add(btnGenera);
 		
 		//BOTTONE SLIDE ARGOMENTO
-		JButton btnSlideArgomento = new JButton("Slide Argomento");
-			btnSlideArgomento.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+		JLabel btnSlideArgomento = new JLabel("Slide Argomento");
+		btnSlideArgomento.setHorizontalAlignment(SwingConstants.CENTER);
+			btnSlideArgomento.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
 					Desktop d = Desktop.getDesktop();
 					try {
 						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
@@ -129,38 +138,60 @@ public SchProcessi(JFrame framechiamante) {
 						e1.printStackTrace();
 					}
 				}
+	        	@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+	        		btnSlideArgomento.setForeground(new Color(0, 204, 255));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					btnSlideArgomento.setForeground(Color.black);
+				}
 			});
 			btnSlideArgomento.setOpaque(true);
 			btnSlideArgomento.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnSlideArgomento.setBorder(new LineBorder(new Color(0, 204, 255), 4));
-			btnSlideArgomento.setBackground(new Color(255, 255, 255));
-			btnSlideArgomento.setBounds(239, 85, 128, 48);
+			//btnSlideArgomento.setBorder(new LineBorder(new Color(0, 204, 255), 4));
+			//btnSlideArgomento.setBackground(new Color(255, 255, 255));
+			btnSlideArgomento.setBounds(239, 85, 128, 28);
 			pannelloPrincipale.add(btnSlideArgomento);
 			frame.setVisible(true); 
 	        
 		//BOTTONE ESCI
-		JButton btnEsci = new JButton("Esci");
+		JLabel btnEsci = new JLabel("Esci");
+			btnEsci.setHorizontalAlignment(SwingConstants.CENTER);
 			btnEsci.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
+			//btnEsci.setBorder(new LineBorder(new Color(255, 204, 0), 4));
 			btnEsci.setBackground(new Color(255, 255, 255));
-			btnEsci.setBounds(10, 85, 81, 48);
+			btnEsci.setBounds(10, 85, 81, 28);
 			pannelloPrincipale.add(btnEsci);
-		
-		//BOTTONE INFO SULL'USO DELL'APP	
-		JButton btnInfouso = new JButton("Info/Uso");
-			btnEsci.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
+			btnEsci.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
 					System.exit(0);
+				}
+	        	@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+	        		btnEsci.setForeground(new Color(255, 204, 0));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					btnEsci.setForeground(Color.black);
 				}
 			});
 		
+		//BOTTONE INFO SULL'USO DELL'APP	
+		JLabel btnInfouso = new JLabel("Info/Uso");
+			btnInfouso.setHorizontalAlignment(SwingConstants.CENTER);
 			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
+			//btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
 			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(525, 85, 81, 48);
+			btnInfouso.setBounds(525, 85, 81, 28);
 			pannelloPrincipale.add(btnInfouso);
 			
-		JButton buttonVideo = new JButton("Videolezione");
+		//BOTTONE VIDEO 	
+		JLabel buttonVideo = new JLabel("Videolezione");
+			buttonVideo.setHorizontalAlignment(SwingConstants.CENTER);
 	        buttonVideo.addMouseListener(new MouseAdapter() {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
@@ -175,32 +206,41 @@ public SchProcessi(JFrame framechiamante) {
 						e1.printStackTrace();
 					}
 	        	}
+	        	@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+	        		buttonVideo.setForeground(new Color(153, 51, 0));
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					buttonVideo.setForeground(Color.black);
+				}
 	        });
-	        buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
+	        //buttonVideo.setBorder(new LineBorder(new Color(153, 51, 0), 4));
 	        buttonVideo.setBackground(new Color(255, 255, 255));
 	        buttonVideo.setFont(new Font("Segoe UI", Font.BOLD, 14));
-	        buttonVideo.setBounds(377, 86, 138, 46);
+	        buttonVideo.setBounds(377, 86, 138, 28);
 	        pannelloPrincipale.add(buttonVideo);
 	        
 			
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
 			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
-			pannelloTitolo.setBackground(Color.WHITE);
-			pannelloTitolo.setBounds(0, 0, 1406, 75);
+			//pannelloTitolo.setBackground(Color.WHITE);
+			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
-			
-		//TITOLO
+	
+			//TITOLO
 		JLabel labelTitolo = new JLabel("SCHEDULING DELLA CPU");
 			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
-			labelTitolo.setBounds(0, 0, 1408, 73);
+			labelTitolo.setBounds(0, 0, 1417, 73);
 			pannelloTitolo.add(labelTitolo);
 		
 
-/*INIZIO GUI COMPLICATA*/		
+/*---------------------------INIZIO GUI COMPLICATA---------------------------*/		
 
 /**							PANNELLO GRAFICI								*/
 		JPanel pannelloGrafici = new JPanel();
@@ -208,178 +248,178 @@ public SchProcessi(JFrame framechiamante) {
 	        pannelloPrincipale.add(pannelloGrafici);
 	        pannelloGrafici.setLayout(null);
         
-        //PANNELLO FIRST-COME,FIRST-SERVED
+	        //PANNELLO FIRST-COME,FIRST-SERVED
         JPanel pannelloFCFS = new JPanel();
 			pannelloFCFS.setBounds(10, 0, 1121, 150);
 			pannelloGrafici.add(pannelloFCFS);
 			pannelloFCFS.setLayout(null);
 			pannelloFCFS.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
-		JLabel lblFirstcomeFirstserved = new JLabel("First-Come, First-Served");
-			lblFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
-			lblFirstcomeFirstserved.setForeground(Color.RED);
-			lblFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblFirstcomeFirstserved.setBounds(10, 0, 489, 25);
-			pannelloFCFS.add(lblFirstcomeFirstserved);
+			JLabel lblFirstcomeFirstserved = new JLabel("First-Come, First-Served");
+				lblFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
+				lblFirstcomeFirstserved.setForeground(Color.RED);
+				lblFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblFirstcomeFirstserved.setBounds(10, 0, 489, 25);
+				pannelloFCFS.add(lblFirstcomeFirstserved);
 		
-		JCheckBox chckbxMostraSoluzioneFCFS = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneFCFS.setEnabled(false);
-			chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneFCFS.setBounds(513, 3, 150, 25);
-			pannelloFCFS.add(chckbxMostraSoluzioneFCFS);
-		
-		JLabel lblTAMFCFS = new JLabel("Tempo di attesa medio:");
-			lblTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMFCFS.setBounds(670, 3, 150, 25);
-			pannelloFCFS.add(lblTAMFCFS);
-		
-		JLabel DatoTAMFCFS = new JLabel("");
-			DatoTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMFCFS.setBounds(821, 3, 45, 25);
-			pannelloFCFS.add(DatoTAMFCFS);
+			JCheckBox chckbxMostraSoluzioneFCFS = new JCheckBox("Mostra Soluzione");
+				chckbxMostraSoluzioneFCFS.setEnabled(false);
+				chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				chckbxMostraSoluzioneFCFS.setBounds(513, 3, 150, 25);
+				pannelloFCFS.add(chckbxMostraSoluzioneFCFS);
 			
-		JLabel lblCDCFCFS = new JLabel("Cambi di contesto: ");
-			lblCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblCDCFCFS.setBounds(887, 3, 130, 25);
-			pannelloFCFS.add(lblCDCFCFS);
-		
-		JLabel DatoCDCFCFS = new JLabel("");
-			DatoCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoCDCFCFS.setBounds(1014, 3, 45, 25);
-			pannelloFCFS.add(DatoCDCFCFS);
-		
-		//PANNELLO SHORTEST JOB FIRST
+			JLabel lblTAMFCFS = new JLabel("Tempo di attesa medio:");
+				lblTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblTAMFCFS.setBounds(670, 3, 150, 25);
+				pannelloFCFS.add(lblTAMFCFS);
+			
+			JLabel DatoTAMFCFS = new JLabel("");
+				DatoTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoTAMFCFS.setBounds(821, 3, 45, 25);
+				pannelloFCFS.add(DatoTAMFCFS);
+				
+			JLabel lblCDCFCFS = new JLabel("Cambi di contesto: ");
+				lblCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblCDCFCFS.setBounds(887, 3, 130, 25);
+				pannelloFCFS.add(lblCDCFCFS);
+			
+			JLabel DatoCDCFCFS = new JLabel("");
+				DatoCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoCDCFCFS.setBounds(1014, 3, 45, 25);
+				pannelloFCFS.add(DatoCDCFCFS);
+			
+			//PANNELLO SHORTEST JOB FIRST
 		JPanel pannelloSJF = new JPanel();
 			pannelloSJF.setBounds(10, 153, 1121, 150);
 			pannelloGrafici.add(pannelloSJF);
 			pannelloSJF.setLayout(null);
 			pannelloSJF.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 
-		JLabel lblShortestJobFirts = new JLabel("Shortest Job First");
-			lblShortestJobFirts.setHorizontalAlignment(SwingConstants.CENTER);
-			lblShortestJobFirts.setForeground(Color.RED);
-			lblShortestJobFirts.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblShortestJobFirts.setBounds(10, 0, 489, 25);
-			pannelloSJF.add(lblShortestJobFirts);
-		
-		JCheckBox chckbxMostraSoluzioneSJF = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneSJF.setEnabled(false);
-			chckbxMostraSoluzioneSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneSJF.setBounds(513, 3, 150, 25);
-			pannelloSJF.add(chckbxMostraSoluzioneSJF);
-		
-		JLabel lblTAMSJF = new JLabel("Tempo di attesa medio:");
-			lblTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMSJF.setBounds(670, 3, 150, 25);
-			pannelloSJF.add(lblTAMSJF);
-		
-		JLabel DatoTAMSJF = new JLabel("");
-			DatoTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMSJF.setBounds(821, 3, 45, 25);
-			pannelloSJF.add(DatoTAMSJF);
+			JLabel lblShortestJobFirts = new JLabel("Shortest Job First");
+				lblShortestJobFirts.setHorizontalAlignment(SwingConstants.CENTER);
+				lblShortestJobFirts.setForeground(Color.RED);
+				lblShortestJobFirts.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblShortestJobFirts.setBounds(10, 0, 489, 25);
+				pannelloSJF.add(lblShortestJobFirts);
 			
-		JLabel lblCDCSJF = new JLabel("Cambi di contesto: ");
-			lblCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblCDCSJF.setBounds(887, 3, 130, 25);
-			pannelloSJF.add(lblCDCSJF);
-		
-		JLabel DatoCDCSJF = new JLabel("");
-			DatoCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoCDCSJF.setBounds(1014, 3, 45, 25);
-			pannelloSJF.add(DatoCDCSJF);
-		
-		//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
+			JCheckBox chckbxMostraSoluzioneSJF = new JCheckBox("Mostra Soluzione");
+				chckbxMostraSoluzioneSJF.setEnabled(false);
+				chckbxMostraSoluzioneSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				chckbxMostraSoluzioneSJF.setBounds(513, 3, 150, 25);
+				pannelloSJF.add(chckbxMostraSoluzioneSJF);
+			
+			JLabel lblTAMSJF = new JLabel("Tempo di attesa medio:");
+				lblTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblTAMSJF.setBounds(670, 3, 150, 25);
+				pannelloSJF.add(lblTAMSJF);
+			
+			JLabel DatoTAMSJF = new JLabel("");
+				DatoTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoTAMSJF.setBounds(821, 3, 45, 25);
+				pannelloSJF.add(DatoTAMSJF);
+				
+			JLabel lblCDCSJF = new JLabel("Cambi di contesto: ");
+				lblCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblCDCSJF.setBounds(887, 3, 130, 25);
+				pannelloSJF.add(lblCDCSJF);
+			
+			JLabel DatoCDCSJF = new JLabel("");
+				DatoCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoCDCSJF.setBounds(1014, 3, 45, 25);
+				pannelloSJF.add(DatoCDCSJF);
+			
+			//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
 		JPanel pannelloSJFP = new JPanel();
 			pannelloSJFP.setLayout(null);
 			pannelloSJFP.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 			pannelloSJFP.setBounds(10, 306, 1121, 150);
 			pannelloGrafici.add(pannelloSJFP);
 		
-		JLabel lblShortestJobFirstPreemptive = new JLabel("Shortest Job First Preemptive");
-			lblShortestJobFirstPreemptive.setHorizontalAlignment(SwingConstants.CENTER);
-			lblShortestJobFirstPreemptive.setForeground(Color.RED);
-			lblShortestJobFirstPreemptive.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblShortestJobFirstPreemptive.setBounds(10, 0, 489, 25);
-			pannelloSJFP.add(lblShortestJobFirstPreemptive);
-		
-		JCheckBox chckbxMostraSoluzioneSJFP = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneSJFP.setEnabled(false);
-			chckbxMostraSoluzioneSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneSJFP.setBounds(513, 3, 150, 25);
-			pannelloSJFP.add(chckbxMostraSoluzioneSJFP);
-		
-		JLabel lblTAMSJFP = new JLabel("Tempo di attesa medio:");
-			lblTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMSJFP.setBounds(670, 3, 150, 25);
-			pannelloSJFP.add(lblTAMSJFP);
-
-		JLabel DatoTAMSJFP = new JLabel("");
-			DatoTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMSJFP.setBounds(821, 3, 45, 25);
-			pannelloSJFP.add(DatoTAMSJFP);
+			JLabel lblShortestJobFirstPreemptive = new JLabel("Shortest Job First Preemptive");
+				lblShortestJobFirstPreemptive.setHorizontalAlignment(SwingConstants.CENTER);
+				lblShortestJobFirstPreemptive.setForeground(Color.RED);
+				lblShortestJobFirstPreemptive.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblShortestJobFirstPreemptive.setBounds(10, 0, 489, 25);
+				pannelloSJFP.add(lblShortestJobFirstPreemptive);
 			
-		JLabel lblCDCSJFP = new JLabel("Cambi di contesto: ");
-			lblCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblCDCSJFP.setBounds(887, 3, 130, 25);
-			pannelloSJFP.add(lblCDCSJFP);
-		
-		JLabel DatoCDCSJFP = new JLabel("");
-			DatoCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoCDCSJFP.setBounds(1014, 3, 45, 25);
-			pannelloSJFP.add(DatoCDCSJFP);
+			JCheckBox chckbxMostraSoluzioneSJFP = new JCheckBox("Mostra Soluzione");
+				chckbxMostraSoluzioneSJFP.setEnabled(false);
+				chckbxMostraSoluzioneSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				chckbxMostraSoluzioneSJFP.setBounds(513, 3, 150, 25);
+				pannelloSJFP.add(chckbxMostraSoluzioneSJFP);
+			
+			JLabel lblTAMSJFP = new JLabel("Tempo di attesa medio:");
+				lblTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblTAMSJFP.setBounds(670, 3, 150, 25);
+				pannelloSJFP.add(lblTAMSJFP);
 	
-		//PANNELLO ROUND ROBIN
+			JLabel DatoTAMSJFP = new JLabel("");
+				DatoTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoTAMSJFP.setBounds(821, 3, 45, 25);
+				pannelloSJFP.add(DatoTAMSJFP);
+				
+			JLabel lblCDCSJFP = new JLabel("Cambi di contesto: ");
+				lblCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblCDCSJFP.setBounds(887, 3, 130, 25);
+				pannelloSJFP.add(lblCDCSJFP);
+			
+			JLabel DatoCDCSJFP = new JLabel("");
+				DatoCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoCDCSJFP.setBounds(1014, 3, 45, 25);
+				pannelloSJFP.add(DatoCDCSJFP);
+		
+			//PANNELLO ROUND ROBIN
 		JPanel pannelloRR = new JPanel();
 			pannelloRR.setLayout(null);
 			pannelloRR.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 			pannelloRR.setBounds(10, 459, 1121, 150);
 			pannelloGrafici.add(pannelloRR);
 		
-		JLabel lblRoundRobin = new JLabel("Round Robin");
-			lblRoundRobin.setHorizontalAlignment(SwingConstants.CENTER);
-			lblRoundRobin.setForeground(Color.RED);
-			lblRoundRobin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblRoundRobin.setBounds(10, 0, 351, 25);
-			pannelloRR.add(lblRoundRobin);
-		
-		JCheckBox chckbxMostraSoluzioneRR = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneRR.setEnabled(false);
-			chckbxMostraSoluzioneRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneRR.setBounds(513, 3, 150, 25);
-			pannelloRR.add(chckbxMostraSoluzioneRR);
-		
-		JLabel lblTAMRR = new JLabel("Tempo di attesa medio:");
-			lblTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblTAMRR.setBounds(670, 3, 150, 25);
-			pannelloRR.add(lblTAMRR);
-
-		JLabel DatoTAMRR = new JLabel("");
-			DatoTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoTAMRR.setBounds(821, 3, 45, 25);
-			pannelloRR.add(DatoTAMRR);
+			JLabel lblRoundRobin = new JLabel("Round Robin");
+				lblRoundRobin.setHorizontalAlignment(SwingConstants.CENTER);
+				lblRoundRobin.setForeground(Color.RED);
+				lblRoundRobin.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				lblRoundRobin.setBounds(10, 0, 351, 25);
+				pannelloRR.add(lblRoundRobin);
 			
-		JLabel lblCDCRR = new JLabel("Cambi di contesto: ");
-			lblCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblCDCRR.setBounds(887, 3, 130, 25);
-			pannelloRR.add(lblCDCRR);
-		
-		JLabel DatoCDCRR = new JLabel("");
-			DatoCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DatoCDCRR.setBounds(1014, 3, 45, 25);
-			pannelloRR.add(DatoCDCRR);
-		
-		JLabel lblQRR = new JLabel("Q=");
-			lblQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblQRR.setBounds(371, 3, 32, 25);
-			pannelloRR.add(lblQRR);
-		
-		JComboBox comboBoxQRR = new JComboBox();
-			comboBoxQRR.setEnabled(false);
-			comboBoxQRR.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
-			comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			comboBoxQRR.setBackground(Color.WHITE);
-			comboBoxQRR.setBounds(396, 5, 50, 21);
-			pannelloRR.add(comboBoxQRR);
+			JCheckBox chckbxMostraSoluzioneRR = new JCheckBox("Mostra Soluzione");
+				chckbxMostraSoluzioneRR.setEnabled(false);
+				chckbxMostraSoluzioneRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				chckbxMostraSoluzioneRR.setBounds(513, 3, 150, 25);
+				pannelloRR.add(chckbxMostraSoluzioneRR);
+			
+			JLabel lblTAMRR = new JLabel("Tempo di attesa medio:");
+				lblTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblTAMRR.setBounds(670, 3, 150, 25);
+				pannelloRR.add(lblTAMRR);
+	
+			JLabel DatoTAMRR = new JLabel("");
+				DatoTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoTAMRR.setBounds(821, 3, 45, 25);
+				pannelloRR.add(DatoTAMRR);
+				
+			JLabel lblCDCRR = new JLabel("Cambi di contesto: ");
+				lblCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblCDCRR.setBounds(887, 3, 130, 25);
+				pannelloRR.add(lblCDCRR);
+			
+			JLabel DatoCDCRR = new JLabel("");
+				DatoCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				DatoCDCRR.setBounds(1014, 3, 45, 25);
+				pannelloRR.add(DatoCDCRR);
+			
+			JLabel lblQRR = new JLabel("Q=");
+				lblQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				lblQRR.setBounds(371, 3, 32, 25);
+				pannelloRR.add(lblQRR);
+			
+			JComboBox comboBoxQRR = new JComboBox();
+				comboBoxQRR.setEnabled(false);
+				comboBoxQRR.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+				comboBoxQRR.setBackground(Color.WHITE);
+				comboBoxQRR.setBounds(396, 5, 50, 21);
+				pannelloRR.add(comboBoxQRR);
 			
 			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
@@ -413,7 +453,7 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloRR.add(jPanelRR);
 
    
-/**							PANNELLI DI CONTROLLO							*/			
+/**							PANNELLO DI CONTROLLO							*/			
 		//PANNELLO DI CONTROLLO
 		JPanel pannelloDiControllo = new JPanel();
 			pannelloDiControllo.setBounds(1141, 85, 265, 668);
@@ -423,7 +463,7 @@ public SchProcessi(JFrame framechiamante) {
 		
 		JPanel pannellodicontrolloTitolo = new JPanel();
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
-			pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
+			//pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
 			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(0, 204, 255), 4));
 			pannellodicontrolloTitolo.setLayout(null);
@@ -584,12 +624,12 @@ public SchProcessi(JFrame framechiamante) {
 			chkbkMostraAllSoluzione.setBounds(6, 32, 222, 21);
 			PannelloPLOT.add(chkbkMostraAllSoluzione);
 		
-		JLabel lblPlot = new JLabel("Plot");
-			lblPlot.setHorizontalAlignment(SwingConstants.CENTER);
-			lblPlot.setForeground(Color.RED);
-			lblPlot.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			lblPlot.setBounds(10, 323, 245, 25);
-			pannelloDiControllo.add(lblPlot);
+		JLabel lblGestione = new JLabel("Gestione");
+			lblGestione.setHorizontalAlignment(SwingConstants.CENTER);
+			lblGestione.setForeground(Color.RED);
+			lblGestione.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			lblGestione.setBounds(10, 323, 245, 25);
+			pannelloDiControllo.add(lblGestione);
 		
 		//PANNELLO HELP
 		JPanel pannelloHelp = new JPanel();
@@ -607,11 +647,11 @@ public SchProcessi(JFrame framechiamante) {
 			scrollPaneHelp.setViewportView(txtrHelpArea);
 			txtrHelpArea.setWrapStyleWord(true);
 			txtrHelpArea.setLineWrap(true);
-			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso \u00E8 il piu' semplice degli algoritmi di scheduling della CPU ed \u00E8 basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevit\u00E0. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\nSJFP: (Shortest Job First Preempitive). \r\nEsso \u00E8 spesso detto \"shortest remaining time first\"; \u00E8 uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in pi\u00F9 la capacit\u00E0 di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantit\u00E0 fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti \u00E8 trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
+			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso è il piu' semplice degli algoritmi di scheduling della CPU ed è basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevità. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso è spesso detto \"shortest remaining time first\"; è uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in più la capacità di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantità fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti è trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
 			txtrHelpArea.setEditable(false);
 		
-		JLabel lblHelp = new JLabel("Help");
+		JLabel lblHelp = new JLabel("Spiegazioni argomento");
 			lblHelp.setBounds(10, 444, 245, 25);
 			pannelloDiControllo.add(lblHelp);
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
@@ -620,20 +660,36 @@ public SchProcessi(JFrame framechiamante) {
 			
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/**							IMPLEMENTAZIONE EVENTI												*/
+/**							IMPLEMENTAZIONE EVENTI																																	 */
 						
 	//EVENTO SU BOTTONE GENERA TABELLA PROCESSI
 		btnGenera.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				arrayLinea.clear();
+
 				arrayPunti.clear();
+				arrayLinea.clear();
 				FCFS.clear();
+				SJF.clear();
+				SJFP.clear();
+				RR.clear();
+				averageFCFS=0;
+				averageSJF=0;
+				averageSJFP=0;
+				averageRR=0;
+				cbFCFS=0;
+				cbSJF=0;
+				cbSJFP=0;
+				cbRR=0;
+				quantum=0;
 				
-				ModifyProcess.removeAllItems();
-				btnGeneraGrafici.setEnabled(true);
-				chckbxAttivaModifiche.setEnabled(true);
-				
+				if(chckbxMostraSoluzioneFCFS.isSelected()==true)chckbxMostraSoluzioneFCFS.doClick();
+				if(chckbxMostraSoluzioneSJF.isSelected()==true)chckbxMostraSoluzioneSJF.doClick();
+				if(chckbxMostraSoluzioneSJFP.isSelected()==true)chckbxMostraSoluzioneSJFP.doClick();
+				if(chckbxMostraSoluzioneRR.isSelected()==true)chckbxMostraSoluzioneRR.doClick();
+				if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+				if(chckbxAttivaModifiche.isSelected()==true)chckbxAttivaModifiche.doClick();
+
 				chckbxMostraSoluzioneFCFS.setEnabled(false);
 				chckbxMostraSoluzioneSJF.setEnabled(false);
 				chckbxMostraSoluzioneSJFP.setEnabled(false);
@@ -642,22 +698,20 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setEnabled(false);
 				btnSalvaModifica.setEnabled(false);
 				tabellaProcessi.setEnabled(false);
+				
 				ModifyArrivo.setEnabled(false);
 				ModifyDurata.setEnabled(false);
 				ModifyProcess.setEnabled(false);
 				modificaTabella.setEnabled(false);
 				
-				chckbxAttivaModifiche.setSelected(false);
-				chckbxMostraSoluzioneFCFS.setSelected(false);
-				chckbxMostraSoluzioneSJF.setSelected(false);
-				chckbxMostraSoluzioneSJFP.setSelected(false);
-				chckbxMostraSoluzioneRR.setSelected(false);
-				chkbkMostraAllSoluzione.setSelected(false);
-
+				ModifyProcess.removeAllItems();
+				btnGeneraGrafici.setEnabled(true);
+				chckbxAttivaModifiche.setEnabled(true);
+				
 				comboBoxQRR.setSelectedIndex(0);
 				ModifyArrivo.setSelectedIndex(0);
 				ModifyDurata.setSelectedIndex(0);
-				
+
 				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
 				int numeroProcessi=Integer.valueOf(scelta);
 				
@@ -683,19 +737,43 @@ public SchProcessi(JFrame framechiamante) {
 				}
 				
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				btnGenera.setBackground(new Color(0, 204, 0));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnGenera.setBackground(Color.WHITE);
+			}
 		});
 
 	//EVENTO SU BOX SCLETA NUMERO PROCESSI
 		comboBoxSceltaNProcessi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				arrayLinea.clear();
 				arrayPunti.clear();
+				arrayLinea.clear();
 				FCFS.clear();
-
-				ModifyProcess.removeAllItems();
-				btnGeneraGrafici.setEnabled(true);
-				chckbxAttivaModifiche.setEnabled(true);
+				SJF.clear();
+				SJFP.clear();
+				RR.clear();
+				averageFCFS=0;
+				averageSJF=0;
+				averageSJFP=0;
+				averageRR=0;
+				cbFCFS=0;
+				cbSJF=0;
+				cbSJFP=0;
+				cbRR=0;
+				quantum=0;
 				
+				if(chckbxMostraSoluzioneFCFS.isSelected()==true)chckbxMostraSoluzioneFCFS.doClick();
+				if(chckbxMostraSoluzioneSJF.isSelected()==true)chckbxMostraSoluzioneSJF.doClick();
+				if(chckbxMostraSoluzioneSJFP.isSelected()==true)chckbxMostraSoluzioneSJFP.doClick();
+				if(chckbxMostraSoluzioneRR.isSelected()==true)chckbxMostraSoluzioneRR.doClick();
+				if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+				if(chckbxAttivaModifiche.isSelected()==true)chckbxAttivaModifiche.doClick();
+
 				chckbxMostraSoluzioneFCFS.setEnabled(false);
 				chckbxMostraSoluzioneSJF.setEnabled(false);
 				chckbxMostraSoluzioneSJFP.setEnabled(false);
@@ -704,22 +782,20 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setEnabled(false);
 				btnSalvaModifica.setEnabled(false);
 				tabellaProcessi.setEnabled(false);
+				
 				ModifyArrivo.setEnabled(false);
 				ModifyDurata.setEnabled(false);
 				ModifyProcess.setEnabled(false);
 				modificaTabella.setEnabled(false);
+				
+				ModifyProcess.removeAllItems();
+				btnGeneraGrafici.setEnabled(true);
+				chckbxAttivaModifiche.setEnabled(true);
+				
+				comboBoxQRR.setSelectedIndex(0);
+				ModifyArrivo.setSelectedIndex(0);
+				ModifyDurata.setSelectedIndex(0);
 
-				chckbxAttivaModifiche.setSelected(false);
-				chckbxMostraSoluzioneFCFS.setSelected(false);
-				chckbxMostraSoluzioneSJF.setSelected(false);
-				chckbxMostraSoluzioneSJFP.setSelected(false);
-				chckbxMostraSoluzioneRR.setSelected(false);
-				chkbkMostraAllSoluzione.setSelected(false);
-				
-				comboBoxQRR.setSelectedIndex(1);
-				ModifyArrivo.setSelectedIndex(1);
-				ModifyDurata.setSelectedIndex(1);
-				
 				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
 				int numeroProcessi=Integer.valueOf(scelta);
 				
@@ -747,30 +823,30 @@ public SchProcessi(JFrame framechiamante) {
 		});
 
 	//EVENTO SU BOTTONE GENERA GRAFICI
-		btnGeneraGrafici.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnGeneraGrafici.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
 				jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
 				jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
 				jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
 				jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
 				
-				arrayLinea.clear();
 				arrayPunti.clear();
+				arrayLinea.clear();
 				FCFS.clear();
 				SJF.clear();
 				SJFP.clear();
 				RR.clear();
-
 				averageFCFS=0;
 				averageSJF=0;
 				averageSJFP=0;
 				averageRR=0;
-
 				cbFCFS=0;
 				cbSJF=0;
 				cbSJFP=0;
 				cbRR=0;
-
+				quantum=0;
+				
 				chckbxMostraSoluzioneFCFS.setEnabled(true);
 				chckbxMostraSoluzioneSJF.setEnabled(true);
 				chckbxMostraSoluzioneSJFP.setEnabled(true);
@@ -778,8 +854,6 @@ public SchProcessi(JFrame framechiamante) {
 				chkbkMostraAllSoluzione.setEnabled(true);
 				btnGeneraGrafici.setEnabled(false);
 				chckbxAttivaModifiche.setEnabled(true);
-				chckbxAttivaModifiche.setSelected(false);
-
 				comboBoxQRR.setEnabled(true);
 				
 				btnSalvaModifica.setEnabled(false);
@@ -814,31 +888,40 @@ public SchProcessi(JFrame framechiamante) {
 					}
 				}
 				
-				CreaLinee[] lineaFCFS = new CreaLinee[arrayLinea.size()];
+				CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
 	/*			CreaLinee[] lineaSJF = new CreaLinee[arrayLinea.size()];
-				CreaLinee[] lineaSJFP = new CreaLinee[arrayLinea.size()];
+		CreaLinee[] lineaSJFP = new CreaLinee[arrayLinea.size()];
 				CreaLinee[] lineaRR = new CreaLinee[arrayLinea.size()];
 */
 				for(int l=0;l<arrayLinea.size();l++) {  
 						
-					lineaFCFS[l]=arrayLinea.get(l);
+					linea[l]=arrayLinea.get(l);
 /*					lineaSJF[l]=arrayLinea.get(l);
 					lineaSJFP[l]=arrayLinea.get(l);
 					lineaRR[l]=arrayLinea.get(l);
 */
 				}
 
-				Arrays.sort(lineaFCFS);
+				Arrays.sort(linea);
 		//		Arrays.sort(lineaRR);
 				
-				FCFS=FCFSClass(lineaFCFS);
-				//SJF=SJFClass(lineaSJF);
+				FCFS=FCFSClass(linea);
+				SJF=SJFClass(linea);
 				//SJFP=SJFPClass(lineaSJFP);
 				String qua= (String) comboBoxQRR.getSelectedItem();
 				quantum=Integer.valueOf(qua);
-				//RR=RRClass(lineaRR);
+				//RR=RRClass(linea);
 
 
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				btnGeneraGrafici.setBackground(new Color(51, 204, 255));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnGeneraGrafici.setBackground(new Color(255, 255, 255));
 			}
 		});
 
@@ -866,24 +949,56 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxGriglia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-					if(chkbkMostraAllSoluzione.isSelected()==false) {
+				/*
+				if(chkbkMostraAllSoluzione.isSelected()==false) {
 						jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
 						jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
 						jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
 						jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
 					}
-					if(chkbkMostraAllSoluzione.isSelected()==true) {
-						jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
-						jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-						jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-						jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-						jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
-						jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
-						jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
-						jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
-
-					}
+				if(chkbkMostraAllSoluzione.isSelected()==true) {
+					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+					jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
 				}
+				*/
+				if(chckbxMostraSoluzioneFCFS.isSelected()==false) {
+					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+					}
+				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
+					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+					jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+				}
+				
+				if(chckbxMostraSoluzioneSJF.isSelected()==false) {
+					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+				}
+				if(chckbxMostraSoluzioneSJF.isSelected()==true) {
+					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+				}
+				
+				if(chckbxMostraSoluzioneSJFP.isSelected()==false) {
+					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+				}
+				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
+					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+				}
+				
+				if(chckbxMostraSoluzioneRR.isSelected()==false) {
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+				}
+				if(chckbxMostraSoluzioneRR.isSelected()==true) {
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+				}
+			}
 		});
 		
 	//EVENTO BOTTONE SALVA MODIFICHE TABELLA "OK"
@@ -898,6 +1013,7 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		});
 
+	//EVENTO BOTTONE SALVA MODIFICHE 
 		btnSalvaModifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				btnGeneraGrafici.setEnabled(true);
@@ -913,9 +1029,8 @@ public SchProcessi(JFrame framechiamante) {
 		});
 		
 	//EVENTO SU CHECKBOX ATTIVA MODIFICHE
-		chckbxAttivaModifiche.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		chckbxAttivaModifiche.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 								
 				if(chckbxAttivaModifiche.isSelected()==true) {
 					tabellaProcessi.setEnabled(true);
@@ -953,7 +1068,7 @@ public SchProcessi(JFrame framechiamante) {
 					chckbxMostraSoluzioneSJFP.setEnabled(true);
 					chckbxMostraSoluzioneRR.setEnabled(true);
 					comboBoxQRR.setEnabled(true);
-
+					btnSalvaModifica.doClick();
 				}
 			}
 		});
@@ -984,37 +1099,62 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		});
 		
-
 		chckbxMostraSoluzioneSJF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(chckbxMostraSoluzioneSJF.isSelected()==true)
+				if(chckbxMostraSoluzioneSJF.isSelected()==true) {
 					jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
-				else jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-
+					DecimalFormat frmt = new DecimalFormat();
+					frmt.setMaximumFractionDigits(3);
+					DatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
+					DatoCDCSJF.setText(String.valueOf(cbSJF));
+				}
+				else {
+					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+					DatoTAMSJF.setText(" ");
+					DatoCDCSJF.setText(" ");
+				}
 			}
 		});
 		
-
 		chckbxMostraSoluzioneSJFP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(chckbxMostraSoluzioneSJFP.isSelected()==true)
+				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
 					jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
-				else jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+					DecimalFormat frmt = new DecimalFormat();
+					frmt.setMaximumFractionDigits(3);
+					DatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
+					DatoCDCSJFP.setText(String.valueOf(cbSJFP));
+				}
+				else {
+					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+					DatoTAMSJFP.setText(" ");
+					DatoCDCSJFP.setText(" ");
+				}
 			}
 		});
 		
-
 		chckbxMostraSoluzioneRR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(chckbxMostraSoluzioneRR.isSelected()==true)
+				if(chckbxMostraSoluzioneRR.isSelected()==true) {
 					jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
-				else jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+					DecimalFormat frmt = new DecimalFormat();
+					frmt.setMaximumFractionDigits(3);
+					DatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
+					DatoCDCRR.setText(String.valueOf(cbRR));
+				}
+				else {
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+					DatoTAMRR.setText(" ");
+					DatoCDCRR.setText(" ");
+				}
 			}
 		});
-	}
+	
+}
 
 
-
+/**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
+	
 //METODO PER CALCOLARE FCFS
 public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS){
 	
@@ -1068,7 +1208,6 @@ public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS){
 	cbFCFS=cbFCFS-1;
 	return punti;
 }
-/*
 
 //METODO PER CALCOLARE SJF
 public ArrayList<Integer> SJFClass(CreaLinee[] lineaSJF){
@@ -1135,150 +1274,4 @@ public ArrayList<Integer> SJFClass(CreaLinee[] lineaSJF){
 	cbSJF=cbSJF-1;
 	return punti;
 }
-
-//METODO PER CALCOLARE SJFP
-public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
-	
-	ArrayList<Integer> punti=new ArrayList<Integer>();
-	int n = lineaSJFP.length;
-	int pid[] = new int[n]; // it takes pid of process
-	int at[] = new int[n]; // at means arrival time
-	int bt[] = new int[n]; // bt means burst time
-	int ct[] = new int[n]; // ct means complete time
-	int ta[] = new int[n];// ta means turn around time
-	int wt[] = new int[n];  // wt means waiting time
-	int f[] = new int[n];  // f means it is flag it checks process is completed or not
-	int k[]= new int[n];   // it is also stores brust time
-    int i, st=0, tot=0;
-    float avgwt=0, avgta=0;
- 
-    for (i=0;i<n;i++){
-	
-		pid[i] = lineaSJFP[i].getProcesso();
-		at[i] = lineaSJFP[i].getArrivo();
-		bt[i] = lineaSJFP[i].getDurata();
-     k[i]= bt[i];
-     f[i]= 0;
-    }
-    
-    while(true){
-    	int min=99,c=n;
-    	if (tot==n)
-    		break;
-    
-    	for ( i=0;i<n;i++){
-    		if ((at[i]<=st) && (f[i]==0) && (bt[i]<min)){
-    			min=bt[i];
-    			c=i;
-    		}
-    	}
-    
-    	if (c==n) st++;
-    	else{
-    		bt[c]--;
-    		st++;
-    		if (bt[c]==0){
-    			ct[c]= st;
-    			f[c]=1;
-    			tot++;
-    		}
-    	}
-    }
-    
-    for(i=0;i<n;i++){
-    	ta[i] = ct[i] - at[i];
-    	wt[i] = ta[i] - k[i];
-    	avgwt+= wt[i];
-    	avgta+= ta[i];
-    }
-   //DA CONTROLLARE 
-    System.out.println("pid  arrival  burst  complete turn waiting");
-    for(i=0;i<n;i++)
-    {
-     System.out.println(pid[i] +"\t"+ at[i]+"\t"+ k[i] +"\t"+ ct[i] +"\t"+ ta[i] +"\t"+ wt[i]);
-    }
-    
-    System.out.println("\naverage tat is "+ (float)(avgta/n));
-    System.out.println("average wt is "+ (float)(avgwt/n));
-
-    for(int  J = 0 ; J< n;  J++){
-		punti.add(at[J]+wt[J]);
-		punti.add(pid[J]);
-		punti.add(ct[J]);
-		punti.add(pid[J]);
-	}
-
-	float aver=(avgwt/n);
-	averageSJFP=aver;
-
-    for(int  J = 0 ; J< n;  J++){
-		if(bt[J]!=0) cbSJFP++;
-	}
-
-	cbSJFP=cbSJFP-1;
-	return punti;
-}
-
-
-//METODO PER CALCOLARE RR
-public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
-	
-	ArrayList<Integer> punti=new ArrayList<Integer>();
-	int n = lineaRR.length;
-	int pid[] = new int[n];   // process ids
-	int ar[] = new int[n];     // arrival times
-	int bt[] = new int[n];     // burst or execution times
-	int ct[] = new int[n];     // completion times
-	int ta[] = new int[n];     // turn around times
-	int wt[] = new int[n];     // waiting times
-	int temp;
-	float avgwt=0,avgta=0;
-	int q=0;
-	for(int i = 0; i < n; i++){
-		ar[i]= lineaRR[i].getArrivo();
-		bt[i] = lineaRR[i].getDurata();
-		pid[i] = lineaRR[i].getProcesso();
-	}
-
-	for(int  i = 0 ; i < n; i++){
-		if( i == 0){
-			ct[i] = ar[i] + bt[i];
-		}
-		else{
-			if( ar[i] > ct[i-1]){
-				ct[i] = ar[i] + bt[i];
-			}
-			else ct[i] = ct[i-1] + bt[i];
-		}
-		ta[i] = ct[i] - ar[i] ;          // turnaround time= completion time- arrival time
-		wt[i] = ta[i] - bt[i] ;          // waiting time= turnaround time- burst time
-		avgwt += wt[i] ;               // total waiting time
-		avgta += ta[i] ;               // total turnaround time
-	}	
-
-	for(int  i = 0 ; i< n;  i++){
-		punti.add(ar[i]+wt[i]+q*quantum);
-		punti.add(pid[i]);
-		if(ct[i]-quantum>0)punti.add(ct[i]-quantum);
-		else punti.add(ct[i]);
-		punti.add(pid[i]);
-		if(i==n-1 && q<quantum) {
-			i=0;
-			q++;
-		}
-	}
-	
-	float aver=(avgwt/n);
-	averageRR=aver;
-
-	for(int  i = 0 ; i< n;  i++){
-		if(bt[i]!=0) cbRR++;
-	}
-	
-	cbRR=cbRR-1;
-	return punti;
-}
-
-*/
-
 }

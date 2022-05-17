@@ -119,7 +119,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	
 	
 	public void disegnaSoluzione(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
-
+		
     	if(selectSoluzione==true) {
     		
     		for(int l=0;l<lineesFCFS.size();) {   
@@ -130,11 +130,12 @@ public class PanelGraficiSchProcessi extends JPanel {
 
     			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
     			l=l+4;
-    			}
+    		}
     		g.setColor(Color.blue);
 
     		for(int l=0;l<lineesFCFSarray.size();l++) {    
-        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,92-l*15);
+        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+        					//92-l*15);
         	}
 
     	}
