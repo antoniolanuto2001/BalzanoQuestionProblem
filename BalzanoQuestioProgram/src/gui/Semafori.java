@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
@@ -37,6 +38,13 @@ import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.event.PopupMenuEvent;
+import javax.swing.JProgressBar;
+import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 
 public class Semafori extends JFrame {
 
@@ -58,118 +66,148 @@ public class Semafori extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panelMainButton = new JPanel();
+		panelMainButton.setBackground(new Color(255, 255, 255));
+		panelMainButton.setBorder(new CompoundBorder());
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		//modified
-		JLabel labelSchemata = new JLabel(" Semafori ");
-		labelSchemata.setBounds(573, 11, 320, 89);
-		panelMainButton.add(labelSchemata);
-		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
-		
 		
 		//added
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBackground(SystemColor.activeCaption);
-		panelSuperiore.setBounds(0, 0, 1414, 124);
+		panelSuperiore.setBackground(new Color(245, 245, 245));
+		panelSuperiore.setBounds(-71, 0, 1495, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
 		
-		
-		JButton buttonIndietro = new JButton("Indietro");
-		buttonIndietro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		buttonIndietro.setBackground(SystemColor.inactiveCaption);
-		buttonIndietro.setOpaque(true);
-		buttonIndietro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				framechiamante.setVisible(true);
-				frame.setVisible(false);
-				frame.dispose();
-			}
-		});
-		buttonIndietro.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		buttonIndietro.setBounds(10, 135, 128, 46);
-		panelMainButton.add(buttonIndietro);
+		//modified
+		JLabel labelTitoloSchermata = new JLabel(" Semafori ");
+		labelTitoloSchermata.setBounds(70, 0, 320, 89);
+		panelSuperiore.add(labelTitoloSchermata);
+		labelTitoloSchermata.setBackground(new Color(224, 255, 255));
+		labelTitoloSchermata.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 47));
 		
 		
 		
-	
+		JLabel labelHelpIcon = new JLabel("Help");
+		labelHelpIcon.setBounds(1451, 0, 34, 46);
+		panelSuperiore.add(labelHelpIcon);
+		labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 		
 		
 		
-		JButton SlideArgomentoJButton = new JButton("Slide Argomento");
-		SlideArgomentoJButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Desktop d = Desktop.getDesktop();
-				try {
-					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=232"));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+		
+		   JLabel labelIndietroIcon = new JLabel("Indietro");
+	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+				public void mouseClicked(MouseEvent e) 
+				{
+					framechiamante.setVisible(true);
+					frame.setVisible(false);
+					frame.dispose();
 				}
-			}
-		});
 		
-		SlideArgomentoJButton.setBackground(SystemColor.inactiveCaption);
-		SlideArgomentoJButton.setOpaque(true);
-		SlideArgomentoJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		SlideArgomentoJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		SlideArgomentoJButton.setBounds(331,135,143,46);
-		panelMainButton.add(SlideArgomentoJButton);
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelIndietroIcon.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelIndietroIcon.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
+	        labelIndietroIcon.setBounds(10, 87, 34, 46);
+	        panelMainButton.add(labelIndietroIcon);
 		
-		JButton VideoLezioneJButton = new JButton("VideoLezione");
-		VideoLezioneJButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-		 		Desktop d = Desktop.getDesktop();
-				try {
-					d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=5976"));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-		});
+		 JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaSlide.setBounds(1309, 345, 95, 15);
+	        panelMainButton.add(labelScrittaSlide);
+	        JLabel labelSlideIcon = new JLabel("Slide");
+	        labelSlideIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=232"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
+	        labelSlideIcon.setBounds(1333, 296, 53, 46);
+	        panelMainButton.add(labelSlideIcon);
+	        
 		
-		VideoLezioneJButton.setBackground(SystemColor.inactiveCaption);
-		VideoLezioneJButton.setOpaque(true);
-		VideoLezioneJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		VideoLezioneJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		VideoLezioneJButton.setBounds(509,135,143,46);
-		panelMainButton.add(VideoLezioneJButton);
+		
+		 JLabel labelScrittaYoutube = new JLabel("VideoLezione");
+	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        labelScrittaYoutube.setBounds(1322, 273, 82, 12);
+	        panelMainButton.add(labelScrittaYoutube);
+	        JLabel labelYoutubeIcon = new JLabel("Youtube");
+	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=5976"));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaYoutube.setForeground(Color.BLACK);
+	        	}
+	        });
+	        labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
+	        labelYoutubeIcon.setBounds(1332, 222, 54, 46);
+	        panelMainButton.add(labelYoutubeIcon);
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	        
+	        
+	        
 		
 		
 		JLabel lblNewLabel = new JLabel("Pannello di controllo");
-		lblNewLabel.setBounds(1168, 168, 137, 27);
+		lblNewLabel.setBounds(189, 146, 137, 27);
 		panelMainButton.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		
 		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		desktopPane.setBackground(SystemColor.inactiveCaption);
-		desktopPane.setBounds(1051, 200, 353, 156);
+		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		desktopPane.setBackground(new Color(255, 255, 255));
+		desktopPane.setBounds(75, 170, 353, 156);
 		panelMainButton.add(desktopPane);
 		
 		JTextField TextFieldNumProcessi = new JTextField();
@@ -180,11 +218,13 @@ public class Semafori extends JFrame {
 		TextFieldNumProcessi.setColumns(10);
 		
 		JButton ResetButton = new JButton("Reset");
+		ResetButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		ResetButton.setBackground(new Color(255, 255, 255));
 		ResetButton.setBounds(219, 96, 121, 23);
 		desktopPane.add(ResetButton);
 		
 		JToggleButton StartPauseToggleButton = new JToggleButton("Start/Pause");
+		StartPauseToggleButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		StartPauseToggleButton.setBounds(219, 31, 121, 23);
 		desktopPane.add(StartPauseToggleButton);
 		StartPauseToggleButton.setBackground(new Color(255, 255, 255));
@@ -199,24 +239,26 @@ public class Semafori extends JFrame {
 		
 		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
 		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1.setBounds(239, 625, 79, 14);
+		JLabelTextMutex1.setBounds(888, 333, 79, 14);
 		panelMainButton.add(JLabelTextMutex1);
 		
 		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
 		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2.setBounds(573, 625, 79, 14);
+		JLabelTextMutex2.setBounds(1094, 333, 79, 14);
 		panelMainButton.add(JLabelTextMutex2);
 		JLabelTextMutex2.setVisible(false);
 		
 		//creating a default semaphore graphic
 		JPanel PannelloGraficaSemaforo1 = new Semaforo();
-		PannelloGraficaSemaforo1.setBounds(65, 527, 164, 213);
+		PannelloGraficaSemaforo1.setBackground(new Color(255,255,255));
+		PannelloGraficaSemaforo1.setBounds(833, 146, 174, 176);
 		panelMainButton.add(PannelloGraficaSemaforo1);
 		
 		
 		//second semaphore graphic
 		JPanel PannelloGraficaSemaforo2 = new Semaforo();
-		PannelloGraficaSemaforo2.setBounds(395,527,164,213);
+		PannelloGraficaSemaforo2.setBackground(new Color(255,255,255));
+		PannelloGraficaSemaforo2.setBounds(1029,146,174,176);
 		panelMainButton.add(PannelloGraficaSemaforo2);
 		PannelloGraficaSemaforo2.setVisible(false);
 		
@@ -293,7 +335,8 @@ public class Semafori extends JFrame {
 
 		
 		JScrollPane scrollTabella= new JScrollPane();
-		scrollTabella.setBounds(81, 403, 1032, 103);
+		scrollTabella.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Table View", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollTabella.setBounds(185, 376, 1032, 130);
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
@@ -331,9 +374,51 @@ public class Semafori extends JFrame {
 		
 		
 		
+		 JProgressBar progressBarP1 = new JProgressBar();
+		 progressBarP1.setForeground(new Color(192, 192, 192));
+		 progressBarP1.setBackground(new Color(255, 255, 255));
+		 progressBarP1.setMaximum(300);
+		 progressBarP1.setToolTipText("");
+	        progressBarP1.setOrientation(SwingConstants.VERTICAL);
+	        progressBarP1.setBounds(379, 517, 28, 207);
+	        panelMainButton.add(progressBarP1);
+	        
+	        JProgressBar progressBarP2 = new JProgressBar();
+	        progressBarP2.setBackground(new Color(255, 255, 255));
+	        progressBarP2.setMaximum(300);
+	        progressBarP2.setOrientation(SwingConstants.VERTICAL);
+	        progressBarP2.setBounds(478, 517, 28, 207);
+	        panelMainButton.add(progressBarP2);
+	        progressBarP2.setVisible(false);
+	        
+	        JProgressBar progressBarP3 = new JProgressBar();
+	        progressBarP3.setBackground(new Color(255, 255, 255));
+	        progressBarP3.setMaximum(300);
+	        progressBarP3.setOrientation(SwingConstants.VERTICAL);
+	        progressBarP3.setBounds(569, 517, 28, 207);
+	        panelMainButton.add(progressBarP3);
+	        progressBarP3.setVisible(false);
+	        
+	        JProgressBar progressBarP4 = new JProgressBar();
+	        progressBarP4.setBackground(new Color(255, 255, 255));
+	        progressBarP4.setMaximum(300);
+	        progressBarP4.setOrientation(SwingConstants.VERTICAL);
+	        progressBarP4.setBounds(663, 517, 28, 207);
+	        panelMainButton.add(progressBarP4);
+	        progressBarP4.setVisible(false);
+	        
+	        
+	        
+	        JProgressBar progressBarP5 = new JProgressBar();
+	        progressBarP5.setBackground(new Color(255, 255, 255));
+	        progressBarP5.setMaximum(300);
+	        progressBarP5.setOrientation(SwingConstants.VERTICAL);
+	        progressBarP5.setBounds(752, 517, 28, 207);
+	        panelMainButton.add(progressBarP5);
+	        progressBarP5.setVisible(false);
+	 
 		
-		
-		
+		//ACTION ON NUM PROCESSI
 		
 		NumProcessiComboBox.addActionListener(new ActionListener() {
 			@Override
@@ -367,6 +452,37 @@ public class Semafori extends JFrame {
 				}
 				
 				
+				//managing progress bars
+				
+				if(sceltaNumero==2)
+				{
+					 progressBarP2.setVisible(true);
+				}else if(sceltaNumero==1)
+					progressBarP2.setVisible(false);
+					
+				if(sceltaNumero==3)
+				{
+					 progressBarP3.setVisible(true);
+					 progressBarP2.setVisible(true);
+				}else if(sceltaNumero==1 || sceltaNumero==2)
+					progressBarP3.setVisible(false);
+				
+				if(sceltaNumero==4)
+				{
+					 progressBarP3.setVisible(true);
+					 progressBarP2.setVisible(true);
+					 progressBarP4.setVisible(true);
+				}else if(sceltaNumero==1 || sceltaNumero==2 || sceltaNumero==3)
+					progressBarP4.setVisible(false);
+				
+				if(sceltaNumero==5)
+				{
+					progressBarP3.setVisible(true);
+					progressBarP2.setVisible(true);
+					progressBarP4.setVisible(true);
+					progressBarP5.setVisible(true);
+				}else if(sceltaNumero==1 || sceltaNumero==2 || sceltaNumero==3 ||sceltaNumero==4)
+					progressBarP5.setVisible(false);
 				
 			}
 		});
@@ -374,101 +490,124 @@ public class Semafori extends JFrame {
 		
 		
 		
-		JButton GeneraEsercizioJButton = new JButton("Genera Esercizio");
-		GeneraEsercizioJButton.setBackground(SystemColor.inactiveCaption);
-		GeneraEsercizioJButton.setOpaque(true);
-		GeneraEsercizioJButton.setBorder(new LineBorder(new Color(0, 0, 0)));
-		GeneraEsercizioJButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		GeneraEsercizioJButton.setBounds(155, 135, 143, 46);
-		panelMainButton.add(GeneraEsercizioJButton);
-		
-		GeneraEsercizioJButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int rowCount = tabella.getRowCount();
-				int columnCount = tabella.getColumnCount();
-				int randomNum=0;
-				int start_processo=0;
-				int end_processo=0;
-				int start_critica1=0,start_critica2=0,start_critica3=0;
-				int end_critica1=0,end_critica2=0;
-		
-				
-				//algoritmo di generazione valori 
-				for(int i=0; i<rowCount; i++) {
-					for(int j=1; j<columnCount; j++) {
+		 JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
+	        GeneraEsercizioJLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        GeneraEsercizioJLabel.setBounds(1309, 422, 102, 15);
+	        panelMainButton.add(GeneraEsercizioJLabel);
+	        JLabel GeneraEsercizioIcon = new JLabel("");
+	        GeneraEsercizioIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+				public void mouseClicked(MouseEvent e) {
+					int rowCount = tabella.getRowCount();
+					int columnCount = tabella.getColumnCount();
+					int randomNum=0;
+					int start_processo=0;
+					int end_processo=0;
+					int start_critica1=0,start_critica2=0,start_critica3=0;
+					int end_critica1=0,end_critica2=0;
+			
 					
-						//inizio processo
-						if(j==1)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(1, 50);
-							start_processo=randomNum;
-						}
+					//algoritmo di generazione valori 
+					for(int i=0; i<rowCount; i++) {
+						for(int j=1; j<columnCount; j++) {
 						
-						//fine processo
-						if(j==2)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(270, 300);
-							end_processo=randomNum;
-						}
-						
-						//inizio zona critica 1
-					
-						if(j==3)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(55, 80);
-							start_critica1=randomNum;
-						}
-						
-						//fine zona critica 1
-						if(j==4)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(100, 140);
-							end_critica1=randomNum;
-						}
-						
-						
-						//inizio zona critica 2
-						//start zona critica 2: >end zona critica 1 && compreso tra 160-184
-						if(j==5)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(160, 184);
-							start_critica2=randomNum;
-						}
-						
-						//fine zona critica 2
-						//end zona critica 2: > start zona critica 2 && compreso tra 195-230
-						if(j==6)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(195, 230);
-							end_critica2=randomNum;
-						}
-						
-						//inizio zona critica 3
-						//start zona critica 3: >end zona critica 2 && compreso tra 238-268
-						if(j==7)
-						{
+							//inizio processo
+							if(j==1)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(1, 50);
+								start_processo=randomNum;
+							}
 							
-							randomNum= ThreadLocalRandom.current().nextInt(238, 268);
-							start_critica3=randomNum;
+							//fine processo
+							if(j==2)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(270, 300);
+								end_processo=randomNum;
+							}
+							
+							//inizio zona critica 1
+						
+							if(j==3)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(55, 80);
+								start_critica1=randomNum;
+							}
+							
+							//fine zona critica 1
+							if(j==4)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(100, 140);
+								end_critica1=randomNum;
+							}
+							
+							
+							//inizio zona critica 2
+							//start zona critica 2: >end zona critica 1 && compreso tra 160-184
+							if(j==5)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(160, 184);
+								start_critica2=randomNum;
+							}
+							
+							//fine zona critica 2
+							//end zona critica 2: > start zona critica 2 && compreso tra 195-230
+							if(j==6)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(195, 230);
+								end_critica2=randomNum;
+							}
+							
+							//inizio zona critica 3
+							//start zona critica 3: >end zona critica 2 && compreso tra 238-268
+							if(j==7)
+							{
+								
+								randomNum= ThreadLocalRandom.current().nextInt(238, 268);
+								start_critica3=randomNum;
+							}
+							
+							//fine zona critica 3
+							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
+							if(j==8)
+							{
+								randomNum= ThreadLocalRandom.current().nextInt(275,287);	
+							}
+							
+							
+							
+							model1.setValueAt(randomNum, i, j);
 						}
-						
-						//fine zona critica 3
-						//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
-						if(j==8)
-						{
-							randomNum= ThreadLocalRandom.current().nextInt(275,287);	
-						}
-						
-						
-						
-						model1.setValueAt(randomNum, i, j);
 					}
+					
 				}
-				
-			}
-		});
-		
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		GeneraEsercizioJLabel.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		GeneraEsercizioJLabel.setForeground(Color.BLACK);
+	        	}
+	        });
+	        
+	        GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
+	        GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
+	        panelMainButton.add(GeneraEsercizioIcon);
+	        
+	        JLabel IndicatoreTempoIniz1 = new JLabel("Tempo 0");
+	        IndicatoreTempoIniz1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+	        IndicatoreTempoIniz1.setBounds(316, 517, 53, 14);
+	        panelMainButton.add(IndicatoreTempoIniz1);
+	        
+	        JLabel IndicatoreTempoFin1 = new JLabel("Tempo 300");
+	        IndicatoreTempoFin1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+	        IndicatoreTempoFin1.setBounds(305, 709, 64, 14);
+	        panelMainButton.add(IndicatoreTempoFin1);
+	        
+	       
+	       
 		
 		
 		
