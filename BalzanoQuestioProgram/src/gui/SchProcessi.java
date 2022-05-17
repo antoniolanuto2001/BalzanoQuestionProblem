@@ -203,7 +203,7 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloPrincipale.add(btnInfouso);
 	        
 			
-/**							PANNELLO TITOLO									*/
+/**							PANNELLO TITOLO										*/
 		JPanel pannelloTitolo = new JPanel();
 			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
 			//pannelloTitolo.setBackground(Color.WHITE);

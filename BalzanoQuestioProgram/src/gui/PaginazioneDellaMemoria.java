@@ -57,6 +57,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
 
+
 public class PaginazioneDellaMemoria extends JFrame {
 
 	private JPanel contentPane;
