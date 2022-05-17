@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -29,6 +30,8 @@ import javax.swing.border.LineBorder;
 
 import model.parolaHashing;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
 
 public class Hashing extends JFrame {
@@ -42,6 +45,9 @@ public class Hashing extends JFrame {
 	 */
 	public Hashing(JFrame framechiamante) 
 	{
+
+		
+		   
 		//Dizionario Parole
 		String [] dizionarioParola = {"Vulcano","Amico","Organo","Rame","Gorilla","Orzo","Noci","Melanzana","Cristallo","Pavimento","Risotto","Sei","Stalattiti","Sinistra",
 				"Siluro","Lavandino","Furbo","Moneta","Lampada","Camomilla","Proboscide","Russo","Blu","Valigia","Gorilla","Macchia","Grotta","Mutande","Pasta",
@@ -77,14 +83,14 @@ public class Hashing extends JFrame {
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
 		
 		JTextArea textParoleBase = new JTextArea();
-		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 18));
+		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleBase.setEditable(false);
 		textParoleBase.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleBase.setBounds(50, 250, 210, 406);
+		textParoleBase.setBounds(26, 237, 264, 406);
 		panelMainButton.add(textParoleBase);
 		
 		JPanel panelControllo = new JPanel();
-		panelControllo.setBorder(new LineBorder(new Color(255, 102, 51), 2));
+		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.setBounds(1130, 76, 274, 664);
 		panelMainButton.add(panelControllo);
 		panelControllo.setLayout(null);
@@ -93,21 +99,36 @@ public class Hashing extends JFrame {
 		labelgenerale.setForeground(Color.RED);
 		labelgenerale.setVerticalAlignment(SwingConstants.BOTTOM);
 		labelgenerale.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelgenerale.setBounds(68, 58, 122, 26);
+		labelgenerale.setBounds(68, 80, 122, 26);
 		panelControllo.add(labelgenerale);
 		
 		JPanel panelPlot = new JPanel();
-		panelPlot.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelPlot.setBounds(10, 85, 254, 169);
+		panelPlot.setBounds(10, 107, 254, 169);
+		panelPlot.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelPlot);
 		panelPlot.setLayout(null);
 		
-		JButton buttonGeneraEsempio = new JButton("Genera Esempio");
+		JButton buttonGeneraEsempio = new JButton("GENERA PAROLE");
 		
 		
-		buttonGeneraEsempio.setBorder(new LineBorder(Color.RED, 2, true));
-		buttonGeneraEsempio.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-		buttonGeneraEsempio.setBounds(69, 78, 127, 34);
+		buttonGeneraEsempio.setBackground(Color.WHITE);
+		buttonGeneraEsempio.addMouseListener(new MouseAdapter() {
+			@Override
+        	public void mouseEntered(MouseEvent e) 
+        	{
+        		buttonGeneraEsempio.setBackground(new Color(229,57,53));
+        	}
+        	@Override
+        	public void mouseExited(MouseEvent e) 
+        	{
+        		buttonGeneraEsempio.setBackground(Color.WHITE);
+        	}
+		});
+		
+		
+		buttonGeneraEsempio.setBorder(new LineBorder(new Color(229,57,53), 2, true));
+		buttonGeneraEsempio.setFont(new Font("Arial", Font.BOLD, 15));
+		buttonGeneraEsempio.setBounds(15, 78, 224, 34);
 		panelPlot.add(buttonGeneraEsempio);
 		
 		JComboBox comboBoxSceltaNParole = new JComboBox();
@@ -117,20 +138,20 @@ public class Hashing extends JFrame {
 		comboBoxSceltaNParole.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		comboBoxSceltaNParole.setBackground(new Color(255, 255, 255));
 		comboBoxSceltaNParole.setModel(new DefaultComboBoxModel(new String[] {"9","8","7","6", "5", "4"}));
-		comboBoxSceltaNParole.setBounds(167, 46, 50, 21);
+		comboBoxSceltaNParole.setBounds(193, 22, 51, 22);
 		panelPlot.add(comboBoxSceltaNParole);
 		
 		JLabel labelGrandezza = new JLabel("Grandezza Dizionario : ");
 		labelGrandezza.setEnabled(false);
-		labelGrandezza.setFont(new Font("Segoe UI", Font.PLAIN, 11));
-		labelGrandezza.setBounds(31, 45, 126, 22);
+		labelGrandezza.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		labelGrandezza.setBounds(20, 22, 160, 22);
 		panelPlot.add(labelGrandezza);
 		
 		JLabel labelPlay = new JLabel(">");
 		labelPlay.setEnabled(false);
 		
 		labelPlay.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		labelPlay.setBounds(110, 123, 39, 35);
+		labelPlay.setBounds(105, 123, 39, 35);
 		labelPlay.setIcon(imagePlay);
 		panelPlot.add(labelPlay);
 		
@@ -138,8 +159,8 @@ public class Hashing extends JFrame {
 		
 		JPanel panelSomma = new JPanel();
 		panelSomma.setLayout(null);
-		panelSomma.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelSomma.setBounds(10, 279, 254, 135);
+		panelSomma.setBounds(10, 301, 254, 135);
+		panelSomma.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelSomma);
 		
 		JRadioButton radioSommaNormale = new JRadioButton("Somma di Caratteri");
@@ -147,13 +168,13 @@ public class Hashing extends JFrame {
 		
 		radioSommaNormale.setSelected(true);
 		radioSommaNormale.setEnabled(false);
-		radioSommaNormale.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		radioSommaNormale.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radioSommaNormale.setBounds(6, 31, 189, 31);
 		panelSomma.add(radioSommaNormale);
 		
 		JRadioButton radioSommaMultipla = new JRadioButton("Somma di Caratteri Quadratica");
 		radioSommaMultipla.setEnabled(false);
-		radioSommaMultipla.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		radioSommaMultipla.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radioSommaMultipla.setBounds(6, 74, 213, 31);
 		panelSomma.add(radioSommaMultipla);
 		
@@ -161,7 +182,7 @@ public class Hashing extends JFrame {
 		labelSomma.setForeground(Color.RED);
 		labelSomma.setVerticalAlignment(SwingConstants.BOTTOM);
 		labelSomma.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelSomma.setBounds(68, 253, 122, 26);
+		labelSomma.setBounds(75, 275, 122, 26);
 		panelControllo.add(labelSomma);
 		
 		JLabel labelScrittaIndietro = new JLabel(" Indietro");
@@ -266,31 +287,31 @@ public class Hashing extends JFrame {
 		labelCodifica.setForeground(Color.RED);
 		labelCodifica.setVerticalAlignment(SwingConstants.BOTTOM);
 		labelCodifica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		labelCodifica.setBounds(91, 425, 122, 26);
+		labelCodifica.setBounds(91, 447, 122, 26);
 		panelControllo.add(labelCodifica);
 		
 		JPanel panelCodifica = new JPanel();
 		panelCodifica.setLayout(null);
-		panelCodifica.setBorder(new LineBorder(new Color(204, 0, 0), 2, true));
-		panelCodifica.setBounds(10, 451, 254, 180);
+		panelCodifica.setBounds(10, 473, 254, 180);
+		panelCodifica.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelCodifica);
 		
 		JRadioButton radioXmod = new JRadioButton("x Mod 8");
 		radioXmod.setEnabled(false);
 		radioXmod.setSelected(true);
-		radioXmod.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		radioXmod.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radioXmod.setBounds(6, 31, 189, 31);
 		panelCodifica.add(radioXmod);
 		
 		JRadioButton radio5xMod8 = new JRadioButton("(5x + 2 ) mod 8 ");
 		radio5xMod8.setEnabled(false);
-		radio5xMod8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		radio5xMod8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radio5xMod8.setBounds(6, 74, 213, 31);
 		panelCodifica.add(radio5xMod8);
 		
 		JRadioButton radioxJ2mod8 = new JRadioButton("(x + J\u00B2) mod 8");
 		radioxJ2mod8.setEnabled(false);
-		radioxJ2mod8.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		radioxJ2mod8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radioxJ2mod8.setBounds(6, 115, 213, 31);
 		panelCodifica.add(radioxJ2mod8);
 		
@@ -302,38 +323,65 @@ public class Hashing extends JFrame {
 		groupCodifica.add(radio5xMod8);
 		groupCodifica.add(radioxJ2mod8);
 		
-		JLabel labelDizionario = new JLabel("Dizionario :");
+		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
+		labelPnlCtrl.setBorder(new LineBorder(new Color (30, 136, 229), 2));
+		labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
+		labelPnlCtrl.setBounds(14, 11, 245, 54);
+		panelControllo.add(labelPnlCtrl);
+		
+		JLabel labelDizionario = new JLabel("PAROLE ORIGINALI : ");
 		labelDizionario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelDizionario.setBounds(50, 210, 116, 29);
+		labelDizionario.setBounds(89, 183, 139, 46);
 		panelMainButton.add(labelDizionario);
 		
 		JTextArea textParoleSommate = new JTextArea();
-		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 18));
+		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleSommate.setEditable(false);
 		textParoleSommate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleSommate.setBounds(417, 250, 210, 406);
+		textParoleSommate.setBounds(434, 237, 251, 406);
 		panelMainButton.add(textParoleSommate);
 		
-		JLabel labelCodifica1 = new JLabel("Somma : ");
+		JLabel labelCodifica1 = new JLabel("SOMMA CARATTERI : ");
 		labelCodifica1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelCodifica1.setBounds(411, 210, 116, 29);
+		labelCodifica1.setBounds(485, 183, 157, 46);
 		panelMainButton.add(labelCodifica1);
 		
-		JLabel labelSomma2 = new JLabel("Codifica :");
+		JLabel labelSomma2 = new JLabel("CODIFICA FINALE :");
 		labelSomma2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelSomma2.setBounds(812, 210, 116, 29);
+		labelSomma2.setBounds(925, 192, 134, 29);
 		panelMainButton.add(labelSomma2);
 		
 		JTextArea textParoleCodificate = new JTextArea();
-		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 18));
+		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleCodificate.setEditable(false);
 		textParoleCodificate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleCodificate.setBounds(814, 250, 199, 406);
+		textParoleCodificate.setBounds(866, 237, 236, 406);
 		panelMainButton.add(textParoleCodificate);
+		
+		JLabel labelFrecciaSomma = new JLabel("Somma ->");
+		labelFrecciaSomma.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
+		labelFrecciaSomma.setBounds(300, 367, 124, 111);
+		panelMainButton.add(labelFrecciaSomma);
+		
+		JLabel labelFrecciaCodifica = new JLabel("Codifica ->");
+		labelFrecciaCodifica.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
+		labelFrecciaCodifica.setBounds(719, 367, 124, 111);
+		panelMainButton.add(labelFrecciaCodifica);
+		
+		JLabel labelFrecciaScrittaSomma = new JLabel("");
+		labelFrecciaScrittaSomma.setBounds(292, 382, 69, 14);
+		panelMainButton.add(labelFrecciaScrittaSomma);
+		
+		JLabel labelFrecciaScrittaCodifica = new JLabel("");
+		labelFrecciaScrittaCodifica.setBounds(689, 385, 89, 14);
+		panelMainButton.add(labelFrecciaScrittaCodifica);
 		buttonGeneraEsempio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
 				//Generazione varibiali 
+				labelFrecciaScrittaSomma.setText("");
+				labelFrecciaScrittaCodifica.setText("");
 				puoiCambiare=false;
 				int indexDaEstrarre = randomGenerator.nextInt(44 - 0 + 1) + 0;
 				boolean tuttook= true;
@@ -461,24 +509,29 @@ public class Hashing extends JFrame {
 					if (radioSommaNormale.isSelected()) 
 					{
 						textParoleSommate.append(""+iteraParolaHashing.sommaNormale()+"\n");
+						labelFrecciaScrittaSomma.setText("S. Normale");
 					}
 					else 
 					{
 						textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
+						labelFrecciaScrittaSomma.setText("S. Quadrica");
 					}
 					
 					//Per La Codifica
 					if(radioXmod.isSelected())
 					{
 						textParoleCodificate.append(""+iteraParolaHashing.xMod8()+"\n");
+						labelFrecciaScrittaCodifica.setText("X mod 8");
 					}
 					else if (radio5xMod8.isSelected())
 					{
 						textParoleCodificate.append(""+iteraParolaHashing.x5_2mod8()+"\n");
+						labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
 					}
 					else if(radioxJ2mod8.isSelected())
 					{
 						textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
+						labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					}
 					
 				}
@@ -490,11 +543,14 @@ public class Hashing extends JFrame {
 			{
 				if (puoiCambiare) 
 				{
+					
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
+					labelFrecciaScrittaSomma.setText("S. Normale");
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleSommate.append(""+iteraParolaHashing.sommaNormale()+"\n");
+						
 						//Per La Codifica
 						if(radioXmod.isSelected())
 						{
@@ -520,6 +576,7 @@ public class Hashing extends JFrame {
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
+					labelFrecciaScrittaSomma.setText("S. Quadrica");
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
@@ -548,6 +605,7 @@ public class Hashing extends JFrame {
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("X mod 8");
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.xMod8()+"\n");
@@ -572,6 +630,7 @@ public class Hashing extends JFrame {
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.x5_2mod8()+"\n");
@@ -596,6 +655,7 @@ public class Hashing extends JFrame {
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
