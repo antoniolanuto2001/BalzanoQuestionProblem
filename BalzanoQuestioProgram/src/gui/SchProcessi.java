@@ -576,7 +576,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 
 		JButton modificaTabella = new JButton("OK");
-		modificaTabella.setEnabled(false);
+			modificaTabella.setEnabled(false);
 			modificaTabella.setFont(new Font("Tahoma", Font.PLAIN, 6));
 			modificaTabella.setBounds(185, 158, 50, 21);
 			pannelloEDITOR.add(modificaTabella);
@@ -591,7 +591,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 		JButton btnSalvaModifica = new JButton("Salva Modifiche");
 			btnSalvaModifica.setEnabled(false);
-			btnSalvaModifica.setBounds(103, 63, 125, 21);
+			btnSalvaModifica.setBounds(100, 33, 125, 21);
 			PannelloPLOT.add(btnSalvaModifica);
 		
 		JCheckBox chckbxAttivaModifiche = new JCheckBox("Attiva modifiche");
@@ -601,9 +601,10 @@ public SchProcessi(JFrame framechiamante) {
 			PannelloPLOT.add(chckbxAttivaModifiche);
 		
 		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutte le soluzione");
+			chkbkMostraAllSoluzione.setHorizontalAlignment(SwingConstants.LEFT);
 			chkbkMostraAllSoluzione.setEnabled(false);
 			chkbkMostraAllSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chkbkMostraAllSoluzione.setBounds(6, 32, 222, 21);
+			chkbkMostraAllSoluzione.setBounds(6, 62, 222, 21);
 			PannelloPLOT.add(chkbkMostraAllSoluzione);
 		
 		JLabel lblGestione = new JLabel("Gestione");
