@@ -151,7 +151,7 @@ public class Semafori extends JFrame {
 	        panelMainButton.add(labelSlideIcon);
 	        
 		
-		
+		//scritta youtube
 		 JLabel labelScrittaYoutube = new JLabel("VideoLezione");
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	        labelScrittaYoutube.setBounds(1322, 273, 82, 12);
