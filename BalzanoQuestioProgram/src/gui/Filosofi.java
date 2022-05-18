@@ -45,6 +45,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.JSpinner;
 import javax.swing.border.BevelBorder;
+import javax.swing.UIManager;
+import javax.swing.JTabbedPane;
 
 
 
@@ -130,7 +132,7 @@ public class Filosofi extends JFrame {
 		
 		JScrollPane scroll= new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setBounds(10, 247, 344, 462);
+		scroll.setBounds(10, 200, 344, 530);
 		scroll.setPreferredSize(new DimensionUIResource(344, 5000));
 		
 		
@@ -146,7 +148,7 @@ public class Filosofi extends JFrame {
 		
 		
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBorder(new LineBorder(new Color(149, 117, 205), 9));
+		panelSuperiore.setBorder(new LineBorder(new Color(149, 117, 205), 5));
 		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
@@ -155,7 +157,7 @@ public class Filosofi extends JFrame {
 		labelSchemata.setBackground(Color.LIGHT_GRAY);
 		labelSchemata.setForeground(Color.BLACK);
 		labelSchemata.setHorizontalAlignment(SwingConstants.CENTER);
-		labelSchemata.setBounds(324, 11, 678, 62);
+		labelSchemata.setBounds(449, 11, 527, 51);
 		labelSchemata.setBorder(null);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
@@ -170,40 +172,27 @@ public class Filosofi extends JFrame {
         
         
         
-        JLabel labelLog = new JLabel("LOG Degli Eventi : ");
-        labelLog.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        labelLog.setBounds(10, 155, 172, 36);
+        JLabel labelLog = new JLabel(" LOG DEGLI EVENTI : ");
+        labelLog.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        labelLog.setBounds(92, 153, 172, 36);
         panelMainButton.add(labelLog);
         
         JPanel panelDiControllo = new JPanel();
-		panelDiControllo.setBounds(1112, 84, 290, 667);
+		panelDiControllo.setBounds(1130, 76, 274, 664);
 		
 		panelDiControllo.setLayout(null);
-		panelDiControllo.setBorder(new LineBorder(new Color(179, 157, 219), 3, true));
+		panelDiControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));;
 		panelMainButton.add(panelDiControllo);
 		
-		JPanel pannellodicontrolloTitolo = new JPanel();
-		pannellodicontrolloTitolo.setBounds(20, 10, 245, 54);
-		pannellodicontrolloTitolo.setBackground(new Color(255, 204, 51));
-		panelDiControllo.add(pannellodicontrolloTitolo);
-		pannellodicontrolloTitolo.setLayout(null);
-		pannellodicontrolloTitolo.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
-		
 		JPanel panelVelocita = new JPanel();
-		panelVelocita.setBorder(new LineBorder(new Color (30, 136, 229), 2, true));
-        panelVelocita.setBounds(20, 329, 245, 245);
+		panelVelocita.setBorder(BorderFactory.createDashedBorder(Color.BLACK));;
+        panelVelocita.setBounds(14, 350, 245, 245);
         panelDiControllo.add(panelVelocita);
         panelVelocita.setLayout(null);
 		
-         JLabel labelCtrl = new JLabel("Pannello Di Controllo");
-		labelCtrl.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCtrl.setBounds(0, 0, 245, 54);
-		pannellodicontrolloTitolo.add(labelCtrl);
-		labelCtrl.setFont(new Font("Arial", Font.BOLD, 22));
-		
 		JPanel panelModalita = new JPanel();
-		panelModalita.setBounds(20, 106, 245, 166);
-        panelModalita.setBorder(new LineBorder(new Color (211, 47, 47), 2, true));
+		panelModalita.setBounds(14, 112, 245, 183);
+        panelModalita.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         panelDiControllo.add(panelModalita);
         panelModalita.setLayout(null);
 	        
@@ -211,7 +200,7 @@ public class Filosofi extends JFrame {
 		radioDefault.setBounds(6, 7, 175, 36);
 		panelModalita.add(radioDefault);
 		radioDefault.setToolTipText("Filosofi fermi senza mangiare ");
-		radioDefault.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		radioDefault.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		radioDefault.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -262,7 +251,7 @@ public class Filosofi extends JFrame {
         sliderVelocitaMangia.setMinorTickSpacing(3);
         
         JRadioButton radioCoda = new JRadioButton("Schema Coda");
-        radioCoda.setBounds(6, 115, 206, 44);
+        radioCoda.setBounds(6, 124, 206, 44);
         panelModalita.add(radioCoda);
         radioCoda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) 
@@ -389,7 +378,7 @@ public class Filosofi extends JFrame {
         	}
         });
         radioCoda.setToolTipText("Solo 4 Filosofi possono sedersi conteporaneamente");
-        radioCoda.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        radioCoda.setFont(new Font("Tahoma", Font.PLAIN, 14));
         groupSceltaStrategiaFilosofi.add(radioCoda);
         
         JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
@@ -521,7 +510,7 @@ public class Filosofi extends JFrame {
         		}
         	}
         });
-        radioAtomico.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        radioAtomico.setFont(new Font("Tahoma", Font.PLAIN, 14));
         groupSceltaStrategiaFilosofi.add(radioAtomico);
         
         
@@ -677,13 +666,13 @@ public class Filosofi extends JFrame {
         	    
         	}
         });
-        radioClassico.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        radioClassico.setFont(new Font("Tahoma", Font.PLAIN, 14));
         groupSceltaStrategiaFilosofi.add(radioClassico);
         
-        JLabel labelStrategia = new JLabel("Strategia :");
-        labelStrategia.setForeground(new Color(0, 0, 0));
-        labelStrategia.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        labelStrategia.setBounds(20, 75, 142, 25);
+        JLabel labelStrategia = new JLabel("  Strategia :");
+        labelStrategia.setForeground(Color.RED);
+        labelStrategia.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        labelStrategia.setBounds(82, 76, 118, 25);
         panelDiControllo.add(labelStrategia);
         
         JLabel labelSliderPensa = new JLabel("Pensa  : ");
@@ -696,11 +685,18 @@ public class Filosofi extends JFrame {
         panelVelocita.add(labelSliderMangia);
         labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 14));
         
-        JLabel labelVelocit = new JLabel("Velocità  :");
-        labelVelocit.setForeground(Color.BLACK);
-        labelVelocit.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        labelVelocit.setBounds(20, 302, 142, 25);
+        JLabel labelVelocit = new JLabel("   Velocità  :");
+        labelVelocit.setForeground(Color.RED);
+        labelVelocit.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        labelVelocit.setBounds(82, 317, 118, 25);
         panelDiControllo.add(labelVelocit);
+        
+        JLabel labelCtrl = new JLabel("Pannello Di Controllo");
+        labelCtrl.setBorder(new LineBorder(new Color(149, 117, 205), 3));
+        labelCtrl.setHorizontalAlignment(SwingConstants.CENTER);
+        labelCtrl.setFont(new Font("Arial", Font.BOLD, 22));
+        labelCtrl.setBounds(14, 11, 245, 54);
+        panelDiControllo.add(labelCtrl);
         
         JLabel labelScrittaIndietro = new JLabel(" Indietro");
         labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
