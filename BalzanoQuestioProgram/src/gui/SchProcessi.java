@@ -46,6 +46,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class SchProcessi extends JFrame {
 
@@ -575,6 +576,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 
 		JButton modificaTabella = new JButton("OK");
+		modificaTabella.setEnabled(false);
 			modificaTabella.setFont(new Font("Tahoma", Font.PLAIN, 6));
 			modificaTabella.setBounds(185, 158, 50, 21);
 			pannelloEDITOR.add(modificaTabella);
@@ -806,117 +808,121 @@ public SchProcessi(JFrame framechiamante) {
 		btnGeneraGrafici.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
-				jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-				jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-				jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-				
-				arrayPunti.clear();
-				arrayLinea.clear();
-				FCFS.clear();
-				SJF.clear();
-				SJFP.clear();
-				RR.clear();
-				averageFCFS=0;
-				averageSJF=0;
-				averageSJFP=0;
-				averageRR=0;
-				cbFCFS=0;
-				cbSJF=0;
-				cbSJFP=0;
-				cbRR=0;
-				quantum=0;
-				
-				chckbxMostraSoluzioneFCFS.setEnabled(true);
-				chckbxMostraSoluzioneSJF.setEnabled(true);
-				chckbxMostraSoluzioneSJFP.setEnabled(true);
-				chckbxMostraSoluzioneRR.setEnabled(true);
-				chkbkMostraAllSoluzione.setEnabled(true);
-				btnGeneraGrafici.setEnabled(false);
-				chckbxAttivaModifiche.setEnabled(true);
-				comboBoxQRR.setEnabled(true);
-				
-				btnSalvaModifica.setEnabled(false);
-				tabellaProcessi.setEnabled(false);
-				ModifyArrivo.setEnabled(false);
-				ModifyDurata.setEnabled(false);
-				ModifyProcess.setEnabled(false);
-				modificaTabella.setEnabled(false);
-
-				chckbxAttivaModifiche.setSelected(false);
-				chckbxMostraSoluzioneFCFS.setSelected(false);
-				chckbxMostraSoluzioneSJF.setSelected(false);
-				chckbxMostraSoluzioneSJFP.setSelected(false);
-				chckbxMostraSoluzioneRR.setSelected(false);
-				chkbkMostraAllSoluzione.setSelected(false);
-				
-				comboBoxQRR.setSelectedIndex(0);
-				ModifyArrivo.setSelectedIndex(0);
-				ModifyDurata.setSelectedIndex(0);
-				
-				
-				for(int i=0;i<tabellaProcessi.getRowCount();i++) {
-					if(Boolean.valueOf((tabellaProcessi.getValueAt(i, 3)).toString())==false) {
-						String num=(String) tabellaProcessi.getValueAt(i, 0);
-						int numero=Integer.valueOf(num.substring(1));
+				if(Integer.valueOf(String.valueOf(comboBoxSceltaNProcessi.getSelectedItem()))==0) {
+					btnGeneraGrafici.setEnabled(false);
+					chckbxAttivaModifiche.setEnabled(false);
+				}
+				else {
+					if (btnGeneraGrafici.isEnabled()) {
+		
+						jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+						jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+						jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+						jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
 						
-						CreaLinee punto=new CreaLinee(numero,(int) tabellaProcessi.getValueAt(i, 1));
-						CreaLinee linea=new CreaLinee(numero,(int) tabellaProcessi.getValueAt(i, 1),(int) tabellaProcessi.getValueAt(i, 2));
-
-						arrayPunti.add(punto);
-						arrayLinea.add(linea);
+						arrayPunti.clear();
+						arrayLinea.clear();
+						FCFS.clear();
+						SJF.clear();
+						SJFP.clear();
+						RR.clear();
+						averageFCFS=0;
+						averageSJF=0;
+						averageSJFP=0;
+						averageRR=0;
+						cbFCFS=0;
+						cbSJF=0;
+						cbSJFP=0;
+						cbRR=0;
+						quantum=0;
+						
+						chckbxMostraSoluzioneFCFS.setEnabled(true);
+						chckbxMostraSoluzioneSJF.setEnabled(true);
+						chckbxMostraSoluzioneSJFP.setEnabled(true);
+						chckbxMostraSoluzioneRR.setEnabled(true);
+						chkbkMostraAllSoluzione.setEnabled(true);
+						btnGeneraGrafici.setEnabled(false);
+						chckbxAttivaModifiche.setEnabled(true);
+						comboBoxQRR.setEnabled(true);
+						
+						btnSalvaModifica.setEnabled(false);
+						tabellaProcessi.setEnabled(false);
+						ModifyArrivo.setEnabled(false);
+						ModifyDurata.setEnabled(false);
+						ModifyProcess.setEnabled(false);
+						modificaTabella.setEnabled(false);
+		
+						chckbxAttivaModifiche.setSelected(false);
+						chckbxMostraSoluzioneFCFS.setSelected(false);
+						chckbxMostraSoluzioneSJF.setSelected(false);
+						chckbxMostraSoluzioneSJFP.setSelected(false);
+						chckbxMostraSoluzioneRR.setSelected(false);
+						chkbkMostraAllSoluzione.setSelected(false);
+						
+						comboBoxQRR.setSelectedIndex(0);
+						ModifyArrivo.setSelectedIndex(0);
+						ModifyDurata.setSelectedIndex(0);
+						
+						
+						for(int i=0;i<tabellaProcessi.getRowCount();i++) {
+							if(Boolean.valueOf((tabellaProcessi.getValueAt(i, 3)).toString())==false) {
+								String num=(String) tabellaProcessi.getValueAt(i, 0);
+								int numero=Integer.valueOf(num.substring(1));
+								
+								CreaLinee punto=new CreaLinee(numero,(int) tabellaProcessi.getValueAt(i, 1));
+								CreaLinee linea=new CreaLinee(numero,(int) tabellaProcessi.getValueAt(i, 1),(int) tabellaProcessi.getValueAt(i, 2));
+		
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+							}
+						}
+						
+						CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
+			/*			CreaLinee[] lineaSJF = new CreaLinee[arrayLinea.size()];
+				CreaLinee[] lineaSJFP = new CreaLinee[arrayLinea.size()];
+						CreaLinee[] lineaRR = new CreaLinee[arrayLinea.size()];
+		*/
+						for(int l=0;l<arrayLinea.size();l++) {  
+								
+							linea[l]=arrayLinea.get(l);
+		/*					lineaSJF[l]=arrayLinea.get(l);
+							lineaSJFP[l]=arrayLinea.get(l);
+							lineaRR[l]=arrayLinea.get(l);
+		*/
+						}
+		
+						Arrays.sort(linea);
+				//		Arrays.sort(lineaRR);
+						
+						FCFS=FCFSClass(linea);
+						SJF=SJFClass(linea);
+						//SJFP=SJFPClass(lineaSJFP);
+						String qua= (String) comboBoxQRR.getSelectedItem();
+						quantum=Integer.valueOf(qua);
+						//RR=RRClass(linea);
+		
 					}
 				}
-				
-				CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
-	/*			CreaLinee[] lineaSJF = new CreaLinee[arrayLinea.size()];
-		CreaLinee[] lineaSJFP = new CreaLinee[arrayLinea.size()];
-				CreaLinee[] lineaRR = new CreaLinee[arrayLinea.size()];
-*/
-				for(int l=0;l<arrayLinea.size();l++) {  
-						
-					linea[l]=arrayLinea.get(l);
-/*					lineaSJF[l]=arrayLinea.get(l);
-					lineaSJFP[l]=arrayLinea.get(l);
-					lineaRR[l]=arrayLinea.get(l);
-*/
-				}
-
-				Arrays.sort(linea);
-		//		Arrays.sort(lineaRR);
-				
-				FCFS=FCFSClass(linea);
-				SJF=SJFClass(linea);
-				//SJFP=SJFPClass(lineaSJFP);
-				String qua= (String) comboBoxQRR.getSelectedItem();
-				quantum=Integer.valueOf(qua);
-				//RR=RRClass(linea);
-
-
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				if (btnGeneraGrafici.isEnabled()) 
-				{
+				if (btnGeneraGrafici.isEnabled()) {
+					
 					btnGeneraGrafici.setBackground(new Color(51, 204, 255));
 				}
-				
-				
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				
-				if (btnGeneraGrafici.isEnabled()) 
-				{
+				if (btnGeneraGrafici.isEnabled()) {
+					
 					btnGeneraGrafici.setBackground(new Color(255, 255, 255));
 				}
-				else 
-				{
+				else {
+					
 					btnGeneraGrafici.setBackground(new Color(255, 255, 255));
 				}
-				
-				
 			}
 		});
 
@@ -967,7 +973,7 @@ public SchProcessi(JFrame framechiamante) {
 					}
 				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
 					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
-					jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
 				}
 				
 				if(chckbxMostraSoluzioneSJF.isSelected()==false) {
@@ -975,7 +981,7 @@ public SchProcessi(JFrame framechiamante) {
 				}
 				if(chckbxMostraSoluzioneSJF.isSelected()==true) {
 					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-					jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
 				}
 				
 				if(chckbxMostraSoluzioneSJFP.isSelected()==false) {
@@ -983,7 +989,7 @@ public SchProcessi(JFrame framechiamante) {
 				}
 				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
 					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-					jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzioneSJF(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
 				}
 				
 				if(chckbxMostraSoluzioneRR.isSelected()==false) {
@@ -991,7 +997,7 @@ public SchProcessi(JFrame framechiamante) {
 				}
 				if(chckbxMostraSoluzioneRR.isSelected()==true) {
 					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-					jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaSoluzioneFCFS(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
 				}
 			}
 		});
@@ -1026,44 +1032,36 @@ public SchProcessi(JFrame framechiamante) {
 	//EVENTO SU CHECKBOX ATTIVA MODIFICHE
 		chckbxAttivaModifiche.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-								
-				if(chckbxAttivaModifiche.isSelected()==true) {
-					tabellaProcessi.setEnabled(true);
-					ModifyArrivo.setEnabled(true);
-					ModifyProcess.setEnabled(true);
-					ModifyDurata.setEnabled(true);
-					btnSalvaModifica.setEnabled(true);
-					modificaTabella.setEnabled(true);
-					if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-					if(chckbxMostraSoluzioneFCFS.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-					if(chckbxMostraSoluzioneSJF.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-					if(chckbxMostraSoluzioneSJFP.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-					if(chckbxMostraSoluzioneRR.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-
-					chkbkMostraAllSoluzione.setEnabled(false);
-					chkbkMostraAllSoluzione.setSelected(false);
-					chckbxMostraSoluzioneFCFS.setEnabled(false);
-					chckbxMostraSoluzioneSJF.setEnabled(false);
-					chckbxMostraSoluzioneSJFP.setEnabled(false);
-					chckbxMostraSoluzioneRR.setEnabled(false);
-					comboBoxQRR.setEnabled(false);
+				if(Integer.valueOf(String.valueOf(comboBoxSceltaNProcessi.getSelectedItem()))==0) {
+					JOptionPane.showMessageDialog(contentPane, "Errore: numero di processi modificabili '0'!");
+					chckbxAttivaModifiche.setSelected(false);
 				}
-				if(chckbxAttivaModifiche.isSelected()==false) {
-					tabellaProcessi.setEnabled(false);
-					ModifyArrivo.setEnabled(false);
-					ModifyProcess.setEnabled(false);
-					ModifyDurata.setEnabled(false);
-					btnSalvaModifica.setEnabled(false);
-					modificaTabella.setEnabled(false);
-					chkbkMostraAllSoluzione.setEnabled(true);
-					chkbkMostraAllSoluzione.setEnabled(true);
-					chkbkMostraAllSoluzione.setSelected(true);
-					chckbxMostraSoluzioneFCFS.setEnabled(true);
-					chckbxMostraSoluzioneSJF.setEnabled(true);
-					chckbxMostraSoluzioneSJFP.setEnabled(true);
-					chckbxMostraSoluzioneRR.setEnabled(true);
-					comboBoxQRR.setEnabled(true);
-					btnSalvaModifica.doClick();
+				else {			
+					if(chckbxAttivaModifiche.isSelected()==true) {
+							btnGeneraGrafici.setEnabled(false);
+							tabellaProcessi.setEnabled(true);
+							ModifyArrivo.setEnabled(true);
+							ModifyProcess.setEnabled(true);
+							ModifyDurata.setEnabled(true);
+							btnSalvaModifica.setEnabled(true);
+							modificaTabella.setEnabled(true);
+							if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+							if(chckbxMostraSoluzioneFCFS.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+							if(chckbxMostraSoluzioneSJF.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+							if(chckbxMostraSoluzioneSJFP.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+							if(chckbxMostraSoluzioneRR.isSelected()==true)chkbkMostraAllSoluzione.doClick();
+		
+							chkbkMostraAllSoluzione.setEnabled(false);
+							chkbkMostraAllSoluzione.setSelected(false);
+							chckbxMostraSoluzioneFCFS.setEnabled(false);
+							chckbxMostraSoluzioneSJF.setEnabled(false);
+							chckbxMostraSoluzioneSJFP.setEnabled(false);
+							chckbxMostraSoluzioneRR.setEnabled(false);
+							comboBoxQRR.setEnabled(false);
+						}
+					if(chckbxAttivaModifiche.isSelected()==false) {
+						btnSalvaModifica.doClick();
+					}
 				}
 			}
 		});
@@ -1080,7 +1078,7 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxMostraSoluzioneFCFS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
-					jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
 					DatoTAMFCFS.setText(String.valueOf(frmt.format(averageFCFS)));
@@ -1097,7 +1095,7 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxMostraSoluzioneSJF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneSJF.isSelected()==true) {
-					jPanelSJF.disegnaSoluzione(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
 					DatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
@@ -1114,7 +1112,7 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxMostraSoluzioneSJFP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
-					jPanelSJFP.disegnaSoluzione(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzioneSJF(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
 					DatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
@@ -1131,7 +1129,7 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxMostraSoluzioneRR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneRR.isSelected()==true) {
-					jPanelRR.disegnaSoluzione(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaSoluzioneFCFS(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
 					DatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
@@ -1269,4 +1267,7 @@ public ArrayList<Integer> SJFClass(CreaLinee[] lineaSJF){
 	cbSJF=cbSJF-1;
 	return punti;
 }
+
+
+
 }
