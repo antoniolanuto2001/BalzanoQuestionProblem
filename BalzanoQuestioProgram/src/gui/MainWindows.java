@@ -68,7 +68,6 @@ public class MainWindows {
 		frame.setTitle("Balzano Question Problem : Main Menu");
 		frame.setTitle("Balzano Question Problem");
 		ImageIcon imageSfondo = new ImageIcon(this.getClass().getResource("/img/desktopIcon4.png"));
-		ImageIcon imagePaginazione = new ImageIcon(this.getClass().getResource("/img/paginazioneIcon1.png"));
 		ImageIcon imageCPU = new ImageIcon(this.getClass().getResource("/img/cpuIcon1.png"));
 		ImageIcon imageFilosofi = new ImageIcon(this.getClass().getResource("/img/filosofoIcon1.png"));
 		ImageIcon imageHashing = new ImageIcon(this.getClass().getResource("/img/hashingIcon1.png"));
@@ -161,12 +160,12 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelSitoWeb.setForeground(new Color(153, 0, 51));
+				labelSitoWeb.setForeground(new Color(211, 47, 47));
 			}
 		});
 		labelSitoWeb.setHorizontalAlignment(SwingConstants.CENTER);
-		labelSitoWeb.setForeground(new Color(153, 0, 51));
-		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 28));
+		labelSitoWeb.setForeground(new Color(211, 47, 47));
+		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 26));
 		labelSitoWeb.setBounds(329, 11, 205, 54);
 		panelMainButton.add(labelSitoWeb);
 		
@@ -190,13 +189,13 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labelVideolezioni.setForeground(new Color(153, 0, 51));
+				labelVideolezioni.setForeground(new Color(211, 47, 47));
 			}
 		});
 		labelVideolezioni.setHorizontalAlignment(SwingConstants.CENTER);
-		labelVideolezioni.setForeground(new Color(153, 0, 51));
-		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 28));
-		labelVideolezioni.setBounds(573, 11, 279, 54);
+		labelVideolezioni.setForeground(new Color(211, 47, 47));
+		labelVideolezioni.setFont(new Font("Segoe UI", Font.BOLD, 26));
+		labelVideolezioni.setBounds(574, 11, 279, 54);
 		panelMainButton.add(labelVideolezioni);
 		
 		JLabel labellSlideCorso = new JLabel("SLIDE CORSO");
@@ -220,13 +219,13 @@ public class MainWindows {
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
-				labellSlideCorso.setForeground(new Color(153, 0, 51));
+				labellSlideCorso.setForeground(new Color(211, 47, 47));
 			}
 		});
 		labellSlideCorso.setHorizontalAlignment(SwingConstants.CENTER);
-		labellSlideCorso.setForeground(new Color(153, 0, 51));
-		labellSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 28));
-		labellSlideCorso.setBounds(874, 11, 247, 54);
+		labellSlideCorso.setForeground(new Color(211, 47, 47));
+		labellSlideCorso.setFont(new Font("Segoe UI", Font.BOLD, 26));
+		labellSlideCorso.setBounds(871, 11, 247, 54);
 		panelMainButton.add(labellSlideCorso);
 		
 		JLabel labelPaginazione = new JLabel("Paginzione Icon");
@@ -248,7 +247,7 @@ public class MainWindows {
 				labelScrittaPaginazione.setForeground(Color.BLACK);
 			}
 		});
-		labelPaginazione.setIcon(imagePaginazione);
+		labelPaginazione.setIcon(new ImageIcon(MainWindows.class.getResource("/img/paginazioneIcon2.png")));
 		labelPaginazione.setBounds(274, 516, 117, 99);
 		panelMainButton.add(labelPaginazione);
 		
@@ -295,7 +294,7 @@ public class MainWindows {
 				labelScrittaFilosofi.setForeground(Color.BLACK);
 			}
 		});
-		labelFilosofo.setBounds(612, 516, 117, 99);
+		labelFilosofo.setBounds(615, 516, 117, 99);
 		labelFilosofo.setIcon(imageFilosofi);
 		panelMainButton.add(labelFilosofo);
 		
