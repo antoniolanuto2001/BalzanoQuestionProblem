@@ -337,8 +337,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel panelDiControllo = new JPanel();
 			panelDiControllo.setLayout(null);
-			//panelDiControllo.setBorder(new LineBorder(new Color(0, 153, 0)));
+			//panelDiControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 			panelDiControllo.setBounds(1141, 85, 265, 668);
+		
 			pannelloPrincipale.add(panelDiControllo);
 			
 		JPanel pannelloTitoloDC = new JPanel();
@@ -363,7 +364,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel pannelloEditor = new JPanel();
 			pannelloEditor.setLayout(null);
-			//panel_3.setBorder(new LineBorder(new Color(255, 204, 0), 2));
+			//pannelloEditor.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 			pannelloEditor.setBounds(10, 95, 245, 224);
 			panelDiControllo.add(pannelloEditor);
 			

@@ -39,6 +39,8 @@ public class Hashing extends JFrame {
 	private JPanel contentPane;
 	private JFrame frame;
 	public 	boolean puoiCambiare=false;
+	public 	boolean puoiCambiareSpeciale=false;
+	public int iteratoreScorittore;
 
 	/**
 	 * Create the frame.
@@ -47,7 +49,7 @@ public class Hashing extends JFrame {
 	{
 
 		
-		   
+		iteratoreScorittore=0;
 		//Dizionario Parole
 		String [] dizionarioParola = {"Vulcano","Amico","Organo","Rame","Gorilla","Orzo","Noci","Melanzana","Cristallo","Pavimento","Risotto","Sei","Stalattiti","Sinistra",
 				"Siluro","Lavandino","Furbo","Moneta","Lampada","Camomilla","Proboscide","Russo","Blu","Valigia","Gorilla","Macchia","Grotta","Mutande","Pasta",
@@ -56,7 +58,7 @@ public class Hashing extends JFrame {
 		Random randomGenerator = new Random();
 		
 		
-		ImageIcon imagePlay = new ImageIcon(this.getClass().getResource("/img/playIcon1.png"));
+		
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
@@ -91,7 +93,7 @@ public class Hashing extends JFrame {
 		
 		JPanel panelControllo = new JPanel();
 		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-		panelControllo.setBounds(1130, 76, 274, 664);
+		panelControllo.setBounds(1130, 76, 274, 670);
 		panelMainButton.add(panelControllo);
 		panelControllo.setLayout(null);
 		
@@ -103,7 +105,7 @@ public class Hashing extends JFrame {
 		panelControllo.add(labelgenerale);
 		
 		JPanel panelPlot = new JPanel();
-		panelPlot.setBounds(10, 107, 254, 169);
+		panelPlot.setBounds(10, 107, 254, 180);
 		panelPlot.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelPlot);
 		panelPlot.setLayout(null);
@@ -151,15 +153,35 @@ public class Hashing extends JFrame {
 		labelPlay.setEnabled(false);
 		
 		labelPlay.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-		labelPlay.setBounds(105, 123, 39, 35);
-		labelPlay.setIcon(imagePlay);
+		labelPlay.setBounds(52, 123, 39, 35);
+		labelPlay.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
 		panelPlot.add(labelPlay);
+		
+		JLabel labelScrittaPlay = new JLabel("Codifica Tutto");
+		labelScrittaPlay.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		labelScrittaPlay.setEnabled(false);
+		labelScrittaPlay.setBounds(35, 157, 75, 17);
+		panelPlot.add(labelScrittaPlay);
+		
+		JLabel labelScrittaFast = new JLabel("Codifica Passo");
+		labelScrittaFast.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		labelScrittaFast.setEnabled(false);
+		labelScrittaFast.setBounds(140, 157, 75, 17);
+		panelPlot.add(labelScrittaFast);
+		
+		JLabel labelFastForward = new JLabel(">>");
+		
+		labelFastForward.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
+		labelFastForward.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		labelFastForward.setEnabled(false);
+		labelFastForward.setBounds(157, 123, 39, 35);
+		panelPlot.add(labelFastForward);
 		
 		
 		
 		JPanel panelSomma = new JPanel();
 		panelSomma.setLayout(null);
-		panelSomma.setBounds(10, 301, 254, 135);
+		panelSomma.setBounds(10, 313, 254, 135);
 		panelSomma.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelSomma);
 		
@@ -182,7 +204,7 @@ public class Hashing extends JFrame {
 		labelSomma.setForeground(Color.RED);
 		labelSomma.setVerticalAlignment(SwingConstants.BOTTOM);
 		labelSomma.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		labelSomma.setBounds(75, 275, 122, 26);
+		labelSomma.setBounds(75, 287, 122, 26);
 		panelControllo.add(labelSomma);
 		
 		JLabel labelScrittaIndietro = new JLabel(" Indietro");
@@ -287,12 +309,12 @@ public class Hashing extends JFrame {
 		labelCodifica.setForeground(Color.RED);
 		labelCodifica.setVerticalAlignment(SwingConstants.BOTTOM);
 		labelCodifica.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-		labelCodifica.setBounds(91, 447, 122, 26);
+		labelCodifica.setBounds(91, 459, 122, 26);
 		panelControllo.add(labelCodifica);
 		
 		JPanel panelCodifica = new JPanel();
 		panelCodifica.setLayout(null);
-		panelCodifica.setBounds(10, 473, 254, 180);
+		panelCodifica.setBounds(10, 485, 254, 180);
 		panelCodifica.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelCodifica);
 		
@@ -379,16 +401,21 @@ public class Hashing extends JFrame {
 		buttonGeneraEsempio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
+				iteratoreScorittore=0;
 				//Generazione varibiali 
 				labelFrecciaScrittaSomma.setText("");
 				labelFrecciaScrittaCodifica.setText("");
 				puoiCambiare=false;
+				puoiCambiareSpeciale=false;
 				int indexDaEstrarre = randomGenerator.nextInt(44 - 0 + 1) + 0;
 				boolean tuttook= true;
 				//Enable e Flush degl Elementi
 				comboBoxSceltaNParole.setEnabled(true);
 				listaParolaHashings.removeAll(listaParolaHashings);
 				labelGrandezza.setEnabled(true);
+				labelFastForward.setEnabled(true);
+				labelScrittaFast.setEnabled(true);
+				labelScrittaPlay.setEnabled(true);
 				labelPlay.setEnabled(true);
 				textParoleBase.setText("");
 				textParoleSommate.setText("");
@@ -444,6 +471,11 @@ public class Hashing extends JFrame {
 		comboBoxSceltaNParole.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
+				iteratoreScorittore=0;
+				puoiCambiare=false;
+				puoiCambiareSpeciale=false;
+				labelFastForward.setEnabled(true);
+				labelScrittaFast.setEnabled(true);
 				//Generazione varibiali 
 				int indexDaEstrarre = randomGenerator.nextInt(44 - 0 + 1) + 0;
 				boolean tuttook= true;
@@ -500,6 +532,8 @@ public class Hashing extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				labelFastForward.setEnabled(false);
+				labelScrittaFast.setEnabled(false);
 				puoiCambiare=true;
 				textParoleSommate.setText("");
 				textParoleCodificate.setText("");
@@ -536,6 +570,16 @@ public class Hashing extends JFrame {
 					
 				}
 			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				labelScrittaPlay.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e)
+			{
+				labelScrittaPlay.setForeground(Color.BLACK);
+			}
 		});
 		radioSommaNormale.addMouseListener(new MouseAdapter() {
 			@Override
@@ -563,6 +607,30 @@ public class Hashing extends JFrame {
 						else if(radioxJ2mod8.isSelected())
 						{
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
+						}
+					}
+				}
+				else if (puoiCambiareSpeciale)
+				{
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					labelFrecciaScrittaSomma.setText("S. Normale");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{
+						textParoleSommate.append(""+listaParolaHashings.get(i).sommaNormale()+"\n");
+						
+						//Per La Codifica
+						if(radioXmod.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).xMod8()+"\n");
+						}
+						else if (radio5xMod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x5_2mod8()+"\n");
+						}
+						else if(radioxJ2mod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
 						}
 					}
 				}
@@ -594,6 +662,30 @@ public class Hashing extends JFrame {
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
 						}
 					}
+					
+				}
+				else if (puoiCambiareSpeciale) 
+				{
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					labelFrecciaScrittaSomma.setText("S. Quadrica");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{	
+						textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
+						//Per La Codifica
+						if(radioXmod.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).xMod8()+"\n");
+						}
+						else if (radio5xMod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x5_2mod8()+"\n");
+						}
+						else if(radioxJ2mod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
+						}
+					}
 				}
 			}
 		});
@@ -617,6 +709,25 @@ public class Hashing extends JFrame {
 						else 
 						{
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
+						}	
+					}
+				}
+				else if (puoiCambiareSpeciale)
+				{
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("X mod 8");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{
+						textParoleCodificate.append(""+listaParolaHashings.get(i).xMod8()+"\n");
+						//Per La Somma
+						if (radioSommaNormale.isSelected()) 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaNormale()+"\n");
+						}
+						else 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
 						}	
 					}
 				}
@@ -645,6 +756,26 @@ public class Hashing extends JFrame {
 						}	
 					}
 				}
+				else if (puoiCambiareSpeciale)
+				{
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{
+						textParoleCodificate.append(""+listaParolaHashings.get(i).x5_2mod8()+"\n");
+						//Per La Somma
+						if (radioSommaNormale.isSelected()) 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaNormale()+"\n");
+						}
+						else 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
+						}	
+
+					}
+				}
 			}
 		});
 		radioxJ2mod8.addMouseListener(new MouseAdapter() {
@@ -670,9 +801,90 @@ public class Hashing extends JFrame {
 						}	
 					}
 				}
+				else if (puoiCambiareSpeciale)
+				{
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{
+						textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
+						//Per La Somma
+						if (radioSommaNormale.isSelected()) 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaNormale()+"\n");
+						}
+						else 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
+						}	
+					}
+				}
 			}
 		});
-		
+		labelFastForward.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				labelPlay.setEnabled(false);
+				labelScrittaPlay.setEnabled(false);
+				
+				if (iteratoreScorittore<=listaParolaHashings.size()) 
+				{
+					if (iteratoreScorittore!=listaParolaHashings.size()) 
+					{
+						iteratoreScorittore++;
+					}
+					puoiCambiareSpeciale=true;
+					textParoleSommate.setText("");
+					textParoleCodificate.setText("");
+					for (int i = 0; i < iteratoreScorittore; i++) 
+					{
+						//Per La Somma
+						if (radioSommaNormale.isSelected()) 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaNormale()+"\n");
+							labelFrecciaScrittaSomma.setText("S. Normale");
+						}
+						else 
+						{
+							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
+							labelFrecciaScrittaSomma.setText("S. Quadrica");
+						}
+						
+						//Per La Codifica
+						if(radioXmod.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).xMod8()+"\n");
+							labelFrecciaScrittaCodifica.setText("X mod 8");
+						}
+						else if (radio5xMod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x5_2mod8()+"\n");
+							labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
+						}
+						else if(radioxJ2mod8.isSelected())
+						{
+							textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
+							labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
+						}
+					}
+				
+				}
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e)
+			{
+				labelScrittaFast.setForeground(Color.RED);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				labelScrittaFast.setForeground(Color.BLACK);
+			}
+		});
 	
 	}
 }
