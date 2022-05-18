@@ -461,7 +461,7 @@ public class Semafori extends JFrame {
 	        progressBarP5_Main.setVisible(false);
 
 	        
-	        
+	        //ProgressBar di secondo livello per colori
 	        
 	        JProgressBar progressBarP1_Second = new JProgressBar();
 	        progressBarP1_Second.setMaximum(300);
