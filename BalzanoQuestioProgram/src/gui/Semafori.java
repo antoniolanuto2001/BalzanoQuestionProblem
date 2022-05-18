@@ -35,6 +35,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.ProcessoSemaforo;
 import model.Semaforo;
 
 import java.awt.SystemColor;
@@ -44,6 +45,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.PopupMenuListener;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
@@ -57,7 +59,7 @@ public class Semafori extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
-	public ArrayList<Integer> StartEndProcessi = new ArrayList<>();
+	public ArrayList<ProcessoSemaforo> StartEndProcessi = new ArrayList<ProcessoSemaforo>();
 	final int min_JProgress_range=0;
 	final int max_JProgress_range=300;
 
@@ -297,16 +299,16 @@ public class Semafori extends JFrame {
 				
 				if("2".equals(item))
 				{
-					//visibilità semaforo
+					//visibilitï¿½ semaforo
 					PannelloGraficaSemaforo2.setVisible(true);
-					//visibilità testo
+					//visibilitï¿½ testo
 					JLabelTextMutex2.setVisible(true);
 					
 				}else if("1".equals(item))
 				{
-					//visibilità semaforo
+					//visibilitï¿½ semaforo
 					PannelloGraficaSemaforo2.setVisible(false);
-					//visibilità testo
+					//visibilitï¿½ testo
 					JLabelTextMutex2.setVisible(false);
 				}
 					
@@ -397,84 +399,11 @@ public class Semafori extends JFrame {
 		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
 		
 		scrollTabella.setViewportView(tabella);
-		
-		
-		 	JProgressBar progressBarP1_Main = new JProgressBar();
-		 	progressBarP1_Main.setMaximum(max_JProgress_range);
-		 	progressBarP1_Main.setMinimum(min_JProgress_range);
-		 	progressBarP1_Main.setForeground(new Color(0, 255, 127));
-		 	progressBarP1_Main.setBackground(new Color(255, 255, 255));
-		 	progressBarP1_Main.setToolTipText("");
-		 	progressBarP1_Main.setMaximum(max_JProgress_range);
-		 	progressBarP1_Main.setMinimum(min_JProgress_range);
-	        progressBarP1_Main.setBounds(250, 522, 550, 29);
-	        progressBarP1_Main.setOrientation(SwingConstants.HORIZONTAL);
-	        panelMainButton.add(progressBarP1_Main);
-	        progressBarP1_Main.setVisible(true);
-	       
-	     
-	      
-	        
-	  
-	        JProgressBar progressBarP2_Main = new JProgressBar();
-	        progressBarP2_Main.setForeground(new Color(0, 255, 127));
-	        progressBarP2_Main.setBackground(new Color(255, 255, 255));
-	        progressBarP2_Main.setMaximum(max_JProgress_range);
-		 	progressBarP2_Main.setMinimum(min_JProgress_range);
-	        progressBarP2_Main.setBounds(250, 562, 550, 29);
-	        progressBarP2_Main.setOrientation(SwingConstants.HORIZONTAL);
-	        panelMainButton.add(progressBarP2_Main);
-	        progressBarP2_Main.setVisible(false);
-	        
-	      
-			
-	        
-	        JProgressBar progressBarP3_Main = new JProgressBar();
-	        progressBarP3_Main.setBackground(new Color(255, 255, 255));
-	        progressBarP3_Main.setForeground(new Color(0, 255, 127));
-	        progressBarP3_Main.setMaximum(max_JProgress_range);
-		 	progressBarP3_Main.setMinimum(min_JProgress_range);
-	        progressBarP3_Main.setBounds(250, 602, 550, 29);
-	        panelMainButton.add(progressBarP3_Main);
-	        progressBarP3_Main.setVisible(false);
-	      
-	        
-	        
-	        JProgressBar progressBarP4_Main = new JProgressBar();
-	        progressBarP4_Main.setBackground(new Color(255, 255, 255));
-	        progressBarP4_Main.setForeground(new Color(0, 255, 127));
-	        progressBarP4_Main.setMaximum(max_JProgress_range);
-		 	progressBarP4_Main.setMinimum(min_JProgress_range);
-	        progressBarP4_Main.setBounds(250, 640, 550, 29);
-	        panelMainButton.add(progressBarP4_Main);
-	        progressBarP4_Main.setVisible(false);
-	        
-	       
-	        
-	        JProgressBar progressBarP5_Main = new JProgressBar();
-	        progressBarP5_Main.setBackground(new Color(255, 255, 255));
-	        progressBarP5_Main.setForeground(new Color(0, 255, 127));
-	        progressBarP5_Main.setMaximum(max_JProgress_range);
-		 	progressBarP5_Main.setMinimum(min_JProgress_range);
-	        progressBarP5_Main.setBounds(250, 680, 550, 31);
-	        panelMainButton.add(progressBarP5_Main);
-	        progressBarP5_Main.setVisible(false);
 
 	        
 	        //ProgressBar di secondo livello per colori
 	        
-	        JProgressBar progressBarP1_Second = new JProgressBar();
-	        progressBarP1_Second.setMaximum(300);
-	        progressBarP1_Second.setForeground(new Color(0, 250, 154));
-	       // progressBarP1_Second.setBounds(39, 522, 146, 14);
-	        panelMainButton.add(progressBarP1_Second);
-	        progressBarP1_Second.setVisible(false);
-	        
-	        JProgressBar progressBarP2_Second = new JProgressBar();
-	        progressBarP2_Second.setForeground(new Color(0, 250, 154));
-	        //progressBarP2_Second.setBounds(39, 562, 146, 14);
-	        panelMainButton.add(progressBarP2_Second);
-	        progressBarP2_Second.setVisible(false);
+
 	        
 	        JProgressBar progressBarP3_Second = new JProgressBar();
 	        progressBarP3_Second.setForeground(new Color(0, 250, 154));
@@ -498,78 +427,6 @@ public class Semafori extends JFrame {
 		
 		//ACTION ON NUM PROCESSI
 		
-		NumProcessiComboBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
-				int sceltaNumero= Integer.valueOf(sceltaNumeroString);
-				int rowCount = tabella.getRowCount();
-				int columnCount = tabella.getColumnCount();
-
-				//rimuove tutte le righe precedenti
-				for (int i = rowCount - 1; i >= 0; i--) 
-				{
-			    	model1.removeRow(i);
-				}
-				//ricrea la tabella
-				for (int i=0;i<sceltaNumero;i++) 
-				{ 
-					model1.addRow(new Object[0]);
-					model1.setValueAt("P"+(i+1),i,0);
-					
-					
-					//setting default values
-					for(int j=1; j<columnCount; j++) {
-						
-						if(j==2)
-							model1.setValueAt("300",i,j);
-						else
-							model1.setValueAt("0", i, j);
-					}
-				}
-				
-				
-				//managing progress bars
-				
-				if(sceltaNumero==2)
-				{
-					 progressBarP2_Main.setVisible(true);
-				}else if(sceltaNumero==1) {
-					progressBarP2_Main.setVisible(false);
-					progressBarP2_Second.setVisible(false);
-				}
-				if(sceltaNumero==3)
-				{
-					 progressBarP3_Main.setVisible(true);
-					 progressBarP2_Main.setVisible(true);
-				}else if(sceltaNumero==1 || sceltaNumero==2) {
-					progressBarP3_Main.setVisible(false);
-					progressBarP3_Second.setVisible(false);
-				}
-				
-				if(sceltaNumero==4)
-				{
-					 progressBarP3_Main.setVisible(true);
-					 progressBarP2_Main.setVisible(true);
-					 progressBarP4_Main.setVisible(true);
-				}else if(sceltaNumero==1 || sceltaNumero==2 || sceltaNumero==3) {
-					progressBarP4_Main.setVisible(false);
-					progressBarP4_Second.setVisible(false);
-				}
-				
-				if(sceltaNumero==5)
-				{
-					progressBarP3_Main.setVisible(true);
-					progressBarP2_Main.setVisible(true);
-					progressBarP4_Main.setVisible(true);
-					progressBarP5_Main.setVisible(true);
-				}else if(sceltaNumero==1 || sceltaNumero==2 || sceltaNumero==3 ||sceltaNumero==4) {
-					progressBarP5_Main.setVisible(false);
-					progressBarP5_Second.setVisible(false);
-				}
-			}
-		});
 		
 		
 		
@@ -579,6 +436,105 @@ public class Semafori extends JFrame {
 	        GeneraEsercizioJLabel.setBounds(1309, 422, 102, 15);
 	        panelMainButton.add(GeneraEsercizioJLabel);
 	        JLabel GeneraEsercizioIcon = new JLabel("");
+	        
+	        
+	        //icona
+	        GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
+	        GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
+	        panelMainButton.add(GeneraEsercizioIcon);
+	        
+	        JLabel IndicatoreTempoIniz1 = new JLabel("Tempo 0");
+	        IndicatoreTempoIniz1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+	        IndicatoreTempoIniz1.setBounds(250, 499, 53, 14);
+	        panelMainButton.add(IndicatoreTempoIniz1);
+	        
+	        JLabel IndicatoreTempoFin1 = new JLabel("Tempo 300");
+	        IndicatoreTempoFin1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+	        IndicatoreTempoFin1.setBounds(492, 499, 64, 14);
+	        panelMainButton.add(IndicatoreTempoFin1);
+	        
+	        
+	        
+	        JLabel labelHelpIcon = new JLabel("Help");
+	        labelHelpIcon.setBounds(1343, 460, 34, 46);
+	        panelMainButton.add(labelHelpIcon);
+	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
+	        
+	        JPanel panelProgressBar1 = new JPanel();
+	        panelProgressBar1.setBackground(Color.GRAY);
+	        panelProgressBar1.setBounds(250, 524, 300, 29);
+	        panelMainButton.add(panelProgressBar1);
+	        panelProgressBar1.setLayout(null);
+	        
+	        JPanel panelProgressBar2 = new JPanel();
+	        panelProgressBar2.setVisible(false);
+	        panelProgressBar2.setLayout(null);
+	        panelProgressBar2.setBackground(Color.GRAY);
+	        panelProgressBar2.setBounds(250, 564, 300, 29);
+	        panelMainButton.add(panelProgressBar2);
+	        
+	        JPanel panelProgressBar3 = new JPanel();
+	        panelProgressBar3.setVisible(false);
+	        panelProgressBar3.setLayout(null);
+	        panelProgressBar3.setBackground(Color.GRAY);
+	        panelProgressBar3.setBounds(250, 604, 300, 29);
+	        panelMainButton.add(panelProgressBar3);
+	        
+	        JPanel panelProgressBar4 = new JPanel();
+	        panelProgressBar4.setVisible(false);
+	        panelProgressBar4.setLayout(null);
+	        panelProgressBar4.setBackground(Color.GRAY);
+	        panelProgressBar4.setBounds(250, 642, 300, 29);
+	        panelMainButton.add(panelProgressBar4);
+	        
+	        
+	        JPanel panelProgressBar5 = new JPanel();
+	        panelProgressBar5.setVisible(false);
+	        panelProgressBar5.setLayout(null);
+	        panelProgressBar5.setBackground(Color.GRAY);
+	        panelProgressBar5.setBounds(250, 682, 300, 29);
+	        panelMainButton.add(panelProgressBar5);
+	        
+	        JProgressBar progressBarDurataProcesso_1 = new JProgressBar();
+	        progressBarDurataProcesso_1.setMaximum(300);
+	        progressBarDurataProcesso_1.setBackground(new Color(0, 250, 154));
+	       // progressBarP1_Second.setBounds(39, 522, 146, 14);
+	        
+	        
+	        JProgressBar progressBarZona1_1 = new JProgressBar();
+	        progressBarZona1_1.setMaximum(300);       
+	        progressBarZona1_1.setBackground(Color.RED);
+	        
+	        JProgressBar progressBarZona2_1 = new JProgressBar();
+	        progressBarZona2_1.setMaximum(300);       
+	        progressBarZona2_1.setBackground(new Color(229,57,53));
+	        
+	        JProgressBar progressBarZona3_1 = new JProgressBar();
+	        progressBarZona3_1.setMaximum(300);       
+	        progressBarZona3_1.setBackground(new Color(229,57,53));
+	        
+	        JProgressBar progressBarDurataProcesso_2 = new JProgressBar();
+	        progressBarDurataProcesso_2.setMaximum(300);
+	        progressBarDurataProcesso_2.setBackground(new Color(0, 250, 154));
+	       // progressBarP1_Second.setBounds(39, 522, 146, 14);
+	        
+	    
+	        JProgressBar progressBarZona1_2 = new JProgressBar();
+	        progressBarZona1_2.setMaximum(300);       
+	        progressBarZona1_2.setBackground(Color.RED);
+	        
+	        JProgressBar progressBarZona2_2 = new JProgressBar();
+	        progressBarZona2_2.setMaximum(300);       
+	        progressBarZona2_2.setBackground(new Color(229,57,53));
+	        
+	        JProgressBar progressBarZona3_2 = new JProgressBar();
+	        progressBarZona3_2.setMaximum(300);       
+	        progressBarZona3_2.setBackground(new Color(229,57,53));
+
+
+	        
+	        
+
 	        GeneraEsercizioIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
 				public void mouseClicked(MouseEvent e) 
@@ -592,10 +548,11 @@ public class Semafori extends JFrame {
 					int start_critica1=0,start_critica2=0,start_critica3=0;
 					int end_critica1=0,end_critica2=0;
 			
-					
+					StartEndProcessi.removeAll(StartEndProcessi);
 					//algoritmo di generazione valori 
 					for(int i=0; i<rowCount; i++) 
 					{
+						StartEndProcessi.add(new ProcessoSemaforo());
 						for(int j=1; j<columnCount; j++) 
 						{
 						
@@ -603,19 +560,14 @@ public class Semafori extends JFrame {
 							if(j==1)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(1, 50);
-								start_processo=randomNum;
-								StartEndProcessi.add(start_processo);	//arraylist per segnarmi inizio e fine di ogni processo (p1= 0-1, p2=2-3, ecc.)
-								System.out.println("Inizio Processo 1: "+StartEndProcessi.get(0));
+								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
 							}
 							
 							//fine processo
 							if(j==2)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(270, 300);
-								end_processo=randomNum;
-								StartEndProcessi.add(end_processo);
-								System.out.println("Fine Processo 2: " + StartEndProcessi.get(1));
-								
+								StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
 							}
 							
 							
@@ -624,14 +576,16 @@ public class Semafori extends JFrame {
 							if(j==3)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(55, 80);
-								start_critica1=randomNum;
+								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+								
 							}
 							
 							//fine zona critica 1
 							if(j==4)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(100, 140);
-								end_critica1=randomNum;
+								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+								
 							}
 							
 							
@@ -640,7 +594,8 @@ public class Semafori extends JFrame {
 							if(j==5)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(160, 184);
-								start_critica2=randomNum;
+								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+								
 							}
 							
 							//fine zona critica 2
@@ -648,27 +603,22 @@ public class Semafori extends JFrame {
 							if(j==6)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(195, 230);
-								end_critica2=randomNum;
+								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
 							}
-							
 							//inizio zona critica 3
 							//start zona critica 3: >end zona critica 2 && compreso tra 238-268
 							if(j==7)
 							{
-								
 								randomNum= ThreadLocalRandom.current().nextInt(238, 268);
-								start_critica3=randomNum;
+								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
 							}
-							
 							//fine zona critica 3
 							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
 							if(j==8)
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(275,287);	
+								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
 							}
-							
-							
-							
 							model1.setValueAt(randomNum, i, j);
 
 					}//second for
@@ -686,47 +636,149 @@ public class Semafori extends JFrame {
 			
 			if(NumeroProcessi==1)
 			{
+				panelProgressBar1.removeAll();
+				panelProgressBar1.repaint();
 				
-				startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(0)));
-				endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(1)));
-				System.out.println("Valori in posizione: " +startpoint + " e "+endpoint);
-				progressBarP1_Second.setMaximum(endpoint);
-				progressBarP1_Second.setMinimum(startpoint);
-				progressBarP1_Second.setBounds(startpoint+250, 522, 550-endpoint, 29);
+		        //Zona Critica 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona1_1.setMaximum(endpoint);
+				progressBarZona1_1.setMinimum(startpoint);
+				progressBarZona1_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona1_1);
+		        
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona2_1.setMaximum(endpoint);
+				progressBarZona2_1.setMinimum(startpoint);
+				progressBarZona2_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona2_1);
 				
-		        progressBarP1_Second.setVisible(true);
-		        for(int m=startpoint; m<=endpoint; m++) {
-		        	progressBarP1_Second.setValue(m);
-		        }
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona3_1.setMaximum(endpoint);
+				progressBarZona3_1.setMinimum(startpoint);
+				progressBarZona3_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona3_1);
 		        
+				//Inizio
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO] : Valori in posizione: " +startpoint + " e "+endpoint);
+				panelProgressBar1.repaint();				
+				progressBarDurataProcesso_1.setMaximum(endpoint);
+				progressBarDurataProcesso_1.setMinimum(startpoint);
+				progressBarDurataProcesso_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        panelProgressBar1.add(progressBarDurataProcesso_1);
 		        
+		       
+		        
+				   
 			}
 			
 			
 			if(NumeroProcessi==2)
 			{
-				System.out.println("Debug 2");
-				startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(2)));
-				endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(3)));
-				progressBarP2_Second.setMaximum(endpoint);
-				progressBarP2_Second.setMinimum(0);
-				progressBarP2_Second.setBounds(startpoint+250, 562, 550-endpoint, 29);
-				for(int m=0; m<=endpoint; m++) {
-		        	progressBarP2_Second.setValue(m);
-		        }
-		        progressBarP2_Second.setVisible(true);
-			}else if(NumeroProcessi==1)
-			{
-				progressBarP2_Second.setVisible(false);
+				//PROCESSO 1 !!!
+				panelProgressBar1.removeAll();
+				panelProgressBar1.repaint();
+				panelProgressBar2.removeAll();
+				panelProgressBar2.repaint();
 				
-			}	
+		        //Zona Critica 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona1_1.setMaximum(endpoint);
+				progressBarZona1_1.setMinimum(startpoint);
+				progressBarZona1_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona1_1);
+		       
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona2_1.setMaximum(endpoint);
+				progressBarZona2_1.setMinimum(startpoint);
+				progressBarZona2_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona2_1);
 				
+				 
+				
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona3_1.setMaximum(endpoint);
+				progressBarZona3_1.setMinimum(startpoint);
+				progressBarZona3_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona3_1);
+		        
+				
+				//Inizio
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO] : Valori in posizione: " +startpoint + " e "+endpoint);
+				panelProgressBar1.repaint();				
+				progressBarDurataProcesso_1.setMaximum(endpoint);
+				progressBarDurataProcesso_1.setMinimum(startpoint);
+				progressBarDurataProcesso_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        panelProgressBar1.add(progressBarDurataProcesso_1);
+			
+		        //PROCESSO 2 !!!
+				
+				
+		        //Zona Critica 1
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona1_2.setMaximum(endpoint);
+				progressBarZona1_2.setMinimum(startpoint);
+				progressBarZona1_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar2.add(progressBarZona1_2);
+		        
+
+		       
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona2_2.setMaximum(endpoint);
+				progressBarZona2_2.setMinimum(startpoint);
+				progressBarZona2_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar2.add(progressBarZona2_2);
+				
+				//Zona Critica 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				progressBarZona3_2.setMaximum(endpoint);
+				progressBarZona3_2.setMinimum(startpoint);
+				progressBarZona3_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				panelProgressBar1.add(progressBarZona3_2);
+		        
+				//Inizio
+				startpoint=StartEndProcessi.get(1).inizioProcesso;
+				endpoint=StartEndProcessi.get(1).fineProcesso;
+				System.out.println("[INIZIO] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				progressBarDurataProcesso_2.setMaximum(endpoint);
+				progressBarDurataProcesso_2.setMinimum(startpoint);
+				progressBarDurataProcesso_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        panelProgressBar2.add(progressBarDurataProcesso_2);
+			}
+			
+			/*	
 			if(NumeroProcessi==3)
 				
 			{
 				System.out.println("Debug 3");
-				startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(4)));
-				endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(5)));
+				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(4)));
+				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(5)));
 				progressBarP3_Second.setMaximum(endpoint);
 				progressBarP3_Second.setMinimum(0);
 				progressBarP3_Second.setBounds(startpoint+250, 602, 550-endpoint, 29);
@@ -734,7 +786,8 @@ public class Semafori extends JFrame {
 		        	progressBarP3_Second.setValue(m);
 		        }
 		        progressBarP3_Second.setVisible(true);
-			}else if(NumeroProcessi==1 || NumeroProcessi==2)
+			}
+			else if(NumeroProcessi==1 || NumeroProcessi==2)
 			{
 				progressBarP3_Second.setVisible(false);
 			}
@@ -743,8 +796,8 @@ public class Semafori extends JFrame {
 			if(NumeroProcessi==4)
 			{
 				System.out.println("Debug 4");
-				startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(6)));
-				endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(7)));
+				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(6)));
+				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(7)));
 				progressBarP4_Second.setMaximum(endpoint);
 				progressBarP4_Second.setMinimum(0);
 				
@@ -754,7 +807,8 @@ public class Semafori extends JFrame {
 		        }
 		        progressBarP4_Second.setVisible(true);
 				
-			}else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3)
+			}
+			else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3)
 			{
 				progressBarP4_Second.setVisible(false);
 			}
@@ -763,8 +817,8 @@ public class Semafori extends JFrame {
 			if(NumeroProcessi==5)
 			{
 				System.out.println("Debug 5");
-				startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(8)));
-				endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(9)));
+				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(8)));
+				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(9)));
 				progressBarP5_Second.setMaximum(endpoint);
 				progressBarP5_Second.setMinimum(0);
 				progressBarP5_Second.setBounds(startpoint+250, 680, 550-endpoint, 29);
@@ -773,16 +827,19 @@ public class Semafori extends JFrame {
 		        }
 		        progressBarP5_Second.setVisible(true);
 			
-			}else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3 || NumeroProcessi==4)
+			}
+			else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3 || NumeroProcessi==4)
 			{
 				
 				progressBarP5_Second.setVisible(false);
 			}
+			*/
 				
 			
 		
 
-		}//mouseclicked end
+		}
+	        	//mouseclicked end
 	        	@Override
 	        	public void mouseEntered(MouseEvent e) 
 	        	{
@@ -794,30 +851,88 @@ public class Semafori extends JFrame {
 	        		GeneraEsercizioJLabel.setForeground(Color.BLACK);
 	        	}
 			});
-	        
-	        //icona
-	        GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
-	        GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
-	        panelMainButton.add(GeneraEsercizioIcon);
-	        
-	        JLabel IndicatoreTempoIniz1 = new JLabel("Tempo 0");
-	        IndicatoreTempoIniz1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-	        IndicatoreTempoIniz1.setBounds(252, 499, 53, 14);
-	        panelMainButton.add(IndicatoreTempoIniz1);
-	        
-	        JLabel IndicatoreTempoFin1 = new JLabel("Tempo 300");
-	        IndicatoreTempoFin1.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-	        IndicatoreTempoFin1.setBounds(742, 499, 64, 14);
-	        panelMainButton.add(IndicatoreTempoFin1);
-	        
-	        
-	        
-	        JLabel labelHelpIcon = new JLabel("Help");
-	        labelHelpIcon.setBounds(1343, 460, 34, 46);
-	        panelMainButton.add(labelHelpIcon);
-	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-	        
+	        NumProcessiComboBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
+					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
+					int rowCount = tabella.getRowCount();
+					int columnCount = tabella.getColumnCount();
 
+					//rimuove tutte le righe precedenti
+					for (int i = rowCount - 1; i >= 0; i--) 
+					{
+				    	model1.removeRow(i);
+					}
+					//ricrea la tabella
+					for (int i=0;i<sceltaNumero;i++) 
+					{ 
+						model1.addRow(new Object[0]);
+						model1.setValueAt("P"+(i+1),i,0);
+						
+						
+						//setting default values
+						for(int j=1; j<columnCount; j++) {
+							
+							if(j==2)
+								model1.setValueAt("300",i,j);
+							else
+								model1.setValueAt("0", i, j);
+						}
+					}
+					
+					
+					//managing progress bars
+					
+					
+					if (sceltaNumero==1) 
+					{
+						panelProgressBar1.setVisible(true);
+						panelProgressBar2.setVisible(false);
+						panelProgressBar3.setVisible(false);
+						panelProgressBar4.setVisible(false);
+						panelProgressBar5.setVisible(false);
+					}
+					else if(sceltaNumero==2)
+					{
+						panelProgressBar1.setVisible(true);
+						panelProgressBar2.setVisible(true);
+						panelProgressBar3.setVisible(false);
+						panelProgressBar4.setVisible(false);
+						panelProgressBar5.setVisible(false);
+					}
+					
+					else if(sceltaNumero==3)
+					{
+						panelProgressBar1.setVisible(true);
+						panelProgressBar2.setVisible(true);
+						panelProgressBar3.setVisible(true);
+						panelProgressBar4.setVisible(false);
+						panelProgressBar5.setVisible(false);
+					}
+					
+					else if(sceltaNumero==4)
+					{
+						panelProgressBar1.setVisible(true);
+						panelProgressBar2.setVisible(true);
+						panelProgressBar3.setVisible(true);
+						panelProgressBar4.setVisible(true);
+						panelProgressBar5.setVisible(false);
+					}
+					
+					else if(sceltaNumero==5)
+					{
+						panelProgressBar1.setVisible(true);
+						panelProgressBar2.setVisible(true);
+						panelProgressBar3.setVisible(true);
+						panelProgressBar4.setVisible(true);
+						panelProgressBar5.setVisible(true);
+					}
+					
+				}
+			});
+			
 	       
 	       
 		
