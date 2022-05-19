@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
@@ -145,14 +146,21 @@ public class PanelGraficiSchProcessi extends JPanel {
 		
     	if(selectSoluzione==true) {
     		
-    		for(int l=0;l<lineesFCFS.size();) {   
+    		for(int l=0;l<lineesFCFS.size();l=l+4) 
+    		{   
         		g.setColor(new Color(0, 204, 0));
     			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
-    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6) g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
-    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6)
+    			{
+    				g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+    			}
+    			else 
+    			{
+    				g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+    			}
 
     			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
-    			l=l+4;
+    			
     		}
     		g.setColor(Color.blue);
 
@@ -164,11 +172,12 @@ public class PanelGraficiSchProcessi extends JPanel {
     	}
 	}
 	
-	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
+	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,  ArrayList<Integer>  lineesFCFS, Boolean selectSoluzione,Boolean selectGriglia){
 			
 			int completo = 0;
 	    	int lineetotali=0;
 	    	int [] attivo = new int[lineesFCFSarray.size()];
+	    	Arrays.fill(attivo, 0);
 	    	int minimo=999;
 	    	int minimodurata=9999;
 	    	int corrente;
@@ -189,15 +198,18 @@ public class PanelGraficiSchProcessi extends JPanel {
 				g.setColor(Color.blue);
 
 
-	    		for(int l=0;l<lineesFCFSarray.size();l++) {    
+				
+	    		for(int l=0;l<lineesFCFSarray.size();l++)
+	    		{    
 	        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
 	        					//92-l*15);
 	        	}
-
+	    		
+	    		
+	    		//Ricerca Processo di Partenza 
 	    		for(int l=0;l<lineesFCFSarray.size();l++) 
 	    		{    
-	        			//g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
-	        					//92-l*15);
+	    			lineesFCFSarray.get(indexprocesso).aggiorna=lineesFCFSarray.get(l).getArrivo();
 	    			System.out.println("P"+(l+1)+"  "+lineesFCFSarray.get(l).getArrivo()+" P"+lineesFCFSarray.get(l).getProcesso()+" D"+lineesFCFSarray.get(l).getDurata()+"");
 	    			if(lineesFCFSarray.get(l).getArrivo()<minimo)
 	    			{
@@ -211,25 +223,25 @@ public class PanelGraficiSchProcessi extends JPanel {
 	    		corrente=minimo;
 	    		while (completo!=lineetotali)
 	    		{
-	    			for (int i = 0; i < lineesFCFS.size(); i++) 
+	    			minimodurata=9999;
+	    			for (int i = 0; i < lineesFCFSarray.size(); i++) 
 	    			{
-	    				if(lineesFCFSarray.get(l).getDurata()<minimodurata)
+	    				if((lineesFCFSarray.get(i).getDurata()<minimodurata )&& (lineesFCFSarray.get(i).getArrivo() <= corrente) && (attivo[i]!=lineesFCFSarray.get(i).getDurata()))
 		    			{
-		    				if (lineesFCFSarray.get(i).getArrivo()<=corrente)
-		    				{
-		    					if (attivo[i]!=lineesFCFSarray.get(i).getArrivo()) 
-		    					{
-		    						minimodurata=lineesFCFSarray.get(l).getArrivo();
-		    						indexprocesso=i;
-		    					}
-							}
+		    				minimodurata=lineesFCFSarray.get(i).getDurata();
+		    				indexprocesso=i;	
 		    			}
-	    					
+	    				
 					}
-	    			attivo[indexprocesso]++;
-		    		System.out.println("Durata totale : "+lineesFCFSarray.get(indexprocesso).getProcesso());
-	    			g.drawLine(35+corrente*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+corrente+1*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15);
-	    			completo++;
+	    			
+ 	    			attivo[indexprocesso]++;	
+		    		System.out.println("index processo estratto : "+ (indexprocesso+1));
+		    		g.setColor(new Color(0, 204, 0));
+		    		g.drawLine(35+lineesFCFSarray.get(indexprocesso).aggiorna*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+lineesFCFSarray.get(indexprocesso).getArrivo()*17,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15);
+		    		//lineesFCFSarray.get(indexprocesso).aggiorna=35+lineesFCFSarray.get(indexprocesso).getArrivo();
+		    		//g.drawLine(35+3,102-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+3,102-50);
+		    		System.out.println("Stampa  questo : "+ (35+lineesFCFSarray.get(indexprocesso).getArrivo()));
+		    		completo++;
 	    			corrente++;
 				}
 	

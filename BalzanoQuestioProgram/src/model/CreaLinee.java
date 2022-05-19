@@ -7,6 +7,7 @@ public class CreaLinee implements Comparable<CreaLinee>{
 	
 	int arrivo,durata, processo;
 	int x,y;
+	public int aggiorna;
 	ArrayList<Integer> punti=new ArrayList<Integer>();
 	ArrayList<Integer> linee=new ArrayList<Integer>();
 
