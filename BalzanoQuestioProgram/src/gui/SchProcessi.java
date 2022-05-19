@@ -92,7 +92,8 @@ public SchProcessi(JFrame framechiamante) {
 	        labelScrittaIndietro.setBounds(10, 120, 53, 12);
 	        pannelloPrincipale.add(labelScrittaIndietro);
 	        
-	        JLabel labelIndietroIcon = new JLabel("Exit");
+	        JLabel labelIndietroIcon = new JLabel();
+	        labelIndietroIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
@@ -111,16 +112,17 @@ public SchProcessi(JFrame framechiamante) {
 	        		labelScrittaIndietro.setForeground(Color.BLACK);
 	        	}
 	        });
-	        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
+	        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
 	        labelIndietroIcon.setBounds(10, 75, 53, 46);
 	        pannelloPrincipale.add(labelIndietroIcon);
 	        
 	        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
 	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaYoutube.setBounds(133, 120, 95, 12);
+	        labelScrittaYoutube.setBounds(61, 120, 95, 12);
 	        pannelloPrincipale.add(labelScrittaYoutube);
 	        JLabel labelYoutubeIcon = new JLabel("Youtube");
+	        labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
@@ -147,12 +149,12 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-	        labelYoutubeIcon.setBounds(150, 75, 53, 46);
+	        labelYoutubeIcon.setBounds(91, 75, 53, 46);
 	        pannelloPrincipale.add(labelYoutubeIcon);
 	        
 	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
 	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaSlide.setBounds(226, 120, 95, 15);
+	        labelScrittaSlide.setBounds(158, 119, 95, 15);
 	        pannelloPrincipale.add(labelScrittaSlide);
 	        JLabel labelSlideIcon = new JLabel("Slide");
 	        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -181,7 +183,7 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	        labelSlideIcon.setBounds(243, 75, 53, 46);
+	        labelSlideIcon.setBounds(180, 75, 53, 46);
 	        pannelloPrincipale.add(labelSlideIcon);
 	
 		//BOTTONE GENERA
@@ -193,15 +195,6 @@ public SchProcessi(JFrame framechiamante) {
 			btnGenera.setBounds(974, 86, 157, 48);
 			pannelloPrincipale.add(btnGenera);
 			frame.setVisible(true);
-		
-		//BOTTONE INFO SULL'USO DELL'APP	
-		JLabel btnInfouso = new JLabel("Info/Uso");
-			btnInfouso.setHorizontalAlignment(SwingConstants.CENTER);
-			btnInfouso.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			//btnInfouso.setBorder(new LineBorder(new Color(0, 0, 0), 4));
-			btnInfouso.setBackground(new Color(255, 255, 255));
-			btnInfouso.setBounds(73, 82, 81, 28);
-			pannelloPrincipale.add(btnInfouso);
 	        
 			
 /**							PANNELLO TITOLO										*/
@@ -600,7 +593,7 @@ public SchProcessi(JFrame framechiamante) {
 			chckbxAttivaModifiche.setBounds(100, 6, 140, 21);
 			PannelloPLOT.add(chckbxAttivaModifiche);
 		
-		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutte le soluzione");
+		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutte le soluzioni");
 			chkbkMostraAllSoluzione.setHorizontalAlignment(SwingConstants.LEFT);
 			chkbkMostraAllSoluzione.setEnabled(false);
 			chkbkMostraAllSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -640,6 +633,18 @@ public SchProcessi(JFrame framechiamante) {
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHelp.setForeground(Color.RED);
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			
+		JLabel labelHelpIcon = new JLabel("Help");
+			labelHelpIcon.setBounds(273, 75, 34, 46);
+			pannelloPrincipale.add(labelHelpIcon);
+	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
+	        
+	    JLabel lblInfouso = new JLabel("Info/Uso");
+	        lblInfouso.setHorizontalAlignment(SwingConstants.CENTER);
+	        lblInfouso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        lblInfouso.setBounds(263, 120, 59, 12);
+	        pannelloPrincipale.add(lblInfouso);
+
 			
 
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -990,7 +995,7 @@ public SchProcessi(JFrame framechiamante) {
 				}
 				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
 					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-					jPanelSJFP.disegnaSoluzioneSJF(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
 				}
 				
 				if(chckbxMostraSoluzioneRR.isSelected()==false) {
@@ -1113,7 +1118,7 @@ public SchProcessi(JFrame framechiamante) {
 		chckbxMostraSoluzioneSJFP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
-					jPanelSJFP.disegnaSoluzioneSJF(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),/*ARRAYPUNTI*/arrayLinea,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
 					DatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));

@@ -87,7 +87,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        
 	        JLabel labelScrittaIndietro = new JLabel(" Indietro");
 	        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaIndietro.setBounds(10, 120, 53, 12);
+	        labelScrittaIndietro.setBounds(20, 120, 53, 12);
 	        pannelloPrincipale.add(labelScrittaIndietro);
 	        
 	        JLabel labelIndietroIcon = new JLabel("Exit");
@@ -109,8 +109,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        		labelScrittaIndietro.setForeground(Color.BLACK);
 		        	}
 		        });
-		        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
-		        labelIndietroIcon.setBounds(10, 75, 53, 46);
+		        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
+		        labelIndietroIcon.setBounds(29, 75, 34, 46);
 		        pannelloPrincipale.add(labelIndietroIcon);
 		        
 	        JLabel labelScrittaYoutube = new JLabel("Videolezione");
@@ -523,7 +523,18 @@ public class PaginazioneDellaMemoria extends JFrame {
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHelp.setForeground(Color.RED);
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				
+			
+		JLabel labelHelpIcon = new JLabel("Help");
+			labelHelpIcon.setBounds(282, 75, 34, 46);
+			pannelloPrincipale.add(labelHelpIcon);
+	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
+	        
+	    JLabel lblInfouso = new JLabel("Info/Uso");
+	        lblInfouso.setHorizontalAlignment(SwingConstants.CENTER);
+	        lblInfouso.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	        lblInfouso.setBounds(273, 119, 59, 12);
+	        pannelloPrincipale.add(lblInfouso);
+
 			
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
@@ -648,19 +659,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 				labelScrittaFast.setEnabled(false);
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
-				/*
+
 				scelta= (String) SceltaSlotDisponibili.getSelectedItem();
 				int numeroSlot=Integer.valueOf(scelta);
 				
 				for (int i=0;i<numeroSlot;i++) {
-					model1.addColumn("");
-					tabellaProcessi.getColumnModel().getColumn(i).setPreferredWidth(20);
+					model1.addRow(new Object[0]);
 					for (int j=0;j<numeri.length;i++) {
-
-						model1.addRow(new Object[0]);
-						model1.setValueAt(numeri[i], i,j);
+						model1.addColumn("");
+						tabellaProcessi.getColumnModel().getColumn(i).setPreferredWidth(20);
 					}
-				}*/
+				}
 			
 			}
 			@Override

@@ -164,5 +164,75 @@ public class PanelGraficiSchProcessi extends JPanel {
     	}
 	}
 	
+	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
+			
+			int completo = 0;
+	    	int lineetotali=0;
+	    	int [] attivo = new int[lineesFCFSarray.size()];
+	    	int minimo=999;
+	    	int minimodurata=9999;
+	    	int corrente;
+	    	int indexprocesso=0;
+	    	if(selectSoluzione==true) {
+	    		/*
+	    		for(int l=0;l<lineesFCFS.size();) {   
+	        		g.setColor(new Color(0, 204, 0));
+	    			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
+	    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6) g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+	    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
 	
+	    			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    			l=l+4;
+	    		}
+	    		g.setColor(Color.blue);
+	*/			
+				g.setColor(Color.blue);
+
+
+	    		for(int l=0;l<lineesFCFSarray.size();l++) {    
+	        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+	        					//92-l*15);
+	        	}
+
+	    		for(int l=0;l<lineesFCFSarray.size();l++) 
+	    		{    
+	        			//g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+	        					//92-l*15);
+	    			System.out.println("P"+(l+1)+"  "+lineesFCFSarray.get(l).getArrivo()+" P"+lineesFCFSarray.get(l).getProcesso()+" D"+lineesFCFSarray.get(l).getDurata()+"");
+	    			if(lineesFCFSarray.get(l).getArrivo()<minimo)
+	    			{
+	    				minimo=lineesFCFSarray.get(l).getArrivo();
+	    			}
+	    			lineetotali+=lineesFCFSarray.get(l).getDurata();
+	    		}
+	    		g.setColor(new Color(0, 204, 0));
+	    		System.out.println("Durata totale : "+lineetotali);
+	    		System.out.println("Minimo totale : "+minimo);
+	    		corrente=minimo;
+	    		while (completo!=lineetotali)
+	    		{
+	    			for (int i = 0; i < lineesFCFS.size(); i++) 
+	    			{
+	    				if(lineesFCFSarray.get(l).getDurata()<minimodurata)
+		    			{
+		    				if (lineesFCFSarray.get(i).getArrivo()<=corrente)
+		    				{
+		    					if (attivo[i]!=lineesFCFSarray.get(i).getArrivo()) 
+		    					{
+		    						minimodurata=lineesFCFSarray.get(l).getArrivo();
+		    						indexprocesso=i;
+		    					}
+							}
+		    			}
+	    					
+					}
+	    			attivo[indexprocesso]++;
+		    		System.out.println("Durata totale : "+lineesFCFSarray.get(indexprocesso).getProcesso());
+	    			g.drawLine(35+corrente*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+corrente+1*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15);
+	    			completo++;
+	    			corrente++;
+				}
+	
+	    	}
+		}
 }
