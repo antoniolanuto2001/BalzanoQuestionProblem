@@ -1,5 +1,5 @@
 package gui;
-import com.*;
+
 import java.lang.*;
 
 import java.awt.BorderLayout;
@@ -369,6 +369,7 @@ public class Semafori extends JFrame {
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
+		tabella.setEnabled(false);
 		tabella.setColumnSelectionAllowed(true);
 		DefaultTableModel model1 = new DefaultTableModel()
 		{
@@ -568,6 +569,7 @@ public class Semafori extends JFrame {
 							{
 								randomNum= ThreadLocalRandom.current().nextInt(270, 300);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+								end_processo=randomNum;
 							}
 							
 							
@@ -616,7 +618,9 @@ public class Semafori extends JFrame {
 							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
 							if(j==8)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(275,287);	
+								do
+									randomNum= ThreadLocalRandom.current().nextInt(275,287);
+								while(randomNum>end_processo);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
 							}
 							model1.setValueAt(randomNum, i, j);
@@ -657,7 +661,7 @@ public class Semafori extends JFrame {
 				progressBarZona2_1.setBounds(startpoint, 0, endpoint-startpoint, 29);
 				panelProgressBar1.add(progressBarZona2_1);
 				
-				//Zona Critica 2
+				//Zona Critica 3
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
@@ -710,7 +714,7 @@ public class Semafori extends JFrame {
 				
 				 
 				
-				//Zona Critica 2
+				//Zona Critica 3
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
@@ -753,14 +757,14 @@ public class Semafori extends JFrame {
 				progressBarZona2_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
 				panelProgressBar2.add(progressBarZona2_2);
 				
-				//Zona Critica 2
+				//Zona Critica 3
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
 				progressBarZona3_2.setMaximum(endpoint);
 				progressBarZona3_2.setMinimum(startpoint);
 				progressBarZona3_2.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				panelProgressBar1.add(progressBarZona3_2);
+				panelProgressBar2.add(progressBarZona3_2);
 		        
 				//Inizio
 				startpoint=StartEndProcessi.get(1).inizioProcesso;
