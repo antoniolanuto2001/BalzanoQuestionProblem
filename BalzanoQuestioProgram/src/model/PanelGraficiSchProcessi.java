@@ -1,3 +1,4 @@
+
 package model;
 import java.awt.Color;
 import java.awt.Font;
@@ -146,21 +147,14 @@ public class PanelGraficiSchProcessi extends JPanel {
 		
     	if(selectSoluzione==true) {
     		
-    		for(int l=0;l<lineesFCFS.size();l=l+4) 
-    		{   
+    		for(int l=0;l<lineesFCFS.size();) {   
         		g.setColor(new Color(0, 204, 0));
     			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
-    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6)
-    			{
-    				g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
-    			}
-    			else 
-    			{
-    				g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
-    			}
+    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6) g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
 
     			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
-    			
+    			l=l+4;
     		}
     		g.setColor(Color.blue);
 
@@ -171,6 +165,8 @@ public class PanelGraficiSchProcessi extends JPanel {
 
     	}
 	}
+	
+
 	
 	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,  ArrayList<Integer>  lineesFCFS, Boolean selectSoluzione,Boolean selectGriglia){
 			
@@ -247,4 +243,5 @@ public class PanelGraficiSchProcessi extends JPanel {
 	
 	    	}
 		}
+
 }

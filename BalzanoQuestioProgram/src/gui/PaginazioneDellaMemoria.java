@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.Key;
@@ -21,6 +22,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
@@ -33,6 +36,7 @@ import javax.swing.text.NumberFormatter;
 import model.PanelGraficiPaginazioneMemoria;
 import model.parolaHashing;
 import model.CreaLinee;
+import model.PanelGraficiMatricePaginazioneDellaMemoria;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -57,6 +61,7 @@ import java.beans.VetoableChangeListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
+import java.util.Queue;
 
 
 public class PaginazioneDellaMemoria extends JFrame {
@@ -65,8 +70,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 	private JFrame frame;
 	private String scelta="0";
 	private int pieno=0;
-	private int[] numeri=new int[15];
-	
+	private int[] numeri;
+	private int[] numeriFIFO;
+	private int[] numeriLRU;
+	private int[] numeriOPT;
+	private int[] numeriCLOCK;
+
+	private int pagefaultFIFO;
+	private int pagefaultLRU;
+	private int pagefaultOPT;
+	private int pagefaultCLOCK;
+
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
 		
 		frame=this;
@@ -193,137 +207,137 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setBounds(0, 0, 1419, 73);
 			pannelloTitolo.add(labelTitolo);
 		
-
+/*-----------------------------------------------------------------------------------------------------------------------------*/
+			
 /*INIZIO GUI COMPLICATA*/		
 
 /**							PANNELLO GRAFICI								*/
 		JPanel pannelloGrafici = new JPanel();
-	        pannelloGrafici.setBounds(0, 140, 1131, 620);
+	        pannelloGrafici.setBounds(0, 135, 1131, 618);
 	        pannelloPrincipale.add(pannelloGrafici);
 	        pannelloGrafici.setLayout(null);
         
         //PANNELLO FIFO
         JPanel pannelloFIFO = new JPanel();
-        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-			pannelloFIFO.setBounds(10, 0, 1121, 150);
-			pannelloGrafici.add(pannelloFIFO);
-			//pannelloFCFS.setBorder(new LineBorder(new Color(0, 204, 0), 2));
-			pannelloFIFO.setLayout(null);
-
-		JLabel FIFO = new JLabel("FIFO");
-			FIFO.setBounds(10, 0, 489, 25);
-			FIFO.setHorizontalAlignment(SwingConstants.CENTER);
-			FIFO.setForeground(Color.RED);
-			FIFO.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			pannelloFIFO.add(FIFO);
+		        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloFIFO.setBounds(10, 0, 1121, 150);
+					pannelloGrafici.add(pannelloFIFO);
+					//pannelloFCFS.setBorder(new LineBorder(new Color(0, 204, 0), 2));
+					pannelloFIFO.setLayout(null);
 		
-		JLabel lblPageFaultsFIFO = new JLabel("Page faults:");
-			lblPageFaultsFIFO.setBounds(670, 3, 86, 25);
-			lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			pannelloFIFO.add(lblPageFaultsFIFO);
-		
-		JLabel DATOFIFO = new JLabel("");
-			DATOFIFO.setBounds(753, 3, 45, 25);
-			DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			pannelloFIFO.add(DATOFIFO);
-		
-			
-		JCheckBox chckbxMostraSoluzioneFIFO = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneFIFO.setEnabled(false);
-			chckbxMostraSoluzioneFIFO.setBounds(930, 0, 150, 25);
-			pannelloFIFO.add(chckbxMostraSoluzioneFIFO);
-			
+					JLabel FIFO = new JLabel("FIFO");
+					FIFO.setBounds(10, 0, 489, 25);
+					FIFO.setHorizontalAlignment(SwingConstants.CENTER);
+					FIFO.setForeground(Color.RED);
+					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 20));
+					pannelloFIFO.add(FIFO);
+				
+					JLabel lblPageFaultsFIFO = new JLabel("Page faults:");
+					lblPageFaultsFIFO.setBounds(670, 3, 86, 25);
+					lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					pannelloFIFO.add(lblPageFaultsFIFO);
+				
+					JLabel DATOFIFO = new JLabel("");
+					DATOFIFO.setBounds(753, 3, 45, 25);
+					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					pannelloFIFO.add(DATOFIFO);
+				
+					JCheckBox chckbxMostraSoluzioneFIFO = new JCheckBox("Mostra Grafico");
+					chckbxMostraSoluzioneFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					chckbxMostraSoluzioneFIFO.setEnabled(false);
+					chckbxMostraSoluzioneFIFO.setBounds(930, 0, 150, 25);
+					pannelloFIFO.add(chckbxMostraSoluzioneFIFO);
+					
 		//PANNELLO OPT
 		JPanel pannelloOPT = new JPanel();
-			pannelloOPT.setBounds(10, 155, 1121, 150);
-			pannelloGrafici.add(pannelloOPT);
-			pannelloOPT.setLayout(null);
-			pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-
-		JLabel OPT = new JLabel("OPT");
-			OPT.setHorizontalAlignment(SwingConstants.CENTER);
-			OPT.setForeground(Color.RED);
-			OPT.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			OPT.setBounds(10, 3, 489, 25);
-			pannelloOPT.add(OPT);
+					pannelloOPT.setBounds(10, 155, 1121, 150);
+					pannelloGrafici.add(pannelloOPT);
+					pannelloOPT.setLayout(null);
+					pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 		
-		JLabel lblPageFaultsOPT = new JLabel("Page faults:");
-			lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblPageFaultsOPT.setBounds(670, 3, 78, 25);
-			pannelloOPT.add(lblPageFaultsOPT);
-		
-		JLabel DATOOPT = new JLabel("");
-			DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DATOOPT.setBounds(758, 3, 45, 25);
-			pannelloOPT.add(DATOOPT);
-		
-		JCheckBox chckbxMostraSoluzioneOPT = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneOPT.setEnabled(false);
-			chckbxMostraSoluzioneOPT.setBounds(930, 0, 150, 25);
-			pannelloOPT.add(chckbxMostraSoluzioneOPT);
+					JLabel OPT = new JLabel("OPT");
+					OPT.setHorizontalAlignment(SwingConstants.CENTER);
+					OPT.setForeground(Color.RED);
+					OPT.setFont(new Font("Tahoma", Font.PLAIN, 20));
+					OPT.setBounds(10, 3, 489, 25);
+					pannelloOPT.add(OPT);
+				
+					JLabel lblPageFaultsOPT = new JLabel("Page faults:");
+					lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					lblPageFaultsOPT.setBounds(670, 3, 78, 25);
+					pannelloOPT.add(lblPageFaultsOPT);
+				
+					JLabel DATOOPT = new JLabel("");
+					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					DATOOPT.setBounds(758, 3, 45, 25);
+					pannelloOPT.add(DATOOPT);
+				
+					JCheckBox chckbxMostraSoluzioneOPT = new JCheckBox("Mostra Grafico");
+					chckbxMostraSoluzioneOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					chckbxMostraSoluzioneOPT.setEnabled(false);
+					chckbxMostraSoluzioneOPT.setBounds(930, 0, 150, 25);
+					pannelloOPT.add(chckbxMostraSoluzioneOPT);
 
 		//PANNELLO LRU
 		JPanel pannelloLRU = new JPanel();
-			pannelloLRU.setLayout(null);
-			pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-			pannelloLRU.setBounds(10, 310, 1121, 150);
-			pannelloGrafici.add(pannelloLRU);
+					pannelloLRU.setLayout(null);
+					pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloLRU.setBounds(10, 310, 1121, 150);
+					pannelloGrafici.add(pannelloLRU);
+				
+					JLabel LRU = new JLabel("LRU");
+					LRU.setHorizontalAlignment(SwingConstants.CENTER);
+					LRU.setForeground(Color.RED);
+					LRU.setFont(new Font("Tahoma", Font.PLAIN, 20));
+					LRU.setBounds(10, 3, 489, 25);
+					pannelloLRU.add(LRU);
+				
+					JLabel lblPageFaultsLRU = new JLabel("Page faults:");
+					lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					lblPageFaultsLRU.setBounds(670, 3, 81, 25);
+					pannelloLRU.add(lblPageFaultsLRU);
 		
-		JLabel LRU = new JLabel("LRU");
-			LRU.setHorizontalAlignment(SwingConstants.CENTER);
-			LRU.setForeground(Color.RED);
-			LRU.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			LRU.setBounds(10, 3, 489, 25);
-			pannelloLRU.add(LRU);
-		
-		JLabel lblPageFaultsLRU = new JLabel("Page faults:");
-			lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblPageFaultsLRU.setBounds(670, 3, 81, 25);
-			pannelloLRU.add(lblPageFaultsLRU);
-
-		JLabel DATOLRU = new JLabel("");
-			DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DATOLRU.setBounds(761, 3, 45, 25);
-			pannelloLRU.add(DATOLRU);
-	
-		JCheckBox chckbxMostraSoluzioneLRU = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneLRU.setEnabled(false);
-			chckbxMostraSoluzioneLRU.setBounds(930, 0, 150, 25);
-			pannelloLRU.add(chckbxMostraSoluzioneLRU);
+					JLabel DATOLRU = new JLabel("");
+					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					DATOLRU.setBounds(761, 3, 45, 25);
+					pannelloLRU.add(DATOLRU);
+			
+					JCheckBox chckbxMostraSoluzioneLRU = new JCheckBox("Mostra Grafico");
+					chckbxMostraSoluzioneLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					chckbxMostraSoluzioneLRU.setEnabled(false);
+					chckbxMostraSoluzioneLRU.setBounds(930, 0, 150, 25);
+					pannelloLRU.add(chckbxMostraSoluzioneLRU);
 
 	
 		//PANNELLO CLOCK
 		JPanel pannelloCLOCK = new JPanel();
-			pannelloCLOCK.setLayout(null);
-			pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-			pannelloCLOCK.setBounds(10, 465, 1121, 150);
-			pannelloGrafici.add(pannelloCLOCK);
+					pannelloCLOCK.setLayout(null);
+					pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloCLOCK.setBounds(10, 465, 1121, 150);
+					pannelloGrafici.add(pannelloCLOCK);
+				
+					JLabel clock = new JLabel("Clock");
+					clock.setHorizontalAlignment(SwingConstants.CENTER);
+					clock.setForeground(Color.RED);
+					clock.setFont(new Font("Tahoma", Font.PLAIN, 20));
+					clock.setBounds(10, 3, 489, 25);
+					pannelloCLOCK.add(clock);
+				
+					JLabel lblPageFaultClock = new JLabel("Page faults:");
+					lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					lblPageFaultClock.setBounds(670, 3, 82, 25);
+					pannelloCLOCK.add(lblPageFaultClock);
 		
-		JLabel clock = new JLabel("Clock");
-			clock.setHorizontalAlignment(SwingConstants.CENTER);
-			clock.setForeground(Color.RED);
-			clock.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			clock.setBounds(10, 3, 489, 25);
-			pannelloCLOCK.add(clock);
-		
-		JLabel lblPageFaultClock = new JLabel("Page faults:");
-			lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			lblPageFaultClock.setBounds(670, 3, 82, 25);
-			pannelloCLOCK.add(lblPageFaultClock);
-
-		JLabel DATOCLOCK = new JLabel("");
-			DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			DATOCLOCK.setBounds(762, 3, 45, 25);
-			pannelloCLOCK.add(DATOCLOCK);
-			
-		JCheckBox chckbxMostraSoluzioneClock = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxMostraSoluzioneClock.setEnabled(false);
-			chckbxMostraSoluzioneClock.setBounds(930, 0, 150, 25);
-			pannelloCLOCK.add(chckbxMostraSoluzioneClock);
+					JLabel DATOCLOCK = new JLabel("");
+					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					DATOCLOCK.setBounds(762, 3, 45, 25);
+					pannelloCLOCK.add(DATOCLOCK);
+					
+					JCheckBox chckbxMostraSoluzioneClock = new JCheckBox("Mostra Grafico");
+					chckbxMostraSoluzioneClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					chckbxMostraSoluzioneClock.setEnabled(false);
+					chckbxMostraSoluzioneClock.setBounds(930, 0, 150, 25);
+					pannelloCLOCK.add(chckbxMostraSoluzioneClock);
 
 			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
@@ -355,35 +369,34 @@ public class PaginazioneDellaMemoria extends JFrame {
 			jPanelCLOCK.setLayout(null);
 			jPanelCLOCK.setBounds(615, 29, 500, 118);
 			pannelloCLOCK.add(jPanelCLOCK);
+
 			
-/**						PANNELLI CON TABELLE CON SLOT MEMORIA						*/			
-		JScrollPane scrollTabellaProcessi= new JScrollPane();
-			scrollTabellaProcessi.setBounds(0, 27, 605, 118);
-			pannelloFIFO.add(scrollTabellaProcessi);
-		
-		final JTable tabellaProcessi = new JTable();
-			tabellaProcessi.setEnabled(false);
-			tabellaProcessi.setBackground(new Color(255, 255, 255));
-			tabellaProcessi.setCellSelectionEnabled(true);
-			tabellaProcessi.setFont(new Font("Arial", Font.BOLD, 12));
-			scrollTabellaProcessi.setViewportView(tabellaProcessi);
-		
-		DefaultTableModel model1 = new DefaultTableModel(){
+/**						PANNELLI CON GRAFICO MATRICI							*/			
 			
-			public Class<?> getColumnClass(int column){
-				switch(column) {
-				
-				default:
-					return Integer.class;
-					
-				}
-			}
-		};
+		//GRAFICO FIFO
+		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
+			jPanelFIFOMATRICE.setBounds(0, 29, 605, 118);
+			jPanelFIFOMATRICE.setLayout(null);
+			pannelloFIFO.add(jPanelFIFOMATRICE);
+
+		//GRAFICO OPT
+		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
+			jPanelOPTMATRICE.setLayout(null);
+			jPanelOPTMATRICE.setBounds(0, 29, 605, 118);
+			pannelloOPT.add(jPanelOPTMATRICE);
+
+		//GRAFICO LRU
+		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
+			jPanelLRUMATRICE.setLayout(null);
+			jPanelLRUMATRICE.setBounds(0, 29, 605, 118);
+			pannelloLRU.add(jPanelLRUMATRICE);
 		
-		tabellaProcessi.setModel(model1);
+		//GRAFICO CLOCK
+		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
+			jPanelCLOCKMATRICE.setLayout(null);
+			jPanelCLOCKMATRICE.setBounds(0, 29, 605, 118);
+			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
-		JLabel label = (JLabel) tabellaProcessi.getDefaultRenderer(Integer.class);
-		label.setHorizontalAlignment (SwingConstants.CENTER);
 
 /**						PANNELLO DI CONTROLLO						*/		
 			
@@ -497,13 +510,13 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JTextField stringaNumeri = new JTextField();
 			stringaNumeri.setBackground(Color.WHITE);
 			stringaNumeri.setEditable(false);
-			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 14));
+			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 10));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
 			stringaNumeri.setBounds(10, 97, 225, 23);
 			pannelloEditor.add(stringaNumeri);
 			stringaNumeri.setColumns(10);
 			
-		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutte le soluzione");
+		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutti i grafici");
 			chkbkMostraAllSoluzione.setHorizontalAlignment(SwingConstants.CENTER);
 			chkbkMostraAllSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			chkbkMostraAllSoluzione.setEnabled(false);
@@ -572,7 +585,16 @@ public class PaginazioneDellaMemoria extends JFrame {
 				labelPlay.setEnabled(true);
 				
 				stringaNumeri.setText("");
-				for (int i=0;i<15;i++) { 
+				DATOFIFO.setText("");
+				numeri=new int[25];
+				numeriFIFO=new int[25];
+				jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
+
+				DATOLRU.setText("");
+				numeriLRU=new int[25];
+				jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+
+				for (int i=0;i<25;i++) { 
 					pieno=1;
 					Random random = new Random();
 					int value = random.nextInt(10 + 0) + 0;
@@ -607,7 +629,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 					chckbxMostraSoluzioneClock.setEnabled(true);
 					chkbkMostraAllSoluzione.setEnabled(true);
 					//GENERAZIONE GRAFICI
-					}
+					String j= SceltaSlotDisponibili.getSelectedItem().toString();
+					int s=Integer.valueOf(j);
+					numeriFIFO=FIFO(numeri,s);
+					DATOFIFO.setText(String.valueOf(pagefaultFIFO));
+					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
+					
+					numeriLRU=LRU(numeri,s);
+					DATOLRU.setText(String.valueOf(pagefaultLRU));
+					jPanelLRUMATRICE.disegnaSoluzioneFIFO(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU);
+					
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -660,17 +692,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
 
-				scelta= (String) SceltaSlotDisponibili.getSelectedItem();
-				int numeroSlot=Integer.valueOf(scelta);
-				
-				for (int i=0;i<numeroSlot;i++) {
-					model1.addRow(new Object[0]);
-					for (int j=0;j<numeri.length;i++) {
-						model1.addColumn("");
-						tabellaProcessi.getColumnModel().getColumn(i).setPreferredWidth(20);
-					}
-				}
-			
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -728,9 +749,110 @@ public class PaginazioneDellaMemoria extends JFrame {
 					labelScrittaFast.setEnabled(true);
 					labelScrittaPlay.setEnabled(true);
 					labelPlay.setEnabled(true);
+					
+					DATOFIFO.setText("");
+					numeriFIFO=new int[25];
+					jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
+
+					DATOLRU.setText("");
+					numeriLRU=new int[25];
+					jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+
 				}
 			
 			}
 		});
 	}
+	
+/**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
+	
+//ALGORITMO CALCOLO PUNTI FIFO MATRICE
+	int[] FIFO(int incomingStream[], int frames){
+		
+		int[] arrayFIFO = new int[25];
+	    int page_faults = 0;
+	
+		for (int j=0; j < arrayFIFO.length;) {
+		
+		    for (int i=0; i < incomingStream.length; i++) {
+		        int flag=0;
+		    	if(i-frames<0) {
+		    		
+		    		for(int k=1;k<=frames;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		page_faults++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		page_faults++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+		}
+	
+	    pagefaultFIFO=page_faults;
+	    return arrayFIFO;
+	}
+
+
+//ALGORITMO CALCOLO PUNTI LRU MATRICE
+
+	int[] LRU(int arr[], int capacity){
+
+
+	        ArrayList<Integer> s=new ArrayList<>(capacity);
+	        int count=0;
+	        int page_faults=0;
+	        for(int i:arr)
+	        {
+	            // Insert it into set if not present
+	            // already which represents page fault
+	            if(!s.contains(i))
+	            {
+	             
+	            // Check if the set can hold equal pages
+	            if(s.size()==capacity)
+	            {
+	                s.remove(0);
+	                s.add(capacity-1,i);
+	            }
+	            else
+	                s.add(count,i);
+	                // Increment page faults
+	                page_faults++;
+	                ++count;
+	         
+	            }
+	            else
+	            {
+	                // Remove the indexes page
+	                s.remove((Object)i);
+	                // insert the current page
+	                s.add(s.size(),i);        
+	            }
+	         
+	        }
+	        pagefaultLRU=page_faults;
+	        System.out.println(page_faults);
+	        return arr;
+	    }
+	
+	
 }
+
+
+
