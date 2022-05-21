@@ -13,6 +13,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -41,6 +43,7 @@ public class Hashing extends JFrame {
 	public 	boolean puoiCambiare=false;
 	public 	boolean puoiCambiareSpeciale=false;
 	public int iteratoreScorittore;
+	public LinkedList <Integer> []  listChaing = new LinkedList[8];
 
 	/**
 	 * Create the frame.
@@ -48,6 +51,10 @@ public class Hashing extends JFrame {
 	public Hashing(JFrame framechiamante) 
 	{
 
+		for (int i = 0; i < listChaing.length; i++) 
+		{	
+			listChaing[i]=new LinkedList <Integer>();
+		}
 		
 		iteratoreScorittore=0;
 		//Dizionario Parole
@@ -55,9 +62,26 @@ public class Hashing extends JFrame {
 				"Siluro","Lavandino","Furbo","Moneta","Lampada","Camomilla","Proboscide","Russo","Blu","Valigia","Gorilla","Macchia","Grotta","Mutande","Pasta",
 				"Cornice","Oggetto","Incrocio","Pannocchia","Scarpa","Giorno","Computer","Scaffale","Tanga","Pasta","Contenitore","Medicina","Sensuale","Viso","Elettricità","Canile"};
 		ArrayList<parolaHashing> listaParolaHashings = new ArrayList<parolaHashing>();
+		
 		Random randomGenerator = new Random();
 		
+		ImageIcon numero0baseIcon = new ImageIcon(this.getClass().getResource("/img/numero0Icon1.png"));
+		ImageIcon numero1baseIcon = new ImageIcon(this.getClass().getResource("/img/numero1Icon1.png"));
+		ImageIcon numero2baseIcon = new ImageIcon(this.getClass().getResource("/img/numero2Icon1.png"));
+		ImageIcon numero3baseIcon = new ImageIcon(this.getClass().getResource("/img/numero3Icon1.png"));
+		ImageIcon numero4baseIcon = new ImageIcon(this.getClass().getResource("/img/numero4Icon1.png"));
+		ImageIcon numero5baseIcon = new ImageIcon(this.getClass().getResource("/img/numero5Icon1.png"));
+		ImageIcon numero6baseIcon = new ImageIcon(this.getClass().getResource("/img/numero6Icon1.png"));
+		ImageIcon numero7baseIcon = new ImageIcon(this.getClass().getResource("/img/numero7Icon1.png"));
 		
+		ImageIcon numero0LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked0Icon1.png"));
+		ImageIcon numero1LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked1Icon1.png"));
+		ImageIcon numero2LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked2Icon1.png"));
+		ImageIcon numero3LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked3Icon1.png"));
+		ImageIcon numero4LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked4Icon1.png"));
+		ImageIcon numero5LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked5Icon1.png"));
+		ImageIcon numero6LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked6Icon1.png"));
+		ImageIcon numero7LinkedIcon = new ImageIcon(this.getClass().getResource("/img/linked7Icon1.png"));
 		
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,7 +112,7 @@ public class Hashing extends JFrame {
 		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleBase.setEditable(false);
 		textParoleBase.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleBase.setBounds(26, 237, 264, 406);
+		textParoleBase.setBounds(22, 186, 264, 370);
 		panelMainButton.add(textParoleBase);
 		
 		JPanel panelControllo = new JPanel();
@@ -139,7 +163,7 @@ public class Hashing extends JFrame {
 		comboBoxSceltaNParole.setEnabled(false);
 		comboBoxSceltaNParole.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		comboBoxSceltaNParole.setBackground(new Color(255, 255, 255));
-		comboBoxSceltaNParole.setModel(new DefaultComboBoxModel(new String[] {"9","8","7","6", "5", "4"}));
+		comboBoxSceltaNParole.setModel(new DefaultComboBoxModel(new String[] {"8","7","6", "5", "4"}));
 		comboBoxSceltaNParole.setBounds(193, 22, 51, 22);
 		panelPlot.add(comboBoxSceltaNParole);
 		
@@ -209,7 +233,7 @@ public class Hashing extends JFrame {
 		
 		JLabel labelScrittaIndietro = new JLabel(" Indietro");
         labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIndietro.setBounds(12, 132, 53, 12);
+        labelScrittaIndietro.setBounds(12, 124, 53, 12);
         panelMainButton.add(labelScrittaIndietro);
         
         JLabel labelIndietroIcon = new JLabel("Exit");
@@ -233,12 +257,12 @@ public class Hashing extends JFrame {
         	}
         });
         labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
-        labelIndietroIcon.setBounds(10, 84, 53, 46);
+        labelIndietroIcon.setBounds(10, 76, 53, 46);
         panelMainButton.add(labelIndietroIcon);
         
         JLabel labelScrittaYoutube = new JLabel("Video Youtube");
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaYoutube.setBounds(918, 132, 82, 12);
+        labelScrittaYoutube.setBounds(918, 124, 82, 12);
         panelMainButton.add(labelScrittaYoutube);
         JLabel labelYoutubeIcon = new JLabel("Youtube");
         labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -267,12 +291,12 @@ public class Hashing extends JFrame {
         	}
         });
         labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-        labelYoutubeIcon.setBounds(933, 84, 53, 46);
+        labelYoutubeIcon.setBounds(933, 76, 53, 46);
         panelMainButton.add(labelYoutubeIcon);
         
         JLabel labelScrittaSlide = new JLabel("Slide Argomento");
         labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaSlide.setBounds(1007, 132, 95, 15);
+        labelScrittaSlide.setBounds(1007, 124, 95, 15);
         panelMainButton.add(labelScrittaSlide);
         JLabel labelSlideIcon = new JLabel("Slide");
         labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -301,7 +325,7 @@ public class Hashing extends JFrame {
         	}
         });
         labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-        labelSlideIcon.setBounds(1027, 84, 53, 46);
+        labelSlideIcon.setBounds(1027, 76, 53, 46);
         panelMainButton.add(labelSlideIcon);
         
       
@@ -354,50 +378,212 @@ public class Hashing extends JFrame {
 		
 		JLabel labelDizionario = new JLabel("PAROLE ORIGINALI : ");
 		labelDizionario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelDizionario.setBounds(89, 183, 139, 46);
+		labelDizionario.setBounds(85, 140, 139, 38);
 		panelMainButton.add(labelDizionario);
 		
 		JTextArea textParoleSommate = new JTextArea();
 		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleSommate.setEditable(false);
 		textParoleSommate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleSommate.setBounds(434, 237, 251, 406);
+		textParoleSommate.setBounds(430, 186, 251, 370);
 		panelMainButton.add(textParoleSommate);
 		
 		JLabel labelCodifica1 = new JLabel("SOMMA CARATTERI : ");
 		labelCodifica1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelCodifica1.setBounds(485, 183, 157, 46);
+		labelCodifica1.setBounds(481, 140, 157, 38);
 		panelMainButton.add(labelCodifica1);
 		
 		JLabel labelSomma2 = new JLabel("CODIFICA FINALE :");
 		labelSomma2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelSomma2.setBounds(925, 192, 134, 29);
+		labelSomma2.setBounds(921, 141, 134, 29);
 		panelMainButton.add(labelSomma2);
 		
 		JTextArea textParoleCodificate = new JTextArea();
 		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleCodificate.setEditable(false);
 		textParoleCodificate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleCodificate.setBounds(866, 237, 236, 406);
+		textParoleCodificate.setBounds(862, 186, 236, 370);
 		panelMainButton.add(textParoleCodificate);
 		
 		JLabel labelFrecciaSomma = new JLabel("Somma ->");
 		labelFrecciaSomma.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
-		labelFrecciaSomma.setBounds(300, 367, 124, 111);
+		labelFrecciaSomma.setBounds(296, 321, 124, 111);
 		panelMainButton.add(labelFrecciaSomma);
 		
 		JLabel labelFrecciaCodifica = new JLabel("Codifica ->");
 		labelFrecciaCodifica.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
-		labelFrecciaCodifica.setBounds(719, 367, 124, 111);
+		labelFrecciaCodifica.setBounds(715, 321, 124, 111);
 		panelMainButton.add(labelFrecciaCodifica);
 		
 		JLabel labelFrecciaScrittaSomma = new JLabel("");
-		labelFrecciaScrittaSomma.setBounds(292, 382, 69, 14);
+		labelFrecciaScrittaSomma.setBounds(287, 343, 69, 14);
 		panelMainButton.add(labelFrecciaScrittaSomma);
 		
 		JLabel labelFrecciaScrittaCodifica = new JLabel("");
-		labelFrecciaScrittaCodifica.setBounds(689, 385, 89, 14);
+		labelFrecciaScrittaCodifica.setBounds(684, 343, 89, 14);
 		panelMainButton.add(labelFrecciaScrittaCodifica);
+		
+		JLabel labelScrittaChaning = new JLabel("       CHAINING : ");
+		labelScrittaChaning.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		labelScrittaChaning.setBounds(291, 518, 139, 38);
+		panelMainButton.add(labelScrittaChaning);
+		
+		JLabel labelScrittaOpen = new JLabel("  OPEN ADDRESSING : ");
+		labelScrittaOpen.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		labelScrittaOpen.setBounds(695, 518, 152, 38);
+		panelMainButton.add(labelScrittaOpen);
+		
+		JLabel labelNumero0 = new JLabel("");
+		labelNumero0.setIcon(null);
+		labelNumero0.setBounds(228, 581, 30, 25);
+		panelMainButton.add(labelNumero0);
+		
+		JLabel labelNumero1 = new JLabel("");
+		labelNumero1.setIcon(null);
+		labelNumero1.setBounds(261, 581, 30, 25);
+		panelMainButton.add(labelNumero1);
+		
+		JLabel labelNumero2 = new JLabel("");
+		labelNumero2.setIcon(null);
+		labelNumero2.setBounds(294, 581, 30, 25);
+		panelMainButton.add(labelNumero2);
+		
+		JLabel labelNumero3 = new JLabel("");
+		labelNumero3.setIcon(null);
+		labelNumero3.setBounds(325, 581, 30, 25);
+		panelMainButton.add(labelNumero3);
+		
+		JLabel labelNumero4 = new JLabel("");
+		labelNumero4.setIcon(null);
+		labelNumero4.setBounds(358, 581, 30, 25);
+		panelMainButton.add(labelNumero4);
+		
+		
+		JLabel labelNumero5 = new JLabel("");
+		labelNumero5.setIcon(null);
+		labelNumero5.setBounds(391, 581, 30, 25);
+		panelMainButton.add(labelNumero5);
+		
+		
+		JLabel labelNumero6 = new JLabel("");
+		labelNumero6.setIcon(null);
+		labelNumero6.setBounds(424, 581, 30, 25);
+		panelMainButton.add(labelNumero6);
+		
+		
+		JLabel labelNumero7 = new JLabel("");
+		labelNumero7.setIcon(null);
+		labelNumero7.setBounds(456, 581, 30, 25);
+		panelMainButton.add(labelNumero7);
+		
+		JLabel labelArrayChaining = new JLabel("");
+		labelArrayChaining.setIcon(new ImageIcon(Hashing.class.getResource("/img/arrayIcon1.png")));
+		labelArrayChaining.setBounds(226, 578, 264, 33);
+		panelMainButton.add(labelArrayChaining);
+		
+		JLabel labelLinked0_1 = new JLabel("");
+		labelLinked0_1.setBounds(228, 625, 30, 29);
+		panelMainButton.add(labelLinked0_1);
+		
+		JLabel labelLinked0_2 = new JLabel("");
+		labelLinked0_2.setBounds(228, 665, 30, 29);
+		panelMainButton.add(labelLinked0_2);
+		
+		JLabel labelLinked0_3 = new JLabel("");
+		labelLinked0_3.setBounds(228, 705, 30, 29);
+		panelMainButton.add(labelLinked0_3);
+		
+		JLabel labelLinked1_1 = new JLabel("");
+		labelLinked1_1.setBounds(261, 625, 30, 29);
+		panelMainButton.add(labelLinked1_1);
+		
+		JLabel labelLinked1_2 = new JLabel("");
+		labelLinked1_2.setBounds(261, 665, 30, 29);
+		panelMainButton.add(labelLinked1_2);
+		
+		JLabel labelLinked1_3 = new JLabel("");
+		labelLinked1_3.setBounds(261, 705, 30, 29);
+		panelMainButton.add(labelLinked1_3);
+		
+		JLabel labelLinked2_1 = new JLabel("");
+		labelLinked2_1.setBounds(296, 625, 30, 29);
+		panelMainButton.add(labelLinked2_1);
+		
+		JLabel labelLinked2_2 = new JLabel("");
+		labelLinked2_2.setBounds(296, 665, 30, 29);
+		panelMainButton.add(labelLinked2_2);
+		
+		JLabel labelLinked2_3 = new JLabel("");
+		labelLinked2_3.setBounds(296, 705, 30, 29);
+		panelMainButton.add(labelLinked2_3);
+		
+		JLabel labelLinked3_1 = new JLabel("");
+		labelLinked3_1.setBounds(326, 625, 30, 29);
+		panelMainButton.add(labelLinked3_1);
+		
+		JLabel labelLinked3_2 = new JLabel("");
+		labelLinked3_2.setBounds(326, 665, 30, 29);
+		panelMainButton.add(labelLinked3_2);
+		
+		JLabel labelLinked3_3 = new JLabel("");
+		labelLinked3_3.setBounds(326, 705, 30, 29);
+		panelMainButton.add(labelLinked3_3);
+		
+		JLabel labelLinked4_1 = new JLabel("");
+		labelLinked4_1.setBounds(358, 625, 30, 29);
+		panelMainButton.add(labelLinked4_1);
+		
+		JLabel labelLinked4_2 = new JLabel("");
+		labelLinked4_2.setBounds(358, 665, 30, 29);
+		panelMainButton.add(labelLinked4_2);
+		
+		JLabel labelLinked4_3 = new JLabel("");
+		labelLinked4_3.setBounds(358, 705, 30, 29);
+		panelMainButton.add(labelLinked4_3);
+		
+		JLabel labelLinked5_1 = new JLabel("");
+		labelLinked5_1.setBounds(391, 625, 30, 29);
+		panelMainButton.add(labelLinked5_1);
+		
+		JLabel labelLinked5_2 = new JLabel("");
+		labelLinked5_2.setBounds(391, 665, 30, 29);
+		panelMainButton.add(labelLinked5_2);
+		
+		JLabel labelLinked5_3 = new JLabel("");
+		labelLinked5_3.setBounds(391, 705, 30, 29);
+		panelMainButton.add(labelLinked5_3);
+		
+		JLabel labelLinked6_1 = new JLabel("");
+		labelLinked6_1.setBounds(424, 625, 30, 29);
+		panelMainButton.add(labelLinked6_1);
+		
+		JLabel labelLinked6_2 = new JLabel("");
+		labelLinked6_2.setBounds(424, 665, 30, 29);
+		panelMainButton.add(labelLinked6_2);
+		
+		JLabel labelLinked6_3 = new JLabel("");
+		labelLinked6_3.setBounds(424, 705, 30, 29);
+		panelMainButton.add(labelLinked6_3);
+		
+		JLabel labelLinked7_1 = new JLabel("");
+		labelLinked7_1.setBounds(456, 625, 30, 29);
+		panelMainButton.add(labelLinked7_1);
+		
+		JLabel labelLinked7_2 = new JLabel("");
+		labelLinked7_2.setBounds(456, 665, 30, 29);
+		panelMainButton.add(labelLinked7_2);
+		
+		JLabel labelLinked7_3 = new JLabel("");
+		labelLinked7_3.setBounds(456, 705, 30, 29);
+		panelMainButton.add(labelLinked7_3);
+
+		JLabel lblNewLabel = new JLabel("   0      1       2      3      4       5      6      7 ");
+		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblNewLabel.setBounds(228, 555, 258, 23);
+		panelMainButton.add(lblNewLabel);
+		
+		
+		
 		buttonGeneraEsempio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -425,6 +611,40 @@ public class Hashing extends JFrame {
 				radioXmod.setEnabled(true);
 				radioxJ2mod8.setEnabled(true);
 				radio5xMod8.setEnabled(true);
+				labelNumero0.setIcon(null);
+				labelNumero1.setIcon(null);
+				labelNumero2.setIcon(null);
+				labelNumero3.setIcon(null);
+				labelNumero4.setIcon(null);
+				labelNumero5.setIcon(null);
+				labelNumero6.setIcon(null);
+				labelNumero7.setIcon(null);
+				labelLinked0_1.setIcon(null);
+				labelLinked1_1.setIcon(null);
+				labelLinked2_1.setIcon(null);
+				labelLinked3_1.setIcon(null);
+				labelLinked4_1.setIcon(null);
+				labelLinked5_1.setIcon(null);
+				labelLinked6_1.setIcon(null);
+				labelLinked7_1.setIcon(null);
+				labelLinked0_2.setIcon(null);
+				labelLinked1_2.setIcon(null);
+				labelLinked2_2.setIcon(null);
+				labelLinked3_2.setIcon(null);
+				labelLinked4_2.setIcon(null);
+				labelLinked5_2.setIcon(null);
+				labelLinked6_2.setIcon(null);
+				labelLinked7_2.setIcon(null);
+				labelLinked0_3.setIcon(null);
+				labelLinked1_3.setIcon(null);
+				labelLinked2_3.setIcon(null);
+				labelLinked3_3.setIcon(null);
+				labelLinked4_3.setIcon(null);
+				labelLinked5_3.setIcon(null);
+				labelLinked6_3.setIcon(null);
+				labelLinked7_3.setIcon(null);
+				
+				
 				String numeroParoleString = (String) comboBoxSceltaNParole.getSelectedItem();
 				int numeroParoleInt=Integer.valueOf(numeroParoleString);
 				//Generazione Parole
@@ -435,7 +655,7 @@ public class Hashing extends JFrame {
 					{
 						
 						listaParolaHashings.add(new parolaHashing(dizionarioParola[indexDaEstrarre], indexDaEstrarre, i));
-						textParoleBase.append(listaParolaHashings.get(0).parola+ "\n");
+						textParoleBase.append(i+": "+listaParolaHashings.get(0).parola+ "\n");
 					}
 					else 
 					{
@@ -453,7 +673,7 @@ public class Hashing extends JFrame {
 							if (tuttook==true)
 							{
 								listaParolaHashings.add(new parolaHashing(dizionarioParola[indexDaEstrarre], indexDaEstrarre, i));
-								textParoleBase.append(listaParolaHashings.get(listaParolaHashings.size()-1).parola+ "\n");
+								textParoleBase.append(i+": "+listaParolaHashings.get(listaParolaHashings.size()-1).parola+ "\n");
 								tuttook=false;
 							}
 							else 
@@ -485,6 +705,47 @@ public class Hashing extends JFrame {
 				textParoleBase.setText("");
 				textParoleSommate.setText("");
 				textParoleCodificate.setText("");
+				labelNumero0.setIcon(null);
+				labelNumero1.setIcon(null);
+				labelNumero2.setIcon(null);
+				labelNumero3.setIcon(null);
+				labelNumero4.setIcon(null);
+				labelNumero5.setIcon(null);
+				labelNumero6.setIcon(null);
+				labelNumero7.setIcon(null);
+				labelNumero0.setIcon(null);
+				labelNumero1.setIcon(null);
+				labelNumero2.setIcon(null);
+				labelNumero3.setIcon(null);
+				labelNumero4.setIcon(null);
+				labelNumero5.setIcon(null);
+				labelNumero6.setIcon(null);
+				labelNumero7.setIcon(null);
+				labelLinked0_1.setIcon(null);
+				labelLinked1_1.setIcon(null);
+				labelLinked2_1.setIcon(null);
+				labelLinked3_1.setIcon(null);
+				labelLinked4_1.setIcon(null);
+				labelLinked5_1.setIcon(null);
+				labelLinked6_1.setIcon(null);
+				labelLinked7_1.setIcon(null);
+				labelLinked0_2.setIcon(null);
+				labelLinked1_2.setIcon(null);
+				labelLinked2_2.setIcon(null);
+				labelLinked3_2.setIcon(null);
+				labelLinked4_2.setIcon(null);
+				labelLinked5_2.setIcon(null);
+				labelLinked6_2.setIcon(null);
+				labelLinked7_2.setIcon(null);
+				labelLinked0_3.setIcon(null);
+				labelLinked1_3.setIcon(null);
+				labelLinked2_3.setIcon(null);
+				labelLinked3_3.setIcon(null);
+				labelLinked4_3.setIcon(null);
+				labelLinked5_3.setIcon(null);
+				labelLinked6_3.setIcon(null);
+				labelLinked7_3.setIcon(null);
+				
 				String numeroParoleString = (String) comboBoxSceltaNParole.getSelectedItem();
 				int numeroParoleInt=Integer.valueOf(numeroParoleString);
 				//Generazione Parole
@@ -495,7 +756,7 @@ public class Hashing extends JFrame {
 					{
 						
 						listaParolaHashings.add(new parolaHashing(dizionarioParola[indexDaEstrarre], indexDaEstrarre, i));
-						textParoleBase.append(listaParolaHashings.get(0).parola+ "\n");
+						textParoleBase.append(i+": "+listaParolaHashings.get(0).parola+ "\n");
 					}
 					else 
 					{
@@ -513,7 +774,7 @@ public class Hashing extends JFrame {
 							if (tuttook==true)
 							{
 								listaParolaHashings.add(new parolaHashing(dizionarioParola[indexDaEstrarre], indexDaEstrarre, i));
-								textParoleBase.append(listaParolaHashings.get(listaParolaHashings.size()-1).parola+ "\n");
+								textParoleBase.append(i+": "+listaParolaHashings.get(listaParolaHashings.size()-1).parola+ "\n");
 								tuttook=false;
 							}
 							else 
@@ -532,13 +793,63 @@ public class Hashing extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
+				
 				labelFastForward.setEnabled(false);
 				labelScrittaFast.setEnabled(false);
 				puoiCambiare=true;
 				textParoleSommate.setText("");
 				textParoleCodificate.setText("");
+				int iteratore=0;
+				labelNumero0.setIcon(null);
+				labelNumero1.setIcon(null);
+				labelNumero2.setIcon(null);
+				labelNumero3.setIcon(null);
+				labelNumero4.setIcon(null);
+				labelNumero5.setIcon(null);
+				labelNumero6.setIcon(null);
+				labelNumero7.setIcon(null);
+				labelNumero0.setIcon(null);
+				labelNumero1.setIcon(null);
+				labelNumero2.setIcon(null);
+				labelNumero3.setIcon(null);
+				labelNumero4.setIcon(null);
+				labelNumero5.setIcon(null);
+				labelNumero6.setIcon(null);
+				labelNumero7.setIcon(null);
+				labelLinked0_1.setIcon(null);
+				labelLinked1_1.setIcon(null);
+				labelLinked2_1.setIcon(null);
+				labelLinked3_1.setIcon(null);
+				labelLinked4_1.setIcon(null);
+				labelLinked5_1.setIcon(null);
+				labelLinked6_1.setIcon(null);
+				labelLinked7_1.setIcon(null);
+				labelLinked0_2.setIcon(null);
+				labelLinked1_2.setIcon(null);
+				labelLinked2_2.setIcon(null);
+				labelLinked3_2.setIcon(null);
+				labelLinked4_2.setIcon(null);
+				labelLinked5_2.setIcon(null);
+				labelLinked6_2.setIcon(null);
+				labelLinked7_2.setIcon(null);
+				labelLinked0_3.setIcon(null);
+				labelLinked1_3.setIcon(null);
+				labelLinked2_3.setIcon(null);
+				labelLinked3_3.setIcon(null);
+				labelLinked4_3.setIcon(null);
+				labelLinked5_3.setIcon(null);
+				labelLinked6_3.setIcon(null);
+				labelLinked7_3.setIcon(null);
+				
+				for (int i = 0; i < listChaing.length; i++) 
+				{	
+					listChaing[i].removeAll(listChaing[i]);
+					listChaing[i]=new LinkedList <Integer>();
+				}
+				
 				for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 				{	
+					
 					//Per La Somma
 					if (radioSommaNormale.isSelected()) 
 					{
@@ -567,9 +878,1182 @@ public class Hashing extends JFrame {
 						textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
 						labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					}
-					
+					listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+					iteratore++;
+				}
+				
+				for (int i = 0; i < listaParolaHashings.size(); i++) 
+				{
+					if (i==0) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								Integer numero = (Integer) scorre.next();
+								//Primo Elemento
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero0.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked0_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked0_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked0_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+								labelNumero0.revalidate();
+							}
+						}
+					}
+					else if (i==1) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero1.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked1_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked1_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked1_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero1.revalidate();
+								}
+								
+						}
+					}
+					else if (i==2) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero2.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked2_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked2_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked2_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+								labelNumero2.revalidate();
+							}
+						}
+					}
+					else if (i==3) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero3.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked3_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked3_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked3_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+								labelNumero3.revalidate();
+							}
+						}
+					}
+					else if (i==4) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero4.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked4_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked4_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked4_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+								labelNumero4.revalidate();
+							}
+						}
+					}
+					else if (i==5) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								System.out.println("Modifico label 5 : ");
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero5.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked5_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked5_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked5_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+
+								labelNumero5.revalidate();
+							}
+						}
+					}
+					else if (i==6) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								System.out.println("Modifico label 6 : ");
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero6.setIcon(numero7baseIcon);
+								}
+
+								//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked6_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked6_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked6_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+								labelNumero6.revalidate();
+							}
+						}
+					}
+					else if (i==7) 
+					{
+						if (listChaing[i].listIterator() != null) 
+						{
+							Iterator <Integer> scorre = listChaing[i].iterator();
+							int labelDascorre=0;
+							while (scorre.hasNext()) 
+							{
+								Integer numero = (Integer) scorre.next();
+								if (numero == 0 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero0baseIcon);
+								}
+								else if (numero == 1 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero1baseIcon);
+								}
+								else if (numero == 2 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero2baseIcon);
+								}
+								else if (numero == 3 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero3baseIcon);
+								}
+								else if (numero == 4 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero4baseIcon);
+								}
+								else if (numero == 5 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero5baseIcon);
+								}
+								else if (numero == 6 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero6baseIcon);
+								}
+								else if (numero == 7 && labelDascorre== 0) 
+								{
+									labelNumero7.setIcon(numero7baseIcon);
+								}
+								//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked7_1.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked7_2.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked7_3.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+								labelNumero7.revalidate();
+							}
+						}
+					}
 				}
 			}
+		
+
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
@@ -580,7 +2064,7 @@ public class Hashing extends JFrame {
 			{
 				labelScrittaPlay.setForeground(Color.BLACK);
 			}
-		});
+	});
 		radioSommaNormale.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -591,6 +2075,53 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaSomma.setText("S. Normale");
+					int iteratore=0;
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelLinked0_1.setIcon(null);
+					labelLinked1_1.setIcon(null);
+					labelLinked2_1.setIcon(null);
+					labelLinked3_1.setIcon(null);
+					labelLinked4_1.setIcon(null);
+					labelLinked5_1.setIcon(null);
+					labelLinked6_1.setIcon(null);
+					labelLinked7_1.setIcon(null);
+					labelLinked0_2.setIcon(null);
+					labelLinked1_2.setIcon(null);
+					labelLinked2_2.setIcon(null);
+					labelLinked3_2.setIcon(null);
+					labelLinked4_2.setIcon(null);
+					labelLinked5_2.setIcon(null);
+					labelLinked6_2.setIcon(null);
+					labelLinked7_2.setIcon(null);
+					labelLinked0_3.setIcon(null);
+					labelLinked1_3.setIcon(null);
+					labelLinked2_3.setIcon(null);
+					labelLinked3_3.setIcon(null);
+					labelLinked4_3.setIcon(null);
+					labelLinked5_3.setIcon(null);
+					labelLinked6_3.setIcon(null);
+					labelLinked7_3.setIcon(null);
+					
+					for (int i = 0; i < listChaing.length; i++) 
+					{	
+						listChaing[i].removeAll(listChaing[i]);
+						listChaing[i]=new LinkedList <Integer>();
+					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleSommate.append(""+iteraParolaHashing.sommaNormale()+"\n");
@@ -607,6 +2138,1178 @@ public class Hashing extends JFrame {
 						else if(radioxJ2mod8.isSelected())
 						{
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
+							listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+							iteratore++;
+						}
+						
+						for (int i = 0; i < listaParolaHashings.size(); i++) 
+						{
+							if (i==0) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										//Primo Elemento
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero0.revalidate();
+									}
+								}
+							}
+							else if (i==1) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+										Iterator <Integer> scorre = listChaing[i].iterator();
+										int labelDascorre=0;
+										while (scorre.hasNext()) 
+										{
+											Integer numero = (Integer) scorre.next();
+											if (numero == 0 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero0baseIcon);
+											}
+											else if (numero == 1 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero1baseIcon);
+											}
+											else if (numero == 2 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero2baseIcon);
+											}
+											else if (numero == 3 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero3baseIcon);
+											}
+											else if (numero == 4 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero4baseIcon);
+											}
+											else if (numero == 5 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero5baseIcon);
+											}
+											else if (numero == 6 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero6baseIcon);
+											}
+											else if (numero == 7 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero7baseIcon);
+											}
+											//Elemento Linked 1
+											if (numero == 0 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 2
+											if (numero == 0 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 3
+											if (numero == 0 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero7LinkedIcon);
+											}
+											labelDascorre++;
+											labelNumero1.revalidate();
+										}
+										
+								}
+							}
+							else if (i==2) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero2.revalidate();
+									}
+								}
+							}
+							else if (i==3) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero3.revalidate();
+									}
+								}
+							}
+							else if (i==4) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero4.revalidate();
+									}
+								}
+							}
+							else if (i==5) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 5 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+
+										labelNumero5.revalidate();
+									}
+								}
+							}
+							else if (i==6) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 6 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero7baseIcon);
+										}
+
+										//Elemento Linked 1
+												if (numero == 0 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 2
+												if (numero == 0 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 3
+												if (numero == 0 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero7LinkedIcon);
+												}
+												labelDascorre++;
+										labelNumero6.revalidate();
+									}
+								}
+							}
+							else if (i==7) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero7.revalidate();
+									}
+								}
+							}
 						}
 					}
 				}
@@ -645,6 +3348,53 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaSomma.setText("S. Quadrica");
+					int iteratore=0;
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelLinked0_1.setIcon(null);
+					labelLinked1_1.setIcon(null);
+					labelLinked2_1.setIcon(null);
+					labelLinked3_1.setIcon(null);
+					labelLinked4_1.setIcon(null);
+					labelLinked5_1.setIcon(null);
+					labelLinked6_1.setIcon(null);
+					labelLinked7_1.setIcon(null);
+					labelLinked0_2.setIcon(null);
+					labelLinked1_2.setIcon(null);
+					labelLinked2_2.setIcon(null);
+					labelLinked3_2.setIcon(null);
+					labelLinked4_2.setIcon(null);
+					labelLinked5_2.setIcon(null);
+					labelLinked6_2.setIcon(null);
+					labelLinked7_2.setIcon(null);
+					labelLinked0_3.setIcon(null);
+					labelLinked1_3.setIcon(null);
+					labelLinked2_3.setIcon(null);
+					labelLinked3_3.setIcon(null);
+					labelLinked4_3.setIcon(null);
+					labelLinked5_3.setIcon(null);
+					labelLinked6_3.setIcon(null);
+					labelLinked7_3.setIcon(null);
+					
+					for (int i = 0; i < listChaing.length; i++) 
+					{	
+						listChaing[i].removeAll(listChaing[i]);
+						listChaing[i]=new LinkedList <Integer>();
+					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
@@ -661,7 +3411,1180 @@ public class Hashing extends JFrame {
 						{
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
 						}
+						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						iteratore++;
 					}
+					
+					for (int i = 0; i < listaParolaHashings.size(); i++) 
+					{
+						if (i==0) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									//Primo Elemento
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero0.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked0_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked0_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked0_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero0.revalidate();
+								}
+							}
+						}
+						else if (i==1) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero1.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked1_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked1_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked1_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero1.revalidate();
+									}
+									
+							}
+						}
+						else if (i==2) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero2.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked2_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked2_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked2_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero2.revalidate();
+								}
+							}
+						}
+						else if (i==3) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero3.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked3_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked3_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked3_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero3.revalidate();
+								}
+							}
+						}
+						else if (i==4) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero4.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked4_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked4_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked4_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero4.revalidate();
+								}
+							}
+						}
+						else if (i==5) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									System.out.println("Modifico label 5 : ");
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero5.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked5_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked5_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked5_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+
+									labelNumero5.revalidate();
+								}
+							}
+						}
+						else if (i==6) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									System.out.println("Modifico label 6 : ");
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero6.setIcon(numero7baseIcon);
+									}
+
+									//Elemento Linked 1
+											if (numero == 0 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 1) 
+											{
+												labelLinked6_1.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 2
+											if (numero == 0 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 2) 
+											{
+												labelLinked6_2.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 3
+											if (numero == 0 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 3) 
+											{
+												labelLinked6_3.setIcon(numero7LinkedIcon);
+											}
+											labelDascorre++;
+									labelNumero6.revalidate();
+								}
+							}
+						}
+						else if (i==7) 
+						{
+							if (listChaing[i].listIterator() != null) 
+							{
+								Iterator <Integer> scorre = listChaing[i].iterator();
+								int labelDascorre=0;
+								while (scorre.hasNext()) 
+								{
+									Integer numero = (Integer) scorre.next();
+									if (numero == 0 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero0baseIcon);
+									}
+									else if (numero == 1 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero1baseIcon);
+									}
+									else if (numero == 2 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero2baseIcon);
+									}
+									else if (numero == 3 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero3baseIcon);
+									}
+									else if (numero == 4 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero4baseIcon);
+									}
+									else if (numero == 5 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero5baseIcon);
+									}
+									else if (numero == 6 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero6baseIcon);
+									}
+									else if (numero == 7 && labelDascorre== 0) 
+									{
+										labelNumero7.setIcon(numero7baseIcon);
+									}
+									//Elemento Linked 1
+									if (numero == 0 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 1) 
+									{
+										labelLinked7_1.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 2
+									if (numero == 0 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 2) 
+									{
+										labelLinked7_2.setIcon(numero7LinkedIcon);
+									}
+									//Elemento Linked 3
+									if (numero == 0 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero0LinkedIcon);
+									}
+									else if (numero == 1 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero1LinkedIcon);
+									}
+									else if (numero == 2 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero2LinkedIcon);
+									}
+									else if (numero == 3 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero3LinkedIcon);
+									}
+									else if (numero == 4 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero4LinkedIcon);
+									}
+									else if (numero == 5 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero5LinkedIcon);
+									}
+									else if (numero == 6 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero6LinkedIcon);
+									}
+									else if (numero == 7 && labelDascorre== 3) 
+									{
+										labelLinked7_3.setIcon(numero7LinkedIcon);
+									}
+									labelDascorre++;
+									labelNumero7.revalidate();
+								}
+							}
+						}
+					}
+					
 					
 				}
 				else if (puoiCambiareSpeciale) 
@@ -698,6 +4621,53 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("X mod 8");
+					int iteratore=0;
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelLinked0_1.setIcon(null);
+					labelLinked1_1.setIcon(null);
+					labelLinked2_1.setIcon(null);
+					labelLinked3_1.setIcon(null);
+					labelLinked4_1.setIcon(null);
+					labelLinked5_1.setIcon(null);
+					labelLinked6_1.setIcon(null);
+					labelLinked7_1.setIcon(null);
+					labelLinked0_2.setIcon(null);
+					labelLinked1_2.setIcon(null);
+					labelLinked2_2.setIcon(null);
+					labelLinked3_2.setIcon(null);
+					labelLinked4_2.setIcon(null);
+					labelLinked5_2.setIcon(null);
+					labelLinked6_2.setIcon(null);
+					labelLinked7_2.setIcon(null);
+					labelLinked0_3.setIcon(null);
+					labelLinked1_3.setIcon(null);
+					labelLinked2_3.setIcon(null);
+					labelLinked3_3.setIcon(null);
+					labelLinked4_3.setIcon(null);
+					labelLinked5_3.setIcon(null);
+					labelLinked6_3.setIcon(null);
+					labelLinked7_3.setIcon(null);
+					
+					for (int i = 0; i < listChaing.length; i++) 
+					{	
+						listChaing[i].removeAll(listChaing[i]);
+						listChaing[i]=new LinkedList <Integer>();
+					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.xMod8()+"\n");
@@ -709,7 +4679,1179 @@ public class Hashing extends JFrame {
 						else 
 						{
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
-						}	
+							listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+							iteratore++;
+						}
+						
+						for (int i = 0; i < listaParolaHashings.size(); i++) 
+						{
+							if (i==0) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										//Primo Elemento
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero0.revalidate();
+									}
+								}
+							}
+							else if (i==1) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+										Iterator <Integer> scorre = listChaing[i].iterator();
+										int labelDascorre=0;
+										while (scorre.hasNext()) 
+										{
+											Integer numero = (Integer) scorre.next();
+											if (numero == 0 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero0baseIcon);
+											}
+											else if (numero == 1 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero1baseIcon);
+											}
+											else if (numero == 2 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero2baseIcon);
+											}
+											else if (numero == 3 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero3baseIcon);
+											}
+											else if (numero == 4 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero4baseIcon);
+											}
+											else if (numero == 5 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero5baseIcon);
+											}
+											else if (numero == 6 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero6baseIcon);
+											}
+											else if (numero == 7 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero7baseIcon);
+											}
+											//Elemento Linked 1
+											if (numero == 0 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 2
+											if (numero == 0 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 3
+											if (numero == 0 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero7LinkedIcon);
+											}
+											labelDascorre++;
+											labelNumero1.revalidate();
+										}
+										
+								}
+							}
+							else if (i==2) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero2.revalidate();
+									}
+								}
+							}
+							else if (i==3) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero3.revalidate();
+									}
+								}
+							}
+							else if (i==4) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero4.revalidate();
+									}
+								}
+							}
+							else if (i==5) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 5 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+
+										labelNumero5.revalidate();
+									}
+								}
+							}
+							else if (i==6) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 6 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero7baseIcon);
+										}
+
+										//Elemento Linked 1
+												if (numero == 0 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 2
+												if (numero == 0 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 3
+												if (numero == 0 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero7LinkedIcon);
+												}
+												labelDascorre++;
+										labelNumero6.revalidate();
+									}
+								}
+							}
+							else if (i==7) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero7.revalidate();
+									}
+								}
+							}
+						}
 					}
 				}
 				else if (puoiCambiareSpeciale)
@@ -728,6 +5870,7 @@ public class Hashing extends JFrame {
 						else 
 						{
 							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
+						
 						}	
 					}
 				}
@@ -742,6 +5885,53 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
+					int iteratore=0;
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelLinked0_1.setIcon(null);
+					labelLinked1_1.setIcon(null);
+					labelLinked2_1.setIcon(null);
+					labelLinked3_1.setIcon(null);
+					labelLinked4_1.setIcon(null);
+					labelLinked5_1.setIcon(null);
+					labelLinked6_1.setIcon(null);
+					labelLinked7_1.setIcon(null);
+					labelLinked0_2.setIcon(null);
+					labelLinked1_2.setIcon(null);
+					labelLinked2_2.setIcon(null);
+					labelLinked3_2.setIcon(null);
+					labelLinked4_2.setIcon(null);
+					labelLinked5_2.setIcon(null);
+					labelLinked6_2.setIcon(null);
+					labelLinked7_2.setIcon(null);
+					labelLinked0_3.setIcon(null);
+					labelLinked1_3.setIcon(null);
+					labelLinked2_3.setIcon(null);
+					labelLinked3_3.setIcon(null);
+					labelLinked4_3.setIcon(null);
+					labelLinked5_3.setIcon(null);
+					labelLinked6_3.setIcon(null);
+					labelLinked7_3.setIcon(null);
+					
+					for (int i = 0; i < listChaing.length; i++) 
+					{	
+						listChaing[i].removeAll(listChaing[i]);
+						listChaing[i]=new LinkedList <Integer>();
+					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.x5_2mod8()+"\n");
@@ -753,7 +5943,1179 @@ public class Hashing extends JFrame {
 						else 
 						{
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
-						}	
+							listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+							iteratore++;
+						}
+						
+						for (int i = 0; i < listaParolaHashings.size(); i++) 
+						{
+							if (i==0) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										//Primo Elemento
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero0.revalidate();
+									}
+								}
+							}
+							else if (i==1) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+										Iterator <Integer> scorre = listChaing[i].iterator();
+										int labelDascorre=0;
+										while (scorre.hasNext()) 
+										{
+											Integer numero = (Integer) scorre.next();
+											if (numero == 0 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero0baseIcon);
+											}
+											else if (numero == 1 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero1baseIcon);
+											}
+											else if (numero == 2 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero2baseIcon);
+											}
+											else if (numero == 3 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero3baseIcon);
+											}
+											else if (numero == 4 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero4baseIcon);
+											}
+											else if (numero == 5 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero5baseIcon);
+											}
+											else if (numero == 6 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero6baseIcon);
+											}
+											else if (numero == 7 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero7baseIcon);
+											}
+											//Elemento Linked 1
+											if (numero == 0 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 2
+											if (numero == 0 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 3
+											if (numero == 0 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero7LinkedIcon);
+											}
+											labelDascorre++;
+											labelNumero1.revalidate();
+										}
+										
+								}
+							}
+							else if (i==2) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero2.revalidate();
+									}
+								}
+							}
+							else if (i==3) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero3.revalidate();
+									}
+								}
+							}
+							else if (i==4) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero4.revalidate();
+									}
+								}
+							}
+							else if (i==5) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 5 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+
+										labelNumero5.revalidate();
+									}
+								}
+							}
+							else if (i==6) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 6 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero7baseIcon);
+										}
+
+										//Elemento Linked 1
+												if (numero == 0 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 2
+												if (numero == 0 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 3
+												if (numero == 0 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero7LinkedIcon);
+												}
+												labelDascorre++;
+										labelNumero6.revalidate();
+									}
+								}
+							}
+							else if (i==7) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero7.revalidate();
+									}
+								}
+							}
+						}
 					}
 				}
 				else if (puoiCambiareSpeciale)
@@ -787,6 +7149,53 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
+					int iteratore=0;
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelNumero0.setIcon(null);
+					labelNumero1.setIcon(null);
+					labelNumero2.setIcon(null);
+					labelNumero3.setIcon(null);
+					labelNumero4.setIcon(null);
+					labelNumero5.setIcon(null);
+					labelNumero6.setIcon(null);
+					labelNumero7.setIcon(null);
+					labelLinked0_1.setIcon(null);
+					labelLinked1_1.setIcon(null);
+					labelLinked2_1.setIcon(null);
+					labelLinked3_1.setIcon(null);
+					labelLinked4_1.setIcon(null);
+					labelLinked5_1.setIcon(null);
+					labelLinked6_1.setIcon(null);
+					labelLinked7_1.setIcon(null);
+					labelLinked0_2.setIcon(null);
+					labelLinked1_2.setIcon(null);
+					labelLinked2_2.setIcon(null);
+					labelLinked3_2.setIcon(null);
+					labelLinked4_2.setIcon(null);
+					labelLinked5_2.setIcon(null);
+					labelLinked6_2.setIcon(null);
+					labelLinked7_2.setIcon(null);
+					labelLinked0_3.setIcon(null);
+					labelLinked1_3.setIcon(null);
+					labelLinked2_3.setIcon(null);
+					labelLinked3_3.setIcon(null);
+					labelLinked4_3.setIcon(null);
+					labelLinked5_3.setIcon(null);
+					labelLinked6_3.setIcon(null);
+					labelLinked7_3.setIcon(null);
+					
+					for (int i = 0; i < listChaing.length; i++) 
+					{	
+						listChaing[i].removeAll(listChaing[i]);
+						listChaing[i]=new LinkedList <Integer>();
+					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
@@ -798,7 +7207,1179 @@ public class Hashing extends JFrame {
 						else 
 						{
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");
-						}	
+							listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+							iteratore++;
+						}
+						
+						for (int i = 0; i < listaParolaHashings.size(); i++) 
+						{
+							if (i==0) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										//Primo Elemento
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero0.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked0_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked0_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked0_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero0.revalidate();
+									}
+								}
+							}
+							else if (i==1) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+										Iterator <Integer> scorre = listChaing[i].iterator();
+										int labelDascorre=0;
+										while (scorre.hasNext()) 
+										{
+											Integer numero = (Integer) scorre.next();
+											if (numero == 0 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero0baseIcon);
+											}
+											else if (numero == 1 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero1baseIcon);
+											}
+											else if (numero == 2 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero2baseIcon);
+											}
+											else if (numero == 3 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero3baseIcon);
+											}
+											else if (numero == 4 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero4baseIcon);
+											}
+											else if (numero == 5 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero5baseIcon);
+											}
+											else if (numero == 6 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero6baseIcon);
+											}
+											else if (numero == 7 && labelDascorre== 0) 
+											{
+												labelNumero1.setIcon(numero7baseIcon);
+											}
+											//Elemento Linked 1
+											if (numero == 0 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 1) 
+											{
+												labelLinked1_1.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 2
+											if (numero == 0 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 2) 
+											{
+												labelLinked1_2.setIcon(numero7LinkedIcon);
+											}
+											//Elemento Linked 3
+											if (numero == 0 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero0LinkedIcon);
+											}
+											else if (numero == 1 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero1LinkedIcon);
+											}
+											else if (numero == 2 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero2LinkedIcon);
+											}
+											else if (numero == 3 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero3LinkedIcon);
+											}
+											else if (numero == 4 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero4LinkedIcon);
+											}
+											else if (numero == 5 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero5LinkedIcon);
+											}
+											else if (numero == 6 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero6LinkedIcon);
+											}
+											else if (numero == 7 && labelDascorre== 3) 
+											{
+												labelLinked1_3.setIcon(numero7LinkedIcon);
+											}
+											labelDascorre++;
+											labelNumero1.revalidate();
+										}
+										
+								}
+							}
+							else if (i==2) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero2.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked2_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked2_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked2_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero2.revalidate();
+									}
+								}
+							}
+							else if (i==3) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero3.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked3_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked3_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked3_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero3.revalidate();
+									}
+								}
+							}
+							else if (i==4) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero4.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked4_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked4_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked4_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero4.revalidate();
+									}
+								}
+							}
+							else if (i==5) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 5 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero5.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked5_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked5_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked5_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+
+										labelNumero5.revalidate();
+									}
+								}
+							}
+							else if (i==6) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										System.out.println("Modifico label 6 : ");
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero6.setIcon(numero7baseIcon);
+										}
+
+										//Elemento Linked 1
+												if (numero == 0 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 1) 
+												{
+													labelLinked6_1.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 2
+												if (numero == 0 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 2) 
+												{
+													labelLinked6_2.setIcon(numero7LinkedIcon);
+												}
+												//Elemento Linked 3
+												if (numero == 0 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero0LinkedIcon);
+												}
+												else if (numero == 1 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero1LinkedIcon);
+												}
+												else if (numero == 2 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero2LinkedIcon);
+												}
+												else if (numero == 3 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero3LinkedIcon);
+												}
+												else if (numero == 4 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero4LinkedIcon);
+												}
+												else if (numero == 5 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero5LinkedIcon);
+												}
+												else if (numero == 6 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero6LinkedIcon);
+												}
+												else if (numero == 7 && labelDascorre== 3) 
+												{
+													labelLinked6_3.setIcon(numero7LinkedIcon);
+												}
+												labelDascorre++;
+										labelNumero6.revalidate();
+									}
+								}
+							}
+							else if (i==7) 
+							{
+								if (listChaing[i].listIterator() != null) 
+								{
+									Iterator <Integer> scorre = listChaing[i].iterator();
+									int labelDascorre=0;
+									while (scorre.hasNext()) 
+									{
+										Integer numero = (Integer) scorre.next();
+										if (numero == 0 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero0baseIcon);
+										}
+										else if (numero == 1 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero1baseIcon);
+										}
+										else if (numero == 2 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero2baseIcon);
+										}
+										else if (numero == 3 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero3baseIcon);
+										}
+										else if (numero == 4 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero4baseIcon);
+										}
+										else if (numero == 5 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero5baseIcon);
+										}
+										else if (numero == 6 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero6baseIcon);
+										}
+										else if (numero == 7 && labelDascorre== 0) 
+										{
+											labelNumero7.setIcon(numero7baseIcon);
+										}
+										//Elemento Linked 1
+										if (numero == 0 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 1) 
+										{
+											labelLinked7_1.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 2
+										if (numero == 0 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 2) 
+										{
+											labelLinked7_2.setIcon(numero7LinkedIcon);
+										}
+										//Elemento Linked 3
+										if (numero == 0 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero0LinkedIcon);
+										}
+										else if (numero == 1 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero1LinkedIcon);
+										}
+										else if (numero == 2 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero2LinkedIcon);
+										}
+										else if (numero == 3 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero3LinkedIcon);
+										}
+										else if (numero == 4 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero4LinkedIcon);
+										}
+										else if (numero == 5 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero5LinkedIcon);
+										}
+										else if (numero == 6 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero6LinkedIcon);
+										}
+										else if (numero == 7 && labelDascorre== 3) 
+										{
+											labelLinked7_3.setIcon(numero7LinkedIcon);
+										}
+										labelDascorre++;
+										labelNumero7.revalidate();
+									}
+								}
+							}
+						}
 					}
 				}
 				else if (puoiCambiareSpeciale)
