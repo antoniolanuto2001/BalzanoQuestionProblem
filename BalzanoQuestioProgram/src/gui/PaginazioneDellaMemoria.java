@@ -76,6 +76,11 @@ public class PaginazioneDellaMemoria extends JFrame {
 	private int[] numeriOPT;
 	private int[] numeriCLOCK;
 
+	private int[] pfFIFO;
+	private int[] pfLRU;
+	private int[] pfOPT;
+	private int[] pfCLOCK;
+	
 	private int pagefaultFIFO;
 	private int pagefaultLRU;
 	private int pagefaultOPT;
@@ -241,12 +246,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 					DATOFIFO.setBounds(753, 3, 45, 25);
 					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					pannelloFIFO.add(DATOFIFO);
-				
-					JCheckBox chckbxMostraSoluzioneFIFO = new JCheckBox("Mostra Grafico");
-					chckbxMostraSoluzioneFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxMostraSoluzioneFIFO.setEnabled(false);
-					chckbxMostraSoluzioneFIFO.setBounds(930, 0, 150, 25);
-					pannelloFIFO.add(chckbxMostraSoluzioneFIFO);
 					
 		//PANNELLO OPT
 		JPanel pannelloOPT = new JPanel();
@@ -271,12 +270,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					DATOOPT.setBounds(758, 3, 45, 25);
 					pannelloOPT.add(DATOOPT);
-				
-					JCheckBox chckbxMostraSoluzioneOPT = new JCheckBox("Mostra Grafico");
-					chckbxMostraSoluzioneOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxMostraSoluzioneOPT.setEnabled(false);
-					chckbxMostraSoluzioneOPT.setBounds(930, 0, 150, 25);
-					pannelloOPT.add(chckbxMostraSoluzioneOPT);
 
 		//PANNELLO LRU
 		JPanel pannelloLRU = new JPanel();
@@ -301,12 +294,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					DATOLRU.setBounds(761, 3, 45, 25);
 					pannelloLRU.add(DATOLRU);
-			
-					JCheckBox chckbxMostraSoluzioneLRU = new JCheckBox("Mostra Grafico");
-					chckbxMostraSoluzioneLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxMostraSoluzioneLRU.setEnabled(false);
-					chckbxMostraSoluzioneLRU.setBounds(930, 0, 150, 25);
-					pannelloLRU.add(chckbxMostraSoluzioneLRU);
 
 	
 		//PANNELLO CLOCK
@@ -332,19 +319,13 @@ public class PaginazioneDellaMemoria extends JFrame {
 					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					DATOCLOCK.setBounds(762, 3, 45, 25);
 					pannelloCLOCK.add(DATOCLOCK);
-					
-					JCheckBox chckbxMostraSoluzioneClock = new JCheckBox("Mostra Grafico");
-					chckbxMostraSoluzioneClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxMostraSoluzioneClock.setEnabled(false);
-					chckbxMostraSoluzioneClock.setBounds(930, 0, 150, 25);
-					pannelloCLOCK.add(chckbxMostraSoluzioneClock);
 
 			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
 		//GRAFICO FIFO
 		PanelGraficiPaginazioneMemoria jPanelFIFO = new PanelGraficiPaginazioneMemoria();
-			jPanelFIFO.setBounds(615, 29, 500, 118);
+			jPanelFIFO.setBounds(590, 29, 525, 118);
 			jPanelFIFO.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFIFO.setLayout(null);
 			pannelloFIFO.add(jPanelFIFO);
@@ -353,21 +334,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 		PanelGraficiPaginazioneMemoria jPanelOPT = new PanelGraficiPaginazioneMemoria();
 			jPanelOPT.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelOPT.setLayout(null);
-			jPanelOPT.setBounds(615, 29, 500, 118);
+			jPanelOPT.setBounds(590, 29, 525, 118);
 			pannelloOPT.add(jPanelOPT);
 
 		//GRAFICO LRU
 		PanelGraficiPaginazioneMemoria jPanelLRU = new PanelGraficiPaginazioneMemoria();
 			jPanelLRU.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelLRU.setLayout(null);
-			jPanelLRU.setBounds(615, 29, 500, 118);
+			jPanelLRU.setBounds(590, 29, 525, 118);
 			pannelloLRU.add(jPanelLRU);
 		
 		//GRAFICO CLOCK
 		PanelGraficiPaginazioneMemoria jPanelCLOCK = new PanelGraficiPaginazioneMemoria();
 			jPanelCLOCK.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelCLOCK.setLayout(null);
-			jPanelCLOCK.setBounds(615, 29, 500, 118);
+			jPanelCLOCK.setBounds(590, 29, 525, 118);
 			pannelloCLOCK.add(jPanelCLOCK);
 
 			
@@ -375,26 +356,26 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		//GRAFICO FIFO
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
-			jPanelFIFOMATRICE.setBounds(0, 29, 605, 118);
+			jPanelFIFOMATRICE.setBounds(20, 29, 560, 118);
 			jPanelFIFOMATRICE.setLayout(null);
 			pannelloFIFO.add(jPanelFIFOMATRICE);
 
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
-			jPanelOPTMATRICE.setBounds(0, 29, 605, 118);
+			jPanelOPTMATRICE.setBounds(20, 29, 560, 118);
 			pannelloOPT.add(jPanelOPTMATRICE);
 
 		//GRAFICO LRU
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelLRUMATRICE.setLayout(null);
-			jPanelLRUMATRICE.setBounds(0, 29, 605, 118);
+			jPanelLRUMATRICE.setBounds(20, 29, 560, 118);
 			pannelloLRU.add(jPanelLRUMATRICE);
 		
 		//GRAFICO CLOCK
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelCLOCKMATRICE.setLayout(null);
-			jPanelCLOCKMATRICE.setBounds(0, 29, 605, 118);
+			jPanelCLOCKMATRICE.setBounds(20, 29, 560, 118);
 			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
 
@@ -429,7 +410,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel pannelloEditor = new JPanel();
 			pannelloEditor.setLayout(null);
 			//pannelloEditor.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-			pannelloEditor.setBounds(10, 95, 245, 258);
+			pannelloEditor.setBounds(10, 95, 245, 246);
 			panelDiControllo.add(pannelloEditor);
 			
 		JLabel lblSlotMemoria = new JLabel("Slot Memoria Disponibili");
@@ -457,7 +438,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JLabel labelPlay = new JLabel(">");
 			labelPlay.setEnabled(false);
 			labelPlay.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			labelPlay.setBounds(45, 200, 39, 35);
+			labelPlay.setBounds(44, 168, 39, 35);
 			labelPlay.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
 			pannelloEditor.add(labelPlay);
 			
@@ -465,21 +446,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelScrittaPlay.setHorizontalAlignment(SwingConstants.CENTER);
 			labelScrittaPlay.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			labelScrittaPlay.setEnabled(false);
-			labelScrittaPlay.setBounds(30, 240, 75, 17);
+			labelScrittaPlay.setBounds(28, 213, 75, 17);
 			pannelloEditor.add(labelScrittaPlay);
 			
 		JLabel labelScrittaFast = new JLabel("Codifica Passo");
 			labelScrittaFast.setHorizontalAlignment(SwingConstants.CENTER);
 			labelScrittaFast.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			labelScrittaFast.setEnabled(false);
-			labelScrittaFast.setBounds(128, 240, 75, 17);
+			labelScrittaFast.setBounds(124, 213, 75, 17);
 			pannelloEditor.add(labelScrittaFast);
 			
 		JLabel labelFastForward = new JLabel(">>");
 			labelFastForward.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
 			labelFastForward.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 			labelFastForward.setEnabled(false);
-			labelFastForward.setBounds(148, 200, 39, 35);
+			labelFastForward.setBounds(142, 168, 39, 35);
 			pannelloEditor.add(labelFastForward);
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
@@ -515,13 +496,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 			stringaNumeri.setBounds(10, 97, 225, 23);
 			pannelloEditor.add(stringaNumeri);
 			stringaNumeri.setColumns(10);
-			
-		JCheckBox chkbkMostraAllSoluzione = new JCheckBox("Mostra tutti i grafici");
-			chkbkMostraAllSoluzione.setHorizontalAlignment(SwingConstants.CENTER);
-			chkbkMostraAllSoluzione.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chkbkMostraAllSoluzione.setEnabled(false);
-			chkbkMostraAllSoluzione.setBounds(10, 164, 222, 21);
-			pannelloEditor.add(chkbkMostraAllSoluzione);
 			
 		JLabel lblSuccessioneDiRiferimento = new JLabel("Successione di riferimento:");
 			lblSuccessioneDiRiferimento.setBounds(10, 70, 225, 23);
@@ -567,17 +541,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 		btnGeneraSuccessione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(chckbxMostraSoluzioneFIFO.isSelected()==true)chckbxMostraSoluzioneFIFO.doClick();
-				if(chckbxMostraSoluzioneOPT.isSelected()==true)chckbxMostraSoluzioneOPT.doClick();
-				if(chckbxMostraSoluzioneLRU.isSelected()==true)chckbxMostraSoluzioneLRU.doClick();
-				if(chckbxMostraSoluzioneClock.isSelected()==true)chckbxMostraSoluzioneClock.doClick();
-				if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-
-				chckbxMostraSoluzioneFIFO.setEnabled(false);
-				chckbxMostraSoluzioneOPT.setEnabled(false);
-				chckbxMostraSoluzioneLRU.setEnabled(false);
-				chckbxMostraSoluzioneClock.setEnabled(false);
-				chkbkMostraAllSoluzione.setEnabled(false);
 				
 				labelFastForward.setEnabled(true);
 				labelScrittaFast.setEnabled(true);
@@ -585,15 +548,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 				labelPlay.setEnabled(true);
 				
 				stringaNumeri.setText("");
-				DATOFIFO.setText("");
 				numeri=new int[25];
+
+				DATOFIFO.setText("");
 				numeriFIFO=new int[25];
+				pfFIFO=new int[12];
 				jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
-
-				DATOLRU.setText("");
-				numeriLRU=new int[25];
-				jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
-
+				jPanelFIFO.resetGrafico(jPanelFIFO.getGraphics());
+				
 				for (int i=0;i<25;i++) { 
 					pieno=1;
 					Random random = new Random();
@@ -623,21 +585,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(generaGrafici.isEnabled()) {
 					generaGrafici.setEnabled(false);
-					chckbxMostraSoluzioneFIFO.setEnabled(true);
-					chckbxMostraSoluzioneOPT.setEnabled(true);
-					chckbxMostraSoluzioneLRU.setEnabled(true);
-					chckbxMostraSoluzioneClock.setEnabled(true);
-					chkbkMostraAllSoluzione.setEnabled(true);
 					//GENERAZIONE GRAFICI
-					String j= SceltaSlotDisponibili.getSelectedItem().toString();
-					int s=Integer.valueOf(j);
-					numeriFIFO=FIFO(numeri,s);
-					DATOFIFO.setText(String.valueOf(pagefaultFIFO));
-					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
-					
-					numeriLRU=LRU(numeri,s);
-					DATOLRU.setText(String.valueOf(pagefaultLRU));
-					jPanelLRUMATRICE.disegnaSoluzioneFIFO(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU);
+					pfFIFO=FIFOGrafico(numeri);
+					jPanelFIFO.disegnaSoluzione(jPanelFIFO.getGraphics(), pfFIFO);
 					
 				}
 			}
@@ -662,25 +612,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 			}
 		});
-		
-	//EVENTO SU CHECKBOX MOSTRA TUTTE LE SOLUZIONI
-		chkbkMostraAllSoluzione.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(chkbkMostraAllSoluzione.isSelected()==true) {
-					if(chckbxMostraSoluzioneFIFO.isSelected()==false)chckbxMostraSoluzioneFIFO.doClick();
-					if(chckbxMostraSoluzioneOPT.isSelected()==false)chckbxMostraSoluzioneOPT.doClick();
-					if(chckbxMostraSoluzioneLRU.isSelected()==false)chckbxMostraSoluzioneLRU.doClick();
-					if(chckbxMostraSoluzioneClock.isSelected()==false)chckbxMostraSoluzioneClock.doClick();
-				
-				}
-				if(chkbkMostraAllSoluzione.isSelected()==false) {	
-					if(chckbxMostraSoluzioneFIFO.isSelected()==true)chckbxMostraSoluzioneFIFO.doClick();
-					if(chckbxMostraSoluzioneOPT.isSelected()==true)chckbxMostraSoluzioneOPT.doClick();
-					if(chckbxMostraSoluzioneLRU.isSelected()==true)chckbxMostraSoluzioneLRU.doClick();
-					if(chckbxMostraSoluzioneClock.isSelected()==true)chckbxMostraSoluzioneClock.doClick();
-				}
-			}
-		});
 
 	//EVENTO SUI BOTTONI PLAY O PLAYSTEPbySTEP
 		labelPlay.addMouseListener(new MouseAdapter() {
@@ -691,6 +622,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 				labelScrittaFast.setEnabled(false);
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
+				
+				//GENERAZIONE MATRICI
+				String j= SceltaSlotDisponibili.getSelectedItem().toString();
+				int s=Integer.valueOf(j);
+				
+				numeriFIFO=FIFO(numeri,s);
+				DATOFIFO.setText(String.valueOf(pagefaultFIFO));
+				jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
 
 			}
 			@Override
@@ -733,17 +672,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 				else {
 					generaGrafici.setEnabled(true);
-					if(chckbxMostraSoluzioneFIFO.isSelected()==true)chckbxMostraSoluzioneFIFO.doClick();
-					if(chckbxMostraSoluzioneOPT.isSelected()==true)chckbxMostraSoluzioneOPT.doClick();
-					if(chckbxMostraSoluzioneLRU.isSelected()==true)chckbxMostraSoluzioneLRU.doClick();
-					if(chckbxMostraSoluzioneClock.isSelected()==true)chckbxMostraSoluzioneClock.doClick();
-					if(chkbkMostraAllSoluzione.isSelected()==true)chkbkMostraAllSoluzione.doClick();
-	
-					chckbxMostraSoluzioneFIFO.setEnabled(false);
-					chckbxMostraSoluzioneOPT.setEnabled(false);
-					chckbxMostraSoluzioneLRU.setEnabled(false);
-					chckbxMostraSoluzioneClock.setEnabled(false);
-					chkbkMostraAllSoluzione.setEnabled(false);
 					
 					labelFastForward.setEnabled(true);
 					labelScrittaFast.setEnabled(true);
@@ -753,10 +681,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 					DATOFIFO.setText("");
 					numeriFIFO=new int[25];
 					jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
-
-					DATOLRU.setText("");
-					numeriLRU=new int[25];
-					jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
 
 				}
 			
@@ -808,50 +732,458 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    return arrayFIFO;
 	}
 
+//ALGORITMO CALCOLO PUNTI FIFO GRFICO
+	int[] FIFOGrafico(int incomingStream[]){
+		
+		int[] arrayPunti = new int[12];
+		int[] arrayFIFO = new int[25];
+	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
+	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
+	    
+		for (int j=0; j < arrayFIFO.length;) {
+		
+		    for (int i=0; i < incomingStream.length; i++) {
+		    	//PAGFAULT1
+		        int flag=0;
+		    	if(i-frames1<0) {
+		    		
+		    		for(int k=1;k<=frames1;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf1++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames1>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames1;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf1++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+
+		}
+		for (int j=0; j < arrayFIFO.length;) {
+			
+		    for (int i=0; i < incomingStream.length; i++) {    	
+		    	//PAGFAULT2
+		        int flag=0;
+		    	if(i-frames2<0) {
+		    		
+		    		for(int k=1;k<=frames2;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		    			pf2++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames2>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames2;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf2++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+
+		}
+		for (int j=0; j < arrayFIFO.length;) {
+			
+		    for (int i=0; i < incomingStream.length; i++) {
+		    	//PAGFAULT3
+		    	int flag=0;
+		    	if(i-frames3<0) {
+		    		
+		    		for(int k=1;k<=frames3;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf3++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames3>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames3;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf3++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+
+		}		
+		for (int j=0; j < arrayFIFO.length;) {
+		
+		    for (int i=0; i < incomingStream.length; i++) {
+		    	//PAGFAULT4
+		        int flag=0;
+		    	if(i-frames4<0) {
+		    		
+		    		for(int k=1;k<=frames4;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf4++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames4>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames4;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf4++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+
+		}
+		for (int j=0; j < arrayFIFO.length;) {
+			
+		    for (int i=0; i < incomingStream.length; i++) {
+		    	//PAGFAULT5
+		    	int flag=0;
+		    	if(i-frames5<0) {
+		    		
+		    		for(int k=1;k<=frames5;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf5++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames5>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames5;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf5++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+
+		}
+		for (int j=0; j < arrayFIFO.length;) {
+			
+		    for (int i=0; i < incomingStream.length; i++) {
+		    	//PAGFAULT6
+		        int flag=0;
+		    	if(i-frames6<0) {
+		    		
+		    		for(int k=1;k<=frames6;k++) {
+		    			if(i-k>=0) {
+		    				if(incomingStream[i]==incomingStream[i-k]) flag=1;
+		    			}
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf6++;
+		        		j++;
+		    		}	    		
+		    	}
+		    	else if(i-frames6>=0) {
+		    		flag=0;
+		    		for(int k=1;k<=frames6;k++) {
+		    			if(j-k>=0)	if(incomingStream[i]==arrayFIFO[j-k]) flag=1;
+		    		}
+		    		if(flag==0) {
+		    			arrayFIFO[j]=incomingStream[i];
+		        		pf6++;
+		        		j++;
+		    		}
+		    	}
+		    }
+		    j=26;
+		}
+		
+		arrayPunti[0]=1;
+		arrayPunti[1]=pf1;
+		arrayPunti[2]=2;
+		arrayPunti[3]=pf2;
+		arrayPunti[4]=3;
+		arrayPunti[5]=pf3;
+		arrayPunti[6]=4;
+		arrayPunti[7]=pf4;
+		arrayPunti[8]=5;
+		arrayPunti[9]=pf5;
+		arrayPunti[10]=6;
+		arrayPunti[11]=pf6;
+
+	    return arrayPunti;
+	}
 
 //ALGORITMO CALCOLO PUNTI LRU MATRICE
+	int[] LRU(int reference[], int frames){
+		
+		        int pointer = 0, hit = 0, fault = 0,ref_len;
+		        Boolean isFull = false;
+		        int buffer[];
+		        ArrayList<Integer> stack = new ArrayList<Integer>();
+		        int mem_layout[][];
+		        
+		        ref_len = reference.length;
+		        
+		        mem_layout = new int[ref_len][frames];
+		        buffer = new int[frames];
+		        for(int j = 0; j < frames; j++)
+		                buffer[j] = -1;
+		        
 
-	int[] LRU(int arr[], int capacity){
+		        for(int i = 0; i < ref_len; i++)
+		        {
+		            if(stack.contains(reference[i]))
+		            {
+		             stack.remove(stack.indexOf(reference[i]));
+		            }
+		            stack.add(reference[i]);
+		            int search = -1;
+		            for(int j = 0; j < frames; j++)
+		            {
+		                if(buffer[j] == reference[i])
+		                {
+		                    search = j;
+		                    hit++;
+		                    break;
+		                }
+		            }
+		            if(search == -1)
+		            {
+		             if(isFull)
+		             {
+		              int min_loc = ref_len;
+		                    for(int j = 0; j < frames; j++)
+		                    {
+		                     if(stack.contains(buffer[j]))
+		                        {
+		                            int temp = stack.indexOf(buffer[j]);
+		                            if(temp < min_loc)
+		                            {
+		                                min_loc = temp;
+		                                pointer = j;
+		                            }
+		                        }
+		                    }
+		             }
+		                buffer[pointer] = reference[i];
+		                fault++;
+		                pointer++;
+		                if(pointer == frames)
+		                {
+		                 pointer = 0;
+		                 isFull = true;
+		                }
+		            }
+		            for(int j = 0; j < frames; j++)
+		                mem_layout[i][j] = buffer[j];
+		        }
+		        
+		        for(int i = 0; i < frames; i++)
+		        {
+		            for(int j = 0; j < ref_len; j++)
+		                //System.out.printf("%3d ",mem_layout[j][i]);
+		            System.out.println();
+		        }
 
+		        pagefaultLRU=fault;
+		        return reference;
+	}  
+		
 
-	        ArrayList<Integer> s=new ArrayList<>(capacity);
-	        int count=0;
-	        int page_faults=0;
-	        for(int i:arr)
+//ALGORITMO CALCOLO PUNTI OPT MATRICE
+	int[] OPT(int reference[], int frames){
+		
+	    int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    boolean isFull = false;
+	    int buffer[];
+	    int mem_layout[][];
+	    
+	    ref_len = reference.length;
+	    mem_layout = new int[ref_len][frames];
+	    buffer = new int[frames];
+	    for(int j = 0; j < frames; j++)
+	            buffer[j] = -1;
+	    
+	    
+	    for(int i = 0; i < ref_len; i++)
+	    {
+	     int search = -1;
+	     for(int j = 0; j < frames; j++)
+	     {
+	      if(buffer[j] == reference[i])
+	      {
+	       search = j;
+	       hit++;
+	       break;
+	      } 
+	     }
+	     if(search == -1)
+	     {
+	      if(isFull)
+	      {
+	       int index[] = new int[frames];
+	       boolean index_flag[] = new boolean[frames];
+	       for(int j = i + 1; j < ref_len; j++)
+	       {
+	        for(int k = 0; k < frames; k++)
 	        {
-	            // Insert it into set if not present
-	            // already which represents page fault
-	            if(!s.contains(i))
-	            {
-	             
-	            // Check if the set can hold equal pages
-	            if(s.size()==capacity)
-	            {
-	                s.remove(0);
-	                s.add(capacity-1,i);
-	            }
-	            else
-	                s.add(count,i);
-	                // Increment page faults
-	                page_faults++;
-	                ++count;
-	         
-	            }
-	            else
-	            {
-	                // Remove the indexes page
-	                s.remove((Object)i);
-	                // insert the current page
-	                s.add(s.size(),i);        
-	            }
-	         
+	         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+	         {
+	          index[k] = j;
+	          index_flag[k] = true;
+	          break;
+	         }
 	        }
-	        pagefaultLRU=page_faults;
-	        System.out.println(page_faults);
-	        return arr;
+	       }
+	       int max = index[0];
+	       pointer = 0;
+	       if(max == 0)
+	        max = 200;
+	       for(int j = 0; j < frames; j++)
+	       {
+	        if(index[j] == 0)
+	         index[j] = 200;
+	        if(index[j] > max)
+	        {
+	         max = index[j];
+	         pointer = j;
+	        }
+	       }
+	      }
+	      buffer[pointer] = reference[i];
+	      fault++;
+	      if(!isFull)
+	      {
+	       pointer++;
+	          if(pointer == frames)
+	          {
+	           pointer = 0;
+	           isFull = true;
+	          }
+	      }
+	     }
+	        for(int j = 0; j < frames; j++)
+	            mem_layout[i][j] = buffer[j];
 	    }
-	
-	
+	    
+	    for(int i = 0; i < frames; i++)
+	    {
+	        for(int j = 0; j < ref_len; j++)
+	            System.out.printf("%3d ",mem_layout[j][i]);
+	        System.out.println();
+	    }
+	    
+	    pagefaultOPT=fault;
+        return reference;
+	}
+
+
+//ALGORITMO CALCOLO PUNTI CLOCK MATRICE
+	int[] CLOCK(int reference[], int frames){
+		
+		int  pointer = 0, hit = 0, fault = 0,ref_len;
+        int buffer[][];
+        int mem_layout[][];
+        int used_layout[][];
+        
+        ref_len = reference.length;
+        mem_layout = new int[ref_len][frames];
+        used_layout = new int[ref_len][frames];
+        buffer = new int[frames][2];
+        for(int j = 0; j < frames; j++)
+        {
+         buffer[j][0] = -1;
+         buffer[j][1] = 0;
+        }
+       
+        for(int i = 0; i < ref_len; i++)
+        {
+         int search = -1;
+         for(int j = 0; j < frames; j++)
+         {
+          if(buffer[j][0] == reference[i])
+          {
+           search = j;
+           hit++;
+           buffer[j][1] = 1;
+           break;
+          } 
+         }
+         if(search == -1)
+         {
+          
+          while(buffer[pointer][1] == 1)
+          {
+           buffer[pointer][1] = 0;
+           pointer++;
+           if(pointer == frames)
+            pointer = 0;
+          }
+          buffer[pointer][0] = reference[i];
+          buffer[pointer][1] = 1;
+          fault++;
+          pointer++;
+          if(pointer == frames)
+           pointer = 0;
+         }
+            for(int j = 0; j < frames; j++)
+   {
+    mem_layout[i][j] = buffer[j][0];
+    used_layout[i][j] = buffer[j][1];
+   }
+        }
+        
+        for(int i = 0; i < frames; i++)
+        {
+            for(int j = 0; j < ref_len; j++)
+                System.out.printf("%3d %d ",mem_layout[j][i],used_layout[j][i]);
+            System.out.println();
+        }
+        
+        pagefaultCLOCK=fault;
+        return reference;
+    }
 }
 
 

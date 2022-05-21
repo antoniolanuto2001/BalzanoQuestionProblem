@@ -27,17 +27,14 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	}
    	
    	public void disegnaSoluzioneFIFO(Graphics g, int array[], int slot,int page){
-   		for(int j=0;j<page;j++) {
-	   			System.out.print(array[j]);
-   		}
-			System.out.println("" );
-
+   		
+   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		
    		for(int j=0;j<page;j++) {
    			
    	   		for(int i=0;i<slot;i++) {
    	   			if(j+i<page) {
-	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*15);
-	   	   			System.out.println(String.valueOf(array[j]));
+	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*18);
    	   			}
    	   		}
    	   		j=j+slot-1;
