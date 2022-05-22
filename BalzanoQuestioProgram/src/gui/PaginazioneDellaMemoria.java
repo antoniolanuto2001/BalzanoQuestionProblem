@@ -62,19 +62,19 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
 import java.util.Queue;
+import java.awt.Component;
 
 
 public class PaginazioneDellaMemoria extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
-	private String scelta="0";
 	private int pieno=0;
 	private int[] numeri;
 	private int[] numeriFIFO;
-	private int[] numeriLRU;
-	private int[] numeriOPT;
-	private int[] numeriCLOCK;
+	private int[][] numeriLRU;
+	private int[][] numeriOPT;
+	private int[][] numeriCLOCK;
 
 	private int[] pfFIFO;
 	private int[] pfLRU;
@@ -227,23 +227,22 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 					pannelloFIFO.setBounds(10, 0, 1121, 150);
 					pannelloGrafici.add(pannelloFIFO);
-					//pannelloFCFS.setBorder(new LineBorder(new Color(0, 204, 0), 2));
 					pannelloFIFO.setLayout(null);
 		
 					JLabel FIFO = new JLabel("FIFO");
-					FIFO.setBounds(10, 0, 489, 25);
+					FIFO.setBounds(20, 0, 311, 25);
 					FIFO.setHorizontalAlignment(SwingConstants.CENTER);
 					FIFO.setForeground(Color.RED);
 					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 20));
 					pannelloFIFO.add(FIFO);
 				
 					JLabel lblPageFaultsFIFO = new JLabel("Page faults:");
-					lblPageFaultsFIFO.setBounds(670, 3, 86, 25);
+					lblPageFaultsFIFO.setBounds(341, 3, 86, 25);
 					lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					pannelloFIFO.add(lblPageFaultsFIFO);
 				
 					JLabel DATOFIFO = new JLabel("");
-					DATOFIFO.setBounds(753, 3, 45, 25);
+					DATOFIFO.setBounds(418, 3, 45, 25);
 					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					pannelloFIFO.add(DATOFIFO);
 					
@@ -258,17 +257,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 					OPT.setHorizontalAlignment(SwingConstants.CENTER);
 					OPT.setForeground(Color.RED);
 					OPT.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					OPT.setBounds(10, 3, 489, 25);
+					OPT.setBounds(20, 0, 311, 25);
 					pannelloOPT.add(OPT);
 				
 					JLabel lblPageFaultsOPT = new JLabel("Page faults:");
 					lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsOPT.setBounds(670, 3, 78, 25);
+					lblPageFaultsOPT.setBounds(341, 3, 86, 25);
 					pannelloOPT.add(lblPageFaultsOPT);
 				
 					JLabel DATOOPT = new JLabel("");
 					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOOPT.setBounds(758, 3, 45, 25);
+					DATOOPT.setBounds(418, 3, 45, 25);
 					pannelloOPT.add(DATOOPT);
 
 		//PANNELLO LRU
@@ -282,17 +281,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 					LRU.setHorizontalAlignment(SwingConstants.CENTER);
 					LRU.setForeground(Color.RED);
 					LRU.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					LRU.setBounds(10, 3, 489, 25);
+					LRU.setBounds(20, 0, 311, 25);
 					pannelloLRU.add(LRU);
 				
 					JLabel lblPageFaultsLRU = new JLabel("Page faults:");
 					lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsLRU.setBounds(670, 3, 81, 25);
+					lblPageFaultsLRU.setBounds(341, 3, 86, 25);
 					pannelloLRU.add(lblPageFaultsLRU);
 		
 					JLabel DATOLRU = new JLabel("");
 					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOLRU.setBounds(761, 3, 45, 25);
+					DATOLRU.setBounds(418, 3, 45, 25);
 					pannelloLRU.add(DATOLRU);
 
 	
@@ -307,17 +306,17 @@ public class PaginazioneDellaMemoria extends JFrame {
 					clock.setHorizontalAlignment(SwingConstants.CENTER);
 					clock.setForeground(Color.RED);
 					clock.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					clock.setBounds(10, 3, 489, 25);
+					clock.setBounds(20, 0, 311, 25);
 					pannelloCLOCK.add(clock);
 				
 					JLabel lblPageFaultClock = new JLabel("Page faults:");
 					lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultClock.setBounds(670, 3, 82, 25);
+					lblPageFaultClock.setBounds(341, 3, 86, 25);
 					pannelloCLOCK.add(lblPageFaultClock);
 		
 					JLabel DATOCLOCK = new JLabel("");
 					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOCLOCK.setBounds(762, 3, 45, 25);
+					DATOCLOCK.setBounds(418, 3, 45, 25);
 					pannelloCLOCK.add(DATOCLOCK);
 
 			
@@ -325,7 +324,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 		//GRAFICO FIFO
 		PanelGraficiPaginazioneMemoria jPanelFIFO = new PanelGraficiPaginazioneMemoria();
-			jPanelFIFO.setBounds(590, 29, 525, 118);
+			jPanelFIFO.setBounds(590, 3, 525, 118);
 			jPanelFIFO.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFIFO.setLayout(null);
 			pannelloFIFO.add(jPanelFIFO);
@@ -334,21 +333,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 		PanelGraficiPaginazioneMemoria jPanelOPT = new PanelGraficiPaginazioneMemoria();
 			jPanelOPT.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelOPT.setLayout(null);
-			jPanelOPT.setBounds(590, 29, 525, 118);
+			jPanelOPT.setBounds(590, 3, 525, 118);
 			pannelloOPT.add(jPanelOPT);
 
 		//GRAFICO LRU
 		PanelGraficiPaginazioneMemoria jPanelLRU = new PanelGraficiPaginazioneMemoria();
 			jPanelLRU.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelLRU.setLayout(null);
-			jPanelLRU.setBounds(590, 29, 525, 118);
+			jPanelLRU.setBounds(590, 3, 525, 118);
 			pannelloLRU.add(jPanelLRU);
 		
 		//GRAFICO CLOCK
 		PanelGraficiPaginazioneMemoria jPanelCLOCK = new PanelGraficiPaginazioneMemoria();
 			jPanelCLOCK.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelCLOCK.setLayout(null);
-			jPanelCLOCK.setBounds(590, 29, 525, 118);
+			jPanelCLOCK.setBounds(590, 3, 525, 118);
 			pannelloCLOCK.add(jPanelCLOCK);
 
 			
@@ -356,29 +355,80 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		//GRAFICO FIFO
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
-			jPanelFIFOMATRICE.setBounds(20, 29, 560, 118);
+			jPanelFIFOMATRICE.setBounds(30, 27, 530, 118);
 			jPanelFIFOMATRICE.setLayout(null);
 			pannelloFIFO.add(jPanelFIFOMATRICE);
-
+			
+			JLabel numeroPageFault1 = new JLabel("Numero di page faults");
+			numeroPageFault1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			numeroPageFault1.setHorizontalAlignment(SwingConstants.CENTER);
+			numeroPageFault1.setBounds(621, 126, 466, 18);
+			pannelloFIFO.add(numeroPageFault1);
+			
+			JLabel lblNewLabel1 = new JLabel("SLOT");
+			lblNewLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblNewLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel1.setBounds(570, 0, 15, 118);
+			pannelloFIFO.add(lblNewLabel1);
+			lblNewLabel1.setText(transformStringToHtml(lblNewLabel1.getText()));
+			
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
-			jPanelOPTMATRICE.setBounds(20, 29, 560, 118);
+			jPanelOPTMATRICE.setBounds(30, 27, 530, 118);
 			pannelloOPT.add(jPanelOPTMATRICE);
 
+			JLabel numeroPageFault2 = new JLabel("Numero di page faults");
+			numeroPageFault2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			numeroPageFault2.setHorizontalAlignment(SwingConstants.CENTER);
+			numeroPageFault2.setBounds(621, 126, 466, 18);
+			pannelloOPT.add(numeroPageFault2);
+			
+			JLabel lblNewLabel2 = new JLabel("SLOT");
+			lblNewLabel2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblNewLabel2.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel2.setBounds(570, 0, 15, 118);
+			pannelloOPT.add(lblNewLabel2);
+			lblNewLabel2.setText(transformStringToHtml(lblNewLabel2.getText()));
+			
 		//GRAFICO LRU
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelLRUMATRICE.setLayout(null);
-			jPanelLRUMATRICE.setBounds(20, 29, 560, 118);
+			jPanelLRUMATRICE.setBounds(30, 27, 530, 118);
 			pannelloLRU.add(jPanelLRUMATRICE);
 		
+			JLabel numeroPageFault3 = new JLabel("Numero di page faults");
+			numeroPageFault3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			numeroPageFault3.setHorizontalAlignment(SwingConstants.CENTER);
+			numeroPageFault3.setBounds(621, 126, 466, 18);
+			pannelloLRU.add(numeroPageFault3);
+			
+			JLabel lblNewLabel3 = new JLabel("SLOT");
+			lblNewLabel3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblNewLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel3.setBounds(570, 0, 15, 118);
+			pannelloLRU.add(lblNewLabel3);
+			lblNewLabel3.setText(transformStringToHtml(lblNewLabel3.getText()));
+			
 		//GRAFICO CLOCK
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelCLOCKMATRICE.setLayout(null);
-			jPanelCLOCKMATRICE.setBounds(20, 29, 560, 118);
+			jPanelCLOCKMATRICE.setBounds(30, 27, 530, 118);
 			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
+			JLabel numeroPageFault4 = new JLabel("Numero di page faults");
+			numeroPageFault4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			numeroPageFault4.setHorizontalAlignment(SwingConstants.CENTER);
+			numeroPageFault4.setBounds(621, 126, 466, 18);
+			pannelloCLOCK.add(numeroPageFault4);
 
+			JLabel lblNewLabel4 = new JLabel("SLOT");
+			lblNewLabel4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			lblNewLabel4.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel4.setBounds(570, 0, 15, 118);
+			pannelloCLOCK.add(lblNewLabel4);
+			lblNewLabel4.setText(transformStringToHtml(lblNewLabel4.getText()));
+			
 /**						PANNELLO DI CONTROLLO						*/		
 			
 		JPanel panelDiControllo = new JPanel();
@@ -409,7 +459,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel pannelloEditor = new JPanel();
 			pannelloEditor.setLayout(null);
-			//pannelloEditor.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 			pannelloEditor.setBounds(10, 95, 245, 246);
 			panelDiControllo.add(pannelloEditor);
 			
@@ -427,7 +476,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			SceltaSlotDisponibili.setBounds(185, 2, 50, 21);
 			pannelloEditor.add(SceltaSlotDisponibili);
 			
-		JButton generaGrafici = new JButton("GENERA GRAFICI");
+		JButton generaGrafici = new JButton("CALCOLA GRAFICI");
 			generaGrafici.setEnabled(false);
 			generaGrafici.setBorder(new LineBorder(new Color(0, 204, 0), 2));
 			generaGrafici.setBackground(new Color(255, 255, 255));
@@ -477,7 +526,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JScrollPane scrollPaneHelp = new JScrollPane();
 			scrollPaneHelp.setBounds(0, 0, 245, 258);
-			//scrollPaneHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 			pannelloHelp.add(scrollPaneHelp);
 		
 		JTextArea txtrHelpArea = new JTextArea();
@@ -550,11 +598,32 @@ public class PaginazioneDellaMemoria extends JFrame {
 				stringaNumeri.setText("");
 				numeri=new int[25];
 
+				String j= SceltaSlotDisponibili.getSelectedItem().toString();
+				int s=Integer.valueOf(j);
+				
 				DATOFIFO.setText("");
 				numeriFIFO=new int[25];
 				pfFIFO=new int[12];
 				jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
 				jPanelFIFO.resetGrafico(jPanelFIFO.getGraphics());
+				
+				DATOOPT.setText("");
+				numeriOPT=new int[25][s];
+				pfOPT=new int[12];
+				jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
+				jPanelOPT.resetGrafico(jPanelOPT.getGraphics());
+				
+				DATOLRU.setText("");
+				numeriLRU=new int[25][s];
+				pfLRU=new int[12];
+				jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+				jPanelLRU.resetGrafico(jPanelLRU.getGraphics());
+				
+				DATOCLOCK.setText("");
+				numeriCLOCK=new int[25][s];
+				pfCLOCK=new int[12];
+				jPanelCLOCKMATRICE.resetGrafico(jPanelCLOCKMATRICE.getGraphics());
+				jPanelCLOCK.resetGrafico(jPanelCLOCK.getGraphics());
 				
 				for (int i=0;i<25;i++) { 
 					pieno=1;
@@ -589,6 +658,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 					pfFIFO=FIFOGrafico(numeri);
 					jPanelFIFO.disegnaSoluzione(jPanelFIFO.getGraphics(), pfFIFO);
 					
+					pfOPT=OPTGrafico(numeri);
+					jPanelOPT.disegnaSoluzione(jPanelOPT.getGraphics(), pfOPT);
+					
+					pfLRU=LRUGrafico(numeri);
+					jPanelLRU.disegnaSoluzione(jPanelLRU.getGraphics(), pfLRU);
+					
+					pfCLOCK=CLOCKGrafico(numeri);
+					jPanelCLOCK.disegnaSoluzione(jPanelCLOCK.getGraphics(), pfCLOCK);
+					
 				}
 			}
 			@Override
@@ -618,19 +696,32 @@ public class PaginazioneDellaMemoria extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
-				labelFastForward.setEnabled(false);
-				labelScrittaFast.setEnabled(false);
-				labelPlay.setEnabled(false);
-				labelScrittaPlay.setEnabled(false);
-				
-				//GENERAZIONE MATRICI
-				String j= SceltaSlotDisponibili.getSelectedItem().toString();
-				int s=Integer.valueOf(j);
-				
-				numeriFIFO=FIFO(numeri,s);
-				DATOFIFO.setText(String.valueOf(pagefaultFIFO));
-				jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
-
+				if(labelPlay.isEnabled()) {
+					labelFastForward.setEnabled(false);
+					labelScrittaFast.setEnabled(false);
+					labelPlay.setEnabled(false);
+					labelScrittaPlay.setEnabled(false);
+					
+					//GENERAZIONE MATRICI
+					String j= SceltaSlotDisponibili.getSelectedItem().toString();
+					int s=Integer.valueOf(j);
+					
+					numeriFIFO=FIFO(numeri,s);
+					DATOFIFO.setText(String.valueOf(pagefaultFIFO));
+					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
+					
+					numeriOPT=OPT(numeri,s);
+					DATOOPT.setText(String.valueOf(pagefaultOPT));
+					jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),numeriOPT,s,pagefaultOPT);
+					
+					numeriLRU=LRU(numeri,s);
+					DATOLRU.setText(String.valueOf(pagefaultLRU));
+					jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU);
+					
+					numeriCLOCK=CLOCK(numeri,s);
+					DATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
+					jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),numeriCLOCK,s,pagefaultCLOCK);
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -650,6 +741,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent e){
@@ -671,16 +763,16 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				}
 				else {
-					generaGrafici.setEnabled(true);
+					//generaGrafici.setEnabled(true);
 					
 					labelFastForward.setEnabled(true);
 					labelScrittaFast.setEnabled(true);
 					labelScrittaPlay.setEnabled(true);
 					labelPlay.setEnabled(true);
-					
-					DATOFIFO.setText("");
-					numeriFIFO=new int[25];
 					jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
+					jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
+					jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+					jPanelCLOCKMATRICE.resetGrafico(jPanelCLOCKMATRICE.getGraphics());
 
 				}
 			
@@ -690,7 +782,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	
 /**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
 	
-//ALGORITMO CALCOLO PUNTI FIFO MATRICE
+//OK ALGORITMO CALCOLO PUNTI FIFO MATRICE
 	int[] FIFO(int incomingStream[], int frames){
 		
 		int[] arrayFIFO = new int[25];
@@ -732,7 +824,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    return arrayFIFO;
 	}
 
-//ALGORITMO CALCOLO PUNTI FIFO GRFICO
+//OK ALGORITMO CALCOLO PUNTI FIFO GRAFICO
 	int[] FIFOGrafico(int incomingStream[]){
 		
 		int[] arrayPunti = new int[12];
@@ -954,85 +1046,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    return arrayPunti;
 	}
 
-//ALGORITMO CALCOLO PUNTI LRU MATRICE
-	int[] LRU(int reference[], int frames){
-		
-		        int pointer = 0, hit = 0, fault = 0,ref_len;
-		        Boolean isFull = false;
-		        int buffer[];
-		        ArrayList<Integer> stack = new ArrayList<Integer>();
-		        int mem_layout[][];
-		        
-		        ref_len = reference.length;
-		        
-		        mem_layout = new int[ref_len][frames];
-		        buffer = new int[frames];
-		        for(int j = 0; j < frames; j++)
-		                buffer[j] = -1;
-		        
-
-		        for(int i = 0; i < ref_len; i++)
-		        {
-		            if(stack.contains(reference[i]))
-		            {
-		             stack.remove(stack.indexOf(reference[i]));
-		            }
-		            stack.add(reference[i]);
-		            int search = -1;
-		            for(int j = 0; j < frames; j++)
-		            {
-		                if(buffer[j] == reference[i])
-		                {
-		                    search = j;
-		                    hit++;
-		                    break;
-		                }
-		            }
-		            if(search == -1)
-		            {
-		             if(isFull)
-		             {
-		              int min_loc = ref_len;
-		                    for(int j = 0; j < frames; j++)
-		                    {
-		                     if(stack.contains(buffer[j]))
-		                        {
-		                            int temp = stack.indexOf(buffer[j]);
-		                            if(temp < min_loc)
-		                            {
-		                                min_loc = temp;
-		                                pointer = j;
-		                            }
-		                        }
-		                    }
-		             }
-		                buffer[pointer] = reference[i];
-		                fault++;
-		                pointer++;
-		                if(pointer == frames)
-		                {
-		                 pointer = 0;
-		                 isFull = true;
-		                }
-		            }
-		            for(int j = 0; j < frames; j++)
-		                mem_layout[i][j] = buffer[j];
-		        }
-		        
-		        for(int i = 0; i < frames; i++)
-		        {
-		            for(int j = 0; j < ref_len; j++)
-		                //System.out.printf("%3d ",mem_layout[j][i]);
-		            System.out.println();
-		        }
-
-		        pagefaultLRU=fault;
-		        return reference;
-	}  
-		
-
 //ALGORITMO CALCOLO PUNTI OPT MATRICE
-	int[] OPT(int reference[], int frames){
+	int[][] OPT(int reference[], int frames){
 		
 	    int  pointer = 0, hit = 0, fault = 0,ref_len;
 	    boolean isFull = false;
@@ -1106,21 +1121,991 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        for(int j = 0; j < frames; j++)
 	            mem_layout[i][j] = buffer[j];
 	    }
+	   	    
+	    pagefaultOPT=fault;
+        return mem_layout;
+	}
+	
+//OK ALGORITMO CALCOLO PUNTI OPT GRAFICO
+	int[] OPTGrafico(int reference[]){
+		int[] arrayPunti = new int[12];
+		int[] arrayFIFO = new int[25];
+	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
+	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
 	    
-	    for(int i = 0; i < frames; i++)
+	
 	    {
-	        for(int j = 0; j < ref_len; j++)
-	            System.out.printf("%3d ",mem_layout[j][i]);
-	        System.out.println();
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames1];
+		    buffer = new int[frames1];
+		    for(int j = 0; j < frames1; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames1; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames1];
+		       boolean index_flag[] = new boolean[frames1];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames1; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames1; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames1)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames1; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf1=fault;
 	    }
 	    
-	    pagefaultOPT=fault;
-        return reference;
+	    //pagefault2
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames2];
+		    buffer = new int[frames2];
+		    for(int j = 0; j < frames2; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames2; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames2];
+		       boolean index_flag[] = new boolean[frames2];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames2; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames2; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames2)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames2; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf2=fault;
+
+	    }
+	    
+	    //pagefault3
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames3];
+		    buffer = new int[frames3];
+		    for(int j = 0; j < frames3; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames3; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames3];
+		       boolean index_flag[] = new boolean[frames3];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames3; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames3; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames3)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames3; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf3=fault;
+
+	    }
+	    
+	    //pagefault4
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames4];
+		    buffer = new int[frames4];
+		    for(int j = 0; j < frames4; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames4; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames4];
+		       boolean index_flag[] = new boolean[frames4];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames4; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames4; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames4)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames4; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf4=fault;
+
+	    }
+	    
+	    //pagefault5
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames5];
+		    buffer = new int[frames5];
+		    for(int j = 0; j < frames5; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames5; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames5];
+		       boolean index_flag[] = new boolean[frames5];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames5; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames5; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames5)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames5; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf5=fault;
+
+	    }
+	    
+	    //pagefaults6
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+		    boolean isFull = false;
+		    int buffer[];
+		    int mem_layout[][];
+		    
+		    ref_len = reference.length;
+		    mem_layout = new int[ref_len][frames6];
+		    buffer = new int[frames6];
+		    for(int j = 0; j < frames6; j++)
+		            buffer[j] = -1;
+		    
+		    
+		    for(int i = 0; i < ref_len; i++)
+		    {
+		     int search = -1;
+		     for(int j = 0; j < frames6; j++)
+		     {
+		      if(buffer[j] == reference[i])
+		      {
+		       search = j;
+		       hit++;
+		       break;
+		      } 
+		     }
+		     if(search == -1)
+		     {
+		      if(isFull)
+		      {
+		       int index[] = new int[frames6];
+		       boolean index_flag[] = new boolean[frames6];
+		       for(int j = i + 1; j < ref_len; j++)
+		       {
+		        for(int k = 0; k < frames6; k++)
+		        {
+		         if((reference[j] == buffer[k]) && (index_flag[k] == false))
+		         {
+		          index[k] = j;
+		          index_flag[k] = true;
+		          break;
+		         }
+		        }
+		       }
+		       int max = index[0];
+		       pointer = 0;
+		       if(max == 0)
+		        max = 200;
+		       for(int j = 0; j < frames6; j++)
+		       {
+		        if(index[j] == 0)
+		         index[j] = 200;
+		        if(index[j] > max)
+		        {
+		         max = index[j];
+		         pointer = j;
+		        }
+		       }
+		      }
+		      buffer[pointer] = reference[i];
+		      fault++;
+		      if(!isFull)
+		      {
+		       pointer++;
+		          if(pointer == frames6)
+		          {
+		           pointer = 0;
+		           isFull = true;
+		          }
+		      }
+		     }
+		        for(int j = 0; j < frames6; j++)
+		            mem_layout[i][j] = buffer[j];
+		    }
+		    pf6=fault;
+
+	    }
+	    arrayPunti[0]=1;
+		arrayPunti[1]=pf1;
+		arrayPunti[2]=2;
+		arrayPunti[3]=pf2;
+		arrayPunti[4]=3;
+		arrayPunti[5]=pf3;
+		arrayPunti[6]=4;
+		arrayPunti[7]=pf4;
+		arrayPunti[8]=5;
+		arrayPunti[9]=pf5;
+		arrayPunti[10]=6;
+		arrayPunti[11]=pf6;
+
+	    return arrayPunti;
 	}
 
+//ALGORITMO CALCOLO PUNTI LRU MATRICE
+	int[][] LRU(int reference[], int frames){
+		
+		        int pointer = 0, hit = 0, fault = 0,ref_len;
+		        Boolean isFull = false;
+		        int buffer[];
+		        ArrayList<Integer> stack = new ArrayList<Integer>();
+		        int mem_layout[][];
+		        
+		        ref_len = reference.length;
+		        
+		        mem_layout = new int[ref_len][frames];
+		        buffer = new int[frames];
+		        for(int j = 0; j < frames; j++)
+		                buffer[j] = -1;
+		        
 
+		        for(int i = 0; i < ref_len; i++)
+		        {
+		            if(stack.contains(reference[i]))
+		            {
+		             stack.remove(stack.indexOf(reference[i]));
+		            }
+		            stack.add(reference[i]);
+		            int search = -1;
+		            for(int j = 0; j < frames; j++)
+		            {
+		                if(buffer[j] == reference[i])
+		                {
+		                    search = j;
+		                    hit++;
+		                    break;
+		                }
+		            }
+		            if(search == -1)
+		            {
+		             if(isFull)
+		             {
+		              int min_loc = ref_len;
+		                    for(int j = 0; j < frames; j++)
+		                    {
+		                     if(stack.contains(buffer[j]))
+		                        {
+		                            int temp = stack.indexOf(buffer[j]);
+		                            if(temp < min_loc)
+		                            {
+		                                min_loc = temp;
+		                                pointer = j;
+		                            }
+		                        }
+		                    }
+		             }
+		                buffer[pointer] = reference[i];
+		                fault++;
+		                pointer++;
+		                if(pointer == frames)
+		                {
+		                 pointer = 0;
+		                 isFull = true;
+		                }
+		            }
+		            for(int j = 0; j < frames; j++)
+		                mem_layout[i][j] = buffer[j];
+		        }
+		       
+		        pagefaultLRU=fault;
+		        return mem_layout;
+	}  
+	
+//OK ALGORITMO CALCOLO PUNTI LRU GRAFICO
+	int[] LRUGrafico(int reference[]){
+		
+		int[] arrayPunti = new int[12];
+		int[] arrayFIFO = new int[25];
+	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
+	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
+	    
+	    //pagefault1
+		{
+		 int pointer = 0, hit = 0, fault = 0,ref_len;
+	        Boolean isFull = false;
+	        int buffer[];
+	        ArrayList<Integer> stack = new ArrayList<Integer>();
+	        int mem_layout[][];
+	        
+	        ref_len = reference.length;
+	        
+	        mem_layout = new int[ref_len][frames1];
+	        buffer = new int[frames1];
+	        for(int j = 0; j < frames1; j++)
+	                buffer[j] = -1;
+	        
+
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	            if(stack.contains(reference[i]))
+	            {
+	             stack.remove(stack.indexOf(reference[i]));
+	            }
+	            stack.add(reference[i]);
+	            int search = -1;
+	            for(int j = 0; j < frames1; j++)
+	            {
+	                if(buffer[j] == reference[i])
+	                {
+	                    search = j;
+	                    hit++;
+	                    break;
+	                }
+	            }
+	            if(search == -1)
+	            {
+	             if(isFull)
+	             {
+	              int min_loc = ref_len;
+	                    for(int j = 0; j < frames1; j++)
+	                    {
+	                     if(stack.contains(buffer[j]))
+	                        {
+	                            int temp = stack.indexOf(buffer[j]);
+	                            if(temp < min_loc)
+	                            {
+	                                min_loc = temp;
+	                                pointer = j;
+	                            }
+	                        }
+	                    }
+	             }
+	                buffer[pointer] = reference[i];
+	                fault++;
+	                pointer++;
+	                if(pointer == frames1)
+	                {
+	                 pointer = 0;
+	                 isFull = true;
+	                }
+	            }
+	            for(int j = 0; j < frames1; j++)
+	                mem_layout[i][j] = buffer[j];
+	        }
+	        pf1=fault;
+		}
+		
+		//pagefault2
+				{
+				 int pointer = 0, hit = 0, fault = 0,ref_len;
+			        Boolean isFull = false;
+			        int buffer[];
+			        ArrayList<Integer> stack = new ArrayList<Integer>();
+			        int mem_layout[][];
+			        
+			        ref_len = reference.length;
+			        
+			        mem_layout = new int[ref_len][frames2];
+			        buffer = new int[frames2];
+			        for(int j = 0; j < frames2; j++)
+			                buffer[j] = -1;
+			        
+
+			        for(int i = 0; i < ref_len; i++)
+			        {
+			            if(stack.contains(reference[i]))
+			            {
+			             stack.remove(stack.indexOf(reference[i]));
+			            }
+			            stack.add(reference[i]);
+			            int search = -1;
+			            for(int j = 0; j < frames2; j++)
+			            {
+			                if(buffer[j] == reference[i])
+			                {
+			                    search = j;
+			                    hit++;
+			                    break;
+			                }
+			            }
+			            if(search == -1)
+			            {
+			             if(isFull)
+			             {
+			              int min_loc = ref_len;
+			                    for(int j = 0; j < frames2; j++)
+			                    {
+			                     if(stack.contains(buffer[j]))
+			                        {
+			                            int temp = stack.indexOf(buffer[j]);
+			                            if(temp < min_loc)
+			                            {
+			                                min_loc = temp;
+			                                pointer = j;
+			                            }
+			                        }
+			                    }
+			             }
+			                buffer[pointer] = reference[i];
+			                fault++;
+			                pointer++;
+			                if(pointer == frames2)
+			                {
+			                 pointer = 0;
+			                 isFull = true;
+			                }
+			            }
+			            for(int j = 0; j < frames2; j++)
+			                mem_layout[i][j] = buffer[j];
+			        }
+			        pf2=fault;
+				}
+				
+				//pagefault3
+				{
+				 int pointer = 0, hit = 0, fault = 0,ref_len;
+			        Boolean isFull = false;
+			        int buffer[];
+			        ArrayList<Integer> stack = new ArrayList<Integer>();
+			        int mem_layout[][];
+			        
+			        ref_len = reference.length;
+			        
+			        mem_layout = new int[ref_len][frames3];
+			        buffer = new int[frames3];
+			        for(int j = 0; j < frames3; j++)
+			                buffer[j] = -1;
+			        
+
+			        for(int i = 0; i < ref_len; i++)
+			        {
+			            if(stack.contains(reference[i]))
+			            {
+			             stack.remove(stack.indexOf(reference[i]));
+			            }
+			            stack.add(reference[i]);
+			            int search = -1;
+			            for(int j = 0; j < frames3; j++)
+			            {
+			                if(buffer[j] == reference[i])
+			                {
+			                    search = j;
+			                    hit++;
+			                    break;
+			                }
+			            }
+			            if(search == -1)
+			            {
+			             if(isFull)
+			             {
+			              int min_loc = ref_len;
+			                    for(int j = 0; j < frames3; j++)
+			                    {
+			                     if(stack.contains(buffer[j]))
+			                        {
+			                            int temp = stack.indexOf(buffer[j]);
+			                            if(temp < min_loc)
+			                            {
+			                                min_loc = temp;
+			                                pointer = j;
+			                            }
+			                        }
+			                    }
+			             }
+			                buffer[pointer] = reference[i];
+			                fault++;
+			                pointer++;
+			                if(pointer == frames3)
+			                {
+			                 pointer = 0;
+			                 isFull = true;
+			                }
+			            }
+			            for(int j = 0; j < frames3; j++)
+			                mem_layout[i][j] = buffer[j];
+			        }
+			        pf3=fault;
+				}
+				
+				//pagefault4
+				{
+				 int pointer = 0, hit = 0, fault = 0,ref_len;
+			        Boolean isFull = false;
+			        int buffer[];
+			        ArrayList<Integer> stack = new ArrayList<Integer>();
+			        int mem_layout[][];
+			        
+			        ref_len = reference.length;
+			        
+			        mem_layout = new int[ref_len][frames4];
+			        buffer = new int[frames4];
+			        for(int j = 0; j < frames4; j++)
+			                buffer[j] = -1;
+			        
+
+			        for(int i = 0; i < ref_len; i++)
+			        {
+			            if(stack.contains(reference[i]))
+			            {
+			             stack.remove(stack.indexOf(reference[i]));
+			            }
+			            stack.add(reference[i]);
+			            int search = -1;
+			            for(int j = 0; j < frames4; j++)
+			            {
+			                if(buffer[j] == reference[i])
+			                {
+			                    search = j;
+			                    hit++;
+			                    break;
+			                }
+			            }
+			            if(search == -1)
+			            {
+			             if(isFull)
+			             {
+			              int min_loc = ref_len;
+			                    for(int j = 0; j < frames4; j++)
+			                    {
+			                     if(stack.contains(buffer[j]))
+			                        {
+			                            int temp = stack.indexOf(buffer[j]);
+			                            if(temp < min_loc)
+			                            {
+			                                min_loc = temp;
+			                                pointer = j;
+			                            }
+			                        }
+			                    }
+			             }
+			                buffer[pointer] = reference[i];
+			                fault++;
+			                pointer++;
+			                if(pointer == frames4)
+			                {
+			                 pointer = 0;
+			                 isFull = true;
+			                }
+			            }
+			            for(int j = 0; j < frames4; j++)
+			                mem_layout[i][j] = buffer[j];
+			        }
+			        pf4=fault;
+				}
+				
+				//pagefault5
+				{
+				 int pointer = 0, hit = 0, fault = 0,ref_len;
+			        Boolean isFull = false;
+			        int buffer[];
+			        ArrayList<Integer> stack = new ArrayList<Integer>();
+			        int mem_layout[][];
+			        
+			        ref_len = reference.length;
+			        
+			        mem_layout = new int[ref_len][frames5];
+			        buffer = new int[frames5];
+			        for(int j = 0; j < frames5; j++)
+			                buffer[j] = -1;
+			        
+
+			        for(int i = 0; i < ref_len; i++)
+			        {
+			            if(stack.contains(reference[i]))
+			            {
+			             stack.remove(stack.indexOf(reference[i]));
+			            }
+			            stack.add(reference[i]);
+			            int search = -1;
+			            for(int j = 0; j < frames5; j++)
+			            {
+			                if(buffer[j] == reference[i])
+			                {
+			                    search = j;
+			                    hit++;
+			                    break;
+			                }
+			            }
+			            if(search == -1)
+			            {
+			             if(isFull)
+			             {
+			              int min_loc = ref_len;
+			                    for(int j = 0; j < frames5; j++)
+			                    {
+			                     if(stack.contains(buffer[j]))
+			                        {
+			                            int temp = stack.indexOf(buffer[j]);
+			                            if(temp < min_loc)
+			                            {
+			                                min_loc = temp;
+			                                pointer = j;
+			                            }
+			                        }
+			                    }
+			             }
+			                buffer[pointer] = reference[i];
+			                fault++;
+			                pointer++;
+			                if(pointer == frames5)
+			                {
+			                 pointer = 0;
+			                 isFull = true;
+			                }
+			            }
+			            for(int j = 0; j < frames5; j++)
+			                mem_layout[i][j] = buffer[j];
+			        }
+			        pf5=fault;
+				}
+				
+				//pagefault6
+				{
+				 int pointer = 0, hit = 0, fault = 0,ref_len;
+			        Boolean isFull = false;
+			        int buffer[];
+			        ArrayList<Integer> stack = new ArrayList<Integer>();
+			        int mem_layout[][];
+			        
+			        ref_len = reference.length;
+			        
+			        mem_layout = new int[ref_len][frames6];
+			        buffer = new int[frames6];
+			        for(int j = 0; j < frames6; j++)
+			                buffer[j] = -1;
+			        
+
+			        for(int i = 0; i < ref_len; i++)
+			        {
+			            if(stack.contains(reference[i]))
+			            {
+			             stack.remove(stack.indexOf(reference[i]));
+			            }
+			            stack.add(reference[i]);
+			            int search = -1;
+			            for(int j = 0; j < frames6; j++)
+			            {
+			                if(buffer[j] == reference[i])
+			                {
+			                    search = j;
+			                    hit++;
+			                    break;
+			                }
+			            }
+			            if(search == -1)
+			            {
+			             if(isFull)
+			             {
+			              int min_loc = ref_len;
+			                    for(int j = 0; j < frames6; j++)
+			                    {
+			                     if(stack.contains(buffer[j]))
+			                        {
+			                            int temp = stack.indexOf(buffer[j]);
+			                            if(temp < min_loc)
+			                            {
+			                                min_loc = temp;
+			                                pointer = j;
+			                            }
+			                        }
+			                    }
+			             }
+			                buffer[pointer] = reference[i];
+			                fault++;
+			                pointer++;
+			                if(pointer == frames6)
+			                {
+			                 pointer = 0;
+			                 isFull = true;
+			                }
+			            }
+			            for(int j = 0; j < frames6; j++)
+			                mem_layout[i][j] = buffer[j];
+			        }
+			        pf6=fault;
+				}
+				
+			arrayPunti[0]=1;
+			arrayPunti[1]=pf1;
+			arrayPunti[2]=2;
+			arrayPunti[3]=pf2;
+			arrayPunti[4]=3;
+			arrayPunti[5]=pf3;
+			arrayPunti[6]=4;
+			arrayPunti[7]=pf4;
+			arrayPunti[8]=5;
+			arrayPunti[9]=pf5;
+			arrayPunti[10]=6;
+			arrayPunti[11]=pf6;
+
+		    return arrayPunti;
+	}
+		
 //ALGORITMO CALCOLO PUNTI CLOCK MATRICE
-	int[] CLOCK(int reference[], int frames){
+	int[][] CLOCK(int reference[], int frames){
 		
 		int  pointer = 0, hit = 0, fault = 0,ref_len;
         int buffer[][];
@@ -1174,16 +2159,378 @@ public class PaginazioneDellaMemoria extends JFrame {
    }
         }
         
-        for(int i = 0; i < frames; i++)
-        {
-            for(int j = 0; j < ref_len; j++)
-                System.out.printf("%3d %d ",mem_layout[j][i],used_layout[j][i]);
-            System.out.println();
-        }
-        
         pagefaultCLOCK=fault;
-        return reference;
+        return mem_layout;
     }
+	
+//ALGORITMO CALCOLO PUNTI CLOCK GRAFICO
+	int[] CLOCKGrafico(int reference[]){
+		int[] arrayPunti = new int[12];
+		int[] arrayFIFO = new int[25];
+	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
+	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
+	    
+	    //pagefault1
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames1];
+	        used_layout = new int[ref_len][frames1];
+	        buffer = new int[frames1][2];
+	        for(int j = 0; j < frames1; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames1; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames1)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames1)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames1; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf1=fault;
+	    }
+	    
+	    //pagefault2
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames2];
+	        used_layout = new int[ref_len][frames2];
+	        buffer = new int[frames2][2];
+	        for(int j = 0; j < frames2; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames2; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames2)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames2)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames2; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf2=fault;
+	    }
+	    
+	    //pagefault3
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames3];
+	        used_layout = new int[ref_len][frames3];
+	        buffer = new int[frames3][2];
+	        for(int j = 0; j < frames3; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames3; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames3)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames3)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames3; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf3=fault;
+	    }
+	    
+	    //pagefault4
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames4];
+	        used_layout = new int[ref_len][frames4];
+	        buffer = new int[frames4][2];
+	        for(int j = 0; j < frames4; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames4; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames4)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames4)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames4; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf4=fault;
+	    }
+	    
+	    //pagefault5
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames5];
+	        used_layout = new int[ref_len][frames5];
+	        buffer = new int[frames5][2];
+	        for(int j = 0; j < frames5; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames5; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames5)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames5)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames5; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf5=fault;
+	    }
+	    
+	    //pagefault6
+	    {
+	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	        int buffer[][];
+	        int mem_layout[][];
+	        int used_layout[][];
+	        
+	        ref_len = reference.length;
+	        mem_layout = new int[ref_len][frames6];
+	        used_layout = new int[ref_len][frames6];
+	        buffer = new int[frames6][2];
+	        for(int j = 0; j < frames6; j++)
+	        {
+	         buffer[j][0] = -1;
+	         buffer[j][1] = 0;
+	        }
+	       
+	        for(int i = 0; i < ref_len; i++)
+	        {
+	         int search = -1;
+	         for(int j = 0; j < frames6; j++)
+	         {
+	          if(buffer[j][0] == reference[i])
+	          {
+	           search = j;
+	           hit++;
+	           buffer[j][1] = 1;
+	           break;
+	          } 
+	         }
+	         if(search == -1)
+	         {
+	          
+	          while(buffer[pointer][1] == 1)
+	          {
+	           buffer[pointer][1] = 0;
+	           pointer++;
+	           if(pointer == frames6)
+	            pointer = 0;
+	          }
+	          buffer[pointer][0] = reference[i];
+	          buffer[pointer][1] = 1;
+	          fault++;
+	          pointer++;
+	          if(pointer == frames6)
+	           pointer = 0;
+	         }
+	            for(int j = 0; j < frames6; j++)
+		   {
+		    mem_layout[i][j] = buffer[j][0];
+		    used_layout[i][j] = buffer[j][1];
+		   }
+		       }
+	        pf6=fault;
+	    }
+		   	arrayPunti[0]=1;
+			arrayPunti[1]=pf1;
+			arrayPunti[2]=2;
+			arrayPunti[3]=pf2;
+			arrayPunti[4]=3;
+			arrayPunti[5]=pf3;
+			arrayPunti[6]=4;
+			arrayPunti[7]=pf4;
+			arrayPunti[8]=5;
+			arrayPunti[9]=pf5;
+			arrayPunti[10]=6;
+			arrayPunti[11]=pf6;
+
+		    return arrayPunti;	}
+	
+	
+	public static String transformStringToHtml(String strToTransform) {
+	    String ans = "<html>";
+	    String br = "<br>";
+	    String[] lettersArr = strToTransform.split("");
+	    for (String letter : lettersArr) {
+	        ans += letter + br;
+	    }
+	    ans += "</html>";
+	    return ans;
+	}
 }
 
 

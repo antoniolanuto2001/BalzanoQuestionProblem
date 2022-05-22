@@ -41,5 +41,73 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    		}
    		
    	}
+   	
+	public void disegnaSoluzioneOPT(Graphics g, int array[][], int slot,int page){
+   		
+   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		/*
+   		for(int j=0;j<page;j++) {
+   			
+   	   		for(int i=0;i<slot;i++) {
+   	   			if(j+i<page) {
+	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*18);
+   	   			}
+   	   		}
+   	   		j=j+slot-1;
+   		}*/
+   		for(int i = 0; i < slot; i++)
+	    {
+	        for(int j = 0; j < 25; j++)
+   	   			g.drawString(String.valueOf(array[j][i]),j*17,20+i*18);
+	    }
+	    
+   		
+   	}
+	
+	public void disegnaSoluzioneLRU(Graphics g, int array[][], int slot,int page){
+   		
+   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		/*
+   		for(int j=0;j<page;j++) {
+   			
+   	   		for(int i=0;i<slot;i++) {
+   	   			if(j+i<page) {
+	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*18);
+   	   			}
+   	   		}
+   	   		j=j+slot-1;
+   		}*/
+   		for(int i = 0; i < slot; i++)
+	    {
+	        for(int j = 0; j < 25; j++)
+   	   			g.drawString(String.valueOf(array[j][i]),j*17,20+i*18);
+	    }
+	    
+   		
+   	}
+	
+	public void disegnaSoluzioneCLOCK(Graphics g, int array[][], int slot,int page){
+   		
+   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		
+   		/*for(int j=0;j<page;j++) {
+   			
+   	   		for(int i=0;i<slot;i++) {
+   	   			if(j+i<page) {
+	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*18);
+   	   			}
+   	   		}
+   	   		j=j+slot-1;
+   		}*/
+   		for(int i = 0; i < slot; i++)
+	    {
+	        for(int j = 0; j < 25; j++)
+   	   			g.drawString(String.valueOf(array[j][i]),j*17,20+i*18);
+	    }
+	    
+   		
+   	}
+   	
+
 
 }
