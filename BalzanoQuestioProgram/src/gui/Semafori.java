@@ -15,8 +15,11 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
@@ -46,6 +49,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicBorders.ToggleButtonBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
@@ -150,6 +154,7 @@ public class Semafori extends JFrame {
 		desktopPane.add(ResetButton);
 		
 		JToggleButton StartPauseToggleButton = new JToggleButton("Start/Pause");
+
 		StartPauseToggleButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		StartPauseToggleButton.setBounds(219, 31, 121, 23);
 		desktopPane.add(StartPauseToggleButton);
@@ -286,14 +291,16 @@ public class Semafori extends JFrame {
 		HelpIconJLabel.setBounds(1343, 460, 34, 46);
 		panelMainButton.add(HelpIconJLabel);
 		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-	        
+		
+		
 		JPanel BaseProgressBar1JPanel = new JPanel();
 		BaseProgressBar1JPanel.setBackground(Color.GRAY);
 		BaseProgressBar1JPanel.setBounds(250, 524, 300, 29);
 		panelMainButton.add(BaseProgressBar1JPanel);
 		BaseProgressBar1JPanel.setLayout(null);
 		BaseProgressBar1JPanel.setOpaque(true);
-	        
+		
+
 		JPanel BaseProgressBar2JPanel = new JPanel();
 		BaseProgressBar2JPanel.setVisible(false);
 		BaseProgressBar2JPanel.setLayout(null);
@@ -327,7 +334,50 @@ public class Semafori extends JFrame {
         panelMainButton.add(BaseProgressBar5JPanel);
         BaseProgressBar5JPanel.setOpaque(true);
         
+        JPanel Indicatore1 = new JPanel();
+        BaseProgressBar1JPanel.add(Indicatore1);
+        Indicatore1.setBackground(Color.BLACK);
+        Indicatore1.setBounds(0,0,4,29);
+        Indicatore1.setVisible(true);
+        Indicatore1.setLayout(null);
+        Indicatore1.setOpaque(true);
         
+        JPanel Indicatore2 = new JPanel();
+        BaseProgressBar2JPanel.add(Indicatore2);
+        Indicatore2.setBackground(Color.BLACK);
+        Indicatore2.setBounds(0,0,4,29);
+        Indicatore2.setVisible(true);
+        Indicatore2.setLayout(null);
+        Indicatore2.setOpaque(true);
+        
+        JPanel Indicatore3= new JPanel();
+        BaseProgressBar3JPanel.add(Indicatore3);
+        Indicatore3.setBackground(Color.BLACK);
+        Indicatore3.setBounds(0,0,4,29);
+        Indicatore3.setVisible(true);
+        Indicatore3.setLayout(null);
+        Indicatore3.setOpaque(true);
+        
+        JPanel Indicatore4 = new JPanel();
+        BaseProgressBar4JPanel.add(Indicatore4);
+        Indicatore4.setBackground(Color.BLACK);
+        Indicatore4.setBounds(0,0,4,29);
+        Indicatore4.setVisible(true);
+        Indicatore4.setLayout(null);
+        Indicatore4.setOpaque(true);
+        
+        JPanel Indicatore5 = new JPanel();
+        BaseProgressBar5JPanel.add(Indicatore5);
+        Indicatore5.setBackground(Color.BLACK);
+        Indicatore5.setBounds(0,0,4,29);
+        Indicatore5.setVisible(true);
+        Indicatore5.setLayout(null);
+        Indicatore5.setOpaque(true);
+     
+        
+ 
+        
+       
         JPanel JobDuration1JPanel = new JPanel();
         JobDuration1JPanel.setVisible(false);
         JobDuration1JPanel.setLayout(null);
@@ -495,33 +545,38 @@ public class Semafori extends JFrame {
 					int rowCount = tabella.getRowCount();
 					int columnCount = tabella.getColumnCount();
 					int randomNum=0;
-					int k=0;
-					int start_processo=0;
-					int end_processo=0;
+					int startpoint=0,endpoint=0;
+					int end_processo=0,start_processo=0;
 					int start_critica1=0,start_critica2=0,start_critica3=0;
 					int end_critica1=0,end_critica2=0;
 			
 					StartEndProcessi.removeAll(StartEndProcessi);
+					
 					//algoritmo di generazione valori 
 					for(int i=0; i<rowCount; i++) 
 					{
 						StartEndProcessi.add(new ProcessoSemaforo());
+						
 						for(int j=1; j<columnCount; j++) 
 						{
 						
 							//inizio processo
 							if(j==1)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(1, 50);
+								
+								randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+								start_processo=randomNum;
 							}
 							
 							//fine processo
 							if(j==2)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(270, 300);
+								
+								randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
 								end_processo=randomNum;
+						
 							}
 							
 							
@@ -529,16 +584,20 @@ public class Semafori extends JFrame {
 						
 							if(j==3)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(55, 80);
+								
+								randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+								start_critica1=randomNum;
 								
 							}
 							
 							//fine zona critica 1
 							if(j==4)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(100, 140);
+								
+								randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+								end_critica1=randomNum;
 								
 							}
 							
@@ -547,8 +606,10 @@ public class Semafori extends JFrame {
 							//start zona critica 2: >end zona critica 1 && compreso tra 160-184
 							if(j==5)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(160, 184);
+								
+								randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+								start_critica2=randomNum;
 								
 							}
 							
@@ -556,41 +617,41 @@ public class Semafori extends JFrame {
 							//end zona critica 2: > start zona critica 2 && compreso tra 195-230
 							if(j==6)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(195, 230);
+								
+								randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+								end_critica2=randomNum;
 							}
 							//inizio zona critica 3
 							//start zona critica 3: >end zona critica 2 && compreso tra 238-268
 							if(j==7)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(238, 268);
+								
+								randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+								start_critica3=randomNum;
 							}
 							//fine zona critica 3
 							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
 							if(j==8)
 							{
-								do
-									randomNum= ThreadLocalRandom.current().nextInt(275,287);
-								while(randomNum>end_processo);
+								
+								randomNum= ThreadLocalRandom.current().nextInt(250,280);
+								
+								
+								
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+								
 							}
+							
 							model1.setValueAt(randomNum, i, j);
-
+							randomNum=0;
 					}//second for
 							
 	        }//first for
 					
-					
-					
-			String NumeroProcessiS = (String) NumProcessiComboBox.getSelectedItem();
-			int NumeroProcessi= Integer.valueOf(NumeroProcessiS);
-			int startpoint,endpoint;
-			startpoint=endpoint=0;
-			
-			
-			
-			if(NumeroProcessi==1)
+
+			if(rowCount==1)
 			{
 				//Repaint di P1
 			/*	BaseProgressBar1JPanel.removeAll();
@@ -631,7 +692,7 @@ public class Semafori extends JFrame {
 			}
 			
 			
-			else if(NumeroProcessi==2)
+			else if(rowCount==2)
 			{
 				//Repaint di P1 e P2
 			
@@ -714,7 +775,7 @@ public class Semafori extends JFrame {
 		     
 			}
 			
-			else if(NumeroProcessi==3)
+			else if(rowCount==3)
 			{
 				//Repaint di P1, P2, P3
 				
@@ -833,7 +894,7 @@ public class Semafori extends JFrame {
 				
 		     
 			}
-			else if(NumeroProcessi==4)
+			else if(rowCount==4)
 			{
 				//Repaint di P1, P2, P3, P4
 				
@@ -989,7 +1050,7 @@ public class Semafori extends JFrame {
 				CriticalArea3JPanel4.setVisible(true);
 
 			}
-			else if(NumeroProcessi==5)
+			else if(rowCount==5)
 			{
 				//Repaint di P1, P2, P3, P4, P5
 				
@@ -1418,5 +1479,12 @@ public class Semafori extends JFrame {
 		        		labelScrittaYoutube.setForeground(Color.BLACK);
 		        	}
 		        });
+				
+				
+				
+			
+				
+				
+				
 	}
 }
