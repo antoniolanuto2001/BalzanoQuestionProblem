@@ -931,7 +931,7 @@ public class Semafori extends JFrame {
 		     
 			}
 			
-			//prossimi
+			
 			
 			/*	
 			if(NumeroProcessi==3)
