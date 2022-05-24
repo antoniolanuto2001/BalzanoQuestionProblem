@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
@@ -57,11 +58,13 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.Box;
 
 public class Semafori extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	public 	boolean continuaBoolean;
 	public ArrayList<ProcessoSemaforo> StartEndProcessi = new ArrayList<ProcessoSemaforo>();
 	final int min_JProgress_range=0;
 	final int max_JProgress_range=300;
@@ -82,14 +85,16 @@ public class Semafori extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		
+		
+		continuaBoolean=true;
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(255, 255, 255));
-		panelMainButton.setBorder(new CompoundBorder());
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
-		
+
 		JPanel panelSuperiore = new JPanel();
 		panelSuperiore.setBackground(new Color(245, 245, 245));
 		panelSuperiore.setBounds(-71, 0, 1495, 73);
@@ -102,28 +107,28 @@ public class Semafori extends JFrame {
 		labelTitoloSchermata.setBackground(new Color(224, 255, 255));
 		labelTitoloSchermata.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 47));
 		
-		
+
 		JLabel labelIndietroIcon = new JLabel("Indietro");
 	    labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
 	    labelIndietroIcon.setBounds(10, 87, 34, 46);
 	    panelMainButton.add(labelIndietroIcon);
 		
 		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
-	    labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	    labelScrittaSlide.setBounds(1309, 345, 95, 15);
+	    labelScrittaSlide.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
+	    labelScrittaSlide.setBounds(1316, 345, 95, 15);
 	    panelMainButton.add(labelScrittaSlide);
 	     
-	    JLabel labelSlideIcon = new JLabel("Slide");
+	    JLabel labelSlideIcon = new JLabel("");
 	    labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
 	    labelSlideIcon.setBounds(1333, 296, 53, 46);
 	    panelMainButton.add(labelSlideIcon);
 
 		JLabel labelScrittaYoutube = new JLabel("VideoLezione");
-		labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelScrittaYoutube.setBounds(1322, 273, 82, 12);
+		labelScrittaYoutube.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
+		labelScrittaYoutube.setBounds(1322, 260, 82, 27);
 		panelMainButton.add(labelScrittaYoutube);
 		
-		JLabel labelYoutubeIcon = new JLabel("Youtube");
+		JLabel labelYoutubeIcon = new JLabel("");
 		labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
 		labelYoutubeIcon.setBounds(1332, 222, 54, 46);
 		panelMainButton.add(labelYoutubeIcon);
@@ -147,13 +152,13 @@ public class Semafori extends JFrame {
 		TextFieldNumProcessi.setColumns(10);
 		
 		JButton ResetButton = new JButton("Reset");
+		
 		ResetButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		ResetButton.setBackground(new Color(255, 255, 255));
 		ResetButton.setBounds(219, 96, 121, 23);
 		desktopPane.add(ResetButton);
 		
 		JToggleButton StartPauseToggleButton = new JToggleButton("Start/Pause");
-
 		StartPauseToggleButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		StartPauseToggleButton.setBounds(219, 31, 121, 23);
 		desktopPane.add(StartPauseToggleButton);
@@ -179,24 +184,24 @@ public class Semafori extends JFrame {
 		JLabelTextMutex2.setVisible(false);
 		
 		//creating a default semaphore graphic
-		JLabel labelGraficaSemaforo1 = new JLabel("");
-		JLabelTextMutex1.setLabelFor(labelGraficaSemaforo1);
-		labelGraficaSemaforo1.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
-		labelGraficaSemaforo1.setBackground(new Color(255,255,255));
-		labelGraficaSemaforo1.setBounds(577, 117, 118, 205);
-		panelMainButton.add(labelGraficaSemaforo1);
-		labelGraficaSemaforo1.setLayout(null);
+		JLabel GraficaSemaforo1JLabel = new JLabel("");
+		JLabelTextMutex1.setLabelFor(GraficaSemaforo1JLabel);
+		GraficaSemaforo1JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		GraficaSemaforo1JLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo1JLabel.setBounds(577, 117, 118, 205);
+		panelMainButton.add(GraficaSemaforo1JLabel);
+		GraficaSemaforo1JLabel.setLayout(null);
 		
 		
 		//second semaphore graphic
-		JLabel labelGraficaSemaforo2 = new JLabel("");
-		JLabelTextMutex2.setLabelFor(labelGraficaSemaforo2);
-		labelGraficaSemaforo2.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoRossoIcon1.png")));
-		labelGraficaSemaforo2.setBackground(new Color(255,255,255));
-		labelGraficaSemaforo2.setBounds(841,117, 118, 205);
-		panelMainButton.add(labelGraficaSemaforo2);
-		labelGraficaSemaforo2.setLayout(null);
-		labelGraficaSemaforo2.setVisible(false);
+		JLabel GraficaSemaforo2JLabel = new JLabel("");
+		JLabelTextMutex2.setLabelFor(GraficaSemaforo2JLabel);
+		GraficaSemaforo2JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		GraficaSemaforo2JLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo2JLabel.setBounds(841,117, 118, 205);
+		panelMainButton.add(GraficaSemaforo2JLabel);
+		GraficaSemaforo2JLabel.setLayout(null);
+		GraficaSemaforo2JLabel.setVisible(false);
 
 		JComboBox NumProcessiComboBox = new JComboBox();
 		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
@@ -271,8 +276,8 @@ public class Semafori extends JFrame {
 
 
 		JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
-		GeneraEsercizioJLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		GeneraEsercizioJLabel.setBounds(1309, 422, 102, 15);
+		GeneraEsercizioJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
+		GeneraEsercizioJLabel.setBounds(1316, 422, 102, 15);
 		panelMainButton.add(GeneraEsercizioJLabel);
 		
 		
@@ -292,10 +297,15 @@ public class Semafori extends JFrame {
 		panelMainButton.add(EndTimeIndexJLabel);
 	        
 	            
-		JLabel HelpIconJLabel = new JLabel("Help");
-		HelpIconJLabel.setBounds(1343, 460, 34, 46);
+		JLabel HelpIconJLabel = new JLabel("");
+		HelpIconJLabel.setBounds(1343, 451, 34, 46);
 		panelMainButton.add(HelpIconJLabel);
 		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
+		
+		JLabel HelpJLabel = new JLabel("Info Uso");
+		HelpJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
+		HelpJLabel.setBounds(1335, 498, 70, 15);
+		panelMainButton.add(HelpJLabel);
 		
 		
 		JPanel BaseProgressBar1JPanel = new JPanel();
@@ -304,6 +314,13 @@ public class Semafori extends JFrame {
 		panelMainButton.add(BaseProgressBar1JPanel);
 		BaseProgressBar1JPanel.setLayout(null);
 		BaseProgressBar1JPanel.setOpaque(true);
+		
+		
+		GraficaIndicatoreSemafori TestIndicatore = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		BaseProgressBar1JPanel.add(TestIndicatore);
+		TestIndicatore.setLayout(null);
+		TestIndicatore.setVisible(true);
+	
 		
 
 		JPanel BaseProgressBar2JPanel = new JPanel();
@@ -339,14 +356,6 @@ public class Semafori extends JFrame {
         panelMainButton.add(BaseProgressBar5JPanel);
         BaseProgressBar5JPanel.setOpaque(true);
         
-        JPanel Indicatore1 = new JPanel();
-        BaseProgressBar1JPanel.add(Indicatore1);
-        Indicatore1.setBackground(Color.BLACK);
-        Indicatore1.setBounds(0,0,4,29);
-        Indicatore1.setVisible(true);
-        Indicatore1.setLayout(null);
-        Indicatore1.setOpaque(true);
-        
         JPanel Indicatore2 = new JPanel();
         BaseProgressBar2JPanel.add(Indicatore2);
         Indicatore2.setBackground(Color.BLACK);
@@ -378,6 +387,8 @@ public class Semafori extends JFrame {
         Indicatore5.setVisible(true);
         Indicatore5.setLayout(null);
         Indicatore5.setOpaque(true);
+        
+
      
         
  
@@ -1393,16 +1404,16 @@ public class Semafori extends JFrame {
 					if(numeroSemaforiInt==1)
 					{
 						//Attivo il Primo Semaforo 
-						labelGraficaSemaforo2.setVisible(true);
+						GraficaSemaforo2JLabel.setVisible(true);
 						JLabelTextMutex2.setVisible(true);
 						//Disattivo il secondo
-						labelGraficaSemaforo2.setVisible(false);
+						GraficaSemaforo2JLabel.setVisible(false);
 						JLabelTextMutex2.setVisible(false);
 					}
 					else if(numeroSemaforiInt==2)
 					{
 						//Abilito anche il secondo semaforo 
-						labelGraficaSemaforo2.setVisible(true);
+						GraficaSemaforo2JLabel.setVisible(true);
 						JLabelTextMutex2.setVisible(true);
 					}
 						
@@ -1488,9 +1499,70 @@ public class Semafori extends JFrame {
 				
 				
 				
-			
+				StartPauseToggleButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{	
+						if(StartPauseToggleButton.isSelected()&& StartEndProcessi.size()!=0) 
+						{
+							continuaBoolean=true;
+							System.out.println("[ToggleButton]: START");
+							TestIndicatore.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+							TestIndicatore.setXFinale(StartEndProcessi.get(0).fineProcesso);
+							Thread threadmuovereIndicatore = new Thread(new Runnable() {
+								
+								@Override
+								public void run() 
+								{
+									
+									// TODO Auto-generated method stub
+									for(int i=0; i<300; i++) 
+									{										
+										TestIndicatore.moveForward();
+										if (continuaBoolean == false) 
+										{
+											
+											TestIndicatore.Reset(0);	
+											BaseProgressBar1JPanel.repaint();
+											break;
+										}
+										else if (TestIndicatore.LimitReached()) 
+										{
+											i=0;
+											TestIndicatore.Reset(StartEndProcessi.get(0).inizioProcesso);
+										}
+										try 
+										{
+											Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+											//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+											BaseProgressBar1JPanel.repaint();
+											Thread.sleep(10);
+										} 
+										catch (InterruptedException e1)
+										{
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+									}
+								}
+							});
+							threadmuovereIndicatore.start();
+						}
+						else 
+						{
+							System.out.println("[ToggleButton]: PAUSE");
+							continuaBoolean=false;
+						}
+					}
+				});
 				
-				
+				ResetButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						continuaBoolean=false;
+					}
+				});
 				
 	}
 }
