@@ -39,7 +39,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.ProcessoSemaforo;
-import model.Semaforo;
 
 import java.awt.SystemColor;
 import java.awt.Taskbar;
@@ -170,28 +169,34 @@ public class Semafori extends JFrame {
 		
 		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
 		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1.setBounds(752, 222, 79, 14);
+		JLabelTextMutex1.setBounds(705, 222, 79, 14);
 		panelMainButton.add(JLabelTextMutex1);
 		
 		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
 		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2.setBounds(1025, 222, 79, 14);
+		JLabelTextMutex2.setBounds(986, 222, 79, 14);
 		panelMainButton.add(JLabelTextMutex2);
 		JLabelTextMutex2.setVisible(false);
 		
 		//creating a default semaphore graphic
-		JPanel PannelloGraficaSemaforo1 = new Semaforo();
-		PannelloGraficaSemaforo1.setBackground(new Color(255,255,255));
-		PannelloGraficaSemaforo1.setBounds(568, 146, 174, 176);
-		panelMainButton.add(PannelloGraficaSemaforo1);
+		JLabel labelGraficaSemaforo1 = new JLabel("");
+		JLabelTextMutex1.setLabelFor(labelGraficaSemaforo1);
+		labelGraficaSemaforo1.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		labelGraficaSemaforo1.setBackground(new Color(255,255,255));
+		labelGraficaSemaforo1.setBounds(577, 117, 118, 205);
+		panelMainButton.add(labelGraficaSemaforo1);
+		labelGraficaSemaforo1.setLayout(null);
 		
 		
 		//second semaphore graphic
-		JPanel PannelloGraficaSemaforo2 = new Semaforo();
-		PannelloGraficaSemaforo2.setBackground(new Color(255,255,255));
-		PannelloGraficaSemaforo2.setBounds(841,146,174,176);
-		panelMainButton.add(PannelloGraficaSemaforo2);
-		PannelloGraficaSemaforo2.setVisible(false);
+		JLabel labelGraficaSemaforo2 = new JLabel("");
+		JLabelTextMutex2.setLabelFor(labelGraficaSemaforo2);
+		labelGraficaSemaforo2.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoRossoIcon1.png")));
+		labelGraficaSemaforo2.setBackground(new Color(255,255,255));
+		labelGraficaSemaforo2.setBounds(841,117, 118, 205);
+		panelMainButton.add(labelGraficaSemaforo2);
+		labelGraficaSemaforo2.setLayout(null);
+		labelGraficaSemaforo2.setVisible(false);
 
 		JComboBox NumProcessiComboBox = new JComboBox();
 		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
@@ -1383,21 +1388,22 @@ public class Semafori extends JFrame {
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{
-					Object item = NumSemaforiComboBox.getSelectedItem();
-					
-					if("2".equals(item))
+					String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
+					int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
+					if(numeroSemaforiInt==1)
 					{
-						//visibilit� semaforo
-						PannelloGraficaSemaforo2.setVisible(true);
-						//visibilit� testo
+						//Attivo il Primo Semaforo 
+						labelGraficaSemaforo2.setVisible(true);
 						JLabelTextMutex2.setVisible(true);
-						
-					}else if("1".equals(item))
-					{
-						//visibilit� semaforo
-						PannelloGraficaSemaforo2.setVisible(false);
-						//visibilit� testo
+						//Disattivo il secondo
+						labelGraficaSemaforo2.setVisible(false);
 						JLabelTextMutex2.setVisible(false);
+					}
+					else if(numeroSemaforiInt==2)
+					{
+						//Abilito anche il secondo semaforo 
+						labelGraficaSemaforo2.setVisible(true);
+						JLabelTextMutex2.setVisible(true);
 					}
 						
 				}
