@@ -15,8 +15,11 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
@@ -36,7 +39,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import model.ProcessoSemaforo;
-import model.Semaforo;
 
 import java.awt.SystemColor;
 import java.awt.Taskbar;
@@ -46,6 +48,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
 import javax.swing.event.PopupMenuListener;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.basic.BasicBorders.ToggleButtonBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
@@ -68,28 +71,6 @@ public class Semafori extends JFrame {
 	 */
 	
 
-	
-	//setting a position value on JProgressBarSeconds
-	public int findRightPositionJProgressBar(int toconvert) {
-	
-		int val=0;
-		
-		for(int i=0; i<=300; i++) {
-			if(i==toconvert) {
-				val=(300*toconvert)/538;
-				
-			}
-		}
-		
-		return  val+40;
-	}
-	
-	
-	
-	
-	
-	
-	
 	public Semafori(JFrame framechiamante) 
 	
 	{
@@ -109,15 +90,12 @@ public class Semafori extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		
-		
-		//added
 		JPanel panelSuperiore = new JPanel();
 		panelSuperiore.setBackground(new Color(245, 245, 245));
 		panelSuperiore.setBounds(-71, 0, 1495, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
-		
-		//modified
+
 		JLabel labelTitoloSchermata = new JLabel(" Semafori ");
 		labelTitoloSchermata.setBounds(70, 0, 320, 89);
 		panelSuperiore.add(labelTitoloSchermata);
@@ -125,108 +103,30 @@ public class Semafori extends JFrame {
 		labelTitoloSchermata.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 47));
 		
 		
+		JLabel labelIndietroIcon = new JLabel("Indietro");
+	    labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
+	    labelIndietroIcon.setBounds(10, 87, 34, 46);
+	    panelMainButton.add(labelIndietroIcon);
 		
+		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+	    labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	    labelScrittaSlide.setBounds(1309, 345, 95, 15);
+	    panelMainButton.add(labelScrittaSlide);
+	     
+	    JLabel labelSlideIcon = new JLabel("Slide");
+	    labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
+	    labelSlideIcon.setBounds(1333, 296, 53, 46);
+	    panelMainButton.add(labelSlideIcon);
+
+		JLabel labelScrittaYoutube = new JLabel("VideoLezione");
+		labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		labelScrittaYoutube.setBounds(1322, 273, 82, 12);
+		panelMainButton.add(labelScrittaYoutube);
 		
-		   JLabel labelIndietroIcon = new JLabel("Indietro");
-	        labelIndietroIcon.addMouseListener(new MouseAdapter() {
-	        	@Override
-				public void mouseClicked(MouseEvent e) 
-				{
-					framechiamante.setVisible(true);
-					frame.setVisible(false);
-					frame.dispose();
-				}
-		
-	        	@Override
-	        	public void mouseEntered(MouseEvent e) 
-	        	{
-	        		labelIndietroIcon.setForeground(Color.RED);
-	        	}
-	        	@Override
-	        	public void mouseExited(MouseEvent e) 
-	        	{
-	        		labelIndietroIcon.setForeground(Color.BLACK);
-	        	}
-	        });
-	        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	        labelIndietroIcon.setBounds(10, 87, 34, 46);
-	        panelMainButton.add(labelIndietroIcon);
-		
-		 JLabel labelScrittaSlide = new JLabel("Slide Argomento");
-	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaSlide.setBounds(1309, 345, 95, 15);
-	        panelMainButton.add(labelScrittaSlide);
-	        JLabel labelSlideIcon = new JLabel("Slide");
-	        labelSlideIcon.addMouseListener(new MouseAdapter() {
-	        	@Override
-	        	public void mouseClicked(MouseEvent e) {
-	        		Desktop d = Desktop.getDesktop();
-					try {
-						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=232"));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	        	}
-	        	@Override
-	        	public void mouseEntered(MouseEvent e) 
-	        	{
-	        		labelScrittaSlide.setForeground(Color.RED);
-	        	}
-	        	@Override
-	        	public void mouseExited(MouseEvent e) 
-	        	{
-	        		labelScrittaSlide.setForeground(Color.BLACK);
-	        	}
-	        });
-	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	        labelSlideIcon.setBounds(1333, 296, 53, 46);
-	        panelMainButton.add(labelSlideIcon);
-	        
-		
-		//scritta youtube
-		 JLabel labelScrittaYoutube = new JLabel("VideoLezione");
-	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaYoutube.setBounds(1322, 273, 82, 12);
-	        panelMainButton.add(labelScrittaYoutube);
-	        JLabel labelYoutubeIcon = new JLabel("Youtube");
-	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
-	        	@Override
-	        	public void mouseClicked(MouseEvent e) {
-	        		Desktop d = Desktop.getDesktop();
-					try {
-						d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=5976"));
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} catch (URISyntaxException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-	        	}
-	        	@Override
-	        	public void mouseEntered(MouseEvent e) 
-	        	{
-	        		labelScrittaYoutube.setForeground(Color.RED);
-	        	}
-	        	@Override
-	        	public void mouseExited(MouseEvent e) 
-	        	{
-	        		labelScrittaYoutube.setForeground(Color.BLACK);
-	        	}
-	        });
-	        labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
-	        labelYoutubeIcon.setBounds(1332, 222, 54, 46);
-	        panelMainButton.add(labelYoutubeIcon);
-		
-		
-	        
-	        
-	        
-		
+		JLabel labelYoutubeIcon = new JLabel("Youtube");
+		labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
+		labelYoutubeIcon.setBounds(1332, 222, 54, 46);
+		panelMainButton.add(labelYoutubeIcon);
 		
 		JLabel lblNewLabel = new JLabel("Pannello di controllo");
 		lblNewLabel.setBounds(189, 146, 137, 27);
@@ -253,6 +153,7 @@ public class Semafori extends JFrame {
 		desktopPane.add(ResetButton);
 		
 		JToggleButton StartPauseToggleButton = new JToggleButton("Start/Pause");
+
 		StartPauseToggleButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		StartPauseToggleButton.setBounds(219, 31, 121, 23);
 		desktopPane.add(StartPauseToggleButton);
@@ -268,69 +169,41 @@ public class Semafori extends JFrame {
 		
 		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
 		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1.setBounds(752, 222, 79, 14);
+		JLabelTextMutex1.setBounds(705, 222, 79, 14);
 		panelMainButton.add(JLabelTextMutex1);
 		
 		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
 		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2.setBounds(1025, 222, 79, 14);
+		JLabelTextMutex2.setBounds(986, 222, 79, 14);
 		panelMainButton.add(JLabelTextMutex2);
 		JLabelTextMutex2.setVisible(false);
 		
 		//creating a default semaphore graphic
-		JPanel PannelloGraficaSemaforo1 = new Semaforo();
-		PannelloGraficaSemaforo1.setBackground(new Color(255,255,255));
-		PannelloGraficaSemaforo1.setBounds(568, 146, 174, 176);
-		panelMainButton.add(PannelloGraficaSemaforo1);
+		JLabel labelGraficaSemaforo1 = new JLabel("");
+		JLabelTextMutex1.setLabelFor(labelGraficaSemaforo1);
+		labelGraficaSemaforo1.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		labelGraficaSemaforo1.setBackground(new Color(255,255,255));
+		labelGraficaSemaforo1.setBounds(577, 117, 118, 205);
+		panelMainButton.add(labelGraficaSemaforo1);
+		labelGraficaSemaforo1.setLayout(null);
 		
 		
 		//second semaphore graphic
-		JPanel PannelloGraficaSemaforo2 = new Semaforo();
-		PannelloGraficaSemaforo2.setBackground(new Color(255,255,255));
-		PannelloGraficaSemaforo2.setBounds(841,146,174,176);
-		panelMainButton.add(PannelloGraficaSemaforo2);
-		PannelloGraficaSemaforo2.setVisible(false);
-		
-		NumSemaforiComboBox.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) 
-			{
-				Object item = NumSemaforiComboBox.getSelectedItem();
-				
-				if("2".equals(item))
-				{
-					//visibilit� semaforo
-					PannelloGraficaSemaforo2.setVisible(true);
-					//visibilit� testo
-					JLabelTextMutex2.setVisible(true);
-					
-				}else if("1".equals(item))
-				{
-					//visibilit� semaforo
-					PannelloGraficaSemaforo2.setVisible(false);
-					//visibilit� testo
-					JLabelTextMutex2.setVisible(false);
-				}
-					
-			}
-		});
-		
-	
-		
-		
-	
-		
-		
+		JLabel labelGraficaSemaforo2 = new JLabel("");
+		JLabelTextMutex2.setLabelFor(labelGraficaSemaforo2);
+		labelGraficaSemaforo2.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoRossoIcon1.png")));
+		labelGraficaSemaforo2.setBackground(new Color(255,255,255));
+		labelGraficaSemaforo2.setBounds(841,117, 118, 205);
+		panelMainButton.add(labelGraficaSemaforo2);
+		labelGraficaSemaforo2.setLayout(null);
+		labelGraficaSemaforo2.setVisible(false);
+
 		JComboBox NumProcessiComboBox = new JComboBox();
-		
-		
 		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
-		
 		NumProcessiComboBox.setBounds(132, 32, 47, 21);
 		desktopPane.add(NumProcessiComboBox);
 		
-		
-		
+
 		JTextField txtNumeroSemafori = new JTextField();
 		txtNumeroSemafori.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		txtNumeroSemafori.setText("Numero Semafori:");
@@ -357,10 +230,6 @@ public class Semafori extends JFrame {
 		SviluppatoriJLabel.setFont(new Font("Sylfaen", Font.ITALIC, 13));
 		SviluppatoriJLabel.setBounds(1118, 722, 269, 18);
 		panelMainButton.add(SviluppatoriJLabel);
-		
-	
-		
-		
 
 		
 		JScrollPane scrollTabella= new JScrollPane();
@@ -398,309 +267,279 @@ public class Semafori extends JFrame {
 		model1.addColumn("Fine Zona Critica 3");
 		tabella.setModel(model1);
 		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
-		
 		scrollTabella.setViewportView(tabella);
 
-	        
-	        //ProgressBar di secondo livello per colori
-	        
 
-	        
-	        JProgressBar progressBarP3_Second = new JProgressBar();
-	        progressBarP3_Second.setForeground(new Color(0, 250, 154));
-	        //progressBarP3_Second.setBounds(39, 602, 146, 14);
-	        panelMainButton.add(progressBarP3_Second);
-	        progressBarP3_Second.setVisible(false);
-	        
-	        JProgressBar progressBarP4_Second = new JProgressBar();
-	        progressBarP4_Second.setForeground(new Color(0, 250, 154));
-	        //progressBarP4_Second.setBounds(39, 640, 146, 14);
-	        panelMainButton.add(progressBarP4_Second);
-	        progressBarP4_Second.setVisible(false);
-	        
-	        JProgressBar progressBarP5_Second = new JProgressBar();
-	        progressBarP5_Second.setForeground(new Color(0, 250, 154));
-	        //progressBarP5_Second.setBounds(39, 679, 146, 14);
-	        panelMainButton.add(progressBarP5_Second);
-	        progressBarP5_Second.setVisible(false);
-	        
-	        
-		
-		//ACTION ON NUM PROCESSI
+		JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
+		GeneraEsercizioJLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		GeneraEsercizioJLabel.setBounds(1309, 422, 102, 15);
+		panelMainButton.add(GeneraEsercizioJLabel);
 		
 		
+		JLabel GeneraEsercizioIcon = new JLabel("");
+		GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
+		GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
+		panelMainButton.add(GeneraEsercizioIcon);
+	        
+		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
+		StartTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+		StartTimeIndexJLabel.setBounds(250, 499, 53, 14);
+		panelMainButton.add(StartTimeIndexJLabel);
+	        
+		JLabel EndTimeIndexJLabel = new JLabel("Tempo 300");
+		EndTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
+		EndTimeIndexJLabel.setBounds(492, 499, 64, 14);
+		panelMainButton.add(EndTimeIndexJLabel);
+	        
+	            
+		JLabel HelpIconJLabel = new JLabel("Help");
+		HelpIconJLabel.setBounds(1343, 460, 34, 46);
+		panelMainButton.add(HelpIconJLabel);
+		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 		
 		
+		JPanel BaseProgressBar1JPanel = new JPanel();
+		BaseProgressBar1JPanel.setBackground(Color.GRAY);
+		BaseProgressBar1JPanel.setBounds(250, 524, 300, 29);
+		panelMainButton.add(BaseProgressBar1JPanel);
+		BaseProgressBar1JPanel.setLayout(null);
+		BaseProgressBar1JPanel.setOpaque(true);
 		
-		 JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
-	        GeneraEsercizioJLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        GeneraEsercizioJLabel.setBounds(1309, 422, 102, 15);
-	        panelMainButton.add(GeneraEsercizioJLabel);
-	        JLabel GeneraEsercizioIcon = new JLabel("");
+
+		JPanel BaseProgressBar2JPanel = new JPanel();
+		BaseProgressBar2JPanel.setVisible(false);
+		BaseProgressBar2JPanel.setLayout(null);
+		BaseProgressBar2JPanel.setBackground(Color.GRAY);
+		BaseProgressBar2JPanel.setBounds(250, 564, 300, 29);
+		panelMainButton.add(BaseProgressBar2JPanel);
+		BaseProgressBar2JPanel.setOpaque(true);
+	        
+		JPanel BaseProgressBar3JPanel = new JPanel();
+		BaseProgressBar3JPanel.setVisible(false);
+		BaseProgressBar3JPanel.setLayout(null);
+		BaseProgressBar3JPanel.setBackground(Color.GRAY);
+		BaseProgressBar3JPanel.setBounds(250, 604, 300, 29);
+		panelMainButton.add(BaseProgressBar3JPanel);
+		BaseProgressBar3JPanel.setOpaque(true);
+	        
+        JPanel BaseProgressBar4JPanel = new JPanel();
+        BaseProgressBar4JPanel.setVisible(false);
+        BaseProgressBar4JPanel.setLayout(null);
+        BaseProgressBar4JPanel.setBackground(Color.GRAY);
+        BaseProgressBar4JPanel.setBounds(250, 642, 300, 29);
+        panelMainButton.add(BaseProgressBar4JPanel);
+        BaseProgressBar4JPanel.setOpaque(true);
 	        
 	        
-	        //icona
-	        GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
-	        GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
-	        panelMainButton.add(GeneraEsercizioIcon);
-	        
-	        JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
-	        StartTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-	        StartTimeIndexJLabel.setBounds(250, 499, 53, 14);
-	        panelMainButton.add(StartTimeIndexJLabel);
-	        
-	        JLabel EndTimeIndexJLabel = new JLabel("Tempo 300");
-	        EndTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-	        EndTimeIndexJLabel.setBounds(492, 499, 64, 14);
-	        panelMainButton.add(EndTimeIndexJLabel);
-	        
-	        
-	        
-	        JLabel HelpIconJLabel = new JLabel("Help");
-	        HelpIconJLabel.setBounds(1343, 460, 34, 46);
-	        panelMainButton.add(HelpIconJLabel);
-	        HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-	        
-	        JPanel BaseProgressBar1JPanel = new JPanel();
-	        BaseProgressBar1JPanel.setBackground(Color.GRAY);
-	        BaseProgressBar1JPanel.setBounds(250, 524, 300, 29);
-	        panelMainButton.add(BaseProgressBar1JPanel);
-	        BaseProgressBar1JPanel.setLayout(null);
-	        BaseProgressBar1JPanel.setOpaque(true);
-	        
-	        JPanel BaseProgressBar2JPanel = new JPanel();
-	        BaseProgressBar2JPanel.setVisible(false);
-	        BaseProgressBar2JPanel.setLayout(null);
-	        BaseProgressBar2JPanel.setBackground(Color.GRAY);
-	        BaseProgressBar2JPanel.setBounds(250, 564, 300, 29);
-	        panelMainButton.add(BaseProgressBar2JPanel);
-	        BaseProgressBar2JPanel.setOpaque(true);
-	        
-	        JPanel BaseProgressBar3JPanel = new JPanel();
-	        BaseProgressBar3JPanel.setVisible(false);
-	        BaseProgressBar3JPanel.setLayout(null);
-	        BaseProgressBar3JPanel.setBackground(Color.GRAY);
-	        BaseProgressBar3JPanel.setBounds(250, 604, 300, 29);
-	        panelMainButton.add(BaseProgressBar3JPanel);
-	        BaseProgressBar3JPanel.setOpaque(true);
-	        
-	        JPanel BaseProgressBar4JPanel = new JPanel();
-	        BaseProgressBar4JPanel.setVisible(false);
-	        BaseProgressBar4JPanel.setLayout(null);
-	        BaseProgressBar4JPanel.setBackground(Color.GRAY);
-	        BaseProgressBar4JPanel.setBounds(250, 642, 300, 29);
-	        panelMainButton.add(BaseProgressBar4JPanel);
-	        BaseProgressBar4JPanel.setOpaque(true);
-	        
-	        
-	        JPanel BaseProgressBar5JPanel = new JPanel();
-	        BaseProgressBar5JPanel.setVisible(false);
-	        BaseProgressBar5JPanel.setLayout(null);
-	        BaseProgressBar5JPanel.setBackground(Color.GRAY);
-	        BaseProgressBar5JPanel.setBounds(250, 682, 300, 29);
-	        panelMainButton.add(BaseProgressBar5JPanel);
-	        BaseProgressBar5JPanel.setOpaque(true);
-	        
-	        
-	        JPanel JobDuration1JPanel = new JPanel();
-	        JobDuration1JPanel.setVisible(false);
-	        JobDuration1JPanel.setLayout(null);
-	        JobDuration1JPanel.setBackground(Color.GREEN);
-	        JobDuration1JPanel.setMaximumSize(new Dimension(300,29));
-	        JobDuration1JPanel.setOpaque(true);
-	        
-	        JPanel JobDuration2JPanel = new JPanel();
-	        JobDuration2JPanel.setVisible(false);
-	        JobDuration2JPanel.setLayout(null);
-	        JobDuration2JPanel.setBackground(Color.GREEN);
-	        JobDuration2JPanel.setMaximumSize(new Dimension(300,29));
-	        JobDuration2JPanel.setOpaque(true);
-	        
-	        JPanel JobDuration3JPanel = new JPanel();
-	        JobDuration3JPanel.setVisible(false);
-	        JobDuration3JPanel.setLayout(null);
-	        JobDuration3JPanel.setBackground(Color.GREEN);
-	        JobDuration3JPanel.setMaximumSize(new Dimension(300,29));
-	        JobDuration3JPanel.setOpaque(true);
-	        
-	        JPanel JobDuration4JPanel = new JPanel();
-	        JobDuration4JPanel.setVisible(false);
-	        JobDuration4JPanel.setLayout(null);
-	        JobDuration4JPanel.setBackground(Color.GREEN);
-	        JobDuration4JPanel.setMaximumSize(new Dimension(300,29));
-	        JobDuration4JPanel.setOpaque(true);
-	        
-	        JPanel JobDuration5JPanel = new JPanel();
-	        JobDuration5JPanel.setVisible(false);
-	        JobDuration5JPanel.setLayout(null);
-	        JobDuration5JPanel.setBackground(Color.GREEN);
-	        JobDuration5JPanel.setMaximumSize(new Dimension(300,29));
-	        JobDuration5JPanel.setOpaque(true);
-	        
-	        
-	        
-	   
-	        JPanel CriticalArea1JPanel1 = new JPanel();
-	        CriticalArea1JPanel1.setVisible(false);
-	        CriticalArea1JPanel1.setLayout(null);
-	        CriticalArea1JPanel1.setBackground(Color.RED);
-	        CriticalArea1JPanel1.setOpaque(true);
-	        CriticalArea1JPanel1.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea2JPanel1 = new JPanel();
-	        CriticalArea2JPanel1.setVisible(false);
-	        CriticalArea2JPanel1.setLayout(null);
-	        CriticalArea2JPanel1.setBackground(Color.RED);
-	        CriticalArea2JPanel1.setOpaque(true);
-	        CriticalArea2JPanel1.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea3JPanel1 = new JPanel();
-	        CriticalArea3JPanel1.setVisible(false);
-	        CriticalArea3JPanel1.setLayout(null);
-	        CriticalArea3JPanel1.setBackground(Color.RED);
-	        CriticalArea3JPanel1.setOpaque(true);
-	        CriticalArea3JPanel1.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        JPanel CriticalArea1JPanel2 = new JPanel();
-	        CriticalArea1JPanel2.setVisible(false);
-	        CriticalArea1JPanel2.setLayout(null);
-	        CriticalArea1JPanel2.setBackground(Color.RED);
-	        CriticalArea1JPanel2.setOpaque(true);
-	        CriticalArea1JPanel2.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea2JPanel2 = new JPanel();
-	        CriticalArea2JPanel2.setVisible(false);
-	        CriticalArea2JPanel2.setLayout(null);
-	        CriticalArea2JPanel2.setBackground(Color.RED);
-	        CriticalArea2JPanel2.setOpaque(true);
-	        CriticalArea2JPanel2.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea3JPanel2 = new JPanel();
-	        CriticalArea3JPanel2.setVisible(false);
-	        CriticalArea3JPanel2.setLayout(null);
-	        CriticalArea3JPanel2.setBackground(Color.RED);
-	        CriticalArea3JPanel2.setOpaque(true);
-	        CriticalArea3JPanel2.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea1JPanel3 = new JPanel();
-	        CriticalArea1JPanel3.setVisible(false);
-	        CriticalArea1JPanel3.setLayout(null);
-	        CriticalArea1JPanel3.setBackground(Color.RED);
-	        CriticalArea1JPanel3.setOpaque(true);
-	        CriticalArea1JPanel3.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        JPanel CriticalArea2JPanel3 = new JPanel();
-	        CriticalArea2JPanel3.setVisible(false);
-	        CriticalArea2JPanel3.setLayout(null);
-	        CriticalArea2JPanel3.setBackground(Color.RED);
-	        CriticalArea2JPanel3.setOpaque(true);
-	        CriticalArea2JPanel3.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea3JPanel3 = new JPanel();
-	        CriticalArea3JPanel3.setVisible(false);
-	        CriticalArea3JPanel3.setLayout(null);
-	        CriticalArea3JPanel3.setBackground(Color.RED);
-	        CriticalArea3JPanel3.setOpaque(true);
-	        CriticalArea3JPanel3.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        
-	        JPanel CriticalArea1JPanel4 = new JPanel();
-	        CriticalArea1JPanel4.setVisible(false);
-	        CriticalArea1JPanel4.setLayout(null);
-	        CriticalArea1JPanel4.setBackground(Color.RED);
-	        CriticalArea1JPanel4.setOpaque(true);
-	        CriticalArea1JPanel4.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        JPanel CriticalArea2JPanel4 = new JPanel();
-	        CriticalArea2JPanel4.setVisible(false);
-	        CriticalArea2JPanel4.setLayout(null);
-	        CriticalArea2JPanel4.setBackground(Color.RED);
-	        CriticalArea2JPanel4.setOpaque(true);
-	        CriticalArea2JPanel4.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        JPanel CriticalArea3JPanel4 = new JPanel();
-	        CriticalArea3JPanel4.setVisible(false);
-	        CriticalArea3JPanel4.setLayout(null);
-	        CriticalArea3JPanel4.setBackground(Color.RED);
-	        CriticalArea3JPanel4.setOpaque(true);
-	        CriticalArea3JPanel4.setMaximumSize(new Dimension(300,29));
-	        
-	        
-	        
-	        JPanel CriticalArea1JPanel5 = new JPanel();
-	        CriticalArea1JPanel5.setVisible(false);
-	        CriticalArea1JPanel5.setLayout(null);
-	        CriticalArea1JPanel5.setBackground(Color.RED);
-	        CriticalArea1JPanel5.setOpaque(true);
-	        CriticalArea1JPanel5.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea2JPanel5 = new JPanel();
-	        CriticalArea2JPanel5.setVisible(false);
-	        CriticalArea2JPanel5.setLayout(null);
-	        CriticalArea2JPanel5.setBackground(Color.RED);
-	        CriticalArea2JPanel5.setOpaque(true);
-	        CriticalArea2JPanel5.setMaximumSize(new Dimension(300,29));
-	        
-	        JPanel CriticalArea3JPanel5 = new JPanel();
-	        CriticalArea3JPanel5.setVisible(false);
-	        CriticalArea3JPanel5.setLayout(null);
-	        CriticalArea3JPanel5.setBackground(Color.RED);
-	        CriticalArea3JPanel5.setOpaque(true);
-	        CriticalArea3JPanel5.setMaximumSize(new Dimension(300,29));
-	        
-	       
-	        
-	     
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        
-	        //JProgressBar progressBarDurataProcesso_1 = new JProgressBar();
-	    //    progressBarDurataProcesso_1.setMaximum(300);
-	      //  progressBarDurataProcesso_1.setBackground(new Color(0, 250, 154));
-	       // progressBarP1_Second.setBounds(39, 522, 146, 14);
-	        
-	        
-	        JProgressBar progressBarZona1_1 = new JProgressBar();
-	        progressBarZona1_1.setMaximum(300);       
-	        progressBarZona1_1.setBackground(Color.RED);
-	        
-	        JProgressBar progressBarZona2_1 = new JProgressBar();
-	        progressBarZona2_1.setMaximum(300);       
-	        progressBarZona2_1.setBackground(new Color(229,57,53));
-	        
-	        JProgressBar progressBarZona3_1 = new JProgressBar();
-	        progressBarZona3_1.setMaximum(300);       
-	        progressBarZona3_1.setBackground(new Color(229,57,53));
-	        
-	        JProgressBar progressBarDurataProcesso_2 = new JProgressBar();
-	        progressBarDurataProcesso_2.setMaximum(300);
-	        progressBarDurataProcesso_2.setBackground(new Color(0, 250, 154));
-	       // progressBarP1_Second.setBounds(39, 522, 146, 14);
+        JPanel BaseProgressBar5JPanel = new JPanel();
+        BaseProgressBar5JPanel.setVisible(false);
+        BaseProgressBar5JPanel.setLayout(null);
+        BaseProgressBar5JPanel.setBackground(Color.GRAY);
+        BaseProgressBar5JPanel.setBounds(250, 682, 300, 29);
+        panelMainButton.add(BaseProgressBar5JPanel);
+        BaseProgressBar5JPanel.setOpaque(true);
+        
+        JPanel Indicatore1 = new JPanel();
+        BaseProgressBar1JPanel.add(Indicatore1);
+        Indicatore1.setBackground(Color.BLACK);
+        Indicatore1.setBounds(0,0,4,29);
+        Indicatore1.setVisible(true);
+        Indicatore1.setLayout(null);
+        Indicatore1.setOpaque(true);
+        
+        JPanel Indicatore2 = new JPanel();
+        BaseProgressBar2JPanel.add(Indicatore2);
+        Indicatore2.setBackground(Color.BLACK);
+        Indicatore2.setBounds(0,0,4,29);
+        Indicatore2.setVisible(true);
+        Indicatore2.setLayout(null);
+        Indicatore2.setOpaque(true);
+        
+        JPanel Indicatore3= new JPanel();
+        BaseProgressBar3JPanel.add(Indicatore3);
+        Indicatore3.setBackground(Color.BLACK);
+        Indicatore3.setBounds(0,0,4,29);
+        Indicatore3.setVisible(true);
+        Indicatore3.setLayout(null);
+        Indicatore3.setOpaque(true);
+        
+        JPanel Indicatore4 = new JPanel();
+        BaseProgressBar4JPanel.add(Indicatore4);
+        Indicatore4.setBackground(Color.BLACK);
+        Indicatore4.setBounds(0,0,4,29);
+        Indicatore4.setVisible(true);
+        Indicatore4.setLayout(null);
+        Indicatore4.setOpaque(true);
+        
+        JPanel Indicatore5 = new JPanel();
+        BaseProgressBar5JPanel.add(Indicatore5);
+        Indicatore5.setBackground(Color.BLACK);
+        Indicatore5.setBounds(0,0,4,29);
+        Indicatore5.setVisible(true);
+        Indicatore5.setLayout(null);
+        Indicatore5.setOpaque(true);
+     
+        
+ 
+        
+       
+        JPanel JobDuration1JPanel = new JPanel();
+        JobDuration1JPanel.setVisible(false);
+        JobDuration1JPanel.setLayout(null);
+        JobDuration1JPanel.setBackground(Color.GREEN);
+        JobDuration1JPanel.setMaximumSize(new Dimension(300,29));
+        JobDuration1JPanel.setOpaque(true);
+        
+        JPanel JobDuration2JPanel = new JPanel();
+        JobDuration2JPanel.setVisible(false);
+        JobDuration2JPanel.setLayout(null);
+        JobDuration2JPanel.setBackground(Color.GREEN);
+        JobDuration2JPanel.setMaximumSize(new Dimension(300,29));
+        JobDuration2JPanel.setOpaque(true);
+        
+        JPanel JobDuration3JPanel = new JPanel();
+        JobDuration3JPanel.setVisible(false);
+        JobDuration3JPanel.setLayout(null);
+        JobDuration3JPanel.setBackground(Color.GREEN);
+        JobDuration3JPanel.setMaximumSize(new Dimension(300,29));
+        JobDuration3JPanel.setOpaque(true);
+        
+        JPanel JobDuration4JPanel = new JPanel();
+        JobDuration4JPanel.setVisible(false);
+        JobDuration4JPanel.setLayout(null);
+        JobDuration4JPanel.setBackground(Color.GREEN);
+        JobDuration4JPanel.setMaximumSize(new Dimension(300,29));
+        JobDuration4JPanel.setOpaque(true);
+        
+        JPanel JobDuration5JPanel = new JPanel();
+        JobDuration5JPanel.setVisible(false);
+        JobDuration5JPanel.setLayout(null);
+        JobDuration5JPanel.setBackground(Color.GREEN);
+        JobDuration5JPanel.setMaximumSize(new Dimension(300,29));
+        JobDuration5JPanel.setOpaque(true);
+
+        JPanel CriticalArea1JPanel1 = new JPanel();
+        CriticalArea1JPanel1.setVisible(false);
+        CriticalArea1JPanel1.setLayout(null);
+        CriticalArea1JPanel1.setBackground(Color.RED);
+        CriticalArea1JPanel1.setOpaque(true);
+        CriticalArea1JPanel1.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea2JPanel1 = new JPanel();
+        CriticalArea2JPanel1.setVisible(false);
+        CriticalArea2JPanel1.setLayout(null);
+        CriticalArea2JPanel1.setBackground(Color.RED);
+        CriticalArea2JPanel1.setOpaque(true);
+        CriticalArea2JPanel1.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea3JPanel1 = new JPanel();
+        CriticalArea3JPanel1.setVisible(false);
+        CriticalArea3JPanel1.setLayout(null);
+        CriticalArea3JPanel1.setBackground(Color.RED);
+        CriticalArea3JPanel1.setOpaque(true);
+        CriticalArea3JPanel1.setMaximumSize(new Dimension(300,29));
+        
+        
+        JPanel CriticalArea1JPanel2 = new JPanel();
+        CriticalArea1JPanel2.setVisible(false);
+        CriticalArea1JPanel2.setLayout(null);
+        CriticalArea1JPanel2.setBackground(Color.RED);
+        CriticalArea1JPanel2.setOpaque(true);
+        CriticalArea1JPanel2.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea2JPanel2 = new JPanel();
+        CriticalArea2JPanel2.setVisible(false);
+        CriticalArea2JPanel2.setLayout(null);
+        CriticalArea2JPanel2.setBackground(Color.RED);
+        CriticalArea2JPanel2.setOpaque(true);
+        CriticalArea2JPanel2.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea3JPanel2 = new JPanel();
+        CriticalArea3JPanel2.setVisible(false);
+        CriticalArea3JPanel2.setLayout(null);
+        CriticalArea3JPanel2.setBackground(Color.RED);
+        CriticalArea3JPanel2.setOpaque(true);
+        CriticalArea3JPanel2.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea1JPanel3 = new JPanel();
+        CriticalArea1JPanel3.setVisible(false);
+        CriticalArea1JPanel3.setLayout(null);
+        CriticalArea1JPanel3.setBackground(Color.RED);
+        CriticalArea1JPanel3.setOpaque(true);
+        CriticalArea1JPanel3.setMaximumSize(new Dimension(300,29));
+        
+        
+        JPanel CriticalArea2JPanel3 = new JPanel();
+        CriticalArea2JPanel3.setVisible(false);
+        CriticalArea2JPanel3.setLayout(null);
+        CriticalArea2JPanel3.setBackground(Color.RED);
+        CriticalArea2JPanel3.setOpaque(true);
+        CriticalArea2JPanel3.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea3JPanel3 = new JPanel();
+        CriticalArea3JPanel3.setVisible(false);
+        CriticalArea3JPanel3.setLayout(null);
+        CriticalArea3JPanel3.setBackground(Color.RED);
+        CriticalArea3JPanel3.setOpaque(true);
+        CriticalArea3JPanel3.setMaximumSize(new Dimension(300,29));
+        
+        
+        
+        JPanel CriticalArea1JPanel4 = new JPanel();
+        CriticalArea1JPanel4.setVisible(false);
+        CriticalArea1JPanel4.setLayout(null);
+        CriticalArea1JPanel4.setBackground(Color.RED);
+        CriticalArea1JPanel4.setOpaque(true);
+        CriticalArea1JPanel4.setMaximumSize(new Dimension(300,29));
+        
+        
+        JPanel CriticalArea2JPanel4 = new JPanel();
+        CriticalArea2JPanel4.setVisible(false);
+        CriticalArea2JPanel4.setLayout(null);
+        CriticalArea2JPanel4.setBackground(Color.RED);
+        CriticalArea2JPanel4.setOpaque(true);
+        CriticalArea2JPanel4.setMaximumSize(new Dimension(300,29));
+        
+        
+        JPanel CriticalArea3JPanel4 = new JPanel();
+        CriticalArea3JPanel4.setVisible(false);
+        CriticalArea3JPanel4.setLayout(null);
+        CriticalArea3JPanel4.setBackground(Color.RED);
+        CriticalArea3JPanel4.setOpaque(true);
+        CriticalArea3JPanel4.setMaximumSize(new Dimension(300,29));
+        
+        
+        
+        JPanel CriticalArea1JPanel5 = new JPanel();
+        CriticalArea1JPanel5.setVisible(false);
+        CriticalArea1JPanel5.setLayout(null);
+        CriticalArea1JPanel5.setBackground(Color.RED);
+        CriticalArea1JPanel5.setOpaque(true);
+        CriticalArea1JPanel5.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea2JPanel5 = new JPanel();
+        CriticalArea2JPanel5.setVisible(false);
+        CriticalArea2JPanel5.setLayout(null);
+        CriticalArea2JPanel5.setBackground(Color.RED);
+        CriticalArea2JPanel5.setOpaque(true);
+        CriticalArea2JPanel5.setMaximumSize(new Dimension(300,29));
+        
+        JPanel CriticalArea3JPanel5 = new JPanel();
+        CriticalArea3JPanel5.setVisible(false);
+        CriticalArea3JPanel5.setLayout(null);
+        CriticalArea3JPanel5.setBackground(Color.RED);
+        CriticalArea3JPanel5.setOpaque(true);
+        CriticalArea3JPanel5.setMaximumSize(new Dimension(300,29));
 	        
 	    
-	        JProgressBar progressBarZona1_2 = new JProgressBar();
-	        progressBarZona1_2.setMaximum(300);       
-	        progressBarZona1_2.setBackground(Color.RED);
 	        
-	        JProgressBar progressBarZona2_2 = new JProgressBar();
-	        progressBarZona2_2.setMaximum(300);       
-	        progressBarZona2_2.setBackground(new Color(229,57,53));
 	        
-	        JProgressBar progressBarZona3_2 = new JProgressBar();
-	        progressBarZona3_2.setMaximum(300);       
-	        progressBarZona3_2.setBackground(new Color(229,57,53));
-
-
+	        
+	        
+//------------------------------------------------------------------------------------------------
+//								ACTIONS PERFORMED
+//------------------------------------------------------------------------------------------------	        
+	        
 	        
 	        
 
@@ -711,33 +550,38 @@ public class Semafori extends JFrame {
 					int rowCount = tabella.getRowCount();
 					int columnCount = tabella.getColumnCount();
 					int randomNum=0;
-					int k=0;
-					int start_processo=0;
-					int end_processo=0;
+					int startpoint=0,endpoint=0;
+					int end_processo=0,start_processo=0;
 					int start_critica1=0,start_critica2=0,start_critica3=0;
 					int end_critica1=0,end_critica2=0;
 			
 					StartEndProcessi.removeAll(StartEndProcessi);
+					
 					//algoritmo di generazione valori 
 					for(int i=0; i<rowCount; i++) 
 					{
 						StartEndProcessi.add(new ProcessoSemaforo());
+						
 						for(int j=1; j<columnCount; j++) 
 						{
 						
 							//inizio processo
 							if(j==1)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(1, 50);
+								
+								randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+								start_processo=randomNum;
 							}
 							
 							//fine processo
 							if(j==2)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(270, 300);
+								
+								randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
 								end_processo=randomNum;
+						
 							}
 							
 							
@@ -745,16 +589,20 @@ public class Semafori extends JFrame {
 						
 							if(j==3)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(55, 80);
+								
+								randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+								start_critica1=randomNum;
 								
 							}
 							
 							//fine zona critica 1
 							if(j==4)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(100, 140);
+								
+								randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+								end_critica1=randomNum;
 								
 							}
 							
@@ -763,8 +611,10 @@ public class Semafori extends JFrame {
 							//start zona critica 2: >end zona critica 1 && compreso tra 160-184
 							if(j==5)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(160, 184);
+								
+								randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+								start_critica2=randomNum;
 								
 							}
 							
@@ -772,54 +622,54 @@ public class Semafori extends JFrame {
 							//end zona critica 2: > start zona critica 2 && compreso tra 195-230
 							if(j==6)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(195, 230);
+								
+								randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+								end_critica2=randomNum;
 							}
 							//inizio zona critica 3
 							//start zona critica 3: >end zona critica 2 && compreso tra 238-268
 							if(j==7)
 							{
-								randomNum= ThreadLocalRandom.current().nextInt(238, 268);
+								
+								randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
 								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+								start_critica3=randomNum;
 							}
 							//fine zona critica 3
 							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
 							if(j==8)
 							{
-								do
-									randomNum= ThreadLocalRandom.current().nextInt(275,287);
-								while(randomNum>end_processo);
+								
+								randomNum= ThreadLocalRandom.current().nextInt(250,280);
+								
+								
+								
 								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+								
 							}
+							
 							model1.setValueAt(randomNum, i, j);
-
+							randomNum=0;
 					}//second for
 							
 	        }//first for
 					
-					
-					
-			String NumeroProcessiS = (String) NumProcessiComboBox.getSelectedItem();
-			int NumeroProcessi= Integer.valueOf(NumeroProcessiS);
-			int startpoint,endpoint;
-			startpoint=endpoint=0;
-			
-			
-			
-			if(NumeroProcessi==1)
+
+			if(rowCount==1)
 			{
-				BaseProgressBar1JPanel.removeAll();
+				//Repaint di P1
+			/*	BaseProgressBar1JPanel.removeAll();
 				BaseProgressBar1JPanel.repaint();
-				JobDuration1JPanel.removeAll();
-				JobDuration1JPanel.repaint();
-						
+			*/
+				
 				//Job Duration 1
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[INIZIO] : Valori in posizione: " +startpoint + " e "+endpoint);			
 				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.setVisible(true);
-		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
+				BaseProgressBar1JPanel.add(JobDuration1JPanel);
+		        JobDuration1JPanel.setVisible(true);
 		       
 		        //Critical Area 1 JPanel 1
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
@@ -847,18 +697,17 @@ public class Semafori extends JFrame {
 			}
 			
 			
-			if(NumeroProcessi==2)
+			else if(rowCount==2)
 			{
-				//P1 e P2
-				BaseProgressBar1JPanel.removeAll();
+				//Repaint di P1 e P2
+			
+			/*	BaseProgressBar1JPanel.removeAll();
 				BaseProgressBar1JPanel.repaint();
-				JobDuration1JPanel.removeAll();
-				JobDuration1JPanel.repaint();
 				BaseProgressBar2JPanel.removeAll();
 				BaseProgressBar2JPanel.repaint();
-				JobDuration2JPanel.removeAll();
-				JobDuration2JPanel.repaint();
 				
+			*/
+		
 				//PROCESSO 1 !!!
 						
 				//Job Duration 1
@@ -866,8 +715,8 @@ public class Semafori extends JFrame {
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[INIZIO P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
 				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.setVisible(true);
 		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
+		        JobDuration1JPanel.setVisible(true);
 		       
 		        //Critical Area 1 JPanel 1
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
@@ -901,8 +750,8 @@ public class Semafori extends JFrame {
 				endpoint=StartEndProcessi.get(1).fineProcesso;
 				System.out.println("[INIZIO P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
 				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration2JPanel.setVisible(true);
 		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
+		        JobDuration2JPanel.setVisible(true);
 		       
 		        //Critical Area 1 JPanel 2
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
@@ -931,73 +780,473 @@ public class Semafori extends JFrame {
 		     
 			}
 			
-			
-			
-			/*	
-			if(NumeroProcessi==3)
-				
+			else if(rowCount==3)
 			{
-				System.out.println("Debug 3");
-				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(4)));
-				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(5)));
-				progressBarP3_Second.setMaximum(endpoint);
-				progressBarP3_Second.setMinimum(0);
-				progressBarP3_Second.setBounds(startpoint+250, 602, 550-endpoint, 29);
-				for(int m=0; m<=endpoint; m++) {
-		        	progressBarP3_Second.setValue(m);
-		        }
-		        progressBarP3_Second.setVisible(true);
-			}
-			else if(NumeroProcessi==1 || NumeroProcessi==2)
-			{
-				progressBarP3_Second.setVisible(false);
-			}
+				//Repaint di P1, P2, P3
 				
-			
-			if(NumeroProcessi==4)
-			{
-				System.out.println("Debug 4");
-				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(6)));
-				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(7)));
-				progressBarP4_Second.setMaximum(endpoint);
-				progressBarP4_Second.setMinimum(0);
-				
-				progressBarP4_Second.setBounds(startpoint+250, 640, 550-endpoint, 29);
-				for(int m=0; m<=endpoint; m++) {
-		        	progressBarP4_Second.setValue(m);
-		        }
-		        progressBarP4_Second.setVisible(true);
-				
-			}
-			else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3)
-			{
-				progressBarP4_Second.setVisible(false);
-			}
-				
-			
-			if(NumeroProcessi==5)
-			{
-				System.out.println("Debug 5");
-				//startpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(8)));
-				//endpoint=findRightPositionJProgressBar(Integer.valueOf(StartEndProcessi.get(9)));
-				progressBarP5_Second.setMaximum(endpoint);
-				progressBarP5_Second.setMinimum(0);
-				progressBarP5_Second.setBounds(startpoint+250, 680, 550-endpoint, 29);
-				for(int m=0; m<=endpoint; m++) {
-		        	progressBarP5_Second.setValue(m);
-		        }
-		        progressBarP5_Second.setVisible(true);
-			
-			}
-			else if(NumeroProcessi==1 || NumeroProcessi==2 || NumeroProcessi==3 || NumeroProcessi==4)
-			{
-				
-				progressBarP5_Second.setVisible(false);
-			}
+			/*	BaseProgressBar1JPanel.removeAll();
+				BaseProgressBar1JPanel.repaint();
+				BaseProgressBar2JPanel.removeAll();
+				BaseProgressBar2JPanel.repaint();
+				BaseProgressBar3JPanel.removeAll();
+				BaseProgressBar3JPanel.repaint();
 			*/
-				
-			
 		
+				//PROCESSO 1 !!!
+						
+				//Job Duration 1
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
+				JobDuration1JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea1JPanel1);
+				CriticalArea1JPanel1.setVisible(true);
+	        
+				//Critical Area 2 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea2JPanel1);
+				CriticalArea2JPanel1.setVisible(true);
+				
+				//Critical Area 3 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea3JPanel1);
+				CriticalArea3JPanel1.setVisible(true);
+			
+		        //PROCESSO 2 !!!
+				
+						
+				//Job Duration 2
+				startpoint=StartEndProcessi.get(1).inizioProcesso;
+				endpoint=StartEndProcessi.get(1).fineProcesso;
+				System.out.println("[INIZIO P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
+				JobDuration2JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea1JPanel2);
+				CriticalArea1JPanel2.setVisible(true);
+	        
+				//Critical Area 2 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea2JPanel2);
+				CriticalArea2JPanel2.setVisible(true);
+				
+				//Critical Area 3 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea3JPanel2);
+				CriticalArea3JPanel2.setVisible(true);
+				
+				
+				
+				//PROCESSO 3 !!!
+				
+				//Job Duration 3
+				startpoint=StartEndProcessi.get(2).inizioProcesso;
+				endpoint=StartEndProcessi.get(2).fineProcesso;
+				System.out.println("[INIZIO P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
+		        JobDuration3JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea1JPanel3);
+				CriticalArea1JPanel3.setVisible(true);
+	        
+				//Critical Area 2 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea2JPanel3);
+				CriticalArea2JPanel3.setVisible(true);
+				
+				//Critical Area 3 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea3JPanel3);
+				CriticalArea3JPanel3.setVisible(true);
+				
+		     
+			}
+			else if(rowCount==4)
+			{
+				//Repaint di P1, P2, P3, P4
+				
+			/*	BaseProgressBar1JPanel.removeAll();
+				BaseProgressBar1JPanel.repaint();
+				BaseProgressBar2JPanel.removeAll();
+				BaseProgressBar2JPanel.repaint();
+				BaseProgressBar3JPanel.removeAll();
+				BaseProgressBar3JPanel.repaint();
+				BaseProgressBar4JPanel.removeAll();
+				BaseProgressBar4JPanel.repaint();
+		
+			*/
+				//PROCESSO 1 !!!
+						
+				//Job Duration 1
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
+				JobDuration1JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea1JPanel1);
+				CriticalArea1JPanel1.setVisible(true);
+	        
+				//Critical Area 2 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea2JPanel1);
+				CriticalArea2JPanel1.setVisible(true);
+				
+				//Critical Area 3 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea3JPanel1);
+				CriticalArea3JPanel1.setVisible(true);
+			
+		        //PROCESSO 2 !!!
+				
+						
+				//Job Duration 2
+				startpoint=StartEndProcessi.get(1).inizioProcesso;
+				endpoint=StartEndProcessi.get(1).fineProcesso;
+				System.out.println("[INIZIO P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
+				JobDuration2JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea1JPanel2);
+				CriticalArea1JPanel2.setVisible(true);
+	        
+				//Critical Area 2 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea2JPanel2);
+				CriticalArea2JPanel2.setVisible(true);
+				
+				//Critical Area 3 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea3JPanel2);
+				CriticalArea3JPanel2.setVisible(true);
+				
+				
+				
+				//PROCESSO 3 !!!
+				
+				//Job Duration 3
+				startpoint=StartEndProcessi.get(2).inizioProcesso;
+				endpoint=StartEndProcessi.get(2).fineProcesso;
+				System.out.println("[INIZIO P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
+		        JobDuration3JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea1JPanel3);
+				CriticalArea1JPanel3.setVisible(true);
+	        
+				//Critical Area 2 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea2JPanel3);
+				CriticalArea2JPanel3.setVisible(true);
+				
+				//Critical Area 3 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea3JPanel3);
+				CriticalArea3JPanel3.setVisible(true);
+				
+
+				
+				//PROCESSO 4 !!!
+				
+				//Job Duration 4
+				startpoint=StartEndProcessi.get(3).inizioProcesso;
+				endpoint=StartEndProcessi.get(3).fineProcesso;
+				System.out.println("[INIZIO P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
+		        JobDuration4JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea1JPanel4);
+				CriticalArea1JPanel4.setVisible(true);
+	        
+				//Critical Area 2 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea2JPanel4);
+				CriticalArea2JPanel4.setVisible(true);
+				
+				//Critical Area 3 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea3JPanel4);
+				CriticalArea3JPanel4.setVisible(true);
+
+			}
+			else if(rowCount==5)
+			{
+				//Repaint di P1, P2, P3, P4, P5
+				
+			/*	BaseProgressBar1JPanel.removeAll();
+				BaseProgressBar1JPanel.repaint();
+				BaseProgressBar2JPanel.removeAll();
+				BaseProgressBar2JPanel.repaint();
+				BaseProgressBar3JPanel.removeAll();
+				BaseProgressBar3JPanel.repaint();
+				BaseProgressBar4JPanel.removeAll();
+				BaseProgressBar4JPanel.repaint();
+				BaseProgressBar5JPanel.removeAll();
+				BaseProgressBar5JPanel.repaint();
+			*/
+				//PROCESSO 1 !!!
+						
+				//Job Duration 1
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
+				JobDuration1JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea1JPanel1);
+				CriticalArea1JPanel1.setVisible(true);
+	        
+				//Critical Area 2 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea2JPanel1);
+				CriticalArea2JPanel1.setVisible(true);
+				
+				//Critical Area 3 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.add(CriticalArea3JPanel1);
+				CriticalArea3JPanel1.setVisible(true);
+			
+		        //PROCESSO 2 !!!
+				
+						
+				//Job Duration 2
+				startpoint=StartEndProcessi.get(1).inizioProcesso;
+				endpoint=StartEndProcessi.get(1).fineProcesso;
+				System.out.println("[INIZIO P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
+				JobDuration2JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea1JPanel2);
+				CriticalArea1JPanel2.setVisible(true);
+	        
+				//Critical Area 2 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea2JPanel2);
+				CriticalArea2JPanel2.setVisible(true);
+				
+				//Critical Area 3 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.add(CriticalArea3JPanel2);
+				CriticalArea3JPanel2.setVisible(true);
+				
+				
+				
+				//PROCESSO 3 !!!
+				
+				//Job Duration 3
+				startpoint=StartEndProcessi.get(2).inizioProcesso;
+				endpoint=StartEndProcessi.get(2).fineProcesso;
+				System.out.println("[INIZIO P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
+		        JobDuration3JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea1JPanel3);
+				CriticalArea1JPanel3.setVisible(true);
+	        
+				//Critical Area 2 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea2JPanel3);
+				CriticalArea2JPanel3.setVisible(true);
+				
+				//Critical Area 3 JPanel 3
+				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.add(CriticalArea3JPanel3);
+				CriticalArea3JPanel3.setVisible(true);
+				
+
+				
+				//PROCESSO 4 !!!
+				
+				//Job Duration 4
+				startpoint=StartEndProcessi.get(3).inizioProcesso;
+				endpoint=StartEndProcessi.get(3).fineProcesso;
+				System.out.println("[INIZIO P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
+		        JobDuration4JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea1JPanel4);
+				CriticalArea1JPanel4.setVisible(true);
+	        
+				//Critical Area 2 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea2JPanel4);
+				CriticalArea2JPanel4.setVisible(true);
+				
+				//Critical Area 3 JPanel 4
+				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.add(CriticalArea3JPanel4);
+				CriticalArea3JPanel4.setVisible(true);
+				
+				
+				//PROCESSO 5 !!!
+				
+				//Job Duration 5
+				startpoint=StartEndProcessi.get(4).inizioProcesso;
+				endpoint=StartEndProcessi.get(4).fineProcesso;
+				System.out.println("[INIZIO P5] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration5JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+		        BaseProgressBar5JPanel.add(JobDuration5JPanel);
+		        JobDuration5JPanel.setVisible(true);
+		       
+		        //Critical Area 1 JPanel 5
+				startpoint=StartEndProcessi.get(4).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(4).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration5JPanel.add(CriticalArea1JPanel5);
+				CriticalArea1JPanel5.setVisible(true);
+	        
+				//Critical Area 2 JPanel 5
+				startpoint=StartEndProcessi.get(4).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(4).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration5JPanel.add(CriticalArea2JPanel5);
+				CriticalArea2JPanel5.setVisible(true);
+				
+				//Critical Area 3 JPanel 5
+				startpoint=StartEndProcessi.get(4).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(4).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration5JPanel.add(CriticalArea3JPanel5);
+				CriticalArea3JPanel5.setVisible(true);
+	
+			}
 
 		}
 	        	//mouseclicked end
@@ -1012,6 +1261,12 @@ public class Semafori extends JFrame {
 	        		GeneraEsercizioJLabel.setForeground(Color.BLACK);
 	        	}
 			});
+	        
+	        
+	        
+	        
+	        
+	        
 	        NumProcessiComboBox.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e)
@@ -1054,6 +1309,14 @@ public class Semafori extends JFrame {
 						BaseProgressBar3JPanel.setVisible(false);
 						BaseProgressBar4JPanel.setVisible(false);
 						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+						
+					
 					}
 					else if(sceltaNumero==2)
 					{
@@ -1062,6 +1325,12 @@ public class Semafori extends JFrame {
 						BaseProgressBar3JPanel.setVisible(false);
 						BaseProgressBar4JPanel.setVisible(false);
 						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
 					}
 					
 					else if(sceltaNumero==3)
@@ -1071,6 +1340,12 @@ public class Semafori extends JFrame {
 						BaseProgressBar3JPanel.setVisible(true);
 						BaseProgressBar4JPanel.setVisible(false);
 						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
 					}
 					
 					else if(sceltaNumero==4)
@@ -1080,6 +1355,12 @@ public class Semafori extends JFrame {
 						BaseProgressBar3JPanel.setVisible(true);
 						BaseProgressBar4JPanel.setVisible(true);
 						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
 					}
 					
 					else if(sceltaNumero==5)
@@ -1089,6 +1370,12 @@ public class Semafori extends JFrame {
 						BaseProgressBar3JPanel.setVisible(true);
 						BaseProgressBar4JPanel.setVisible(true);
 						BaseProgressBar5JPanel.setVisible(true);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
 					}
 					
 				}
@@ -1097,7 +1384,113 @@ public class Semafori extends JFrame {
 	       
 	       
 		
+			NumSemaforiComboBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
+					int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
+					if(numeroSemaforiInt==1)
+					{
+						//Attivo il Primo Semaforo 
+						labelGraficaSemaforo2.setVisible(true);
+						JLabelTextMutex2.setVisible(true);
+						//Disattivo il secondo
+						labelGraficaSemaforo2.setVisible(false);
+						JLabelTextMutex2.setVisible(false);
+					}
+					else if(numeroSemaforiInt==2)
+					{
+						//Abilito anche il secondo semaforo 
+						labelGraficaSemaforo2.setVisible(true);
+						JLabelTextMutex2.setVisible(true);
+					}
+						
+				}
+			});
+			
+			
+			
+			 labelIndietroIcon.addMouseListener(new MouseAdapter() {
+		        	@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						framechiamante.setVisible(true);
+						frame.setVisible(false);
+						frame.dispose();
+					}
+			
+		        	@Override
+		        	public void mouseEntered(MouseEvent e) 
+		        	{
+		        		labelIndietroIcon.setForeground(Color.RED);
+		        	}
+		        	@Override
+		        	public void mouseExited(MouseEvent e) 
+		        	{
+		        		labelIndietroIcon.setForeground(Color.BLACK);
+		        	}
+		        });
+			 
+			 
+			 labelSlideIcon.addMouseListener(new MouseAdapter() {
+		        	@Override
+		        	public void mouseClicked(MouseEvent e) {
+		        		Desktop d = Desktop.getDesktop();
+						try {
+							d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=232"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		        	}
+		        	@Override
+		        	public void mouseEntered(MouseEvent e) 
+		        	{
+		        		labelScrittaSlide.setForeground(Color.RED);
+		        	}
+		        	@Override
+		        	public void mouseExited(MouseEvent e) 
+		        	{
+		        		labelScrittaSlide.setForeground(Color.BLACK);
+		        	}
+		        });
 		
-		
+			 
+				labelYoutubeIcon.addMouseListener(new MouseAdapter() {
+		        	@Override
+		        	public void mouseClicked(MouseEvent e) {
+		        		Desktop d = Desktop.getDesktop();
+						try {
+							d.browse(new URI ("https://youtu.be/xPBZms_iICc?t=5976"));
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (URISyntaxException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+		        	}
+		        	@Override
+		        	public void mouseEntered(MouseEvent e) 
+		        	{
+		        		labelScrittaYoutube.setForeground(Color.RED);
+		        	}
+		        	@Override
+		        	public void mouseExited(MouseEvent e) 
+		        	{
+		        		labelScrittaYoutube.setForeground(Color.BLACK);
+		        	}
+		        });
+				
+				
+				
+			
+				
+				
+				
 	}
 }
