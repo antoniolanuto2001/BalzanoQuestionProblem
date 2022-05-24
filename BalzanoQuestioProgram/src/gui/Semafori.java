@@ -64,6 +64,7 @@ public class Semafori extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	public 	boolean continuaBoolean;
 	public ArrayList<ProcessoSemaforo> StartEndProcessi = new ArrayList<ProcessoSemaforo>();
 	final int min_JProgress_range=0;
 	final int max_JProgress_range=300;
@@ -86,6 +87,7 @@ public class Semafori extends JFrame {
 		
 		
 		
+		continuaBoolean=true;
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(255, 255, 255));
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -150,6 +152,7 @@ public class Semafori extends JFrame {
 		TextFieldNumProcessi.setColumns(10);
 		
 		JButton ResetButton = new JButton("Reset");
+		
 		ResetButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		ResetButton.setBackground(new Color(255, 255, 255));
 		ResetButton.setBounds(219, 96, 121, 23);
@@ -315,6 +318,7 @@ public class Semafori extends JFrame {
 		
 		GraficaIndicatoreSemafori TestIndicatore = new GraficaIndicatoreSemafori(0, 0, 4, 29);
 		BaseProgressBar1JPanel.add(TestIndicatore);
+		TestIndicatore.setLayout(null);
 		TestIndicatore.setVisible(true);
 	
 		
@@ -1497,47 +1501,68 @@ public class Semafori extends JFrame {
 				
 				StartPauseToggleButton.addMouseListener(new MouseAdapter() {
 					@Override
-					public void mouseClicked(MouseEvent e) {
-						
-						if(StartPauseToggleButton.isSelected()) 
+					public void mouseClicked(MouseEvent e) 
+					{	
+						if(StartPauseToggleButton.isSelected()&& StartEndProcessi.size()!=0) 
 						{
-							
+							continuaBoolean=true;
 							System.out.println("[ToggleButton]: START");
-							
-							for(int i=0; i<300; i++) 
-							{
+							TestIndicatore.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+							TestIndicatore.setXFinale(StartEndProcessi.get(0).fineProcesso);
+							Thread threadmuovereIndicatore = new Thread(new Runnable() {
 								
-								if(TestIndicatore.LimitReached() && StartPauseToggleButton.isSelected())
+								@Override
+								public void run() 
 								{
-									i=0; //riparti dall'inizio
-									TestIndicatore.Reset();
-								}
 									
-								else 
-								{
-									TestIndicatore.moveForward();
-									TestIndicatore.repaint(TestIndicatore.getX(), 0, 4, 29);
+									// TODO Auto-generated method stub
+									for(int i=0; i<300; i++) 
+									{										
+										TestIndicatore.moveForward();
+										if (continuaBoolean == false) 
+										{
+											
+											TestIndicatore.Reset(0);	
+											BaseProgressBar1JPanel.repaint();
+											break;
+										}
+										else if (TestIndicatore.LimitReached()) 
+										{
+											i=0;
+											TestIndicatore.Reset(StartEndProcessi.get(0).inizioProcesso);
+										}
+										try 
+										{
+											Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+											//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+											BaseProgressBar1JPanel.repaint();
+											Thread.sleep(10);
+										} 
+										catch (InterruptedException e1)
+										{
+											// TODO Auto-generated catch block
+											e1.printStackTrace();
+										}
+									}
 								}
-								
-								
-								try {
-									Thread.sleep(500);
-								} catch (InterruptedException e1) {
-									// TODO Auto-generated catch block
-									e1.printStackTrace();
-								}
-							}
+							});
+							threadmuovereIndicatore.start();
 						}
 						else 
 						{
 							System.out.println("[ToggleButton]: PAUSE");
-							TestIndicatore.Reset();
-							TestIndicatore.repaint(0,0,4,29);
+							continuaBoolean=false;
 						}
 					}
 				});
 				
-				
+				ResetButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) 
+					{
+						continuaBoolean=false;
+					}
+				});
 				
 	}
 }
