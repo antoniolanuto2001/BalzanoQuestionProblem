@@ -71,7 +71,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	private JFrame frame;
 	private int pieno=0;
 	private int[] numeri;
-	private int[] numeriFIFO;
+	private int[][] numeriFIFO;
 	private int[][] numeriLRU;
 	private int[][] numeriOPT;
 	private int[][] numeriCLOCK;
@@ -103,39 +103,11 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloPrincipale.setBounds(0, 0, 1440, 800);
 			frame.getContentPane().add(pannelloPrincipale);
 			pannelloPrincipale.setLayout(null);
-	        
-	        JLabel labelScrittaIndietro = new JLabel(" Indietro");
-	        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaIndietro.setBounds(20, 120, 53, 12);
-	        pannelloPrincipale.add(labelScrittaIndietro);
-	        
-	        JLabel labelIndietroIcon = new JLabel("Exit");
-		        labelIndietroIcon.addMouseListener(new MouseAdapter() {
-		        	@Override
-		        	public void mouseClicked(MouseEvent e) {
-		        		framechiamante.setVisible(true);
-						frame.setVisible(false);
-						frame.dispose();
-					}
-		        	@Override
-		        	public void mouseEntered(MouseEvent e) 
-		        	{
-		        		labelScrittaIndietro.setForeground(Color.RED);
-		        	}
-		        	@Override
-		        	public void mouseExited(MouseEvent e) 
-		        	{
-		        		labelScrittaIndietro.setForeground(Color.BLACK);
-		        	}
-		        });
-		        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-		        labelIndietroIcon.setBounds(29, 75, 34, 46);
-		        pannelloPrincipale.add(labelIndietroIcon);
 		        
 	        JLabel labelScrittaYoutube = new JLabel("Videolezione");
 		        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		        labelScrittaYoutube.setBounds(73, 120, 95, 12);
+		        labelScrittaYoutube.setBounds(1171, 120, 95, 12);
 		        pannelloPrincipale.add(labelScrittaYoutube);
 		        JLabel labelYoutubeIcon = new JLabel("Youtube");
 		        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -162,12 +134,12 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	}
 		        });
 		        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-		        labelYoutubeIcon.setBounds(93, 75, 53, 46);
+		        labelYoutubeIcon.setBounds(1196, 75, 53, 46);
 		        pannelloPrincipale.add(labelYoutubeIcon);
 		        
 	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
 		        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		        labelScrittaSlide.setBounds(166, 119, 95, 15);
+		        labelScrittaSlide.setBounds(1259, 119, 95, 15);
 		        pannelloPrincipale.add(labelScrittaSlide);
 		        JLabel labelSlideIcon = new JLabel("Slide");
 		        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -194,7 +166,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	}
 		        });
 		        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-		        labelSlideIcon.setBounds(185, 75, 53, 46);
+		        labelSlideIcon.setBounds(1276, 75, 53, 46);
 		        pannelloPrincipale.add(labelSlideIcon);
 		
 /**							PANNELLO TITOLO									*/
@@ -209,23 +181,23 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
-			labelTitolo.setBounds(0, 0, 1419, 73);
+			labelTitolo.setBounds(79, 0, 1104, 73);
 			pannelloTitolo.add(labelTitolo);
-		
+			
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 			
 /*INIZIO GUI COMPLICATA*/		
 
 /**							PANNELLO GRAFICI								*/
 		JPanel pannelloGrafici = new JPanel();
-	        pannelloGrafici.setBounds(0, 135, 1131, 618);
+	        pannelloGrafici.setBounds(0, 86, 1131, 667);
 	        pannelloPrincipale.add(pannelloGrafici);
 	        pannelloGrafici.setLayout(null);
         
         //PANNELLO FIFO
         JPanel pannelloFIFO = new JPanel();
 		        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloFIFO.setBounds(10, 0, 1121, 150);
+					pannelloFIFO.setBounds(10, 5, 1121, 160);
 					pannelloGrafici.add(pannelloFIFO);
 					pannelloFIFO.setLayout(null);
 		
@@ -248,7 +220,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 					
 		//PANNELLO OPT
 		JPanel pannelloOPT = new JPanel();
-					pannelloOPT.setBounds(10, 155, 1121, 150);
+					pannelloOPT.setBounds(10, 170, 1121, 160);
 					pannelloGrafici.add(pannelloOPT);
 					pannelloOPT.setLayout(null);
 					pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
@@ -274,7 +246,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel pannelloLRU = new JPanel();
 					pannelloLRU.setLayout(null);
 					pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloLRU.setBounds(10, 310, 1121, 150);
+					pannelloLRU.setBounds(10, 335, 1121, 160);
 					pannelloGrafici.add(pannelloLRU);
 				
 					JLabel LRU = new JLabel("LRU");
@@ -299,7 +271,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel pannelloCLOCK = new JPanel();
 					pannelloCLOCK.setLayout(null);
 					pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloCLOCK.setBounds(10, 465, 1121, 150);
+					pannelloCLOCK.setBounds(10, 500, 1121, 160);
 					pannelloGrafici.add(pannelloCLOCK);
 				
 					JLabel clock = new JLabel("Clock");
@@ -355,7 +327,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		//GRAFICO FIFO
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
-			jPanelFIFOMATRICE.setBounds(30, 27, 530, 118);
+			jPanelFIFOMATRICE.setBounds(30, 27, 530, 130);
 			jPanelFIFOMATRICE.setLayout(null);
 			pannelloFIFO.add(jPanelFIFOMATRICE);
 			
@@ -375,7 +347,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
-			jPanelOPTMATRICE.setBounds(30, 27, 530, 118);
+			jPanelOPTMATRICE.setBounds(30, 27, 530, 130);
 			pannelloOPT.add(jPanelOPTMATRICE);
 
 			JLabel numeroPageFault2 = new JLabel("Numero di page faults");
@@ -394,7 +366,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		//GRAFICO LRU
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelLRUMATRICE.setLayout(null);
-			jPanelLRUMATRICE.setBounds(30, 27, 530, 118);
+			jPanelLRUMATRICE.setBounds(30, 27, 530, 130);
 			pannelloLRU.add(jPanelLRUMATRICE);
 		
 			JLabel numeroPageFault3 = new JLabel("Numero di page faults");
@@ -413,7 +385,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		//GRAFICO CLOCK
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelCLOCKMATRICE.setLayout(null);
-			jPanelCLOCKMATRICE.setBounds(30, 27, 530, 118);
+			jPanelCLOCKMATRICE.setBounds(30, 27, 530, 130);
 			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
 			JLabel numeroPageFault4 = new JLabel("Numero di page faults");
@@ -434,7 +406,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel panelDiControllo = new JPanel();
 			panelDiControllo.setLayout(null);
 			//panelDiControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-			panelDiControllo.setBounds(1141, 85, 265, 668);
+			panelDiControllo.setBounds(1141, 135, 265, 618);
 			pannelloPrincipale.add(panelDiControllo);
 			
 		JPanel pannelloTitoloDC = new JPanel();
@@ -459,7 +431,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel pannelloEditor = new JPanel();
 			pannelloEditor.setLayout(null);
-			pannelloEditor.setBounds(10, 95, 245, 246);
+			pannelloEditor.setBounds(10, 95, 245, 234);
 			panelDiControllo.add(pannelloEditor);
 			
 		JLabel lblSlotMemoria = new JLabel("Slot Memoria Disponibili");
@@ -521,11 +493,11 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JPanel pannelloHelp = new JPanel();
 			pannelloHelp.setLayout(null);
-			pannelloHelp.setBounds(10, 380, 245, 258);
+			pannelloHelp.setBounds(10, 354, 245, 254);
 			panelDiControllo.add(pannelloHelp);
 			
 		JScrollPane scrollPaneHelp = new JScrollPane();
-			scrollPaneHelp.setBounds(0, 0, 245, 258);
+			scrollPaneHelp.setBounds(0, 0, 245, 255);
 			pannelloHelp.add(scrollPaneHelp);
 		
 		JTextArea txtrHelpArea = new JTextArea();
@@ -553,23 +525,51 @@ public class PaginazioneDellaMemoria extends JFrame {
 			lblSuccessioneDiRiferimento.setFont(new Font("Arial", Font.BOLD, 14));
 			
 		JLabel lblHelp = new JLabel("Spiegazione Argomento");
-			lblHelp.setBounds(10, 354, 245, 25);
+			lblHelp.setBounds(10, 330, 245, 25);
 			panelDiControllo.add(lblHelp);
 			lblHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			lblHelp.setForeground(Color.RED);
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 		JLabel labelHelpIcon = new JLabel("Help");
-			labelHelpIcon.setBounds(282, 75, 34, 46);
+			labelHelpIcon.setBounds(1372, 75, 34, 46);
 			pannelloPrincipale.add(labelHelpIcon);
 	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 	        
 	    JLabel lblInfouso = new JLabel("Info/Uso");
 	        lblInfouso.setHorizontalAlignment(SwingConstants.CENTER);
 	        lblInfouso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        lblInfouso.setBounds(273, 119, 59, 12);
+	        lblInfouso.setBounds(1357, 120, 59, 12);
 	        pannelloPrincipale.add(lblInfouso);
 
+        	JLabel labelScrittaIndietro = new JLabel(" Indietro");
+        	labelScrittaIndietro.setBounds(1133, 120, 53, 12);
+        	pannelloPrincipale.add(labelScrittaIndietro);
+        	labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+
+	        JLabel labelIndietroIcon = new JLabel("Exit");
+	        	labelIndietroIcon.setBounds(1141, 75, 34, 46);
+	        	pannelloPrincipale.add(labelIndietroIcon);
+	        	labelIndietroIcon.addMouseListener(new MouseAdapter() {
+	        		@Override
+	        		public void mouseClicked(MouseEvent e) {
+	        			framechiamante.setVisible(true);
+	        				frame.setVisible(false);
+	        				frame.dispose();
+	        			}
+	        		@Override
+	        		public void mouseEntered(MouseEvent e) 
+	        		{
+	        			labelScrittaIndietro.setForeground(Color.RED);
+	        		}
+	        		@Override
+	        		public void mouseExited(MouseEvent e) 
+	        		{
+	        			labelScrittaIndietro.setForeground(Color.BLACK);
+	        		}
+	        	});
+	        	labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
+	        
 			
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
@@ -602,7 +602,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				int s=Integer.valueOf(j);
 				
 				DATOFIFO.setText("");
-				numeriFIFO=new int[25];
+				numeriFIFO=new int[25][s];
 				pfFIFO=new int[12];
 				jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
 				jPanelFIFO.resetGrafico(jPanelFIFO.getGraphics());
@@ -708,19 +708,19 @@ public class PaginazioneDellaMemoria extends JFrame {
 					
 					numeriFIFO=FIFO(numeri,s);
 					DATOFIFO.setText(String.valueOf(pagefaultFIFO));
-					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO);
+					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO,numeri);
 					
 					numeriOPT=OPT(numeri,s);
 					DATOOPT.setText(String.valueOf(pagefaultOPT));
-					jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),numeriOPT,s,pagefaultOPT);
+					jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),numeriOPT,s,pagefaultOPT,numeri);
 					
 					numeriLRU=LRU(numeri,s);
 					DATOLRU.setText(String.valueOf(pagefaultLRU));
-					jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU);
+					jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU,numeri);
 					
 					numeriCLOCK=CLOCK(numeri,s);
 					DATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
-					jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),numeriCLOCK,s,pagefaultCLOCK);
+					jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),numeriCLOCK,s,pagefaultCLOCK,numeri);
 				}
 			}
 			@Override
@@ -783,7 +783,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 /**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
 	
 //OK ALGORITMO CALCOLO PUNTI FIFO MATRICE
-	int[] FIFO(int incomingStream[], int frames){
+	/*int[] FIFO(int incomingStream[], int frames){
 		
 		int[] arrayFIFO = new int[25];
 	    int page_faults = 0;
@@ -823,7 +823,49 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    pagefaultFIFO=page_faults;
 	    return arrayFIFO;
 	}
-
+*/
+	int[][] FIFO(int reference[], int frames){
+		
+		int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    boolean isFull = false;
+	    int buffer[];
+	    int mem_layout[][];
+	    
+	    ref_len = reference.length;
+	    mem_layout = new int[ref_len][frames];
+	    buffer = new int[frames];
+	    
+        for(int j = 0; j < frames; j++)
+                buffer[j] = -1;
+        
+        for(int i = 0; i < ref_len; i++)
+        {
+         int search = -1;
+         for(int j = 0; j < frames; j++)
+         {
+          if(buffer[j] == reference[i])
+          {
+           search = j;
+           hit++;
+           break;
+          } 
+         }
+         if(search == -1)
+         {
+          buffer[pointer] = reference[i];
+          fault++;
+          pointer++;
+          if(pointer == frames)
+           pointer = 0;
+         }
+            for(int j = 0; j < frames; j++)
+                mem_layout[i][j] = buffer[j];
+        }
+        
+        pagefaultFIFO=fault;
+        return mem_layout;
+	}
+	    
 //OK ALGORITMO CALCOLO PUNTI FIFO GRAFICO
 	int[] FIFOGrafico(int incomingStream[]){
 		
@@ -1125,7 +1167,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    pagefaultOPT=fault;
         return mem_layout;
 	}
-	
+
 //OK ALGORITMO CALCOLO PUNTI OPT GRAFICO
 	int[] OPTGrafico(int reference[]){
 		int[] arrayPunti = new int[12];
@@ -2531,6 +2573,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    ans += "</html>";
 	    return ans;
 	}
+
+
 }
 
 
