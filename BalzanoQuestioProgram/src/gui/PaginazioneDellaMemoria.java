@@ -171,6 +171,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
+		pannelloTitolo.setBackground(Color.WHITE);
 			pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 10));
 			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
@@ -183,6 +184,11 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
 			labelTitolo.setBounds(79, 0, 1104, 73);
 			pannelloTitolo.add(labelTitolo);
+			
+			JLabel lblNewLabel = new JLabel("New label");
+			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/img/logounina.png")));
+			lblNewLabel.setBounds(10, 10, 200, 55);
+			pannelloTitolo.add(lblNewLabel);
 			
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 			
@@ -197,30 +203,31 @@ public class PaginazioneDellaMemoria extends JFrame {
         //PANNELLO FIFO
         JPanel pannelloFIFO = new JPanel();
 		        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloFIFO.setBounds(10, 5, 1121, 160);
+					pannelloFIFO.setBounds(5, 5, 1121, 160);
 					pannelloGrafici.add(pannelloFIFO);
 					pannelloFIFO.setLayout(null);
 		
 					JLabel FIFO = new JLabel("FIFO");
-					FIFO.setBounds(20, 0, 311, 25);
 					FIFO.setHorizontalAlignment(SwingConstants.CENTER);
+					FIFO.setBounds(36, 0, 28, 157);
 					FIFO.setForeground(Color.RED);
-					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 20));
+					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 35));
 					pannelloFIFO.add(FIFO);
-				
-					JLabel lblPageFaultsFIFO = new JLabel("Page faults:");
-					lblPageFaultsFIFO.setBounds(341, 3, 86, 25);
-					lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					pannelloFIFO.add(lblPageFaultsFIFO);
-				
-					JLabel DATOFIFO = new JLabel("");
-					DATOFIFO.setBounds(418, 3, 45, 25);
-					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					pannelloFIFO.add(DATOFIFO);
+					FIFO.setText(transformStringToHtml(FIFO.getText()));
 					
+					JLabel lblPageFaultsFIFO = new JLabel("Page faults correnti:");
+					lblPageFaultsFIFO.setBounds(598, 1, 125, 18);
+					pannelloFIFO.add(lblPageFaultsFIFO);
+					lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					
+					JLabel DATOFIFO = new JLabel("");
+					DATOFIFO.setBounds(725, 1, 38, 18);
+					pannelloFIFO.add(DATOFIFO);
+					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+
 		//PANNELLO OPT
 		JPanel pannelloOPT = new JPanel();
-					pannelloOPT.setBounds(10, 170, 1121, 160);
+					pannelloOPT.setBounds(5, 170, 1121, 160);
 					pannelloGrafici.add(pannelloOPT);
 					pannelloOPT.setLayout(null);
 					pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
@@ -228,42 +235,44 @@ public class PaginazioneDellaMemoria extends JFrame {
 					JLabel OPT = new JLabel("OPT");
 					OPT.setHorizontalAlignment(SwingConstants.CENTER);
 					OPT.setForeground(Color.RED);
-					OPT.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					OPT.setBounds(20, 0, 311, 25);
+					OPT.setFont(new Font("Tahoma", Font.PLAIN, 35));
+					OPT.setBounds(36, 0, 28, 157);
 					pannelloOPT.add(OPT);
-				
-					JLabel lblPageFaultsOPT = new JLabel("Page faults:");
+					OPT.setText(transformStringToHtml(OPT.getText()));
+
+					JLabel lblPageFaultsOPT = new JLabel("Page faults correnti:");
 					lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsOPT.setBounds(341, 3, 86, 25);
+					lblPageFaultsOPT.setBounds(598, 1, 125, 18);
 					pannelloOPT.add(lblPageFaultsOPT);
 				
 					JLabel DATOOPT = new JLabel("");
 					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOOPT.setBounds(418, 3, 45, 25);
+					DATOOPT.setBounds(725, 1, 38, 18);
 					pannelloOPT.add(DATOOPT);
 
 		//PANNELLO LRU
 		JPanel pannelloLRU = new JPanel();
 					pannelloLRU.setLayout(null);
 					pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloLRU.setBounds(10, 335, 1121, 160);
+					pannelloLRU.setBounds(5, 335, 1121, 160);
 					pannelloGrafici.add(pannelloLRU);
 				
 					JLabel LRU = new JLabel("LRU");
 					LRU.setHorizontalAlignment(SwingConstants.CENTER);
 					LRU.setForeground(Color.RED);
-					LRU.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					LRU.setBounds(20, 0, 311, 25);
+					LRU.setFont(new Font("Tahoma", Font.PLAIN, 35));
+					LRU.setBounds(36, 0, 28, 157);
 					pannelloLRU.add(LRU);
-				
-					JLabel lblPageFaultsLRU = new JLabel("Page faults:");
+					LRU.setText(transformStringToHtml(LRU.getText()));
+
+					JLabel lblPageFaultsLRU = new JLabel("Page faults correnti:");
 					lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsLRU.setBounds(341, 3, 86, 25);
+					lblPageFaultsLRU.setBounds(598, 1, 125, 18);
 					pannelloLRU.add(lblPageFaultsLRU);
 		
 					JLabel DATOLRU = new JLabel("");
 					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOLRU.setBounds(418, 3, 45, 25);
+					DATOLRU.setBounds(725, 1, 38, 18);
 					pannelloLRU.add(DATOLRU);
 
 	
@@ -271,24 +280,25 @@ public class PaginazioneDellaMemoria extends JFrame {
 		JPanel pannelloCLOCK = new JPanel();
 					pannelloCLOCK.setLayout(null);
 					pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloCLOCK.setBounds(10, 500, 1121, 160);
+					pannelloCLOCK.setBounds(5, 500, 1121, 160);
 					pannelloGrafici.add(pannelloCLOCK);
 				
 					JLabel clock = new JLabel("Clock");
 					clock.setHorizontalAlignment(SwingConstants.CENTER);
 					clock.setForeground(Color.RED);
-					clock.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					clock.setBounds(20, 0, 311, 25);
+					clock.setFont(new Font("Tahoma", Font.PLAIN, 25));
+					clock.setBounds(36, 0, 28, 157);
 					pannelloCLOCK.add(clock);
-				
-					JLabel lblPageFaultClock = new JLabel("Page faults:");
+					clock.setText(transformStringToHtml(clock.getText()));
+
+					JLabel lblPageFaultClock = new JLabel("Page faults correnti:");
 					lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultClock.setBounds(341, 3, 86, 25);
+					lblPageFaultClock.setBounds(598, 1, 125, 18);
 					pannelloCLOCK.add(lblPageFaultClock);
 		
 					JLabel DATOCLOCK = new JLabel("");
 					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOCLOCK.setBounds(418, 3, 45, 25);
+					DATOCLOCK.setBounds(725, 1, 38, 18);
 					pannelloCLOCK.add(DATOCLOCK);
 
 			
@@ -296,7 +306,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 		//GRAFICO FIFO
 		PanelGraficiPaginazioneMemoria jPanelFIFO = new PanelGraficiPaginazioneMemoria();
-			jPanelFIFO.setBounds(590, 3, 525, 118);
+			jPanelFIFO.setBounds(590, 21, 525, 118);
 			jPanelFIFO.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFIFO.setLayout(null);
 			pannelloFIFO.add(jPanelFIFO);
@@ -305,21 +315,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 		PanelGraficiPaginazioneMemoria jPanelOPT = new PanelGraficiPaginazioneMemoria();
 			jPanelOPT.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelOPT.setLayout(null);
-			jPanelOPT.setBounds(590, 3, 525, 118);
+			jPanelOPT.setBounds(590, 21, 525, 118);
 			pannelloOPT.add(jPanelOPT);
 
 		//GRAFICO LRU
 		PanelGraficiPaginazioneMemoria jPanelLRU = new PanelGraficiPaginazioneMemoria();
 			jPanelLRU.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelLRU.setLayout(null);
-			jPanelLRU.setBounds(590, 3, 525, 118);
+			jPanelLRU.setBounds(590, 21, 525, 118);
 			pannelloLRU.add(jPanelLRU);
 		
 		//GRAFICO CLOCK
 		PanelGraficiPaginazioneMemoria jPanelCLOCK = new PanelGraficiPaginazioneMemoria();
 			jPanelCLOCK.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelCLOCK.setLayout(null);
-			jPanelCLOCK.setBounds(590, 3, 525, 118);
+			jPanelCLOCK.setBounds(590, 21, 525, 118);
 			pannelloCLOCK.add(jPanelCLOCK);
 
 			
@@ -327,77 +337,77 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		//GRAFICO FIFO
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
-			jPanelFIFOMATRICE.setBounds(30, 27, 530, 130);
+			jPanelFIFOMATRICE.setBounds(92, 0, 437, 147);
 			jPanelFIFOMATRICE.setLayout(null);
 			pannelloFIFO.add(jPanelFIFOMATRICE);
 			
 			JLabel numeroPageFault1 = new JLabel("Numero di page faults");
 			numeroPageFault1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault1.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault1.setBounds(621, 126, 466, 18);
+			numeroPageFault1.setBounds(590, 139, 521, 18);
 			pannelloFIFO.add(numeroPageFault1);
 			
 			JLabel lblNewLabel1 = new JLabel("SLOT");
 			lblNewLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel1.setBounds(570, 0, 15, 118);
+			lblNewLabel1.setBounds(570, 21, 15, 118);
 			pannelloFIFO.add(lblNewLabel1);
 			lblNewLabel1.setText(transformStringToHtml(lblNewLabel1.getText()));
 			
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
-			jPanelOPTMATRICE.setBounds(30, 27, 530, 130);
+			jPanelOPTMATRICE.setBounds(92, 0, 437, 147);
 			pannelloOPT.add(jPanelOPTMATRICE);
 
 			JLabel numeroPageFault2 = new JLabel("Numero di page faults");
 			numeroPageFault2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault2.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault2.setBounds(621, 126, 466, 18);
+			numeroPageFault2.setBounds(590, 139, 521, 18);
 			pannelloOPT.add(numeroPageFault2);
 			
 			JLabel lblNewLabel2 = new JLabel("SLOT");
 			lblNewLabel2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel2.setBounds(570, 0, 15, 118);
+			lblNewLabel2.setBounds(570, 21, 15, 118);
 			pannelloOPT.add(lblNewLabel2);
 			lblNewLabel2.setText(transformStringToHtml(lblNewLabel2.getText()));
 			
 		//GRAFICO LRU
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelLRUMATRICE.setLayout(null);
-			jPanelLRUMATRICE.setBounds(30, 27, 530, 130);
+			jPanelLRUMATRICE.setBounds(92, 0, 437, 147);
 			pannelloLRU.add(jPanelLRUMATRICE);
 		
 			JLabel numeroPageFault3 = new JLabel("Numero di page faults");
 			numeroPageFault3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault3.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault3.setBounds(621, 126, 466, 18);
+			numeroPageFault3.setBounds(590, 139, 521, 18);
 			pannelloLRU.add(numeroPageFault3);
 			
 			JLabel lblNewLabel3 = new JLabel("SLOT");
 			lblNewLabel3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel3.setBounds(570, 0, 15, 118);
+			lblNewLabel3.setBounds(570, 21, 15, 118);
 			pannelloLRU.add(lblNewLabel3);
 			lblNewLabel3.setText(transformStringToHtml(lblNewLabel3.getText()));
 			
 		//GRAFICO CLOCK
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelCLOCKMATRICE.setLayout(null);
-			jPanelCLOCKMATRICE.setBounds(30, 27, 530, 130);
+			jPanelCLOCKMATRICE.setBounds(92, 0, 437, 147);
 			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
 			JLabel numeroPageFault4 = new JLabel("Numero di page faults");
 			numeroPageFault4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault4.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault4.setBounds(621, 126, 466, 18);
+			numeroPageFault4.setBounds(590, 139, 521, 18);
 			pannelloCLOCK.add(numeroPageFault4);
 
 			JLabel lblNewLabel4 = new JLabel("SLOT");
 			lblNewLabel4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel4.setBounds(570, 0, 15, 118);
+			lblNewLabel4.setBounds(570, 21, 15, 118);
 			pannelloCLOCK.add(lblNewLabel4);
 			lblNewLabel4.setText(transformStringToHtml(lblNewLabel4.getText()));
 			
@@ -2573,8 +2583,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    ans += "</html>";
 	    return ans;
 	}
-
-
 }
 
 

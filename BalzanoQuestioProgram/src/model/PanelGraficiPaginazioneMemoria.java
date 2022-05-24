@@ -32,7 +32,7 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 		g.setColor(Color.lightGray);
 	
 		for(j=0;j<500;) {
-			g.drawLine(l-j,0,l-j,h-10);
+			g.drawLine(l-j,0,l-j,h-15);
 			j=j+15;
 		}
 		g.setColor(Color.BLUE);
@@ -73,7 +73,7 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 		g.setColor(Color.lightGray);
 	
 		for(j=0;j<500;) {
-			g.drawLine(l-j,0,l-j,h-10);
+			g.drawLine(l-j,0,l-j,h-15);
 			j=j+15;
 		}
 		g.setColor(Color.BLUE);
