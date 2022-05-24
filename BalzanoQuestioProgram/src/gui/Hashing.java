@@ -623,7 +623,7 @@ public class Hashing extends JFrame {
 		buttonGeneraEsempio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				//prova
+				
 				iteratoreScorittore=0;
 				//Generazione varibiali 
 				labelFrecciaScrittaSomma.setText("");
