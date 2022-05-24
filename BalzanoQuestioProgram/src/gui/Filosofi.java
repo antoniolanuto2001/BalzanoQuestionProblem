@@ -148,7 +148,7 @@ public class Filosofi extends JFrame {
 		
 		
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBorder(new LineBorder(new Color(149, 117, 205), 5));
+		panelSuperiore.setBorder(new LineBorder(new Color(149, 117, 205), 7));
 		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
@@ -161,6 +161,11 @@ public class Filosofi extends JFrame {
 		labelSchemata.setBorder(null);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		
+		JLabel labelFedericoII = new JLabel("New label");
+		labelFedericoII.setIcon(new ImageIcon(Filosofi.class.getResource("/img/logoUninaIcon2.png")));
+		labelFedericoII.setBounds(10, 11, 199, 53);
+		panelSuperiore.add(labelFedericoII);
 		
 		
 		
@@ -700,7 +705,7 @@ public class Filosofi extends JFrame {
         
         JLabel labelScrittaIndietro = new JLabel(" Indietro");
         labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIndietro.setBounds(12, 132, 53, 12);
+        labelScrittaIndietro.setBounds(10, 122, 53, 12);
         panelMainButton.add(labelScrittaIndietro);
         
         JLabel labelIndietroIcon = new JLabel("Exit");
@@ -737,11 +742,11 @@ public class Filosofi extends JFrame {
         		labelScrittaIndietro.setForeground(Color.BLACK);
         	}
         });
-        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/indietroIcon1.png")));
-        labelIndietroIcon.setBounds(10, 84, 53, 46);
+        labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/back-button.png")));
+        labelIndietroIcon.setBounds(18, 86, 32, 32);
         panelMainButton.add(labelIndietroIcon);
         
-        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
+        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelScrittaYoutube.setBounds(918, 132, 82, 12);
         panelMainButton.add(labelScrittaYoutube);

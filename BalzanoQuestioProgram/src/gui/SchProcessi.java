@@ -125,7 +125,7 @@ public SchProcessi(JFrame framechiamante) {
 	        labelIndietroIcon.setBounds(10, 75, 53, 46);
 	        pannelloPrincipale.add(labelIndietroIcon);
 	        
-	        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
+	        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
 	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	        labelScrittaYoutube.setBounds(61, 120, 95, 12);
@@ -208,7 +208,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 /**							PANNELLO TITOLO										*/
 		JPanel pannelloTitolo = new JPanel();
-			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 10));
+			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 7));
 			//pannelloTitolo.setBackground(Color.WHITE);
 			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
@@ -221,6 +221,11 @@ public SchProcessi(JFrame framechiamante) {
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
 			labelTitolo.setBounds(0, 0, 1417, 73);
 			pannelloTitolo.add(labelTitolo);
+			
+			JLabel labelFedericoII = new JLabel("");
+			labelFedericoII.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/logoUninaIcon2.png")));
+			labelFedericoII.setBounds(10, 11, 199, 53);
+			pannelloTitolo.add(labelFedericoII);
 		
 
 /*---------------------------INIZIO GUI COMPLICATA---------------------------*/		
@@ -244,11 +249,11 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloFCFS.setLayout(null);
 			pannelloFCFS.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 		
-			JLabel lblFirstcomeFirstserved = new JLabel("First-Come, First-Served");
+			JLabel lblFirstcomeFirstserved = new JLabel("First-Come  First-Served");
 				lblFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
 				lblFirstcomeFirstserved.setForeground(Color.RED);
 				lblFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				lblFirstcomeFirstserved.setBounds(10, 0, 489, 25);
+				lblFirstcomeFirstserved.setBounds(156, 0, 236, 25);
 				pannelloFCFS.add(lblFirstcomeFirstserved);
 		
 			JCheckBox chckbxMostraSoluzioneFCFS = new JCheckBox("Mostra Soluzione");
@@ -288,7 +293,7 @@ public SchProcessi(JFrame framechiamante) {
 				lblShortestJobFirts.setHorizontalAlignment(SwingConstants.CENTER);
 				lblShortestJobFirts.setForeground(Color.RED);
 				lblShortestJobFirts.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				lblShortestJobFirts.setBounds(10, 0, 489, 25);
+				lblShortestJobFirts.setBounds(188, 0, 181, 25);
 				pannelloSJF.add(lblShortestJobFirts);
 			
 			JCheckBox chckbxMostraSoluzioneSJF = new JCheckBox("Mostra Soluzione");
@@ -328,7 +333,7 @@ public SchProcessi(JFrame framechiamante) {
 				lblShortestJobFirstPreemptive.setHorizontalAlignment(SwingConstants.CENTER);
 				lblShortestJobFirstPreemptive.setForeground(Color.RED);
 				lblShortestJobFirstPreemptive.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				lblShortestJobFirstPreemptive.setBounds(10, 0, 489, 25);
+				lblShortestJobFirstPreemptive.setBounds(130, 0, 285, 25);
 				pannelloSJFP.add(lblShortestJobFirstPreemptive);
 			
 			JCheckBox chckbxMostraSoluzioneSJFP = new JCheckBox("Mostra Soluzione");
@@ -368,7 +373,7 @@ public SchProcessi(JFrame framechiamante) {
 				lblRoundRobin.setHorizontalAlignment(SwingConstants.CENTER);
 				lblRoundRobin.setForeground(Color.RED);
 				lblRoundRobin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-				lblRoundRobin.setBounds(10, 0, 351, 25);
+				lblRoundRobin.setBounds(187, 0, 165, 25);
 				pannelloRR.add(lblRoundRobin);
 			
 			JCheckBox chckbxMostraSoluzioneRR = new JCheckBox("Mostra Soluzione");
@@ -397,9 +402,9 @@ public SchProcessi(JFrame framechiamante) {
 				DatoCDCRR.setBounds(1014, 3, 45, 25);
 				pannelloRR.add(DatoCDCRR);
 			
-			JLabel lblQRR = new JLabel("Q=");
+			JLabel lblQRR = new JLabel("Q =");
 				lblQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				lblQRR.setBounds(371, 3, 32, 25);
+				lblQRR.setBounds(407, 0, 32, 25);
 				pannelloRR.add(lblQRR);
 			
 			JComboBox comboBoxQRR = new JComboBox();
@@ -407,7 +412,7 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				comboBoxQRR.setBackground(Color.WHITE);
-				comboBoxQRR.setBounds(396, 5, 50, 21);
+				comboBoxQRR.setBounds(432, 2, 50, 21);
 				pannelloRR.add(comboBoxQRR);
 			
 			

@@ -107,7 +107,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        JLabel labelScrittaYoutube = new JLabel("Videolezione");
 		        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		        labelScrittaYoutube.setBounds(1171, 120, 95, 12);
+		        labelScrittaYoutube.setBounds(1180, 120, 78, 12);
 		        pannelloPrincipale.add(labelScrittaYoutube);
 		        JLabel labelYoutubeIcon = new JLabel("Youtube");
 		        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -134,7 +134,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	}
 		        });
 		        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-		        labelYoutubeIcon.setBounds(1196, 75, 53, 46);
+		        labelYoutubeIcon.setBounds(1193, 75, 53, 46);
 		        pannelloPrincipale.add(labelYoutubeIcon);
 		        
 	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
@@ -172,7 +172,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
 		pannelloTitolo.setBackground(Color.WHITE);
-			pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 10));
+			pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 7));
 			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
 			pannelloTitolo.setLayout(null);
@@ -185,10 +185,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setBounds(79, 0, 1104, 73);
 			pannelloTitolo.add(labelTitolo);
 			
-			JLabel lblNewLabel = new JLabel("New label");
-			lblNewLabel.setIcon(new ImageIcon(this.getClass().getResource("/img/logounina.png")));
-			lblNewLabel.setBounds(10, 10, 200, 55);
-			pannelloTitolo.add(lblNewLabel);
+			JLabel labelFedericoII = new JLabel("");
+			labelFedericoII.setIcon(new ImageIcon(PaginazioneDellaMemoria.class.getResource("/img/logoUninaIcon2.png")));
+			labelFedericoII.setBounds(10, 11, 199, 53);
+			pannelloTitolo.add(labelFedericoII);
 			
 /*-----------------------------------------------------------------------------------------------------------------------------*/
 			
@@ -213,7 +213,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 					FIFO.setForeground(Color.RED);
 					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 35));
 					pannelloFIFO.add(FIFO);
-					FIFO.setText(transformStringToHtml(FIFO.getText()));
+					FIFO.setText("<html>F<br>   I<br>F<br>O<br></html>");
 					
 					JLabel lblPageFaultsFIFO = new JLabel("Page faults correnti:");
 					lblPageFaultsFIFO.setBounds(598, 1, 125, 18);
@@ -289,7 +289,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 					clock.setFont(new Font("Tahoma", Font.PLAIN, 25));
 					clock.setBounds(36, 0, 28, 157);
 					pannelloCLOCK.add(clock);
-					clock.setText(transformStringToHtml(clock.getText()));
+					clock.setText("<html>C<br>L<br>O<br>C<br>K<br></html>");
 
 					JLabel lblPageFaultClock = new JLabel("Page faults correnti:");
 					lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -542,7 +542,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			lblHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			
 		JLabel labelHelpIcon = new JLabel("Help");
-			labelHelpIcon.setBounds(1372, 75, 34, 46);
+			labelHelpIcon.setBounds(1368, 83, 32, 32);
 			pannelloPrincipale.add(labelHelpIcon);
 	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 	        
@@ -558,7 +558,7 @@ public class PaginazioneDellaMemoria extends JFrame {
         	labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
 	        JLabel labelIndietroIcon = new JLabel("Exit");
-	        	labelIndietroIcon.setBounds(1141, 75, 34, 46);
+	        	labelIndietroIcon.setBounds(1143, 85, 32, 32);
 	        	pannelloPrincipale.add(labelIndietroIcon);
 	        	labelIndietroIcon.addMouseListener(new MouseAdapter() {
 	        		@Override

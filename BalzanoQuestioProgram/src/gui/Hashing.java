@@ -133,7 +133,7 @@ public class Hashing extends JFrame {
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBorder(new LineBorder(new Color (30, 136, 229), 5));
+		panelSuperiore.setBorder(new LineBorder(new Color(30, 136, 229), 7));
 		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
@@ -142,6 +142,12 @@ public class Hashing extends JFrame {
 		labelSchemata.setBounds(559, 0, 262, 73);
 		panelSuperiore.add(labelSchemata);
 		labelSchemata.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		
+		JLabel labelFedericoII = new JLabel("New label");
+		labelFedericoII.setIcon(new ImageIcon(Hashing.class.getResource("/img/logoUninaIcon2.png")));
+		labelFedericoII.setLabelFor(panelSuperiore);
+		labelFedericoII.setBounds(10, 11, 199, 53);
+		panelSuperiore.add(labelFedericoII);
 		
 		JTextArea textParoleBase = new JTextArea();
 		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -292,10 +298,10 @@ public class Hashing extends JFrame {
         	}
         });
         labelIndietroIcon.setIcon(new ImageIcon(Hashing.class.getResource("/img/back-button.png")));
-        labelIndietroIcon.setBounds(18, 76, 35, 46);
+        labelIndietroIcon.setBounds(18, 86, 32, 32);
         panelMainButton.add(labelIndietroIcon);
         
-        JLabel labelScrittaYoutube = new JLabel("Video Youtube");
+        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelScrittaYoutube.setBounds(918, 124, 82, 12);
         panelMainButton.add(labelScrittaYoutube);
@@ -2964,7 +2970,6 @@ public class Hashing extends JFrame {
 	}
 	
 	}
-	
 }
 
 
