@@ -58,6 +58,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 
 public class Semafori extends JFrame {
@@ -96,90 +97,65 @@ public class Semafori extends JFrame {
 		panelMainButton.setLayout(null);
 
 		JPanel panelSuperiore = new JPanel();
-		panelSuperiore.setBackground(new Color(245, 245, 245));
-		panelSuperiore.setBounds(-71, 0, 1495, 73);
+		panelSuperiore.setBorder(new LineBorder(new Color(229, 57, 53), 7));
+		panelSuperiore.setBounds(0, 0, 1414, 73);
 		panelMainButton.add(panelSuperiore);
 		panelSuperiore.setLayout(null);
-
-		JLabel labelTitoloSchermata = new JLabel(" Semafori ");
-		labelTitoloSchermata.setBounds(70, 0, 320, 89);
-		panelSuperiore.add(labelTitoloSchermata);
-		labelTitoloSchermata.setBackground(new Color(224, 255, 255));
-		labelTitoloSchermata.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 47));
+		
+		
+		JPanel panelControllo = new JPanel();
+		panelControllo.setBackground(Color.WHITE);
+		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+		panelControllo.setBounds(1135, 78, 269, 543);
+		panelMainButton.add(panelControllo);
+		panelControllo.setLayout(null);
+		
+		
+		JLabel lblSemafori = new JLabel("SEMAFORI");
+		lblSemafori.setFont(new Font("Segoe UI", Font.BOLD, 48));
+		lblSemafori.setBounds(548, 0, 262, 73);
+		panelSuperiore.add(lblSemafori);
+		
+		JLabel labelFedericoII = new JLabel("");
+		labelFedericoII.setIcon(new ImageIcon(Semafori.class.getResource("/img/logoUninaIcon2.png")));
+		labelFedericoII.setBounds(10, 11, 199, 53);
+		panelSuperiore.add(labelFedericoII);
 		
 
 		JLabel labelIndietroIcon = new JLabel("Indietro");
 	    labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	    labelIndietroIcon.setBounds(10, 87, 34, 46);
+	    labelIndietroIcon.setBounds(22, 84, 32, 32);
 	    panelMainButton.add(labelIndietroIcon);
 		
 		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
 	    labelScrittaSlide.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-	    labelScrittaSlide.setBounds(1316, 345, 95, 15);
+	    labelScrittaSlide.setBounds(160, 122, 88, 15);
 	    panelMainButton.add(labelScrittaSlide);
 	     
 	    JLabel labelSlideIcon = new JLabel("");
 	    labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	    labelSlideIcon.setBounds(1333, 296, 53, 46);
+	    labelSlideIcon.setBounds(177, 77, 53, 46);
 	    panelMainButton.add(labelSlideIcon);
 
-		JLabel labelScrittaYoutube = new JLabel("VideoLezione");
+		JLabel labelScrittaYoutube = new JLabel("Video Lezione");
 		labelScrittaYoutube.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		labelScrittaYoutube.setBounds(1322, 260, 82, 27);
+		labelScrittaYoutube.setBounds(68, 122, 82, 15);
 		panelMainButton.add(labelScrittaYoutube);
 		
 		JLabel labelYoutubeIcon = new JLabel("");
 		labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
-		labelYoutubeIcon.setBounds(1332, 222, 54, 46);
+		labelYoutubeIcon.setBounds(78, 77, 54, 46);
 		panelMainButton.add(labelYoutubeIcon);
-		
-		JLabel lblNewLabel = new JLabel("Pannello di controllo");
-		lblNewLabel.setBounds(189, 146, 137, 27);
-		panelMainButton.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		desktopPane.setBackground(new Color(255, 255, 255));
-		desktopPane.setBounds(89, 166, 353, 156);
-		panelMainButton.add(desktopPane);
-		
-		JTextField TextFieldNumProcessi = new JTextField();
-		TextFieldNumProcessi.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		TextFieldNumProcessi.setBounds(10, 32, 126, 21);
-		desktopPane.add(TextFieldNumProcessi);
-		TextFieldNumProcessi.setText("Numero Processi:");
-		TextFieldNumProcessi.setColumns(10);
-		
-		JButton ResetButton = new JButton("Reset");
-		
-		ResetButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		ResetButton.setBackground(new Color(255, 255, 255));
-		ResetButton.setBounds(219, 96, 121, 23);
-		desktopPane.add(ResetButton);
-		
-		JToggleButton StartPauseToggleButton = new JToggleButton("Start/Pause");
-		StartPauseToggleButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		StartPauseToggleButton.setBounds(219, 31, 121, 23);
-		desktopPane.add(StartPauseToggleButton);
-		StartPauseToggleButton.setBackground(new Color(255, 255, 255));
-		
-		
-		JComboBox NumSemaforiComboBox = new JComboBox();
-		NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
-		NumSemaforiComboBox.setMaximumRowCount(2);
-		NumSemaforiComboBox.setBounds(132, 97, 47, 20);
-		desktopPane.add(NumSemaforiComboBox);
 		
 		
 		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
 		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1.setBounds(705, 222, 79, 14);
+		JLabelTextMutex1.setBounds(155, 607, 79, 14);
 		panelMainButton.add(JLabelTextMutex1);
 		
 		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
 		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2.setBounds(986, 222, 79, 14);
+		JLabelTextMutex2.setBounds(391, 607, 79, 14);
 		panelMainButton.add(JLabelTextMutex2);
 		JLabelTextMutex2.setVisible(false);
 		
@@ -188,7 +164,7 @@ public class Semafori extends JFrame {
 		JLabelTextMutex1.setLabelFor(GraficaSemaforo1JLabel);
 		GraficaSemaforo1JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
 		GraficaSemaforo1JLabel.setBackground(new Color(255,255,255));
-		GraficaSemaforo1JLabel.setBounds(577, 117, 118, 205);
+		GraficaSemaforo1JLabel.setBounds(27, 502, 118, 205);
 		panelMainButton.add(GraficaSemaforo1JLabel);
 		GraficaSemaforo1JLabel.setLayout(null);
 		
@@ -198,48 +174,35 @@ public class Semafori extends JFrame {
 		JLabelTextMutex2.setLabelFor(GraficaSemaforo2JLabel);
 		GraficaSemaforo2JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
 		GraficaSemaforo2JLabel.setBackground(new Color(255,255,255));
-		GraficaSemaforo2JLabel.setBounds(841,117, 118, 205);
+		GraficaSemaforo2JLabel.setBounds(263,502, 118, 205);
 		panelMainButton.add(GraficaSemaforo2JLabel);
 		GraficaSemaforo2JLabel.setLayout(null);
 		GraficaSemaforo2JLabel.setVisible(false);
-
-		JComboBox NumProcessiComboBox = new JComboBox();
-		NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
-		NumProcessiComboBox.setBounds(132, 32, 47, 21);
-		desktopPane.add(NumProcessiComboBox);
-		
-
-		JTextField txtNumeroSemafori = new JTextField();
-		txtNumeroSemafori.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		txtNumeroSemafori.setText("Numero Semafori:");
-		txtNumeroSemafori.setBounds(10, 97, 126, 20);
-		desktopPane.add(txtNumeroSemafori);
-		txtNumeroSemafori.setColumns(10);
 		
 		JLabel UniversitaJLabel = new JLabel("Universit\u00E0 degli studi di Napoli: \"Federico II\"");
 		UniversitaJLabel.setFont(new Font("Sylfaen", Font.BOLD, 13));
-		UniversitaJLabel.setBounds(1118, 640, 269, 27);
+		UniversitaJLabel.setBounds(1135, 626, 269, 27);
 		panelMainButton.add(UniversitaJLabel);
 		
 		JLabel CorsoJLabel = new JLabel("Corso di Sistemi Operativi del Prof. W. Balzano");
 		CorsoJLabel.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-		CorsoJLabel.setBounds(1128, 666, 245, 27);
+		CorsoJLabel.setBounds(1145, 652, 245, 27);
 		panelMainButton.add(CorsoJLabel);
 		
 		JLabel AnnoJLabel = new JLabel("Anno: 2021/2022");
 		AnnoJLabel.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-		AnnoJLabel.setBounds(1191, 693, 102, 18);
+		AnnoJLabel.setBounds(1208, 679, 102, 18);
 		panelMainButton.add(AnnoJLabel);
 		
 		JLabel SviluppatoriJLabel = new JLabel("Sviluppata da: A. Lanuto, E. Prosciutto, B. Scotto");
 		SviluppatoriJLabel.setFont(new Font("Sylfaen", Font.ITALIC, 13));
-		SviluppatoriJLabel.setBounds(1118, 722, 269, 18);
+		SviluppatoriJLabel.setBounds(1135, 708, 269, 18);
 		panelMainButton.add(SviluppatoriJLabel);
 
 		
 		JScrollPane scrollTabella= new JScrollPane();
 		scrollTabella.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Table View", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		scrollTabella.setBounds(144, 345, 1032, 130);
+		scrollTabella.setBounds(10, 152, 1018, 327);
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
@@ -277,40 +240,40 @@ public class Semafori extends JFrame {
 
 		JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
 		GeneraEsercizioJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		GeneraEsercizioJLabel.setBounds(1316, 422, 102, 15);
+		GeneraEsercizioJLabel.setBounds(258, 122, 88, 15);
 		panelMainButton.add(GeneraEsercizioJLabel);
 		
 		
 		JLabel GeneraEsercizioIcon = new JLabel("");
 		GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
-		GeneraEsercizioIcon.setBounds(1343, 371, 47, 57);
+		GeneraEsercizioIcon.setBounds(287, 84, 32, 32);
 		panelMainButton.add(GeneraEsercizioIcon);
 	        
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
 		StartTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-		StartTimeIndexJLabel.setBounds(250, 499, 53, 14);
+		StartTimeIndexJLabel.setBounds(548, 502, 53, 14);
 		panelMainButton.add(StartTimeIndexJLabel);
 	        
 		JLabel EndTimeIndexJLabel = new JLabel("Tempo 300");
 		EndTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-		EndTimeIndexJLabel.setBounds(492, 499, 64, 14);
+		EndTimeIndexJLabel.setBounds(790, 502, 64, 14);
 		panelMainButton.add(EndTimeIndexJLabel);
 	        
 	            
 		JLabel HelpIconJLabel = new JLabel("");
-		HelpIconJLabel.setBounds(1343, 451, 34, 46);
+		HelpIconJLabel.setBounds(363, 84, 32, 32);
 		panelMainButton.add(HelpIconJLabel);
 		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 		
 		JLabel HelpJLabel = new JLabel("Info Uso");
 		HelpJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		HelpJLabel.setBounds(1335, 498, 70, 15);
+		HelpJLabel.setBounds(356, 122, 53, 15);
 		panelMainButton.add(HelpJLabel);
 		
 		
 		JPanel BaseProgressBar1JPanel = new JPanel();
 		BaseProgressBar1JPanel.setBackground(Color.GRAY);
-		BaseProgressBar1JPanel.setBounds(250, 524, 300, 29);
+		BaseProgressBar1JPanel.setBounds(548, 527, 300, 29);
 		panelMainButton.add(BaseProgressBar1JPanel);
 		BaseProgressBar1JPanel.setLayout(null);
 		BaseProgressBar1JPanel.setOpaque(true);
@@ -327,7 +290,7 @@ public class Semafori extends JFrame {
 		BaseProgressBar2JPanel.setVisible(false);
 		BaseProgressBar2JPanel.setLayout(null);
 		BaseProgressBar2JPanel.setBackground(Color.GRAY);
-		BaseProgressBar2JPanel.setBounds(250, 564, 300, 29);
+		BaseProgressBar2JPanel.setBounds(548, 567, 300, 29);
 		panelMainButton.add(BaseProgressBar2JPanel);
 		BaseProgressBar2JPanel.setOpaque(true);
 	        
@@ -335,7 +298,7 @@ public class Semafori extends JFrame {
 		BaseProgressBar3JPanel.setVisible(false);
 		BaseProgressBar3JPanel.setLayout(null);
 		BaseProgressBar3JPanel.setBackground(Color.GRAY);
-		BaseProgressBar3JPanel.setBounds(250, 604, 300, 29);
+		BaseProgressBar3JPanel.setBounds(548, 607, 300, 29);
 		panelMainButton.add(BaseProgressBar3JPanel);
 		BaseProgressBar3JPanel.setOpaque(true);
 	        
@@ -343,7 +306,7 @@ public class Semafori extends JFrame {
         BaseProgressBar4JPanel.setVisible(false);
         BaseProgressBar4JPanel.setLayout(null);
         BaseProgressBar4JPanel.setBackground(Color.GRAY);
-        BaseProgressBar4JPanel.setBounds(250, 642, 300, 29);
+        BaseProgressBar4JPanel.setBounds(548, 645, 300, 29);
         panelMainButton.add(BaseProgressBar4JPanel);
         BaseProgressBar4JPanel.setOpaque(true);
 	        
@@ -352,7 +315,7 @@ public class Semafori extends JFrame {
         BaseProgressBar5JPanel.setVisible(false);
         BaseProgressBar5JPanel.setLayout(null);
         BaseProgressBar5JPanel.setBackground(Color.GRAY);
-        BaseProgressBar5JPanel.setBounds(250, 682, 300, 29);
+        BaseProgressBar5JPanel.setBounds(548, 685, 300, 29);
         panelMainButton.add(BaseProgressBar5JPanel);
         BaseProgressBar5JPanel.setOpaque(true);
         
@@ -388,12 +351,6 @@ public class Semafori extends JFrame {
         Indicatore5.setLayout(null);
         Indicatore5.setOpaque(true);
         
-
-     
-        
- 
-        
-       
         JPanel JobDuration1JPanel = new JPanel();
         JobDuration1JPanel.setVisible(false);
         JobDuration1JPanel.setLayout(null);
@@ -541,11 +498,323 @@ public class Semafori extends JFrame {
         CriticalArea3JPanel5.setBackground(Color.RED);
         CriticalArea3JPanel5.setOpaque(true);
         CriticalArea3JPanel5.setMaximumSize(new Dimension(300,29));
+        				
+        				JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
+        				labelPnlCtrl.setBounds(10, 11, 245, 54);
+        				panelControllo.add(labelPnlCtrl);
+        				labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
+        				labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
+        				labelPnlCtrl.setBorder(new LineBorder(new Color (229, 57, 53), 2));
+        				
+        				JLabel lblScelta = new JLabel("Scelta  Processi :");
+        				lblScelta.setVerticalAlignment(SwingConstants.BOTTOM);
+        				lblScelta.setForeground(Color.RED);
+        				lblScelta.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        				lblScelta.setBounds(58, 76, 151, 26);
+        				panelControllo.add(lblScelta);
+        				
+        				JPanel panelSceltaProcessi = new JPanel();
+        				panelSceltaProcessi.setBounds(10, 109, 245, 142);
+        				panelSceltaProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        				panelControllo.add(panelSceltaProcessi);
+        				panelSceltaProcessi.setLayout(null);
+        				
+        				JLabel labelNumeroSemafori = new JLabel("Numero Semafori : ");
+        				labelNumeroSemafori.setBounds(10, 81, 139, 22);
+        				panelSceltaProcessi.add(labelNumeroSemafori);
+        				labelNumeroSemafori.setForeground(Color.BLACK);
+        				labelNumeroSemafori.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        				
+        				
+        				JComboBox NumSemaforiComboBox = new JComboBox();
+        				NumSemaforiComboBox.setBounds(180, 83, 51, 22);
+        				panelSceltaProcessi.add(NumSemaforiComboBox);
+        				NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
+        				NumSemaforiComboBox.setMaximumRowCount(2);
+        				
+        				
+        				
+        				
+        				//Eventi And Co
+        				
+        						JComboBox NumProcessiComboBox = new JComboBox();
+        						NumProcessiComboBox.setBounds(180, 26, 51, 22);
+        						panelSceltaProcessi.add(NumProcessiComboBox);
+        						NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
+        						
+        						JLabel labelNumProcessi = new JLabel("Numero Processi : ");
+        						labelNumProcessi.setBounds(10, 23, 131, 22);
+        						panelSceltaProcessi.add(labelNumProcessi);
+        						labelNumProcessi.setForeground(Color.BLACK);
+        						labelNumProcessi.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        						
+        						JPanel panelControlloProcessi = new JPanel();
+        						panelControlloProcessi.setBounds(10, 323, 245, 164);
+        						panelControlloProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+        						panelControllo.add(panelControlloProcessi);
+        						panelControlloProcessi.setLayout(null);
+        						
+        						JButton buttonReset = new JButton("Reset");
+        						buttonReset.setBounds(118, 98, 121, 23);
+        						panelControlloProcessi.add(buttonReset);
+        						
+        						buttonReset.setFont(new Font("Times New Roman", Font.BOLD, 12));
+        						buttonReset.setBackground(new Color(255, 255, 255));
+        						
+        						JToggleButton toggleButtonStartPause = new JToggleButton("Start/Pause");
+        						toggleButtonStartPause.setBounds(118, 36, 121, 23);
+        						panelControlloProcessi.add(toggleButtonStartPause);
+        						toggleButtonStartPause.setFont(new Font("Times New Roman", Font.BOLD, 12));
+        						toggleButtonStartPause.setBackground(new Color(255, 255, 255));
+        						
+        						JLabel labelAvvia = new JLabel("Avvia : ");
+        						labelAvvia.setForeground(Color.BLACK);
+        						labelAvvia.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        						labelAvvia.setBounds(10, 37, 105, 22);
+        						panelControlloProcessi.add(labelAvvia);
+        						
+        						JLabel labelReset = new JLabel("Reset : ");
+        						labelReset.setForeground(Color.BLACK);
+        						labelReset.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        						labelReset.setBounds(10, 96, 105, 22);
+        						panelControlloProcessi.add(labelReset);
+        						
+        						JLabel lblControlloProcessi = new JLabel("Controllo  Processi :");
+        						lblControlloProcessi.setVerticalAlignment(SwingConstants.BOTTOM);
+        						lblControlloProcessi.setForeground(Color.RED);
+        						lblControlloProcessi.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        						lblControlloProcessi.setBounds(44, 286, 177, 26);
+        						panelControllo.add(lblControlloProcessi);
+        						
+        						JLabel labelScrittaIndietro = new JLabel(" Indietro");
+        						labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+        						labelScrittaIndietro.setBounds(11, 122, 53, 12);
+        						panelMainButton.add(labelScrittaIndietro);
+        						
+        						
+        						
+        						toggleButtonStartPause.addMouseListener(new MouseAdapter() {
+        							@Override
+        							public void mouseClicked(MouseEvent e) 
+        							{	
+        								if(toggleButtonStartPause.isSelected()&& StartEndProcessi.size()!=0) 
+        								{
+        									continuaBoolean=true;
+        									System.out.println("[ToggleButton]: START");
+        									TestIndicatore.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+        									TestIndicatore.setXFinale(StartEndProcessi.get(0).fineProcesso);
+        									Thread threadmuovereIndicatore = new Thread(new Runnable() {
+        										
+        										@Override
+        										public void run() 
+        										{
+        											
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{										
+        												TestIndicatore.moveForward();
+        												if (continuaBoolean == false) 
+        												{
+        													
+        													TestIndicatore.Reset(0);	
+        													BaseProgressBar1JPanel.repaint();
+        													break;
+        												}
+        												else if (TestIndicatore.LimitReached()) 
+        												{
+        													i=0;
+        													TestIndicatore.Reset(StartEndProcessi.get(0).inizioProcesso);
+        												}
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar1JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										}
+        									});
+        									threadmuovereIndicatore.start();
+        								}
+        								else 
+        								{
+        									System.out.println("[ToggleButton]: PAUSE");
+        									continuaBoolean=false;
+        								}
+        							}
+        						});
+        						
+        						buttonReset.addMouseListener(new MouseAdapter() {
+        							@Override
+        							public void mouseClicked(MouseEvent e) 
+        							{
+        								continuaBoolean=false;
+        							}
+        						});
+        						
+        						
+        						
+        						
+        						
+        						
+        						NumProcessiComboBox.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
+					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
+					int rowCount = tabella.getRowCount();
+					int columnCount = tabella.getColumnCount();
+
+					//rimuove tutte le righe precedenti
+					for (int i = rowCount - 1; i >= 0; i--) 
+					{
+				    	model1.removeRow(i);
+					}
+					//ricrea la tabella
+					for (int i=0;i<sceltaNumero;i++) 
+					{ 
+						model1.addRow(new Object[0]);
+						model1.setValueAt("P"+(i+1),i,0);
+						
+						
+						//setting default values
+						for(int j=1; j<columnCount; j++) {
+							
+							if(j==2)
+								model1.setValueAt("300",i,j);
+							else
+								model1.setValueAt("0", i, j);
+						}
+					}
+					
+					
+					//managing progress bars
+					
+					
+					if (sceltaNumero==1) 
+					{
+						BaseProgressBar1JPanel.setVisible(true);
+						BaseProgressBar2JPanel.setVisible(false);
+						BaseProgressBar3JPanel.setVisible(false);
+						BaseProgressBar4JPanel.setVisible(false);
+						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+						
+					
+					}
+					else if(sceltaNumero==2)
+					{
+						BaseProgressBar1JPanel.setVisible(true);
+						BaseProgressBar2JPanel.setVisible(true);
+						BaseProgressBar3JPanel.setVisible(false);
+						BaseProgressBar4JPanel.setVisible(false);
+						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+					}
+					
+					else if(sceltaNumero==3)
+					{
+						BaseProgressBar1JPanel.setVisible(true);
+						BaseProgressBar2JPanel.setVisible(true);
+						BaseProgressBar3JPanel.setVisible(true);
+						BaseProgressBar4JPanel.setVisible(false);
+						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+					}
+					
+					else if(sceltaNumero==4)
+					{
+						BaseProgressBar1JPanel.setVisible(true);
+						BaseProgressBar2JPanel.setVisible(true);
+						BaseProgressBar3JPanel.setVisible(true);
+						BaseProgressBar4JPanel.setVisible(true);
+						BaseProgressBar5JPanel.setVisible(false);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+					}
+					
+					else if(sceltaNumero==5)
+					{
+						BaseProgressBar1JPanel.setVisible(true);
+						BaseProgressBar2JPanel.setVisible(true);
+						BaseProgressBar3JPanel.setVisible(true);
+						BaseProgressBar4JPanel.setVisible(true);
+						BaseProgressBar5JPanel.setVisible(true);
+						
+						JobDuration1JPanel.setVisible(false);
+						JobDuration2JPanel.setVisible(false);
+						JobDuration3JPanel.setVisible(false);
+						JobDuration4JPanel.setVisible(false);
+						JobDuration5JPanel.setVisible(false);
+					}
+					
+				}
+			});
+        				
+	       
+	       
+		
+        				NumSemaforiComboBox.addActionListener(new ActionListener() {
+        					@Override
+        					public void actionPerformed(ActionEvent e) 
+        					{
+        						String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
+        						int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
+        						if(numeroSemaforiInt==1)
+        						{
+        							//Attivo il Primo Semaforo 
+        							GraficaSemaforo2JLabel.setVisible(true);
+        							JLabelTextMutex2.setVisible(true);
+        							//Disattivo il secondo
+        							GraficaSemaforo2JLabel.setVisible(false);
+        							JLabelTextMutex2.setVisible(false);
+        						}
+        						else if(numeroSemaforiInt==2)
+        						{
+        							//Abilito anche il secondo semaforo 
+        							GraficaSemaforo2JLabel.setVisible(true);
+        							JLabelTextMutex2.setVisible(true);
+        						}
+        							
+        					}
+        				});
+        
+
+     
+        
+ 
+        
+       
+
 	        
 	    
-	        
-	        
-	        
+	           
 	        
 //------------------------------------------------------------------------------------------------
 //								ACTIONS PERFORMED
@@ -1272,153 +1541,6 @@ public class Semafori extends JFrame {
 	        		GeneraEsercizioJLabel.setForeground(Color.BLACK);
 	        	}
 			});
-	        
-	        
-	        
-	        
-	        
-	        
-	        NumProcessiComboBox.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e)
-				{
-					String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
-					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
-					int rowCount = tabella.getRowCount();
-					int columnCount = tabella.getColumnCount();
-
-					//rimuove tutte le righe precedenti
-					for (int i = rowCount - 1; i >= 0; i--) 
-					{
-				    	model1.removeRow(i);
-					}
-					//ricrea la tabella
-					for (int i=0;i<sceltaNumero;i++) 
-					{ 
-						model1.addRow(new Object[0]);
-						model1.setValueAt("P"+(i+1),i,0);
-						
-						
-						//setting default values
-						for(int j=1; j<columnCount; j++) {
-							
-							if(j==2)
-								model1.setValueAt("300",i,j);
-							else
-								model1.setValueAt("0", i, j);
-						}
-					}
-					
-					
-					//managing progress bars
-					
-					
-					if (sceltaNumero==1) 
-					{
-						BaseProgressBar1JPanel.setVisible(true);
-						BaseProgressBar2JPanel.setVisible(false);
-						BaseProgressBar3JPanel.setVisible(false);
-						BaseProgressBar4JPanel.setVisible(false);
-						BaseProgressBar5JPanel.setVisible(false);
-						
-						JobDuration1JPanel.setVisible(false);
-						JobDuration2JPanel.setVisible(false);
-						JobDuration3JPanel.setVisible(false);
-						JobDuration4JPanel.setVisible(false);
-						JobDuration5JPanel.setVisible(false);
-						
-					
-					}
-					else if(sceltaNumero==2)
-					{
-						BaseProgressBar1JPanel.setVisible(true);
-						BaseProgressBar2JPanel.setVisible(true);
-						BaseProgressBar3JPanel.setVisible(false);
-						BaseProgressBar4JPanel.setVisible(false);
-						BaseProgressBar5JPanel.setVisible(false);
-						
-						JobDuration1JPanel.setVisible(false);
-						JobDuration2JPanel.setVisible(false);
-						JobDuration3JPanel.setVisible(false);
-						JobDuration4JPanel.setVisible(false);
-						JobDuration5JPanel.setVisible(false);
-					}
-					
-					else if(sceltaNumero==3)
-					{
-						BaseProgressBar1JPanel.setVisible(true);
-						BaseProgressBar2JPanel.setVisible(true);
-						BaseProgressBar3JPanel.setVisible(true);
-						BaseProgressBar4JPanel.setVisible(false);
-						BaseProgressBar5JPanel.setVisible(false);
-						
-						JobDuration1JPanel.setVisible(false);
-						JobDuration2JPanel.setVisible(false);
-						JobDuration3JPanel.setVisible(false);
-						JobDuration4JPanel.setVisible(false);
-						JobDuration5JPanel.setVisible(false);
-					}
-					
-					else if(sceltaNumero==4)
-					{
-						BaseProgressBar1JPanel.setVisible(true);
-						BaseProgressBar2JPanel.setVisible(true);
-						BaseProgressBar3JPanel.setVisible(true);
-						BaseProgressBar4JPanel.setVisible(true);
-						BaseProgressBar5JPanel.setVisible(false);
-						
-						JobDuration1JPanel.setVisible(false);
-						JobDuration2JPanel.setVisible(false);
-						JobDuration3JPanel.setVisible(false);
-						JobDuration4JPanel.setVisible(false);
-						JobDuration5JPanel.setVisible(false);
-					}
-					
-					else if(sceltaNumero==5)
-					{
-						BaseProgressBar1JPanel.setVisible(true);
-						BaseProgressBar2JPanel.setVisible(true);
-						BaseProgressBar3JPanel.setVisible(true);
-						BaseProgressBar4JPanel.setVisible(true);
-						BaseProgressBar5JPanel.setVisible(true);
-						
-						JobDuration1JPanel.setVisible(false);
-						JobDuration2JPanel.setVisible(false);
-						JobDuration3JPanel.setVisible(false);
-						JobDuration4JPanel.setVisible(false);
-						JobDuration5JPanel.setVisible(false);
-					}
-					
-				}
-			});
-			
-	       
-	       
-		
-			NumSemaforiComboBox.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) 
-				{
-					String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
-					int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
-					if(numeroSemaforiInt==1)
-					{
-						//Attivo il Primo Semaforo 
-						GraficaSemaforo2JLabel.setVisible(true);
-						JLabelTextMutex2.setVisible(true);
-						//Disattivo il secondo
-						GraficaSemaforo2JLabel.setVisible(false);
-						JLabelTextMutex2.setVisible(false);
-					}
-					else if(numeroSemaforiInt==2)
-					{
-						//Abilito anche il secondo semaforo 
-						GraficaSemaforo2JLabel.setVisible(true);
-						JLabelTextMutex2.setVisible(true);
-					}
-						
-				}
-			});
 			
 			
 			
@@ -1434,12 +1556,12 @@ public class Semafori extends JFrame {
 		        	@Override
 		        	public void mouseEntered(MouseEvent e) 
 		        	{
-		        		labelIndietroIcon.setForeground(Color.RED);
+		        		labelScrittaIndietro.setForeground(Color.RED);
 		        	}
 		        	@Override
 		        	public void mouseExited(MouseEvent e) 
 		        	{
-		        		labelIndietroIcon.setForeground(Color.BLACK);
+		        		labelScrittaIndietro.setForeground(Color.BLACK);
 		        	}
 		        });
 			 
@@ -1496,73 +1618,6 @@ public class Semafori extends JFrame {
 		        		labelScrittaYoutube.setForeground(Color.BLACK);
 		        	}
 		        });
-				
-				
-				
-				StartPauseToggleButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{	
-						if(StartPauseToggleButton.isSelected()&& StartEndProcessi.size()!=0) 
-						{
-							continuaBoolean=true;
-							System.out.println("[ToggleButton]: START");
-							TestIndicatore.setXInziale(StartEndProcessi.get(0).inizioProcesso);
-							TestIndicatore.setXFinale(StartEndProcessi.get(0).fineProcesso);
-							Thread threadmuovereIndicatore = new Thread(new Runnable() {
-								
-								@Override
-								public void run() 
-								{
-									
-									// TODO Auto-generated method stub
-									for(int i=0; i<300; i++) 
-									{										
-										TestIndicatore.moveForward();
-										if (continuaBoolean == false) 
-										{
-											
-											TestIndicatore.Reset(0);	
-											BaseProgressBar1JPanel.repaint();
-											break;
-										}
-										else if (TestIndicatore.LimitReached()) 
-										{
-											i=0;
-											TestIndicatore.Reset(StartEndProcessi.get(0).inizioProcesso);
-										}
-										try 
-										{
-											Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
-											//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
-											BaseProgressBar1JPanel.repaint();
-											Thread.sleep(10);
-										} 
-										catch (InterruptedException e1)
-										{
-											// TODO Auto-generated catch block
-											e1.printStackTrace();
-										}
-									}
-								}
-							});
-							threadmuovereIndicatore.start();
-						}
-						else 
-						{
-							System.out.println("[ToggleButton]: PAUSE");
-							continuaBoolean=false;
-						}
-					}
-				});
-				
-				ResetButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) 
-					{
-						continuaBoolean=false;
-					}
-				});
 				
 	}
 }

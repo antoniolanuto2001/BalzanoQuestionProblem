@@ -127,6 +127,7 @@ public class Hashing extends JFrame {
 		setContentPane(contentPane);
 		
 		JPanel panelMainButton = new JPanel();
+		panelMainButton.setBackground(Color.WHITE);
 		panelMainButton.setToolTipText("Parole base prese da dizionario di sistema\r\n");
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
@@ -157,6 +158,7 @@ public class Hashing extends JFrame {
 		panelMainButton.add(textParoleBase);
 		
 		JPanel panelControllo = new JPanel();
+		panelControllo.setBackground(Color.WHITE);
 		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.setBounds(1130, 76, 274, 670);
 		panelMainButton.add(panelControllo);

@@ -199,7 +199,7 @@ public SchProcessi(JFrame framechiamante) {
 		JButton btnGenera = new JButton("Genera Tabella Processi");
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
-			btnGenera.setBorder(new LineBorder(new Color(0, 204, 0), 4));
+			btnGenera.setBorder(new LineBorder(new Color(0, 200, 83), 4));
 			//btnGenera.setBackground(new Color(255, 255, 255));
 			btnGenera.setBounds(974, 86, 157, 48);
 			pannelloPrincipale.add(btnGenera);
@@ -208,7 +208,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 /**							PANNELLO TITOLO										*/
 		JPanel pannelloTitolo = new JPanel();
-			pannelloTitolo.setBorder(new LineBorder(new Color(51, 204, 255), 7));
+			pannelloTitolo.setBorder(new LineBorder(new Color(100, 181, 246), 7));
 			//pannelloTitolo.setBackground(Color.WHITE);
 			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
@@ -459,7 +459,7 @@ public SchProcessi(JFrame framechiamante) {
 			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
 			//pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
-			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(0, 204, 255), 4));
+			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(100, 181, 246), 4));
 			pannellodicontrolloTitolo.setLayout(null);
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
@@ -589,7 +589,7 @@ public SchProcessi(JFrame framechiamante) {
 		JButton btnGeneraGrafici = new JButton("GENERA GRAFICI");
 			btnGeneraGrafici.setEnabled(false);
 			btnGeneraGrafici.setBackground(new Color(255, 255, 255));
-			btnGeneraGrafici.setBorder(new LineBorder(new Color(51, 204, 255), 4));
+			btnGeneraGrafici.setBorder(new LineBorder(new Color(100, 181, 246), 4));
 			btnGeneraGrafici.setFont(new Font("Arial", Font.BOLD, 15));
 			btnGeneraGrafici.setBounds(10, 219, 225, 28);
 			pannelloEDITOR.add(btnGeneraGrafici);
@@ -658,6 +658,7 @@ public SchProcessi(JFrame framechiamante) {
 			txtrHelpArea.setLineWrap(true);
 			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso è il piu' semplice degli algoritmi di scheduling della CPU ed è basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevità. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso è spesso detto \"shortest remaining time first\"; è uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in più la capacità di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantità fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti è trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
+			txtrHelpArea.setCaretPosition(0);
 			txtrHelpArea.setEditable(false);
 		                
 		JLabel lblHelp = new JLabel("Spiegazioni argomento");
@@ -761,7 +762,7 @@ public SchProcessi(JFrame framechiamante) {
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				btnGenera.setBackground(new Color(0, 204, 0));
+				btnGenera.setBackground(new Color (0, 200, 83));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -948,7 +949,7 @@ public SchProcessi(JFrame framechiamante) {
 			{
 				if (btnGeneraGrafici.isEnabled()) {
 					
-					btnGeneraGrafici.setBackground(new Color(51, 204, 255));
+					btnGeneraGrafici.setBackground(new Color(100, 181, 246));
 				}
 			}
 			@Override
