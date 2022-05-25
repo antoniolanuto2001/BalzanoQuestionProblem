@@ -444,19 +444,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloEditor.setBounds(10, 95, 245, 234);
 			panelDiControllo.add(pannelloEditor);
 			
-		JLabel lblSlotMemoria = new JLabel("Slot Memoria Disponibili");
-			lblSlotMemoria.setHorizontalAlignment(SwingConstants.CENTER);
-			lblSlotMemoria.setForeground(Color.BLACK);
-			lblSlotMemoria.setFont(new Font("Arial", Font.BOLD, 14));
-			lblSlotMemoria.setBounds(0, 2, 181, 23);
-			pannelloEditor.add(lblSlotMemoria);
+		JLabel labelSlotMemoria = new JLabel("Slot Memoria Disponibili :");
+		labelSlotMemoria.setEnabled(false);
+			labelSlotMemoria.setHorizontalAlignment(SwingConstants.CENTER);
+			labelSlotMemoria.setForeground(Color.BLACK);
+			labelSlotMemoria.setFont(new Font("Arial", Font.BOLD, 14));
+			labelSlotMemoria.setBounds(0, 2, 181, 23);
+			pannelloEditor.add(labelSlotMemoria);
 			
-		JComboBox SceltaSlotDisponibili = new JComboBox();
-			SceltaSlotDisponibili.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
-			SceltaSlotDisponibili.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			SceltaSlotDisponibili.setBackground(Color.WHITE);
-			SceltaSlotDisponibili.setBounds(185, 2, 50, 21);
-			pannelloEditor.add(SceltaSlotDisponibili);
+		JComboBox comboSceltaSlotDisponibili = new JComboBox();
+			comboSceltaSlotDisponibili.setEnabled(false);
+			comboSceltaSlotDisponibili.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
+			comboSceltaSlotDisponibili.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			comboSceltaSlotDisponibili.setBackground(Color.WHITE);
+			comboSceltaSlotDisponibili.setBounds(185, 3, 51, 22);
+			pannelloEditor.add(comboSceltaSlotDisponibili);
 			
 		JButton generaGrafici = new JButton("CALCOLA GRAFICI");
 			generaGrafici.setEnabled(false);
@@ -516,6 +518,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			txtrHelpArea.setLineWrap(true);
 			txtrHelpArea.setText("FIFO (First In First Out).\r\nE' la pi\u00F9 semplice, si tiene traccia in una tabella di quando \u00E8 stata allocata un'area di memoria. Quando vi \u00E8 una nuova richiesta di allocazione di pagine di memoria, se c'\u00E8 ancora spazio in memoria principale, semplicemente viene allocata la nuova pagina, altrimenti si consulta mediante la tabella quali sono le pagine allocate da pi\u00F9 tempo e si spostano in memoria secondaria.\r\nQuesto algoritmo \u00E8 molto semplice e di rapida esecuzione ma ha lo svantaggio di spostare in memoria secondaria le pagine pi\u00F9 vecchie anche se sono utilizzate di frequente.\r\n\r\nOPT\r\nSi sostituisce la pagina che non si user\u00E0 per il periodo di tempo pi\u00F9 lungo. Non \u00E8 possibile conoscere in anticipo la successione dei riferimenti, viene usato principalmente per studi comparativi, per valutare le prestazioni degli algoritmi.\r\n\r\nLRU (Least Recently Used)\r\nVengono sostituite le pagine usate meno di recente, poich\u00E8 queste hanno buona probabilit\u00E0 di non essere nuovamente utilizzate nell'immediato.\r\n");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
+			txtrHelpArea.setCaretPosition(0);
 			txtrHelpArea.setEditable(false);
 		
 		JTextField stringaNumeri = new JTextField();
@@ -523,7 +526,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 10));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
-			stringaNumeri.setBounds(10, 97, 225, 23);
+			stringaNumeri.setBounds(5, 97, 235, 23);
 			pannelloEditor.add(stringaNumeri);
 			stringaNumeri.setColumns(10);
 			
@@ -600,6 +603,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+				comboSceltaSlotDisponibili.setEnabled(true);
+				labelSlotMemoria.setEnabled(true);
 				labelFastForward.setEnabled(true);
 				labelScrittaFast.setEnabled(true);
 				labelScrittaPlay.setEnabled(true);
@@ -608,7 +613,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				stringaNumeri.setText("");
 				numeri=new int[25];
 
-				String j= SceltaSlotDisponibili.getSelectedItem().toString();
+				String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 				int s=Integer.valueOf(j);
 				
 				DATOFIFO.setText("");
@@ -713,7 +718,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 					labelScrittaPlay.setEnabled(false);
 					
 					//GENERAZIONE MATRICI
-					String j= SceltaSlotDisponibili.getSelectedItem().toString();
+					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 					int s=Integer.valueOf(j);
 					
 					numeriFIFO=FIFO(numeri,s);
@@ -767,7 +772,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 	//EVENTO SU CAMPO DI SLOT DISPONIBILI
 
-		SceltaSlotDisponibili.addActionListener(new ActionListener() {
+		comboSceltaSlotDisponibili.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(pieno==0) {
 				

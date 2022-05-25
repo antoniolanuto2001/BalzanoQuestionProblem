@@ -482,17 +482,19 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloEDITOR.setLayout(null);
 			//pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
-		JLabel lblNumeroDiProcessi = new JLabel("Numero di processi");
-			lblNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNumeroDiProcessi.setForeground(new Color(0, 0, 0));
-			lblNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 15));
-			lblNumeroDiProcessi.setBounds(10, 2, 165, 23);
-			pannelloEDITOR.add(lblNumeroDiProcessi);
+		JLabel labellNumeroDiProcessi = new JLabel("Numero di processi");
+		labellNumeroDiProcessi.setEnabled(false);
+			labellNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
+			labellNumeroDiProcessi.setForeground(new Color(0, 0, 0));
+			labellNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 15));
+			labellNumeroDiProcessi.setBounds(10, 2, 165, 23);
+			pannelloEDITOR.add(labellNumeroDiProcessi);
 		
 		JComboBox comboBoxSceltaNProcessi = new JComboBox();
+		comboBoxSceltaNProcessi.setEnabled(false);
 			comboBoxSceltaNProcessi.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxSceltaNProcessi.setBackground(new Color(255, 255, 255));
-			comboBoxSceltaNProcessi.setModel(new DefaultComboBoxModel(new String[] {"6", "5", "4", "3", "2", "1", "0"}));
+			comboBoxSceltaNProcessi.setModel(new DefaultComboBoxModel(new String[] {"6", "5", "4", "3", "2", "1"}));
 			comboBoxSceltaNProcessi.setBounds(185, 2, 50, 21);
 			pannelloEDITOR.add(comboBoxSceltaNProcessi);
 		
@@ -687,8 +689,10 @@ public SchProcessi(JFrame framechiamante) {
 	//EVENTO SU BOTTONE GENERA TABELLA PROCESSI
 		btnGenera.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-
+			public void mouseClicked(MouseEvent e) 
+			{
+				labellNumeroDiProcessi.setEnabled(true);
+				comboBoxSceltaNProcessi.setEnabled(true);
 				arrayPunti.clear();
 				arrayLinea.clear();
 				FCFS.clear();
