@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.security.PublicKey;
 
 import javax.swing.JPanel;
 
@@ -27,7 +28,7 @@ public class GraficaIndicatoreSemafori extends JPanel{
 			this.w=w;
 			this.h=h;
 			
-			this.setBackground(Color.YELLOW);
+			this.setBackground(Color.BLACK);
 			this.setBounds(this.x, this.y, this.w, this.h);
 		}
 		
@@ -52,7 +53,7 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	   @Override
 	   public void paintComponent(Graphics g) {
 	      super.paintComponent(g);
-	      g.setColor(Color.YELLOW);
+	      g.setColor(Color.BLACK);
 	       
 	      g2d = (Graphics2D) g;
 	      g2d.setStroke(new BasicStroke(3));
@@ -85,6 +86,12 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	    	//debug
 	    	System.out.println("Valore dell'indicatore riportato a: "+this.x);
 	    }
+	    
+	    public void Pause() {
+	    	g2d.drawLine(x, y, x, y);
+	    	System.out.println("In pausa!");
+	    }
+
 	    
 
 }
