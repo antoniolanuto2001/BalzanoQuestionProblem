@@ -39,6 +39,19 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   		}
    	   		j=j+slot-1;
    		}*/
+   		for(int i = array.length-1; i >=0; i--)
+	    {
+   	   		int count=0;
+	        for(int j = 0; j < slot; j++) {
+	        	if(i>0)	if(array[i][j]==array[i-1][j])count++;
+	        }
+	        if(count==slot) {
+	        	for(int j = 0; j < slot; j++) {
+		        	array[i][j]=-1;
+		        }
+	        }
+	    }
+   		
    		
    		for(int i = 0; i < slot; i++)
 	    {
@@ -67,6 +80,19 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   		}
    	   		j=j+slot-1;
    		}*/
+   		for(int i = array.length-1; i >=0; i--)
+	    {
+   	   		int count=0;
+	        for(int j = 0; j < slot; j++) {
+	        	if(i>0)	if(array[i][j]==array[i-1][j])count++;
+	        }
+	        if(count==slot) {
+	        	for(int j = 0; j < slot; j++) {
+		        	array[i][j]=-1;
+		        }
+	        }
+	    }
+   		
    		for(int i = 0; i < slot; i++)
 	    {
 	        for(int j = 0; j < 25; j++) {
@@ -78,7 +104,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	    
    		g.setColor(Color.blue);
 	        for(int j = 0; j < 25; j++) {
-	        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*18);
+	        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
 	        }
    		
    	}
@@ -96,6 +122,19 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   		}
    	   		j=j+slot-1;
    		}*/
+   		for(int i = array.length-1; i >=0; i--)
+	    {
+   	   		int count=0;
+	        for(int j = 0; j < slot; j++) {
+	        	if(i>0)	if(array[i][j]==array[i-1][j])count++;
+	        }
+	        if(count==slot) {
+	        	for(int j = 0; j < slot; j++) {
+		        	array[i][j]=-1;
+		        }
+	        }
+	    }
+   		
    		for(int i = 0; i < slot; i++)
 	    {
 	        for(int j = 0; j < 25; j++) {
@@ -106,7 +145,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	    }
    		g.setColor(Color.blue);
         for(int j = 0; j < 25; j++) {
-        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*18);
+        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
         }
    		
    	}
@@ -124,6 +163,19 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   		}
    	   		j=j+slot-1;
    		}*/
+   		for(int i = array.length-1; i >=0; i--)
+	    {
+   	   		int count=0;
+	        for(int j = 0; j < slot; j++) {
+	        	if(i>0)	if(array[i][j]==array[i-1][j])count++;
+	        }
+	        if(count==slot) {
+	        	for(int j = 0; j < slot; j++) {
+		        	array[i][j]=-1;
+		        }
+	        }
+	    }
+   		
    		for(int i = 0; i < slot; i++)
 	    {
 	        for(int j = 0; j < 25; j++) {
@@ -135,7 +187,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	    
    		g.setColor(Color.blue);
         for(int j = 0; j < 25; j++) {
-        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*18);
+        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
         }
    	}
    	

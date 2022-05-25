@@ -40,6 +40,7 @@ public class Hashing extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
+	//Chaining
 	public  JLabel labelNumero0;
 	public  JLabel labelNumero1;
 	public  JLabel labelNumero2;
@@ -73,6 +74,39 @@ public class Hashing extends JFrame {
 	public  JLabel labelLinked7_1;
 	public  JLabel labelLinked7_2;
 	public  JLabel labelLinked7_3;
+	//Open Addressing
+	public  JLabel labelNumero0Addres;
+	public  JLabel labelNumero1Addres;
+	public  JLabel labelNumero2Addres;
+	public  JLabel labelNumero3Addres;
+	public  JLabel labelNumero4Addres;
+	public  JLabel labelNumero5Addres;
+	public  JLabel labelNumero6Addres;
+	public  JLabel labelNumero7Addres;
+	public  JLabel labelLinked0_1Addres;
+	public  JLabel labelLinked0_2Addres;
+	public  JLabel labelLinked0_3Addres;
+	public  JLabel labelLinked1_1Addres;
+	public  JLabel labelLinked1_2Addres;
+	public  JLabel labelLinked1_3Addres;
+	public  JLabel labelLinked2_1Addres;
+	public  JLabel labelLinked2_2Addres;
+	public  JLabel labelLinked2_3Addres;
+	public  JLabel labelLinked3_1Addres;
+	public  JLabel labelLinked3_2Addres;
+	public  JLabel labelLinked3_3Addres;
+	public  JLabel labelLinked4_1Addres;
+	public  JLabel labelLinked4_2Addres;
+	public  JLabel labelLinked4_3Addres;
+	public  JLabel labelLinked5_1Addres;
+	public  JLabel labelLinked5_2Addres;
+	public  JLabel labelLinked5_3Addres;
+	public  JLabel labelLinked6_1Addres;
+	public  JLabel labelLinked6_2Addres;
+	public  JLabel labelLinked6_3Addres;
+	public  JLabel labelLinked7_1Addres;
+	public  JLabel labelLinked7_2Addres;
+	public  JLabel labelLinked7_3Addres;
 	public  ImageIcon numero0baseIcon = new ImageIcon(this.getClass().getResource("/img/numero0Icon1.png"));
 	public  ImageIcon numero1baseIcon = new ImageIcon(this.getClass().getResource("/img/numero1Icon1.png"));
 	public  ImageIcon numero2baseIcon = new ImageIcon(this.getClass().getResource("/img/numero2Icon1.png"));
@@ -95,7 +129,7 @@ public class Hashing extends JFrame {
 	public 	boolean puoiCambiareSpeciale=false;
 	public int iteratoreScorittore;
 	public LinkedList <Integer> []  listChaing = new LinkedList[8];
-
+	public LinkedList <Integer> []  listOpenAddresing = new LinkedList[8];
 	/**
 	 * Create the frame.
 	 */
@@ -106,7 +140,11 @@ public class Hashing extends JFrame {
 		{	
 			listChaing[i]=new LinkedList <Integer>();
 		}
-		
+
+		for (int i = 0; i < listOpenAddresing.length; i++) 
+		{	
+			listOpenAddresing[i]=new LinkedList <Integer>();
+		}
 		iteratoreScorittore=0;
 		//Dizionario Parole
 		String [] dizionarioParola = {"Vulcano","Amico","Organo","Rame","Gorilla","Orzo","Noci","Melanzana","Cristallo","Pavimento","Risotto","Sei","Stalattiti","Sinistra",
@@ -619,10 +657,148 @@ public class Hashing extends JFrame {
 		labelLinked7_3.setBounds(456, 705, 30, 29);
 		panelMainButton.add(labelLinked7_3);
 
-		JLabel lblNewLabel = new JLabel("   0      1       2      3      4       5      6      7 ");
-		lblNewLabel.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		lblNewLabel.setBounds(228, 555, 258, 23);
-		panelMainButton.add(lblNewLabel);
+		JLabel labelNumeriChaining = new JLabel("   0      1       2      3      4       5      6      7 ");
+		labelNumeriChaining.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		labelNumeriChaining.setBounds(228, 555, 258, 23);
+		panelMainButton.add(labelNumeriChaining);
+		
+		labelNumero0Addres = new JLabel("");
+		labelNumero0Addres.setBounds(643, 581, 30, 25);
+		panelMainButton.add(labelNumero0Addres);
+		
+		labelNumero1Addres = new JLabel("");
+		labelNumero1Addres.setBounds(676, 581, 30, 25);
+		panelMainButton.add(labelNumero1Addres);
+		
+		labelNumero2Addres = new JLabel("");
+		labelNumero2Addres.setBounds(709, 581, 30, 25);
+		panelMainButton.add(labelNumero2Addres);
+		
+		labelNumero3Addres = new JLabel("");
+		labelNumero3Addres.setBounds(740, 581, 30, 25);
+		panelMainButton.add(labelNumero3Addres);
+		
+		labelNumero4Addres = new JLabel("");
+		labelNumero4Addres.setBounds(773, 581, 30, 25);
+		panelMainButton.add(labelNumero4Addres);
+		
+		labelNumero5Addres = new JLabel("");
+		labelNumero5Addres.setBounds(806, 581, 30, 25);
+		panelMainButton.add(labelNumero5Addres);
+		
+		labelNumero6Addres = new JLabel("");
+		labelNumero6Addres.setBounds(839, 581, 30, 25);
+		panelMainButton.add(labelNumero6Addres);
+		
+		labelNumero7Addres = new JLabel("");
+		labelNumero7Addres.setBounds(871, 581, 30, 25);
+		panelMainButton.add(labelNumero7Addres);
+		
+		JLabel labelArrayAddres = new JLabel("");
+		labelArrayAddres.setIcon(new ImageIcon(Hashing.class.getResource("/img/arrayIcon1.png")));
+		labelArrayAddres.setBounds(641, 578, 264, 33);
+		panelMainButton.add(labelArrayAddres);
+		
+		labelLinked0_1Addres = new JLabel("");
+		labelLinked0_1Addres.setBounds(643, 625, 30, 29);
+		panelMainButton.add(labelLinked0_1Addres);
+		
+		labelLinked0_2Addres = new JLabel("");
+		labelLinked0_2Addres.setBounds(643, 665, 30, 29);
+		panelMainButton.add(labelLinked0_2Addres);
+		
+		labelLinked0_3Addres = new JLabel("");
+		labelLinked0_3Addres.setBounds(643, 705, 30, 29);
+		panelMainButton.add(labelLinked0_3Addres);
+		
+		labelLinked1_1Addres = new JLabel("");
+		labelLinked1_1Addres.setBounds(676, 625, 30, 29);
+		panelMainButton.add(labelLinked1_1Addres);
+		
+		labelLinked1_2Addres = new JLabel("");
+		labelLinked1_2Addres.setBounds(676, 665, 30, 29);
+		panelMainButton.add(labelLinked1_2Addres);
+		
+		labelLinked1_3Addres = new JLabel("");
+		labelLinked1_3Addres.setBounds(676, 705, 30, 29);
+		panelMainButton.add(labelLinked1_3Addres);
+		
+		labelLinked2_1Addres = new JLabel("");
+		labelLinked2_1Addres.setBounds(711, 625, 30, 29);
+		panelMainButton.add(labelLinked2_1Addres);
+		
+		labelLinked2_2Addres = new JLabel("");
+		labelLinked2_2Addres.setBounds(711, 665, 30, 29);
+		panelMainButton.add(labelLinked2_2Addres);
+		
+		labelLinked2_3Addres = new JLabel("");
+		labelLinked2_3Addres.setBounds(711, 705, 30, 29);
+		panelMainButton.add(labelLinked2_3Addres);
+		
+		labelLinked3_1Addres = new JLabel("");
+		labelLinked3_1Addres.setBounds(741, 625, 30, 29);
+		panelMainButton.add(labelLinked3_1Addres);
+		
+		labelLinked3_2Addres = new JLabel("");
+		labelLinked3_2Addres.setBounds(741, 665, 30, 29);
+		panelMainButton.add(labelLinked3_2Addres);
+		
+		labelLinked3_3Addres = new JLabel("");
+		labelLinked3_3Addres.setBounds(741, 705, 30, 29);
+		panelMainButton.add(labelLinked3_3Addres);
+		
+		labelLinked4_1Addres = new JLabel("");
+		labelLinked4_1Addres.setBounds(773, 625, 30, 29);
+		panelMainButton.add(labelLinked4_1Addres);
+		
+		labelLinked4_2Addres = new JLabel("");
+		labelLinked4_2Addres.setBounds(773, 665, 30, 29);
+		panelMainButton.add(labelLinked4_2Addres);
+		
+		labelLinked4_3Addres = new JLabel("");
+		labelLinked4_3Addres.setBounds(773, 705, 30, 29);
+		panelMainButton.add(labelLinked4_3Addres);
+		
+		labelLinked5_1Addres = new JLabel("");
+		labelLinked5_1Addres.setBounds(806, 625, 30, 29);
+		panelMainButton.add(labelLinked5_1Addres);
+		
+		labelLinked5_2Addres = new JLabel("");
+		labelLinked5_2Addres.setBounds(806, 665, 30, 29);
+		panelMainButton.add(labelLinked5_2Addres);
+		
+		labelLinked5_3Addres = new JLabel("");
+		labelLinked5_3Addres.setBounds(806, 705, 30, 29);
+		panelMainButton.add(labelLinked5_3Addres);
+		
+		labelLinked6_1Addres = new JLabel("");
+		labelLinked6_1Addres.setBounds(839, 625, 30, 29);
+		panelMainButton.add(labelLinked6_1Addres);
+		
+		labelLinked6_2Addres = new JLabel("");
+		labelLinked6_2Addres.setBounds(839, 665, 30, 29);
+		panelMainButton.add(labelLinked6_2Addres);
+		
+		labelLinked6_3Addres = new JLabel("");
+		labelLinked6_3Addres.setBounds(839, 705, 30, 29);
+		panelMainButton.add(labelLinked6_3Addres);
+		
+		 labelLinked7_1Addres = new JLabel("");
+		labelLinked7_1Addres.setBounds(871, 625, 30, 29);
+		panelMainButton.add(labelLinked7_1Addres);
+		
+		 labelLinked7_2Addres = new JLabel("");
+		labelLinked7_2Addres.setBounds(871, 665, 30, 29);
+		panelMainButton.add(labelLinked7_2Addres);
+		
+		labelLinked7_3Addres = new JLabel("");
+		labelLinked7_3Addres.setBounds(871, 705, 30, 29);
+		panelMainButton.add(labelLinked7_3Addres);
+		
+		JLabel labelNumeriAddres = new JLabel("   0      1       2      3      4       5      6      7 ");
+		labelNumeriAddres.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		labelNumeriAddres.setBounds(643, 555, 258, 23);
+		panelMainButton.add(labelNumeriAddres);
 		
 		
 		
@@ -654,38 +830,7 @@ public class Hashing extends JFrame {
 				radioXmod.setEnabled(true);
 				radioxJ2mod8.setEnabled(true);
 				radio5xMod8.setEnabled(true);
-				labelNumero0.setIcon(null);
-				labelNumero1.setIcon(null);
-				labelNumero2.setIcon(null);
-				labelNumero3.setIcon(null);
-				labelNumero4.setIcon(null);
-				labelNumero5.setIcon(null);
-				labelNumero6.setIcon(null);
-				labelNumero7.setIcon(null);
-				labelLinked0_1.setIcon(null);
-				labelLinked1_1.setIcon(null);
-				labelLinked2_1.setIcon(null);
-				labelLinked3_1.setIcon(null);
-				labelLinked4_1.setIcon(null);
-				labelLinked5_1.setIcon(null);
-				labelLinked6_1.setIcon(null);
-				labelLinked7_1.setIcon(null);
-				labelLinked0_2.setIcon(null);
-				labelLinked1_2.setIcon(null);
-				labelLinked2_2.setIcon(null);
-				labelLinked3_2.setIcon(null);
-				labelLinked4_2.setIcon(null);
-				labelLinked5_2.setIcon(null);
-				labelLinked6_2.setIcon(null);
-				labelLinked7_2.setIcon(null);
-				labelLinked0_3.setIcon(null);
-				labelLinked1_3.setIcon(null);
-				labelLinked2_3.setIcon(null);
-				labelLinked3_3.setIcon(null);
-				labelLinked4_3.setIcon(null);
-				labelLinked5_3.setIcon(null);
-				labelLinked6_3.setIcon(null);
-				labelLinked7_3.setIcon(null);
+				resetIconEntrambi();
 				
 				
 				String numeroParoleString = (String) comboBoxSceltaNParole.getSelectedItem();
@@ -750,46 +895,7 @@ public class Hashing extends JFrame {
 				textParoleBase.setText("");
 				textParoleSommate.setText("");
 				textParoleCodificate.setText("");
-				labelNumero0.setIcon(null);
-				labelNumero1.setIcon(null);
-				labelNumero2.setIcon(null);
-				labelNumero3.setIcon(null);
-				labelNumero4.setIcon(null);
-				labelNumero5.setIcon(null);
-				labelNumero6.setIcon(null);
-				labelNumero7.setIcon(null);
-				labelNumero0.setIcon(null);
-				labelNumero1.setIcon(null);
-				labelNumero2.setIcon(null);
-				labelNumero3.setIcon(null);
-				labelNumero4.setIcon(null);
-				labelNumero5.setIcon(null);
-				labelNumero6.setIcon(null);
-				labelNumero7.setIcon(null);
-				labelLinked0_1.setIcon(null);
-				labelLinked1_1.setIcon(null);
-				labelLinked2_1.setIcon(null);
-				labelLinked3_1.setIcon(null);
-				labelLinked4_1.setIcon(null);
-				labelLinked5_1.setIcon(null);
-				labelLinked6_1.setIcon(null);
-				labelLinked7_1.setIcon(null);
-				labelLinked0_2.setIcon(null);
-				labelLinked1_2.setIcon(null);
-				labelLinked2_2.setIcon(null);
-				labelLinked3_2.setIcon(null);
-				labelLinked4_2.setIcon(null);
-				labelLinked5_2.setIcon(null);
-				labelLinked6_2.setIcon(null);
-				labelLinked7_2.setIcon(null);
-				labelLinked0_3.setIcon(null);
-				labelLinked1_3.setIcon(null);
-				labelLinked2_3.setIcon(null);
-				labelLinked3_3.setIcon(null);
-				labelLinked4_3.setIcon(null);
-				labelLinked5_3.setIcon(null);
-				labelLinked6_3.setIcon(null);
-				labelLinked7_3.setIcon(null);
+				resetIconEntrambi();
 				
 				String numeroParoleString = (String) comboBoxSceltaNParole.getSelectedItem();
 				int numeroParoleInt=Integer.valueOf(numeroParoleString);
@@ -845,52 +951,18 @@ public class Hashing extends JFrame {
 				textParoleSommate.setText("");
 				textParoleCodificate.setText("");
 				int iteratore=0;
-				labelNumero0.setIcon(null);
-				labelNumero1.setIcon(null);
-				labelNumero2.setIcon(null);
-				labelNumero3.setIcon(null);
-				labelNumero4.setIcon(null);
-				labelNumero5.setIcon(null);
-				labelNumero6.setIcon(null);
-				labelNumero7.setIcon(null);
-				labelNumero0.setIcon(null);
-				labelNumero1.setIcon(null);
-				labelNumero2.setIcon(null);
-				labelNumero3.setIcon(null);
-				labelNumero4.setIcon(null);
-				labelNumero5.setIcon(null);
-				labelNumero6.setIcon(null);
-				labelNumero7.setIcon(null);
-				labelLinked0_1.setIcon(null);
-				labelLinked1_1.setIcon(null);
-				labelLinked2_1.setIcon(null);
-				labelLinked3_1.setIcon(null);
-				labelLinked4_1.setIcon(null);
-				labelLinked5_1.setIcon(null);
-				labelLinked6_1.setIcon(null);
-				labelLinked7_1.setIcon(null);
-				labelLinked0_2.setIcon(null);
-				labelLinked1_2.setIcon(null);
-				labelLinked2_2.setIcon(null);
-				labelLinked3_2.setIcon(null);
-				labelLinked4_2.setIcon(null);
-				labelLinked5_2.setIcon(null);
-				labelLinked6_2.setIcon(null);
-				labelLinked7_2.setIcon(null);
-				labelLinked0_3.setIcon(null);
-				labelLinked1_3.setIcon(null);
-				labelLinked2_3.setIcon(null);
-				labelLinked3_3.setIcon(null);
-				labelLinked4_3.setIcon(null);
-				labelLinked5_3.setIcon(null);
-				labelLinked6_3.setIcon(null);
-				labelLinked7_3.setIcon(null);
-				
+				resetIconEntrambi();
 				for (int i = 0; i < listChaing.length; i++) 
 				{	
 					listChaing[i].removeAll(listChaing[i]);
 					listChaing[i]=new LinkedList <Integer>();
 				}
+				for (int i = 0; i < listOpenAddresing.length; i++) 
+				{	
+					listOpenAddresing[i].removeAll(listChaing[i]);
+					listOpenAddresing[i]=new LinkedList <Integer>();
+				}
+				
 				
 				for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 				{	
@@ -924,9 +996,33 @@ public class Hashing extends JFrame {
 						labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					}
 					listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+					if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+					{
+						listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+					}
+					else 
+					{
+						listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+						}
+						else 
+						{
+							for (int j = 0; j < dizionarioParola.length; j++) 
+							{
+								if (listOpenAddresing[j].isEmpty()) 
+								{
+									listOpenAddresing[j].addLast(iteratore);
+									break;
+								}
+							}
+						}
+					}
 					iteratore++;
 				}
 				stampaChaining(listChaing, listaParolaHashings.size());
+				stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				
 			}
 		
@@ -953,51 +1049,17 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaSomma.setText("S. Normale");
 					int iteratore=0;
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
@@ -1017,58 +1079,48 @@ public class Hashing extends JFrame {
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");	
 						}
 						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						}
+						else 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+							if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(iteratore);
+										break;
+									}
+								}
+							}
+						}
 						iteratore++;
 					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 				else if (puoiCambiareSpeciale)
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					labelFrecciaScrittaSomma.setText("S. Normale");
 					for (int i = 0; i < iteratoreScorittore; i++) 
@@ -1089,8 +1141,32 @@ public class Hashing extends JFrame {
 							textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
 						}
 						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
-					stampaChaining(listChaing, iteratoreScorittore);
+					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}			
 			}
 		});
@@ -1104,51 +1180,16 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaSomma.setText("S. Quadrica");
 					int iteratore=0;
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
-					
+					resetIconEntrambi();
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
@@ -1167,9 +1208,33 @@ public class Hashing extends JFrame {
 							textParoleCodificate.append(""+iteraParolaHashing.x_j2mod8()+"\n");
 						}
 						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						}
+						else 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+							if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(iteratore);
+										break;
+									}
+								}
+							}
+						}
 						iteratore++;
 					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 					
 				}
 				else if (puoiCambiareSpeciale) 
@@ -1177,53 +1242,18 @@ public class Hashing extends JFrame {
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaSomma.setText("S. Quadrica");
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
 					}
-					
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
+					}
 					for (int i = 0; i < iteratoreScorittore; i++) 
 					{	
 						textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
@@ -1241,10 +1271,32 @@ public class Hashing extends JFrame {
 							textParoleCodificate.append(""+listaParolaHashings.get(i).x_j2mod8()+"\n");
 						}
 						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
-					stampaChaining(listChaing, iteratoreScorittore);
-
-					
+					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 			
 			}
@@ -1259,51 +1311,16 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("X mod 8");
 					int iteratore=0;
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
-					
+					resetIconEntrambi();
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
@@ -1318,61 +1335,50 @@ public class Hashing extends JFrame {
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");	
 						}
 						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						}
+						else 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+							if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(iteratore);
+										break;
+									}
+								}
+							}
+						}
 						iteratore++;
-						
-					}	
+					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 				else if (puoiCambiareSpeciale)
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					labelFrecciaScrittaCodifica.setText("X mod 8");
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					for (int i = 0; i < iteratoreScorittore; i++) 
 					{
@@ -1387,8 +1393,32 @@ public class Hashing extends JFrame {
 							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
 						}	
 						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
-					stampaChaining(listChaing, iteratoreScorittore);
+					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 			
 			}
@@ -1403,52 +1433,18 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
 					int iteratore=0;
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
 					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
+					}	
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
 						textParoleCodificate.append(""+iteraParolaHashing.x5_2mod8()+"\n");
@@ -1462,9 +1458,33 @@ public class Hashing extends JFrame {
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");	
 						}
 						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						}
+						else 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+							if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(iteratore);
+										break;
+									}
+								}
+							}
+						}
 						iteratore++;
 					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 						
 				}
 				else if (puoiCambiareSpeciale)
@@ -1475,51 +1495,17 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
 					
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					labelFrecciaScrittaCodifica.setText("(5x + 2 ) mod 8 ");
 					for (int i = 0; i < iteratoreScorittore; i++) 
@@ -1535,8 +1521,32 @@ public class Hashing extends JFrame {
 							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
 						}	
 						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 			}
 		});
@@ -1550,51 +1560,17 @@ public class Hashing extends JFrame {
 					textParoleCodificate.setText("");
 					labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					int iteratore=0;
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					for (parolaHashing iteraParolaHashing : listaParolaHashings) 
 					{	
@@ -1609,59 +1585,49 @@ public class Hashing extends JFrame {
 							textParoleSommate.append(""+iteraParolaHashing.sommaquadatrica()+"\n");	
 						}
 						listChaing[iteraParolaHashing.risultatoFinale].addFirst(iteratore);
+						if (listOpenAddresing[iteraParolaHashing.risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+						}
+						else 
+						{
+							listOpenAddresing[iteraParolaHashing.risultatoFinale].addLast(iteratore);
+							if (iteraParolaHashing.risultatoFinale != 7 && listOpenAddresing[iteraParolaHashing.risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[iteraParolaHashing.risultatoFinale++].addLast(iteratore);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(iteratore);
+										break;
+									}
+								}
+							}
+						}
 						iteratore++;
 					}
 					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 				else if (puoiCambiareSpeciale)
 				{
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+					resetIconEntrambi();
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
+					}
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
 					}
 					labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 					for (int i = 0; i < iteratoreScorittore; i++) 
@@ -1676,9 +1642,33 @@ public class Hashing extends JFrame {
 						{
 							textParoleSommate.append(""+listaParolaHashings.get(i).sommaquadatrica()+"\n");
 						}	
-					listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
-					stampaChaining(listChaing,listaParolaHashings.size());
+					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}
 			}
 		});
@@ -1689,7 +1679,7 @@ public class Hashing extends JFrame {
 			{
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
-				
+				resetIconEntrambi();
 				if (iteratoreScorittore<=listaParolaHashings.size()) 
 				{
 					if (iteratoreScorittore!=listaParolaHashings.size()) 
@@ -1699,53 +1689,18 @@ public class Hashing extends JFrame {
 					puoiCambiareSpeciale=true;
 					textParoleSommate.setText("");
 					textParoleCodificate.setText("");
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelNumero0.setIcon(null);
-					labelNumero1.setIcon(null);
-					labelNumero2.setIcon(null);
-					labelNumero3.setIcon(null);
-					labelNumero4.setIcon(null);
-					labelNumero5.setIcon(null);
-					labelNumero6.setIcon(null);
-					labelNumero7.setIcon(null);
-					labelLinked0_1.setIcon(null);
-					labelLinked1_1.setIcon(null);
-					labelLinked2_1.setIcon(null);
-					labelLinked3_1.setIcon(null);
-					labelLinked4_1.setIcon(null);
-					labelLinked5_1.setIcon(null);
-					labelLinked6_1.setIcon(null);
-					labelLinked7_1.setIcon(null);
-					labelLinked0_2.setIcon(null);
-					labelLinked1_2.setIcon(null);
-					labelLinked2_2.setIcon(null);
-					labelLinked3_2.setIcon(null);
-					labelLinked4_2.setIcon(null);
-					labelLinked5_2.setIcon(null);
-					labelLinked6_2.setIcon(null);
-					labelLinked7_2.setIcon(null);
-					labelLinked0_3.setIcon(null);
-					labelLinked1_3.setIcon(null);
-					labelLinked2_3.setIcon(null);
-					labelLinked3_3.setIcon(null);
-					labelLinked4_3.setIcon(null);
-					labelLinked5_3.setIcon(null);
-					labelLinked6_3.setIcon(null);
-					labelLinked7_3.setIcon(null);
+
 					
 					for (int i = 0; i < listChaing.length; i++) 
 					{	
 						listChaing[i].removeAll(listChaing[i]);
 						listChaing[i]=new LinkedList <Integer>();
 					}
-					
+					for (int i = 0; i < listOpenAddresing.length; i++) 
+					{	
+						listOpenAddresing[i].removeAll(listChaing[i]);
+						listOpenAddresing[i]=new LinkedList <Integer>();
+					}
 					for (int i = 0; i < iteratoreScorittore; i++) 
 					{
 						//Per La Somma
@@ -1777,9 +1732,32 @@ public class Hashing extends JFrame {
 							labelFrecciaScrittaCodifica.setText("(x + J²) mod 8");
 						}
 						listChaing[listaParolaHashings.get(i).risultatoFinale].addFirst(i);
+						if (listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].isEmpty()) 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+						}
+						else 
+						{
+							listOpenAddresing[listaParolaHashings.get(i).risultatoFinale].addLast(i);
+							if (listaParolaHashings.get(i).risultatoFinale != 7 && listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].isEmpty()) 
+							{
+								listOpenAddresing[listaParolaHashings.get(i).risultatoFinale++].addLast(i);
+							}
+							else 
+							{
+								for (int j = 0; j < dizionarioParola.length; j++) 
+								{
+									if (listOpenAddresing[j].isEmpty()) 
+									{
+										listOpenAddresing[j].addLast(i);
+										break;
+									}
+								}
+							}
+						}
 					}
-					
-					stampaChaining(listChaing,listaParolaHashings.size());
+					stampaChaining(listChaing, listaParolaHashings.size());
+					stampaOpenAddressing(listOpenAddresing, listaParolaHashings.size());
 				}				
 			}
 			@Override
@@ -2970,6 +2948,1265 @@ public class Hashing extends JFrame {
 	}
 	
 	}
+	public void stampaOpenAddressing (LinkedList <Integer> []  listOpenAddres ,int size) 
+	{
+		for (int i = 0; i < size; i++) 
+		{
+			if (i==0) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						Integer numero = (Integer) scorre.next();
+						//Primo Elemento
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero0Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked0_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked0_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked0_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+						labelNumero0Addres.revalidate();
+					}
+				}
+			}
+			else if (i==1) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+						Iterator <Integer> scorre = listOpenAddres[i].iterator();
+						int labelDascorre=0;
+						while (scorre.hasNext()) 
+						{
+							Integer numero = (Integer) scorre.next();
+							if (numero == 0 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero0baseIcon);
+							}
+							else if (numero == 1 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero1baseIcon);
+							}
+							else if (numero == 2 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero2baseIcon);
+							}
+							else if (numero == 3 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero3baseIcon);
+							}
+							else if (numero == 4 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero4baseIcon);
+							}
+							else if (numero == 5 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero5baseIcon);
+							}
+							else if (numero == 6 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero6baseIcon);
+							}
+							else if (numero == 7 && labelDascorre== 0) 
+							{
+								labelNumero1Addres.setIcon(numero7baseIcon);
+							}
+							//Elemento Linked 1
+							if (numero == 0 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero0LinkedIcon);
+							}
+							else if (numero == 1 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero1LinkedIcon);
+							}
+							else if (numero == 2 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero2LinkedIcon);
+							}
+							else if (numero == 3 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero3LinkedIcon);
+							}
+							else if (numero == 4 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero4LinkedIcon);
+							}
+							else if (numero == 5 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero5LinkedIcon);
+							}
+							else if (numero == 6 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero6LinkedIcon);
+							}
+							else if (numero == 7 && labelDascorre== 1) 
+							{
+								labelLinked1_1Addres.setIcon(numero7LinkedIcon);
+							}
+							//Elemento Linked 2
+							if (numero == 0 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero0LinkedIcon);
+							}
+							else if (numero == 1 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero1LinkedIcon);
+							}
+							else if (numero == 2 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero2LinkedIcon);
+							}
+							else if (numero == 3 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero3LinkedIcon);
+							}
+							else if (numero == 4 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero4LinkedIcon);
+							}
+							else if (numero == 5 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero5LinkedIcon);
+							}
+							else if (numero == 6 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero6LinkedIcon);
+							}
+							else if (numero == 7 && labelDascorre== 2) 
+							{
+								labelLinked1_2Addres.setIcon(numero7LinkedIcon);
+							}
+							//Elemento Linked 3
+							if (numero == 0 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero0LinkedIcon);
+							}
+							else if (numero == 1 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero1LinkedIcon);
+							}
+							else if (numero == 2 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero2LinkedIcon);
+							}
+							else if (numero == 3 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero3LinkedIcon);
+							}
+							else if (numero == 4 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero4LinkedIcon);
+							}
+							else if (numero == 5 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero5LinkedIcon);
+							}
+							else if (numero == 6 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero6LinkedIcon);
+							}
+							else if (numero == 7 && labelDascorre== 3) 
+							{
+								labelLinked1_3Addres.setIcon(numero7LinkedIcon);
+							}
+							labelDascorre++;
+							labelNumero1Addres.revalidate();
+						}
+						
+				}
+			}
+			else if (i==2) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero2Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked2_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked2_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked2_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+						labelNumero2Addres.revalidate();
+					}
+				}
+			}
+			else if (i==3) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero3Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked3_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked3_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked3_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+						labelNumero3Addres.revalidate();
+					}
+				}
+			}
+			else if (i==4) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero4Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked4_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked4_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked4_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+						labelNumero4Addres.revalidate();
+					}
+				}
+			}
+			else if (i==5) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero5Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked5_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked5_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked5_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+		
+						labelNumero5Addres.revalidate();
+					}
+				}
+			}
+			else if (i==6) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+					
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero6Addres.setIcon(numero7baseIcon);
+						}
+		
+						//Elemento Linked 1
+								if (numero == 0 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 1) 
+								{
+									labelLinked6_1Addres.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 2
+								if (numero == 0 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 2) 
+								{
+									labelLinked6_2Addres.setIcon(numero7LinkedIcon);
+								}
+								//Elemento Linked 3
+								if (numero == 0 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero0LinkedIcon);
+								}
+								else if (numero == 1 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero1LinkedIcon);
+								}
+								else if (numero == 2 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero2LinkedIcon);
+								}
+								else if (numero == 3 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero3LinkedIcon);
+								}
+								else if (numero == 4 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero4LinkedIcon);
+								}
+								else if (numero == 5 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero5LinkedIcon);
+								}
+								else if (numero == 6 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero6LinkedIcon);
+								}
+								else if (numero == 7 && labelDascorre== 3) 
+								{
+									labelLinked6_3Addres.setIcon(numero7LinkedIcon);
+								}
+								labelDascorre++;
+						labelNumero6Addres.revalidate();
+					}
+				}
+			}
+			else if (i==7) 
+			{
+				if (listOpenAddres[i].listIterator() != null) 
+				{
+					Iterator <Integer> scorre = listOpenAddres[i].iterator();
+					int labelDascorre=0;
+					while (scorre.hasNext()) 
+					{
+						Integer numero = (Integer) scorre.next();
+						if (numero == 0 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero0baseIcon);
+						}
+						else if (numero == 1 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero1baseIcon);
+						}
+						else if (numero == 2 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero2baseIcon);
+						}
+						else if (numero == 3 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero3baseIcon);
+						}
+						else if (numero == 4 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero4baseIcon);
+						}
+						else if (numero == 5 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero5baseIcon);
+						}
+						else if (numero == 6 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero6baseIcon);
+						}
+						else if (numero == 7 && labelDascorre== 0) 
+						{
+							labelNumero7Addres.setIcon(numero7baseIcon);
+						}
+						//Elemento Linked 1
+						if (numero == 0 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 1) 
+						{
+							labelLinked7_1Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 2
+						if (numero == 0 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 2) 
+						{
+							labelLinked7_2Addres.setIcon(numero7LinkedIcon);
+						}
+						//Elemento Linked 3
+						if (numero == 0 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero0LinkedIcon);
+						}
+						else if (numero == 1 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero1LinkedIcon);
+						}
+						else if (numero == 2 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero2LinkedIcon);
+						}
+						else if (numero == 3 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero3LinkedIcon);
+						}
+						else if (numero == 4 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero4LinkedIcon);
+						}
+						else if (numero == 5 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero5LinkedIcon);
+						}
+						else if (numero == 6 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero6LinkedIcon);
+						}
+						else if (numero == 7 && labelDascorre== 3) 
+						{
+							labelLinked7_3Addres.setIcon(numero7LinkedIcon);
+						}
+						labelDascorre++;
+						labelNumero7Addres.revalidate();
+					}
+				}
+			}
+	}
+	
+	}
+	public void resetIconEntrambi()
+	{
+		labelNumero0.setIcon(null);
+		labelNumero1.setIcon(null);
+		labelNumero2.setIcon(null);
+		labelNumero3.setIcon(null);
+		labelNumero4.setIcon(null);
+		labelNumero5.setIcon(null);
+		labelNumero6.setIcon(null);
+		labelNumero7.setIcon(null);
+		labelNumero0.setIcon(null);
+		labelNumero1.setIcon(null);
+		labelNumero2.setIcon(null);
+		labelNumero3.setIcon(null);
+		labelNumero4.setIcon(null);
+		labelNumero5.setIcon(null);
+		labelNumero6.setIcon(null);
+		labelNumero7.setIcon(null);
+		labelLinked0_1.setIcon(null);
+		labelLinked1_1.setIcon(null);
+		labelLinked2_1.setIcon(null);
+		labelLinked3_1.setIcon(null);
+		labelLinked4_1.setIcon(null);
+		labelLinked5_1.setIcon(null);
+		labelLinked6_1.setIcon(null);
+		labelLinked7_1.setIcon(null);
+		labelLinked0_2.setIcon(null);
+		labelLinked1_2.setIcon(null);
+		labelLinked2_2.setIcon(null);
+		labelLinked3_2.setIcon(null);
+		labelLinked4_2.setIcon(null);
+		labelLinked5_2.setIcon(null);
+		labelLinked6_2.setIcon(null);
+		labelLinked7_2.setIcon(null);
+		labelLinked0_3.setIcon(null);
+		labelLinked1_3.setIcon(null);
+		labelLinked2_3.setIcon(null);
+		labelLinked3_3.setIcon(null);
+		labelLinked4_3.setIcon(null);
+		labelLinked5_3.setIcon(null);
+		labelLinked6_3.setIcon(null);
+		labelLinked7_3.setIcon(null);
+		
+		labelNumero0Addres.setIcon(null);
+		labelNumero1Addres.setIcon(null);
+		labelNumero2Addres.setIcon(null);
+		labelNumero3Addres.setIcon(null);
+		labelNumero4Addres.setIcon(null);
+		labelNumero5Addres.setIcon(null);
+		labelNumero6Addres.setIcon(null);
+		labelNumero7Addres.setIcon(null);
+		labelNumero0Addres.setIcon(null);
+		labelNumero1Addres.setIcon(null);
+		labelNumero2Addres.setIcon(null);
+		labelNumero3Addres.setIcon(null);
+		labelNumero4Addres.setIcon(null);
+		labelNumero5Addres.setIcon(null);
+		labelNumero6Addres.setIcon(null);
+		labelNumero7Addres.setIcon(null);
+		labelLinked0_1Addres.setIcon(null);
+		labelLinked1_1Addres.setIcon(null);
+		labelLinked2_1Addres.setIcon(null);
+		labelLinked3_1Addres.setIcon(null);
+		labelLinked4_1Addres.setIcon(null);
+		labelLinked5_1Addres.setIcon(null);
+		labelLinked6_1Addres.setIcon(null);
+		labelLinked7_1Addres.setIcon(null);
+		labelLinked0_2Addres.setIcon(null);
+		labelLinked1_2Addres.setIcon(null);
+		labelLinked2_2Addres.setIcon(null);
+		labelLinked3_2Addres.setIcon(null);
+		labelLinked4_2Addres.setIcon(null);
+		labelLinked5_2Addres.setIcon(null);
+		labelLinked6_2Addres.setIcon(null);
+		labelLinked7_2Addres.setIcon(null);
+		labelLinked0_3Addres.setIcon(null);
+		labelLinked1_3Addres.setIcon(null);
+		labelLinked2_3Addres.setIcon(null);
+		labelLinked3_3Addres.setIcon(null);
+		labelLinked4_3Addres.setIcon(null);
+		labelLinked5_3Addres.setIcon(null);
+		labelLinked6_3Addres.setIcon(null);
+		labelLinked7_3Addres.setIcon(null);
+		
+	}
+
 }
 
 
