@@ -39,29 +39,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   		}
    	   		j=j+slot-1;
    		}*/
-   		for(int i = 0; i < slot; i++)
-	    {	        	
-   			int pieno=0;
-
-	        for(int j = 24; j >=0; j--) {
-	        	System.out.println("QUI1");
-	        	for(int k = 0; k <slot; k++) {
-		        	System.out.println("QUI2");
-
-		        	if(j>0)if(array[j][k]==array[j-1][k] )pieno++;
-		        	else pieno=0;
-		        	if(j>0) System.out.println("QUI3"+array[j][k]+" "+array[j-1][k]);
-	        	}
-		        	if(pieno==slot) {
-			        	for(int k = 0; k < slot; k++) {
-		        		array[j][k]=-1;
-		        	}
-
-	        	
-	    	    
-	        }
-   		}
-	    }
+   		
    		for(int i = 0; i < slot; i++)
 	    {
 	        for(int j = 0; j < 25; j++) {

@@ -129,7 +129,7 @@ public class Semafori extends JFrame {
 		
 		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
 	    labelScrittaSlide.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-	    labelScrittaSlide.setBounds(160, 122, 88, 15);
+	    labelScrittaSlide.setBounds(160, 122, 102, 15);
 	    panelMainButton.add(labelScrittaSlide);
 	     
 	    JLabel labelSlideIcon = new JLabel("");
@@ -239,14 +239,15 @@ public class Semafori extends JFrame {
 
 
 		JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
+		GeneraEsercizioJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GeneraEsercizioJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		GeneraEsercizioJLabel.setBounds(258, 122, 88, 15);
+		GeneraEsercizioJLabel.setBounds(1008, 122, 102, 15);
 		panelMainButton.add(GeneraEsercizioJLabel);
 		
 		
 		JLabel GeneraEsercizioIcon = new JLabel("");
 		GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
-		GeneraEsercizioIcon.setBounds(287, 84, 32, 32);
+		GeneraEsercizioIcon.setBounds(1043, 84, 32, 32);
 		panelMainButton.add(GeneraEsercizioIcon);
 	        
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
@@ -261,13 +262,13 @@ public class Semafori extends JFrame {
 	        
 	            
 		JLabel HelpIconJLabel = new JLabel("");
-		HelpIconJLabel.setBounds(363, 84, 32, 32);
+		HelpIconJLabel.setBounds(263, 83, 32, 32);
 		panelMainButton.add(HelpIconJLabel);
 		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 		
 		JLabel HelpJLabel = new JLabel("Info Uso");
 		HelpJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		HelpJLabel.setBounds(356, 122, 53, 15);
+		HelpJLabel.setBounds(254, 122, 53, 15);
 		panelMainButton.add(HelpJLabel);
 		
 		
@@ -580,10 +581,11 @@ public class Semafori extends JFrame {
         						panelControlloProcessi.add(labelReset);
         						
         						JLabel lblControlloProcessi = new JLabel("Controllo  Processi :");
+        						lblControlloProcessi.setHorizontalAlignment(SwingConstants.CENTER);
         						lblControlloProcessi.setVerticalAlignment(SwingConstants.BOTTOM);
         						lblControlloProcessi.setForeground(Color.RED);
         						lblControlloProcessi.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        						lblControlloProcessi.setBounds(44, 286, 177, 26);
+        						lblControlloProcessi.setBounds(10, 286, 245, 26);
         						panelControllo.add(lblControlloProcessi);
         						
         						JLabel labelScrittaIndietro = new JLabel(" Indietro");

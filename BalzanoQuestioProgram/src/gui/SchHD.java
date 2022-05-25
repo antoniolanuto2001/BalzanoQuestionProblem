@@ -155,7 +155,7 @@ public class SchHD extends JFrame {
 		panelPlot.add(labelPosizioneInziale);
 		
 		textFieldInzialeTestina = new JTextField();
-		textFieldInzialeTestina.setBounds(197, 13, 43, 20);
+		textFieldInzialeTestina.setBounds(180, 13, 60, 20);
 		panelPlot.add(textFieldInzialeTestina);
 		textFieldInzialeTestina.setColumns(10);
 		
@@ -179,7 +179,7 @@ public class SchHD extends JFrame {
 		scrollPaneHelp.setViewportView(txtrHelpArea);
 		txtrHelpArea.setWrapStyleWord(true);
 		txtrHelpArea.setLineWrap(true);
-		txtrHelpArea.setText("FIFO (First In First Out).\r\nE' la pi\u00F9 semplice, si tiene traccia in una tabella di quando \u00E8 stata allocata un'area di memoria. Quando vi \u00E8 una nuova richiesta di allocazione di pagine di memoria, se c'\u00E8 ancora spazio in memoria principale, semplicemente viene allocata la nuova pagina, altrimenti si consulta mediante la tabella quali sono le pagine allocate da pi\u00F9 tempo e si spostano in memoria secondaria.\r\nQuesto algoritmo \u00E8 molto semplice e di rapida esecuzione ma ha lo svantaggio di spostare in memoria secondaria le pagine pi\u00F9 vecchie anche se sono utilizzate di frequente.\r\n\r\nOPT\r\nSi sostituisce la pagina che non si user\u00E0 per il periodo di tempo pi\u00F9 lungo. Non \u00E8 possibile conoscere in anticipo la successione dei riferimenti, viene usato principalmente per studi comparativi, per valutare le prestazioni degli algoritmi.\r\n\r\nLRU (Least Recently Used)\r\nVengono sostituite le pagine usate meno di recente, poich\u00E8 queste hanno buona probabilit\u00E0 di non essere nuovamente utilizzate nell'immediato.\r\n");
+		txtrHelpArea.setText("FCFS (First Come First Served)\r\nSceglie la richiesta arrivata per prima; \u00E8 naturalmente l'algoritmo pi\u00F9 semplice ma non garantisce la massima velocit\u00E0 del sercizio.\r\n\r\nSSTF (Shortest Seek Time First)\r\nSeleziona la richiesta con il minor tempo di ricerca rispetto all'attuale posizione della testina.\r\n\r\nSCAN (Scansione)\r\nSecondo l'algoritmo SCAN il braccio dell'unit\u00E0 a disco parte da un estremo del disco e si sposta nella sola direzione possibile, servendo le richieste mentre attraversa i cilindri, fino a che non giunge all'altro estremo del disco: a questo punto, il braccio inverte la marcia, e la\r\nprocedura continua.\r\nL'algoritmo SCAN \u00E8 a volte chiamato algoritmo dell'ascensore, perch\u00E9 il braccio dell'unit\u00E0 a disco si comporta proprio come un ascensore che serve prima tutte le richieste in salita e poi tutte quelle in discesa.\r\n");
 		txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
 		txtrHelpArea.setCaretPosition(0);
 		txtrHelpArea.setEditable(false);

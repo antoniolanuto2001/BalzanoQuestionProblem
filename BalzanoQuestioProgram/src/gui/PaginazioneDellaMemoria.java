@@ -147,7 +147,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	public void mouseClicked(MouseEvent e) {
 		        		Desktop d = Desktop.getDesktop();
 						try {
-							d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=118"));
+							d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=327"));
 						} catch (IOException e1) {
 							e1.printStackTrace();
 						} catch (URISyntaxException e1) {
@@ -171,7 +171,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
-		pannelloTitolo.setBackground(Color.WHITE);
 			pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 7));
 			pannelloTitolo.setBounds(0, 0, 1416, 75);
 			pannelloPrincipale.add(pannelloTitolo);
@@ -203,110 +202,104 @@ public class PaginazioneDellaMemoria extends JFrame {
         //PANNELLO FIFO
         JPanel pannelloFIFO = new JPanel();
 		        	pannelloFIFO.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloFIFO.setBounds(5, 5, 1121, 160);
+					pannelloFIFO.setBounds(5, 5, 560, 325);
 					pannelloGrafici.add(pannelloFIFO);
 					pannelloFIFO.setLayout(null);
 		
 					JLabel FIFO = new JLabel("FIFO");
 					FIFO.setHorizontalAlignment(SwingConstants.CENTER);
-					FIFO.setBounds(36, 0, 28, 157);
+					FIFO.setBounds(0, 0, 103, 43);
 					FIFO.setForeground(Color.RED);
 					FIFO.setFont(new Font("Tahoma", Font.PLAIN, 35));
 					pannelloFIFO.add(FIFO);
-					FIFO.setText("<html>F<br>   I<br>F<br>O<br></html>");
 					
 					JLabel lblPageFaultsFIFO = new JLabel("Page faults correnti:");
-					lblPageFaultsFIFO.setBounds(598, 1, 125, 18);
+					lblPageFaultsFIFO.setBounds(160, 0, 125, 18);
 					pannelloFIFO.add(lblPageFaultsFIFO);
 					lblPageFaultsFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					
 					JLabel DATOFIFO = new JLabel("");
-					DATOFIFO.setBounds(725, 1, 38, 18);
+					DATOFIFO.setBounds(285, 0, 38, 18);
 					pannelloFIFO.add(DATOFIFO);
 					DATOFIFO.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 
 		//PANNELLO OPT
 		JPanel pannelloOPT = new JPanel();
-					pannelloOPT.setBounds(5, 170, 1121, 160);
+		        	pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloOPT.setBounds(570, 5, 560, 325);
 					pannelloGrafici.add(pannelloOPT);
 					pannelloOPT.setLayout(null);
-					pannelloOPT.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
 		
 					JLabel OPT = new JLabel("OPT");
 					OPT.setHorizontalAlignment(SwingConstants.CENTER);
+					OPT.setBounds(0, 0, 103, 43);
 					OPT.setForeground(Color.RED);
 					OPT.setFont(new Font("Tahoma", Font.PLAIN, 35));
-					OPT.setBounds(36, 0, 28, 157);
 					pannelloOPT.add(OPT);
-					OPT.setText(transformStringToHtml(OPT.getText()));
-
+					
 					JLabel lblPageFaultsOPT = new JLabel("Page faults correnti:");
-					lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsOPT.setBounds(598, 1, 125, 18);
+					lblPageFaultsOPT.setBounds(160, 0, 125, 18);
 					pannelloOPT.add(lblPageFaultsOPT);
-				
+					lblPageFaultsOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					
 					JLabel DATOOPT = new JLabel("");
-					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOOPT.setBounds(725, 1, 38, 18);
+					DATOOPT.setBounds(285, 0, 38, 18);
 					pannelloOPT.add(DATOOPT);
+					DATOOPT.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 
 		//PANNELLO LRU
 		JPanel pannelloLRU = new JPanel();
-					pannelloLRU.setLayout(null);
-					pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloLRU.setBounds(5, 335, 1121, 160);
+		        	pannelloLRU.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloLRU.setBounds(5, 335, 560, 325);
 					pannelloGrafici.add(pannelloLRU);
-				
+					pannelloLRU.setLayout(null);
+		
 					JLabel LRU = new JLabel("LRU");
 					LRU.setHorizontalAlignment(SwingConstants.CENTER);
+					LRU.setBounds(0, 0, 103, 43);
 					LRU.setForeground(Color.RED);
 					LRU.setFont(new Font("Tahoma", Font.PLAIN, 35));
-					LRU.setBounds(36, 0, 28, 157);
 					pannelloLRU.add(LRU);
-					LRU.setText(transformStringToHtml(LRU.getText()));
-
+					
 					JLabel lblPageFaultsLRU = new JLabel("Page faults correnti:");
-					lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultsLRU.setBounds(598, 1, 125, 18);
+					lblPageFaultsLRU.setBounds(160, 0, 125, 18);
 					pannelloLRU.add(lblPageFaultsLRU);
-		
+					lblPageFaultsLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					
 					JLabel DATOLRU = new JLabel("");
-					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOLRU.setBounds(725, 1, 38, 18);
+					DATOLRU.setBounds(285, 0, 38, 18);
 					pannelloLRU.add(DATOLRU);
+					DATOLRU.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 
-	
 		//PANNELLO CLOCK
 		JPanel pannelloCLOCK = new JPanel();
-					pannelloCLOCK.setLayout(null);
-					pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloCLOCK.setBounds(5, 500, 1121, 160);
+		        	pannelloCLOCK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
+					pannelloCLOCK.setBounds(570, 335, 560, 325);
 					pannelloGrafici.add(pannelloCLOCK);
-				
-					JLabel clock = new JLabel("Clock");
-					clock.setHorizontalAlignment(SwingConstants.CENTER);
-					clock.setForeground(Color.RED);
-					clock.setFont(new Font("Tahoma", Font.PLAIN, 25));
-					clock.setBounds(36, 0, 28, 157);
-					pannelloCLOCK.add(clock);
-					clock.setText("<html>C<br>L<br>O<br>C<br>K<br></html>");
-
-					JLabel lblPageFaultClock = new JLabel("Page faults correnti:");
-					lblPageFaultClock.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					lblPageFaultClock.setBounds(598, 1, 125, 18);
-					pannelloCLOCK.add(lblPageFaultClock);
+					pannelloCLOCK.setLayout(null);
 		
+					JLabel CLOCK = new JLabel("CLOCK");
+					CLOCK.setHorizontalAlignment(SwingConstants.CENTER);
+					CLOCK.setBounds(0, 0, 103, 43);
+					CLOCK.setForeground(Color.RED);
+					CLOCK.setFont(new Font("Tahoma", Font.PLAIN, 30));
+					pannelloCLOCK.add(CLOCK);
+					
+					JLabel lblPageFaultsCLOCK = new JLabel("Page faults correnti:");
+					lblPageFaultsCLOCK.setBounds(160, 0, 125, 18);
+					pannelloCLOCK.add(lblPageFaultsCLOCK);
+					lblPageFaultsCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+					
 					JLabel DATOCLOCK = new JLabel("");
-					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					DATOCLOCK.setBounds(725, 1, 38, 18);
+					DATOCLOCK.setBounds(285, 0, 38, 18);
 					pannelloCLOCK.add(DATOCLOCK);
+					DATOCLOCK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 
-			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
 		//GRAFICO FIFO
 		PanelGraficiPaginazioneMemoria jPanelFIFO = new PanelGraficiPaginazioneMemoria();
-			jPanelFIFO.setBounds(590, 21, 525, 118);
+			jPanelFIFO.setBounds(30, 180, 525, 118);
 			jPanelFIFO.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelFIFO.setLayout(null);
 			pannelloFIFO.add(jPanelFIFO);
@@ -315,21 +308,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 		PanelGraficiPaginazioneMemoria jPanelOPT = new PanelGraficiPaginazioneMemoria();
 			jPanelOPT.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelOPT.setLayout(null);
-			jPanelOPT.setBounds(590, 21, 525, 118);
+			jPanelOPT.setBounds(30, 180, 525, 118);
 			pannelloOPT.add(jPanelOPT);
 
 		//GRAFICO LRU
 		PanelGraficiPaginazioneMemoria jPanelLRU = new PanelGraficiPaginazioneMemoria();
 			jPanelLRU.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelLRU.setLayout(null);
-			jPanelLRU.setBounds(590, 21, 525, 118);
+			jPanelLRU.setBounds(30, 180, 525, 118);
 			pannelloLRU.add(jPanelLRU);
 		
 		//GRAFICO CLOCK
 		PanelGraficiPaginazioneMemoria jPanelCLOCK = new PanelGraficiPaginazioneMemoria();
 			jPanelCLOCK.setBackground(new java.awt.Color(255, 255, 255));
 			jPanelCLOCK.setLayout(null);
-			jPanelCLOCK.setBounds(590, 21, 525, 118);
+			jPanelCLOCK.setBounds(30, 180, 525, 118);
 			pannelloCLOCK.add(jPanelCLOCK);
 
 			
@@ -337,77 +330,77 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		//GRAFICO FIFO
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelFIFOMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
-			jPanelFIFOMATRICE.setBounds(92, 0, 437, 147);
+			jPanelFIFOMATRICE.setBounds(114, 23, 437, 147);
 			jPanelFIFOMATRICE.setLayout(null);
 			pannelloFIFO.add(jPanelFIFOMATRICE);
 			
 			JLabel numeroPageFault1 = new JLabel("Numero di page faults");
 			numeroPageFault1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault1.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault1.setBounds(590, 139, 521, 18);
+			numeroPageFault1.setBounds(30, 300, 521, 18);
 			pannelloFIFO.add(numeroPageFault1);
 			
 			JLabel lblNewLabel1 = new JLabel("SLOT");
 			lblNewLabel1.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel1.setBounds(570, 21, 15, 118);
+			lblNewLabel1.setBounds(10, 180, 15, 118);
 			pannelloFIFO.add(lblNewLabel1);
 			lblNewLabel1.setText(transformStringToHtml(lblNewLabel1.getText()));
 			
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
-			jPanelOPTMATRICE.setBounds(92, 0, 437, 147);
+			jPanelOPTMATRICE.setBounds(114, 23, 437, 147);
 			pannelloOPT.add(jPanelOPTMATRICE);
 
 			JLabel numeroPageFault2 = new JLabel("Numero di page faults");
 			numeroPageFault2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault2.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault2.setBounds(590, 139, 521, 18);
+			numeroPageFault2.setBounds(30, 300, 521, 18);
 			pannelloOPT.add(numeroPageFault2);
 			
 			JLabel lblNewLabel2 = new JLabel("SLOT");
 			lblNewLabel2.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel2.setBounds(570, 21, 15, 118);
+			lblNewLabel2.setBounds(10, 180, 15, 118);
 			pannelloOPT.add(lblNewLabel2);
 			lblNewLabel2.setText(transformStringToHtml(lblNewLabel2.getText()));
 			
 		//GRAFICO LRU
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelLRUMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelLRUMATRICE.setLayout(null);
-			jPanelLRUMATRICE.setBounds(92, 0, 437, 147);
+			jPanelLRUMATRICE.setBounds(114, 23, 437, 147);
 			pannelloLRU.add(jPanelLRUMATRICE);
 		
 			JLabel numeroPageFault3 = new JLabel("Numero di page faults");
 			numeroPageFault3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault3.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault3.setBounds(590, 139, 521, 18);
+			numeroPageFault3.setBounds(30, 300, 521, 18);
 			pannelloLRU.add(numeroPageFault3);
 			
 			JLabel lblNewLabel3 = new JLabel("SLOT");
 			lblNewLabel3.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel3.setBounds(570, 21, 15, 118);
+			lblNewLabel3.setBounds(10, 180, 15, 118);
 			pannelloLRU.add(lblNewLabel3);
 			lblNewLabel3.setText(transformStringToHtml(lblNewLabel3.getText()));
 			
 		//GRAFICO CLOCK
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelCLOCKMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelCLOCKMATRICE.setLayout(null);
-			jPanelCLOCKMATRICE.setBounds(92, 0, 437, 147);
+			jPanelCLOCKMATRICE.setBounds(114, 23, 437, 147);
 			pannelloCLOCK.add(jPanelCLOCKMATRICE);
 		
 			JLabel numeroPageFault4 = new JLabel("Numero di page faults");
 			numeroPageFault4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			numeroPageFault4.setHorizontalAlignment(SwingConstants.CENTER);
-			numeroPageFault4.setBounds(590, 139, 521, 18);
+			numeroPageFault4.setBounds(30, 300, 521, 18);
 			pannelloCLOCK.add(numeroPageFault4);
 
 			JLabel lblNewLabel4 = new JLabel("SLOT");
 			lblNewLabel4.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			lblNewLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel4.setBounds(570, 21, 15, 118);
+			lblNewLabel4.setBounds(10, 180, 15, 118);
 			pannelloCLOCK.add(lblNewLabel4);
 			lblNewLabel4.setText(transformStringToHtml(lblNewLabel4.getText()));
 			
