@@ -86,6 +86,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	private int pagefaultOPT;
 	private int pagefaultCLOCK;
 
+	static int i=0,k=0,h=0;
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
 		
 		frame=this;
@@ -438,7 +439,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			panelDiControllo.add(pannelloEditor);
 			
 		JLabel labelSlotMemoria = new JLabel("Slot Memoria Disponibili :");
-		labelSlotMemoria.setEnabled(false);
+			labelSlotMemoria.setEnabled(false);
 			labelSlotMemoria.setHorizontalAlignment(SwingConstants.CENTER);
 			labelSlotMemoria.setForeground(Color.BLACK);
 			labelSlotMemoria.setFont(new Font("Arial", Font.BOLD, 14));
@@ -641,7 +642,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 					numeri[i]=value;
 				}
 				generaGrafici.setEnabled(true);
-
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -699,7 +700,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			}
 		});
 
-	//EVENTO SUI BOTTONI PLAY O PLAYSTEPbySTEP
+	//EVENTO SUI BOTTONI PLAY 
 		labelPlay.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
@@ -715,18 +716,19 @@ public class PaginazioneDellaMemoria extends JFrame {
 					int s=Integer.valueOf(j);
 					
 					numeriFIFO=FIFO(numeri,s);
+					numeriOPT=OPT(numeri,s);
+					numeriLRU=LRU(numeri,s);
+					numeriCLOCK=CLOCK(numeri,s);
+					
 					DATOFIFO.setText(String.valueOf(pagefaultFIFO));
 					jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO,numeri);
 					
-					numeriOPT=OPT(numeri,s);
 					DATOOPT.setText(String.valueOf(pagefaultOPT));
 					jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),numeriOPT,s,pagefaultOPT,numeri);
 					
-					numeriLRU=LRU(numeri,s);
 					DATOLRU.setText(String.valueOf(pagefaultLRU));
 					jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),numeriLRU,s,pagefaultLRU,numeri);
 					
-					numeriCLOCK=CLOCK(numeri,s);
 					DATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
 					jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),numeriCLOCK,s,pagefaultCLOCK,numeri);
 				}
@@ -743,10 +745,12 @@ public class PaginazioneDellaMemoria extends JFrame {
 			}
 		});
 		
+		//EVENTO SUI BOTTONI PLAYSTEPbySTEP
+
 		labelFastForward.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-				
+			
 				labelPlay.setEnabled(false);
 				labelScrittaPlay.setEnabled(false);
 				
@@ -772,7 +776,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 				else {
 					//generaGrafici.setEnabled(true);
-					
+					i=0;
+					k=0;
+					h=0;
 					labelFastForward.setEnabled(true);
 					labelScrittaFast.setEnabled(true);
 					labelScrittaPlay.setEnabled(true);
