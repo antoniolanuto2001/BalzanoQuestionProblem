@@ -1344,7 +1344,7 @@ public class Semafori extends JFrame {
 						CriticalArea3JPanel4.setVisible(false);
 						CriticalArea3JPanel5.setVisible(false);
 					}
-					
+					//pippo
 					else if(sceltaNumero==5)
 					{
 						BaseProgressBar1JPanel.setVisible(true);
