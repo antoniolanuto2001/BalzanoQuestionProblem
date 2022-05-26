@@ -231,7 +231,6 @@ public void disegnaSoluzioneRR(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray
 			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
 			g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
 			 //g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
-
 			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
 			}
 			l=l+4;
