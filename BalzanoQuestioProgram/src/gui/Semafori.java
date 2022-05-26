@@ -98,6 +98,8 @@ public class Semafori extends JFrame {
 		timeToPause=false;
 		timeToContinue=true;
 		timeToRestartFromPause=false;
+		int [] ripatenza = new int[5];
+		Arrays.fill(ripatenza, 0);
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(255, 255, 255));
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -324,6 +326,7 @@ public class Semafori extends JFrame {
 
 		
 		GraficaIndicatoreSemafori Indicator1JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		Indicator1JPanel.setSize(4, 29);
 		BaseProgressBar1JPanel.add(Indicator1JPanel);
 		Indicator1JPanel.setLayout(null);
 		Indicator1JPanel.setVisible(true);
@@ -608,44 +611,38 @@ public class Semafori extends JFrame {
         							public void mouseClicked(MouseEvent e) 
         							{
         								int NumProcessi=StartEndProcessi.size();
-        								
-        								
-        									
 
-        								
-        								//Al momento dello start non possono più essere cambiati i valori di
+        								//Al momento dello start non possono piï¿½ essere cambiati i valori di
         								//processi e semafori
-        								if(toggleButtonStartPause.isSelected() && NumProcessi>0) {
+        								if(toggleButtonStartPause.isSelected() && NumProcessi>0) 
+        								{
         									NumProcessiComboBox.setEnabled(false);
         									NumSemaforiComboBox.setEnabled(false);
-        								}else
+        								}
+        								else
         								{
         									NumProcessiComboBox.setEnabled(true);
         									NumSemaforiComboBox.setEnabled(true);
         								}
-        									
-        								
-        								
-        								if(toggleButtonStartPause.isSelected()   && NumProcessi==1) 
+	
+        								//1 Processo
+        								if(toggleButtonStartPause.isSelected() && NumProcessi==1) 
         								{
         									timeToContinue=true;
         									System.out.println("[ToggleButton]: START");
-        									
-        									
         									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);	
         									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
         									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
         										@Override
         										public void run() 
         										{
-        											
-
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
         											{	
         												
         												
-        												if(timeToResetFromPause==true) {
+        												if(timeToResetFromPause==true) 
+        												{
         													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
         													BaseProgressBar1JPanel.repaint();
         													timeToResetFromPause=false;
@@ -717,13 +714,14 @@ public class Semafori extends JFrame {
         									});
         									threadmuovereIndicatore1.start();
         									
-        									
-
+      
         								}
-        								
+        								//2 Processi
         								else if(toggleButtonStartPause.isSelected() && NumProcessi==2)
         								{
         									timeToContinue=true;
+        									timeToPause=false;
+											
         									System.out.println("[ToggleButton]: START");
         									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
         									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
@@ -734,64 +732,41 @@ public class Semafori extends JFrame {
         										@Override
         										public void run() 
         										{
-        											
-
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
         											{	
         												
-        												
-        												if(timeToResetFromPause==true) {
-        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        													BaseProgressBar1JPanel.repaint();
-        													timeToResetFromPause=false;
-        													break;
-        												}
-        												
-        												else if(timeToContinue==false && timeToReset==true )
+        												//Si Stoppa
+        												if(timeToPause==true && timeToContinue==false)
         												{
-        													System.out.println("ENTRO");
-        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        													BaseProgressBar1JPanel.repaint();
-        													timeToReset=false;
-        													break;
-        												}
-        												
-        												else if(timeToPause==true && timeToResetFromPause==false )
-        												{
+        													System.out.println("Mi sto Fermando 2 ");
         													temporaryValue1=Indicator1JPanel.getX();
-        													timeToPause=false;
-        													timeToRestartFromPause=true;
-        										
+        													Indicator1JPanel.Reset(temporaryValue1);
+        													BaseProgressBar1JPanel.repaint();
         													break;
-        												}
-        												
-        													
+        												}	
+        												//Torna a Capo
         												else if (Indicator1JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
         												}
-        												
-        												
-        												else if(timeToRestartFromPause==true && (timeToReset==false || timeToResetFromPause==false)) 
+        												//Riparte da quel punto
+        												else if(ripatenza[0]==1) 
         												{
         													Indicator1JPanel.setXInziale(temporaryValue1);
         													i=temporaryValue1;
-        													timeToRestartFromPause=false;
-        													
+        													ripatenza[0]=0;
         												}
-        												
-        												
-        												
+
         												Indicator1JPanel.moveForward();
         												
         												try 
         												{
-        													Thread.sleep(60);//Questo Ã¨ accelatore Erasmo fai attenzione 
+        													Thread.sleep(50);//Questo Ã¨ accelatore Erasmo fai attenzione 
         													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
         													BaseProgressBar1JPanel.repaint();
-        													Thread.sleep(30);
+        													Thread.sleep(10);
         												} 
         												catch (InterruptedException e1)
         												{
@@ -799,93 +774,64 @@ public class Semafori extends JFrame {
         													e1.printStackTrace();
         												}
         											}
-        											
-        											
-        											
-                									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
-                										@Override
-                										public void run() 
-                										{
-                											
-
-                											// TODO Auto-generated method stub
-                											for(int i=0; i<300; i++) 
-                											{	
-                												
-                												
-                												if(timeToResetFromPause==true) {
-                													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
-                													BaseProgressBar2JPanel.repaint();
-                													timeToResetFromPause=false;
-                													break;
-                												}
-                												
-                												else if(timeToContinue==false && timeToReset==true )
-                												{
-                													System.out.println("ENTRO");
-                													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
-                													BaseProgressBar2JPanel.repaint();
-                													timeToReset=false;
-                													break;
-                												}
-                												
-                												else if(timeToPause==true && timeToResetFromPause==false )
-                												{
-                													temporaryValue1=Indicator2JPanel.getX();
-                													timeToPause=false;
-                													timeToRestartFromPause=true;
-                										
-                													break;
-                												}
-                												
-                													
-                												else if (Indicator2JPanel.LimitReached()) 
-                												{
-                													i=0;
-                													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
-                												}
-                												
-                												
-                												else if(timeToRestartFromPause==true && (timeToReset==false || timeToResetFromPause==false)) 
-                												{
-                													Indicator2JPanel.setXInziale(temporaryValue1);
-                													i=temporaryValue1;
-                													timeToRestartFromPause=false;
-                													
-                												}
-                												
-                												
-                												
-                												Indicator2JPanel.moveForward();
-                												
-                												try 
-                												{
-                													Thread.sleep(50);//Questo Ã¨ accelatore Erasmo fai attenzione 
-                													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
-                													BaseProgressBar2JPanel.repaint();
-                													Thread.sleep(10);
-                												} 
-                												catch (InterruptedException e1)
-                												{
-                													// TODO Auto-generated catch block
-                													e1.printStackTrace();
-                												}
-                											}
-                										
-                										}
-                									});
-                									
-                									
-                									threadmuovereIndicatore2.start();
-                									
-        										
         										}
         										
         										
         										
         									});
+        									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue1=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue1);
+        													BaseProgressBar2JPanel.repaint();
+        													
+        													break;
+        												}	
+        												else if (Indicator2JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
+        												}
+        												else if(ripatenza[1]==1) 
+        												{
+        													Indicator2JPanel.setXInziale(temporaryValue1);
+        													i=temporaryValue1;
+        													ripatenza[1]=0;
+        												}
+        												
+        												Indicator2JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo Ã¨ accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar2JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
         									
         									threadmuovereIndicatore1.start();
+        									threadmuovereIndicatore2.start();
+        									
         									
         									
 
@@ -1124,12 +1070,13 @@ public class Semafori extends JFrame {
         								
         								
         								
-        								//Time to Pause
+        								//LA PAUSA
         								else if(!toggleButtonStartPause.isSelected() && NumProcessi!=0) 
         								{
         									System.out.println("[ToggleButton]: PAUSE");
         									timeToContinue=false;
         									timeToPause=true;
+        									Arrays.fill(ripatenza, 1);
         									
         								}
         								
@@ -1137,7 +1084,7 @@ public class Semafori extends JFrame {
         								else if(toggleButtonStartPause.isSelected() && NumProcessi==0) 
         								{
         									toggleButtonStartPause.setSelected(false);
-        								    JOptionPane.showMessageDialog(new JFrame(), "Non è possibile iniziare senza aver generato un esercizio!", "Start/Pause Error Dialog",
+        								    JOptionPane.showMessageDialog(new JFrame(), "Non e' possibile iniziare senza aver generato un esercizio!", "Start/Pause Error Dialog",
         								            JOptionPane.ERROR_MESSAGE);
 
         									timeToContinue=false;
@@ -1153,15 +1100,29 @@ public class Semafori extends JFrame {
         							public void mouseClicked(MouseEvent e) 
         							{
         								
+        								int NumProcessi=StartEndProcessi.size();
         								if(StartEndProcessi.size()==0) {
-        									JOptionPane.showMessageDialog(new JFrame(), "Non è possibile resettare senza aver generato un esercizio!", "Reset Error Dialog",
+        									JOptionPane.showMessageDialog(new JFrame(), "Non ï¿½ possibile resettare senza aver generato un esercizio!", "Reset Error Dialog",
         								            JOptionPane.ERROR_MESSAGE);
         								}
         								
-        								if(toggleButtonStartPause.isSelected()) 
+        								if(NumProcessi!=0) 
         								{
-        									timeToReset=true;
+        									System.out.println("[ResetButton]: Reset");
         									timeToContinue=false;
+        									timeToPause=true;
+        									Arrays.fill(ripatenza,0);
+        									Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        									if (NumProcessi>=2) 
+        									{
+        										Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
+        										if (NumProcessi>=3) 
+        										{
+        											Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
+												}
+        									}
+        									BaseProgressBar1JPanel.repaint();
+        									BaseProgressBar2JPanel.repaint();
         									toggleButtonStartPause.setSelected(false);
         								}
 
@@ -1550,6 +1511,34 @@ public class Semafori extends JFrame {
 				BaseProgressBar1JPanel.repaint();
 			*/
 				
+				
+		        //Critical Area 1 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
+				CriticalArea1JPanel1.setVisible(true);
+	        
+				
+				
+				
+				//Critical Area 2 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
+				CriticalArea2JPanel1.setVisible(true);
+				
+				//Critical Area 2 JPanel 1
+				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
+				CriticalArea3JPanel1.setVisible(true);
+				
 				//Job Duration 1
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
@@ -1558,29 +1547,6 @@ public class Semafori extends JFrame {
 				BaseProgressBar1JPanel.add(JobDuration1JPanel);
 		        JobDuration1JPanel.setVisible(true);
 		       
-		        //Critical Area 1 JPanel 1
-				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
-				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
-				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea1JPanel1);
-				CriticalArea1JPanel1.setVisible(true);
-	        
-				//Critical Area 2 JPanel 1
-				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
-				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
-				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea2JPanel1);
-				CriticalArea2JPanel1.setVisible(true);
-				
-				//Critical Area 2 JPanel 1
-				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
-				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
-				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea3JPanel1);
-				CriticalArea3JPanel1.setVisible(true);
 			}
 			
 			
@@ -1597,41 +1563,70 @@ public class Semafori extends JFrame {
 		
 				//PROCESSO 1 !!!
 						
-				//Job Duration 1
-				startpoint=StartEndProcessi.get(0).inizioProcesso;
-				endpoint=StartEndProcessi.get(0).fineProcesso;
-				System.out.println("[INIZIO P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
-		        BaseProgressBar1JPanel.add(JobDuration1JPanel);
-		        JobDuration1JPanel.setVisible(true);
+				
 		       
-		        //Critical Area 1 JPanel 1
+				//Critical Area 1 JPanel 1
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
-				System.out.println("[ZONA CRITICA 1 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				System.out.println("[ZONA CRITICA 1] : Valori in posizione: " +startpoint + " e "+endpoint);				
 				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea1JPanel1);
+				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 				CriticalArea1JPanel1.setVisible(true);
 	        
+				
+				
+				
 				//Critical Area 2 JPanel 1
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
-				System.out.println("[ZONA CRITICA 2 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				System.out.println("[ZONA CRITICA 2] : Valori in posizione: " +startpoint + " e "+endpoint);
 				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea2JPanel1);
+				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 				CriticalArea2JPanel1.setVisible(true);
 				
-				//Critical Area 3 JPanel 1
+				//Critical Area 2 JPanel 1
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
-				System.out.println("[ZONA CRITICA 3 di P1] : Valori in posizione: " +startpoint + " e "+endpoint);
+				System.out.println("[ZONA CRITICA 3] : Valori in posizione: " +startpoint + " e "+endpoint);
 				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration1JPanel.add(CriticalArea3JPanel1);
+				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 				CriticalArea3JPanel1.setVisible(true);
-			
+				
+				//Job Duration 1
+				startpoint=StartEndProcessi.get(0).inizioProcesso;
+				endpoint=StartEndProcessi.get(0).fineProcesso;
+				System.out.println("[INIZIO] : Valori in posizione: " +startpoint + " e "+endpoint);			
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar1JPanel.add(JobDuration1JPanel);
+		        JobDuration1JPanel.setVisible(true);
 		        //PROCESSO 2 !!!
 				
 						
+				
+		        //Critical Area 1 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
+				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
+				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
+				CriticalArea1JPanel2.setVisible(true);
+	        
+				//Critical Area 2 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
+				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
+				CriticalArea2JPanel2.setVisible(true);
+				
+				//Critical Area 3 JPanel 2
+				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
+				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
+				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
+				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
+				CriticalArea3JPanel2.setVisible(true);
+				
 				//Job Duration 2
 				startpoint=StartEndProcessi.get(1).inizioProcesso;
 				endpoint=StartEndProcessi.get(1).fineProcesso;
@@ -1640,30 +1635,6 @@ public class Semafori extends JFrame {
 		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 		        JobDuration2JPanel.setVisible(true);
 		       
-		        //Critical Area 1 JPanel 2
-				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
-				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
-				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration2JPanel.add(CriticalArea1JPanel2);
-				CriticalArea1JPanel2.setVisible(true);
-	        
-				//Critical Area 2 JPanel 2
-				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
-				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
-				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration2JPanel.add(CriticalArea2JPanel2);
-				CriticalArea2JPanel2.setVisible(true);
-				
-				//Critical Area 3 JPanel 2
-				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
-				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
-				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
-				JobDuration2JPanel.add(CriticalArea3JPanel2);
-				CriticalArea3JPanel2.setVisible(true);
-				
 		     
 			}
 			
@@ -2139,7 +2110,7 @@ public class Semafori extends JFrame {
 		//Messaggio di avvertimento: impossibile generare nuovi esercizi se ve ne sono in esecuzione
 		else 
 		{
-			 JOptionPane.showMessageDialog(new JFrame(), "Non è possibile generare nuovi esercizi con sessioni in esecuzione: seleziona 'Pause'!", "Nuovo Esercizio Error Dialog",
+			 JOptionPane.showMessageDialog(new JFrame(), "Non ï¿½ possibile generare nuovi esercizi con sessioni in esecuzione: seleziona 'Pause'!", "Nuovo Esercizio Error Dialog",
 			            JOptionPane.ERROR_MESSAGE);
 		}
 				}
