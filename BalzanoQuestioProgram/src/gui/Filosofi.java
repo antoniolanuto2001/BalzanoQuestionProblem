@@ -98,7 +98,7 @@ public class Filosofi extends JFrame {
 		setContentPane(contentPane);
 		
 		
-		
+		//Ciao prova commento
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
