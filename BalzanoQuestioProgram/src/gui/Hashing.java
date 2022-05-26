@@ -214,6 +214,7 @@ public class Hashing extends JFrame {
 		panelPlot.setLayout(null);
 		
 		JButton buttonGeneraEsempio = new JButton("GENERA PAROLE");
+		buttonGeneraEsempio.setOpaque(true);
 		
 		
 		buttonGeneraEsempio.setBackground(Color.WHITE);

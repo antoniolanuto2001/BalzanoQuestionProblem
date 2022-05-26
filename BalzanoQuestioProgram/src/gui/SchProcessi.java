@@ -198,6 +198,7 @@ public SchProcessi(JFrame framechiamante) {
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Tabella Processi");
 			btnGenera.setBackground(Color.WHITE);
+			btnGenera.setOpaque(true);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			btnGenera.setBorder(new LineBorder(new Color(0, 200, 83), 4));
 			//btnGenera.setBackground(new Color(255, 255, 255));
@@ -590,6 +591,7 @@ public SchProcessi(JFrame framechiamante) {
 		
 		JButton btnGeneraGrafici = new JButton("GENERA GRAFICI");
 			btnGeneraGrafici.setEnabled(false);
+			btnGeneraGrafici.setOpaque(true);
 			btnGeneraGrafici.setBackground(new Color(255, 255, 255));
 			btnGeneraGrafici.setBorder(new LineBorder(new Color(100, 181, 246), 4));
 			btnGeneraGrafici.setFont(new Font("Arial", Font.BOLD, 15));

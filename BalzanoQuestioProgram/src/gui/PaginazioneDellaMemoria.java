@@ -456,6 +456,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JButton generaGrafici = new JButton("CALCOLA GRAFICI");
 			generaGrafici.setEnabled(false);
+			generaGrafici.setOpaque(true);
 			generaGrafici.setBorder(new LineBorder(new Color(0, 204, 0), 2));
 			generaGrafici.setBackground(new Color(255, 255, 255));
 			generaGrafici.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -491,6 +492,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloEditor.add(labelFastForward);
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
+		btnGeneraSuccessione.setOpaque(true);
 			btnGeneraSuccessione.setBackground(new Color(255, 255, 255));
 			btnGeneraSuccessione.setBorder(new LineBorder(new Color(0, 204, 255), 2));
 			btnGeneraSuccessione.setFont(new Font("Tahoma", Font.PLAIN, 18));
