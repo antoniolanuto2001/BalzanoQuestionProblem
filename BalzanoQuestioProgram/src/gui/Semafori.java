@@ -217,6 +217,8 @@ public class Semafori extends JFrame {
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
+		tabella.setBorder(new EtchedBorder(EtchedBorder.RAISED));
+		tabella.setGridColor(Color.WHITE);
 		tabella.setEnabled(false);
 		tabella.setColumnSelectionAllowed(true);
 		DefaultTableModel model1 = new DefaultTableModel()
