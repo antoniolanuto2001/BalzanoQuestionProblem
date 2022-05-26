@@ -162,13 +162,91 @@ public class PanelGraficiSchProcessi extends JPanel {
         			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
         					//92-l*15);
         	}
-
     	}
 	}
 	
-
+public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
 	
-	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,  ArrayList<Integer>  lineesFCFS, Boolean selectSoluzione,Boolean selectGriglia){
+	int a1=0,a2=0,a3=0,a4=0,a5=0,a6=0;
+	
+		if(selectSoluzione==true) {
+    		for(int l=0;l<lineesFCFS.size();) { 
+    			if(lineesFCFS.get(l+1)>0) {
+    				
+    				g.setColor(new Color(0, 204, 0));
+	    			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
+	    			if(lineesFCFS.get(l+1)!=4)g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+	    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+	    			
+	    			if(a1==0 && lineesFCFS.get(l+1)==1) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a1=1;
+	    			}
+	    			if(a2==0 && lineesFCFS.get(l+1)==2) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a2=1;
+	    			}
+	    			if(a3==0 && lineesFCFS.get(l+1)==3) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a3=1;
+	    			}
+	    			if(a4==0 && lineesFCFS.get(l+1)==4) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a4=1;
+	    			}
+	    			if(a5==0 && lineesFCFS.get(l+1)==5) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a5=1;
+	    			}
+	    			if(a6==0 && lineesFCFS.get(l+1)==6) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a6=1;
+	    			}
+
+    			}
+    			l=l+4;
+    		}
+    		g.setColor(Color.blue);
+
+    		for(int l=0;l<lineesFCFSarray.size();l++) {    
+        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+        					//92-l*15);
+        	}
+
+    	}
+	}
+
+public void disegnaSoluzioneRR(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
+	if(selectSoluzione==true) {
+		
+		for(int l=0;l<lineesFCFS.size();) { 
+			if(lineesFCFS.get(l)>0) {
+    		g.setColor(new Color(0, 204, 0));
+			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
+			g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+			 //g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+
+			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+			}
+			l=l+4;
+		}
+		g.setColor(Color.blue);
+
+		for(int l=0;l<lineesFCFSarray.size();l++) {    
+    			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+    					//92-l*15);
+    	}
+
+	}
+}
+	
+/*	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,  ArrayList<Integer>  lineesFCFS, Boolean selectSoluzione,Boolean selectGriglia){
 			
 			int completo = 0;
 	    	int lineetotali=0;
@@ -179,18 +257,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	    	int corrente;
 	    	int indexprocesso=0;
 	    	if(selectSoluzione==true) {
-	    		/*
-	    		for(int l=0;l<lineesFCFS.size();) {   
-	        		g.setColor(new Color(0, 204, 0));
-	    			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
-	    			if(lineesFCFS.get(l+1)==3 || lineesFCFS.get(l+1)==2 || lineesFCFS.get(l+1)==6) g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
-	    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
-	
-	    			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
-	    			l=l+4;
-	    		}
-	    		g.setColor(Color.blue);
-	*/			
+		
 				g.setColor(Color.blue);
 
 
@@ -202,7 +269,6 @@ public class PanelGraficiSchProcessi extends JPanel {
 	        	}
 	    		
 	    		
-	    		//Ricerca Processo di Partenza 
 	    		for(int l=0;l<lineesFCFSarray.size();l++) 
 	    		{    
 	    			lineesFCFSarray.get(indexprocesso).aggiorna=lineesFCFSarray.get(l).getArrivo();
@@ -234,8 +300,6 @@ public class PanelGraficiSchProcessi extends JPanel {
 		    		System.out.println("index processo estratto : "+ (indexprocesso+1));
 		    		g.setColor(new Color(0, 204, 0));
 		    		g.drawLine(35+lineesFCFSarray.get(indexprocesso).aggiorna*15,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+lineesFCFSarray.get(indexprocesso).getArrivo()*17,103-lineesFCFSarray.get(indexprocesso).getProcesso()*15);
-		    		//lineesFCFSarray.get(indexprocesso).aggiorna=35+lineesFCFSarray.get(indexprocesso).getArrivo();
-		    		//g.drawLine(35+3,102-lineesFCFSarray.get(indexprocesso).getProcesso()*15,35+3,102-50);
 		    		System.out.println("Stampa  questo : "+ (35+lineesFCFSarray.get(indexprocesso).getArrivo()));
 		    		completo++;
 	    			corrente++;
@@ -243,5 +307,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	
 	    	}
 		}
-
+*/
 }
+
+

@@ -1,3 +1,5 @@
+/*----------------------------*/
+
 package model;
 import java.awt.Color;
 import java.awt.Font;
@@ -87,7 +89,7 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 		g.drawString("4",8,47);
 		g.drawString("5",8,32);
 		g.drawString("6",8,17);
-		int count=2;
+		int count=2; 
 		for( k=01;k<33;k++){
 			if(k<10)g.drawString(" 0"+String.valueOf(k)+" ",2+count*15,115);
 			else g.drawString(" "+String.valueOf(k)+" ",2+count*15,115);
@@ -128,3 +130,4 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 	   
 	}
 }
+

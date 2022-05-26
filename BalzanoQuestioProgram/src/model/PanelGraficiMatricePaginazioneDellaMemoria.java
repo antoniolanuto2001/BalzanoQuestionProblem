@@ -1,3 +1,5 @@
+/*-------------------------------------------*/
+
 package model;
 
 
@@ -160,6 +162,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   			if(j+i<page) {
 	   	   			g.drawString(String.valueOf(array[j+i]),j*15,20+i*18);
    	   			}
+   	   			
    	   		}
    	   		j=j+slot-1;
    		}*/
