@@ -931,7 +931,7 @@ public SchProcessi(JFrame framechiamante) {
 						SJFP=SJFPClass(linea);
 						String qua= (String) comboBoxQRR.getSelectedItem();
 						quantum=Integer.valueOf(qua);
-		
+						RR=RRClass(linea);
 					}
 				}
 			}
@@ -1432,9 +1432,96 @@ public SchProcessi(JFrame framechiamante) {
 	 }
 	    
 //METODO PER CALCOLARE RR
-	/*
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
 		
+		int pro=lineaRR.length,cambio=0;
+		int j,time,remain,flag=0;
+		float avgwt=0,avgtt=0;
+
+		ArrayList<Integer> punti=new ArrayList<Integer>();
+		ArrayList<Integer> puntiArray=new ArrayList<Integer>();
+
+		int ts = quantum;
+       remain=pro;
+
+	    int proc[][] = new int[pro + 1][6];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
+	    
+		   for(int i = 0; i < pro; i++){
+				
+				proc[lineaRR[i].getProcesso()][0] = lineaRR[i].getProcesso();
+				proc[lineaRR[i].getProcesso()][1] = lineaRR[i].getArrivo();
+				proc[lineaRR[i].getProcesso()][2] = lineaRR[i].getDurata();
+				proc[lineaRR[i].getProcesso()][5] = lineaRR[i].getDurata();
+		   }
+
+
+       for(time=0,i=0;remain!=0;)
+       {
+              if(proc[lineaRR[i].getProcesso()][5]<=ts && proc[lineaRR[i].getProcesso()][5]>0)
+              {
+                     time = time + proc[lineaRR[i].getProcesso()][5];
+                     //printf(" -> [P%d] <- %d",a[i].p,time);
+         	        punti.add(time);
+                    punti.add(proc[lineaRR[i].getProcesso()][0]);
+                    cambio++;
+
+                     proc[lineaRR[i].getProcesso()][5]=0;
+                     flag=1;
+              }
+              else if(proc[lineaRR[i].getProcesso()][5] > 0)
+              {
+                     proc[lineaRR[i].getProcesso()][5] = proc[lineaRR[i].getProcesso()][5] - ts;
+                     time = time + ts;
+                     //printf(" -> [P%d] <- %d",a[i].p,time);
+                     punti.add(time);
+                     punti.add(proc[lineaRR[i].getProcesso()][0]);
+                     cambio++;
+              }
+              if(proc[lineaRR[i].getProcesso()][5]==0 && flag==1)
+              {
+                     remain--;
+                     proc[lineaRR[i].getProcesso()][4] = time-proc[lineaRR[i].getProcesso()][1];
+                     proc[lineaRR[i].getProcesso()][3] = time-proc[lineaRR[i].getProcesso()][1]-proc[lineaRR[i].getProcesso()][2];
+                     avgwt = avgwt + time-proc[lineaRR[i].getProcesso()][1]-proc[lineaRR[i].getProcesso()][2];
+                     avgtt = avgtt + time-proc[lineaRR[i].getProcesso()][1];
+                     flag=0;
+              }
+              if(i==pro-1)
+                     i=0;
+              else if(proc[lineaRR[i+1].getProcesso()][1]<= time)
+                     i++;
+              else
+                     i=0;
+       }
+   //    printf("\n\n");
+   //    printf("***************************************\n");
+   //    printf("Pro\tArTi\tBuTi\tTaTi\tWtTi\n");
+   //    printf("***************************************\n");
+       for(i=0;i<pro;i++)
+       {
+             // printf("P%d\t%d\t%d\t%d\t%d\n",a[i].p,a[i].art,a[i].but,a[i].tat,a[i].wtt);
+       }
+   //    printf("***************************************\n");
+       avgwt = avgwt/pro;
+       avgtt = avgtt/pro;
+    //   printf("Average Waiting Time : %.2f\n",avgwt);
+    //   printf("Average Turnaround Time : %.2f\n",avgtt);
+       for(int i = 0; i < punti.size();)
+	     {
+	    	 if(i+2<punti.size()) {
+	      puntiArray.add(punti.get(i));
+	      puntiArray.add(punti.get(i+1));
+	      puntiArray.add(punti.get(i+2));
+	      puntiArray.add(punti.get(i+1));
+	    	 }
+	      i=i+2;
+	     }
+	    
+	     cbRR=cambio-1;
+	     averageRR=avgwt;
+	     return puntiArray;	
+	    }
+		/*	
 		int n=lineaRR.length,cambio=0;
 		ArrayList<Integer> punti=new ArrayList<Integer>();
 		ArrayList<Integer> puntiArray=new ArrayList<Integer>();
@@ -1518,8 +1605,11 @@ public SchProcessi(JFrame framechiamante) {
 		      }
 		     }
 		     System.out.println();
-		     System.out.println();
-		     
+		     for(int i = 1; i <= n; i++)
+		     {
+		      System.out.printf("%d\t%2dms\t%2dms",i,proc[i][2],proc[i][3]);
+		      System.out.println();
+		     }		     
 		 
 		     //Printing the average WT & TT
 		     float WT = 0,TT = 0;

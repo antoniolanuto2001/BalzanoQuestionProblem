@@ -91,7 +91,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	private int pagefaultOPT;
 	private int pagefaultCLOCK;
 
-	static int i=0,k=0,h=0;
+	int flag=0;
+	
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
 		
 		frame=this;
@@ -353,7 +354,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelSlot.setBounds(10, 180, 15, 118);
 			pannelloFIFO.add(labelSlot);
 			labelSlot.setText(transformStringToHtml(labelSlot.getText()));
-			
+	
 		//GRAFICO OPT
 		PanelGraficiMatricePaginazioneDellaMemoria jPanelOPTMATRICE = new PanelGraficiMatricePaginazioneDellaMemoria();
 			jPanelOPTMATRICE.setLayout(null);
@@ -468,33 +469,35 @@ public class PaginazioneDellaMemoria extends JFrame {
 			generaGrafici.setBounds(10, 137, 225, 21);
 			pannelloEditor.add(generaGrafici);
 			
-		JLabel labelPlay = new JLabel(">");
-			labelPlay.setEnabled(false);
-			labelPlay.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			labelPlay.setBounds(44, 168, 39, 35);
-			labelPlay.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
-			pannelloEditor.add(labelPlay);
+		JLabel btnMostraSoluzioni = new JLabel("");
+		btnMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
+			btnMostraSoluzioni.setEnabled(false);
+			btnMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			btnMostraSoluzioni.setBounds(80, 185, 79, 35);
+			btnMostraSoluzioni.setBackground(new Color(255, 255, 255));
+			//btnMostraSoluzioni.setBorder(new LineBorder(Color.black, 2));
+			btnMostraSoluzioni.setIcon(new ImageIcon(PaginazioneDellaMemoria.class.getResource("/img/playIcon2.png")));
+			pannelloEditor.add(btnMostraSoluzioni);
 			
-		JLabel labelScrittaPlay = new JLabel("Codifica Tutto");
-			labelScrittaPlay.setHorizontalAlignment(SwingConstants.CENTER);
-			labelScrittaPlay.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			labelScrittaPlay.setEnabled(false);
-			labelScrittaPlay.setBounds(28, 213, 75, 17);
-			pannelloEditor.add(labelScrittaPlay);
+		JLabel btnFastForwardPiu = new JLabel("");
+			btnFastForwardPiu.setHorizontalAlignment(SwingConstants.CENTER);
+			btnFastForwardPiu.setEnabled(false);
+			btnFastForwardPiu.setBackground(new Color(255, 255, 255));
+			//btnFastForwardPiu.setBorder(new LineBorder(Color.black,2));
+			btnFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
+			btnFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+			btnFastForwardPiu.setBounds(166, 185, 52, 35);
+			pannelloEditor.add(btnFastForwardPiu);
 			
-		JLabel labelScrittaFast = new JLabel("Codifica Passo");
-			labelScrittaFast.setHorizontalAlignment(SwingConstants.CENTER);
-			labelScrittaFast.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			labelScrittaFast.setEnabled(false);
-			labelScrittaFast.setBounds(124, 213, 75, 17);
-			pannelloEditor.add(labelScrittaFast);
-			
-		JLabel labelFastForward = new JLabel(">>");
-			labelFastForward.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
-			labelFastForward.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			labelFastForward.setEnabled(false);
-			labelFastForward.setBounds(142, 168, 39, 35);
-			pannelloEditor.add(labelFastForward);
+		JLabel btnFastForwardMeno = new JLabel("");
+			btnFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
+			btnFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+			btnFastForwardMeno.setEnabled(false);
+			btnFastForwardMeno.setBounds(24, 185, 52, 35);
+			btnFastForwardMeno.setBackground(new Color(255, 255, 255));
+			//btnFastForwardMeno.setBorder(new LineBorder(Color.black,2));
+			btnFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
+			pannelloEditor.add(btnFastForwardMeno);
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
 			btnGeneraSuccessione.setBackground(new Color(255, 255, 255));
@@ -602,13 +605,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 		btnGeneraSuccessione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+						
+				flag=0;
 				
 				comboSceltaSlotDisponibili.setEnabled(true);
 				labelSlotMemoria.setEnabled(true);
-				labelFastForward.setEnabled(true);
-				labelScrittaFast.setEnabled(true);
-				labelScrittaPlay.setEnabled(true);
-				labelPlay.setEnabled(true);
+				btnFastForwardMeno.setEnabled(true);
+				btnFastForwardPiu.setEnabled(true);
+				btnMostraSoluzioni.setEnabled(true);
 				
 				stringaNumeri.setText("");
 				numeri=new int[25];
@@ -707,15 +711,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 		});
 
 	//EVENTO SUI BOTTONI PLAY 
-		labelPlay.addMouseListener(new MouseAdapter() {
+		btnMostraSoluzioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
-				if(labelPlay.isEnabled()) {
-					labelFastForward.setEnabled(false);
-					labelScrittaFast.setEnabled(false);
-					labelPlay.setEnabled(false);
-					labelScrittaPlay.setEnabled(false);
+				if(btnMostraSoluzioni.isEnabled()) {
+					btnFastForwardMeno.setEnabled(false);
+					btnFastForwardPiu.setEnabled(false);
+					btnMostraSoluzioni.setEnabled(false);
+					btnMostraSoluzioni.setEnabled(false);
 					
 					//GENERAZIONE MATRICI
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
@@ -742,50 +746,149 @@ public class PaginazioneDellaMemoria extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				
-				labelScrittaPlay.setForeground(Color.RED);
-			}
+				if(btnMostraSoluzioni.isEnabled())
+					btnMostraSoluzioni.setBackground(Color.red);
+				}
 			@Override
 			public void mouseExited(MouseEvent e){
 				
-				labelScrittaPlay.setForeground(Color.BLACK);
+				btnMostraSoluzioni.setBackground(new Color(255, 255, 255));
 			}
 		});
 		
 		//EVENTO SUI BOTTONI PLAYSTEPbySTEP
 
-		labelFastForward.addMouseListener(new MouseAdapter() {
+		btnFastForwardPiu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
-				labelPlay.setEnabled(false);
-				labelScrittaPlay.setEnabled(false);
-				i=i+20;
-				if(i>=437) {
-					i=0;
-					labelFastForward.setEnabled(false);
-				}
-				String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
-				int s=Integer.valueOf(j);
-				
-				numeriFIFO=FIFO(numeri,s);
-				
-				labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
-				jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),numeriFIFO,s,pagefaultFIFO,numeri);
-				jPanelFIFOMATRICE.setBounds(10, 27, 0+i, 118);
+				if(btnFastForwardPiu.isEnabled()) {
+					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
+					int s=Integer.valueOf(j);
+					flag++;
+					int arrayF[][]= new int[flag][s];
+					int arrayO[][]= new int[flag][s];
+					int arrayL[][]= new int[flag][s];
+					int arrayC[][]= new int[flag][s];
 
+					int num[]=new int[flag];
+					
+					numeriFIFO=FIFO(numeri,s);
+					numeriOPT=OPT(numeri,s);
+					numeriLRU=LRU(numeri,s);
+					numeriCLOCK=CLOCK(numeri,s);
+					
+					labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
+					labelDATOOPT.setText(String.valueOf(pagefaultOPT));
+					labelDATOLRU.setText(String.valueOf(pagefaultLRU));
+					labelDATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
+					
+					if(flag<=numeri.length) {
+						for(int i = 0; i < s; i++)
+					    {
+					        for(int z = 0; z < flag; z++) {
+					        	arrayF[z][i]=numeriFIFO[z][i];
+					        	arrayO[z][i]=numeriOPT[z][i];
+					        	arrayL[z][i]=numeriLRU[z][i];
+					        	arrayC[z][i]=numeriCLOCK[z][i];
+
+					        }
+					    }
+						for(int i = 0; i < flag; i++)
+					    {
+							num[i]=numeri[i];
+					    }
+						jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),arrayF,s,pagefaultFIFO,num);
+						jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),arrayO,s,pagefaultOPT,num);
+						jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),arrayL,s,pagefaultLRU,num);
+						jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),arrayC,s,pagefaultCLOCK,num);
+
+					}	
+					else {
+						btnFastForwardPiu.setEnabled(false);
+					}
+				}
 			}
+			
 			@Override
 			public void mouseEntered(MouseEvent e){
-				
-				labelScrittaFast.setForeground(Color.RED);
+				if(btnFastForwardPiu.isEnabled())
+				btnFastForwardPiu.setBackground(Color.red);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				
-				labelScrittaFast.setForeground(Color.BLACK);
+				btnFastForwardPiu.setBackground(new Color(255, 255, 255));
 			}
 		});
 		
+		btnFastForwardMeno.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				
+				if(btnFastForwardMeno.isEnabled()) {
+					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
+					int s=Integer.valueOf(j);
+					flag--;
+					int arrayF[][]= new int[flag][s];
+					int arrayO[][]= new int[flag][s];
+					int arrayL[][]= new int[flag][s];
+					int arrayC[][]= new int[flag][s];
+
+					int num[]=new int[flag];
+					
+					numeriFIFO=FIFO(numeri,s);
+					numeriOPT=OPT(numeri,s);
+					numeriLRU=LRU(numeri,s);
+					numeriCLOCK=CLOCK(numeri,s);
+					
+					labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
+					labelDATOOPT.setText(String.valueOf(pagefaultOPT));
+					labelDATOLRU.setText(String.valueOf(pagefaultLRU));
+					labelDATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
+										
+					if(flag>0) {
+						for(int i = 0; i < s; i++)
+					    {
+					        for(int z = 0; z < flag; z++) {
+					        	arrayF[z][i]=numeriFIFO[z][i];
+					        	arrayO[z][i]=numeriOPT[z][i];
+					        	arrayL[z][i]=numeriLRU[z][i];
+					        	arrayC[z][i]=numeriCLOCK[z][i];
+
+					        }
+					    }
+						for(int i = 0; i < flag; i++)
+					    {
+							num[i]=numeri[i];
+					    }
+						jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
+						jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
+						jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+						jPanelCLOCKMATRICE.resetGrafico(jPanelCLOCKMATRICE.getGraphics());
+
+						jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),arrayF,s,pagefaultFIFO,num);
+						jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),arrayO,s,pagefaultOPT,num);
+						jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),arrayL,s,pagefaultLRU,num);
+						jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),arrayC,s,pagefaultCLOCK,num);
+
+					}	
+					else {
+						btnFastForwardPiu.setEnabled(false);
+					}
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e){
+				if(btnFastForwardMeno.isEnabled())
+					btnFastForwardMeno.setBackground(Color.red);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+				btnFastForwardMeno.setBackground(new Color(255, 255, 255));
+			}
+		});
 	//EVENTO SU CAMPO DI SLOT DISPONIBILI
 
 		comboSceltaSlotDisponibili.addActionListener(new ActionListener() {
@@ -795,13 +898,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 				else {
 					//generaGrafici.setEnabled(true);
-					i=0;
-					k=0;
-					h=0;
-					labelFastForward.setEnabled(true);
-					labelScrittaFast.setEnabled(true);
-					labelScrittaPlay.setEnabled(true);
-					labelPlay.setEnabled(true);
+
+					btnFastForwardMeno.setEnabled(true);
+					btnFastForwardPiu.setEnabled(true);
+					btnMostraSoluzioni.setEnabled(true);
 					jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
 					jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
 					jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
