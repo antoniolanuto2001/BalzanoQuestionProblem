@@ -470,7 +470,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloEditor.add(generaGrafici);
 			
 		JLabel btnMostraSoluzioni = new JLabel("");
-		btnMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
+			btnMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
 			btnMostraSoluzioni.setEnabled(false);
 			btnMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			btnMostraSoluzioni.setBounds(80, 185, 79, 35);
