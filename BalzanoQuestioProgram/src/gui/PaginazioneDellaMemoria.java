@@ -716,10 +716,11 @@ public class PaginazioneDellaMemoria extends JFrame {
 			public void mouseClicked(MouseEvent e){
 			
 				if(btnMostraSoluzioni.isEnabled()) {
-					btnFastForwardMeno.setEnabled(false);
+					btnFastForwardMeno.setEnabled(true);
 					btnFastForwardPiu.setEnabled(false);
 					btnMostraSoluzioni.setEnabled(false);
-					btnMostraSoluzioni.setEnabled(false);
+					
+					flag=25;
 					
 					//GENERAZIONE MATRICI
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
@@ -763,6 +764,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 			public void mouseClicked(MouseEvent e){
 			
 				if(btnFastForwardPiu.isEnabled()) {
+					btnFastForwardMeno.setEnabled(true);
+					btnMostraSoluzioni.setEnabled(true);
+
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 					int s=Integer.valueOf(j);
 					flag++;
@@ -806,6 +810,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 					}	
 					else {
 						btnFastForwardPiu.setEnabled(false);
+						btnMostraSoluzioni.setEnabled(false);
+
 					}
 				}
 			}
@@ -827,27 +833,33 @@ public class PaginazioneDellaMemoria extends JFrame {
 			public void mouseClicked(MouseEvent e){
 				
 				if(btnFastForwardMeno.isEnabled()) {
+					btnFastForwardPiu.setEnabled(true);
+					btnMostraSoluzioni.setEnabled(true);
+
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 					int s=Integer.valueOf(j);
 					flag--;
-					int arrayF[][]= new int[flag][s];
-					int arrayO[][]= new int[flag][s];
-					int arrayL[][]= new int[flag][s];
-					int arrayC[][]= new int[flag][s];
-
-					int num[]=new int[flag];
 					
-					numeriFIFO=FIFO(numeri,s);
-					numeriOPT=OPT(numeri,s);
-					numeriLRU=LRU(numeri,s);
-					numeriCLOCK=CLOCK(numeri,s);
+					if(flag>=0) {
+						
+						int arrayF[][]= new int[flag][s];
+						int arrayO[][]= new int[flag][s];
+						int arrayL[][]= new int[flag][s];
+						int arrayC[][]= new int[flag][s];
+	
+						int num[]=new int[flag];
+						
+						numeriFIFO=FIFO(numeri,s);
+						numeriOPT=OPT(numeri,s);
+						numeriLRU=LRU(numeri,s);
+						numeriCLOCK=CLOCK(numeri,s);
+						
+						labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
+						labelDATOOPT.setText(String.valueOf(pagefaultOPT));
+						labelDATOLRU.setText(String.valueOf(pagefaultLRU));
+						labelDATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
+											
 					
-					labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
-					labelDATOOPT.setText(String.valueOf(pagefaultOPT));
-					labelDATOLRU.setText(String.valueOf(pagefaultLRU));
-					labelDATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
-										
-					if(flag>0) {
 						for(int i = 0; i < s; i++)
 					    {
 					        for(int z = 0; z < flag; z++) {
@@ -874,7 +886,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 
 					}	
 					else {
-						btnFastForwardPiu.setEnabled(false);
+						btnFastForwardMeno.setEnabled(false);
 					}
 				}
 			}
@@ -898,7 +910,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 				}
 				else {
 					//generaGrafici.setEnabled(true);
-
+					flag=0;
 					btnFastForwardMeno.setEnabled(true);
 					btnFastForwardPiu.setEnabled(true);
 					btnMostraSoluzioni.setEnabled(true);
