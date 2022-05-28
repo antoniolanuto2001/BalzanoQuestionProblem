@@ -658,6 +658,7 @@ public class SchHD extends JFrame {
 					else {
 						//rdbtnDestraSCAN.setSelected(true);
 						rdbtnDestraSCAN.doClick();
+
 					}
 				}
 			}
