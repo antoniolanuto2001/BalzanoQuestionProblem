@@ -37,7 +37,13 @@ public class SchHD extends JFrame {
 
 	private JPanel contentPane;
 	private JFrame frame;
-
+	private int[]successione;
+	
+	private int[]numeriFCFS;
+	private int distanzaFCFS;
+	
+	private int[]numeriSSTF;
+	private int distanzaSSTF;
 	/**
 	 * Create the frame.
 	 */
@@ -111,8 +117,8 @@ public class SchHD extends JFrame {
 			pannelloParametri.add(labelPosizione);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
-			labelMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
 			labelMostraSoluzioni.setEnabled(false);
+			labelMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			labelMostraSoluzioni.setBounds(90, 200, 79, 35);
 			labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
@@ -163,9 +169,9 @@ public class SchHD extends JFrame {
 			pannelloParametri.add(labelPosizioneInziale);
 			
 		JTextField textFieldInzialeTestina = new JTextField();
-		textFieldInzialeTestina.setFont(new Font("Arial", Font.PLAIN, 15));
-		textFieldInzialeTestina.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldInzialeTestina.setText("2000");
+			textFieldInzialeTestina.setFont(new Font("Arial", Font.PLAIN, 15));
+			textFieldInzialeTestina.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldInzialeTestina.setText("2000");
 			textFieldInzialeTestina.setBounds(188, 13, 52, 20);
 			pannelloParametri.add(textFieldInzialeTestina);
 			textFieldInzialeTestina.setColumns(10);
@@ -290,26 +296,28 @@ public class SchHD extends JFrame {
 					pannelloFCFS.setBounds(10, 0, 1121, 150);
 					pannelloGrafici.add(pannelloFCFS);
 				
-				JLabel labelFirstcomeFirstserved = new JLabel("First-Come  First-Served");
+				JLabel labelFirstcomeFirstserved = new JLabel("FCFS");
 					labelFirstcomeFirstserved.setHorizontalAlignment(SwingConstants.CENTER);
 					labelFirstcomeFirstserved.setForeground(Color.RED);
-					labelFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					labelFirstcomeFirstserved.setBounds(10, 0, 306, 25);
+					labelFirstcomeFirstserved.setFont(new Font("Tahoma", Font.PLAIN, 25));
+					labelFirstcomeFirstserved.setBounds(0, 0, 107, 25);
 					pannelloFCFS.add(labelFirstcomeFirstserved);
 					
 				JLabel labelDistanzaTotaleFCFS = new JLabel("Distanza totale:");
+					labelDistanzaTotaleFCFS.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDistanzaTotaleFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDistanzaTotaleFCFS.setBounds(31, 88, 98, 25);
+					labelDistanzaTotaleFCFS.setBounds(0, 35, 107, 25);
 					pannelloFCFS.add(labelDistanzaTotaleFCFS);
 				
 				JLabel labelDatoDistanzaFCFS = new JLabel("");
-					labelDatoDistanzaFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDatoDistanzaFCFS.setBounds(139, 88, 45, 25);
+				labelDatoDistanzaFCFS.setHorizontalAlignment(SwingConstants.CENTER);
+					labelDatoDistanzaFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+					labelDatoDistanzaFCFS.setBounds(0, 70, 107, 25);
 					pannelloFCFS.add(labelDatoDistanzaFCFS);
 				
 				PanelGraficiSchHD jPanelFCFS = new PanelGraficiSchHD();
 					jPanelFCFS.setLayout(null);
-					jPanelFCFS.setBounds(326, 0, 784, 145);
+					jPanelFCFS.setBounds(117, 0, 993, 145);
 					pannelloFCFS.add(jPanelFCFS);
 					
 		JPanel pannelloSSTF = new JPanel();
@@ -318,26 +326,26 @@ public class SchHD extends JFrame {
 					pannelloSSTF.setBounds(10, 153, 1121, 150);
 					pannelloGrafici.add(pannelloSSTF);
 				
-				JLabel labelShortestSeekTime = new JLabel("Shortest Seek Time First");
+				JLabel labelShortestSeekTime = new JLabel("SSTF");
 					labelShortestSeekTime.setHorizontalAlignment(SwingConstants.CENTER);
 					labelShortestSeekTime.setForeground(Color.RED);
 					labelShortestSeekTime.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					labelShortestSeekTime.setBounds(10, 0, 306, 25);
+					labelShortestSeekTime.setBounds(0, 0, 107, 25);
 					pannelloSSTF.add(labelShortestSeekTime);
 				
 				JLabel labelDistanzaTotaleSSTF = new JLabel("Distanza totale:");
 					labelDistanzaTotaleSSTF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDistanzaTotaleSSTF.setBounds(31, 88, 98, 25);
+					labelDistanzaTotaleSSTF.setBounds(0, 35, 107, 25);
 					pannelloSSTF.add(labelDistanzaTotaleSSTF);
 					
 				JLabel labelDatoDistanzaSSTF = new JLabel("");
 					labelDatoDistanzaSSTF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDatoDistanzaSSTF.setBounds(139, 88, 45, 25);
+					labelDatoDistanzaSSTF.setBounds(0, 70, 107, 25);
 					pannelloSSTF.add(labelDatoDistanzaSSTF);
 				
 				PanelGraficiSchHD jPanelSSFT = new PanelGraficiSchHD();
 					jPanelSSFT.setLayout(null);
-					jPanelSSFT.setBounds(326, 0, 784, 145);
+					jPanelSSFT.setBounds(117, 0, 993, 145);
 					pannelloSSTF.add(jPanelSSFT);
 				
 		JPanel pannelloSCAN = new JPanel();
@@ -350,46 +358,46 @@ public class SchHD extends JFrame {
 					labelSCAN.setHorizontalAlignment(SwingConstants.CENTER);
 					labelSCAN.setForeground(Color.RED);
 					labelSCAN.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					labelSCAN.setBounds(10, 0, 306, 25);
+					labelSCAN.setBounds(0, 0, 107, 25);
 					pannelloSCAN.add(labelSCAN);
 				
 				JLabel labelDistanzaTotaleSCAN = new JLabel("Distanza totale:");
 					labelDistanzaTotaleSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDistanzaTotaleSCAN.setBounds(31, 88, 98, 25);
+					labelDistanzaTotaleSCAN.setBounds(0, 35, 107, 25);
 					pannelloSCAN.add(labelDistanzaTotaleSCAN);
 				
 				JLabel labelDatoDistanzaSCAN = new JLabel("");
 					labelDatoDistanzaSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDatoDistanzaSCAN.setBounds(139, 88, 45, 25);
+					labelDatoDistanzaSCAN.setBounds(0, 65, 107, 25);
 					pannelloSCAN.add(labelDatoDistanzaSCAN);
 					
 				PanelGraficiSchHD jPanelSCAN = new PanelGraficiSchHD();
 					jPanelSCAN.setLayout(null);
-					jPanelSCAN.setBounds(326, 0, 784, 145);
+					jPanelSCAN.setBounds(151, 0, 959, 145);
 					pannelloSCAN.add(jPanelSCAN);
 					
 				JCheckBox chckbxSCAN = new JCheckBox("C-SCAN");
 					chckbxSCAN.setEnabled(false);
 					chckbxSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxSCAN.setBounds(209, 88, 98, 21);
+					chckbxSCAN.setBounds(0, 95, 98, 21);
 					pannelloSCAN.add(chckbxSCAN);
 					
 				JLabel labelDirezioneSCAN = new JLabel("<  direzione  >");
 					labelDirezioneSCAN.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDirezioneSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDirezioneSCAN.setBounds(121, 39, 98, 25);
+					labelDirezioneSCAN.setBounds(24, 120, 98, 25);
 					pannelloSCAN.add(labelDirezioneSCAN);
 					
 				JRadioButton rdbtnDestraSCAN = new JRadioButton("");
 					rdbtnDestraSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnDestraSCAN.setEnabled(false);
-					rdbtnDestraSCAN.setBounds(92, 39, 23, 21);
+					rdbtnDestraSCAN.setBounds(122, 120, 23, 21);
 					pannelloSCAN.add(rdbtnDestraSCAN);
 					
 				JRadioButton rdbtnSinistraSCAN = new JRadioButton("");
 					rdbtnSinistraSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnSinistraSCAN.setEnabled(false);
-					rdbtnSinistraSCAN.setBounds(225, 39, 23, 21);
+					rdbtnSinistraSCAN.setBounds(0, 120, 23, 21);
 					pannelloSCAN.add(rdbtnSinistraSCAN);
 					
 		JPanel pannelloLOOK = new JPanel();
@@ -402,79 +410,240 @@ public class SchHD extends JFrame {
 					labelLook.setHorizontalAlignment(SwingConstants.CENTER);
 					labelLook.setForeground(Color.RED);
 					labelLook.setFont(new Font("Tahoma", Font.PLAIN, 20));
-					labelLook.setBounds(10, 0, 306, 25);
+					labelLook.setBounds(0, 0, 107, 25);
 					pannelloLOOK.add(labelLook);
 					
 				JLabel labelDistanzaTotaleLOOK = new JLabel("Distanza totale:");
 					labelDistanzaTotaleLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDistanzaTotaleLOOK.setBounds(31, 88, 98, 25);
+					labelDistanzaTotaleLOOK.setBounds(0, 35, 107, 25);
 					pannelloLOOK.add(labelDistanzaTotaleLOOK);
 					
 				JLabel labelDatoDistanzaLOOK = new JLabel("");
 					labelDatoDistanzaLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDatoDistanzaLOOK.setBounds(139, 88, 45, 25);
+					labelDatoDistanzaLOOK.setBounds(0, 65, 107, 25);
 					pannelloLOOK.add(labelDatoDistanzaLOOK);
 					
 				PanelGraficiSchHD jPanelLOOK = new PanelGraficiSchHD();
 					jPanelLOOK.setLayout(null);
-					jPanelLOOK.setBounds(326, 0, 784, 145);
+					jPanelLOOK.setBounds(151, 0, 959, 145);
 					pannelloLOOK.add(jPanelLOOK);
 					
 				JCheckBox chckbxLOOK = new JCheckBox("C-LOOK");
 					chckbxLOOK.setEnabled(false);
 					chckbxLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					chckbxLOOK.setBounds(209, 88, 98, 21);
+					chckbxLOOK.setBounds(0, 95, 98, 20);
 					pannelloLOOK.add(chckbxLOOK);
 					
 				JLabel labelDirezioneLOOK = new JLabel("<  direzione  >");
 					labelDirezioneLOOK.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDirezioneLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDirezioneLOOK.setBounds(121, 39, 98, 25);
+					labelDirezioneLOOK.setBounds(24, 120, 98, 25);
 					pannelloLOOK.add(labelDirezioneLOOK);
 					
 				JRadioButton rdbtnDestraLOOK = new JRadioButton("");
 					rdbtnDestraLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnDestraLOOK.setEnabled(false);
-					rdbtnDestraLOOK.setBounds(92, 39, 23, 21);
+					rdbtnDestraLOOK.setBounds(122, 120, 23, 21);
 					pannelloLOOK.add(rdbtnDestraLOOK);
 					
 				JRadioButton rdbtnSinistraLOOK = new JRadioButton("");
 					rdbtnSinistraLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnSinistraLOOK.setEnabled(false);
-					rdbtnSinistraLOOK.setBounds(225, 39, 23, 21);
+					rdbtnSinistraLOOK.setBounds(0, 120, 23, 21);
 					pannelloLOOK.add(rdbtnSinistraLOOK);
 					
 /**--------------------------------IMPLEMENTAZIONE EVENTI-------------------------------------------*/
 					
-					btnGeneraEsempio.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							
-							Random random = new Random();
-							int ncilindri = random.nextInt(7 + 0) + 0;
-							comboBoxSceltaNCilindri.setSelectedIndex(ncilindri);
-							
-							int position = random.nextInt(Integer.valueOf(String.valueOf(comboBoxSceltaNCilindri.getSelectedItem()))+0) + 0;
-							textFieldInzialeTestina.setText(String.valueOf(position));
-							
-							int numero=Integer.valueOf(String.valueOf(comboBoxSceltaNCilindri.getSelectedItem()));
-							
-							for (int i=0;i<10;i++) { 
-								int value = random.nextInt(numero + 0) + 0;
-								if(i==0)textFieldRichieste.setText(String.valueOf(value));
-								else textFieldRichieste.setText(textFieldRichieste.getText()+"-"+value);
+		btnGeneraEsempio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				jPanelFCFS.resetGrafico(jPanelFCFS.getGraphics());
+				jPanelSSFT.resetGrafico(jPanelSSFT.getGraphics());
+				jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+				jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+				
+				labelFastForwardMeno.setEnabled(true);
+				labelFastForwardPiu.setEnabled(true);
+				labelMostraSoluzioni.setEnabled(true);
 
-							}
-						}
-						@Override
-						public void mouseEntered(MouseEvent e) 
-						{
-							btnGeneraEsempio.setBackground(new Color(229,57,53));
-						}
-						@Override
-						public void mouseExited(MouseEvent e) {
-							btnGeneraEsempio.setBackground(Color.WHITE);
-						}
-					});
+				Random random = new Random();
+/*				int ncilindri = random.nextInt(7 + 0) + 0;
+				comboBoxSceltaNCilindri.setSelectedIndex(ncilindri);
+*/				
+				int position = random.nextInt(Integer.valueOf(String.valueOf(comboBoxSceltaNCilindri.getSelectedItem()))+0) + 0;
+				textFieldInzialeTestina.setText(String.valueOf(position));
+				
+				int numero=Integer.valueOf(String.valueOf(comboBoxSceltaNCilindri.getSelectedItem()));
+				successione=new int[10];
+				for (int i=0;i<10;i++) { 
+					int value = random.nextInt(numero + 0) + 0;
+					if(i==0)textFieldRichieste.setText(String.valueOf(value));
+					else textFieldRichieste.setText(textFieldRichieste.getText()+"-"+value);
+					successione[i]=value;
+				}
+				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				btnGeneraEsempio.setBackground(new Color(229,57,53));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnGeneraEsempio.setBackground(Color.WHITE);
+			}
+		});
+					
+		//EVENTO SUI BOTTONI PLAY 
+		labelMostraSoluzioni.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+			
+				if(labelMostraSoluzioni.isEnabled()) {
+					labelMostraSoluzioni.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(false);
+					labelMostraSoluzioni.setEnabled(false);
+					
+					
+					//GENERAZIONE MATRICI
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+					
+					numeriFCFS=FCFS(successione,s);
+					numeriSSTF=SSTF(successione,s);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(j);
+					
+					labelDatoDistanzaFCFS.setText(String.valueOf(distanzaFCFS));
+					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),numeriFCFS,nc,distanzaFCFS,successione);
+					
+					labelDatoDistanzaSSTF.setText(String.valueOf(distanzaSSTF));
+					jPanelSSFT.disegnaSoluzioneFCFS(jPanelSSFT.getGraphics(),numeriSSTF,nc,distanzaSSTF,successione);
+					
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+				if(labelMostraSoluzioni.isEnabled())
+					labelMostraSoluzioni.setBackground(Color.red);
+				}
+			@Override
+			public void mouseExited(MouseEvent e){
+				
+				labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
+			}
+		});		
+	}		
+/*IMPLEMENTAZIONE ALGORTIMI UTILIZZATI*/
+
+//ALGORITMO FCFS
+	public int[] FCFS(int[] queue, int head){
+		//Resultant variable which are used to store information of number of time or operation
+		int seek_time = 0;
+		int distance = 0;
+		int n=queue.length;
+		// Loop controlling variable
+		int i = 0;
+		int[] array= new int[queue.length+1];
+		
+		for (i = 0; i < array.length; i++)
+		{
+			if(i==0)array[i]=head;
+			else array[i]=queue[i-1];
+		}
+		for (i = 0; i < n; i++)
+		{
+			//Get distance 
+			distance = queue[i] - head;
+			if (distance < 0)
+			{
+				//When distance is negative then convert into it absolute value
+				distance = -distance;
+			}
+			// Update head data into current track value
+			head = queue[i];
+			// Add current distance into seek
+			seek_time += distance;
+		}
+		//Display result
+		distanzaFCFS=seek_time;
+		return array;
 	}
+	
+//ALGORITMO SSTF
+	public int[] SSTF(int[] queue, int head){
+		
+		int n=queue.length;
+		int[] array= new int[queue.length+1];
+
+			if (n <= 0)
+			{
+				return array;
+			}
+			int seek_time = 0;
+			double minimum = 0.0;
+			//This are storing the information of seek sequence
+			int[] skeek = new int[n + 1];
+			//Create 2d array which is used to store distance and visited status
+			int[][] auxiliary = new int[n][2];
+			for (int i = 0; i < n; ++i)
+			{
+				// set initial distance
+				auxiliary[i][0] = 0;
+				// set the visiting element status
+				auxiliary[i][1] = 0;
+			}
+			// Loop controlling variable
+			int i = 0;
+			int j = 0;
+			int location = 0;
+			for (i = 0; i < n; i++)
+			{
+				skeek[i] = head;
+				// Find distance using head value
+				for (j = 0; j < n; ++j)
+				{
+					auxiliary[j][0] = queue[j] - head;
+					if (auxiliary[j][0] < 0)
+					{
+						auxiliary[j][0] = -auxiliary[j][0];
+					}
+				}
+				minimum = Integer.MAX_VALUE;
+				location = -1;
+				//Find the minimum element location that is not visited
+				for (j = 0; j < n; ++j)
+				{
+					if (auxiliary[j][1] == 0 && auxiliary[j][0] <= minimum)
+					{
+						// Get the new minimum distance element location
+						location = j;
+						minimum = auxiliary[j][0];
+					}
+				}
+				// Update the visited status of new get element
+				auxiliary[location][1] = 1;
+				// Update head data into current track value
+				head = queue[location];
+				// Add current distance into seek
+				seek_time += auxiliary[location][0];
+			}
+			if (head != 0)
+			{
+				// Add last skee info
+				skeek[n] = head;
+			}
+			//Display given queue elements
+			for (i = 0; i <= n; i++)
+			{
+				array[i]=skeek[i];
+			}
+			
+			distanzaSSTF=seek_time;
+			return array;
+		}
+		
 }
