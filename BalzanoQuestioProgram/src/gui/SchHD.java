@@ -75,7 +75,6 @@ public class SchHD extends JFrame {
 			
 		JPanel pannelloControllo = new JPanel();
 			pannelloControllo.setLayout(null);
-			pannelloControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 			pannelloControllo.setBounds(1130, 81, 274, 670);
 			panelMainButton.add(pannelloControllo);
 			
