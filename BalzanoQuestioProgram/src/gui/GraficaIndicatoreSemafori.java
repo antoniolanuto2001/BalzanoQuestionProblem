@@ -60,6 +60,7 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	      g2d.drawLine(x, y, w, h);
 	   }
 	   
+	   //test
 	   
 	   //limite raggiunto=true - limite non raggiunto=false
 	    public boolean LimitReached() 

@@ -73,6 +73,14 @@ public class Semafori extends JFrame {
 	public boolean timeToRestartFromPause;
 	public int temporaryValue1;
 	public int temporaryValue2;
+	public int temporaryValue3;
+	public int temporaryValue4;
+	public int temporaryValue5;
+	
+	public boolean startforfirst;
+	public boolean pauseforfirst;
+	public boolean pauseforsecond;
+	public boolean startforsecond;
 	public ArrayList<ProcessoSemaforo> StartEndProcessi = new ArrayList<ProcessoSemaforo>();
 	final int min_JProgress_range=0;
 	final int max_JProgress_range=300;
@@ -93,13 +101,17 @@ public class Semafori extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
+		startforsecond=true;
+		startforfirst=true;
+		pauseforfirst=false;
+		pauseforsecond=false;
 		timeToResetFromPause=false;
 		timeToReset=false;
 		timeToPause=false;
 		timeToContinue=true;
 		timeToRestartFromPause=false;
-		int [] ripatenza = new int[5];
-		Arrays.fill(ripatenza, 0);
+		int [] ripartenza = new int[5];
+		Arrays.fill(ripartenza, 0);
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(255, 255, 255));
 		panelMainButton.setForeground(new Color(153, 204, 255));
@@ -135,60 +147,99 @@ public class Semafori extends JFrame {
 
 		JLabel labelIndietroIcon = new JLabel("Indietro");
 	    labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	    labelIndietroIcon.setBounds(22, 84, 32, 32);
+	    labelIndietroIcon.setBounds(70, 83, 32, 32);
 	    panelMainButton.add(labelIndietroIcon);
 		
 		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
 	    labelScrittaSlide.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-	    labelScrittaSlide.setBounds(160, 122, 102, 15);
+	    labelScrittaSlide.setBounds(208, 120, 102, 15);
 	    panelMainButton.add(labelScrittaSlide);
 	     
 	    JLabel labelSlideIcon = new JLabel("");
 	    labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	    labelSlideIcon.setBounds(177, 77, 53, 46);
+	    labelSlideIcon.setBounds(220, 76, 53, 46);
 	    panelMainButton.add(labelSlideIcon);
 
 		JLabel labelScrittaYoutube = new JLabel("Video Lezione");
 		labelScrittaYoutube.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		labelScrittaYoutube.setBounds(68, 122, 82, 15);
+		labelScrittaYoutube.setBounds(116, 120, 82, 15);
 		panelMainButton.add(labelScrittaYoutube);
 		
 		JLabel labelYoutubeIcon = new JLabel("");
 		labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
-		labelYoutubeIcon.setBounds(78, 77, 54, 46);
+		labelYoutubeIcon.setBounds(126, 76, 54, 46);
 		panelMainButton.add(labelYoutubeIcon);
 		
 		
-		JLabel JLabelTextMutex1 = new JLabel("Mutex=1");
-		JLabelTextMutex1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1.setBounds(155, 607, 79, 14);
-		panelMainButton.add(JLabelTextMutex1);
+		//SCRITTA MUTEX DEL SEMAFORO 1 CON VALORE 1
+		JLabel JLabelTextMutex1_1 = new JLabel("Mutex=1");
+		JLabelTextMutex1_1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex1_1.setBounds(155, 607, 79, 14);
+		panelMainButton.add(JLabelTextMutex1_1);
+		JLabelTextMutex1_1.setVisible(true);
 		
-		JLabel JLabelTextMutex2 = new JLabel("Mutex=1");
-		JLabelTextMutex2.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2.setBounds(391, 607, 79, 14);
-		panelMainButton.add(JLabelTextMutex2);
-		JLabelTextMutex2.setVisible(false);
+		//SCRITTA MUTEX DEL SEMAFORO 2 CON VALORE 1
+		JLabel JLabelTextMutex2_1 = new JLabel("Mutex=1");
+		JLabelTextMutex2_1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex2_1.setBounds(391, 607, 79, 14);
+		panelMainButton.add(JLabelTextMutex2_1);
+		JLabelTextMutex2_1.setVisible(false);
 		
-		//creating a default semaphore graphic
-		JLabel GraficaSemaforo1JLabel = new JLabel("");
-		JLabelTextMutex1.setLabelFor(GraficaSemaforo1JLabel);
-		GraficaSemaforo1JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
-		GraficaSemaforo1JLabel.setBackground(new Color(255,255,255));
-		GraficaSemaforo1JLabel.setBounds(27, 502, 118, 205);
-		panelMainButton.add(GraficaSemaforo1JLabel);
-		GraficaSemaforo1JLabel.setLayout(null);
+		//SCRITTA MUTEX DEL SEMAFORO 1 CON VALORE 0
+		JLabel JLabelTextMutex1_0 = new JLabel("Mutex=0");
+		JLabelTextMutex1_0.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex1_0.setBounds(155, 607, 79, 14);
+		panelMainButton.add(JLabelTextMutex1_0);
+		JLabelTextMutex1_0.setVisible(false);
+		
+		//SCRITTA MUTEX DEL SEMAFORO 2 CON VALORE 0
+		JLabel JLabelTextMutex2_0 = new JLabel("Mutex=0");
+		JLabelTextMutex2_0.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
+		JLabelTextMutex2_0.setBounds(391, 607, 79, 14);
+		panelMainButton.add(JLabelTextMutex2_0);
+		JLabelTextMutex2_0.setVisible(false);
+		
+		//PRIMA GRAFICA SEMAFORO VERDE
+		JLabel GraficaSemaforo1VerdeJLabel = new JLabel("");
+		JLabelTextMutex1_1.setLabelFor(GraficaSemaforo1VerdeJLabel);
+		GraficaSemaforo1VerdeJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		GraficaSemaforo1VerdeJLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo1VerdeJLabel.setBounds(27, 502, 118, 205);
+		panelMainButton.add(GraficaSemaforo1VerdeJLabel);
+		GraficaSemaforo1VerdeJLabel.setLayout(null);
+		GraficaSemaforo1VerdeJLabel.setVisible(true);
+		
+		//PRIMA GRAFICA SEMAFORO ROSSO
+		JLabel GraficaSemaforo1RossoJLabel = new JLabel("");
+		JLabelTextMutex1_0.setLabelFor(GraficaSemaforo1RossoJLabel);
+		GraficaSemaforo1RossoJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoRossoIcon1.png")));
+		GraficaSemaforo1RossoJLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo1RossoJLabel.setBounds(27, 502, 118, 205);
+		panelMainButton.add(GraficaSemaforo1RossoJLabel);
+		GraficaSemaforo1RossoJLabel.setLayout(null);
+		GraficaSemaforo1RossoJLabel.setVisible(false);
 		
 		
-		//second semaphore graphic
-		JLabel GraficaSemaforo2JLabel = new JLabel("");
-		JLabelTextMutex2.setLabelFor(GraficaSemaforo2JLabel);
-		GraficaSemaforo2JLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
-		GraficaSemaforo2JLabel.setBackground(new Color(255,255,255));
-		GraficaSemaforo2JLabel.setBounds(263,502, 118, 205);
-		panelMainButton.add(GraficaSemaforo2JLabel);
-		GraficaSemaforo2JLabel.setLayout(null);
-		GraficaSemaforo2JLabel.setVisible(false);
+		//SECONDA GRAFICA SEMAFORO ROSSO
+		JLabel GraficaSemaforo2RossoJLabel = new JLabel("");
+		JLabelTextMutex2_0.setLabelFor(GraficaSemaforo2RossoJLabel);
+		GraficaSemaforo2RossoJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoRossoIcon1.png")));
+		GraficaSemaforo2RossoJLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo2RossoJLabel.setBounds(27, 502, 118, 205);
+		panelMainButton.add(GraficaSemaforo2RossoJLabel);
+		GraficaSemaforo2RossoJLabel.setLayout(null);
+		GraficaSemaforo2RossoJLabel.setVisible(false);
+		
+		
+		//SECONDA GRAFICA SEMAFORO VERDE
+		JLabel GraficaSemaforo2VerdeJLabel = new JLabel("");
+		JLabelTextMutex2_1.setLabelFor(GraficaSemaforo2VerdeJLabel);
+		GraficaSemaforo2VerdeJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/semaforoVerdeIcon1.png")));
+		GraficaSemaforo2VerdeJLabel.setBackground(new Color(255,255,255));
+		GraficaSemaforo2VerdeJLabel.setBounds(263,502, 118, 205);
+		panelMainButton.add(GraficaSemaforo2VerdeJLabel);
+		GraficaSemaforo2VerdeJLabel.setLayout(null);
+		GraficaSemaforo2VerdeJLabel.setVisible(false);
 		
 		JLabel UniversitaJLabel = new JLabel("Universit\u00E0 degli studi di Napoli: \"Federico II\"");
 		UniversitaJLabel.setFont(new Font("Sylfaen", Font.BOLD, 13));
@@ -254,13 +305,13 @@ public class Semafori extends JFrame {
 		JLabel GeneraEsercizioJLabel = new JLabel("Genera Esercizio");
 		GeneraEsercizioJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		GeneraEsercizioJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		GeneraEsercizioJLabel.setBounds(319, 122, 102, 15);
+		GeneraEsercizioJLabel.setBounds(388, 120, 102, 15);
 		panelMainButton.add(GeneraEsercizioJLabel);
 		
 		
 		JLabel GeneraEsercizioIcon = new JLabel("");
-		GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/write.png")));
-		GeneraEsercizioIcon.setBounds(354, 84, 32, 32);
+		GeneraEsercizioIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/GeneraEsercizioIcon.png")));
+		GeneraEsercizioIcon.setBounds(417, 82, 35, 35);
 		panelMainButton.add(GeneraEsercizioIcon);
 	        
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
@@ -275,13 +326,13 @@ public class Semafori extends JFrame {
 	        
 	            
 		JLabel HelpIconJLabel = new JLabel("");
-		HelpIconJLabel.setBounds(263, 83, 32, 32);
+		HelpIconJLabel.setBounds(331, 81, 32, 32);
 		panelMainButton.add(HelpIconJLabel);
 		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
 		
 		JLabel HelpJLabel = new JLabel("Info Uso");
 		HelpJLabel.setFont(new Font("Tw Cen MT", Font.BOLD, 13));
-		HelpJLabel.setBounds(254, 122, 53, 15);
+		HelpJLabel.setBounds(322, 120, 53, 15);
 		panelMainButton.add(HelpJLabel);
 		
 		
@@ -603,7 +654,7 @@ public class Semafori extends JFrame {
         						
         						JLabel labelScrittaIndietro = new JLabel(" Indietro");
         						labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        						labelScrittaIndietro.setBounds(11, 122, 53, 12);
+        						labelScrittaIndietro.setBounds(59, 120, 53, 12);
         						panelMainButton.add(labelScrittaIndietro);
         						
         						
@@ -613,8 +664,42 @@ public class Semafori extends JFrame {
         							public void mouseClicked(MouseEvent e) 
         							{
         								int NumProcessi=StartEndProcessi.size();
+        								final int iniziocritica1_1;
+        								int finecritica1_1;
+        								int iniziocritica2_1;
+        								int finecritica2_1;
+        								int iniziocritica3_1;
+        								int finecritica3_1;
+        								
+          								int iniziocritica1_2;
+        								int finecritica1_2;
+        								int iniziocritica2_2;
+        								int finecritica2_2;
+        								int iniziocritica3_2;
+        								int finecritica3_2;
+        								
+          								int iniziocritica1_3;
+        								int finecritica1_3;
+        								int iniziocritica2_3;
+        								int finecritica2_3;
+        								int iniziocritica3_3;
+        								int finecritica3_3;
+        								
+          								int iniziocritica1_4;
+        								int finecritica1_4;
+        								int iniziocritica2_4;
+        								int finecritica2_4;
+        								int iniziocritica3_4;
+        								int finecritica3_4;
+        								
+          								int iniziocritica1_5;
+        								int finecritica1_5;
+        								int iniziocritica2_5;
+        								int finecritica2_5;
+        								int iniziocritica3_5;
+        								int finecritica3_5;
 
-        								//Al momento dello start non possono pi� essere cambiati i valori di
+        								//Al momento dello start non possono piu' essere cambiati i valori di
         								//processi e semafori
         								if(toggleButtonStartPause.isSelected() && NumProcessi>0) 
         								{
@@ -630,105 +715,19 @@ public class Semafori extends JFrame {
         								//1 Processo
         								if(toggleButtonStartPause.isSelected() && NumProcessi==1) 
         								{
+        									iniziocritica1_1=StartEndProcessi.get(0).inizioZonaCritica1;
+        									finecritica1_1=StartEndProcessi.get(0).fineZonaCritica1;
+        									iniziocritica2_1=StartEndProcessi.get(0).inizioZonaCritica2;
+        									finecritica2_1=StartEndProcessi.get(0).fineZonaCritica2;
+        									iniziocritica3_1=StartEndProcessi.get(0).inizioZonaCritica3;
+        									finecritica3_1=StartEndProcessi.get(0).fineZonaCritica3;
+        									
         									timeToContinue=true;
+        									timeToPause=false;
+
         									System.out.println("[ToggleButton]: START");
         									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);	
         									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
-        									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
-        										@Override
-        										public void run() 
-        										{
-        											// TODO Auto-generated method stub
-        											for(int i=0; i<300; i++) 
-        											{	
-        												
-        												
-        												if(timeToResetFromPause==true) 
-        												{
-        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        													BaseProgressBar1JPanel.repaint();
-        													timeToResetFromPause=false;
-        													break;
-        												}
-        												
-        												else if(timeToContinue==false && timeToReset==true )
-        												{
-        													System.out.println("ENTRO");
-        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        													BaseProgressBar1JPanel.repaint();
-        													timeToReset=false;
-        													break;
-        												}
-        												
-        												
-
-        												
-        												else if(timeToPause==true && timeToResetFromPause==false )
-        												{
-        													temporaryValue1=Indicator1JPanel.getX();
-        													timeToPause=false;
-        													timeToRestartFromPause=true;
-        										
-        													break;
-        												}
-        												
-        												
-        										
-        										
-        													
-        												else if (Indicator1JPanel.LimitReached()) 
-        												{
-        													i=0;
-        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        												}
-        												
-        												
-        												else if(timeToRestartFromPause==true && (timeToReset==false || timeToResetFromPause==false)) 
-        												{
-        													Indicator1JPanel.setXInziale(temporaryValue1);
-        													i=temporaryValue1;
-        													timeToRestartFromPause=false;
-        													
-        												}
-        												
-        												
-        												
-        												Indicator1JPanel.moveForward();
-        												
-        												try 
-        												{
-        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
-        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
-        													BaseProgressBar1JPanel.repaint();
-        													Thread.sleep(10);
-        												} 
-        												catch (InterruptedException e1)
-        												{
-        													// TODO Auto-generated catch block
-        													e1.printStackTrace();
-        												}
-        											}
-        										
-        										}
-        										
-        										
-        										
-        									});
-        									threadmuovereIndicatore1.start();
-        									
-      
-        								}
-        								//2 Processi
-        								else if(toggleButtonStartPause.isSelected() && NumProcessi==2)
-        								{
-        									timeToContinue=true;
-        									timeToPause=false;
-											
-        									System.out.println("[ToggleButton]: START");
-        									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
-        									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
-        									Indicator2JPanel.setXInziale(StartEndProcessi.get(1).inizioProcesso);
-        									Indicator2JPanel.setXFinale(StartEndProcessi.get(1).fineProcesso);
         									
         									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
         										@Override
@@ -737,6 +736,27 @@ public class Semafori extends JFrame {
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
         											{	
+						
+        												//gestione Cambiamento Semaforo INIZIO-FINE PER LE 3 ZONE CRITICHE
+        												if(iniziocritica1_1==Indicator1JPanel.getX() || iniziocritica2_1==Indicator1JPanel.getX() 
+        														|| iniziocritica3_1==Indicator1JPanel.getX()) 
+        												{
+        													
+        													GraficaSemaforo1VerdeJLabel.setVisible(false);
+        													GraficaSemaforo1RossoJLabel.setVisible(true);
+        													JLabelTextMutex1_1.setVisible(false);
+        													JLabelTextMutex1_0.setVisible(true);
+        												}
+        												
+        												if(finecritica1_1==Indicator1JPanel.getX() || finecritica2_1==Indicator1JPanel.getX() 
+        														|| finecritica3_1==Indicator1JPanel.getX()) {
+        													GraficaSemaforo1RossoJLabel.setVisible(false);
+        													GraficaSemaforo1VerdeJLabel.setVisible(true);
+        													JLabelTextMutex1_0.setVisible(false);
+        													JLabelTextMutex1_1.setVisible(true);
+        												}
+        												
+       
         												
         												//Si Stoppa
         												if(timeToPause==true && timeToContinue==false)
@@ -752,13 +772,20 @@ public class Semafori extends JFrame {
         												{
         													i=0;
         													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        													
+        													if(iniziocritica1_1!=Indicator1JPanel.getX()) {
+        														GraficaSemaforo1RossoJLabel.setVisible(false);
+        														GraficaSemaforo1VerdeJLabel.setVisible(true);
+        														JLabelTextMutex1_0.setVisible(false);
+        														JLabelTextMutex1_1.setVisible(true);
+        													}
         												}
         												//Riparte da quel punto
-        												else if(ripatenza[0]==1) 
+        												else if(ripartenza[0]==1) 
         												{
         													Indicator1JPanel.setXInziale(temporaryValue1);
         													i=temporaryValue1;
-        													ripatenza[0]=0;
+        													ripartenza[0]=0;
         												}
 
         												Indicator1JPanel.moveForward();
@@ -781,6 +808,167 @@ public class Semafori extends JFrame {
         										
         										
         									});
+        									threadmuovereIndicatore1.start();
+        									
+      
+        								}
+        								//2 Processi
+        								else if(toggleButtonStartPause.isSelected() && NumProcessi==2)
+        								{
+        									timeToContinue=true;
+        									timeToPause=false;
+        									startforfirst=false;
+        									pauseforfirst=false;
+        									startforsecond=false;
+        									pauseforsecond=false;
+
+        									iniziocritica1_1=StartEndProcessi.get(0).inizioZonaCritica1;
+        									finecritica1_1=StartEndProcessi.get(0).fineZonaCritica1;
+        									iniziocritica2_1=StartEndProcessi.get(0).inizioZonaCritica2;
+        									finecritica2_1=StartEndProcessi.get(0).fineZonaCritica2;
+        									iniziocritica3_1=StartEndProcessi.get(0).inizioZonaCritica3;
+        									finecritica3_1=StartEndProcessi.get(0).fineZonaCritica3;
+        									
+        									iniziocritica1_2=StartEndProcessi.get(1).inizioZonaCritica1;
+        									finecritica1_2=StartEndProcessi.get(1).fineZonaCritica1;
+        									iniziocritica2_2=StartEndProcessi.get(1).inizioZonaCritica2;
+        									finecritica2_2=StartEndProcessi.get(1).fineZonaCritica2;
+        									iniziocritica3_2=StartEndProcessi.get(1).inizioZonaCritica3;
+        									finecritica3_2=StartEndProcessi.get(1).fineZonaCritica3;
+											
+        									System.out.println("[ToggleButton]: START");
+        									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+        									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
+        									Indicator2JPanel.setXInziale(StartEndProcessi.get(1).inizioProcesso);
+        									Indicator2JPanel.setXFinale(StartEndProcessi.get(1).fineProcesso);
+        									
+        									
+        									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+        												
+        												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA
+        												
+        												if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
+        														(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
+        														(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2))
+        												{
+        													if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 || 
+        															Indicator1JPanel.getX()==iniziocritica3_1-1	) {
+        														
+        														pauseforfirst=true;
+        														startforfirst=false;
+            													
+            													
+        													}
+        												}else if(pauseforfirst==true && startforfirst==false) {
+        													
+        													pauseforfirst=false;
+        													startforfirst=true;
+        												}
+        											
+   
+            											
+        												//GESTIONE CAMBIAMENTO COLORE SEMAFORO PER INIZIO DELLE 3 ZONE CRITICHE DEL PRIMO INDICATORE
+        												if(iniziocritica1_1==Indicator1JPanel.getX() || iniziocritica2_1==Indicator1JPanel.getX() 
+        														|| iniziocritica3_1==Indicator1JPanel.getX()) 
+        												{
+        													
+        													GraficaSemaforo1VerdeJLabel.setVisible(false);
+        													GraficaSemaforo1RossoJLabel.setVisible(true);
+        													JLabelTextMutex1_1.setVisible(false);
+        													JLabelTextMutex1_0.setVisible(true);
+        												}
+        												
+        												//GESTIONE CAMBIAMENTO COLORE SEMAFORO PER FINE DELLE 3 ZONE CRITICHE DEL PRIMO INDICATORE
+        												if(finecritica1_1==Indicator1JPanel.getX() || finecritica2_1==Indicator1JPanel.getX() 
+        														|| finecritica3_1==Indicator1JPanel.getX()) {
+        													GraficaSemaforo1RossoJLabel.setVisible(false);
+        													GraficaSemaforo1VerdeJLabel.setVisible(true);
+        													JLabelTextMutex1_0.setVisible(false);
+        													JLabelTextMutex1_1.setVisible(true);
+        												}
+        												
+        												
+        										
+
+        												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA
+        												if(pauseforfirst==true && startforfirst==false) {
+        													System.out.println("FERMO IL PRIMO INDICATORE PER ZONA CRITICA DEL PRIMO");
+        													temporaryValue1=Indicator1JPanel.getX();
+        													Indicator1JPanel.Reset(temporaryValue1);
+        													BaseProgressBar1JPanel.repaint();
+
+        												}
+        												
+
+        												
+        												//E' STATO PREMUTO IL TASTO DI PAUSA
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("E' STATO PREMUTO IL TASTO PAUSA!");
+        													temporaryValue1=Indicator1JPanel.getX();
+        													Indicator1JPanel.Reset(temporaryValue1);
+        													BaseProgressBar1JPanel.repaint();
+        													break;
+        												}
+        												
+        												
+        												
+        												
+
+        												//IL PRIMO INDICATORE HA RAGGIUNTO IL LIMITE E TORNA A CAPO TIPO 1
+        												else if (Indicator1JPanel.LimitReached() && pauseforfirst==false) 
+        												{
+        													i=0;
+        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        												}
+        												
+        												//IL PRIMO INDICATORE HA RAGGIUNTO IL LIMITE E TORNA A CAPO TIPO 2
+        											/*	else if (Indicator1JPanel.LimitReached() && pauseforsecond==true) 
+        												{
+        													i=0;
+        													Indicator1JPanel.Reset(temporaryValue1);
+        												}
+        											*/
+        												
+        												//IL PRIMO INDICATORE RIPARTE DALL'ULTIMA POSIZIONE DOPO CHE ERA STATO PREMUTO PAUSA
+        												else if(ripartenza[0]==1) 
+        												{
+        													System.out.println("INDICATORE 1 RIPARTE DOPO PAUSA PER BOTTONE");
+        													Indicator1JPanel.setXInziale(temporaryValue1);
+        													i=temporaryValue1;
+        													ripartenza[0]=0;
+        												}
+
+        												 if((pauseforfirst==false && startforfirst==true) || (pauseforfirst==false && startforfirst==false)) {
+        													Indicator1JPanel.moveForward();
+        													startforfirst=false;
+        												}
+        													
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar1JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
         									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
         										@Override
         										public void run() 
@@ -790,29 +978,106 @@ public class Semafori extends JFrame {
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
         											{	
+        												
+        												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA
+        												
+        												if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
+        														(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
+        														(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1))
+        												{
+        													if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 || 
+        															Indicator2JPanel.getX()==iniziocritica3_2-1	) {
+        														
+        														pauseforsecond=true;
+        														startforsecond=false;
+            													
+            													
+        													}
+        												}else if(pauseforsecond==true && startforsecond==false) {
+        													
+        													pauseforsecond=false;
+        													startforsecond=true;
+        												}
+        											
+   
+            											
+        												//GESTIONE CAMBIAMENTO COLORE SEMAFORO PER INIZIO DELLE 3 ZONE CRITICHE DEL SECONDO INDICATORE
+        												if(iniziocritica1_2==Indicator2JPanel.getX() || iniziocritica2_2==Indicator2JPanel.getX() 
+        														|| iniziocritica3_2==Indicator2JPanel.getX()) 
+        												{
+        													
+        													GraficaSemaforo1VerdeJLabel.setVisible(false);
+        													GraficaSemaforo1RossoJLabel.setVisible(true);
+        													JLabelTextMutex1_1.setVisible(false);
+        													JLabelTextMutex1_0.setVisible(true);
+        												}
+        												
+        												//GESTIONE CAMBIAMENTO COLORE SEMAFORO PER FINE DELLE 3 ZONE CRITICHE DEL SECONDO INDICATORE
+        												if(finecritica1_2==Indicator2JPanel.getX() || finecritica2_2==Indicator2JPanel.getX() 
+        														|| finecritica3_2==Indicator2JPanel.getX()) {
+        													GraficaSemaforo1RossoJLabel.setVisible(false);
+        													GraficaSemaforo1VerdeJLabel.setVisible(true);
+        													JLabelTextMutex1_0.setVisible(false);
+        													JLabelTextMutex1_1.setVisible(true);
+        												}
+        												
+        												
+        										
 
+        												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA
+        												if(pauseforsecond==true && startforsecond==false) {
+        													System.out.println("FERMO IL SECONDO INDICATORE PER ZONA CRITICA DEL PRIMO");
+        													temporaryValue2=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue2);
+        													BaseProgressBar2JPanel.repaint();
+
+        												}
+        												
+
+        												
+        												//E' STATO PREMUTO IL TASTO DI PAUSA
         												if(timeToPause==true && timeToContinue==false)
         												{
-        													System.out.println("Mi sto Fermando 1 ");
-        													temporaryValue1=Indicator2JPanel.getX();
-        													Indicator2JPanel.Reset(temporaryValue1);
+        													System.out.println("E' STATO PREMUTO IL TASTO PAUSA!");
+        													temporaryValue2=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
-        													
         													break;
-        												}	
-        												else if (Indicator2JPanel.LimitReached()) 
+        												}
+        												
+        												
+        												
+        												
+
+        												//IL SECONDO INDICATORE HA RAGGIUNTO IL LIMITE E TORNA A CAPO TIPO 1
+        												else if (Indicator2JPanel.LimitReached() && pauseforsecond==false) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
         												}
-        												else if(ripatenza[1]==1) 
-        												{
-        													Indicator2JPanel.setXInziale(temporaryValue1);
-        													i=temporaryValue1;
-        													ripatenza[1]=0;
-        												}
         												
-        												Indicator2JPanel.moveForward();
+        												//IL SECONDO INDICATORE HA RAGGIUNTO IL LIMITE E TORNA A CAPO TIPO 2
+        											/*	else if (Indicator2JPanel.LimitReached() && pauseforsecond==true) 
+        												{
+        													i=0;
+        													Indicator2JPanel.Reset(temporaryValue2);
+        												}
+        											*/
+        												//IL SECONDO INDICATORE RIPARTE DALL'ULTIMA POSIZIONE DOPO CHE ERA STATO PREMUTO PAUSA
+        												else if(ripartenza[1]==1) 
+        												{
+        													System.out.println("INDICATORE 2 RIPARTE DOPO PAUSA PER BOTTONE");
+        													Indicator2JPanel.setXInziale(temporaryValue2);
+        													i=temporaryValue2;
+        													ripartenza[1]=0;
+        												}
+
+        												 if((pauseforsecond==false && startforsecond==true) || (pauseforsecond==false && startforsecond==false)) {
+        													Indicator2JPanel.moveForward();
+        													
+        													startforsecond=false;
+        												}
+        													
         												
         												try 
         												{
@@ -848,6 +1113,8 @@ public class Semafori extends JFrame {
         								else if(toggleButtonStartPause.isSelected() && NumProcessi==3)
         								{
         									timeToContinue=true;
+        									timeToPause=false;
+											
         									System.out.println("[ToggleButton]: START");
         									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
         									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
@@ -855,30 +1122,41 @@ public class Semafori extends JFrame {
         									Indicator2JPanel.setXFinale(StartEndProcessi.get(1).fineProcesso);
         									Indicator3JPanel.setXInziale(StartEndProcessi.get(2).inizioProcesso);
         									Indicator3JPanel.setXFinale(StartEndProcessi.get(2).fineProcesso);
-        								
+        									
         									
         									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
-        										
         										@Override
         										public void run() 
         										{
-        											
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
-        											{										
-        												Indicator1JPanel.moveForward();
-        												if (timeToContinue == false) 
+        											{	
+        												
+        												//Si Stoppa
+        												if(timeToPause==true && timeToContinue==false)
         												{
-        													
-        													Indicator1JPanel.Reset(0);	
+        													System.out.println("Mi sto Fermando 2 ");
+        													temporaryValue1=Indicator1JPanel.getX();
+        													Indicator1JPanel.Reset(temporaryValue1);
         													BaseProgressBar1JPanel.repaint();
         													break;
-        												}
+        												}	
+        												//Torna a Capo
         												else if (Indicator1JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
         												}
+        												//Riparte da quel punto
+        												else if(ripartenza[0]==1) 
+        												{
+        													Indicator1JPanel.setXInziale(temporaryValue1);
+        													i=temporaryValue1;
+        													ripartenza[0]=0;
+        												}
+
+        												Indicator1JPanel.moveForward();
+        												
         												try 
         												{
         													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
@@ -893,30 +1171,43 @@ public class Semafori extends JFrame {
         												}
         											}
         										}
-        									});
-        									
-        									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
         										
+        										
+        										
+        									});
+        									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
         										@Override
         										public void run() 
         										{
         											
+
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
-        											{										
-        												Indicator2JPanel.moveForward();
-        												if (timeToContinue == false) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
         												{
-        													
-        													Indicator2JPanel.Reset(0);	
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue2=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
+        													
         													break;
-        												}
+        												}	
         												else if (Indicator2JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
         												}
+        												else if(ripartenza[1]==1) 
+        												{
+        													Indicator2JPanel.setXInziale(temporaryValue2);
+        													i=temporaryValue2;
+        													ripartenza[1]=0;
+        												}
+        												
+        												Indicator2JPanel.moveForward();
+        												
         												try 
         												{
         													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
@@ -930,31 +1221,43 @@ public class Semafori extends JFrame {
         													e1.printStackTrace();
         												}
         											}
+        										
         										}
         									});
         									
         									Thread threadmuovereIndicatore3 = new Thread(new Runnable() {
-        										
         										@Override
         										public void run() 
         										{
         											
+
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
-        											{										
-        												Indicator3JPanel.moveForward();
-        												if (timeToContinue == false) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
         												{
-        													
-        													Indicator3JPanel.Reset(0);	
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue3=Indicator3JPanel.getX();
+        													Indicator3JPanel.Reset(temporaryValue3);
         													BaseProgressBar3JPanel.repaint();
+        													
         													break;
-        												}
+        												}	
         												else if (Indicator3JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
         												}
+        												else if(ripartenza[2]==1) 
+        												{
+        													Indicator3JPanel.setXInziale(temporaryValue3);
+        													i=temporaryValue3;
+        													ripartenza[2]=0;
+        												}
+        												
+        												Indicator3JPanel.moveForward();
+        												
         												try 
         												{
         													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
@@ -968,6 +1271,7 @@ public class Semafori extends JFrame {
         													e1.printStackTrace();
         												}
         											}
+        										
         										}
         									});
         									
@@ -980,31 +1284,205 @@ public class Semafori extends JFrame {
         								else if(toggleButtonStartPause.isSelected() && NumProcessi==4)
         								{
         									timeToContinue=true;
+        									timeToPause=false;
+											
         									System.out.println("[ToggleButton]: START");
+        									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+        									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
+        									Indicator2JPanel.setXInziale(StartEndProcessi.get(1).inizioProcesso);
+        									Indicator2JPanel.setXFinale(StartEndProcessi.get(1).fineProcesso);
+        									Indicator3JPanel.setXInziale(StartEndProcessi.get(2).inizioProcesso);
+        									Indicator3JPanel.setXFinale(StartEndProcessi.get(2).fineProcesso);
         									Indicator4JPanel.setXInziale(StartEndProcessi.get(3).inizioProcesso);
         									Indicator4JPanel.setXFinale(StartEndProcessi.get(3).fineProcesso);
-        									Thread threadmuovereIndicatore4 = new Thread(new Runnable() {
+
+        									
+        									
+        									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+        												
+        												//Si Stoppa
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 2 ");
+        													temporaryValue1=Indicator1JPanel.getX();
+        													Indicator1JPanel.Reset(temporaryValue1);
+        													BaseProgressBar1JPanel.repaint();
+        													break;
+        												}	
+        												//Torna a Capo
+        												else if (Indicator1JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        												}
+        												//Riparte da quel punto
+        												else if(ripartenza[0]==1) 
+        												{
+        													Indicator1JPanel.setXInziale(temporaryValue1);
+        													i=temporaryValue1;
+        													ripartenza[0]=0;
+        												}
+
+        												Indicator1JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar1JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										}
         										
+        										
+        										
+        									});
+        									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
         										@Override
         										public void run() 
         										{
         											
+
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
-        											{										
-        												Indicator4JPanel.moveForward();
-        												if (timeToContinue == false) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
         												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue2=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue2);
+        													BaseProgressBar2JPanel.repaint();
         													
-        													Indicator4JPanel.Reset(0);	
-        													BaseProgressBar4JPanel.repaint();
         													break;
+        												}	
+        												else if (Indicator2JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
         												}
+        												else if(ripartenza[1]==1) 
+        												{
+        													Indicator2JPanel.setXInziale(temporaryValue2);
+        													i=temporaryValue2;
+        													ripartenza[1]=0;
+        												}
+        												
+        												Indicator2JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar2JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
+        									Thread threadmuovereIndicatore3 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue3=Indicator3JPanel.getX();
+        													Indicator3JPanel.Reset(temporaryValue3);
+        													BaseProgressBar3JPanel.repaint();
+        													
+        													break;
+        												}	
+        												else if (Indicator3JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
+        												}
+        												else if(ripartenza[2]==1) 
+        												{
+        													Indicator3JPanel.setXInziale(temporaryValue3);
+        													i=temporaryValue3;
+        													ripartenza[2]=0;
+        												}
+        												
+        												Indicator3JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar3JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
+        								
+        									Thread threadmuovereIndicatore4 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue4=Indicator4JPanel.getX();
+        													Indicator4JPanel.Reset(temporaryValue4);
+        													BaseProgressBar4JPanel.repaint();
+        													
+        													break;
+        												}	
         												else if (Indicator4JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator4JPanel.Reset(StartEndProcessi.get(3).inizioProcesso);
         												}
+        												else if(ripartenza[3]==1) 
+        												{
+        													Indicator4JPanel.setXInziale(temporaryValue4);
+        													i=temporaryValue4;
+        													ripartenza[3]=0;
+        												}
+        												
+        												Indicator4JPanel.moveForward();
+        												
         												try 
         												{
         													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
@@ -1018,39 +1496,273 @@ public class Semafori extends JFrame {
         													e1.printStackTrace();
         												}
         											}
+        										
         										}
         									});
+        									
+        									
+        									threadmuovereIndicatore1.start();
+        									threadmuovereIndicatore2.start();
+        									threadmuovereIndicatore3.start();
         									threadmuovereIndicatore4.start();
+        								
         								}
         								
         								else if(toggleButtonStartPause.isSelected() && NumProcessi==5)
         								{
         									timeToContinue=true;
+        									timeToPause=false;
+											
         									System.out.println("[ToggleButton]: START");
+        									Indicator1JPanel.setXInziale(StartEndProcessi.get(0).inizioProcesso);
+        									Indicator1JPanel.setXFinale(StartEndProcessi.get(0).fineProcesso);
+        									Indicator2JPanel.setXInziale(StartEndProcessi.get(1).inizioProcesso);
+        									Indicator2JPanel.setXFinale(StartEndProcessi.get(1).fineProcesso);
+        									Indicator3JPanel.setXInziale(StartEndProcessi.get(2).inizioProcesso);
+        									Indicator3JPanel.setXFinale(StartEndProcessi.get(2).fineProcesso);
+        									Indicator4JPanel.setXInziale(StartEndProcessi.get(3).inizioProcesso);
+        									Indicator4JPanel.setXFinale(StartEndProcessi.get(3).fineProcesso);
         									Indicator5JPanel.setXInziale(StartEndProcessi.get(4).inizioProcesso);
         									Indicator5JPanel.setXFinale(StartEndProcessi.get(4).fineProcesso);
-        									Thread threadmuovereIndicatore5 = new Thread(new Runnable() {
+
+        									
+        									
+        									Thread threadmuovereIndicatore1 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+        												
+        												//Si Stoppa
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 2 ");
+        													temporaryValue1=Indicator1JPanel.getX();
+        													Indicator1JPanel.Reset(temporaryValue1);
+        													BaseProgressBar1JPanel.repaint();
+        													break;
+        												}	
+        												//Torna a Capo
+        												else if (Indicator1JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        												}
+        												//Riparte da quel punto
+        												else if(ripartenza[0]==1) 
+        												{
+        													Indicator1JPanel.setXInziale(temporaryValue1);
+        													i=temporaryValue1;
+        													ripartenza[0]=0;
+        												}
+
+        												Indicator1JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar1JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										}
         										
+        										
+        										
+        									});
+        									Thread threadmuovereIndicatore2 = new Thread(new Runnable() {
         										@Override
         										public void run() 
         										{
         											
+
         											// TODO Auto-generated method stub
         											for(int i=0; i<300; i++) 
-        											{										
-        												Indicator5JPanel.moveForward();
-        												if (timeToContinue == false) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
         												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue2=Indicator2JPanel.getX();
+        													Indicator2JPanel.Reset(temporaryValue2);
+        													BaseProgressBar2JPanel.repaint();
         													
-        													Indicator5JPanel.Reset(0);	
-        													BaseProgressBar5JPanel.repaint();
         													break;
+        												}	
+        												else if (Indicator2JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
         												}
+        												else if(ripartenza[1]==1) 
+        												{
+        													Indicator2JPanel.setXInziale(temporaryValue2);
+        													i=temporaryValue2;
+        													ripartenza[1]=0;
+        												}
+        												
+        												Indicator2JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar2JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
+        									Thread threadmuovereIndicatore3 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue3=Indicator3JPanel.getX();
+        													Indicator3JPanel.Reset(temporaryValue3);
+        													BaseProgressBar3JPanel.repaint();
+        													
+        													break;
+        												}	
+        												else if (Indicator3JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
+        												}
+        												else if(ripartenza[2]==1) 
+        												{
+        													Indicator3JPanel.setXInziale(temporaryValue3);
+        													i=temporaryValue3;
+        													ripartenza[2]=0;
+        												}
+        												
+        												Indicator3JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar3JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
+        								
+        									Thread threadmuovereIndicatore4 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue4=Indicator4JPanel.getX();
+        													Indicator4JPanel.Reset(temporaryValue4);
+        													BaseProgressBar4JPanel.repaint();
+        													
+        													break;
+        												}	
+        												else if (Indicator4JPanel.LimitReached()) 
+        												{
+        													i=0;
+        													Indicator4JPanel.Reset(StartEndProcessi.get(3).inizioProcesso);
+        												}
+        												else if(ripartenza[3]==1) 
+        												{
+        													Indicator4JPanel.setXInziale(temporaryValue4);
+        													i=temporaryValue4;
+        													ripartenza[3]=0;
+        												}
+        												
+        												Indicator4JPanel.moveForward();
+        												
+        												try 
+        												{
+        													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
+        													//Meno dimuisci piu va veloce , fai attenzione va piu veloce della Nissan Micra
+        													BaseProgressBar4JPanel.repaint();
+        													Thread.sleep(10);
+        												} 
+        												catch (InterruptedException e1)
+        												{
+        													// TODO Auto-generated catch block
+        													e1.printStackTrace();
+        												}
+        											}
+        										
+        										}
+        									});
+        									
+        									
+        									Thread threadmuovereIndicatore5 = new Thread(new Runnable() {
+        										@Override
+        										public void run() 
+        										{
+        											
+
+        											// TODO Auto-generated method stub
+        											for(int i=0; i<300; i++) 
+        											{	
+
+        												if(timeToPause==true && timeToContinue==false)
+        												{
+        													System.out.println("Mi sto Fermando 1 ");
+        													temporaryValue5=Indicator5JPanel.getX();
+        													Indicator5JPanel.Reset(temporaryValue5);
+        													BaseProgressBar5JPanel.repaint();
+        													
+        													break;
+        												}	
         												else if (Indicator5JPanel.LimitReached()) 
         												{
         													i=0;
         													Indicator5JPanel.Reset(StartEndProcessi.get(4).inizioProcesso);
         												}
+        												else if(ripartenza[4]==1) 
+        												{
+        													Indicator5JPanel.setXInziale(temporaryValue5);
+        													i=temporaryValue5;
+        													ripartenza[4]=0;
+        												}
+        												
+        												Indicator5JPanel.moveForward();
+        												
         												try 
         												{
         													Thread.sleep(50);//Questo è accelatore Erasmo fai attenzione 
@@ -1064,11 +1776,19 @@ public class Semafori extends JFrame {
         													e1.printStackTrace();
         												}
         											}
+        										
         										}
         									});
+        									
+        									
+        									threadmuovereIndicatore1.start();
+        									threadmuovereIndicatore2.start();
+        									threadmuovereIndicatore3.start();
+        									threadmuovereIndicatore4.start();
         									threadmuovereIndicatore5.start();
-        								}
         								
+        								}
+        							
         								
         								
         								
@@ -1078,7 +1798,7 @@ public class Semafori extends JFrame {
         									System.out.println("[ToggleButton]: PAUSE");
         									timeToContinue=false;
         									timeToPause=true;
-        									Arrays.fill(ripatenza, 1);
+        									Arrays.fill(ripartenza, 1);
         									
         								}
         								
@@ -1092,8 +1812,12 @@ public class Semafori extends JFrame {
         									timeToContinue=false;
         								}
         							}
+	
         						});
         						
+
+
+								
         						
         						
         						//Time to Reset to the origin value 0
@@ -1101,31 +1825,78 @@ public class Semafori extends JFrame {
         							@Override
         							public void mouseClicked(MouseEvent e) 
         							{
-        								
         								int NumProcessi=StartEndProcessi.size();
-        								if(StartEndProcessi.size()==0) {
-        									JOptionPane.showMessageDialog(new JFrame(), "Non � possibile resettare senza aver generato un esercizio!", "Reset Error Dialog",
+        								
+        								
+        								//MESSAGGIO DI ERRORE
+        								if(NumProcessi==0) 
+        								{
+        									JOptionPane.showMessageDialog(new JFrame(), "Non e' possibile resettare senza aver generato un esercizio!", "Reset Error Dialog",
         								            JOptionPane.ERROR_MESSAGE);
         								}
         								
-        								if(NumProcessi!=0) 
+
+        								else 
         								{
-        									System.out.println("[ResetButton]: Reset");
+        									System.out.println("[ResetButton]: Reset effettuato");
         									timeToContinue=false;
         									timeToPause=true;
-        									Arrays.fill(ripatenza,0);
-        									Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
-        									if (NumProcessi>=2) 
+        									Arrays.fill(ripartenza,0);
+        									
+
+        									
+        									//RESET DA INIZIO PROCESSO PER OGNI NUMERO PROCESSO
+        									
+        									if(NumProcessi>=1) 
         									{
-        										Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
-        										if (NumProcessi>=3) 
+        										Indicator1JPanel.Reset(StartEndProcessi.get(0).inizioProcesso);
+        										
+        										if(NumProcessi>=2) 
         										{
-        											Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
-												}
+        											Indicator2JPanel.Reset(StartEndProcessi.get(1).inizioProcesso);
+        											
+        											if(NumProcessi>=3)
+        											{
+        												Indicator3JPanel.Reset(StartEndProcessi.get(2).inizioProcesso);
+        												
+        												if(NumProcessi>=4)
+        												{
+        													Indicator4JPanel.Reset(StartEndProcessi.get(3).inizioProcesso);
+        													
+        													if(NumProcessi==5)
+        													{
+        														Indicator5JPanel.Reset(StartEndProcessi.get(4).inizioProcesso);
+        													}
+        												}
+        											}
+        										}
         									}
+        									
+        								
+        									//IN OGNI CASO REPAINT DI TUTTI I COMPONENTI
+        									
         									BaseProgressBar1JPanel.repaint();
         									BaseProgressBar2JPanel.repaint();
+        									BaseProgressBar3JPanel.repaint();
+        									BaseProgressBar4JPanel.repaint();
+        									BaseProgressBar5JPanel.repaint();
+        									
+        									//METTO IL PULSANTE START IN PAUSE
         									toggleButtonStartPause.setSelected(false);
+        									
+        									//ABILITO I SELETTORI DI MODIFICA NUM PROCESSI E NUM SEMAFORI
+        									NumProcessiComboBox.setEnabled(true);
+        									NumSemaforiComboBox.setEnabled(true);
+        									
+        									
+        									
+        									
+        									//SEMAFORI
+											GraficaSemaforo1RossoJLabel.setVisible(false);
+											GraficaSemaforo1VerdeJLabel.setVisible(true);
+											JLabelTextMutex1_0.setVisible(false);
+											JLabelTextMutex1_1.setVisible(true);
+        			
         								}
 
         							}
@@ -1147,7 +1918,12 @@ public class Semafori extends JFrame {
 					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
 					int rowCount = tabella.getRowCount();
 					int columnCount = tabella.getColumnCount();
-
+					
+					Arrays.fill(ripartenza, 0);
+					GraficaSemaforo1RossoJLabel.setVisible(false);
+					GraficaSemaforo1VerdeJLabel.setVisible(true);
+					JLabelTextMutex1_0.setVisible(false);
+					JLabelTextMutex1_1.setVisible(true);
 
 					if(rowCount==1) 
 					{
@@ -1190,12 +1966,16 @@ public class Semafori extends JFrame {
 						Indicator5JPanel.Reset(0);
 						Indicator5JPanel.repaint();
 					}
+					
 					timeToContinue=true;
 					timeToReset=false;
 					timeToPause=false;
 					timeToRestartFromPause=false;
 					
 					StartEndProcessi.removeAll(StartEndProcessi);
+					
+
+						
 
 					//rimuove tutte le righe precedenti
 					for (int i = rowCount - 1; i >= 0; i--) 
@@ -1389,18 +2169,20 @@ public class Semafori extends JFrame {
         						int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
         						if(numeroSemaforiInt==1)
         						{
+
         							//Attivo il Primo Semaforo 
-        							GraficaSemaforo2JLabel.setVisible(true);
-        							JLabelTextMutex2.setVisible(true);
+        							GraficaSemaforo2VerdeJLabel.setVisible(true);
+        							JLabelTextMutex2_1.setVisible(true);
         							//Disattivo il secondo
-        							GraficaSemaforo2JLabel.setVisible(false);
-        							JLabelTextMutex2.setVisible(false);
+        							GraficaSemaforo2VerdeJLabel.setVisible(false);
+        							JLabelTextMutex2_1.setVisible(false);
         						}
         						else if(numeroSemaforiInt==2)
         						{
+
         							//Abilito anche il secondo semaforo 
-        							GraficaSemaforo2JLabel.setVisible(true);
-        							JLabelTextMutex2.setVisible(true);
+        							GraficaSemaforo2VerdeJLabel.setVisible(true);
+        							JLabelTextMutex2_1.setVisible(true);
         						}
         							
         					}
@@ -1442,6 +2224,12 @@ public class Semafori extends JFrame {
 				if(!toggleButtonStartPause.isSelected()) {
 
 					StartEndProcessi.removeAll(StartEndProcessi);
+					Arrays.fill(ripartenza, 0);
+
+					GraficaSemaforo1RossoJLabel.setVisible(false);
+					GraficaSemaforo1VerdeJLabel.setVisible(true);
+					JLabelTextMutex1_0.setVisible(false);
+					JLabelTextMutex1_1.setVisible(true);
 					
 					//ripartono gli indacatori da capo
 					
@@ -1586,6 +2374,8 @@ public class Semafori extends JFrame {
 							
 	        }//first for
 					
+					
+			//INSERIMENTO GRAFICA VERDE E ROSSA SULLE BARRE DEI PROCESSI
 
 			if(rowCount==1)
 			{
@@ -2201,19 +2991,17 @@ public class Semafori extends JFrame {
 			}
 
 		}
+				
+		
 		//Messaggio di avvertimento: impossibile generare nuovi esercizi se ve ne sono in esecuzione
 		else 
 		{
-			 JOptionPane.showMessageDialog(new JFrame(), "Non � possibile generare nuovi esercizi con sessioni in esecuzione: seleziona 'Pause'!", "Nuovo Esercizio Error Dialog",
+			 JOptionPane.showMessageDialog(new JFrame(), "Non e' possibile generare nuovi esercizi con sessioni in esecuzione: seleziona 'Pause' o 'Reset'!", "Nuovo Esercizio Error Dialog",
 			            JOptionPane.ERROR_MESSAGE);
 		}
 				}
 					
-					
-					
-					
-					
-					
+						
 					
 	        	//mouseclicked end
 	        	@Override
@@ -2234,9 +3022,17 @@ public class Semafori extends JFrame {
 		        	@Override
 					public void mouseClicked(MouseEvent e) 
 					{
-						framechiamante.setVisible(true);
-						frame.setVisible(false);
-						frame.dispose();
+		        		
+		        		if(!toggleButtonStartPause.isSelected()) {
+							framechiamante.setVisible(true);
+							frame.setVisible(false);
+							frame.dispose();
+		        		}else {
+		       			 JOptionPane.showMessageDialog(new JFrame(), "Si prega di mettere in pausa la sessione prima di tornare indietro!", "Indietro Error Dialog",
+		 			            JOptionPane.ERROR_MESSAGE);
+		        		}
+		        		
+
 					}
 			
 		        	@Override
