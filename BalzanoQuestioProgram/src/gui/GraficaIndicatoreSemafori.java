@@ -75,7 +75,7 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	    	this.x++;
 	    	g2d.drawLine(x, y, w, h);
 	    	//debug
-	    	System.out.println("Valore dell'indicatore portato a: "+this.x);
+	    	//System.out.println("Valore dell'indicatore portato a: "+this.x);
 	    	
 	    }
 	    
@@ -85,7 +85,7 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	    	this.x=puntoDiReset;
 	    	g2d.drawLine(x, y, w, h);
 	    	//debug
-	    	System.out.println("Valore dell'indicatore riportato a: "+this.x);
+	    	//System.out.println("Valore dell'indicatore riportato a: "+this.x);
 	    }
 	    
 	    public void Pause() {
