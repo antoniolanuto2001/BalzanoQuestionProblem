@@ -223,14 +223,12 @@ public class Hashing extends JFrame {
 		
 		JButton buttonGeneraEsempio = new JButton("GENERA PAROLE");
 		buttonGeneraEsempio.setOpaque(true);
-		
-		
 		buttonGeneraEsempio.setBackground(Color.WHITE);
 		buttonGeneraEsempio.addMouseListener(new MouseAdapter() {
 			@Override
         	public void mouseEntered(MouseEvent e) 
         	{
-        		buttonGeneraEsempio.setBackground(new Color(229,57,53));
+        		buttonGeneraEsempio.setBackground(new Color (30, 136, 229));
         	}
         	@Override
         	public void mouseExited(MouseEvent e) 
@@ -238,9 +236,7 @@ public class Hashing extends JFrame {
         		buttonGeneraEsempio.setBackground(Color.WHITE);
         	}
 		});
-		
-		
-		buttonGeneraEsempio.setBorder(new LineBorder(new Color(229,57,53), 2, true));
+		buttonGeneraEsempio.setBorder(new LineBorder(new Color (30, 136, 229), 2, true));
 		buttonGeneraEsempio.setFont(new Font("Arial", Font.BOLD, 15));
 		buttonGeneraEsempio.setBounds(15, 78, 224, 34);
 		panelPlot.add(buttonGeneraEsempio);
