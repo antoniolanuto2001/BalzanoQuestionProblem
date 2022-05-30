@@ -198,15 +198,6 @@ public SchProcessi(JFrame framechiamante) {
 	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
 	        labelSlideIcon.setBounds(150, 75, 53, 46);
 	        pannelloPrincipale.add(labelSlideIcon);
-	
-		//BOTTONE GENERA
-		JButton btnGenera = new JButton("Genera Esercizio");
-			btnGenera.setBackground(Color.WHITE);
-			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
-			btnGenera.setBorder(new LineBorder(new Color(0, 200, 83), 4));
-			//btnGenera.setBackground(new Color(255, 255, 255));
-			btnGenera.setBounds(974, 86, 157, 48);
-			pannelloPrincipale.add(btnGenera);
 			frame.setVisible(true);
 	        
 			
@@ -228,7 +219,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 			JLabel labelFedericoII = new JLabel("");
 			labelFedericoII.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/logoUninaIcon2.png")));
-			labelFedericoII.setBounds(10, 11, 199, 53);
+			labelFedericoII.setBounds(1205, 12, 199, 53);
 			pannelloTitolo.add(labelFedericoII);
 		
 
@@ -458,13 +449,13 @@ public SchProcessi(JFrame framechiamante) {
 /**							PANNELLO DI CONTROLLO							*/			
 		//PANNELLO DI CONTROLLO
 		JPanel pannelloDiControllo = new JPanel();
-			pannelloDiControllo.setBounds(1141, 85, 265, 668);
+			pannelloDiControllo.setBounds(1141, 80, 265, 673);
 			pannelloPrincipale.add(pannelloDiControllo);
 			pannelloDiControllo.setLayout(null);
 			//pannelloDiControllo.setBorder(new LineBorder(new Color(255, 204, 51), 3));
 		
 		JPanel pannellodicontrolloTitolo = new JPanel();
-			pannellodicontrolloTitolo.setBounds(10, 10, 245, 54);
+			pannellodicontrolloTitolo.setBounds(10, 5, 245, 54);
 			//pannellodicontrolloTitolo.setBackground(new Color(255, 255, 255));
 			pannelloDiControllo.add(pannellodicontrolloTitolo);
 			pannellodicontrolloTitolo.setBorder(new LineBorder(new Color(100, 181, 246), 4));
@@ -480,18 +471,17 @@ public SchProcessi(JFrame framechiamante) {
 			labelEditor.setHorizontalAlignment(SwingConstants.CENTER);
 			labelEditor.setForeground(new Color(255, 0, 0));
 			labelEditor.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			labelEditor.setBounds(0, 70, 265, 25);
+			labelEditor.setBounds(0, 60, 265, 25);
 			pannelloDiControllo.add(labelEditor);
 			
 		//PANNELLO EDITOR
 		JPanel pannelloEDITOR = new JPanel();
-			pannelloEDITOR.setBounds(10, 95, 245, 326);
+			pannelloEDITOR.setBounds(10, 85, 245, 345);
 			pannelloDiControllo.add(pannelloEDITOR);
 			pannelloEDITOR.setLayout(null);
 			//pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JLabel labellNumeroDiProcessi = new JLabel("Numero di processi");
-			labellNumeroDiProcessi.setEnabled(false);
 			labellNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
 			labellNumeroDiProcessi.setForeground(new Color(0, 0, 0));
 			labellNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 15));
@@ -511,7 +501,7 @@ public SchProcessi(JFrame framechiamante) {
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 			chckbxGriglia.setSelected(true);
 			chckbxGriglia.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			chckbxGriglia.setBounds(10, 250, 65, 21);
+			chckbxGriglia.setBounds(10, 276, 65, 21);
 			pannelloEDITOR.add(chckbxGriglia);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
@@ -519,7 +509,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelMostraSoluzioni.setBackground(Color.WHITE);
 			labelMostraSoluzioni.setEnabled(false);
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			labelMostraSoluzioni.setBounds(80, 280, 79, 35);
+			labelMostraSoluzioni.setBounds(80, 305, 79, 35);
 			labelMostraSoluzioni.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
 			pannelloEDITOR.add(labelMostraSoluzioni);
 			
@@ -529,7 +519,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelFastForwardPiu.setEnabled(false);
 			labelFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
 			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			labelFastForwardPiu.setBounds(163, 280, 70, 35);
+			labelFastForwardPiu.setBounds(163, 305, 70, 35);
 			pannelloEDITOR.add(labelFastForwardPiu);
 			
 		JLabel labelFastForwardMeno = new JLabel("");
@@ -537,26 +527,26 @@ public SchProcessi(JFrame framechiamante) {
 			labelFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
 			labelFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 			labelFastForwardMeno.setEnabled(false);
-			labelFastForwardMeno.setBounds(5, 280, 70, 35);
+			labelFastForwardMeno.setBounds(5, 305, 70, 35);
 			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
 			pannelloEDITOR.add(labelFastForwardMeno);
 			
 		//TABELLA PROCESSI
 		JPanel panelTabella = new JPanel();
 			panelTabella.setBorder(new LineBorder(new Color(100, 181, 246),2));
-			panelTabella.setBounds(10, 36, 222, 207);
+			panelTabella.setBounds(10, 36, 222, 188);
 			pannelloEDITOR.add(panelTabella);
 			GridBagLayout gbl_panelTabella = new GridBagLayout();
-			gbl_panelTabella.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_panelTabella.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-			gbl_panelTabella.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panelTabella.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelTabella.columnWidths = new int[]{0, 70, 70, 70, 0};
+			gbl_panelTabella.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			gbl_panelTabella.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelTabella.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panelTabella.setLayout(gbl_panelTabella);
 			
 			Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 			horizontalStrut_1.setBackground(Color.BLACK);
 			GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
-			gbc_horizontalStrut_1.gridwidth = 4;
+			gbc_horizontalStrut_1.gridwidth = 3;
 			gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 0);
 			gbc_horizontalStrut_1.gridx = 1;
 			gbc_horizontalStrut_1.gridy = 0;
@@ -564,8 +554,8 @@ public SchProcessi(JFrame framechiamante) {
 			
 			Component verticalStrut = Box.createVerticalStrut(20);
 			GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
-			gbc_verticalStrut.gridheight = 9;
-			gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
+			gbc_verticalStrut.gridheight = 8;
+			gbc_verticalStrut.insets = new Insets(0, 0, 0, 5);
 			gbc_verticalStrut.gridx = 0;
 			gbc_verticalStrut.gridy = 1;
 			panelTabella.add(verticalStrut, gbc_verticalStrut);
@@ -573,7 +563,7 @@ public SchProcessi(JFrame framechiamante) {
 			Component horizontalStrut = Box.createHorizontalStrut(20);
 			horizontalStrut.setBackground(Color.BLACK);
 			GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
-			gbc_horizontalStrut.gridwidth = 4;
+			gbc_horizontalStrut.gridwidth = 3;
 			gbc_horizontalStrut.insets = new Insets(0, 0, 5, 0);
 			gbc_horizontalStrut.gridx = 1;
 			gbc_horizontalStrut.gridy = 2;
@@ -607,11 +597,11 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP1.setEditable(false);
 			textDurataP1.setVisible(false);
 			GridBagConstraints gbc_textDurataP1 = new GridBagConstraints();
-			gbc_textDurataP1.insets = new Insets(0, 0, 5, 5);
+			gbc_textDurataP1.insets = new Insets(0, 0, 5, 0);
 			gbc_textDurataP1.gridx = 3;
 			gbc_textDurataP1.gridy = 3;
 			panelTabella.add(textDurataP1, gbc_textDurataP1);
-			
+			/*
 			JCheckBox chckbxP1 = new JCheckBox("");
 			chckbxP1.setEnabled(false);
 			chckbxP1.setVisible(false);
@@ -620,7 +610,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP1.gridx = 4;
 			gbc_chckbxP1.gridy = 3;
 			panelTabella.add(chckbxP1, gbc_chckbxP1);
-			
+			*/
 			JLabel labelP2 = new JLabel("");
 			labelP2.setHorizontalAlignment(SwingConstants.CENTER);
 			labelP2.setEnabled(false);
@@ -649,11 +639,11 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP2.setVisible(false);
 			textDurataP2.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_textDurataP2 = new GridBagConstraints();
-			gbc_textDurataP2.insets = new Insets(0, 0, 5, 5);
+			gbc_textDurataP2.insets = new Insets(0, 0, 5, 0);
 			gbc_textDurataP2.gridx = 3;
 			gbc_textDurataP2.gridy = 4;
 			panelTabella.add(textDurataP2, gbc_textDurataP2);
-			
+			/*
 			JCheckBox chckbxP2 = new JCheckBox("");
 			chckbxP2.setEnabled(false);
 			chckbxP2.setVisible(false);
@@ -662,7 +652,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP2.gridx = 4;
 			gbc_chckbxP2.gridy = 4;
 			panelTabella.add(chckbxP2, gbc_chckbxP2);
-			
+			*/
 			JLabel labelP3 = new JLabel("");
 			labelP3.setHorizontalAlignment(SwingConstants.CENTER);
 			labelP3.setEnabled(false);
@@ -691,11 +681,11 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP3.setEditable(false);
 			textDurataP3.setVisible(false);
 			GridBagConstraints gbc_textDurataP3 = new GridBagConstraints();
-			gbc_textDurataP3.insets = new Insets(0, 0, 5, 5);
+			gbc_textDurataP3.insets = new Insets(0, 0, 5, 0);
 			gbc_textDurataP3.gridx = 3;
 			gbc_textDurataP3.gridy = 5;
 			panelTabella.add(textDurataP3, gbc_textDurataP3);
-			
+			/*
 			JCheckBox chckbxP3 = new JCheckBox("");
 			chckbxP3.setEnabled(false);
 			chckbxP3.setVisible(false);
@@ -704,7 +694,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP3.gridx = 4;
 			gbc_chckbxP3.gridy = 5;
 			panelTabella.add(chckbxP3, gbc_chckbxP3);
-			
+			*/
 			JLabel labelP4 = new JLabel("");
 			labelP4.setHorizontalAlignment(SwingConstants.CENTER);
 			labelP4.setEnabled(false);
@@ -733,11 +723,11 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP4.setVisible(false);
 			textDurataP4.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_textDurataP4 = new GridBagConstraints();
-			gbc_textDurataP4.insets = new Insets(0, 0, 5, 5);
+			gbc_textDurataP4.insets = new Insets(0, 0, 5, 0);
 			gbc_textDurataP4.gridx = 3;
 			gbc_textDurataP4.gridy = 6;
 			panelTabella.add(textDurataP4, gbc_textDurataP4);
-			
+			/*
 			JCheckBox chckbxP4 = new JCheckBox("");
 			chckbxP4.setEnabled(false);
 			chckbxP4.setVisible(false);
@@ -746,7 +736,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP4.gridx = 4;
 			gbc_chckbxP4.gridy = 6;
 			panelTabella.add(chckbxP4, gbc_chckbxP4);
-			
+			*/
 			JLabel labelP5 = new JLabel("");
 			labelP5.setHorizontalAlignment(SwingConstants.CENTER);
 			labelP5.setEnabled(false);
@@ -775,11 +765,11 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP5.setEditable(false);
 			textDurataP5.setVisible(false);
 			GridBagConstraints gbc_textDurataP5 = new GridBagConstraints();
-			gbc_textDurataP5.insets = new Insets(0, 0, 5, 5);
+			gbc_textDurataP5.insets = new Insets(0, 0, 5, 0);
 			gbc_textDurataP5.gridx = 3;
 			gbc_textDurataP5.gridy = 7;
 			panelTabella.add(textDurataP5, gbc_textDurataP5);
-			
+			/*
 			JCheckBox chckbxP5 = new JCheckBox("");
 			chckbxP5.setEnabled(false);
 			chckbxP5.setVisible(false);
@@ -788,12 +778,12 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP5.gridx = 4;
 			gbc_chckbxP5.gridy = 7;
 			panelTabella.add(chckbxP5, gbc_chckbxP5);
-			
+			*/
 			JLabel labelP6 = new JLabel("");
 			labelP6.setHorizontalAlignment(SwingConstants.CENTER);
 			labelP6.setEnabled(false);
 			GridBagConstraints gbc_labelP6 = new GridBagConstraints();
-			gbc_labelP6.insets = new Insets(0, 0, 5, 5);
+			gbc_labelP6.insets = new Insets(0, 0, 0, 5);
 			gbc_labelP6.gridx = 1;
 			gbc_labelP6.gridy = 8;
 			panelTabella.add(labelP6, gbc_labelP6);
@@ -805,7 +795,7 @@ public SchProcessi(JFrame framechiamante) {
 			textArrivoP6.setEnabled(false);
 			textArrivoP6.setVisible(false);
 			GridBagConstraints gbc_textArrivoP6 = new GridBagConstraints();
-			gbc_textArrivoP6.insets = new Insets(0, 0, 5, 5);
+			gbc_textArrivoP6.insets = new Insets(0, 0, 0, 5);
 			gbc_textArrivoP6.gridx = 2;
 			gbc_textArrivoP6.gridy = 8;
 			panelTabella.add(textArrivoP6, gbc_textArrivoP6);
@@ -817,11 +807,10 @@ public SchProcessi(JFrame framechiamante) {
 			textDurataP6.setVisible(false);
 			textDurataP6.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_textDurataP6 = new GridBagConstraints();
-			gbc_textDurataP6.insets = new Insets(0, 0, 5, 5);
 			gbc_textDurataP6.gridx = 3;
 			gbc_textDurataP6.gridy = 8;
 			panelTabella.add(textDurataP6, gbc_textDurataP6);
-			
+			/*
 			JCheckBox chckbxP6 = new JCheckBox("");
 			chckbxP6.setEnabled(false);
 			chckbxP6.setVisible(false);
@@ -830,7 +819,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_chckbxP6.gridx = 4;
 			gbc_chckbxP6.gridy = 8;
 			panelTabella.add(chckbxP6, gbc_chckbxP6);
-			
+			*/
 			JLabel labelProcesso = new JLabel("PROCESSO");
 			labelProcesso.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_labelProcesso = new GridBagConstraints();
@@ -851,43 +840,19 @@ public SchProcessi(JFrame framechiamante) {
 			JLabel labelDurata = new JLabel("DURATA");
 			labelDurata.setHorizontalAlignment(SwingConstants.CENTER);
 			GridBagConstraints gbc_labelDurata = new GridBagConstraints();
-			gbc_labelDurata.insets = new Insets(0, 0, 5, 5);
+			gbc_labelDurata.insets = new Insets(0, 0, 5, 0);
 			gbc_labelDurata.gridx = 3;
 			gbc_labelDurata.gridy = 1;
 			panelTabella.add(labelDurata, gbc_labelDurata);
 			
-		//PANNELLO HELP
-		JPanel pannelloHelp = new JPanel();
-			pannelloHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
-			pannelloHelp.setBounds(10, 455, 245, 213);
-			pannelloDiControllo.add(pannelloHelp);
-			pannelloHelp.setLayout(null);
-		
-		JScrollPane scrollPaneHelp = new JScrollPane();
-			scrollPaneHelp.setBounds(0, 0, 245, 213);
-			pannelloHelp.add(scrollPaneHelp);
-        	
-		JTextArea txtrHelpArea = new JTextArea();
-			scrollPaneHelp.setViewportView(txtrHelpArea);
-			txtrHelpArea.setWrapStyleWord(true);
-			txtrHelpArea.setLineWrap(true);
-			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso � il piu' semplice degli algoritmi di scheduling della CPU ed � basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevit�. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso � spesso detto \"shortest remaining time first\"; � uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in pi� la capacit� di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantit� fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti � trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
-			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
-			txtrHelpArea.setCaretPosition(0);
-			txtrHelpArea.setEditable(false);
-		                
-		JLabel labelHelp = new JLabel("Spiegazioni argomento");
-			labelHelp.setBounds(10, 423, 245, 25);
-			pannelloDiControllo.add(labelHelp);
-			labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
-			labelHelp.setForeground(Color.RED);
-			labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-
-			
-
-/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-/**							IMPLEMENTAZIONE EVENTI																																	 */
-						
+				//BOTTONE GENERA
+				JButton btnGenera = new JButton("Genera Esercizio");
+				btnGenera.setBounds(10, 235, 223, 35);
+				pannelloEDITOR.add(btnGenera);
+				btnGenera.setBackground(Color.WHITE);
+				btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 17));
+				btnGenera.setBorder(new LineBorder(new Color(100, 181, 246), 4));
+				
 	//EVENTO SU BOTTONE GENERA TABELLA PROCESSI
 		btnGenera.addMouseListener(new MouseAdapter() {
 			@Override
@@ -918,10 +883,10 @@ public SchProcessi(JFrame framechiamante) {
 				
 				labelMostraSoluzioni.setEnabled(true);
 				comboBoxQRR.setEnabled(false);
-												
+										
 				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
 				int numeroProcessi=Integer.valueOf(scelta);
-							
+					
 				labelP1.setText("");	
 				labelP2.setText("");	
 				labelP3.setText("");	
@@ -996,129 +961,149 @@ public SchProcessi(JFrame framechiamante) {
 					Random random = new Random();
 					int value = random.nextInt(15 + 0) + 0;
 					if(i==0) {
-						labelP1.setEnabled(true);
-						labelP1.setText("P"+(i+1));	
+				labelP1.setEnabled(true);
+				labelP1.setText("P"+(i+1));	
 					}
 					if(i==1) {
-						labelP2.setEnabled(true);
-						labelP2.setText("P"+(i+1));	
+				labelP2.setEnabled(true);
+				labelP2.setText("P"+(i+1));	
 					}
 					if(i==2) {
-						labelP3.setEnabled(true);
-						labelP3.setText("P"+(i+1));	
+				labelP3.setEnabled(true);
+				labelP3.setText("P"+(i+1));	
 					}
 					if(i==3) {
-						labelP4.setEnabled(true);
-						labelP4.setText("P"+(i+1));	
+				labelP4.setEnabled(true);
+				labelP4.setText("P"+(i+1));	
 					}
 					if(i==4) {
-						labelP5.setEnabled(true);
-						labelP5.setText("P"+(i+1));	
+				labelP5.setEnabled(true);
+				labelP5.setText("P"+(i+1));	
 					}
 					if(i==5) {
-						labelP6.setEnabled(true);
-						labelP6.setText("P"+(i+1));	
+				labelP6.setEnabled(true);
+				labelP6.setText("P"+(i+1));	
 					}
 
 					if(i==0) {
-						textArrivoP1.setEnabled(true);
-						textArrivoP1.setEditable(true);
-						textArrivoP1.setText(String.valueOf(value));	
-						textArrivoP1.setVisible(true);
+				textArrivoP1.setEnabled(true);
+				textArrivoP1.setEditable(true);
+				textArrivoP1.setText(String.valueOf(value));	
+				textArrivoP1.setVisible(true);
 					}
 					if(i==1) {
-						textArrivoP2.setEnabled(true);
-						textArrivoP2.setEditable(true);
-						textArrivoP2.setText(String.valueOf(value));
-						textArrivoP2.setVisible(true);
+				textArrivoP2.setEnabled(true);
+				textArrivoP2.setEditable(true);
+				textArrivoP2.setText(String.valueOf(value));
+				textArrivoP2.setVisible(true);
 					}
 					if(i==2) {
-						textArrivoP3.setEnabled(true);
-						textArrivoP3.setEditable(true);
-						textArrivoP3.setText(String.valueOf(value));
-						textArrivoP3.setVisible(true);
+				textArrivoP3.setEnabled(true);
+				textArrivoP3.setEditable(true);
+				textArrivoP3.setText(String.valueOf(value));
+				textArrivoP3.setVisible(true);
 					}
 					if(i==3) {
-						textArrivoP4.setEnabled(true);
-						textArrivoP4.setEditable(true);
-						textArrivoP4.setText(String.valueOf(value));
-						textArrivoP4.setVisible(true);
+				textArrivoP4.setEnabled(true);
+				textArrivoP4.setEditable(true);
+				textArrivoP4.setText(String.valueOf(value));
+				textArrivoP4.setVisible(true);
 					}
 					if(i==4) {
-						textArrivoP5.setEnabled(true);
-						textArrivoP5.setEditable(true);
-						textArrivoP5.setText(String.valueOf(value));	
-						textArrivoP5.setVisible(true);
+				textArrivoP5.setEnabled(true);
+				textArrivoP5.setEditable(true);
+				textArrivoP5.setText(String.valueOf(value));	
+				textArrivoP5.setVisible(true);
 					}
 					if(i==5) {
-						textArrivoP6.setEnabled(true);
-						textArrivoP6.setEditable(true);
-						textArrivoP6.setText(String.valueOf(value));
-						textArrivoP6.setVisible(true);
+				textArrivoP6.setEnabled(true);
+				textArrivoP6.setEditable(true);
+				textArrivoP6.setText(String.valueOf(value));
+				textArrivoP6.setVisible(true);
 					}
 					
 					int value2 = random.nextInt(15 + 0) + 0;
 					
 					if(i==0) {
-						textDurataP1.setEnabled(true);
-						textDurataP1.setEditable(true);
-						textDurataP1.setText(String.valueOf(value2));
-						textDurataP1.setVisible(true);
-						chckbxP1.setVisible(true);
-						chckbxP1.setEnabled(true);
+				textDurataP1.setEnabled(true);
+				textDurataP1.setEditable(true);
+				textDurataP1.setText(String.valueOf(value2));
+				textDurataP1.setVisible(true);
 					}
 					if(i==1) {
-						textDurataP2.setEnabled(true);
-						textDurataP2.setEditable(true);
-						textDurataP2.setText(String.valueOf(value2));	
-						textDurataP2.setVisible(true);
-						chckbxP2.setVisible(true);
-						chckbxP2.setEnabled(true);
+				textDurataP2.setEnabled(true);
+				textDurataP2.setEditable(true);
+				textDurataP2.setText(String.valueOf(value2));	
+				textDurataP2.setVisible(true);
 					}
 					if(i==2) {
-						textDurataP3.setEnabled(true);
-						textDurataP3.setEditable(true);
-						textDurataP3.setText(String.valueOf(value2));
-						textDurataP3.setVisible(true);
-						chckbxP3.setVisible(true);
-						chckbxP3.setEnabled(true);
+				textDurataP3.setEnabled(true);
+				textDurataP3.setEditable(true);
+				textDurataP3.setText(String.valueOf(value2));
+				textDurataP3.setVisible(true);
 					}
 					if(i==3) {
-						textDurataP4.setEnabled(true);
-						textDurataP4.setEditable(true);
-						textDurataP4.setText(String.valueOf(value2));
-						textDurataP4.setVisible(true);
-						chckbxP4.setVisible(true);
-						chckbxP4.setEnabled(true);
+				textDurataP4.setEnabled(true);
+				textDurataP4.setEditable(true);
+				textDurataP4.setText(String.valueOf(value2));
+				textDurataP4.setVisible(true);
 					}
 					if(i==4) {
-						textDurataP5.setEnabled(true);
-						textDurataP5.setEditable(true);
-						textDurataP5.setText(String.valueOf(value2));	
-						textDurataP5.setVisible(true);
-						chckbxP5.setVisible(true);
-						chckbxP5.setEnabled(true);
+				textDurataP5.setEnabled(true);
+				textDurataP5.setEditable(true);
+				textDurataP5.setText(String.valueOf(value2));	
+				textDurataP5.setVisible(true);
 					}
 					if(i==5) {
-						textDurataP6.setEnabled(true);
-						textDurataP6.setEditable(true);
-						textDurataP6.setText(String.valueOf(value2));
-						textDurataP6.setVisible(true);
-						chckbxP6.setVisible(true);
-						chckbxP6.setEnabled(true);
+				textDurataP6.setEnabled(true);
+				textDurataP6.setEditable(true);
+				textDurataP6.setText(String.valueOf(value2));
+				textDurataP6.setVisible(true);
 					}
 				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				btnGenera.setBackground(new Color (0, 200, 83));
+				btnGenera.setBackground(new Color(100, 181, 246));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				btnGenera.setBackground(Color.WHITE);
 			}
 		});
+			
+		//PANNELLO HELP
+		JPanel pannelloHelp = new JPanel();
+			pannelloHelp.setBorder(new LineBorder(new Color(255, 204, 0), 3));
+			pannelloHelp.setBounds(10, 455, 245, 213);
+			pannelloDiControllo.add(pannelloHelp);
+			pannelloHelp.setLayout(null);
+		
+		JScrollPane scrollPaneHelp = new JScrollPane();
+			scrollPaneHelp.setBounds(0, 0, 245, 213);
+			pannelloHelp.add(scrollPaneHelp);
+        	
+		JTextArea txtrHelpArea = new JTextArea();
+			scrollPaneHelp.setViewportView(txtrHelpArea);
+			txtrHelpArea.setWrapStyleWord(true);
+			txtrHelpArea.setLineWrap(true);
+			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso \u00E8 il piu' semplice degli algoritmi di scheduling della CPU ed \u00E8 basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevit\u00E0. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso \u00E8 spesso detto \"shortest remaining time first\"; \u00E8 uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in pi\u00F9 la capacit\u00E0 di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantit\u00E0 fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti \u00E8 trattata come una coda circolare. Per valori di 'q' molto grandi RR tende al FCFS.\r\n");
+			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
+			txtrHelpArea.setCaretPosition(0);
+			txtrHelpArea.setEditable(false);
+		                
+		JLabel labelHelp = new JLabel("Spiegazioni argomento");
+			labelHelp.setBounds(10, 430, 245, 25);
+			pannelloDiControllo.add(labelHelp);
+			labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
+			labelHelp.setForeground(Color.RED);
+			labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+			
+
+/*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/**							IMPLEMENTAZIONE EVENTI																																	 */
 
 	//EVENTO SU BOX SCELTA NUMERO PROCESSI
 		comboBoxSceltaNProcessi.addActionListener(new ActionListener() {
@@ -1295,48 +1280,36 @@ public SchProcessi(JFrame framechiamante) {
 						textDurataP1.setEditable(true);
 						textDurataP1.setText(String.valueOf(value2));
 						textDurataP1.setVisible(true);
-						chckbxP1.setVisible(true);
-						chckbxP1.setEnabled(true);
 					}
 					if(i==1) {
 						textDurataP2.setEnabled(true);
 						textDurataP2.setEditable(true);
 						textDurataP2.setText(String.valueOf(value2));	
 						textDurataP2.setVisible(true);
-						chckbxP2.setVisible(true);
-						chckbxP2.setEnabled(true);
 					}
 					if(i==2) {
 						textDurataP3.setEnabled(true);
 						textDurataP3.setEditable(true);
 						textDurataP3.setText(String.valueOf(value2));
 						textDurataP3.setVisible(true);
-						chckbxP3.setVisible(true);
-						chckbxP3.setEnabled(true);
 					}
 					if(i==3) {
 						textDurataP4.setEnabled(true);
 						textDurataP4.setEditable(true);
 						textDurataP4.setText(String.valueOf(value2));
 						textDurataP4.setVisible(true);
-						chckbxP4.setVisible(true);
-						chckbxP4.setEnabled(true);
 					}
 					if(i==4) {
 						textDurataP5.setEnabled(true);
 						textDurataP5.setEditable(true);
 						textDurataP5.setText(String.valueOf(value2));	
 						textDurataP5.setVisible(true);
-						chckbxP5.setVisible(true);
-						chckbxP5.setEnabled(true);
 					}
 					if(i==5) {
 						textDurataP6.setEnabled(true);
 						textDurataP6.setEditable(true);
 						textDurataP6.setText(String.valueOf(value2));
 						textDurataP6.setVisible(true);
-						chckbxP6.setVisible(true);
-						chckbxP6.setEnabled(true);
 					}
 				}
 			}
@@ -1380,64 +1353,52 @@ public SchProcessi(JFrame framechiamante) {
 				int numeroFor= Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
 				for(int i=0;i<numeroFor;i++) {
 					if(i==0) {
-						if(chckbxP1.isSelected()==false) {
 							
 							CreaLinee punto=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()));
 							CreaLinee linea=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()),Integer.valueOf( textDurataP1.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 					if(i==1) {
-						if(chckbxP2.isSelected()==false) {
 							CreaLinee punto=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()));
 							CreaLinee linea=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()),Integer.valueOf( textDurataP2.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 					if(i==2) {
-						if(chckbxP3.isSelected()==false) {
 							CreaLinee punto=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()));
 							CreaLinee linea=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()),Integer.valueOf( textDurataP3.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 					if(i==3) {
-						if(chckbxP4.isSelected()==false) {
 							CreaLinee punto=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()));
 							CreaLinee linea=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()),Integer.valueOf( textDurataP4.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 					if(i==4) {
-						if(chckbxP5.isSelected()==false) {
 							CreaLinee punto=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()));
 							CreaLinee linea=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()),Integer.valueOf( textDurataP5.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 					if(i==5) {
-						if(chckbxP6.isSelected()==false) {
 							CreaLinee punto=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()));
 							CreaLinee linea=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()),Integer.valueOf( textDurataP6.getText()));
 
 							arrayPunti.add(punto);
 							arrayLinea.add(linea);
-						}
 					}
 					
 				}
