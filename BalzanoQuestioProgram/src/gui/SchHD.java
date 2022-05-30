@@ -92,7 +92,7 @@ public class SchHD extends JFrame {
 			labelSchedulingHardDisk.setFont(new Font("Segoe UI", Font.BOLD, 48));
 			labelSchedulingHardDisk.setBounds(408, 0, 608, 73);
 			pannelloTitolo.add(labelSchedulingHardDisk);
-		
+		//label
 		JLabel labelFedericoII = new JLabel("");
 			labelFedericoII.setIcon(new ImageIcon(SchHD.class.getResource("/img/logoUninaIcon2.png")));
 			labelFedericoII.setBounds(1215, 11, 199, 53);
