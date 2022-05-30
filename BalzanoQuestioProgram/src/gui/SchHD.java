@@ -165,7 +165,6 @@ public class SchHD extends JFrame {
 			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
 			pannelloParametri.add(labelFastForwardMeno);
 			
-		
 		JTextField textFieldRichieste = new JTextField();
 			textFieldRichieste.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldRichieste.setFont(new Font("Arial", Font.BOLD, 10));
