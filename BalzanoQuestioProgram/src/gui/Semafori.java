@@ -129,7 +129,7 @@ public class Semafori extends JFrame {
 		TitoloSemaforiJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		TitoloSemaforiJLabel.setBackground(new Color(211, 211, 211));
 		TitoloSemaforiJLabel.setFont(new Font("Segoe UI", Font.BOLD, 40));
-		TitoloSemaforiJLabel.setBounds(6, 5, 1181, 60);
+		TitoloSemaforiJLabel.setBounds(507, 11, 321, 53);
 		CorniceTitoloJPanel.add(TitoloSemaforiJLabel);
 		
 		JLabel labelFedericoII = new JLabel("");
