@@ -126,22 +126,22 @@ public class Semafori extends JFrame {
 		int [] ripartenza = new int[5];
 		Arrays.fill(ripartenza, 0);
 		JPanel panelMainButton = new JPanel();
-		panelMainButton.setBackground(Color.decode("#eeeeee"));
+		panelMainButton.setBackground(new Color(220, 220, 220));
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 
 		JPanel CorniceTitoloJPanel = new JPanel();
-		CorniceTitoloJPanel.setBackground(Color.decode("#e0e0e0"));
-		CorniceTitoloJPanel.setBorder(null);
+		CorniceTitoloJPanel.setBackground(new Color(211, 211, 211));
+		CorniceTitoloJPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
 		CorniceTitoloJPanel.setBounds(0, 0, 1430, 63);
 		panelMainButton.add(CorniceTitoloJPanel);
 		CorniceTitoloJPanel.setLayout(null);
 		
 		
 		JPanel panelControllo = new JPanel();
-		panelControllo.setBackground(Color.decode("#e0e0e0"));
+		panelControllo.setBackground(new Color(211,211,211));
 		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.setBounds(1137, 152, 277, 513);
 		panelMainButton.add(panelControllo);
@@ -149,13 +149,14 @@ public class Semafori extends JFrame {
 		
 		
 		JLabel TitoloSemaforiJLabel = new JLabel("Semafori");
+		TitoloSemaforiJLabel.setBackground(new Color(211, 211, 211));
 		TitoloSemaforiJLabel.setFont(new Font("Kefa", Font.PLAIN, 35));
-		TitoloSemaforiJLabel.setBounds(6, 11, 262, 53);
+		TitoloSemaforiJLabel.setBounds(6, 5, 262, 53);
 		CorniceTitoloJPanel.add(TitoloSemaforiJLabel);
 		
 		JLabel labelFedericoII = new JLabel("");
 		labelFedericoII.setIcon(new ImageIcon(Semafori.class.getResource("/img/logoUninaIcon2.png")));
-		labelFedericoII.setBounds(1229, 9, 199, 53);
+		labelFedericoII.setBounds(1209, 11, 199, 41);
 		CorniceTitoloJPanel.add(labelFedericoII);
 		
 		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
@@ -312,7 +313,7 @@ public class Semafori extends JFrame {
 		
 		
 		JPanel panelControlloProcessi = new JPanel();
-		panelControlloProcessi.setBackground(Color.decode("#eeeeee"));
+		panelControlloProcessi.setBackground(new Color(220,220,220));
 		panelControlloProcessi.setBounds(17, 290, 245, 190);
 		panelControlloProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelControlloProcessi);
@@ -350,7 +351,7 @@ public class Semafori extends JFrame {
 		
 		
 		JPanel BaseProgressBar1JPanel = new JPanel();
-		BaseProgressBar1JPanel.setBackground(Color.decode("#e0e0e0"));
+		BaseProgressBar1JPanel.setBackground(new Color(211,211,211));
 		BaseProgressBar1JPanel.setBounds(548, 527, 300, 29);
 		panelMainButton.add(BaseProgressBar1JPanel);
 		BaseProgressBar1JPanel.setLayout(null);
@@ -360,7 +361,7 @@ public class Semafori extends JFrame {
 		JPanel BaseProgressBar2JPanel = new JPanel();
 		BaseProgressBar2JPanel.setVisible(false);
 		BaseProgressBar2JPanel.setLayout(null);
-		BaseProgressBar2JPanel.setBackground(Color.decode("#e0e0e0"));
+		BaseProgressBar2JPanel.setBackground(new Color(211,211,211));
 		BaseProgressBar2JPanel.setBounds(548, 567, 300, 29);
 		panelMainButton.add(BaseProgressBar2JPanel);
 		BaseProgressBar2JPanel.setOpaque(true);
@@ -368,7 +369,7 @@ public class Semafori extends JFrame {
 		JPanel BaseProgressBar3JPanel = new JPanel();
 		BaseProgressBar3JPanel.setVisible(false);
 		BaseProgressBar3JPanel.setLayout(null);
-		BaseProgressBar3JPanel.setBackground(Color.decode("#e0e0e0"));
+		BaseProgressBar3JPanel.setBackground(new Color(211,211,211));
 		BaseProgressBar3JPanel.setBounds(548, 607, 300, 29);
 		panelMainButton.add(BaseProgressBar3JPanel);
 		BaseProgressBar3JPanel.setOpaque(true);
@@ -376,7 +377,7 @@ public class Semafori extends JFrame {
         JPanel BaseProgressBar4JPanel = new JPanel();
         BaseProgressBar4JPanel.setVisible(false);
         BaseProgressBar4JPanel.setLayout(null);
-        BaseProgressBar4JPanel.setBackground(Color.decode("#e0e0e0"));
+        BaseProgressBar4JPanel.setBackground(new Color(211,211,211));
         BaseProgressBar4JPanel.setBounds(548, 645, 300, 29);
         panelMainButton.add(BaseProgressBar4JPanel);
         BaseProgressBar4JPanel.setOpaque(true);
@@ -385,7 +386,7 @@ public class Semafori extends JFrame {
         JPanel BaseProgressBar5JPanel = new JPanel();
         BaseProgressBar5JPanel.setVisible(false);
         BaseProgressBar5JPanel.setLayout(null);
-        BaseProgressBar5JPanel.setBackground(Color.decode("#e0e0e0"));
+        BaseProgressBar5JPanel.setBackground(new Color(211,211,211));
         BaseProgressBar5JPanel.setBounds(548, 685, 300, 29);
         panelMainButton.add(BaseProgressBar5JPanel);
         BaseProgressBar5JPanel.setOpaque(true);
@@ -594,7 +595,7 @@ public class Semafori extends JFrame {
         panelControllo.add(SceltaOpzioniJLabel);
         				
         JPanel panelSceltaProcessi = new JPanel();
-        panelSceltaProcessi.setBackground(Color.decode("#eeeeee"));
+        panelSceltaProcessi.setBackground(new Color(220,220,220));
         panelSceltaProcessi.setBounds(17, 133, 245, 93);
         panelSceltaProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         panelControllo.add(panelSceltaProcessi);
