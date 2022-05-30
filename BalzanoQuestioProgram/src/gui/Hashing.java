@@ -35,6 +35,8 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class Hashing extends JFrame {
 
@@ -130,6 +132,9 @@ public class Hashing extends JFrame {
 	public int iteratoreScorittore;
 	public LinkedList <Integer> []  listChaing = new LinkedList[8];
 	public LinkedList <Integer> []  listOpenAddresing = new LinkedList[8];
+	private JScrollPane scrollPaneHelp;
+	private JLabel labelHelp;
+	private JTextArea txtrHashLaModello;
 	/**
 	 * Create the frame.
 	 */
@@ -159,6 +164,9 @@ public class Hashing extends JFrame {
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 800);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setTitle("Operating Systems Simulator: Hashing");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -184,14 +192,14 @@ public class Hashing extends JFrame {
 		JLabel labelFedericoII = new JLabel("New label");
 		labelFedericoII.setIcon(new ImageIcon(Hashing.class.getResource("/img/logoUninaIcon2.png")));
 		labelFedericoII.setLabelFor(panelSuperiore);
-		labelFedericoII.setBounds(10, 11, 199, 53);
+		labelFedericoII.setBounds(1194, 11, 199, 53);
 		panelSuperiore.add(labelFedericoII);
 		
 		JTextArea textParoleBase = new JTextArea();
 		textParoleBase.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleBase.setEditable(false);
 		textParoleBase.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleBase.setBounds(22, 186, 264, 370);
+		textParoleBase.setBounds(294, 224, 213, 257);
 		panelMainButton.add(textParoleBase);
 		
 		JPanel panelControllo = new JPanel();
@@ -310,11 +318,6 @@ public class Hashing extends JFrame {
 		labelSomma.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		labelSomma.setBounds(75, 287, 122, 26);
 		panelControllo.add(labelSomma);
-		
-		JLabel labelScrittaIndietro = new JLabel(" Indietro");
-        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIndietro.setBounds(10, 124, 53, 12);
-        panelMainButton.add(labelScrittaIndietro);
         
         JLabel labelIndietroIcon = new JLabel("");
         labelIndietroIcon.addMouseListener(new MouseAdapter() {
@@ -325,24 +328,15 @@ public class Hashing extends JFrame {
 				frame.setVisible(false);
 				frame.dispose();
 			}
-        	@Override
-        	public void mouseEntered(MouseEvent e) 
-        	{
-        		labelScrittaIndietro.setForeground(Color.RED);
-        	}
-        	@Override
-        	public void mouseExited(MouseEvent e) 
-        	{
-        		labelScrittaIndietro.setForeground(Color.BLACK);
-        	}
+        	
         });
         labelIndietroIcon.setIcon(new ImageIcon(Hashing.class.getResource("/img/back-button.png")));
-        labelIndietroIcon.setBounds(18, 86, 32, 32);
+        labelIndietroIcon.setBounds(18, 88, 32, 32);
         panelMainButton.add(labelIndietroIcon);
         
-        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
+        JLabel labelScrittaYoutube = new JLabel(" Lezione");
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaYoutube.setBounds(918, 124, 82, 12);
+        labelScrittaYoutube.setBounds(81, 123, 53, 12);
         panelMainButton.add(labelScrittaYoutube);
         JLabel labelYoutubeIcon = new JLabel("Youtube");
         labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -371,12 +365,12 @@ public class Hashing extends JFrame {
         	}
         });
         labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-        labelYoutubeIcon.setBounds(933, 76, 53, 46);
+        labelYoutubeIcon.setBounds(81, 76, 53, 46);
         panelMainButton.add(labelYoutubeIcon);
         
-        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+        JLabel labelScrittaSlide = new JLabel("Slide");
         labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaSlide.setBounds(1007, 124, 95, 15);
+        labelScrittaSlide.setBounds(164, 123, 30, 15);
         panelMainButton.add(labelScrittaSlide);
         JLabel labelSlideIcon = new JLabel("Slide");
         labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -405,7 +399,7 @@ public class Hashing extends JFrame {
         	}
         });
         labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-        labelSlideIcon.setBounds(1027, 76, 53, 46);
+        labelSlideIcon.setBounds(154, 76, 53, 46);
         panelMainButton.add(labelSlideIcon);
         
       
@@ -458,348 +452,369 @@ public class Hashing extends JFrame {
 		
 		JLabel labelDizionario = new JLabel("PAROLE ORIGINALI : ");
 		labelDizionario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelDizionario.setBounds(85, 140, 139, 38);
+		labelDizionario.setBounds(339, 186, 139, 38);
 		panelMainButton.add(labelDizionario);
 		
 		JTextArea textParoleSommate = new JTextArea();
 		textParoleSommate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleSommate.setEditable(false);
 		textParoleSommate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleSommate.setBounds(430, 186, 251, 370);
+		textParoleSommate.setBounds(653, 224, 139, 257);
 		panelMainButton.add(textParoleSommate);
 		
 		JLabel labelCodifica1 = new JLabel("SOMMA CARATTERI : ");
 		labelCodifica1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelCodifica1.setBounds(481, 140, 157, 38);
+		labelCodifica1.setBounds(653, 189, 152, 32);
 		panelMainButton.add(labelCodifica1);
 		
 		JLabel labelSomma2 = new JLabel("CODIFICA FINALE :");
 		labelSomma2.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelSomma2.setBounds(921, 141, 134, 29);
+		labelSomma2.setBounds(957, 194, 134, 29);
 		panelMainButton.add(labelSomma2);
 		
 		JTextArea textParoleCodificate = new JTextArea();
 		textParoleCodificate.setFont(new Font("Arial", Font.PLAIN, 22));
 		textParoleCodificate.setEditable(false);
 		textParoleCodificate.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		textParoleCodificate.setBounds(862, 186, 236, 370);
+		textParoleCodificate.setBounds(953, 224, 138, 257);
 		panelMainButton.add(textParoleCodificate);
 		
 		JLabel labelFrecciaSomma = new JLabel("Somma ->");
 		labelFrecciaSomma.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
-		labelFrecciaSomma.setBounds(296, 321, 124, 111);
+		labelFrecciaSomma.setBounds(526, 306, 124, 111);
 		panelMainButton.add(labelFrecciaSomma);
 		
 		JLabel labelFrecciaCodifica = new JLabel("Codifica ->");
 		labelFrecciaCodifica.setIcon(new ImageIcon(Hashing.class.getResource("/img/frecciaDestraIcon1.png")));
-		labelFrecciaCodifica.setBounds(715, 321, 124, 111);
+		labelFrecciaCodifica.setBounds(825, 306, 124, 111);
 		panelMainButton.add(labelFrecciaCodifica);
 		
 		JLabel labelFrecciaScrittaSomma = new JLabel("");
-		labelFrecciaScrittaSomma.setBounds(287, 343, 69, 14);
+		labelFrecciaScrittaSomma.setBounds(517, 328, 69, 14);
 		panelMainButton.add(labelFrecciaScrittaSomma);
 		
 		JLabel labelFrecciaScrittaCodifica = new JLabel("");
-		labelFrecciaScrittaCodifica.setBounds(684, 343, 89, 14);
+		labelFrecciaScrittaCodifica.setBounds(794, 328, 89, 14);
 		panelMainButton.add(labelFrecciaScrittaCodifica);
 		
 		JLabel labelScrittaChaning = new JLabel("       CHAINING : ");
 		labelScrittaChaning.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelScrittaChaning.setBounds(291, 518, 139, 38);
+		labelScrittaChaning.setBounds(515, 481, 139, 38);
 		panelMainButton.add(labelScrittaChaning);
 		
 		JLabel labelScrittaOpen = new JLabel("  OPEN ADDRESSING : ");
 		labelScrittaOpen.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelScrittaOpen.setBounds(695, 518, 152, 38);
+		labelScrittaOpen.setBounds(798, 481, 152, 38);
 		panelMainButton.add(labelScrittaOpen);
 		
 		labelNumero0 = new JLabel("");
 		labelNumero0.setIcon(null);
-		labelNumero0.setBounds(228, 581, 30, 25);
+		labelNumero0.setBounds(452, 544, 30, 25);
 		panelMainButton.add(labelNumero0);
 		
 		 labelNumero1 = new JLabel("");
 		labelNumero1.setIcon(null);
-		labelNumero1.setBounds(261, 581, 30, 25);
+		labelNumero1.setBounds(485, 544, 30, 25);
 		panelMainButton.add(labelNumero1);
 		
 		labelNumero2 = new JLabel("");
 		labelNumero2.setIcon(null);
-		labelNumero2.setBounds(294, 581, 30, 25);
+		labelNumero2.setBounds(518, 544, 30, 25);
 		panelMainButton.add(labelNumero2);
 		
 		 labelNumero3 = new JLabel("");
 		labelNumero3.setIcon(null);
-		labelNumero3.setBounds(325, 581, 30, 25);
+		labelNumero3.setBounds(549, 544, 30, 25);
 		panelMainButton.add(labelNumero3);
 		
 		labelNumero4 = new JLabel("");
 		labelNumero4.setIcon(null);
-		labelNumero4.setBounds(358, 581, 30, 25);
+		labelNumero4.setBounds(582, 544, 30, 25);
 		panelMainButton.add(labelNumero4);
 		
 		
 		 labelNumero5 = new JLabel("");
 		labelNumero5.setIcon(null);
-		labelNumero5.setBounds(391, 581, 30, 25);
+		labelNumero5.setBounds(615, 544, 30, 25);
 		panelMainButton.add(labelNumero5);
 		
 		
 		labelNumero6 = new JLabel("");
 		labelNumero6.setIcon(null);
-		labelNumero6.setBounds(424, 581, 30, 25);
+		labelNumero6.setBounds(648, 544, 30, 25);
 		panelMainButton.add(labelNumero6);
 		
 		
 		labelNumero7 = new JLabel("");
 		labelNumero7.setIcon(null);
-		labelNumero7.setBounds(456, 581, 30, 25);
+		labelNumero7.setBounds(680, 544, 30, 25);
 		panelMainButton.add(labelNumero7);
 		
 		labelArrayChaining = new JLabel("");
 		labelArrayChaining.setIcon(new ImageIcon(Hashing.class.getResource("/img/arrayIcon1.png")));
-		labelArrayChaining.setBounds(226, 578, 264, 33);
+		labelArrayChaining.setBounds(450, 541, 264, 33);
 		panelMainButton.add(labelArrayChaining);
 		
 		
 		labelLinked0_1 = new JLabel("");
-		labelLinked0_1.setBounds(228, 625, 30, 29);
+		labelLinked0_1.setBounds(452, 588, 30, 29);
 		panelMainButton.add(labelLinked0_1);
 		
 		labelLinked0_2 = new JLabel("");
-		labelLinked0_2.setBounds(228, 665, 30, 29);
+		labelLinked0_2.setBounds(452, 628, 30, 29);
 		panelMainButton.add(labelLinked0_2);
 		
 		labelLinked0_3 = new JLabel("");
-		labelLinked0_3.setBounds(228, 705, 30, 29);
+		labelLinked0_3.setBounds(452, 668, 30, 29);
 		panelMainButton.add(labelLinked0_3);
 		
 		labelLinked1_1 = new JLabel("");
-		labelLinked1_1.setBounds(261, 625, 30, 29);
+		labelLinked1_1.setBounds(485, 588, 30, 29);
 		panelMainButton.add(labelLinked1_1);
 		
 		 labelLinked1_2 = new JLabel("");
-		labelLinked1_2.setBounds(261, 665, 30, 29);
+		labelLinked1_2.setBounds(485, 628, 30, 29);
 		panelMainButton.add(labelLinked1_2);
 		
 		 labelLinked1_3 = new JLabel("");
-		labelLinked1_3.setBounds(261, 705, 30, 29);
+		labelLinked1_3.setBounds(485, 668, 30, 29);
 		panelMainButton.add(labelLinked1_3);
 		
 		 labelLinked2_1 = new JLabel("");
-		labelLinked2_1.setBounds(296, 625, 30, 29);
+		labelLinked2_1.setBounds(520, 588, 30, 29);
 		panelMainButton.add(labelLinked2_1);
 		
 		 labelLinked2_2 = new JLabel("");
-		labelLinked2_2.setBounds(296, 665, 30, 29);
+		labelLinked2_2.setBounds(520, 628, 30, 29);
 		panelMainButton.add(labelLinked2_2);
 		
 		 labelLinked2_3 = new JLabel("");
-		labelLinked2_3.setBounds(296, 705, 30, 29);
+		labelLinked2_3.setBounds(520, 668, 30, 29);
 		panelMainButton.add(labelLinked2_3);
 		
 		labelLinked3_1 = new JLabel("");
-		labelLinked3_1.setBounds(326, 625, 30, 29);
+		labelLinked3_1.setBounds(550, 588, 30, 29);
 		panelMainButton.add(labelLinked3_1);
 		
 		labelLinked3_2 = new JLabel("");
-		labelLinked3_2.setBounds(326, 665, 30, 29);
+		labelLinked3_2.setBounds(550, 628, 30, 29);
 		panelMainButton.add(labelLinked3_2);
 		
 		labelLinked3_3 = new JLabel("");
-		labelLinked3_3.setBounds(326, 705, 30, 29);
+		labelLinked3_3.setBounds(550, 668, 30, 29);
 		panelMainButton.add(labelLinked3_3);
 		
 		labelLinked4_1 = new JLabel("");
-		labelLinked4_1.setBounds(358, 625, 30, 29);
+		labelLinked4_1.setBounds(582, 588, 30, 29);
 		panelMainButton.add(labelLinked4_1);
 		
 		labelLinked4_2 = new JLabel("");
-		labelLinked4_2.setBounds(358, 665, 30, 29);
+		labelLinked4_2.setBounds(582, 628, 30, 29);
 		panelMainButton.add(labelLinked4_2);
 		
 		labelLinked4_3 = new JLabel("");
-		labelLinked4_3.setBounds(358, 705, 30, 29);
+		labelLinked4_3.setBounds(582, 668, 30, 29);
 		panelMainButton.add(labelLinked4_3);
 		
 		labelLinked5_1 = new JLabel("");
-		labelLinked5_1.setBounds(391, 625, 30, 29);
+		labelLinked5_1.setBounds(615, 588, 30, 29);
 		panelMainButton.add(labelLinked5_1);
 		
 		labelLinked5_2 = new JLabel("");
-		labelLinked5_2.setBounds(391, 665, 30, 29);
+		labelLinked5_2.setBounds(615, 628, 30, 29);
 		panelMainButton.add(labelLinked5_2);
 		
 		labelLinked5_3 = new JLabel("");
-		labelLinked5_3.setBounds(391, 705, 30, 29);
+		labelLinked5_3.setBounds(615, 668, 30, 29);
 		panelMainButton.add(labelLinked5_3);
 		
 		labelLinked6_1 = new JLabel("");
-		labelLinked6_1.setBounds(424, 625, 30, 29);
+		labelLinked6_1.setBounds(648, 588, 30, 29);
 		panelMainButton.add(labelLinked6_1);
 		
 		labelLinked6_2 = new JLabel("");
-		labelLinked6_2.setBounds(424, 665, 30, 29);
+		labelLinked6_2.setBounds(648, 628, 30, 29);
 		panelMainButton.add(labelLinked6_2);
 		
 		labelLinked6_3 = new JLabel("");
-		labelLinked6_3.setBounds(424, 705, 30, 29);
+		labelLinked6_3.setBounds(648, 668, 30, 29);
 		panelMainButton.add(labelLinked6_3);
 		
 		labelLinked7_1 = new JLabel("");
-		labelLinked7_1.setBounds(456, 625, 30, 29);
+		labelLinked7_1.setBounds(680, 588, 30, 29);
 		panelMainButton.add(labelLinked7_1);
 		
 		labelLinked7_2 = new JLabel("");
-		labelLinked7_2.setBounds(456, 665, 30, 29);
+		labelLinked7_2.setBounds(680, 628, 30, 29);
 		panelMainButton.add(labelLinked7_2);
 		
 		labelLinked7_3 = new JLabel("");
-		labelLinked7_3.setBounds(456, 705, 30, 29);
+		labelLinked7_3.setBounds(680, 668, 30, 29);
 		panelMainButton.add(labelLinked7_3);
 
 		JLabel labelNumeriChaining = new JLabel("   0      1       2      3      4       5      6      7 ");
 		labelNumeriChaining.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		labelNumeriChaining.setBounds(228, 555, 258, 23);
+		labelNumeriChaining.setBounds(452, 518, 258, 23);
 		panelMainButton.add(labelNumeriChaining);
 		
 		labelNumero0Addres = new JLabel("");
-		labelNumero0Addres.setBounds(643, 581, 30, 25);
+		labelNumero0Addres.setBounds(746, 544, 30, 25);
 		panelMainButton.add(labelNumero0Addres);
 		
 		labelNumero1Addres = new JLabel("");
-		labelNumero1Addres.setBounds(676, 581, 30, 25);
+		labelNumero1Addres.setBounds(779, 544, 30, 25);
 		panelMainButton.add(labelNumero1Addres);
 		
 		labelNumero2Addres = new JLabel("");
-		labelNumero2Addres.setBounds(709, 581, 30, 25);
+		labelNumero2Addres.setBounds(812, 544, 30, 25);
 		panelMainButton.add(labelNumero2Addres);
 		
 		labelNumero3Addres = new JLabel("");
-		labelNumero3Addres.setBounds(740, 581, 30, 25);
+		labelNumero3Addres.setBounds(843, 544, 30, 25);
 		panelMainButton.add(labelNumero3Addres);
 		
 		labelNumero4Addres = new JLabel("");
-		labelNumero4Addres.setBounds(773, 581, 30, 25);
+		labelNumero4Addres.setBounds(876, 544, 30, 25);
 		panelMainButton.add(labelNumero4Addres);
 		
 		labelNumero5Addres = new JLabel("");
-		labelNumero5Addres.setBounds(806, 581, 30, 25);
+		labelNumero5Addres.setBounds(909, 544, 30, 25);
 		panelMainButton.add(labelNumero5Addres);
 		
 		labelNumero6Addres = new JLabel("");
-		labelNumero6Addres.setBounds(839, 581, 30, 25);
+		labelNumero6Addres.setBounds(942, 544, 30, 25);
 		panelMainButton.add(labelNumero6Addres);
 		
 		labelNumero7Addres = new JLabel("");
-		labelNumero7Addres.setBounds(871, 581, 30, 25);
+		labelNumero7Addres.setBounds(974, 544, 30, 25);
 		panelMainButton.add(labelNumero7Addres);
 		
 		JLabel labelArrayAddres = new JLabel("");
 		labelArrayAddres.setIcon(new ImageIcon(Hashing.class.getResource("/img/arrayIcon1.png")));
-		labelArrayAddres.setBounds(641, 578, 264, 33);
+		labelArrayAddres.setBounds(744, 541, 264, 33);
 		panelMainButton.add(labelArrayAddres);
 		
 		labelLinked0_1Addres = new JLabel("");
-		labelLinked0_1Addres.setBounds(643, 625, 30, 29);
+		labelLinked0_1Addres.setBounds(746, 588, 30, 29);
 		panelMainButton.add(labelLinked0_1Addres);
 		
 		labelLinked0_2Addres = new JLabel("");
-		labelLinked0_2Addres.setBounds(643, 665, 30, 29);
+		labelLinked0_2Addres.setBounds(746, 628, 30, 29);
 		panelMainButton.add(labelLinked0_2Addres);
 		
 		labelLinked0_3Addres = new JLabel("");
-		labelLinked0_3Addres.setBounds(643, 705, 30, 29);
+		labelLinked0_3Addres.setBounds(746, 668, 30, 29);
 		panelMainButton.add(labelLinked0_3Addres);
 		
 		labelLinked1_1Addres = new JLabel("");
-		labelLinked1_1Addres.setBounds(676, 625, 30, 29);
+		labelLinked1_1Addres.setBounds(779, 588, 30, 29);
 		panelMainButton.add(labelLinked1_1Addres);
 		
 		labelLinked1_2Addres = new JLabel("");
-		labelLinked1_2Addres.setBounds(676, 665, 30, 29);
+		labelLinked1_2Addres.setBounds(779, 628, 30, 29);
 		panelMainButton.add(labelLinked1_2Addres);
 		
 		labelLinked1_3Addres = new JLabel("");
-		labelLinked1_3Addres.setBounds(676, 705, 30, 29);
+		labelLinked1_3Addres.setBounds(779, 668, 30, 29);
 		panelMainButton.add(labelLinked1_3Addres);
 		
 		labelLinked2_1Addres = new JLabel("");
-		labelLinked2_1Addres.setBounds(711, 625, 30, 29);
+		labelLinked2_1Addres.setBounds(814, 588, 30, 29);
 		panelMainButton.add(labelLinked2_1Addres);
 		
 		labelLinked2_2Addres = new JLabel("");
-		labelLinked2_2Addres.setBounds(711, 665, 30, 29);
+		labelLinked2_2Addres.setBounds(814, 628, 30, 29);
 		panelMainButton.add(labelLinked2_2Addres);
 		
 		labelLinked2_3Addres = new JLabel("");
-		labelLinked2_3Addres.setBounds(711, 705, 30, 29);
+		labelLinked2_3Addres.setBounds(814, 668, 30, 29);
 		panelMainButton.add(labelLinked2_3Addres);
 		
 		labelLinked3_1Addres = new JLabel("");
-		labelLinked3_1Addres.setBounds(741, 625, 30, 29);
+		labelLinked3_1Addres.setBounds(844, 588, 30, 29);
 		panelMainButton.add(labelLinked3_1Addres);
 		
 		labelLinked3_2Addres = new JLabel("");
-		labelLinked3_2Addres.setBounds(741, 665, 30, 29);
+		labelLinked3_2Addres.setBounds(844, 628, 30, 29);
 		panelMainButton.add(labelLinked3_2Addres);
 		
 		labelLinked3_3Addres = new JLabel("");
-		labelLinked3_3Addres.setBounds(741, 705, 30, 29);
+		labelLinked3_3Addres.setBounds(844, 668, 30, 29);
 		panelMainButton.add(labelLinked3_3Addres);
 		
 		labelLinked4_1Addres = new JLabel("");
-		labelLinked4_1Addres.setBounds(773, 625, 30, 29);
+		labelLinked4_1Addres.setBounds(876, 588, 30, 29);
 		panelMainButton.add(labelLinked4_1Addres);
 		
 		labelLinked4_2Addres = new JLabel("");
-		labelLinked4_2Addres.setBounds(773, 665, 30, 29);
+		labelLinked4_2Addres.setBounds(876, 628, 30, 29);
 		panelMainButton.add(labelLinked4_2Addres);
 		
 		labelLinked4_3Addres = new JLabel("");
-		labelLinked4_3Addres.setBounds(773, 705, 30, 29);
+		labelLinked4_3Addres.setBounds(876, 668, 30, 29);
 		panelMainButton.add(labelLinked4_3Addres);
 		
 		labelLinked5_1Addres = new JLabel("");
-		labelLinked5_1Addres.setBounds(806, 625, 30, 29);
+		labelLinked5_1Addres.setBounds(909, 588, 30, 29);
 		panelMainButton.add(labelLinked5_1Addres);
 		
 		labelLinked5_2Addres = new JLabel("");
-		labelLinked5_2Addres.setBounds(806, 665, 30, 29);
+		labelLinked5_2Addres.setBounds(909, 628, 30, 29);
 		panelMainButton.add(labelLinked5_2Addres);
 		
 		labelLinked5_3Addres = new JLabel("");
-		labelLinked5_3Addres.setBounds(806, 705, 30, 29);
+		labelLinked5_3Addres.setBounds(909, 668, 30, 29);
 		panelMainButton.add(labelLinked5_3Addres);
 		
 		labelLinked6_1Addres = new JLabel("");
-		labelLinked6_1Addres.setBounds(839, 625, 30, 29);
+		labelLinked6_1Addres.setBounds(942, 588, 30, 29);
 		panelMainButton.add(labelLinked6_1Addres);
 		
 		labelLinked6_2Addres = new JLabel("");
-		labelLinked6_2Addres.setBounds(839, 665, 30, 29);
+		labelLinked6_2Addres.setBounds(942, 628, 30, 29);
 		panelMainButton.add(labelLinked6_2Addres);
 		
 		labelLinked6_3Addres = new JLabel("");
-		labelLinked6_3Addres.setBounds(839, 705, 30, 29);
+		labelLinked6_3Addres.setBounds(942, 668, 30, 29);
 		panelMainButton.add(labelLinked6_3Addres);
 		
 		 labelLinked7_1Addres = new JLabel("");
-		labelLinked7_1Addres.setBounds(871, 625, 30, 29);
+		labelLinked7_1Addres.setBounds(974, 588, 30, 29);
 		panelMainButton.add(labelLinked7_1Addres);
 		
 		 labelLinked7_2Addres = new JLabel("");
-		labelLinked7_2Addres.setBounds(871, 665, 30, 29);
+		labelLinked7_2Addres.setBounds(974, 628, 30, 29);
 		panelMainButton.add(labelLinked7_2Addres);
 		
 		labelLinked7_3Addres = new JLabel("");
-		labelLinked7_3Addres.setBounds(871, 705, 30, 29);
+		labelLinked7_3Addres.setBounds(974, 668, 30, 29);
 		panelMainButton.add(labelLinked7_3Addres);
 		
 		JLabel labelNumeriAddres = new JLabel("   0      1       2      3      4       5      6      7 ");
 		labelNumeriAddres.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		labelNumeriAddres.setBounds(643, 555, 258, 23);
+		labelNumeriAddres.setBounds(746, 518, 258, 23);
 		panelMainButton.add(labelNumeriAddres);
+		
+		scrollPaneHelp = new JScrollPane();
+		scrollPaneHelp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneHelp.setBounds(20, 222, 245, 369);
+		panelMainButton.add(scrollPaneHelp);
+		
+		txtrHashLaModello = new JTextArea();
+		scrollPaneHelp.setViewportView(txtrHashLaModello);
+		txtrHashLaModello.setWrapStyleWord(true);
+		txtrHashLaModello.setText("HASH\r\nLa modello HASH (hash=tritare, sminuzzare) permette di memorizzare oggetti generici ricavando un  indirizzo per la memorizzazione a partire proprio dalla chiave dell'oggetto considerato.\r\nLa funzione hash quindi trasforma ogni chiave k in un numero compreso in un intervallo [0,N-1] (in cui N è la capacità del bucket impiegato).\r\nLa funzione Hash può essere considerata come la composizione di due funzioni più semplici: la prima funzione è applicata direttamente alla chiave dell'elemento considerato e ne ricava un valore intero qualsiasi; successivamente, con l'applicazione della seconda funzione, si ha la possibilità di \"proiettare\" tale vale intero generico in un ben più ristretto intervallo di soli N elementi.\r\nPoiché due chiavi distinte possono generare il medesimo valore hash, si possono verificare vere e proprie collisioni. Per gestire le collisioni sono in genere applicate due distinte metodologie: il Chaining e l'Open Addressing.\r\nCon la  tecnica del Chaining gli oggetti di  tutte le chiavi che hanno lo stesso valore hash apparterranno alla medesima linked list (ogni nuovo elemento viene aggiunto in testa alla linked list).\r\nCon  la tecnica dell' Open Addressing, gli elementi da memorizzare sono contenuti tutti in un array prefissato: in caso di collisione si possono applicare diverse tecniche come quella che sceglie la prima locazione libera immediatamente successiva alla locazione che ha determinato la collisione.");
+		txtrHashLaModello.setLineWrap(true);
+		txtrHashLaModello.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		txtrHashLaModello.setEditable(false);
+		txtrHashLaModello.setCaretPosition(0);
+		
+		labelHelp = new JLabel("  Spiegazione Argomento : ");
+		labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
+		labelHelp.setForeground(Color.RED);
+		labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		labelHelp.setBounds(20, 186, 245, 25);
+		panelMainButton.add(labelHelp);
 		
 		
 		
@@ -4207,7 +4222,6 @@ public class Hashing extends JFrame {
 		labelLinked7_3Addres.setIcon(null);
 		
 	}
-
 }
 
 

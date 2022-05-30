@@ -65,13 +65,15 @@ public class SchHD extends JFrame {
 	public SchHD(JFrame framechiamante) 
 	{
 		frame=this;
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 0, 1440, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		frame.setResizable(false);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setTitle("Balzano Question Problem : Scheduling HD");
 		
 		JPanel panelMainButton = new JPanel();

@@ -108,7 +108,10 @@ public class Semafori extends JFrame {
 	{
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Balzano Question Problem : Semafori");
 		setBounds(100, 100, 1440, 800);
+		setLocationRelativeTo(null);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -254,21 +257,6 @@ public class Semafori extends JFrame {
 		panelMainButton.add(GraficaSemaforo2VerdeJLabel);
 		GraficaSemaforo2VerdeJLabel.setLayout(null);
 		GraficaSemaforo2VerdeJLabel.setVisible(false);
-		
-		JLabel CorsoJLabel = new JLabel("Corso di Sistemi Operativi del Prof. W. Balzano");
-		CorsoJLabel.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-		CorsoJLabel.setBounds(1121, 680, 269, 27);
-		panelMainButton.add(CorsoJLabel);
-		
-		JLabel AnnoJLabel = new JLabel("Anno: 2021/2022");
-		AnnoJLabel.setFont(new Font("Sylfaen", Font.PLAIN, 12));
-		AnnoJLabel.setBounds(1191, 708, 120, 18);
-		panelMainButton.add(AnnoJLabel);
-		
-		JLabel SviluppatoriJLabel = new JLabel("Sviluppata da: A. Lanuto, E. Prosciutto, B. Scotto");
-		SviluppatoriJLabel.setFont(new Font("Sylfaen", Font.ITALIC, 13));
-		SviluppatoriJLabel.setBounds(1102, 727, 310, 18);
-		panelMainButton.add(SviluppatoriJLabel);
 
 		
 		JScrollPane scrollTabella= new JScrollPane();
@@ -311,6 +299,8 @@ public class Semafori extends JFrame {
 		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
 		scrollTabella.setViewportView(tabella);
 		
+		JLabel label = (JLabel) tabella.getDefaultRenderer(Integer.class);
+		label.setHorizontalAlignment (SwingConstants.CENTER);
 		
 		JPanel panelControlloProcessi = new JPanel();
 		panelControlloProcessi.setBackground(new Color(220,220,220));

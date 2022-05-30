@@ -103,8 +103,9 @@ public SchProcessi(JFrame framechiamante) {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		setTitle("Balzano Question Problem : Scheduling della CPU");
-		frame.setResizable(false);
+		setTitle("Operating Systems Simulator: Scheduling Della CPU");
+		setLocationRelativeTo(null);
+		setResizable(false);
 
 /**							PANNELLO PRINCIPALE								*/
 		JPanel pannelloPrincipale = new JPanel();
@@ -112,11 +113,6 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloPrincipale.setBounds(0, 0, 1440, 800);
 			frame.getContentPane().add(pannelloPrincipale);
 			pannelloPrincipale.setLayout(null);
-	        
-	        JLabel labelScrittaIndietro = new JLabel(" Indietro");
-	        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaIndietro.setBounds(10, 120, 53, 12);
-	        pannelloPrincipale.add(labelScrittaIndietro);
 	        
 	        JLabel labelIndietroIcon = new JLabel();
 	        labelIndietroIcon.setHorizontalAlignment(SwingConstants.CENTER);
@@ -127,25 +123,16 @@ public SchProcessi(JFrame framechiamante) {
 					frame.setVisible(false);
 					frame.dispose();
 				}
-	        	@Override
-	        	public void mouseEntered(MouseEvent e) 
-	        	{
-	        		labelScrittaIndietro.setForeground(Color.RED);
-	        	}
-	        	@Override
-	        	public void mouseExited(MouseEvent e) 
-	        	{
-	        		labelScrittaIndietro.setForeground(Color.BLACK);
-	        	}
+	        	
 	        });
 	        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	        labelIndietroIcon.setBounds(10, 75, 53, 46);
+	        labelIndietroIcon.setBounds(10, 80, 53, 46);
 	        pannelloPrincipale.add(labelIndietroIcon);
 	        
-	        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
+	        JLabel labelScrittaYoutube = new JLabel("Lezione");
 	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaYoutube.setBounds(61, 120, 95, 12);
+	        labelScrittaYoutube.setBounds(80, 120, 50, 12);
 	        pannelloPrincipale.add(labelScrittaYoutube);
 	        JLabel labelYoutubeIcon = new JLabel("Youtube");
 	        labelYoutubeIcon.setHorizontalAlignment(SwingConstants.LEFT);
@@ -175,12 +162,12 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-	        labelYoutubeIcon.setBounds(83, 75, 47, 46);
+	        labelYoutubeIcon.setBounds(80, 75, 47, 46);
 	        pannelloPrincipale.add(labelYoutubeIcon);
 	        
-	        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+	        JLabel labelScrittaSlide = new JLabel("Slide");
 	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaSlide.setBounds(158, 119, 95, 15);
+	        labelScrittaSlide.setBounds(162, 119, 40, 15);
 	        pannelloPrincipale.add(labelScrittaSlide);
 	        JLabel labelSlideIcon = new JLabel("Slide");
 	        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -209,11 +196,11 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	        labelSlideIcon.setBounds(180, 75, 53, 46);
+	        labelSlideIcon.setBounds(150, 75, 53, 46);
 	        pannelloPrincipale.add(labelSlideIcon);
 	
 		//BOTTONE GENERA
-		JButton btnGenera = new JButton("Genera Tabella Processi");
+		JButton btnGenera = new JButton("Genera Esercizio");
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 12));
 			btnGenera.setBorder(new LineBorder(new Color(0, 200, 83), 4));
@@ -884,7 +871,7 @@ public SchProcessi(JFrame framechiamante) {
 			scrollPaneHelp.setViewportView(txtrHelpArea);
 			txtrHelpArea.setWrapStyleWord(true);
 			txtrHelpArea.setLineWrap(true);
-			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso è il piu' semplice degli algoritmi di scheduling della CPU ed è basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevità. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso è spesso detto \"shortest remaining time first\"; è uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in più la capacità di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantità fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti è trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
+			txtrHelpArea.setText("FCFS: (First Come First Served). \r\nCon questo schema la CPU si assegna al processo che la richiede per  primo. Esso ï¿½ il piu' semplice degli algoritmi di scheduling della CPU ed ï¿½ basato su code FIFO. Questo algoritmo genera l' Effetto Convoglio: tutti i processi attendono che un lungo processo liberi la CPU.\r\n\r\nSJF: (Shortest Job First). \r\nDetto anche scheduling per brevitï¿½. Questo algoritmo associa a ogni processo la lunghezza della successiva sequenza di operazioni della CPU. Se due processi hanno le seccessive sequenze di operazioni della CPU della stessa lunghezza, allora si applica lo scheduling FCFS. Esso ottimizza il tempo di attesa medio per un dato insieme di processi. \r\n\r\nSJFP: (Shortest Job First Preempitive). \r\nEsso ï¿½ spesso detto \"shortest remaining time first\"; ï¿½ uguale al SJF ma con la differenza che se arriva un nuovo processo con tempo di esecuzione inferiore a quello attualmente in esecuzione, allora quello nuovo prelaziona quello in esecuzione. \r\n\r\nRR: (Round Robin). \r\nE' detto scheduling circolare; E' simile al FCFS ma ha in piï¿½ la capacitï¿½ di prelazione per la commutazione dei processi. Ciascun processo riceve una piccola quantitï¿½ fissata del tempo della CPU, chiamata quanto di tempo q e la coda dei processi pronti ï¿½ trattata come una coda circolare. Per valori di q molto grandi RR tende al FCFS.\r\n");
 			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
 			txtrHelpArea.setCaretPosition(0);
 			txtrHelpArea.setEditable(false);
@@ -895,17 +882,6 @@ public SchProcessi(JFrame framechiamante) {
 			labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			labelHelp.setForeground(Color.RED);
 			labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			
-		JLabel labelHelpIcon = new JLabel("Help");
-			labelHelpIcon.setBounds(273, 75, 34, 46);
-			pannelloPrincipale.add(labelHelpIcon);
-	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-	        
-	    JLabel labelInfouso = new JLabel("Info/Uso");
-	        labelInfouso.setHorizontalAlignment(SwingConstants.CENTER);
-	        labelInfouso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelInfouso.setBounds(263, 120, 59, 12);
-	        pannelloPrincipale.add(labelInfouso);
 
 			
 
@@ -1170,12 +1146,10 @@ public SchProcessi(JFrame framechiamante) {
 				cbSJFP=0;
 				cbRR=0;
 				quantum=0;
-			
+				
 				labelMostraSoluzioni.setEnabled(true);
 				comboBoxQRR.setEnabled(false);
-								
-				comboBoxQRR.setSelectedIndex(0);
-				
+												
 				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
 				int numeroProcessi=Integer.valueOf(scelta);
 							
@@ -1403,8 +1377,8 @@ public SchProcessi(JFrame framechiamante) {
 				
 				labelMostraSoluzioni.setEnabled(true);
 				comboBoxQRR.setEnabled(true);
-								
-				for(int i=0;i<Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());i++) {
+				int numeroFor= Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
+				for(int i=0;i<numeroFor;i++) {
 					if(i==0) {
 						if(chckbxP1.isSelected()==false) {
 							

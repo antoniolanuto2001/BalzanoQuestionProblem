@@ -96,14 +96,16 @@ public class PaginazioneDellaMemoria extends JFrame {
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
 		
 		frame=this;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 0, 1440, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		frame.setResizable(false);
-		setTitle("Balzano Question Problem : Paginazione della memoria");
+		setLocationRelativeTo(null);
+		setResizable(false);
+		setTitle("Operating Systems Simulator: Paginazione Della Memoria");
 		
 /**							PANNELLO PRINCIPALE								*/
 		JPanel pannelloPrincipale = new JPanel();
@@ -112,10 +114,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 			frame.getContentPane().add(pannelloPrincipale);
 			pannelloPrincipale.setLayout(null);
 		        
-	        JLabel labelScrittaYoutube = new JLabel("Videolezione");
+	        JLabel labelScrittaYoutube = new JLabel("Lezione");
 		        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		        labelScrittaYoutube.setBounds(188, 119, 78, 12);
+		        labelScrittaYoutube.setBounds(105, 119, 50, 12);
 		        pannelloPrincipale.add(labelScrittaYoutube);
 		        JLabel labelYoutubeIcon = new JLabel("Youtube");
 		        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
@@ -142,13 +144,13 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	}
 		        });
 		        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-		        labelYoutubeIcon.setBounds(200, 75, 53, 46);
+		        labelYoutubeIcon.setBounds(105, 75, 53, 46);
 		        pannelloPrincipale.add(labelYoutubeIcon);
 		        
 	        JLabel labelScrittaSlide = new JLabel("Slide");
 	        labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		        labelScrittaSlide.setBounds(125, 118, 50, 15);
+		        labelScrittaSlide.setBounds(186, 118, 50, 15);
 		        pannelloPrincipale.add(labelScrittaSlide);
 		        JLabel labelSlideIcon = new JLabel("Slide");
 		        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -175,7 +177,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        	}
 		        });
 		        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-		        labelSlideIcon.setBounds(125, 75, 53, 46);
+		        labelSlideIcon.setBounds(186, 75, 53, 46);
 		        pannelloPrincipale.add(labelSlideIcon);
 		
 /**							PANNELLO TITOLO									*/
@@ -190,7 +192,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelTitolo.setForeground(new Color(0, 0, 0));
 			labelTitolo.setHorizontalAlignment(SwingConstants.CENTER);
 			labelTitolo.setFont(new Font("Segoe UI", Font.BOLD, 40));
-			labelTitolo.setBounds(79, 0, 1104, 73);
+			labelTitolo.setBounds(415, 9, 647, 54);
 			pannelloTitolo.add(labelTitolo);
 			
 			JLabel labelFedericoII = new JLabel("");
@@ -502,7 +504,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
 			btnGeneraSuccessione.setBackground(new Color(255, 255, 255));
-			btnGeneraSuccessione.setBorder(new LineBorder(new Color(0, 204, 255), 2));
+			btnGeneraSuccessione.setBorder(new LineBorder(new Color (76, 175, 80), 2));
 			btnGeneraSuccessione.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			btnGeneraSuccessione.setBounds(10, 32, 225, 32);
 			pannelloEditor.add(btnGeneraSuccessione);
@@ -521,7 +523,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			txtrHelpArea.setWrapStyleWord(true);
 			txtrHelpArea.setLineWrap(true);
 			txtrHelpArea.setText("FIFO (First In First Out).\r\nE' la pi\u00F9 semplice, si tiene traccia in una tabella di quando \u00E8 stata allocata un'area di memoria. Quando vi \u00E8 una nuova richiesta di allocazione di pagine di memoria, se c'\u00E8 ancora spazio in memoria principale, semplicemente viene allocata la nuova pagina, altrimenti si consulta mediante la tabella quali sono le pagine allocate da pi\u00F9 tempo e si spostano in memoria secondaria.\r\nQuesto algoritmo \u00E8 molto semplice e di rapida esecuzione ma ha lo svantaggio di spostare in memoria secondaria le pagine pi\u00F9 vecchie anche se sono utilizzate di frequente.\r\n\r\nOPT\r\nSi sostituisce la pagina che non si user\u00E0 per il periodo di tempo pi\u00F9 lungo. Non \u00E8 possibile conoscere in anticipo la successione dei riferimenti, viene usato principalmente per studi comparativi, per valutare le prestazioni degli algoritmi.\r\n\r\nLRU (Least Recently Used)\r\nVengono sostituite le pagine usate meno di recente, poich\u00E8 queste hanno buona probabilit\u00E0 di non essere nuovamente utilizzate nell'immediato.\r\n");
-			txtrHelpArea.setFont(new Font("Cambria", Font.PLAIN, 14));
+			txtrHelpArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 			txtrHelpArea.setCaretPosition(0);
 			txtrHelpArea.setEditable(false);
 		
@@ -541,31 +543,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 			labelSuccessioneDiRiferimento.setForeground(Color.BLACK);
 			labelSuccessioneDiRiferimento.setFont(new Font("Arial", Font.BOLD, 14));
 			
-		JLabel labelHelp = new JLabel("Spiegazione Argomento");
+		JLabel labelHelp = new JLabel("  Spiegazione Argomento : ");
 			labelHelp.setBounds(10, 330, 245, 25);
 			panelDiControllo.add(labelHelp);
 			labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
 			labelHelp.setForeground(Color.RED);
 			labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			
-		JLabel labelHelpIcon = new JLabel("Help");
-			labelHelpIcon.setBounds(70, 82, 32, 32);
-			pannelloPrincipale.add(labelHelpIcon);
-	        labelHelpIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-	        
-	    JLabel labelInfouso = new JLabel("Info/Uso");
-	        labelInfouso.setHorizontalAlignment(SwingConstants.CENTER);
-	        labelInfouso.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelInfouso.setBounds(61, 119, 59, 12);
-	        pannelloPrincipale.add(labelInfouso);
-
-        	JLabel labelScrittaIndietro = new JLabel(" Indietro");
-        	labelScrittaIndietro.setBounds(0, 119, 53, 12);
-        	pannelloPrincipale.add(labelScrittaIndietro);
-        	labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
 	        JLabel labelIndietroIcon = new JLabel("Exit");
-	        	labelIndietroIcon.setBounds(10, 82, 32, 32);
+	        	labelIndietroIcon.setBounds(21, 88, 32, 32);
 	        	pannelloPrincipale.add(labelIndietroIcon);
 	        	labelIndietroIcon.addMouseListener(new MouseAdapter() {
 	        		@Override
@@ -574,16 +560,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        				frame.setVisible(false);
 	        				frame.dispose();
 	        			}
-	        		@Override
-	        		public void mouseEntered(MouseEvent e) 
-	        		{
-	        			labelScrittaIndietro.setForeground(Color.RED);
-	        		}
-	        		@Override
-	        		public void mouseExited(MouseEvent e) 
-	        		{
-	        			labelScrittaIndietro.setForeground(Color.BLACK);
-	        		}
+	        	
 	        	});
 	        	labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
 	        
@@ -658,7 +635,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 					
-				btnGeneraSuccessione.setBackground(new Color(51, 204, 255));
+				btnGeneraSuccessione.setBackground(new Color(76, 175, 80));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
