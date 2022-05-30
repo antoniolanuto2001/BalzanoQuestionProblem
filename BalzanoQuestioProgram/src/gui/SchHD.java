@@ -74,7 +74,7 @@ public class SchHD extends JFrame {
 		setContentPane(contentPane);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setTitle("Balzano Question Problem : Scheduling HD");
+		setTitle("Operating Systems Simulator: Scheduling HD");
 		
 		JPanel panelMainButton = new JPanel();
 			panelMainButton.setForeground(new Color(153, 204, 255));
@@ -95,7 +95,7 @@ public class SchHD extends JFrame {
 		
 		JLabel labelFedericoII = new JLabel("");
 			labelFedericoII.setIcon(new ImageIcon(SchHD.class.getResource("/img/logoUninaIcon2.png")));
-			labelFedericoII.setBounds(10, 11, 199, 53);
+			labelFedericoII.setBounds(1215, 11, 199, 53);
 			pannelloTitolo.add(labelFedericoII);
 			
 		JPanel pannelloControllo = new JPanel();
@@ -118,7 +118,7 @@ public class SchHD extends JFrame {
 			
 		JButton btnGeneraEsempio = new JButton("GENERA ESERCIZIO");
 			btnGeneraEsempio.setFont(new Font("Arial", Font.BOLD, 15));
-			btnGeneraEsempio.setBorder(new LineBorder(new Color(229,57,53), 2, true));
+			btnGeneraEsempio.setBorder(new LineBorder(new Color (0, 151, 167), 2, true));
 			btnGeneraEsempio.setBackground(Color.WHITE);
 			btnGeneraEsempio.setBounds(16, 147, 224, 34);
 			pannelloParametri.add(btnGeneraEsempio);
@@ -182,7 +182,7 @@ public class SchHD extends JFrame {
 			labelCodaRichieste.setBounds(16, 44, 224, 23);
 			pannelloParametri.add(labelCodaRichieste);
 			
-		JLabel labelPosizioneInziale = new JLabel("Posizione Inziale testina : ");
+		JLabel labelPosizioneInziale = new JLabel("Posizione inziale testina : ");
 			labelPosizioneInziale.setFont(new Font("Segoe UI", Font.BOLD, 14));
 			labelPosizioneInziale.setBounds(10, 11, 183, 22);
 			pannelloParametri.add(labelPosizioneInziale);
@@ -226,11 +226,6 @@ public class SchHD extends JFrame {
 			labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			labelHelp.setBounds(20, 381, 245, 25);
 			pannelloControllo.add(labelHelp);
-		
-		JLabel labelScrittaIndietro = new JLabel(" Indietro");
-			labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			labelScrittaIndietro.setBounds(10, 129, 53, 12);
-			panelMainButton.add(labelScrittaIndietro);
 			
 		JLabel labelIndietroIcon = new JLabel("");
 			  labelIndietroIcon.addMouseListener(new MouseAdapter() {
@@ -241,29 +236,19 @@ public class SchHD extends JFrame {
 						frame.setVisible(false);
 						frame.dispose();
 					}
-		        	@Override
-		        	public void mouseEntered(MouseEvent e) 
-		        	{
-		        		labelScrittaIndietro.setForeground(Color.RED);
-		        	}
-		        	@Override
-		        	public void mouseExited(MouseEvent e) 
-		        	{
-		        		labelScrittaIndietro.setForeground(Color.BLACK);
-		        	}
-		        });
+			  });
 			labelIndietroIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/back-button.png")));
-			labelIndietroIcon.setBounds(19, 91, 32, 32);
+			labelIndietroIcon.setBounds(10, 78, 53, 46);
 			panelMainButton.add(labelIndietroIcon);
 
-		JLabel labelScrittaYoutube = new JLabel("Video Lezione");
+		JLabel labelScrittaYoutube = new JLabel("Lezione");
 			labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			labelScrittaYoutube.setBounds(918, 129, 82, 12);
+			labelScrittaYoutube.setBounds(80, 120, 50, 12);
 			panelMainButton.add(labelScrittaYoutube);
 		
 		JLabel labelYoutubeIcon = new JLabel("Youtube");
 			labelYoutubeIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/youtubeIcon2.png")));
-			labelYoutubeIcon.setBounds(933, 81, 53, 46);
+			labelYoutubeIcon.setBounds(80, 75, 47, 46);
 			panelMainButton.add(labelYoutubeIcon);
 			labelYoutubeIcon.addMouseListener(new MouseAdapter() {
         	@Override
@@ -291,14 +276,14 @@ public class SchHD extends JFrame {
         	}
         });
 			
-		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+		JLabel labelScrittaSlide = new JLabel("Slide");
 			labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-			labelScrittaSlide.setBounds(1007, 129, 95, 15);
+			labelScrittaSlide.setBounds(162, 119, 40, 15);
 			panelMainButton.add(labelScrittaSlide);
 			
 		JLabel labelSlideIcon = new JLabel("Slide");
 			labelSlideIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/pdfIcon1.png")));
-			labelSlideIcon.setBounds(1027, 81, 53, 46);
+			labelSlideIcon.setBounds(150, 75, 53, 46);
 			panelMainButton.add(labelSlideIcon);
 			
 			/*GRAFICI*/
@@ -523,7 +508,7 @@ public class SchHD extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				btnGeneraEsempio.setBackground(new Color(229,57,53));
+				btnGeneraEsempio.setBackground(new Color (0, 151, 167));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
