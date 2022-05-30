@@ -33,7 +33,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	g.setColor(Color.lightGray);
 
 	for(i=0;i<120;) {
-    	g.drawLine(0,h-i, l,h-i);
+    	g.drawLine(30,h-i, l,h-i);
 		i=i+15;
 	}
 	g.setColor(Color.BLUE);
@@ -41,7 +41,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 	g.setColor(Color.lightGray);
 
 	for(j=0;j<1075;) {
-		g.drawLine(l-j,0,l-j,h);
+		g.drawLine(l-j,0,l-j,h+15);
 		j=j+15;
 	}
 	g.setColor(Color.BLUE);
@@ -73,7 +73,7 @@ public class PanelGraficiSchProcessi extends JPanel {
 
     	if(selectGriglia==true) {
     		for(i=0;i<120;) {
-    			g.drawLine(0,h-i, l,h-i);
+    			g.drawLine(25,h-i, l,h-i);
     			i=i+15;
     		}
     		g.setColor(Color.BLUE);
@@ -81,7 +81,7 @@ public class PanelGraficiSchProcessi extends JPanel {
     		g.setColor(Color.lightGray);
 
     		for(j=0;j<1075;) {
-    			g.drawLine(l-j,0,l-j,h);
+    			g.drawLine(l-j,0,l-j,h-15);
     			j=j+15;
     		}
     		g.setColor(Color.BLUE);
