@@ -3,6 +3,7 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -65,11 +66,13 @@ public class SchHD extends JFrame {
 	{
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1440, 800);
+		setBounds(50, 0, 1440, 800);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		frame.setResizable(false);
+		setTitle("Balzano Question Problem : Scheduling HD");
 		
 		JPanel panelMainButton = new JPanel();
 			panelMainButton.setForeground(new Color(153, 204, 255));
@@ -486,6 +489,18 @@ public class SchHD extends JFrame {
 				labelFastForwardPiu.setEnabled(true);
 				labelMostraSoluzioni.setEnabled(true);
 
+				chckbxSCAN.setEnabled(false);
+				chckbxLOOK.setEnabled(false);
+				rdbtnDestraLOOK.setEnabled(false);
+				rdbtnDestraSCAN.setEnabled(false);
+				rdbtnSinistraLOOK.setEnabled(false);
+				rdbtnSinistraSCAN.setEnabled(false);
+				
+				labelDatoDistanzaFCFS.setText("");
+				labelDatoDistanzaLOOK.setText("");
+				labelDatoDistanzaSCAN.setText("");
+				labelDatoDistanzaSSTF.setText("");
+				
 				Random random = new Random();
 /*				int ncilindri = random.nextInt(7 + 0) + 0;
 				comboBoxSceltaNCilindri.setSelectedIndex(ncilindri);
@@ -526,10 +541,19 @@ public class SchHD extends JFrame {
 					
 					chckbxSCAN.setEnabled(true);
 					chckbxLOOK.setEnabled(true);
-					rdbtnDestraLOOK.setEnabled(true);
-					rdbtnDestraSCAN.setEnabled(true);
-					rdbtnSinistraLOOK.setEnabled(true);
-					rdbtnSinistraSCAN.setEnabled(true);
+					
+					if(rdbtnDestraLOOK.isSelected())rdbtnDestraLOOK.setEnabled(false);
+					else rdbtnDestraLOOK.setEnabled(true);
+					
+					if(rdbtnDestraSCAN.isSelected())rdbtnDestraSCAN.setEnabled(false);
+					else rdbtnDestraSCAN.setEnabled(true);
+					
+					if(rdbtnSinistraLOOK.isSelected())rdbtnSinistraLOOK.setEnabled(false);
+					else rdbtnSinistraLOOK.setEnabled(true);
+					
+					if(rdbtnSinistraSCAN.isSelected())rdbtnSinistraSCAN.setEnabled(false);
+					else rdbtnSinistraSCAN.setEnabled(true);
+					
 					//GENERAZIONE MATRICI
 					String j= textFieldInzialeTestina.getText().toString();
 					int s=Integer.valueOf(j);
@@ -628,8 +652,9 @@ public class SchHD extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(rdbtnSinistraSCAN.isEnabled()) {
 					if(rdbtnSinistraSCAN.isSelected()) {
-
 						rdbtnDestraSCAN.setSelected(false);
+						rdbtnSinistraSCAN.setEnabled(false);
+						rdbtnDestraSCAN.setEnabled(true);
 	
 						String j= textFieldInzialeTestina.getText().toString();
 						int s=Integer.valueOf(j);
@@ -654,11 +679,6 @@ public class SchHD extends JFrame {
 							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
 							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
 						}
-					}
-					else {
-						//rdbtnDestraSCAN.setSelected(true);
-						rdbtnDestraSCAN.doClick();
-
 					}
 				}
 			}
@@ -669,9 +689,10 @@ public class SchHD extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(rdbtnDestraSCAN.isEnabled()) {
 					if(rdbtnDestraSCAN.isSelected()) {
-
 						rdbtnSinistraSCAN.setSelected(false);
-	
+						rdbtnDestraSCAN.setEnabled(false);
+						rdbtnSinistraSCAN.setEnabled(true);
+		
 						String j= textFieldInzialeTestina.getText().toString();
 						int s=Integer.valueOf(j);
 						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
@@ -695,10 +716,6 @@ public class SchHD extends JFrame {
 							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
 							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
 						}
-					}
-					else {
-						//rdbtnSinistraSCAN.setSelected(true);
-						rdbtnSinistraSCAN.doClick();
 					}
 				}
 			}
@@ -742,7 +759,9 @@ public class SchHD extends JFrame {
 				if(rdbtnSinistraLOOK.isEnabled()) {
 					if(rdbtnSinistraLOOK.isSelected()) {
 						rdbtnDestraLOOK.setSelected(false);
-						
+						rdbtnSinistraLOOK.setEnabled(false);
+						rdbtnDestraLOOK.setEnabled(true);
+
 						String j= textFieldInzialeTestina.getText().toString();
 						int s=Integer.valueOf(j);
 						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
@@ -766,11 +785,6 @@ public class SchHD extends JFrame {
 							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
 							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
 						}
-					}
-				
-					else {
-						//rdbtnDestraLOOK.setSelected(true);
-						rdbtnDestraLOOK.doClick();
 					}
 				}
 			}
@@ -782,7 +796,9 @@ public class SchHD extends JFrame {
 				if(rdbtnDestraLOOK.isEnabled()) {
 					if(rdbtnDestraLOOK.isSelected()) {
 						rdbtnSinistraLOOK.setSelected(false);
-						
+						rdbtnDestraLOOK.setEnabled(false);
+						rdbtnSinistraLOOK.setEnabled(true);
+
 						String j= textFieldInzialeTestina.getText().toString();
 						int s=Integer.valueOf(j);
 						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
@@ -806,10 +822,6 @@ public class SchHD extends JFrame {
 							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
 							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
 						}
-					}
-					else {
-						//rdbtnSinistraLOOK.setSelected(true);
-						rdbtnSinistraLOOK.doClick();
 					}
 				}
 			}
