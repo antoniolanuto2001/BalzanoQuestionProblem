@@ -109,7 +109,7 @@ public class Semafori extends JFrame {
 	{
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setTitle("Balzano Question Problem : Semafori");
+		setTitle("Operating Systems Simulator : Semafori");
 		setBounds(100, 100, 1440, 800);
 		setLocationRelativeTo(null);
 		setResizable(false);
