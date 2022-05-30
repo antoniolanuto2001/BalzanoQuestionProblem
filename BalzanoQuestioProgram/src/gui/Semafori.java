@@ -1,75 +1,50 @@
 package gui;
 
-import java.lang.*;
-
 import java.awt.BorderLayout;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AbstractWriter;
-import javax.swing.text.AttributeSet.FontAttribute;
-
 import model.ProcessoSemaforo;
 
-import java.awt.SystemColor;
-import java.awt.Taskbar;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.PopupMenuListener;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.basic.BasicBorders.ToggleButtonBorder;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
-import javax.swing.border.MatteBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.JToolBar;
-import javax.swing.JInternalFrame;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.JTextArea;
 
 public class Semafori extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
 	public 	boolean timeToContinue;
@@ -104,6 +79,7 @@ public class Semafori extends JFrame {
 	 */
 	
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Semafori(JFrame framechiamante) 
 	
 	{
@@ -276,6 +252,11 @@ public class Semafori extends JFrame {
 		tabella.setColumnSelectionAllowed(true);
 		DefaultTableModel model1 = new DefaultTableModel()
 		{
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
 			public Class<?> getColumnClass(int column){
 				switch(column) {
 				case 0:
@@ -4218,8 +4199,11 @@ public class Semafori extends JFrame {
 					int columnCount = tabella.getColumnCount();
 					int randomNum=0;
 					int startpoint=0,endpoint=0;
+					@SuppressWarnings("unused")
 					int end_processo=0,start_processo=0;
+					@SuppressWarnings("unused")
 					int start_critica1=0,start_critica2=0,start_critica3=0;
+					@SuppressWarnings("unused")
 					int end_critica1=0,end_critica2=0;
 					
 					

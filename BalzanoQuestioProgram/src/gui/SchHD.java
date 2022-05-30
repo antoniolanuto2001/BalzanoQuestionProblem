@@ -3,8 +3,6 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -34,10 +32,13 @@ import javax.swing.border.MatteBorder;
 import javax.swing.JCheckBox;
 
 import model.PanelGraficiSchHD;
-import model.PanelGraficiSchHD;
 
 public class SchHD extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
 	private int[]successione;
@@ -62,6 +63,7 @@ public class SchHD extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SchHD(JFrame framechiamante) 
 	{
 		frame=this;

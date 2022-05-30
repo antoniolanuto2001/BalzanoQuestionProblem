@@ -4,15 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
-
 import javax.swing.JPanel;
 
 public class PanelGraficiSchProcessi extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int xMin=0, xMax=50, yMin=0, yMax=40;//valore degli estremi del piao cartesiano
 	int l=1100, h=118;//salvo dimensioni della finestra in delle variabili per renderle piï¿½ facili da utilizzare e da modificare
 	float intervalloX, intervalloY;

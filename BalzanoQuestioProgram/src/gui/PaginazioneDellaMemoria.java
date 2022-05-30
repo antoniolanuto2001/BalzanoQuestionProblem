@@ -8,7 +8,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,60 +17,33 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.Key;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Random;
-
 import javax.swing.border.LineBorder;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AttributeSet.ColorAttribute;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.NumberFormatter;
-
 import model.PanelGraficiPaginazioneMemoria;
-import model.parolaHashing;
-import model.CreaLinee;
 import model.PanelGraficiMatricePaginazioneDellaMemoria;
-
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
-import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import java.awt.Desktop;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import java.beans.VetoableChangeListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import javax.swing.border.MatteBorder;
-import java.util.Queue;
-import java.awt.Component;
+
 
 
 public class PaginazioneDellaMemoria extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
 	private int pieno=0;
@@ -93,6 +65,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 
 	int flag=0;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
 		
 		frame=this;
@@ -949,8 +922,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 */
 	int[][] FIFO(int reference[], int frames){
 		
+		@SuppressWarnings("unused")
 		int  pointer = 0, hit = 0, fault = 0,ref_len;
-	    boolean isFull = false;
+	    @SuppressWarnings("unused")
+		boolean isFull = false;
 	    int buffer[];
 	    int mem_layout[][];
 	    
@@ -1214,7 +1189,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 //ALGORITMO CALCOLO PUNTI OPT MATRICE
 	int[][] OPT(int reference[], int frames){
 		
-	    int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    @SuppressWarnings("unused")
+		int  pointer = 0, hit = 0, fault = 0,ref_len;
 	    boolean isFull = false;
 	    int buffer[];
 	    int mem_layout[][];
@@ -1294,13 +1270,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 //OK ALGORITMO CALCOLO PUNTI OPT GRAFICO
 	int[] OPTGrafico(int reference[]){
 		int[] arrayPunti = new int[12];
+		@SuppressWarnings("unused")
 		int[] arrayFIFO = new int[25];
 	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
 	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
 	    
 	
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1377,7 +1355,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault2
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1455,7 +1434,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault3
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1533,7 +1513,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault4
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1611,7 +1592,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault5
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1689,7 +1671,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefaults6
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 		    boolean isFull = false;
 		    int buffer[];
 		    int mem_layout[][];
@@ -1783,7 +1766,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 //ALGORITMO CALCOLO PUNTI LRU MATRICE
 	int[][] LRU(int reference[], int frames){
 		
-		        int pointer = 0, hit = 0, fault = 0,ref_len;
+		        @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 		        Boolean isFull = false;
 		        int buffer[];
 		        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -1853,13 +1837,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 	int[] LRUGrafico(int reference[]){
 		
 		int[] arrayPunti = new int[12];
+		@SuppressWarnings("unused")
 		int[] arrayFIFO = new int[25];
 	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
 	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
 	    
 	    //pagefault1
 		{
-		 int pointer = 0, hit = 0, fault = 0,ref_len;
+		 @SuppressWarnings("unused")
+		int pointer = 0, hit = 0, fault = 0,ref_len;
 	        Boolean isFull = false;
 	        int buffer[];
 	        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -1925,7 +1911,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 		//pagefault2
 				{
-				 int pointer = 0, hit = 0, fault = 0,ref_len;
+				 @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 			        Boolean isFull = false;
 			        int buffer[];
 			        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -1991,7 +1978,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				//pagefault3
 				{
-				 int pointer = 0, hit = 0, fault = 0,ref_len;
+				 @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 			        Boolean isFull = false;
 			        int buffer[];
 			        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -2057,7 +2045,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				//pagefault4
 				{
-				 int pointer = 0, hit = 0, fault = 0,ref_len;
+				 @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 			        Boolean isFull = false;
 			        int buffer[];
 			        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -2123,7 +2112,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				//pagefault5
 				{
-				 int pointer = 0, hit = 0, fault = 0,ref_len;
+				 @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 			        Boolean isFull = false;
 			        int buffer[];
 			        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -2189,7 +2179,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				//pagefault6
 				{
-				 int pointer = 0, hit = 0, fault = 0,ref_len;
+				 @SuppressWarnings("unused")
+				int pointer = 0, hit = 0, fault = 0,ref_len;
 			        Boolean isFull = false;
 			        int buffer[];
 			        ArrayList<Integer> stack = new ArrayList<Integer>();
@@ -2272,6 +2263,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 //ALGORITMO CALCOLO PUNTI CLOCK MATRICE
 	int[][] CLOCK(int reference[], int frames){
 		
+		@SuppressWarnings("unused")
 		int  pointer = 0, hit = 0, fault = 0,ref_len;
         int buffer[][];
         int mem_layout[][];
@@ -2331,13 +2323,15 @@ public class PaginazioneDellaMemoria extends JFrame {
 //ALGORITMO CALCOLO PUNTI CLOCK GRAFICO
 	int[] CLOCKGrafico(int reference[]){
 		int[] arrayPunti = new int[12];
+		@SuppressWarnings("unused")
 		int[] arrayFIFO = new int[25];
 	    int pf1 = 0, pf2 = 0, pf3 = 0, pf4 = 0, pf5 = 0, pf6 = 0;
 	    int frames1=1, frames2=2, frames3=3, frames4=4, frames5=5, frames6=6;
 	    
 	    //pagefault1
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];
@@ -2393,7 +2387,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault2
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];
@@ -2449,7 +2444,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault3
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];
@@ -2505,7 +2501,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault4
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];
@@ -2561,7 +2558,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault5
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];
@@ -2617,7 +2615,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 	    
 	    //pagefault6
 	    {
-	    	int  pointer = 0, hit = 0, fault = 0,ref_len;
+	    	@SuppressWarnings("unused")
+			int  pointer = 0, hit = 0, fault = 0,ref_len;
 	        int buffer[][];
 	        int mem_layout[][];
 	        int used_layout[][];

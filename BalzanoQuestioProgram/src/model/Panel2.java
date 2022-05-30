@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 
 public class Panel2 extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int xMin=0, xMax=50, yMin=0, yMax=40;//valore degli estremi del piao cartesiano
 	int l=1100, h=118;//salvo dimensioni della finestra in delle variabili per renderle pi� facili da utilizzare e da modificare
 	float intervalloX, intervalloY;

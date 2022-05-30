@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
+
 import java.util.Random;
 
 import javax.swing.BorderFactory;
@@ -32,14 +32,17 @@ import javax.swing.border.LineBorder;
 
 import model.parolaHashing;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 public class Hashing extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
 	//Chaining
@@ -130,7 +133,9 @@ public class Hashing extends JFrame {
 	public 	boolean puoiCambiare=false;
 	public 	boolean puoiCambiareSpeciale=false;
 	public int iteratoreScorittore;
+	@SuppressWarnings("unchecked")
 	public LinkedList <Integer> []  listChaing = new LinkedList[8];
+	@SuppressWarnings("unchecked")
 	public LinkedList <Integer> []  listOpenAddresing = new LinkedList[8];
 	private JScrollPane scrollPaneHelp;
 	private JLabel labelHelp;
@@ -138,6 +143,7 @@ public class Hashing extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Hashing(JFrame framechiamante) 
 	{
 

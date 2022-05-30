@@ -1,16 +1,17 @@
 package model;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-import javax.swing.text.AttributeSet.ColorAttribute;
 
 public class PanelGraficiSchHD extends JPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	int xMin=0, xMax=50, yMin=0, yMax=40;//valore degli estremi del piao cartesiano
-	int l=1100, h=118;//salvo dimensioni della finestra in delle variabili per renderle piï¿½ facili da utilizzare e da modificare
+	int l=1100, h=118;//salvo dimensioni della finestra in delle variabili per renderle piÃ¯Â¿Â½ facili da utilizzare e da modificare
 	float intervalloX, intervalloY;
    	static public float a=30;
 	
@@ -41,7 +42,7 @@ public class PanelGraficiSchHD extends JPanel{
 		g.setColor(Color.blue);
 
    		for(int l=0;l<numeriFCFS.length;l++) {   
-    		g.drawString("●",numeriFCFS[l]-5,8+15*l);
+    		g.drawString("â—�",numeriFCFS[l]-5,8+15*l);
     					//92-l*15);
     	}*/
    	}

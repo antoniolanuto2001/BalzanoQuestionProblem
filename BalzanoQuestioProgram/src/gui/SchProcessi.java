@@ -28,15 +28,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.text.AttributeSet.ColorAttribute;
 
 import model.PanelGraficiSchProcessi;
 import model.CreaLinee;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -46,26 +43,15 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import java.awt.Desktop;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
+
 import javax.swing.border.MatteBorder;
-import javax.swing.event.AncestorListener;
+
 import javax.swing.ImageIcon;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.event.ChangeListener;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.event.ChangeEvent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
 import javax.swing.Box;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.CaretListener;
@@ -73,6 +59,10 @@ import javax.swing.event.CaretEvent;
 
 public class SchProcessi extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
 	private String scelta="0";
@@ -95,6 +85,7 @@ public class SchProcessi extends JFrame {
 	private static int i=20;
 
 
+@SuppressWarnings({ "unchecked", "rawtypes" })
 public SchProcessi(JFrame framechiamante) {
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -1964,7 +1955,9 @@ public SchProcessi(JFrame framechiamante) {
 		int ct[] = new int[n];     // completion times
 		int ta[] = new int[n];     // turn around times
 		int wt[] = new int[n];     // waiting times
+		@SuppressWarnings("unused")
 		int temp;
+		@SuppressWarnings("unused")
 		float avgwt=0,avgta=0;
 	
 		for(int i = 0; i < n; i++){
@@ -2020,6 +2013,7 @@ public SchProcessi(JFrame framechiamante) {
 		int wt[] = new int[n];  //wt means waiting time
 		int f[] = new int[n];  // f means it is flag it checks process is completed or not
 		int st=0, tot=0;
+		@SuppressWarnings("unused")
 		float avgwt=0, avgta=0;
 	 
 		for(int i=0;i<n;i++){
@@ -2029,6 +2023,7 @@ public SchProcessi(JFrame framechiamante) {
 			f[i] = 0;
 		}
 	
+		@SuppressWarnings("unused")
 		boolean a = true;
 		while(true){
 			int c=n, min=999;
@@ -2163,7 +2158,8 @@ public SchProcessi(JFrame framechiamante) {
 	     
 	     
 	     //Printing the average WT & TT
-	     float WT = 0,TT = 0;
+	     @SuppressWarnings("unused")
+		float WT = 0,TT = 0;
 	     for(int i = 1; i <= n; i++)
 	     {
 	      WT += proc[i][2];
@@ -2192,6 +2188,7 @@ public SchProcessi(JFrame framechiamante) {
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
 		
 		int pro=lineaRR.length,cambio=0;
+		@SuppressWarnings("unused")
 		int j,time,remain,flag=0;
 		float avgwt=0,avgtt=0;
 

@@ -12,46 +12,34 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Iterator;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.DimensionUIResource;
-import javax.swing.plaf.ScrollPaneUI;
-import javax.swing.text.AttributeSet.ColorAttribute;
 import javax.swing.text.DefaultCaret;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
-import javax.swing.JProgressBar;
-import javax.swing.JToggleButton;
-import javax.swing.JToolBar;
-import javax.swing.JList;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
-import javax.swing.JSpinner;
-import javax.swing.border.BevelBorder;
-import javax.swing.UIManager;
-import javax.swing.JTabbedPane;
 
 
 
 public class Filosofi extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public 	JTextArea textAreaLog;
 	private JPanel contentPane;
 	private JFrame frame;

@@ -1,6 +1,6 @@
 package model;
 
-import java.util.LinkedList;
+
 
 import javax.swing.JTextArea;
 
