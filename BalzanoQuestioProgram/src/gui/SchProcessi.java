@@ -132,10 +132,10 @@ public SchProcessi(JFrame framechiamante) {
 	        JLabel labelScrittaYoutube = new JLabel("Lezione");
 	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaYoutube.setBounds(80, 120, 50, 12);
+	        labelScrittaYoutube.setBounds(78, 122, 50, 12);
 	        pannelloPrincipale.add(labelScrittaYoutube);
-	        JLabel labelYoutubeIcon = new JLabel("Youtube");
-	        labelYoutubeIcon.setHorizontalAlignment(SwingConstants.LEFT);
+	        JLabel labelYoutubeIcon = new JLabel("");
+	        labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
@@ -162,12 +162,13 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
-	        labelYoutubeIcon.setBounds(80, 75, 47, 46);
+	        labelYoutubeIcon.setBounds(80, 80, 47, 46);
 	        pannelloPrincipale.add(labelYoutubeIcon);
 	        
 	        JLabel labelScrittaSlide = new JLabel("Slide");
+	        labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
-	        labelScrittaSlide.setBounds(162, 119, 40, 15);
+	        labelScrittaSlide.setBounds(144, 122, 61, 15);
 	        pannelloPrincipale.add(labelScrittaSlide);
 	        JLabel labelSlideIcon = new JLabel("Slide");
 	        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -196,7 +197,7 @@ public SchProcessi(JFrame framechiamante) {
 	        	}
 	        });
 	        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	        labelSlideIcon.setBounds(150, 75, 53, 46);
+	        labelSlideIcon.setBounds(150, 80, 53, 46);
 	        pannelloPrincipale.add(labelSlideIcon);
 			frame.setVisible(true);
 	        

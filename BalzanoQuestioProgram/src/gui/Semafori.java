@@ -66,6 +66,7 @@ import javax.swing.Box;
 import javax.swing.JToolBar;
 import javax.swing.JInternalFrame;
 import javax.swing.border.SoftBevelBorder;
+import javax.swing.JTextArea;
 
 public class Semafori extends JFrame {
 	
@@ -129,32 +130,30 @@ public class Semafori extends JFrame {
 		int [] ripartenza = new int[5];
 		Arrays.fill(ripartenza, 0);
 		JPanel panelMainButton = new JPanel();
-		panelMainButton.setBackground(new Color(220, 220, 220));
 		panelMainButton.setForeground(new Color(153, 204, 255));
 		panelMainButton.setBounds(0, 0, 1440, 800);
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
 
 		JPanel CorniceTitoloJPanel = new JPanel();
-		CorniceTitoloJPanel.setBackground(new Color(211, 211, 211));
-		CorniceTitoloJPanel.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-		CorniceTitoloJPanel.setBounds(0, 0, 1430, 63);
+		CorniceTitoloJPanel.setBorder(new LineBorder(Color.ORANGE, 7, true));
+		CorniceTitoloJPanel.setBounds(0, 0, 1416, 75);
 		panelMainButton.add(CorniceTitoloJPanel);
 		CorniceTitoloJPanel.setLayout(null);
 		
 		
 		JPanel panelControllo = new JPanel();
-		panelControllo.setBackground(new Color(211,211,211));
 		panelControllo.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
-		panelControllo.setBounds(1137, 152, 277, 513);
+		panelControllo.setBounds(1139, 85, 277, 658);
 		panelMainButton.add(panelControllo);
 		panelControllo.setLayout(null);
 		
 		
-		JLabel TitoloSemaforiJLabel = new JLabel("Semafori");
+		JLabel TitoloSemaforiJLabel = new JLabel("SEMAFORI");
+		TitoloSemaforiJLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		TitoloSemaforiJLabel.setBackground(new Color(211, 211, 211));
-		TitoloSemaforiJLabel.setFont(new Font("Kefa", Font.PLAIN, 35));
-		TitoloSemaforiJLabel.setBounds(6, 5, 262, 53);
+		TitoloSemaforiJLabel.setFont(new Font("Segoe UI", Font.BOLD, 40));
+		TitoloSemaforiJLabel.setBounds(6, 5, 1181, 60);
 		CorniceTitoloJPanel.add(TitoloSemaforiJLabel);
 		
 		JLabel labelFedericoII = new JLabel("");
@@ -162,29 +161,34 @@ public class Semafori extends JFrame {
 		labelFedericoII.setBounds(1209, 11, 199, 41);
 		CorniceTitoloJPanel.add(labelFedericoII);
 		
-		JLabel labelScrittaSlide = new JLabel("Slide Argomento");
-		labelScrittaSlide.setFont(new Font("Tw Cen MT",Font.BOLD,13));
-		labelScrittaSlide.setBounds(595,110,118,15);
+		JLabel labelScrittaSlide = new JLabel("Slide");
+		labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaSlide.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		labelScrittaSlide.setBounds(146,122,61,15);
 		panelMainButton.add(labelScrittaSlide);
 
-		JLabel labelIndietroIcon = new JLabel("Indietro");
+		JLabel labelIndietroIcon = new JLabel("");
+		labelIndietroIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	    labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	    labelIndietroIcon.setBounds(6, 90, 32, 32);
+	    labelIndietroIcon.setBounds(10, 80, 53, 46);
 	    panelMainButton.add(labelIndietroIcon);
 	     
 	    JLabel labelSlideIcon = new JLabel("");
+	    labelSlideIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	    labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
-	    labelSlideIcon.setBounds(620, 70, 53, 46);
+	    labelSlideIcon.setBounds(150, 80, 53, 46);
 	    panelMainButton.add(labelSlideIcon);
 		
 		JLabel labelYoutubeIcon = new JLabel("");
+		labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 		labelYoutubeIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/youtubeIcon2.png")));
-		labelYoutubeIcon.setBounds(447, 70, 54, 46);
+		labelYoutubeIcon.setBounds(80, 80, 47, 46);
 		panelMainButton.add(labelYoutubeIcon);
 		
-		JLabel labelScrittaYoutube = new JLabel("Video Lezione");
-		labelScrittaYoutube.setFont(new Font("Tw Cen MT",Font.BOLD,13));
-		labelScrittaYoutube.setBounds(430,110,101,15);
+		JLabel labelScrittaYoutube = new JLabel("Lezione");
+		labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
+		labelScrittaYoutube.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		labelScrittaYoutube.setBounds(78,122,50,12);
 		panelMainButton.add(labelScrittaYoutube);
 		
 		
@@ -260,8 +264,8 @@ public class Semafori extends JFrame {
 
 		
 		JScrollPane scrollTabella= new JScrollPane();
-		scrollTabella.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Table View", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		scrollTabella.setBounds(10, 152, 1108, 327);
+		scrollTabella.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		scrollTabella.setBounds(10, 152, 1108, 196);
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
@@ -275,7 +279,7 @@ public class Semafori extends JFrame {
 			public Class<?> getColumnClass(int column){
 				switch(column) {
 				case 0:
-					return Integer.class;
+					return String.class;
 				case 1:
 					return Integer.class;
 				case 2:
@@ -299,22 +303,36 @@ public class Semafori extends JFrame {
 		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
 		scrollTabella.setViewportView(tabella);
 		
-		JLabel label = (JLabel) tabella.getDefaultRenderer(Integer.class);
+		JLabel label = (JLabel) tabella.getDefaultRenderer(String.class);
 		label.setHorizontalAlignment (SwingConstants.CENTER);
+
+		JLabel label2 = (JLabel) tabella.getDefaultRenderer(String.class);
+		label2.setHorizontalAlignment (SwingConstants.CENTER);
+		label2.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		label2.setBackground(Color.orange);
+		
+		JLabel label3 = (JLabel) tabella.getDefaultRenderer(Integer.class);
+		label3.setHorizontalAlignment (SwingConstants.CENTER);
+		label3.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		label3.setBackground(Color.LIGHT_GRAY);
+		
+		
 		
 		JPanel panelControlloProcessi = new JPanel();
 		panelControlloProcessi.setBackground(new Color(220,220,220));
-		panelControlloProcessi.setBounds(17, 290, 245, 190);
+		panelControlloProcessi.setBounds(17, 240, 245, 154);
 		panelControlloProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelControlloProcessi);
 		panelControlloProcessi.setLayout(null);
 		
 		
 		JButton GeneraEsercizioJButton = new JButton();
-		GeneraEsercizioJButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		GeneraEsercizioJButton.setBackground(Color.WHITE);
+		GeneraEsercizioJButton.setBorder(new LineBorder(Color.orange, 2));
+		GeneraEsercizioJButton.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		GeneraEsercizioJButton.setText("Genera Esercizio");
 		GeneraEsercizioJButton.setSize(141, 27);
-		GeneraEsercizioJButton.setLocation(57, 157);
+		GeneraEsercizioJButton.setLocation(57, 110);
 		GeneraEsercizioJButton.setVisible(true);
 		panelControlloProcessi.add(GeneraEsercizioJButton);
 	        
@@ -327,17 +345,6 @@ public class Semafori extends JFrame {
 		EndTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
 		EndTimeIndexJLabel.setBounds(790, 502, 64, 14);
 		panelMainButton.add(EndTimeIndexJLabel);
-	        
-	            
-		JLabel HelpIconJLabel = new JLabel("");
-		HelpIconJLabel.setBounds(820, 78, 32, 32);
-		panelMainButton.add(HelpIconJLabel);
-		HelpIconJLabel.setIcon(new ImageIcon(Semafori.class.getResource("/img/question.png")));
-		
-		JLabel HelpJLabel = new JLabel("Info uso");
-		HelpJLabel.setFont(new Font("Tw Cen MT",Font.BOLD,13));
-		HelpJLabel.setBounds(810,110,64,15);
-		panelMainButton.add(HelpJLabel);
 		
 		
 		JPanel BaseProgressBar1JPanel = new JPanel();
@@ -565,7 +572,7 @@ public class Semafori extends JFrame {
         panelControllo.add(labelPnlCtrl);
         labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
         labelPnlCtrl.setFont(new Font("Arial", Font.BOLD, 22));
-        labelPnlCtrl.setBorder(new LineBorder(new Color (229, 57, 53), 2));
+        labelPnlCtrl.setBorder(new LineBorder(Color.ORANGE, 2));
         
         
         
@@ -581,25 +588,25 @@ public class Semafori extends JFrame {
         SceltaOpzioniJLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         SceltaOpzioniJLabel.setForeground(Color.RED);
         SceltaOpzioniJLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        SceltaOpzioniJLabel.setBounds(59, 96, 151, 26);
+        SceltaOpzioniJLabel.setBounds(59, 85, 151, 26);
         panelControllo.add(SceltaOpzioniJLabel);
         				
         JPanel panelSceltaProcessi = new JPanel();
         panelSceltaProcessi.setBackground(new Color(220,220,220));
-        panelSceltaProcessi.setBounds(17, 133, 245, 93);
+        panelSceltaProcessi.setBounds(17, 115, 245, 93);
         panelSceltaProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
         panelControllo.add(panelSceltaProcessi);
         panelSceltaProcessi.setLayout(null);
         				
         JLabel labelNumeroSemafori = new JLabel("Numero Semafori : ");
-        labelNumeroSemafori.setBounds(10, 56, 139, 22);
+        labelNumeroSemafori.setBounds(10, 45, 139, 22);
         panelSceltaProcessi.add(labelNumeroSemafori);
         labelNumeroSemafori.setForeground(Color.BLACK);
         labelNumeroSemafori.setFont(new Font("Segoe UI", Font.BOLD, 14));
         				
         				
         				JComboBox NumSemaforiComboBox = new JComboBox();
-        				NumSemaforiComboBox.setBounds(180, 58, 58, 22);
+        				NumSemaforiComboBox.setBounds(180, 45, 58, 22);
         				panelSceltaProcessi.add(NumSemaforiComboBox);
         				NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
         				NumSemaforiComboBox.setMaximumRowCount(2);
@@ -623,14 +630,14 @@ public class Semafori extends JFrame {
 
         						
         						JButton buttonReset = new JButton("Back");
-        						buttonReset.setBounds(118, 98, 121, 23);
+        						buttonReset.setBounds(118, 65, 121, 23);
         						panelControlloProcessi.add(buttonReset);
         						
         						buttonReset.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						buttonReset.setBackground(new Color(255, 255, 255));
         						
         						JToggleButton toggleButtonStartPause = new JToggleButton("Start/Pause");
-        						toggleButtonStartPause.setBounds(118, 40, 121, 23);
+        						toggleButtonStartPause.setBounds(118, 15, 121, 23);
         						panelControlloProcessi.add(toggleButtonStartPause);
         						toggleButtonStartPause.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						toggleButtonStartPause.setBackground(new Color(255, 255, 255));
@@ -638,13 +645,13 @@ public class Semafori extends JFrame {
         						JLabel labelAvvia = new JLabel("Movimento :");
         						labelAvvia.setForeground(Color.BLACK);
         						labelAvvia.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        						labelAvvia.setBounds(10, 37, 105, 22);
+        						labelAvvia.setBounds(10, 15, 105, 22);
         						panelControlloProcessi.add(labelAvvia);
         						
         						JLabel labelReset = new JLabel("Ripristino :");
         						labelReset.setForeground(Color.BLACK);
         						labelReset.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        						labelReset.setBounds(10, 96, 105, 22);
+        						labelReset.setBounds(10, 65, 105, 22);
         						panelControlloProcessi.add(labelReset);
         						
         						JLabel ControlloIndicatoreJLabel = new JLabel("Controllo  Indicatore :");
@@ -652,13 +659,33 @@ public class Semafori extends JFrame {
         						ControlloIndicatoreJLabel.setVerticalAlignment(SwingConstants.BOTTOM);
         						ControlloIndicatoreJLabel.setForeground(Color.RED);
         						ControlloIndicatoreJLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        						ControlloIndicatoreJLabel.setBounds(10, 248, 245, 26);
+        						ControlloIndicatoreJLabel.setBounds(10, 210, 245, 26);
         						panelControllo.add(ControlloIndicatoreJLabel);
         						
-        						JPanel LineaAppoggioIconeJPanel = new JPanel();
-        						LineaAppoggioIconeJPanel.setBackground(Color.BLACK);
-        						LineaAppoggioIconeJPanel.setBounds(403, 130, 500, 2);
-        						panelMainButton.add(LineaAppoggioIconeJPanel);
+        						JPanel pannelloHelp = new JPanel();
+        						pannelloHelp.setBounds(17, 427, 245, 221);
+        						panelControllo.add(pannelloHelp);
+        						pannelloHelp.setLayout(null);
+        						
+        						JScrollPane scrollPaneHelp = new JScrollPane();
+        						scrollPaneHelp.setBounds(0, 0, 245, 255);
+        						pannelloHelp.add(scrollPaneHelp);
+        						
+        						JTextArea txtrHelpArea = new JTextArea();
+        						scrollPaneHelp.setViewportView(txtrHelpArea);
+        						txtrHelpArea.setWrapStyleWord(true);
+        						txtrHelpArea.setLineWrap(true);
+        						txtrHelpArea.setText("I semafori sono utilizzabili per risolvere il problema della sezione critica con n processi. Gli n processi condividono un semaforo comune, mutex, inizializzato a 1. I semafori sono utilizzabili anche per risolvere diversi problemi di sincronizzazione. Si considerino, per esempio, due processi in esecuzione concorrente: P1 con un'istruzione S1 e P2 con un'istruzione S2. Questo schema si pu\u00F2 prontamente realizzare facendo condividere a P1 e P2 un semaforo comune, sincronizzazione, inizializzato a 0.\r\nL'operazione di bloccaggio pone il processo in una coda d'attesa associata al semaforo e cambia lo stato del processo nello stato d'attesa. Quindi si trasferisce il controllo allo scheduler della CPU che sceglie un altro processo pronto per l'esecuzione. Un processo bloccato, che attende a un semaforo S, sar\u00E0 riavviato in seguito al termine della zona critica di un altro processo. Per aggiungere e togliere processi dalla lista assicurando un'attesa limitata si pu\u00F2 usare una coda FIFO, della quale il semaforo contiene i puntatori al primo e all'ultimo elemento (in generale si pu\u00F2 usare qualsiasi criterio d'accodamento poich\u00E9 il corretto uso dei semafori non dipende dal particolare criterio adottato). La realizzazione di un semaforo con coda d'attesa pu\u00F2 condurre a situazioni in cui ciascun processo di un insieme di processi attende indefinitamente un evento che pu\u00F2 essere causato solo da uno dei processi dello stesso insieme. Quando si verifica una situazione del genere si dice che i processi sono in deadlock.");
+        						txtrHelpArea.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        						txtrHelpArea.setCaretPosition(0);
+        						txtrHelpArea.setEditable(false);
+        						
+        						JLabel labelHelp = new JLabel("  Spiegazione Argomento : ");
+        						labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
+        						labelHelp.setForeground(Color.RED);
+        						labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        						labelHelp.setBounds(17, 400, 245, 25);
+        						panelControllo.add(labelHelp);
         						
         						
         						
@@ -3771,6 +3798,16 @@ public class Semafori extends JFrame {
         								}
         							}
 	
+        							
+        							@Override
+        							public void mouseEntered(MouseEvent e) 
+        							{
+        								toggleButtonStartPause.setBackground(Color.ORANGE);
+        							}
+        							@Override
+        							public void mouseExited(MouseEvent e) {
+        								toggleButtonStartPause.setBackground(Color.WHITE);
+        							}
         						});
         						
 
@@ -3858,8 +3895,17 @@ public class Semafori extends JFrame {
         								}
 
         							}
+        							@Override
+        							public void mouseEntered(MouseEvent e) 
+        							{
+        								
+        								buttonReset.setBackground(Color.ORANGE);
+        							}
+        							@Override
+        							public void mouseExited(MouseEvent e) {
+        								buttonReset.setBackground(Color.WHITE);
+        							}
         						});
-        						
         						
         						
         						
@@ -4959,9 +5005,19 @@ public class Semafori extends JFrame {
 			 JOptionPane.showMessageDialog(new JFrame(), "Non e' possibile generare nuovi esercizi con sessioni in esecuzione: seleziona 'Pause' o 'Reset'!", "Nuovo Esercizio Error Dialog",
 			            JOptionPane.ERROR_MESSAGE);
 		}
+				
 				}
 				
-	        });
+	        	@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+	        		GeneraEsercizioJButton.setBackground(Color.ORANGE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					GeneraEsercizioJButton.setBackground(Color.WHITE);
+				}
+			});
 						
 					
 
@@ -5039,19 +5095,6 @@ public class Semafori extends JFrame {
 					@Override 
 					public void mouseExited(MouseEvent e) {
 						labelScrittaYoutube.setForeground(Color.BLACK);
-					}
-				});
-				
-				
-				HelpIconJLabel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseEntered(MouseEvent e) {
-						HelpJLabel.setForeground(Color.RED);
-					}
-					
-					@Override 
-					public void mouseExited(MouseEvent e) {
-						HelpJLabel.setForeground(Color.BLACK);
 					}
 				});
 
