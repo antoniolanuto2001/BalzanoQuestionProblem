@@ -77,7 +77,7 @@ public class SchHD extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Operating Systems Simulator: Scheduling HD");
-		
+
 		JPanel panelMainButton = new JPanel();
 			panelMainButton.setForeground(new Color(153, 204, 255));
 			panelMainButton.setBounds(0, 0, 1440, 800);
@@ -94,7 +94,7 @@ public class SchHD extends JFrame {
 			labelSchedulingHardDisk.setFont(new Font("Segoe UI", Font.BOLD, 48));
 			labelSchedulingHardDisk.setBounds(408, 0, 608, 73);
 			pannelloTitolo.add(labelSchedulingHardDisk);
-		//label
+
 		JLabel labelFedericoII = new JLabel("");
 			labelFedericoII.setIcon(new ImageIcon(SchHD.class.getResource("/img/logoUninaIcon2.png")));
 			labelFedericoII.setBounds(1215, 11, 199, 53);
@@ -126,7 +126,8 @@ public class SchHD extends JFrame {
 			pannelloParametri.add(btnGeneraEsempio);
 			
 		JComboBox comboBoxSceltaNCilindri = new JComboBox();
-			comboBoxSceltaNCilindri.setModel(new DefaultComboBoxModel(new String[] {"200", "400", "600", "800", "1000", "1400", "1800", "2000"}));
+			comboBoxSceltaNCilindri.setModel(new DefaultComboBoxModel(new String[] {"50", "100", "200", "400", "600", "800", "1000", "1400", "1800", "2000"}));
+			comboBoxSceltaNCilindri.setSelectedIndex(2);
 			comboBoxSceltaNCilindri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxSceltaNCilindri.setBackground(Color.WHITE);
 			comboBoxSceltaNCilindri.setBounds(166, 105, 74, 22);
@@ -183,7 +184,7 @@ public class SchHD extends JFrame {
 			labelCodaRichieste.setBounds(16, 44, 224, 23);
 			pannelloParametri.add(labelCodaRichieste);
 			
-		JLabel labelPosizioneInziale = new JLabel("Posizione inziale testina : ");
+		JLabel labelPosizioneInziale = new JLabel("Posizione iniziale testina : ");
 			labelPosizioneInziale.setFont(new Font("Segoe UI", Font.BOLD, 14));
 			labelPosizioneInziale.setBounds(10, 11, 183, 22);
 			pannelloParametri.add(labelPosizioneInziale);
@@ -191,7 +192,7 @@ public class SchHD extends JFrame {
 		JTextField textFieldInzialeTestina = new JTextField();
 			textFieldInzialeTestina.setFont(new Font("Arial", Font.PLAIN, 15));
 			textFieldInzialeTestina.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldInzialeTestina.setText("2000");
+			textFieldInzialeTestina.setText("0");
 			textFieldInzialeTestina.setBounds(188, 13, 52, 20);
 			pannelloParametri.add(textFieldInzialeTestina);
 			textFieldInzialeTestina.setColumns(10);
@@ -243,11 +244,13 @@ public class SchHD extends JFrame {
 			panelMainButton.add(labelIndietroIcon);
 
 		JLabel labelScrittaYoutube = new JLabel("Lezione");
+			labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 			labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
 			labelScrittaYoutube.setBounds(80, 120, 50, 12);
 			panelMainButton.add(labelScrittaYoutube);
 		
-		JLabel labelYoutubeIcon = new JLabel("Youtube");
+		JLabel labelYoutubeIcon = new JLabel("");
+			labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 			labelYoutubeIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/youtubeIcon2.png")));
 			labelYoutubeIcon.setBounds(80, 75, 47, 46);
 			panelMainButton.add(labelYoutubeIcon);
@@ -258,10 +261,8 @@ public class SchHD extends JFrame {
 				try {
 					d.browse(new URI ("https://youtu.be/-EfXe93K_3E?t=2580"));
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (URISyntaxException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
         	}
@@ -282,23 +283,23 @@ public class SchHD extends JFrame {
 			labelScrittaSlide.setBounds(162, 119, 40, 15);
 			panelMainButton.add(labelScrittaSlide);
 			
-		JLabel labelSlideIcon = new JLabel("Slide");
+		JLabel labelSlideIcon = new JLabel("");
 			labelSlideIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/pdfIcon1.png")));
 			labelSlideIcon.setBounds(150, 75, 53, 46);
 			panelMainButton.add(labelSlideIcon);
 			
-			/*GRAFICI*/
-			
-			
+/*----------------------------GRAFICI---------------------------*/
+	//GRAFICI
 		JPanel pannelloGrafici = new JPanel();
 			pannelloGrafici.setLayout(null);
-			pannelloGrafici.setBounds(0, 144, 1131, 620);
+			pannelloGrafici.setBounds(0, 136, 1131, 628);
 			panelMainButton.add(pannelloGrafici);
 			
+	//PANNELLO FCFS
 		JPanel pannelloFCFS = new JPanel();
 					pannelloFCFS.setLayout(null);
 					pannelloFCFS.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloFCFS.setBounds(10, 0, 1121, 150);
+					pannelloFCFS.setBounds(7, 5, 1121, 150);
 					pannelloGrafici.add(pannelloFCFS);
 				
 				JLabel labelFirstcomeFirstserved = new JLabel("FCFS");
@@ -315,20 +316,21 @@ public class SchHD extends JFrame {
 					pannelloFCFS.add(labelDistanzaTotaleFCFS);
 				
 				JLabel labelDatoDistanzaFCFS = new JLabel("");
-				labelDatoDistanzaFCFS.setHorizontalAlignment(SwingConstants.CENTER);
+					labelDatoDistanzaFCFS.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDatoDistanzaFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 					labelDatoDistanzaFCFS.setBounds(0, 70, 107, 25);
 					pannelloFCFS.add(labelDatoDistanzaFCFS);
 				
 				PanelGraficiSchHD jPanelFCFS = new PanelGraficiSchHD();
 					jPanelFCFS.setLayout(null);
-					jPanelFCFS.setBounds(117, 0, 993, 145);
+					jPanelFCFS.setBounds(117, 0, 1000, 145);
 					pannelloFCFS.add(jPanelFCFS);
-					
+			
+	//PANNELLO SSTF
 		JPanel pannelloSSTF = new JPanel();
 					pannelloSSTF.setLayout(null);
 					pannelloSSTF.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloSSTF.setBounds(10, 153, 1121, 150);
+					pannelloSSTF.setBounds(7, 158, 1121, 150);
 					pannelloGrafici.add(pannelloSSTF);
 				
 				JLabel labelShortestSeekTime = new JLabel("SSTF");
@@ -344,20 +346,21 @@ public class SchHD extends JFrame {
 					pannelloSSTF.add(labelDistanzaTotaleSSTF);
 					
 				JLabel labelDatoDistanzaSSTF = new JLabel("");
-				labelDatoDistanzaSSTF.setHorizontalAlignment(SwingConstants.CENTER);
+					labelDatoDistanzaSSTF.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDatoDistanzaSSTF.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 					labelDatoDistanzaSSTF.setBounds(0, 70, 107, 25);
 					pannelloSSTF.add(labelDatoDistanzaSSTF);
 				
 				PanelGraficiSchHD jPanelSSFT = new PanelGraficiSchHD();
 					jPanelSSFT.setLayout(null);
-					jPanelSSFT.setBounds(117, 0, 993, 145);
+					jPanelSSFT.setBounds(117, 0, 1000, 145);
 					pannelloSSTF.add(jPanelSSFT);
-				
+					
+	//PANNELLO SCAN
 		JPanel pannelloSCAN = new JPanel();
 					pannelloSCAN.setLayout(null);
 					pannelloSCAN.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloSCAN.setBounds(10, 306, 1121, 150);
+					pannelloSCAN.setBounds(7, 311, 1121, 150);
 					pannelloGrafici.add(pannelloSCAN);
 				
 				JLabel labelSCAN = new JLabel("SCAN");
@@ -373,14 +376,14 @@ public class SchHD extends JFrame {
 					pannelloSCAN.add(labelDistanzaTotaleSCAN);
 				
 				JLabel labelDatoDistanzaSCAN = new JLabel("");
-				labelDatoDistanzaSCAN.setHorizontalAlignment(SwingConstants.CENTER);
+					labelDatoDistanzaSCAN.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDatoDistanzaSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 18));
 					labelDatoDistanzaSCAN.setBounds(0, 65, 107, 25);
 					pannelloSCAN.add(labelDatoDistanzaSCAN);
 					
 				PanelGraficiSchHD jPanelSCAN = new PanelGraficiSchHD();
 					jPanelSCAN.setLayout(null);
-					jPanelSCAN.setBounds(151, 0, 959, 145);
+					jPanelSCAN.setBounds(117, 0, 1000, 145);
 					pannelloSCAN.add(jPanelSCAN);
 					
 				JCheckBox chckbxSCAN = new JCheckBox("C-SCAN");
@@ -389,16 +392,16 @@ public class SchHD extends JFrame {
 					chckbxSCAN.setBounds(0, 95, 98, 21);
 					pannelloSCAN.add(chckbxSCAN);
 					
-				JLabel labelDirezioneSCAN = new JLabel("<  direzione  >");
+				JLabel labelDirezioneSCAN = new JLabel("direzione");
 					labelDirezioneSCAN.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDirezioneSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDirezioneSCAN.setBounds(24, 120, 98, 25);
+					labelDirezioneSCAN.setBounds(24, 120, 67, 25);
 					pannelloSCAN.add(labelDirezioneSCAN);
 					
 				JRadioButton rdbtnDestraSCAN = new JRadioButton("");
 					rdbtnDestraSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnDestraSCAN.setEnabled(false);
-					rdbtnDestraSCAN.setBounds(122, 120, 23, 21);
+					rdbtnDestraSCAN.setBounds(90, 120, 23, 21);
 					pannelloSCAN.add(rdbtnDestraSCAN);
 					
 				JRadioButton rdbtnSinistraSCAN = new JRadioButton("");
@@ -407,11 +410,12 @@ public class SchHD extends JFrame {
 					rdbtnSinistraSCAN.setEnabled(false);
 					rdbtnSinistraSCAN.setBounds(0, 120, 23, 21);
 					pannelloSCAN.add(rdbtnSinistraSCAN);
-					
+			
+	//PANNELLO LOOK
 		JPanel pannelloLOOK = new JPanel();
 					pannelloLOOK.setLayout(null);
 					pannelloLOOK.setBorder(new MatteBorder(0, 0, 2, 2, (Color) new Color(0, 0, 0)));
-					pannelloLOOK.setBounds(10, 459, 1121, 150);
+					pannelloLOOK.setBounds(7, 464, 1121, 150);
 					pannelloGrafici.add(pannelloLOOK);
 					
 				JLabel labelLOOK = new JLabel("LOOK");
@@ -434,7 +438,7 @@ public class SchHD extends JFrame {
 					
 				PanelGraficiSchHD jPanelLOOK = new PanelGraficiSchHD();
 					jPanelLOOK.setLayout(null);
-					jPanelLOOK.setBounds(151, 0, 959, 145);
+					jPanelLOOK.setBounds(117, 0, 1000, 145);
 					pannelloLOOK.add(jPanelLOOK);
 					
 				JCheckBox chckbxLOOK = new JCheckBox("C-LOOK");
@@ -443,16 +447,16 @@ public class SchHD extends JFrame {
 					chckbxLOOK.setBounds(0, 95, 98, 20);
 					pannelloLOOK.add(chckbxLOOK);
 					
-				JLabel labelDirezioneLOOK = new JLabel("<  direzione  >");
+				JLabel labelDirezioneLOOK = new JLabel("direzione");
 					labelDirezioneLOOK.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDirezioneLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-					labelDirezioneLOOK.setBounds(24, 120, 98, 25);
+					labelDirezioneLOOK.setBounds(24, 120, 67, 25);
 					pannelloLOOK.add(labelDirezioneLOOK);
 					
 				JRadioButton rdbtnDestraLOOK = new JRadioButton("");
 					rdbtnDestraLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnDestraLOOK.setEnabled(false);
-					rdbtnDestraLOOK.setBounds(122, 120, 23, 21);
+					rdbtnDestraLOOK.setBounds(90, 120, 23, 21);
 					pannelloLOOK.add(rdbtnDestraLOOK);
 					
 				JRadioButton rdbtnSinistraLOOK = new JRadioButton("");
@@ -601,219 +605,7 @@ public class SchHD extends JFrame {
 				labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
 			}
 		});		
-		
 
-		chckbxSCAN.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(chckbxSCAN.isEnabled()) {
-					
-					String j= textFieldInzialeTestina.getText().toString();
-					int s=Integer.valueOf(j);
-					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-					int nc=Integer.valueOf(k);
-					String direzioneS = new String();
-
-					if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-					else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-					
-					if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-					else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-
-					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-					if(chckbxSCAN.isSelected())	labelSCAN.setText("C-SCAN");
-					else labelSCAN.setText("SCAN");
-					
-					if(chckbxSCAN.isSelected()) {
-						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-						jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-					}else {
-						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-						jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
-					}
-				}
-			}
-		});
-		
-		rdbtnSinistraSCAN.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(rdbtnSinistraSCAN.isEnabled()) {
-					if(rdbtnSinistraSCAN.isSelected()) {
-						rdbtnDestraSCAN.setSelected(false);
-						rdbtnSinistraSCAN.setEnabled(false);
-						rdbtnDestraSCAN.setEnabled(true);
-	
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						String direzioneS = new String();
-	
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						if(chckbxSCAN.isSelected())	labelSCAN.setText("C-SCAN");
-						else labelSCAN.setText("SCAN");
-						
-						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
-						}
-					}
-				}
-			}
-		});
-		
-		rdbtnDestraSCAN.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(rdbtnDestraSCAN.isEnabled()) {
-					if(rdbtnDestraSCAN.isSelected()) {
-						rdbtnSinistraSCAN.setSelected(false);
-						rdbtnDestraSCAN.setEnabled(false);
-						rdbtnSinistraSCAN.setEnabled(true);
-		
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						String direzioneS = new String();
-	
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						if(chckbxSCAN.isSelected())	labelSCAN.setText("C-SCAN");
-						else labelSCAN.setText("SCAN");
-						
-						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
-						}
-					}
-				}
-			}
-		});
-		
-		chckbxLOOK.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(chckbxLOOK.isEnabled()) {
-					
-					String j= textFieldInzialeTestina.getText().toString();
-					int s=Integer.valueOf(j);
-					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-					int nc=Integer.valueOf(k);
-					String direzioneL = new String();
-
-					if(rdbtnDestraLOOK.isSelected()) direzioneL="right";
-					else if(rdbtnSinistraLOOK.isSelected())direzioneL="left";
-					
-					if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
-					else numeriLOOK=LOOK(successione,s,direzioneL,nc);
-
-					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-					if(chckbxLOOK.isSelected())	labelLOOK.setText("C-LOOK");
-					else labelLOOK.setText("LOOK");
-					
-					if(chckbxLOOK.isSelected()) {
-						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-						jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
-					}else {
-						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-						jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
-					}
-				}
-			}
-		});
-		
-		rdbtnSinistraLOOK.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(rdbtnSinistraLOOK.isEnabled()) {
-					if(rdbtnSinistraLOOK.isSelected()) {
-						rdbtnDestraLOOK.setSelected(false);
-						rdbtnSinistraLOOK.setEnabled(false);
-						rdbtnDestraLOOK.setEnabled(true);
-
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						String direzioneL = new String();
-	
-						if(rdbtnDestraLOOK.isSelected()) direzioneL="right";
-						else if(rdbtnSinistraLOOK.isSelected())direzioneL="left";
-						
-						if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
-						else numeriLOOK=LOOK(successione,s,direzioneL,nc);
-	
-						jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-						if(chckbxLOOK.isSelected())	labelLOOK.setText("C-LOOK");
-						else labelLOOK.setText("LOOK");
-						
-						if(chckbxLOOK.isSelected()) {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
-						}else {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
-						}
-					}
-				}
-			}
-		});
-		
-		rdbtnDestraLOOK.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(rdbtnDestraLOOK.isEnabled()) {
-					if(rdbtnDestraLOOK.isSelected()) {
-						rdbtnSinistraLOOK.setSelected(false);
-						rdbtnDestraLOOK.setEnabled(false);
-						rdbtnSinistraLOOK.setEnabled(true);
-
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						String direzioneL = new String();
-	
-						if(rdbtnDestraLOOK.isSelected()) direzioneL="right";
-						else if(rdbtnSinistraLOOK.isSelected())direzioneL="left";
-						
-						if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
-						else numeriLOOK=LOOK(successione,s,direzioneL,nc);
-	
-						jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-						if(chckbxLOOK.isSelected())	labelLOOK.setText("C-LOOK");
-						else labelLOOK.setText("LOOK");
-						
-						if(chckbxLOOK.isSelected()) {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
-						}else {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-							jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
-						}
-					}
-				}
-			}
-		});
 	}		
 /*IMPLEMENTAZIONE ALGORTIMI UTILIZZATI*/
 

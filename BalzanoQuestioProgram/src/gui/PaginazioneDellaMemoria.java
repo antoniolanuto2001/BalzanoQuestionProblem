@@ -121,7 +121,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        pannelloPrincipale.add(labelYoutubeIcon);
 		        
 	        JLabel labelScrittaSlide = new JLabel("Slide");
-	        labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
+	        	labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		        labelScrittaSlide.setBounds(186, 118, 50, 15);
 		        pannelloPrincipale.add(labelScrittaSlide);
@@ -708,8 +708,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			}
 		});
 		
-		//EVENTO SUI BOTTONI PLAYSTEPbySTEP
-
+	//EVENTO SUI BOTTONI PLAYSTEPbySTEP
 		btnFastForwardPiu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
@@ -852,8 +851,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 				btnFastForwardMeno.setBackground(new Color(255, 255, 255));
 			}
 		});
+		
 	//EVENTO SU CAMPO DI SLOT DISPONIBILI
-
 		comboSceltaSlotDisponibili.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(pieno==0) {

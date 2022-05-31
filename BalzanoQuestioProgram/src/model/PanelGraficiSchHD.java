@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -11,9 +12,8 @@ public class PanelGraficiSchHD extends JPanel{
 	 */
 	private static final long serialVersionUID = 1L;
 	int xMin=0, xMax=50, yMin=0, yMax=40;//valore degli estremi del piao cartesiano
-	int l=1100, h=118;//salvo dimensioni della finestra in delle variabili per renderle piÃ¯Â¿Â½ facili da utilizzare e da modificare
-	float intervalloX, intervalloY;
-   	static public float a=30;
+	int l=1000, h=145;//salvo dimensioni della finestra in delle variabili per renderle piÃ¯Â¿Â½ facili da utilizzare e da modificare
+
 	
    	
    	public void paintComponent(Graphics g){
@@ -27,24 +27,44 @@ public class PanelGraficiSchHD extends JPanel{
    	}
    	
    	public void disegnaSoluzioneFCFS(Graphics g, int[] numeriFCFS, int nc, double distanzaFIFO, int[] successione) {
-   		/*
-   		for(int l=0;l<numeriFCFS.length;l++) {   
-    		g.setColor(Color.black);
-			g.drawLine(0,5,2000,5);
+   		/*if(nc==50){
+   			g.setColor(Color.black);
+   			g.drawLine(0,12,1000,12);
+   			g.setColor(Color.blue);
+   			for(int i=0;i<successione.length;i++) {
+   				g.drawString(String.valueOf(successione[i]),successione[i]*20,10);
+   				g.drawLine(successione[i]*20,5,successione[i]*20,7);
+   			}
+   		}
+   		if(nc==100){
+   			g.setColor(Color.black);
+   			g.drawLine(0,12,1000,12);
+   			g.setColor(Color.blue);
+   			for(int i=0;i<successione.length;i++) {
+   				g.drawString(String.valueOf(successione[i]),successione[i]*10,10);
+   				g.drawLine(successione[i]*10,5,successione[i]*10,7);
+   			}
+   		}
+   		if(nc==200){
+   			g.setColor(Color.black);
+   			g.drawLine(0,12,1000,12);
+   			g.setColor(Color.blue);
+   			for(int i=0;i<successione.length;i++) {
+   				g.drawString(String.valueOf(successione[i]),successione[i]*5,10);
+   				g.drawLine(successione[i]*5,5,successione[i]*5,7);
+   			}
+   		}*/
+   		   		
+		for(int i=0;i<numeriFCFS.length;i++) {
+			if(nc==50) {
+				if((i+1)<numeriFCFS.length)
+					g.drawLine(numeriFCFS[i]*20,10*i,numeriFCFS[i+1]*20,10*(i+1));
+					g.drawString(String.valueOf(numeriFCFS[i]),numeriFCFS[i]*20,11*i);
+				System.out.print(" "+numeriFCFS[i]);
+			}
 		}
-   		
-   		for(int l=0;l<numeriFCFS.length;l++) {   
-    		g.setColor(Color.black);
-    		if(l+1<numeriFCFS.length)
-			g.drawLine(numeriFCFS[l],3+15*l,numeriFCFS[l+1],3+15*(l+1));
-		}
-   		
-		g.setColor(Color.blue);
+		System.out.println(" ");
 
-   		for(int l=0;l<numeriFCFS.length;l++) {   
-    		g.drawString("â—�",numeriFCFS[l]-5,8+15*l);
-    					//92-l*15);
-    	}*/
-   	}
+	}
 	
 }
