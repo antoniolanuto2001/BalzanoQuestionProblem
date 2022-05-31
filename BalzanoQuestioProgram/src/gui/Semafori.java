@@ -69,6 +69,13 @@ public class Semafori extends JFrame {
 	public boolean startforfourth;
 	public boolean startforfifth;
 	public boolean pauseforfifth;
+	Object [][] righeTabella1Semaforo={{"Inizio Processo",0,null,null,null,null},{"Fine Processo",300,null,null,null,null},{"Inizio Critica 1",0,null,null,null,null},{"Fine Critica 1",0,null,null,null,null},
+			{"Inizio Critica 2",0,null,null,null,null},{"Fine Critica 2",0,null,null,null,null},{"Inizio Critica 3",0,null,null,null,null},{"Fine Critica 3",0,null,null,null,null}};
+	String [] colonneTabella={"Fasi","P1","P2","P3","P4","P5"};
+	Object[][] righeTabella2Semafori={{"Inizio Processo",0,null,null,null,null},{"Fine Processo",300,null,null,null,null},{"Inizio Critica 1",0,null,null,null,null},{"Fine Critica 1",0,null,null,null,null},
+			{"Inizio Critica 2",0,null,null,null,null},{"Fine Critica 2",0,null,null,null,null},{"Inizio Critica 3",0,null,null,null,null},{"Fine Critica 3",0,null,null,null,null},
+			{"Inizio Critica 1 B",0,null,null,null,null},{"Fine Critica 1 B",0,null,null,null,null},{"Inizio Critica 2 B",0,null,null,null,null},{"Fine Critica 2 B",0,null,null,null,null},
+			{"Inizio Critica 3 B",0,null,null,null,null},{"Fine Critica 3 B",0,null,null,null,null}};
 	
 	public ArrayList<ProcessoSemaforo> StartEndProcessi = new ArrayList<ProcessoSemaforo>();
 	final int min_JProgress_range=0;
@@ -241,7 +248,7 @@ public class Semafori extends JFrame {
 		
 		JScrollPane scrollTabella= new JScrollPane();
 		scrollTabella.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		scrollTabella.setBounds(10, 152, 1108, 196);
+		scrollTabella.setBounds(157, 175, 781, 252);
 		panelMainButton.add(scrollTabella);
 		
 		JTable tabella = new JTable();
@@ -250,39 +257,16 @@ public class Semafori extends JFrame {
 		tabella.setGridColor(Color.WHITE);
 		tabella.setEnabled(false);
 		tabella.setColumnSelectionAllowed(true);
-		DefaultTableModel model1 = new DefaultTableModel()
-		{
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-
-			public Class<?> getColumnClass(int column){
-				switch(column) {
-				case 0:
-					return String.class;
-				case 1:
-					return Integer.class;
-				case 2:
-					return Integer.class;
-				default:
-					return Integer.class;
-					
-				}
-			}
-		};
-		model1.addColumn("Nome Processo");
-		model1.addColumn("Inizio Processo");
-		model1.addColumn("Fine Processo");
-		model1.addColumn("Inizio Zona Critica 1");	
-		model1.addColumn("Fine Zona Critica 1");	
-		model1.addColumn("Inizio Zona Critica 2");	
-		model1.addColumn("Fine Zona Critica 2");
-		model1.addColumn("Inizio Zona Critica 3");	
-		model1.addColumn("Fine Zona Critica 3");
-		tabella.setModel(model1);
-		model1.addRow(new Object[]{"P1", "0", "300","0","0","0","0","0","0"});
 		scrollTabella.setViewportView(tabella);
+
+		//Dovendo modificare dinamicamente i valori e il numero di valori della tabella,
+		//si procede col creare un Model per poter utilizzare i metodi (setvalutAt,AddRow,RemoveRow,RemoveAll,ecc.)
+		DefaultTableModel model1 = new DefaultTableModel(righeTabella1Semaforo,colonneTabella);
+		DefaultTableModel model2 = new DefaultTableModel(righeTabella2Semafori,colonneTabella);
+		tabella.setModel(model1);
+		
+
+		
 		
 		JLabel label = (JLabel) tabella.getDefaultRenderer(String.class);
 		label.setHorizontalAlignment (SwingConstants.CENTER);
@@ -3903,55 +3887,55 @@ public class Semafori extends JFrame {
 					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
 					int rowCount = tabella.getRowCount();
 					int columnCount = tabella.getColumnCount();
+					String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
+					int NumSemafori=Integer.valueOf(numeroSemaforiString);
 					
 					Arrays.fill(ripartenza, 0);
 					GraficaSemaforo1RossoJLabel.setVisible(false);
 					GraficaSemaforo1VerdeJLabel.setVisible(true);
 					JLabelTextMutex1_0.setVisible(false);
 					JLabelTextMutex1_1.setVisible(true);
+					
+					
+					
+					
+					if(sceltaNumero>=1) 
+					{
+						Indicator1JPanel.Reset(0);
+						Indicator1JPanel.repaint();
+						
+						if(sceltaNumero>=2)
+						{
 
-					if(rowCount==1) 
-					{
-						Indicator1JPanel.Reset(0);
-						Indicator1JPanel.repaint();
-					}
-					else if(rowCount==2)
-					{
-						Indicator1JPanel.Reset(0);
-						Indicator1JPanel.repaint();
-						Indicator2JPanel.Reset(0);
-						Indicator2JPanel.repaint();
-					}else if(rowCount==3)
-					{
-						Indicator1JPanel.Reset(0);
-						Indicator1JPanel.repaint();
-						Indicator2JPanel.Reset(0);
-						Indicator2JPanel.repaint();
-						Indicator3JPanel.Reset(0);
-						Indicator3JPanel.repaint();
-					}else if(rowCount==4)
-					{
-						Indicator1JPanel.Reset(0);
-						Indicator1JPanel.repaint();
-						Indicator2JPanel.Reset(0);
-						Indicator2JPanel.repaint();
-						Indicator3JPanel.Reset(0);
-						Indicator3JPanel.repaint();
-						Indicator4JPanel.Reset(0);
-						Indicator4JPanel.repaint();
-					}else if(rowCount==5) {
-						Indicator1JPanel.Reset(0);
-						Indicator1JPanel.repaint();
-						Indicator2JPanel.Reset(0);
-						Indicator2JPanel.repaint();
-						Indicator3JPanel.Reset(0);
-						Indicator3JPanel.repaint();
-						Indicator4JPanel.Reset(0);
-						Indicator4JPanel.repaint();
-						Indicator5JPanel.Reset(0);
-						Indicator5JPanel.repaint();
+							Indicator2JPanel.Reset(0);
+							Indicator2JPanel.repaint();
+							
+						}
+						
+						if(sceltaNumero>=3)
+						{
+
+							Indicator3JPanel.Reset(0);
+							Indicator3JPanel.repaint();
+						} 
+						
+						if(sceltaNumero>=4)
+						{
+
+							Indicator4JPanel.Reset(0);
+							Indicator4JPanel.repaint();
+							
+						} 
+						
+						if(sceltaNumero==5) 
+						{
+	
+							Indicator5JPanel.Reset(0);
+							Indicator5JPanel.repaint();
+						}
 					}
 					
+				
 					timeToContinue=true;
 					timeToReset=false;
 					timeToPause=false;
@@ -3959,35 +3943,169 @@ public class Semafori extends JFrame {
 					
 					StartEndProcessi.removeAll(StartEndProcessi);
 					
+					//per ogni riga e per ogni colonna a partire dalla prima
+					//rimuovo tutto
 
-						
-
-					//rimuove tutte le righe precedenti
-					for (int i = rowCount - 1; i >= 0; i--) 
-					{
-				    	model1.removeRow(i);
-					}
-					//ricrea la tabella
-					for (int i=0;i<sceltaNumero;i++) 
-					{ 
-						model1.addRow(new Object[0]);
-						model1.setValueAt("P"+(i+1),i,0);
-						
-						
-						//setting default values
-						for(int j=1; j<columnCount; j++) {
-							
-							if(j==2)
-								model1.setValueAt("300",i,j);
-							else
-								model1.setValueAt("0", i, j);
+					
+					if(NumSemafori==1) 
+					{						
+						for(int s=0; s<rowCount; s++) {
+							for(int l=1; l<columnCount; l++) {
+								model1.setValueAt(null, s, l);
+							}
 						}
+					
+					if(sceltaNumero>=1) 
+					{
+						
+						for(int j=0; j<rowCount; j++) {
+							
+							if(	j!=1)
+								model1.setValueAt(0, j, 1);
+							else 
+								model1.setValueAt(300, j, 1);
+							
+						}
+					
+					
+					if(sceltaNumero>=2) 
+					{
+						
+
+						for(int j=0; j<rowCount; j++) {
+						
+							if(	j!=1)
+								model1.setValueAt(0, j, 2);
+							else 
+								model1.setValueAt(300, j, 2);
+							
+							}
+						
+						
+						if(sceltaNumero>=3) 
+						{
+							for(int j=0; j<rowCount; j++) {
+								
+								if(	j!=1)
+									model1.setValueAt(0, j, 3);
+								else 
+									model1.setValueAt(300, j, 3);
+								
+								}
+						}
+						
+						if(sceltaNumero>=4) 
+						{
+							for(int j=0; j<rowCount; j++) {
+								
+								if(	j!=1)
+									model1.setValueAt(0, j, 4);
+								else 
+									model1.setValueAt(300, j, 4);
+								
+								}
+						}
+						
+						
+						
+						if(sceltaNumero>=5) 
+						{
+							for(int j=0; j<rowCount; j++) {
+								
+								if(	j!=1)
+									model1.setValueAt(0, j, 5);
+								else 
+									model1.setValueAt(300, j, 5);
+								
+								}
+						}
+						
+						
+					}
+				}
+					
+			}
+					
+			else if (NumSemafori==2)
+			{
+				for(int s=0; s<rowCount; s++) {
+					for(int l=1; l<columnCount; l++) {
+						model2.setValueAt(null, s, l);
+					}
+				}
+				
+				
+				if(sceltaNumero>=1) 
+				{
+					
+					for(int j=0; j<rowCount; j++) {
+						
+						if(	j!=1)
+							model2.setValueAt(0, j, 1);
+						else 
+							model2.setValueAt(300, j, 1);
+						
+					}
+				
+				
+				if(sceltaNumero>=2) 
+				{
+					
+
+					for(int j=0; j<rowCount; j++) {
+					
+						if(	j!=1)
+							model2.setValueAt(0, j, 2);
+						else 
+							model2.setValueAt(300, j, 2);
+						
+						}
+					
+					
+					if(sceltaNumero>=3) 
+					{
+						for(int j=0; j<rowCount; j++) {
+							
+							if(	j!=1)
+								model2.setValueAt(0, j, 3);
+							else 
+								model2.setValueAt(300, j, 3);
+							
+							}
+					}
+					
+					if(sceltaNumero>=4) 
+					{
+						for(int j=0; j<rowCount; j++) {
+							
+							if(	j!=1)
+								model2.setValueAt(0, j, 4);
+							else 
+								model2.setValueAt(300, j, 4);
+							
+							}
 					}
 					
 					
+					
+					if(sceltaNumero>=5) 
+					{
+						for(int j=0; j<rowCount; j++) {
+							
+							if(	j!=1)
+								model2.setValueAt(0, j, 5);
+							else 
+								model2.setValueAt(300, j, 5);
+							
+							}
+					}
+					
+					
+				}
+			}
+			}
+										
 					//managing progress bars
-					
-					
 					if (sceltaNumero==1) 
 					{
 						BaseProgressBar1JPanel.setVisible(true);
@@ -4109,7 +4227,7 @@ public class Semafori extends JFrame {
 						CriticalArea3JPanel4.setVisible(false);
 						CriticalArea3JPanel5.setVisible(false);
 					}
-					//pippo
+
 					else if(sceltaNumero==5)
 					{
 						BaseProgressBar1JPanel.setVisible(true);
@@ -4147,11 +4265,17 @@ public class Semafori extends JFrame {
 	       
 		
         				NumSemaforiComboBox.addActionListener(new ActionListener() {
+        					
+        					
         					@Override
         					public void actionPerformed(ActionEvent e) 
         					{
         						String numeroSemaforiString = (String) NumSemaforiComboBox.getSelectedItem();
         						int numeroSemaforiInt=Integer.valueOf(numeroSemaforiString);
+        						
+        						
+        						
+        						
         						if(numeroSemaforiInt==1)
         						{
 
@@ -4161,6 +4285,11 @@ public class Semafori extends JFrame {
         							//Disattivo il secondo
         							GraficaSemaforo2VerdeJLabel.setVisible(false);
         							JLabelTextMutex2_1.setVisible(false);
+        							
+        							//SETTO IL MODEL 
+        							tabella.setModel(model1);
+        							
+
         						}
         						else if(numeroSemaforiInt==2)
         						{
@@ -4168,7 +4297,17 @@ public class Semafori extends JFrame {
         							//Abilito anche il secondo semaforo 
         							GraficaSemaforo2VerdeJLabel.setVisible(true);
         							JLabelTextMutex2_1.setVisible(true);
+        							
+        							
+        							//SETTO IL NUOVO MODEL ALLA TABELLA 
+        							tabella.setModel(model2);
+        							
+        							
+
         						}
+        						
+        						//ATTIVAZIONE EVENTO CAMBIAMENTO PROCESSI PER SINCRONIZZAZIONE CON 1 E 2 SEMAFORI
+        						NumProcessiComboBox.setSelectedIndex(NumProcessiComboBox.getSelectedIndex());
         							
         					}
         				});
@@ -4199,17 +4338,18 @@ public class Semafori extends JFrame {
 					int columnCount = tabella.getColumnCount();
 					int randomNum=0;
 					int startpoint=0,endpoint=0;
-					@SuppressWarnings("unused")
 					int end_processo=0,start_processo=0;
-					@SuppressWarnings("unused")
 					int start_critica1=0,start_critica2=0,start_critica3=0;
-					@SuppressWarnings("unused")
 					int end_critica1=0,end_critica2=0;
+					String sceltaNumeroString =(String) NumProcessiComboBox.getSelectedItem();
+					int sceltaNumero= Integer.valueOf(sceltaNumeroString);
+
 					
 					
 					
 				//non possono essere generati esercizi mentre ci sono esercizi in esecuzione
-				if(!toggleButtonStartPause.isSelected()) {
+				if(!toggleButtonStartPause.isSelected()) 
+				{
 
 					StartEndProcessi.removeAll(StartEndProcessi);
 					Arrays.fill(ripartenza, 0);
@@ -4221,22 +4361,22 @@ public class Semafori extends JFrame {
 					
 					//ripartono gli indacatori da capo
 					
-					if(rowCount==1) {
+					if(sceltaNumero==1) {
 						Indicator1JPanel.Reset(0);
 						Indicator1JPanel.repaint();
-					}else if(rowCount==2) {
+					}else if(sceltaNumero==2) {
 						Indicator1JPanel.Reset(0);
 						Indicator1JPanel.repaint();
 						Indicator2JPanel.Reset(0);
 						Indicator2JPanel.repaint();
-					}else if(rowCount==3) {
+					}else if(sceltaNumero==3) {
 						Indicator1JPanel.Reset(0);
 						Indicator1JPanel.repaint();
 						Indicator2JPanel.Reset(0);
 						Indicator2JPanel.repaint();
 						Indicator3JPanel.Reset(0);
 						Indicator3JPanel.repaint();
-					}else if(rowCount==4) {
+					}else if(sceltaNumero==4) {
 						Indicator1JPanel.Reset(0);
 						Indicator1JPanel.repaint();
 						Indicator2JPanel.Reset(0);
@@ -4245,7 +4385,7 @@ public class Semafori extends JFrame {
 						Indicator3JPanel.repaint();
 						Indicator4JPanel.Reset(0);
 						Indicator4JPanel.repaint();
-					}else if(rowCount==5) {
+					}else if(sceltaNumero==5) {
 						Indicator1JPanel.Reset(0);
 						Indicator1JPanel.repaint();
 						Indicator2JPanel.Reset(0);
@@ -4263,111 +4403,394 @@ public class Semafori extends JFrame {
 					timeToRestartFromPause=false;
 					
 					
-					
 					//algoritmo di generazione valori 
-					for(int i=0; i<rowCount; i++) 
-					{
+					
+					
 						StartEndProcessi.add(new ProcessoSemaforo());
 						
-						for(int j=1; j<columnCount; j++) 
-						{
 						
-							//inizio processo
-							if(j==1)
-							{
-								
-								randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
-								start_processo=randomNum;
-							}
-							
-							//fine processo
-							if(j==2)
-							{
-								
-								randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
-								end_processo=randomNum;
 						
-							}
-							
-							
-							//inizio zona critica 1
-						
-							if(j==3)
+							if(sceltaNumero>=1) 
 							{
+								int i=0;
+								int k=1;
 								
-								randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
-								start_critica1=randomNum;
+									randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+									start_processo=randomNum;
+									model1.setValueAt(start_processo, i, k);
+									randomNum=0;
+									i++;
 								
-							}
-							
-							//fine zona critica 1
-							if(j==4)
-							{
+									randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+									end_processo=randomNum;
+									model1.setValueAt(end_processo, i, k);
+									randomNum=0;
+									i++;
+
+									randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+									start_critica1=randomNum;
+									model1.setValueAt(start_critica1, i, k);
+									randomNum=0;
+									i++;
+
 								
-								randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
-								end_critica1=randomNum;
+									randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+									end_critica1=randomNum;
+									model1.setValueAt(end_critica1, i, k);
+									randomNum=0;
+									i++;
+
 								
-							}
-							
-							
-							//inizio zona critica 2
-							//start zona critica 2: >end zona critica 1 && compreso tra 160-184
-							if(j==5)
-							{
+									randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+									start_critica2=randomNum;
+									model1.setValueAt(start_critica2, i, k);
+									randomNum=0;
+									i++;
+
 								
-								randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
-								start_critica2=randomNum;
 								
-							}
-							
-							//fine zona critica 2
-							//end zona critica 2: > start zona critica 2 && compreso tra 195-230
-							if(j==6)
-							{
+									randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+									end_critica2=randomNum;
+									model1.setValueAt(end_critica2, i, k);
+									randomNum=0;
+									i++;
+
 								
-								randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
-								end_critica2=randomNum;
-							}
-							//inizio zona critica 3
-							//start zona critica 3: >end zona critica 2 && compreso tra 238-268
-							if(j==7)
-							{
 								
-								randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
-								StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
-								start_critica3=randomNum;
-							}
-							//fine zona critica 3
-							//end zona critica 3: > start zona critica 3 && < end processo && compreso tra 275-287
-							if(j==8)
-							{
-								do {
-									randomNum= ThreadLocalRandom.current().nextInt(250,280);
-								}while(randomNum>=end_processo);
+									randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
+									StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+									start_critica3=randomNum;
+									model1.setValueAt(start_critica3, i, k);
+									randomNum=0;
+									i++;
+
+								
+								
 									
-								
-								
-								
-								StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
-								
-							}
-							
-							model1.setValueAt(randomNum, i, j);
-							randomNum=0;
-					}//second for
-							
-	        }//first for
-					
+									do {
+										randomNum= ThreadLocalRandom.current().nextInt(250,280);
+									}while(randomNum>=end_processo);
+									
+									StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+									model1.setValueAt(randomNum, i, k);
+									randomNum=0;
+											
+									
+									
+									
+									if(sceltaNumero>=2) 
+									{
+										i=0;
+										k=2;
+										
+											randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+											start_processo=randomNum;
+											model1.setValueAt(start_processo, i, k);
+											randomNum=0;
+											i++;
+										
+											randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+											end_processo=randomNum;
+											model1.setValueAt(end_processo, i, k);
+											randomNum=0;
+											i++;
+
+											randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+											start_critica1=randomNum;
+											model1.setValueAt(start_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+											end_critica1=randomNum;
+											model1.setValueAt(end_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+											start_critica2=randomNum;
+											model1.setValueAt(start_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+											end_critica2=randomNum;
+											model1.setValueAt(end_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+											start_critica3=randomNum;
+											model1.setValueAt(start_critica3, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											
+											do {
+												randomNum= ThreadLocalRandom.current().nextInt(250,280);
+											}while(randomNum>=end_processo);
+											
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+											model1.setValueAt(randomNum, i, k);
+											randomNum=0;
+													
+										}
+									
+									
+									
+									
+									if(sceltaNumero>=3) 
+									{
+										i=0;
+										k=3;
+										
+											randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+											start_processo=randomNum;
+											model1.setValueAt(start_processo, i, k);
+											randomNum=0;
+											i++;
+										
+											randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+											end_processo=randomNum;
+											model1.setValueAt(end_processo, i, k);
+											randomNum=0;
+											i++;
+
+											randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+											start_critica1=randomNum;
+											model1.setValueAt(start_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+											end_critica1=randomNum;
+											model1.setValueAt(end_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+											start_critica2=randomNum;
+											model1.setValueAt(start_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+											end_critica2=randomNum;
+											model1.setValueAt(end_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+											start_critica3=randomNum;
+											model1.setValueAt(start_critica3, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											
+											do {
+												randomNum= ThreadLocalRandom.current().nextInt(250,280);
+											}while(randomNum>=end_processo);
+											
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+											model1.setValueAt(randomNum, i, k);
+											randomNum=0;
+													
+										}
+									
+									
+									
+									if(sceltaNumero>=4) 
+									{
+										i=0;
+										k=4;
+										
+											randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+											start_processo=randomNum;
+											model1.setValueAt(start_processo, i, k);
+											randomNum=0;
+											i++;
+										
+											randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+											end_processo=randomNum;
+											model1.setValueAt(end_processo, i, k);
+											randomNum=0;
+											i++;
+
+											randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+											start_critica1=randomNum;
+											model1.setValueAt(start_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+											end_critica1=randomNum;
+											model1.setValueAt(end_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+											start_critica2=randomNum;
+											model1.setValueAt(start_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+											end_critica2=randomNum;
+											model1.setValueAt(end_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+											start_critica3=randomNum;
+											model1.setValueAt(start_critica3, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											
+											do {
+												randomNum= ThreadLocalRandom.current().nextInt(250,280);
+											}while(randomNum>=end_processo);
+											
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+											model1.setValueAt(randomNum, i, k);
+											randomNum=0;
+													
+										}
+									
+									
+									if(sceltaNumero>=5) 
+									{
+										i=0;
+										k=5;
+										
+											randomNum= (int)Math.floor(Math.random()*(50-1+1)+1);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioProcesso=randomNum;
+											start_processo=randomNum;
+											model1.setValueAt(start_processo, i, k);
+											randomNum=0;
+											i++;
+										
+											randomNum= (int)Math.floor(Math.random()*(300-260+1)+260);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineProcesso=randomNum;
+											end_processo=randomNum;
+											model1.setValueAt(end_processo, i, k);
+											randomNum=0;
+											i++;
+
+											randomNum= (int)Math.floor(Math.random()*(75-55+1)+55);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica1=randomNum;
+											start_critica1=randomNum;
+											model1.setValueAt(start_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(101-80+1)+80);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica1=randomNum;
+											end_critica1=randomNum;
+											model1.setValueAt(end_critica1, i, k);
+											randomNum=0;
+											i++;
+
+										
+											randomNum= (int)Math.floor(Math.random()*(135-105+1)+105);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica2=randomNum;
+											start_critica2=randomNum;
+											model1.setValueAt(start_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(190-166+1)+166);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica2=randomNum;
+											end_critica2=randomNum;
+											model1.setValueAt(end_critica2, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											randomNum= (int)Math.floor(Math.random()*(220-200+1)+200);
+											StartEndProcessi.get(StartEndProcessi.size() - 1).inizioZonaCritica3=randomNum;
+											start_critica3=randomNum;
+											model1.setValueAt(start_critica3, i, k);
+											randomNum=0;
+											i++;
+
+										
+										
+											
+											do {
+												randomNum= ThreadLocalRandom.current().nextInt(250,280);
+											}while(randomNum>=end_processo);
+											
+											StartEndProcessi.get(StartEndProcessi.size() - 1).fineZonaCritica3=randomNum;
+											model1.setValueAt(randomNum, i, k);
+											randomNum=0;
+													
+										}
+									
+									
+									
+								}
+						
+
 					
 			//INSERIMENTO GRAFICA VERDE E ROSSA SULLE BARRE DEI PROCESSI
 
-			if(rowCount==1)
+			if(sceltaNumero==1)
 			{
 				//Repaint di P1
 			/*	BaseProgressBar1JPanel.removeAll();
@@ -4413,7 +4836,7 @@ public class Semafori extends JFrame {
 			}
 			
 			
-			else if(rowCount==2)
+			else if(sceltaNumero==2)
 			{
 				//Repaint di P1 e P2
 			
@@ -4501,7 +4924,7 @@ public class Semafori extends JFrame {
 		     
 			}
 			
-			else if(rowCount==3)
+			else if(sceltaNumero==3)
 			{
 				//Repaint di P1 e P2
 				
@@ -4624,9 +5047,9 @@ public class Semafori extends JFrame {
 		        JobDuration3JPanel.setVisible(true);
 		     
 			}
-			else if(rowCount==4)
+			else if(sceltaNumero==4)
 			{
-//Repaint di P1 e P2
+				//Repaint di P1 e P2
 				
 				/*	BaseProgressBar1JPanel.removeAll();
 					BaseProgressBar1JPanel.repaint();
@@ -4783,7 +5206,7 @@ public class Semafori extends JFrame {
 		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
 		        JobDuration4JPanel.setVisible(true);
 			}
-			else if(rowCount==5)
+			else if(sceltaNumero==5)
 			{
 //Repaint di P1 e P2
 				
