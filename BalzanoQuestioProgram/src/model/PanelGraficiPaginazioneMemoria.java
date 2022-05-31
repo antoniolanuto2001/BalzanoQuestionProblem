@@ -14,8 +14,8 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int xMin=0, xMax=50, yMin=0, yMax=40;//valore degli estremi del piao cartesiano
-	int l=520, h=118;//salvo dimensioni della finestra in delle variabili per renderle piÃ¯Â¿Â½ facili da utilizzare e da modificare
+	int xMin=0, xMax=50, yMin=0, yMax=40;
+	int l=520, h=118;
    	static public float a=30;
 	
    	
@@ -103,7 +103,7 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 	
 	public void disegnaSoluzione(Graphics g, int[] punti){
 			
-		g.setColor(Color.blue);
+		g.setColor(new Color(0, 153, 0));
 		
 		g.drawLine(25+punti[1]*15,103-punti[0]*15,25+punti[3]*15,103-punti[2]*15);
 		g.drawLine(25+punti[3]*15,103-punti[2]*15,25+punti[5]*15,103-punti[4]*15);
@@ -122,8 +122,8 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 		g.drawLine(25+punti[5]*15,102-punti[4]*15,25+punti[7]*15,102-punti[6]*15);
 		g.drawLine(25+punti[7]*15,102-punti[6]*15,25+punti[9]*15,102-punti[8]*15);
 		g.drawLine(25+punti[9]*15,102-punti[8]*15,25+punti[11]*15,102-punti[10]*15);
-	    	
-		g.setColor(Color.red);
+	    
+		g.setColor(Color.black);
 		
 		g.drawString("●",20+punti[1]*15,107-punti[0]*15);
 		g.drawString("●",20+punti[3]*15,107-punti[2]*15);

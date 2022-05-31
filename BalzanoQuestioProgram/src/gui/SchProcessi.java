@@ -228,7 +228,7 @@ public SchProcessi(JFrame framechiamante) {
 				pannelloFCFS.add(labelFirstcomeFirstserved);
 		
 			JCheckBox chckbxMostraSoluzioneFCFS = new JCheckBox("Mostra Soluzione");
-			chckbxMostraSoluzioneFCFS.setSelected(true);
+				chckbxMostraSoluzioneFCFS.setSelected(true);
 				chckbxMostraSoluzioneFCFS.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				chckbxMostraSoluzioneFCFS.setBounds(513, 3, 150, 25);
