@@ -384,6 +384,7 @@ public class Semafori extends JFrame {
 		Indicator5JPanel.setVisible(true);
 		
 		
+		
         JPanel JobDuration1JPanel = new JPanel();
         JobDuration1JPanel.setVisible(false);
         JobDuration1JPanel.setLayout(null);
@@ -3906,7 +3907,7 @@ public class Semafori extends JFrame {
 						
 						if(sceltaNumero>=2)
 						{
-
+							Indicator2JPanel.paintComponent(getGraphics());
 							Indicator2JPanel.Reset(0);
 							Indicator2JPanel.repaint();
 							
@@ -3914,14 +3915,16 @@ public class Semafori extends JFrame {
 						
 						if(sceltaNumero>=3)
 						{
-
+							
+							Indicator3JPanel.paintComponent(getGraphics());
 							Indicator3JPanel.Reset(0);
 							Indicator3JPanel.repaint();
 						} 
 						
 						if(sceltaNumero>=4)
 						{
-
+							
+							Indicator4JPanel.paintComponent(getGraphics());
 							Indicator4JPanel.Reset(0);
 							Indicator4JPanel.repaint();
 							
@@ -3929,7 +3932,8 @@ public class Semafori extends JFrame {
 						
 						if(sceltaNumero==5) 
 						{
-	
+							
+							Indicator5JPanel.paintComponent(getGraphics());
 							Indicator5JPanel.Reset(0);
 							Indicator5JPanel.repaint();
 						}

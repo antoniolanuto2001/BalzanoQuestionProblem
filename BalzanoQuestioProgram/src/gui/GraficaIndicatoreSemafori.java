@@ -21,7 +21,8 @@ public class GraficaIndicatoreSemafori extends JPanel{
 	
 	
 		//set x,y,altezza,larghezza
-		public GraficaIndicatoreSemafori(int x, int y, int w, int h) {
+		public GraficaIndicatoreSemafori(int x, int y, int w, int h) 
+		{
 			
 			this.x=x;
 			this.y=y;
@@ -51,7 +52,10 @@ public class GraficaIndicatoreSemafori extends JPanel{
 		}
 	
 	   @Override
-	   public void paintComponent(Graphics g) {
+	   public void paintComponent(Graphics g) 
+	   {
+		  
+		   
 	      super.paintComponent(g);
 	      g.setColor(Color.BLACK);
 	       
