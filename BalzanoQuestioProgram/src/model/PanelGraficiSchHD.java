@@ -8,6 +8,7 @@ import javax.swing.plaf.ColorUIResource;
 
 public class PanelGraficiSchHD extends JPanel{
 
+	
 	/**
 	 * 
 	 */
