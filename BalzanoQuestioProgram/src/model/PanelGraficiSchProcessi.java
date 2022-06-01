@@ -222,27 +222,62 @@ public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarr
 	}
 
 public void disegnaSoluzioneRR(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,ArrayList<Integer>  lineesFCFS,Boolean selectSoluzione,Boolean selectGriglia){
-	if(selectSoluzione==true) {
-		
-		for(int l=0;l<lineesFCFS.size();) { 
-			if(lineesFCFS.get(l)>0) {
-    		g.setColor(new Color(0, 204, 0));
-			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
-			g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
-			 //g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
-			g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
-			}
-			l=l+4;
-		}
-		g.setColor(Color.blue);
+	
+	int a1=0,a2=0,a3=0,a4=0,a5=0,a6=0;
+	
+		if(selectSoluzione==true) {
+    		for(int l=0;l<lineesFCFS.size();) { 
+    			if(lineesFCFS.get(l+1)>0) {
+    				
+    				g.setColor(new Color(0, 204, 0));
+	    			g.drawLine(35+lineesFCFS.get(l)*15,103-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,103-lineesFCFS.get(l+3)*15);
+	    			if(lineesFCFS.get(l+1)==4)g.drawLine(35+lineesFCFS.get(l)*15,104-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,104-lineesFCFS.get(l+3)*15);
+	    			else g.drawLine(35+lineesFCFS.get(l)*15,102-lineesFCFS.get(l+1)*15,35+lineesFCFS.get(l+2)*15,102-lineesFCFS.get(l+3)*15);
+	    			
+	    			if(a1==0 && lineesFCFS.get(l+1)==1) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a1=1;
+	    			}
+	    			if(a2==0 && lineesFCFS.get(l+1)==2) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a2=1;
+	    			}
+	    			if(a3==0 && lineesFCFS.get(l+1)==3) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a3=1;
+	    			}
+	    			if(a4==0 && lineesFCFS.get(l+1)==4) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a4=1;
+	    			}
+	    			if(a5==0 && lineesFCFS.get(l+1)==5) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a5=1;
+	    			}
+	    			if(a6==0 && lineesFCFS.get(l+1)==6) {
+	    				g.setColor(new Color(0, 204, 0));
+	    				g.drawString("●",30+lineesFCFS.get(l)*15,107-lineesFCFS.get(l+1)*15);
+	    				a6=1;
+	    			}
 
-		for(int l=0;l<lineesFCFSarray.size();l++) {    
-    			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
-    					//92-l*15);
+    			}
+    			l=l+4;
+    		}
+    		g.setColor(Color.blue);
+
+    		for(int l=0;l<lineesFCFSarray.size();l++) {    
+        			g.drawString("●",30+lineesFCFSarray.get(l).getArrivo()*15,107-lineesFCFSarray.get(l).getProcesso()*15);
+        					//92-l*15);
+        	}
+
     	}
-
 	}
-}
+
 	
 /*	public void disegnaSoluzioneSJFP(Graphics g, ArrayList<CreaLinee>  lineesFCFSarray,  ArrayList<Integer>  lineesFCFS, Boolean selectSoluzione,Boolean selectGriglia){
 			

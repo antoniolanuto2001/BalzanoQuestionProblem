@@ -54,6 +54,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class SchProcessi extends JFrame {
 
@@ -386,6 +388,7 @@ public SchProcessi(JFrame framechiamante) {
 			JComboBox comboBoxQRR = new JComboBox();
 				comboBoxQRR.setEnabled(false);
 				comboBoxQRR.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+				comboBoxQRR.setSelectedIndex(2);
 				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				comboBoxQRR.setBackground(Color.WHITE);
 				comboBoxQRR.setBounds(432, 2, 50, 21);
@@ -459,7 +462,6 @@ public SchProcessi(JFrame framechiamante) {
 			//pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
 		
 		JLabel labellNumeroDiProcessi = new JLabel("Numero di processi");
-			labellNumeroDiProcessi.setEnabled(false);
 			labellNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
 			labellNumeroDiProcessi.setForeground(new Color(0, 0, 0));
 			labellNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 15));
@@ -467,7 +469,6 @@ public SchProcessi(JFrame framechiamante) {
 			pannelloEDITOR.add(labellNumeroDiProcessi);
 		
 		JComboBox<String> comboBoxSceltaNProcessi = new JComboBox<String>();
-			comboBoxSceltaNProcessi.setEnabled(false);
 			comboBoxSceltaNProcessi.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxSceltaNProcessi.setBackground(new Color(255, 255, 255));
 			comboBoxSceltaNProcessi.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6"}));
@@ -1296,7 +1297,7 @@ public SchProcessi(JFrame framechiamante) {
 				SJFP=SJFPClass(linea);
 				String qua= (String) comboBoxQRR.getSelectedItem();
 				quantum=Integer.valueOf(qua);
-				//RR=RRClass(linea);
+				RR=RRClass(linea);
 				
 				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
 					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
@@ -2658,6 +2659,152 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		
 	});
+		
+	//EVENTO SU CAMBIAMENTO NUMERO PROCESSI
+
+
+		comboBoxSceltaNProcessi.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				
+				labelP1.setText("");	
+				labelP2.setText("");	
+				labelP3.setText("");	
+				labelP4.setText("");	
+				labelP5.setText("");	
+				labelP6.setText("");
+				
+				labelP1.setEnabled(false);
+				textDurataP1.setEnabled(false);
+				textDurataP1.setEditable(false);
+				textDurataP1.setVisible(false);
+				textArrivoP1.setEnabled(false);
+				textArrivoP1.setEditable(false);
+				textArrivoP1.setVisible(false);
+				
+				labelP2.setEnabled(false);
+				textDurataP2.setEnabled(false);
+				textDurataP2.setEditable(false);
+				textDurataP2.setVisible(false);
+				textArrivoP2.setEnabled(false);
+				textArrivoP2.setEditable(false);
+				textArrivoP2.setVisible(false);
+				
+				labelP3.setEnabled(false);
+				textDurataP3.setEnabled(false);
+				textDurataP3.setEditable(false);
+				textDurataP3.setVisible(false);
+				textArrivoP3.setEnabled(false);
+				textArrivoP3.setEditable(false);
+				textArrivoP3.setVisible(false);
+				
+				labelP4.setEnabled(false);
+				textDurataP4.setEnabled(false);
+				textDurataP4.setEditable(false);
+				textDurataP4.setVisible(false);
+				textArrivoP4.setEnabled(false);
+				textArrivoP4.setEditable(false);
+				textArrivoP4.setVisible(false);
+				
+				labelP5.setEnabled(false);
+				textDurataP5.setEnabled(false);
+				textDurataP5.setEditable(false);
+				textDurataP5.setVisible(false);
+				textArrivoP5.setEnabled(false);
+				textArrivoP5.setEditable(false);
+				textArrivoP5.setVisible(false);
+				
+				labelP6.setEnabled(false);
+				textDurataP6.setEnabled(false);
+				textDurataP6.setEditable(false);
+				textDurataP6.setVisible(false);
+				textArrivoP6.setEnabled(false);
+				textArrivoP6.setEditable(false);
+				textArrivoP6.setVisible(false);
+				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
+				int numeroProcessi=Integer.valueOf(scelta);
+				
+				for (int i=0;i<numeroProcessi;i++){ 
+					
+					Random random = new Random();
+					if(i==0) {
+				labelP1.setEnabled(true);
+				labelP1.setText("P"+(i+1));	
+					}
+					if(i==1) {
+				labelP2.setEnabled(true);
+				labelP2.setText("P"+(i+1));	
+					}
+					if(i==2) {
+				labelP3.setEnabled(true);
+				labelP3.setText("P"+(i+1));	
+					}
+					if(i==3) {
+				labelP4.setEnabled(true);
+				labelP4.setText("P"+(i+1));	
+					}
+					if(i==4) {
+				labelP5.setEnabled(true);
+				labelP5.setText("P"+(i+1));	
+					}
+					if(i==5) {
+				labelP6.setEnabled(true);
+				labelP6.setText("P"+(i+1));	
+					}
+
+					if(i==0) {
+				textArrivoP1.setEnabled(true);
+				textArrivoP1.setVisible(true);
+					}
+					if(i==1) {
+				textArrivoP2.setEnabled(true);
+				textArrivoP2.setVisible(true);
+					}
+					if(i==2) {
+				textArrivoP3.setEnabled(true);
+				textArrivoP3.setVisible(true);
+					}
+					if(i==3) {
+				textArrivoP4.setEnabled(true);
+				textArrivoP4.setVisible(true);
+					}
+					if(i==4) {
+				textArrivoP5.setEnabled(true);
+				textArrivoP5.setVisible(true);
+					}
+					if(i==5) {
+				textArrivoP6.setEnabled(true);
+				textArrivoP6.setVisible(true);
+					}
+					
+					
+					if(i==0) {
+				textDurataP1.setEnabled(true);
+				textDurataP1.setVisible(true);
+					}
+					if(i==1) {
+				textDurataP2.setEnabled(true);
+				textDurataP2.setVisible(true);
+					}
+					if(i==2) {
+				textDurataP3.setEnabled(true);
+				textDurataP3.setVisible(true);
+					}
+					if(i==3) {
+				textDurataP4.setEnabled(true);
+				textDurataP4.setVisible(true);
+					}
+					if(i==4) {
+				textDurataP5.setEnabled(true);
+				textDurataP5.setVisible(true);
+					}
+					if(i==5) {
+				textDurataP6.setEnabled(true);
+				textDurataP6.setVisible(true);
+					}
+				}
+			}
+			
+		});
 }
 
 
@@ -2941,7 +3088,207 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     return punti;
 		 }
 		    
-//METODO PER CALCOLARE RR
+	//METODO PER CALCOLARE RR
+    	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
+    		
+    		int pro=lineaRR.length,cambio=0;
+    		int time,remain;
+    		float avgwt=0,avgtt=0;
+    		
+    		ArrayList<Integer> punti=new ArrayList<Integer>();
+    		ArrayList<Integer> array=new ArrayList<Integer>();
+    		int a[]=new int[lineaRR.length]; 
+            int b[]=new int[lineaRR.length]; 
+    		int n = quantum;
+    		int p[] = new int[lineaRR.length];
+
+    		remain=pro;
+    	    
+    		   for(int i = 0; i < pro; i++){
+    				
+    				p[i] = lineaRR[i].getProcesso();
+    				a[i] = lineaRR[i].getArrivo();
+    				b[i] = lineaRR[i].getDurata();
+    		   }
+
+
+        // result of average times 
+        int res = 0; 
+        int resc = 0; 
+  
+        // for sequence storage 
+        String seq = new String(); 
+  
+        // copy the burst array and arrival array 
+        // for not effecting the actual array 
+        int res_b[] = new int[b.length]; 
+        int res_a[] = new int[a.length]; 
+  
+        for (int i = 0; i < res_b.length; i++) { 
+            res_b[i] = b[i]; 
+            res_a[i] = a[i]; 
+        } 
+  
+        // critical time of system 
+        int t = 0; 
+  
+        // for store the waiting time 
+        int w[] = new int[p.length]; 
+  
+        // for store the Completion time 
+        int comp[] = new int[p.length]; 
+  
+        while (true) { 
+            boolean flag = true; 
+            for (int i = 0; i < p.length; i++) { 
+  
+                // these condition for if 
+                // arrival is not on zero 
+  
+                // check that if there come before qtime 
+                if (res_a[i] <= t) { 
+                    if (res_a[i] <= n) { 
+                        if (res_b[i] > 0) { 
+                            flag = false; 
+                            if (res_b[i] > n) { 
+  
+                                // make decrease the b time 
+                                t = t + n; 
+                                res_b[i] = res_b[i] - n; 
+                                res_a[i] = res_a[i] + n; 
+                                seq += "->" + p[i]; 
+                                array.add(p[i]);
+                            } 
+                            else { 
+  
+                                // for last time 
+                                t = t + res_b[i]; 
+  
+                                // store comp time 
+                                comp[i] = t - a[i]; 
+  
+                                // store wait time 
+                                w[i] = t - b[i] - a[i]; 
+                                res_b[i] = 0; 
+  
+                                // add sequence 
+                                seq += "->" + p[i]; 
+                                array.add(p[i]);
+
+                            } 
+                        } 
+                    } 
+                    else if (res_a[i] > n) { 
+  
+                        // is any have less arrival time 
+                        // the coming process then execute them 
+                        for (int j = 0; j < p.length; j++) { 
+  
+                            // compare 
+                            if (res_a[j] < res_a[i]) { 
+                                if (res_b[j] > 0) { 
+                                    flag = false; 
+                                    if (res_b[j] > n) { 
+                                        t = t + n; 
+                                        res_b[j] = res_b[j] - n; 
+                                        res_a[j] = res_a[j] + n; 
+                                        seq += "->" + p[j]; 
+                                        array.add(p[j]);
+
+                                    } 
+                                    else { 
+                                        t = t + res_b[j]; 
+                                        comp[j] = t - a[j]; 
+                                        w[j] = t - b[j] - a[j]; 
+                                        res_b[j] = 0; 
+                                        seq += "->" + p[j]; 
+                                        array.add(p[j]);
+
+                                    } 
+                                } 
+                            } 
+                        } 
+  
+                        // now the previous porcess according to 
+                        // ith is process 
+                        if (res_b[i] > 0) { 
+                            flag = false; 
+  
+                            // Check for greaters 
+                            if (res_b[i] > n) { 
+                                t = t + n; 
+                                res_b[i] = res_b[i] - n; 
+                                res_a[i] = res_a[i] + n; 
+                                seq += "->" + p[i]; 
+                                array.add(p[i]);
+
+                            } 
+                            else { 
+                                t = t + res_b[i]; 
+                                comp[i] = t - a[i]; 
+                                w[i] = t - b[i] - a[i]; 
+                                res_b[i] = 0; 
+                                seq += "->" + p[i]; 
+                                array.add(p[i]);
+
+                            } 
+                        } 
+                    } 
+                } 
+  
+                // if no process is come on thse critical 
+                else if (res_a[i] > t) { 
+                    t++; 
+                    i--; 
+                } 
+            } 
+            // for exit the while loop 
+            if (flag) { 
+                break; 
+            } 
+        } 
+  
+        for(int i=0;i<array.size();i++) {
+	    	 if(i==0) {
+	    		 cambio++;
+	    	 }
+	    	 else if(array.get(i)!=array.get(i-1)) {
+	    		 cambio++;		    		 
+	    	 }
+	     }
+  
+        cbRR=cambio-1;
+        for (int i = 0; i < p.length; i++) { 
+             
+            res = res + w[i]; 
+            resc = resc + comp[i]; 
+        } 	    
+        
+        averageRR=res / p.length;
+
+	     int k=0;
+	     for(int i=0;i<array.size();i++) {
+	    	 System.out.println(array.get(i));
+	    	 if(i==0) {
+	        	 punti.add(a[0]);
+		    	 punti.add(array.get(i));
+		    	 punti.add(a[0]+n);
+		    	 punti.add(array.get(i));
+		    	 k=k+4;
+	    	 }else {
+		    	 punti.add(punti.get(k-2));
+		    	 punti.add(array.get(i));
+		    	 punti.add(punti.get(k-2)+n);
+		    	 punti.add(array.get(i));
+		    	 k=k+4;
+
+	    	 }
+	     }
+
+	     return punti;
+       
+    } 
+  
 	/*
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
 		
