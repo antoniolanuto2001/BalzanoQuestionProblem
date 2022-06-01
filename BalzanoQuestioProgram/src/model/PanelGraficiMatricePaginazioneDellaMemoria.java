@@ -34,7 +34,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	
    	public void disegnaSoluzioneFIFO(Graphics g, int array[][], int slot,int page, int numeri[]){
    		
-   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
    			
@@ -67,7 +67,8 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   			g.drawString(String.valueOf(array[j][i]),j*17,20+i*18);
 	    	}
    		}
-   		g.setColor(Color.blue);
+   		g.setColor(Color.RED);
+   		g.setFont(new Font("TAHOMA", Font.BOLD, 15));
         for(int j = 0; j < numeri.length/*25*/; j++) {
         	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
         }
@@ -75,7 +76,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	
 	public void disegnaSoluzioneOPT(Graphics g, int array[][], int slot,int page, int numeri[]){
    		
-   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
    			
@@ -108,8 +109,9 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	    	}
    		}
 	    
-   		g.setColor(Color.blue);
-	        for(int j = 0; j <  numeri.length/*25*/; j++) {
+   		g.setColor(Color.RED);
+   		g.setFont(new Font("TAHOMA", Font.BOLD, 15));
+   		for(int j = 0; j <  numeri.length/*25*/; j++) {
 	        	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
 	        }
    		
@@ -117,7 +119,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	
 	public void disegnaSoluzioneLRU(Graphics g, int array[][], int slot,int page, int numeri[]){
    		
-   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
    			
@@ -149,8 +151,9 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	   			g.drawString(String.valueOf(array[j][i]),j*17,20+i*18);
 	        }
 	    }
-   		g.setColor(Color.blue);
-        for(int j = 0; j <  numeri.length/*25*/; j++) {
+   		g.setColor(Color.RED);
+   		g.setFont(new Font("TAHOMA", Font.BOLD, 15));
+   		for(int j = 0; j <  numeri.length/*25*/; j++) {
         	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
         }
    		
@@ -158,7 +161,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	
 	public void disegnaSoluzioneCLOCK(Graphics g, int array[][], int slot,int page, int numeri[]){
    		
-   		g.setFont(new Font("ARIAL", Font.PLAIN, 15));
+   		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		
    		/*for(int j=0;j<page;j++) {
    			
@@ -192,8 +195,9 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
 	        }
 	    }
 	    
-   		g.setColor(Color.blue);
-        for(int j = 0; j <  numeri.length/*25*/; j++) {
+   		g.setColor(Color.RED);
+   		g.setFont(new Font("TAHOMA", Font.BOLD, 15));
+   		for(int j = 0; j <  numeri.length/*25*/; j++) {
         	g.drawString(String.valueOf(numeri[j]),j*17,20+slot*19);
         }
    	}
