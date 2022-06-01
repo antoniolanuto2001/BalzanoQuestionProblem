@@ -11,6 +11,13 @@ public class ProcessoSemaforo
 	public int inizioZonaCritica3;
 	public int fineZonaCritica3;
 	
+	public int inizioZonaCritica1B;
+	public int fineZonaCritica1B;
+	public int inizioZonaCritica2B;
+	public int fineZonaCritica2B;
+	public int inizioZonaCritica3B;
+	public int fineZonaCritica3B;
+	
 	
 	public ProcessoSemaforo()
 	{
@@ -22,6 +29,14 @@ public class ProcessoSemaforo
 		fineZonaCritica1=0;
 		fineZonaCritica2=0;
 		fineZonaCritica3=0;
+		
+		 inizioZonaCritica1B=0;
+		 fineZonaCritica1B=0;
+		 inizioZonaCritica2B=0;
+		 fineZonaCritica2B=0;
+		 inizioZonaCritica3B=0;
+		 fineZonaCritica3B=0;
+		
 	
 	
 	}
