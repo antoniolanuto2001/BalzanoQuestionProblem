@@ -18,6 +18,7 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -47,50 +48,27 @@ public class SchHD extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
-	private int[]successione;
+	private int[]successione=new int[0];
 	
-	private int[]numeriFCFS;
+	private int[]numeriFCFS=new int[0];
 	private int distanzaFCFS;
 	
-	private int[]numeriSSTF;
+	private int[]numeriSSTF=new int[0];
 	private int distanzaSSTF;
 	
-	private int[]numeriSCAN;
+	private int[]numeriSCAN=new int[0];
 	private int distanzaSCAN;
 	
-	private int[]numeriCSCAN;
+	private int[]numeriCSCAN=new int[0];
 	private int distanzaCSCAN;
 	
-	private int[]numeriLOOK;
+	private int[]numeriLOOK=new int[0];
 	private int distanzaLOOK;
 	
-	private int[]numeriCLOOK;
+	private int[]numeriCLOOK=new int[0];
 	private int distanzaCLOOK;
-	
-	/*----*/
-	private int[]numeriSCAN1;
-	private int distanzaSCAN1;
-	
-	private int[]numeriCSCAN1;
-	private int distanzaCSCAN1;
-	
-	private int[]numeriLOOK1;
-	private int distanzaLOOK1;
-	
-	private int[]numeriCLOOK1;
-	private int distanzaCLOOK1;
-	
-	private int[]numeriSCAN2;
-	private int distanzaSCAN2;
-	
-	private int[]numeriCSCAN2;
-	private int distanzaCSCAN2;
-	
-	private int[]numeriLOOK2;
-	private int distanzaLOOK2;
-	
-	private int[]numeriCLOOK2;
-	private int distanzaCLOOK2;
+
+	int flag=0;
 	/**
 	 * Create the frame.
 	 */
@@ -153,27 +131,27 @@ public class SchHD extends JFrame {
 			btnGeneraEsercizio.setFont(new Font("Arial", Font.BOLD, 15));
 			btnGeneraEsercizio.setBorder(new LineBorder(new Color (0, 151, 167), 2, true));
 			btnGeneraEsercizio.setBackground(Color.WHITE);
-			btnGeneraEsercizio.setBounds(16, 147, 224, 34);
+			btnGeneraEsercizio.setBounds(16, 160, 224, 34);
 			pannelloParametri.add(btnGeneraEsercizio);
 			
 		JComboBox comboBoxSceltaNCilindri = new JComboBox();
-			comboBoxSceltaNCilindri.setModel(new DefaultComboBoxModel(new String[] {"50", "100", "200", "400", "600", "800", "1000", "1400", "1800", "2000"}));
+			comboBoxSceltaNCilindri.setModel(new DefaultComboBoxModel(new String[] {"50", "100", "200", "400", "500", "600", "800", "1000"}));
 			comboBoxSceltaNCilindri.setSelectedIndex(2);
 			comboBoxSceltaNCilindri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxSceltaNCilindri.setBackground(Color.WHITE);
-			comboBoxSceltaNCilindri.setBounds(166, 105, 74, 22);
+			comboBoxSceltaNCilindri.setBounds(166, 125, 74, 22);
 			pannelloParametri.add(comboBoxSceltaNCilindri);
 			
 		JLabel labelPosizione = new JLabel("Numero Cilindri  :");
 			labelPosizione.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			labelPosizione.setBounds(16, 105, 140, 22);
+			labelPosizione.setBounds(16, 125, 140, 22);
 			pannelloParametri.add(labelPosizione);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
 			labelMostraSoluzioni.setEnabled(false);
 			labelMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			labelMostraSoluzioni.setBounds(90, 200, 79, 35);
+			labelMostraSoluzioni.setBounds(90, 210, 79, 35);
 			labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
 			//btnMostraSoluzioni.setBorder(new LineBorder(Color.black, 2));
 			labelMostraSoluzioni.setIcon(new ImageIcon(PaginazioneDellaMemoria.class.getResource("/img/playIcon2.png")));
@@ -186,14 +164,14 @@ public class SchHD extends JFrame {
 			//btnFastForwardPiu.setBorder(new LineBorder(Color.black,2));
 			labelFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
 			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-			labelFastForwardPiu.setBounds(179, 200, 52, 35);
+			labelFastForwardPiu.setBounds(179, 210, 52, 35);
 			pannelloParametri.add(labelFastForwardPiu);
 			
 		JLabel labelFastForwardMeno = new JLabel("");
 			labelFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
 			labelFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 			labelFastForwardMeno.setEnabled(false);
-			labelFastForwardMeno.setBounds(24, 200, 52, 35);
+			labelFastForwardMeno.setBounds(24, 210, 52, 35);
 			labelFastForwardMeno.setBackground(new Color(255, 255, 255));
 			//btnFastForwardMeno.setBorder(new LineBorder(Color.black,2));
 			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
@@ -201,18 +179,17 @@ public class SchHD extends JFrame {
 			
 		JTextField textFieldRichieste = new JTextField();
 			textFieldRichieste.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldRichieste.setFont(new Font("Arial", Font.BOLD, 10));
-			textFieldRichieste.setEditable(false);
+			textFieldRichieste.setFont(new Font("Arial", Font.BOLD, 12));
 			textFieldRichieste.setColumns(10);
 			textFieldRichieste.setBackground(Color.WHITE);
-			textFieldRichieste.setBounds(10, 71, 235, 23);
+			textFieldRichieste.setBounds(10, 71, 234, 23);
 			pannelloParametri.add(textFieldRichieste);
 		
 		JLabel labelCodaRichieste = new JLabel("Coda delle Richieste");
 			labelCodaRichieste.setHorizontalAlignment(SwingConstants.CENTER);
 			labelCodaRichieste.setForeground(Color.BLACK);
 			labelCodaRichieste.setFont(new Font("Arial", Font.BOLD, 14));
-			labelCodaRichieste.setBounds(16, 44, 224, 23);
+			labelCodaRichieste.setBounds(10, 44, 230, 23);
 			pannelloParametri.add(labelCodaRichieste);
 			
 		JLabel labelPosizioneInziale = new JLabel("Posizione iniziale testina : ");
@@ -227,6 +204,12 @@ public class SchHD extends JFrame {
 			textFieldInzialeTestina.setBounds(188, 13, 52, 20);
 			pannelloParametri.add(textFieldInzialeTestina);
 			textFieldInzialeTestina.setColumns(10);
+			
+		JLabel labelMessaggioErrore = new JLabel("");
+			labelMessaggioErrore.setForeground(Color.RED);
+			labelMessaggioErrore.setFont(new Font("Arial", Font.PLAIN, 12));
+			labelMessaggioErrore.setBounds(10, 100, 230, 23);
+			pannelloParametri.add(labelMessaggioErrore);
 			
 		JLabel labelPnlCtrl = new JLabel("Pannello di controllo");
 			labelPnlCtrl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -503,12 +486,12 @@ public class SchHD extends JFrame {
 		btnGeneraEsercizio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				jPanelFCFS.resetGrafico(jPanelFCFS.getGraphics());
 				jPanelSSFT.resetGrafico(jPanelSSFT.getGraphics());
 				jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
 				jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-				
+				textFieldRichieste.setBackground(Color.WHITE);
+				labelMessaggioErrore.setText("");
 				labelFastForwardMeno.setEnabled(true);
 				labelFastForwardPiu.setEnabled(true);
 				labelMostraSoluzioni.setEnabled(true);
@@ -525,6 +508,7 @@ public class SchHD extends JFrame {
 				labelDatoDistanzaSCAN.setText("");
 				labelDatoDistanzaSSTF.setText("");
 				
+				successione=new int[10];
 				Random random = new Random();
 /*				int ncilindri = random.nextInt(7 + 0) + 0;
 				comboBoxSceltaNCilindri.setSelectedIndex(ncilindri);
@@ -533,7 +517,6 @@ public class SchHD extends JFrame {
 				textFieldInzialeTestina.setText(String.valueOf(position));
 				
 				int numero=Integer.valueOf(String.valueOf(comboBoxSceltaNCilindri.getSelectedItem()));
-				successione=new int[10];
 				for (int i=0;i<10;i++) { 
 					int value = random.nextInt(numero + 0) + 0;
 					if(i==0)textFieldRichieste.setText(String.valueOf(value));
@@ -557,10 +540,373 @@ public class SchHD extends JFrame {
 		labelMostraSoluzioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-			
 				if(labelMostraSoluzioni.isEnabled()) {
-					
+					jPanelFCFS.resetGrafico(jPanelFCFS.getGraphics());
+					jPanelSSFT.resetGrafico(jPanelSSFT.getGraphics());
+					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+					textFieldRichieste.setBackground(Color.WHITE);
+					labelMessaggioErrore.setText("");
 					labelMostraSoluzioni.setEnabled(false);
+					labelFastForwardMeno.setEnabled(false);
+					labelFastForwardPiu.setEnabled(false);
+
+					chckbxSCAN.setEnabled(true);
+					chckbxLOOK.setEnabled(true);
+					
+					if(rdbtnDestraLOOK.isSelected())rdbtnDestraLOOK.setEnabled(false);
+					else rdbtnDestraLOOK.setEnabled(true);
+					
+					if(rdbtnDestraSCAN.isSelected())rdbtnDestraSCAN.setEnabled(false);
+					else rdbtnDestraSCAN.setEnabled(true);
+					
+					if(rdbtnSinistraLOOK.isSelected())rdbtnSinistraLOOK.setEnabled(false);
+					else rdbtnSinistraLOOK.setEnabled(true);
+					
+					if(rdbtnSinistraSCAN.isSelected())rdbtnSinistraSCAN.setEnabled(false);
+					else rdbtnSinistraSCAN.setEnabled(true);
+					
+					//GENERAZIONE MATRICI
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(k);
+										
+					numeriFCFS=FCFS(successione,s);
+					numeriSSTF=SSTF(successione,s);
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
+					if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+					else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+					
+					/*if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriSCAN=SCAN(successione,s,direzioneS,nc);
+
+					if(rdbtnDestraLOOK.isSelected()) direzioneL="right";
+					else if(rdbtnSinistraLOOK.isSelected())direzioneL="left";
+					
+					/*if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
+					else 
+						*/
+					numeriLOOK=LOOK(successione,s,direzioneL,nc);
+
+					labelDatoDistanzaFCFS.setText(String.valueOf(distanzaFCFS));
+					jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),numeriFCFS,nc,distanzaFCFS,successione);
+					
+					labelDatoDistanzaSSTF.setText(String.valueOf(distanzaSSTF));
+					jPanelSSFT.disegnaSoluzione(jPanelSSFT.getGraphics(),numeriSSTF,nc,distanzaSSTF,successione);
+					
+					if(chckbxLOOK.isSelected()) {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+					}else {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+					}
+					
+					if(chckbxSCAN.isSelected()) {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+					}else {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+					}
+				}
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+				if(labelMostraSoluzioni.isEnabled())
+					labelMostraSoluzioni.setBackground(Color.red);
+				}
+			@Override
+			public void mouseExited(MouseEvent e){
+				
+				labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
+			}
+		});		
+
+	//TESTINA INIZIALE
+		textFieldInzialeTestina.addCaretListener(new CaretListener() {
+			public void caretUpdate(CaretEvent e) {
+				if(textFieldInzialeTestina.isEditable()){
+					int diff=0;
+					int count=0;
+					if(successione.length>0) {
+						for(int i=0;i<successione.length;i++) {
+							if(successione[i]>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())) diff=1;
+						}
+							
+						if(textFieldInzialeTestina.getText().equals("")) {
+							textFieldInzialeTestina.setBackground(Color.red);
+							labelMostraSoluzioni.setEnabled(false);
+							labelFastForwardMeno.setEnabled(false);
+							labelFastForwardPiu.setEnabled(false);
+							
+							count++;
+						}
+						else if(Integer.valueOf( textFieldInzialeTestina.getText())>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString()) || Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())<0) {
+							textFieldInzialeTestina.setBackground(Color.red);
+							labelMostraSoluzioni.setEnabled(false);
+							labelFastForwardMeno.setEnabled(false);
+							labelFastForwardPiu.setEnabled(false);
+							count++;
+						}
+						if(diff==1) {
+							textFieldRichieste.setBackground(Color.red);
+							labelMessaggioErrore.setText("ERRORE: Verificare coda delle richieste");
+							labelMostraSoluzioni.setEnabled(false);
+							labelFastForwardMeno.setEnabled(false);
+							labelFastForwardPiu.setEnabled(false);
+							count++;
+						}
+						if(count==0){
+							textFieldInzialeTestina.setBackground(new Color(255,255,255));
+							labelMostraSoluzioni.setEnabled(true);
+							labelFastForwardMeno.setEnabled(true);
+							labelFastForwardPiu.setEnabled(true);
+							textFieldRichieste.setBackground(Color.white);
+							labelMessaggioErrore.setText("");
+						}	
+					}
+				}
+			}
+		});
+		textFieldInzialeTestina.addKeyListener(new KeyAdapter() {
+	         public void keyTyped(KeyEvent e) {
+	             char c = e.getKeyChar();
+	             if ( ((c < '0') || (c > '9'))) {
+	                  e.consume();  //Ignora l'evento
+	             }   
+			}
+		});
+
+	//CAMBIAMENTO CILINDRI E VERIFICA TESTINA INIZIALE
+		comboBoxSceltaNCilindri.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				int diff=0;
+				int count=0;
+				if(successione.length>0) {
+					for(int i=0;i<successione.length;i++) {
+						if(successione[i]>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())) diff=1;
+					}
+						
+					if(textFieldInzialeTestina.getText().equals("")) {
+						textFieldInzialeTestina.setBackground(Color.red);
+						labelMostraSoluzioni.setEnabled(false);
+						labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
+						count++;
+					}
+					if(Integer.valueOf( textFieldInzialeTestina.getText())>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString()) || Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())<0) {
+						textFieldInzialeTestina.setBackground(Color.red);
+						labelMostraSoluzioni.setEnabled(false);
+						labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
+						count++;
+					}
+					if(diff==1) {
+						textFieldRichieste.setBackground(Color.red);
+						labelMessaggioErrore.setText("ERRORE: Verificare coda delle richieste");
+						labelMostraSoluzioni.setEnabled(false);
+						labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
+						count++;
+					}
+					if(count==0){
+						textFieldInzialeTestina.setBackground(new Color(255,255,255));
+						labelMostraSoluzioni.setEnabled(true);
+						labelFastForwardMeno.setEnabled(true);
+						labelFastForwardPiu.setEnabled(true);
+						textFieldRichieste.setBackground(Color.white);
+						labelMessaggioErrore.setText("");
+					}
+				
+				}
+			}
+		});
+		
+	//EVENTO SU MUOVERE TEXTFIELD CODA DELLE RICHIESTE
+		textFieldRichieste.addKeyListener(new KeyAdapter() {
+	         public void keyTyped(KeyEvent e) {
+	             char c = e.getKeyChar();
+	             if (c != KeyEvent.VK_HOME && c != KeyEvent.VK_END) {
+	                  e.consume();  //Ignora l'evento
+	             }   
+			}
+		});
+		
+	//EVENTI SUI BOTTONI DI DIREZIONE DI SCAN
+		rdbtnSinistraSCAN.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnSinistraSCAN.isSelected()) {
+					rdbtnSinistraSCAN.setEnabled(false);
+					rdbtnDestraSCAN.setSelected(false);
+					rdbtnDestraSCAN.setEnabled(true);
+					
+					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+					
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(k);
+					
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
+					if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+					else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+					
+					/*if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriSCAN=SCAN(successione,s,direzioneS,nc);
+
+					if(chckbxSCAN.isSelected()) {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+					}else {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+					}
+				}
+				
+			}
+		});
+		rdbtnDestraSCAN.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnDestraSCAN.isSelected()) {
+					rdbtnDestraSCAN.setEnabled(false);
+					rdbtnSinistraSCAN.setSelected(false);
+					rdbtnSinistraSCAN.setEnabled(true);
+					
+					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+					labelDatoDistanzaSCAN.setText("");
+
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(k);
+					
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
+					if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+					else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+					
+					/*if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriSCAN=SCAN(successione,s,direzioneS,nc);
+
+					if(chckbxSCAN.isSelected()) {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+					}else {
+						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+					}
+				}
+			}
+		});
+		
+	//EVENTI SUI BOTTONI DI DIREZIONE DI LOOK
+		rdbtnSinistraLOOK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnSinistraLOOK.isSelected()) {
+					rdbtnSinistraLOOK.setEnabled(false);
+					rdbtnDestraLOOK.setSelected(false);
+					rdbtnDestraLOOK.setEnabled(true);
+					
+					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+					
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(k);
+					
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
+					if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
+					else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
+					
+					/*if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriLOOK=LOOK(successione,s,direzioneS,nc);
+
+					if(chckbxLOOK.isSelected()) {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+					}else {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+					}
+				}
+				
+			}
+		});
+		rdbtnDestraLOOK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(rdbtnDestraLOOK.isSelected()) {
+					rdbtnDestraLOOK.setEnabled(false);
+					rdbtnSinistraLOOK.setSelected(false);
+					rdbtnSinistraLOOK.setEnabled(true);
+					
+					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+					labelDatoDistanzaLOOK.setText("");
+
+					String j= textFieldInzialeTestina.getText().toString();
+					int s=Integer.valueOf(j);
+
+					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+					int nc=Integer.valueOf(k);
+					
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
+					if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
+					else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
+					
+					/*if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriLOOK=LOOK(successione,s,direzioneS,nc);
+
+					if(chckbxLOOK.isSelected()) {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+					}else {
+						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+					}
+				}
+			}
+		});
+		
+	//EVENTO SUI BOTTONI PLAYSTEPbySTEP
+		labelFastForwardPiu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+			
+				if(labelFastForwardPiu.isEnabled()) {
+					labelFastForwardMeno.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
+					
+					textFieldRichieste.setBackground(Color.WHITE);
+					labelMessaggioErrore.setText("");
 					
 					chckbxSCAN.setEnabled(true);
 					chckbxLOOK.setEnabled(true);
@@ -583,172 +929,204 @@ public class SchHD extends JFrame {
 
 					String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
 					int nc=Integer.valueOf(k);
-					
+										
 					numeriFCFS=FCFS(successione,s);
 					numeriSSTF=SSTF(successione,s);
-					String direzioneSS = new String();
-					String direzioneLS = new String();
-					String direzioneSD = new String();
-					String direzioneLD = new String();
-					direzioneSS="left";
-					direzioneSD="right";
-					direzioneLS="left";
-					direzioneLD="right";
-					numeriCSCAN1=CSCAN(successione,s,direzioneSS,nc);
-					distanzaCSCAN1=distanzaCSCAN;
-					
-					numeriSCAN1=SCAN(successione,s,direzioneSS,nc);
-					distanzaSCAN1=distanzaSCAN;
-					
-					numeriCLOOK1=CLOOK(successione,s,direzioneLS,nc);
-					distanzaCLOOK1=distanzaCLOOK;
-
-					numeriLOOK1=LOOK(successione,s,direzioneLS,nc);
-					distanzaLOOK1=distanzaLOOK;
-
-					numeriCSCAN2=CSCAN(successione,s,direzioneSD,nc);
-					distanzaCSCAN2=distanzaCSCAN;
-					
-					numeriSCAN2=SCAN(successione,s,direzioneSD,nc);
-					distanzaSCAN2=distanzaSCAN;
-					
-					numeriCLOOK2=CLOOK(successione,s,direzioneLD,nc);
-					distanzaCLOOK2=distanzaCLOOK;
-
-					numeriLOOK2=LOOK(successione,s,direzioneLD,nc);
-					distanzaLOOK2=distanzaLOOK;
-					
-					System.out.println("FCFS");
-					for(int i=0;i<numeriFCFS.length;i++)System.out.print(" "+numeriFCFS[i]);
-					System.out.println("\nSSTF");
-					for(int i=0;i<numeriSSTF.length;i++)System.out.print(" "+numeriSSTF[i]);
-					System.out.println("\nCSCAN SINISTRA");
-					for(int i=0;i<numeriCSCAN1.length;i++)System.out.print(" "+numeriCSCAN1[i]);
-					System.out.println("\nSCAN SINISTRA");
-					for(int i=0;i<numeriSCAN1.length;i++)System.out.print(" "+numeriSCAN1[i]);
-					System.out.println("\nCLOOK SINISTRA");
-					for(int i=0;i<numeriCLOOK1.length;i++)System.out.print(" "+numeriCLOOK1[i]);
-					System.out.println("\nLOOK SINISTRA");
-					for(int i=0;i<numeriLOOK1.length;i++)System.out.print(" "+numeriLOOK1[i]);
-					System.out.println("\nCSCAN DESTRA");
-					for(int i=0;i<numeriCSCAN2.length;i++)System.out.print(" "+numeriCSCAN2[i]);
-					System.out.println("\nSCAN DESTRA");
-					for(int i=0;i<numeriSCAN2.length;i++)System.out.print(" "+numeriSCAN2[i]);
-					System.out.println("\nCLOOK DESTRA");
-					for(int i=0;i<numeriCLOOK2.length;i++)System.out.print(" "+numeriCLOOK2[i]);
-					System.out.println("\nLOOK DESTRA");
-					for(int i=0;i<numeriLOOK2.length;i++)System.out.print(" "+numeriLOOK2[i]);
-					System.out.println();
-					
-					System.out.print("FCFS "+distanzaFCFS+" SSTF "+distanzaSSTF+" CSCANS "+distanzaCSCAN1+" SCANS "+distanzaSCAN1+" CLOOKS "+distanzaCLOOK1+" LOOKS "+distanzaLOOK1+" ");
-					System.out.println(" CSCAND "+distanzaCSCAN2+" SCAND "+distanzaSCAN2+" CLOOKD "+distanzaCLOOK2+" LOOKD "+distanzaLOOK2+" ");
-
-					/*
+					String direzioneS = new String();
+					String direzioneL = new String();
+										
 					if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
 					else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
 					
-					if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-					else numeriSCAN=SCAN(successione,s,direzioneS,nc);
+					/*if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+					else 
+						*/
+					numeriSCAN=SCAN(successione,s,direzioneS,nc);
 
 					if(rdbtnDestraLOOK.isSelected()) direzioneL="right";
 					else if(rdbtnSinistraLOOK.isSelected())direzioneL="left";
 					
-					if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
-					else numeriLOOK=LOOK(successione,s,direzioneL,nc);
-
-					labelDatoDistanzaFCFS.setText(String.valueOf(distanzaFCFS));
-					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),numeriFCFS,nc,distanzaFCFS,successione);
+					/*if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneL,nc);
+					else 
+						*/
+					numeriLOOK=LOOK(successione,s,direzioneL,nc);
 					
-					labelDatoDistanzaSSTF.setText(String.valueOf(distanzaSSTF));
-					jPanelSSFT.disegnaSoluzioneFCFS(jPanelSSFT.getGraphics(),numeriSSTF,nc,distanzaSSTF,successione);
+					flag++;
+					
+					if(flag<numeriFCFS.length) {
+						int[] array=new int[flag];
+						for(int i=0;i<flag;i++) {
+							array[i]=numeriFCFS[i];
+						}
+						labelDatoDistanzaFCFS.setText(String.valueOf(distanzaFCFS));
+						jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),array,nc,distanzaFCFS,successione);
+					}
+					
+					if(flag<numeriSSTF.length) {
+						int[] array=new int[flag];
+						for(int i=0;i<flag;i++) {
+							array[i]=numeriSSTF[i];
+						}		
+						labelDatoDistanzaSSTF.setText(String.valueOf(distanzaSSTF));
+						jPanelSSFT.disegnaSoluzione(jPanelSSFT.getGraphics(),array,nc,distanzaSSTF,successione);
+					}	
 					
 					if(chckbxLOOK.isSelected()) {
+						if(flag<numeriCLOOK.length) {
+							int[] array=new int[flag];
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriCLOOK[i];
+							}	
 						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-						jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),array,nc,distanzaCLOOK,successione);
+						}	
 					}else {
+						if(flag<numeriLOOK.length) {
+							int[] array=new int[flag];
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriLOOK[i];
+							}
 						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-						jPanelLOOK.disegnaSoluzioneFCFS(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),array,nc,distanzaLOOK,successione);
+						}	
 					}
-					
+							
 					if(chckbxSCAN.isSelected()) {
+						if(flag<numeriCSCAN.length) {
+							int[] array=new int[flag];
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriCSCAN[i];
+							}	
 						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-						jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),array,nc,distanzaCSCAN,successione);
+						}	
 					}else {
-						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-						jPanelSCAN.disegnaSoluzioneFCFS(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
-					}*/
+						if(flag<numeriSCAN.length) {
+							int[] array=new int[flag];
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriSCAN[i];
+							}
+							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),array,nc,distanzaSCAN,successione);
+						}
+					}	
+							
+					if(flag<max(numeriSSTF.length,numeriFCFS.length,numeriCSCAN.length,numeriCLOOK.length,numeriSCAN.length,numeriLOOK.length)) {
+						labelFastForwardPiu.setEnabled(true);
+						labelMostraSoluzioni.setEnabled(true);
+					}
+					else {
+						labelFastForwardPiu.setEnabled(false);
+						labelMostraSoluzioni.setEnabled(false);
+					}
+				}
+			}
+
+			private int max(int length1, int length2, int length3, int length4, int length5,	int length6) {
+
+				int[] array=new int [6];
+				
+				array[0]=length1;
+				array[1]=length2;
+				array[2]=length3;
+				array[3]=length4;
+				array[4]=length5;
+				array[5]=length6;
+				
+				int massimo=array[0];
+
+				for(int i=0; i<6; i++) {
+				      if( array[i]>massimo ) {
+				        massimo=array[i];
+				      }
+				    }
+				
+				return massimo;
+			}
+			
+		});
+		
+	/*	
+		btnFastForwardMeno.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				
+				if(btnFastForwardMeno.isEnabled()) {
+					btnFastForwardPiu.setEnabled(true);
+					btnMostraSoluzioni.setEnabled(true);
+
+					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
+					int s=Integer.valueOf(j);
+					flag--;
+					
+					if(flag>=0) {
+						
+						int arrayF[][]= new int[flag][s];
+						int arrayO[][]= new int[flag][s];
+						int arrayL[][]= new int[flag][s];
+						int arrayC[][]= new int[flag][s];
+	
+						int num[]=new int[flag];
+						
+						numeriFIFO=FIFO(numeri,s);
+						numeriOPT=OPT(numeri,s);
+						numeriLRU=LRU(numeri,s);
+						numeriCLOCK=CLOCK(numeri,s);
+						
+						labelDATOFIFO.setText(String.valueOf(pagefaultFIFO));
+						labelDATOOPT.setText(String.valueOf(pagefaultOPT));
+						labelDATOLRU.setText(String.valueOf(pagefaultLRU));
+						labelDATOCLOCK.setText(String.valueOf(pagefaultCLOCK));
+											
+					
+						for(int i = 0; i < s; i++)
+					    {
+					        for(int z = 0; z < flag; z++) {
+					        	arrayF[z][i]=numeriFIFO[z][i];
+					        	arrayO[z][i]=numeriOPT[z][i];
+					        	arrayL[z][i]=numeriLRU[z][i];
+					        	arrayC[z][i]=numeriCLOCK[z][i];
+
+					        }
+					    }
+						for(int i = 0; i < flag; i++)
+					    {
+							num[i]=numeri[i];
+					    }
+						jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
+						jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
+						jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());
+						jPanelCLOCKMATRICE.resetGrafico(jPanelCLOCKMATRICE.getGraphics());
+
+						jPanelFIFOMATRICE.disegnaSoluzioneFIFO(jPanelFIFOMATRICE.getGraphics(),arrayF,s,pagefaultFIFO,num);
+						jPanelOPTMATRICE.disegnaSoluzioneOPT(jPanelOPTMATRICE.getGraphics(),arrayO,s,pagefaultOPT,num);
+						jPanelLRUMATRICE.disegnaSoluzioneLRU(jPanelLRUMATRICE.getGraphics(),arrayL,s,pagefaultLRU,num);
+						jPanelCLOCKMATRICE.disegnaSoluzioneCLOCK(jPanelCLOCKMATRICE.getGraphics(),arrayC,s,pagefaultCLOCK,num);
+
+					}	
+					else {
+						btnFastForwardMeno.setEnabled(false);
+					}
 				}
 			}
 			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-				if(labelMostraSoluzioni.isEnabled())
-					labelMostraSoluzioni.setBackground(Color.red);
-				}
+			public void mouseEntered(MouseEvent e){
+				if(btnFastForwardMeno.isEnabled())
+					btnFastForwardMeno.setBackground(Color.red);
+			}
 			@Override
-			public void mouseExited(MouseEvent e){
+			public void mouseExited(MouseEvent e) {
 				
-				labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
+				btnFastForwardMeno.setBackground(new Color(255, 255, 255));
 			}
-		});		
-
-	//TESTINA INIZIALE
-		textFieldInzialeTestina.addCaretListener(new CaretListener() {
-			public void caretUpdate(CaretEvent e) {
-				if(textFieldInzialeTestina.isEditable()){
-					if(textFieldInzialeTestina.getText().equals("")) {
-						textFieldInzialeTestina.setBackground(Color.red);
-						labelMostraSoluzioni.setEnabled(false);
-						
-					}
-					else if(Integer.valueOf( textFieldInzialeTestina.getText())>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString()) || Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())<0) {
-						textFieldInzialeTestina.setBackground(Color.red);
-						labelMostraSoluzioni.setEnabled(false);
-						
-					}else {
-						textFieldInzialeTestina.setBackground(new Color(255,255,255));
-						labelMostraSoluzioni.setEnabled(true);
-						
-					}
-				}
-			}
-		});
-		textFieldInzialeTestina.addKeyListener(new KeyAdapter() {
-	         public void keyTyped(KeyEvent e) {
-	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
-	                  e.consume();  //Ignora l'evento
-	             }   
-			}
-		});
-
-	//CAMBIAMENTO CILINDRI E VERIFICA TESTINA INIZIALE
-		comboBoxSceltaNCilindri.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(textFieldInzialeTestina.isEditable()){
-					if(textFieldInzialeTestina.getText().equals("")) {
-						textFieldInzialeTestina.setBackground(Color.red);
-						labelMostraSoluzioni.setEnabled(false);
-						
-					}
-					else if(Integer.valueOf( textFieldInzialeTestina.getText())>Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString()) || Integer.valueOf(comboBoxSceltaNCilindri.getSelectedItem().toString())<0) {
-						textFieldInzialeTestina.setBackground(Color.red);
-						labelMostraSoluzioni.setEnabled(false);
-						
-					}else {
-						textFieldInzialeTestina.setBackground(new Color(255,255,255));
-						labelMostraSoluzioni.setEnabled(true);
-						
-					}
-				}
-			}
-		});
+		});*/
 	}	
 	
-/*IMPLEMENTAZIONE ALGORTIMI UTILIZZATI*/
+/**-------------------------IMPLEMENTAZIONE ALGORTIMI UTILIZZATI--------------------------------*/
 
-//ALGORITMO FCFS
-	public int[] FCFS(int[] queue, int head){
+//ALGORITMO FCFS OK
+	public int[] FCFS(int[] queue, int testa){
+		int head=testa;
 		//Resultant variable which are used to store information of number of time or operation
 		int seek_time = 0;
 		int distance = 0;
@@ -759,7 +1137,7 @@ public class SchHD extends JFrame {
 		
 		for (i = 0; i < array.length; i++)
 		{
-			if(i==0)array[i]=head;
+			if(i==0)array[i]=testa;
 			else array[i]=queue[i-1];
 		}
 		for (i = 0; i < n; i++)
@@ -781,9 +1159,10 @@ public class SchHD extends JFrame {
 		return array;
 	}
 	
-//ALGORITMO SSTF
-	public int[] SSTF(int[] queue, int head){
+//ALGORITMO SSTF OK
+	public int[] SSTF(int[] queue, int testa){
 		
+		int head=testa;
 		int n=queue.length;
 		int[] array= new int[queue.length+1];
 
@@ -854,24 +1233,23 @@ public class SchHD extends JFrame {
 			return array;
 		}
 	
-//ALGORITMO SCAN
-	public int[] SCAN(int[] arr, int head, String direction, int disk_size){
+//ALGORITMO SCAN OK
+	public int[] SCAN(int[] arr, int testa, String direction, int disk_size){
 		
-		int size=arr.length;
-		int[] array= new int[arr.length+1];
- 	
-	    int seek_count = 0;
-	    int distance, cur_track;
-	    Vector<Integer> left = new Vector<Integer>(),
-	                    right = new Vector<Integer>();
-	    Vector<Integer> seek_sequence = new Vector<Integer>();
-	 
-	    // appending end values
-		// which has to be visited
-		// before reversing the direction
-		if (direction == "left")
-		    left.add(0);
-		else if (direction == "right")
+			int head=testa;
+			int size = arr.length;
+		    int seek_count = 0;
+		    int distance, cur_track;
+		    Vector<Integer> left = new Vector<Integer>(),
+		                    right = new Vector<Integer>();
+		    Vector<Integer> seek_sequence = new Vector<Integer>();
+		 
+		    // appending end values
+		    // which has to be visited
+		    // before reversing the direction
+		    if (direction == "left")
+		        left.add(0);
+		    else if (direction == "right")
 		        right.add(disk_size - 1);
 		 
 		    for (int i = 0; i < size; i++)
@@ -886,13 +1264,13 @@ public class SchHD extends JFrame {
 		    Collections.sort(left);
 		    Collections.sort(right);
 		 
-	    // run the while loop two times.
-	// one by one scanning right
-		// and left of the head
-		int run = 2;
-		while (run-- >0)
-		{
-		    if (direction == "left")
+		    // run the while loop two times.
+		    // one by one scanning right
+		    // and left of the head
+		    int run = 2;
+		    while (run-- >0)
+		    {
+		        if (direction == "left")
 		        {
 		            for (int i = left.size() - 1; i >= 0; i--)
 		            {
@@ -908,17 +1286,17 @@ public class SchHD extends JFrame {
 		                seek_count += distance;
 		 
 		                // accessed track is now the new head
-		            head = cur_track;
+		                head = cur_track;
+		            }
+		            direction = "right";
 		        }
-		        direction = "right";
-		    }
-		    else if (direction == "right")
-		    {
-		        for (int i = 0; i < right.size(); i++)
+		        else if (direction == "right")
 		        {
-		            cur_track = right.get(i);
-		             
-		            // appending current track to seek sequence
+		            for (int i = 0; i < right.size(); i++)
+		            {
+		                cur_track = right.get(i);
+		                 
+		                // appending current track to seek sequence
 		                seek_sequence.add(cur_track);
 		 
 		                // calculate absolute distance
@@ -928,123 +1306,160 @@ public class SchHD extends JFrame {
 		                seek_count += distance;
 		 
 		                // accessed track is now new head
-		            head = cur_track;
-		        }
-		        direction = "left";
+		                head = cur_track;
+		            }
+		            direction = "left";
 		        }
 		    }
 		 
-		    		 
-		    for (int i = 0; i < array.length; i++)
-			{
-				if(i==0)array[i]=head;
-				else array[i]=seek_sequence.get(i-1);
-			}
+		    System.out.print("Total number of seek operations = "
+		                        + seek_count + "\n");
+		 
+		    System.out.print("Seek Sequence is" + " \n");
+		    int k=seek_sequence.size();
 		    
+			int array[]=new int[k+1];
+			array[0]=testa;
+		    for (int i = 0; i < seek_sequence.size(); i++)
+		    {
+		    	array[i+1]=seek_sequence.get(i);
+		        System.out.print(seek_sequence.get(i) + " ");
+		    }
+		    System.out.println();
+		    for (int i = 0; i < array.length; i++)
+		    {
+		        System.out.print(array[i] + " ");
+		    }
+		    System.out.println();
+
 		    distanzaSCAN=seek_count;
-			return array;
+		    return array;
 	  }
 
-//ALGORITMO CSCAN
-	public int[] CSCAN(int[] arr, int head, String direction, int disk_size){
+//ALGORITMO CSCAN NO
+	public void CSCAN(int[] arr, int testa, String direction, int disk_size){
 		
+		int head=testa;
 		int size=arr.length;
-		int[] array= new int[arr.length+1];
- 	
-	    int seek_count = 0;
-	    int distance, cur_track;
+ 		 
+	        int seek_count = 0;
+	        int distance, cur_track;
+	 
+	        Vector<Integer> left = new Vector<Integer>();
+	        Vector<Integer> right = new Vector<Integer>();
+	        Vector<Integer> seek_sequence
+	            = new Vector<Integer>();
+	 
+	        // Appending end values which has
+	        // to be visited before reversing
+	        // the direction
+	        left.add(0);
+	        right.add(disk_size - 1);
+	 
+	        // Tracks on the left of the
+	        // head will be serviced when
+	        // once the head comes back
+	        // to the beggining (left end).
+	        for (int i = 0; i < size; i++) {
+	            if (arr[i] < head)
+	                left.add(arr[i]);
+	            if (arr[i] > head)
+	                right.add(arr[i]);
+	        }
+	 
+	        // Sorting left and right vectors
+	        Collections.sort(left);
+	        Collections.sort(right);
+	 
+	        // First service the requests
+	        // on the right side of the
+	        // head.
+	        for (int i = 0; i < right.size(); i++) {
+	            cur_track = right.get(i);
+	 
+	            // Appending current track to seek sequence
+	            seek_sequence.add(cur_track);
+	 
+	            // Calculate absolute distance
+	            distance = Math.abs(cur_track - head);
+	 
+	            // Increase the total count
+	            seek_count += distance;
+	 
+	            // Accessed track is now new head
+	            head = cur_track;
+	        }
+	       
+	        // Once reached the right end
+	        // jump to the beggining.
+	        head = 0;
+	 
+	        // adding seek count for head returning from 199 to
+	        // 0
+	        seek_count += (disk_size - 1);
+	 
+	        // Now service the requests again
+	        // which are left.
+	        for (int i = 0; i < left.size(); i++) {
+	            cur_track = left.get(i);
+	 
+	            // Appending current track to
+	            // seek sequence
+	            seek_sequence.add(cur_track);
+	 
+	            // Calculate absolute distance
+	            distance = Math.abs(cur_track - head);
+	 
+	            // Increase the total count
+	            seek_count += distance;
+	 
+	            // Accessed track is now the new head
+	            head = cur_track;
+	        }
+	 
+	        System.out.println("Total number of seek "
+	                           + "operations = " + seek_count);
+	 
+	        System.out.println("Seek Sequence is");
+	 
+	        for (int i = 0; i < seek_sequence.size(); i++) {
+	            System.out.println(seek_sequence.get(i));
+	        }
+	        
+		    if (direction == "right") {
+		    	int k=seek_sequence.size();
+			    
+				int array[]=new int[k+1];
+				array[0]=testa;
+			    for (int i = 0; i < seek_sequence.size(); i++)
+			    {
+			    	array[i+1]=seek_sequence.get(i);
+			        System.out.print(seek_sequence.get(i) + " ");
+			    }
+			    System.out.println();
+			    for (int i = 0; i < array.length; i++)
+			    {
+			        System.out.print(array[i] + " ");
+			    }
+			    System.out.println();
 
-	     Vector<Integer> left = new Vector<Integer>();
-	     Vector<Integer> right = new Vector<Integer>();
-	     Vector<Integer> seek_sequence
-	         = new Vector<Integer>();
-	
-	     // Appending end values which has
-	     // to be visited before reversing
-	     // the direction
-	     left.add(0);
-	     right.add(disk_size - 1);
-	
-	     // Tracks on the left of the
-	     // head will be serviced when
-	     // once the head comes back
-	     // to the beggining (left end).
-	     for (int i = 0; i < size; i++) {
-	         if (arr[i] < head)
-	             left.add(arr[i]);
-	         if (arr[i] > head)
-	             right.add(arr[i]);
-	     }
-	
-	     // Sorting left and right vectors
-	     Collections.sort(left);
-	     Collections.sort(right);
-	
-	     // First service the requests
-	     // on the right side of the
-	     // head.
-	     for (int i = 0; i < right.size(); i++) {
-	         cur_track = right.get(i);
-	
-	         // Appending current track to seek sequence
-	         seek_sequence.add(cur_track);
-	
-	         // Calculate absolute distance
-	         distance = Math.abs(cur_track - head);
-	
-	         // Increase the total count
-	         seek_count += distance;
-	
-	         // Accessed track is now new head
-	         head = cur_track;
-	     }
-	
-	     // Once reached the right end
-	     // jump to the beggining.
-	     head = 0;
-	
-	     // adding seek count for head returning from 199 to
-	     // 0
-	     seek_count += (disk_size - 1);
-	
-	     // Now service the requests again
-	     // which are left.
-	     for (int i = 0; i < left.size(); i++) {
-	         cur_track = left.get(i);
-	
-	         // Appending current track to
-	         // seek sequence
-	         seek_sequence.add(cur_track);
-	
-	         // Calculate absolute distance
-	         distance = Math.abs(cur_track - head);
-	
-	         // Increase the total count
-	         seek_count += distance;
-	
-	         // Accessed track is now the new head
-	         head = cur_track;
-	     }
-	
-		    for (int i = 0; i < array.length; i++)
-			{
-				if(i==0)array[i]=head;
-				else array[i]=seek_sequence.get(i-1);
-			}
-		    
-		    distanzaCSCAN=seek_count;
-			return array;
+			    distanzaSCAN=seek_count;
+			   // return array;
+		    }
+		    else if (direction == "left") {
+		    	
+		    }
+
 	}		
 
-//ALGORITMO LOOK
-	public int[] LOOK(int[] arr, int head, String direction, int disk_size){
+//ALGORITMO LOOK OK
+	public int[] LOOK(int[] arr, int testa, String direction, int disk_size){
 		
+		int head=testa;
 		int size=arr.length;
-		int[] array= new int[arr.length+1];
- 
-	    int seek_count = 0;
+		int seek_count = 0;
 	    int distance, cur_track;
-	     
+		     
 	    Vector<Integer> left = new Vector<Integer>();
 	    Vector<Integer> right = new Vector<Integer>();
 	    Vector<Integer> seek_sequence = new Vector<Integer>();
@@ -1121,19 +1536,32 @@ public class SchHD extends JFrame {
 	        }
 	    }
 	     
-	    for (int i = 0; i < array.length; i++)
+	    System.out.print("Total number of seek operations = "
+                + seek_count + "\n");
+
+		System.out.print("Seek Sequence is" + " \n");
+		int k=seek_sequence.size();
+		
+		int array[]=new int[k+1];
+		array[0]=testa;
+		for (int i = 0; i < seek_sequence.size(); i++)
 		{
-			if(i==0)array[i]=head;
-			else array[i]=seek_sequence.get(i-1);
+			array[i+1]=seek_sequence.get(i);
+		    System.out.print(seek_sequence.get(i) + " ");
 		}
-	    
-	    distanzaLOOK=seek_count;
+		System.out.println();
+		for (int i = 0; i < array.length; i++)
+		{
+		    System.out.print(array[i] + " ");
+		}
+		System.out.println();
+		
+		distanzaLOOK=seek_count;
 		return array;
 	}
 
 //ALGORITMO CLOOK
-	
-	public int[] CLOOK(int[] arr, int head, String direction, int disk_size){
+	public void CLOOK(int[] arr, int head, String direction, int disk_size){
 		
 		int size=arr.length;
 		int[] array= new int[arr.length+1];
@@ -1217,7 +1645,7 @@ public class SchHD extends JFrame {
 		}
 	    
 	    distanzaCLOOK=seek_count;
-		return array;
+		//return array;
 	}
 }
 
