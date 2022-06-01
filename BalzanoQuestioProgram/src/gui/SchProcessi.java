@@ -63,10 +63,10 @@ public class SchProcessi extends JFrame {
 	
 	ArrayList<CreaLinee> arrayPunti= new ArrayList<CreaLinee>();
 	ArrayList<CreaLinee> arrayLinea= new ArrayList<CreaLinee>();
-	ArrayList<Integer> FCFS=new ArrayList<Integer>();
-	ArrayList<Integer> SJF=new ArrayList<Integer>();
-	ArrayList<Integer> SJFP=new ArrayList<Integer>();
-	ArrayList<Integer> RR=new ArrayList<Integer>();
+	ArrayList<Integer> FCFS=new ArrayList<Integer>(0);
+	ArrayList<Integer> SJF=new ArrayList<Integer>(0);
+	ArrayList<Integer> SJFP=new ArrayList<Integer>(0);
+	ArrayList<Integer> RR=new ArrayList<Integer>(0);
 	private float averageFCFS;
 	private float averageSJF;
 	private float averageSJFP;
@@ -78,6 +78,7 @@ public class SchProcessi extends JFrame {
 	private int quantum;
 	private static int i=20;
 
+	int flag=0;
 
 public SchProcessi(JFrame framechiamante) {
 		frame=this;
@@ -1188,7 +1189,11 @@ public SchProcessi(JFrame framechiamante) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(labelMostraSoluzioni.isEnabled()) {
+					flag=0;
 					labelMostraSoluzioni.setEnabled(false);
+					labelFastForwardMeno.setEnabled(true);
+					labelFastForwardPiu.setEnabled(false);
+
 					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
 					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
 					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
@@ -1344,6 +1349,28 @@ public SchProcessi(JFrame framechiamante) {
 					labelDatoTAMRR.setText(" ");
 					labelDatoCDCRR.setText(" ");
 				}
+				flag=max(FCFS.size(),SJF.size(),SJFP.size(),RR.size());
+			}
+
+			private int max(int length1, int length2, int length3, int length4) {
+	
+				int[] array=new int [4];
+				
+				array[0]=length1;
+				array[1]=length2;
+				array[2]=length3;
+				array[3]=length4;
+				
+				int massimo=array[0];
+	
+				for(int i=0; i<4; i++) {
+				      if( array[i]>massimo ) {
+				        massimo=array[i];
+				      }
+				    }
+				
+				return massimo;
+		
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -1375,190 +1402,6 @@ public SchProcessi(JFrame framechiamante) {
 				//RR=RRClass(linea);
 				if(chckbxMostraSoluzioneRR.isSelected()==true) {
 					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-					jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
-					DecimalFormat frmt = new DecimalFormat();
-					frmt.setMaximumFractionDigits(3);
-					labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
-					labelDatoCDCRR.setText(String.valueOf(cbRR));
-				}
-				else {
-					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-					labelDatoTAMRR.setText(" ");
-					labelDatoCDCRR.setText(" ");
-				}
-			}
-		});
-		
-	//EVENTO MOSTRA SOLUZIONE PASSO PASSO
-		labelFastForwardPiu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(i<1101) {
-					if(labelFastForwardPiu.isEnabled()) {
-						jPanelFCFS.setBounds(10, 27, 0+i, 118);
-						jPanelSJF.setBounds(10, 27, 0+i, 118);
-						jPanelSJFP.setBounds(10, 27, 0+i, 118);
-						jPanelRR.setBounds(10, 27, 0+i, 118);
-						i=i+30;
-						labelMostraSoluzioni.setEnabled(true);
-						//chckbxMostraSoluzioneFCFS.setSelected(false);
-						chckbxMostraSoluzioneSJF.setSelected(false);
-						chckbxMostraSoluzioneSJFP.setSelected(false);
-						chckbxMostraSoluzioneRR.setSelected(false);
-
-						jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
-						jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-						jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-						jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-						labelDatoTAMFCFS.setText("");
-						labelDatoTAMSJF.setText("");
-						labelDatoTAMSJFP.setText("");
-						labelDatoTAMRR.setText("");
-						labelDatoCDCFCFS.setText("");
-						labelDatoCDCSJF.setText("");
-						labelDatoCDCSJFP.setText("");
-						labelDatoCDCRR.setText("");
-		
-						arrayPunti.clear();
-						arrayLinea.clear();
-						FCFS.clear();
-						SJF.clear();
-						SJFP.clear();
-						RR.clear();
-						averageFCFS=0;
-						averageSJF=0;
-						averageSJFP=0;
-						averageRR=0;
-						cbFCFS=0;
-						cbSJF=0;
-						cbSJFP=0;
-						cbRR=0;
-						quantum=0;
-		
-						comboBoxQRR.setEnabled(true);
-						
-						int numerofor=Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
-						
-						for(int i=0;i<numerofor;i++) {
-							if(i==0) {
-									
-									CreaLinee punto=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()));
-									CreaLinee linea=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()),Integer.valueOf( textDurataP1.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}
-							else
-							if(i==1) {
-									CreaLinee punto=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()));
-									CreaLinee linea=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()),Integer.valueOf( textDurataP2.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}
-							else
-							if(i==2) {
-									CreaLinee punto=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()));
-									CreaLinee linea=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()),Integer.valueOf( textDurataP3.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}
-							else
-							if(i==3) {
-									CreaLinee punto=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()));
-									CreaLinee linea=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()),Integer.valueOf( textDurataP4.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}
-							else
-							if(i==4) {
-									CreaLinee punto=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()));
-									CreaLinee linea=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()),Integer.valueOf( textDurataP5.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}
-							else
-							if(i==5) {
-									CreaLinee punto=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()));
-									CreaLinee linea=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()),Integer.valueOf( textDurataP6.getText()));
-		
-									arrayPunti.add(punto);
-									arrayLinea.add(linea);
-							}					
-						}
-						
-						disegna();
-						//chckbxMostraSoluzioneFCFS.doClick();
-					}
-				}
-				else {
-					jPanelFCFS.setBounds(10, 27, 1100, 118);
-					labelFastForwardPiu.setEnabled(false);
-				}
-			}
-			private void disegna() {
-				CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
-
-				for(int l=0;l<arrayLinea.size();l++) {  
-						
-					linea[l]=arrayLinea.get(l);
-
-				}
-
-				Arrays.sort(linea);
-				
-				FCFS=FCFSClass(linea);
-				SJF=SJFClass(linea);
-				SJFP=SJFPClass(linea);
-				for (int i=0;i<linea.length;i++)System.out.print(" "+linea[i].getDurata());
-
-				String qua= (String) comboBoxQRR.getSelectedItem();
-				quantum=Integer.valueOf(qua);
-				//RR=RRClass(linea);
-				
-				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
-					jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,FCFS,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
-					DecimalFormat frmt = new DecimalFormat();
-					frmt.setMaximumFractionDigits(3);
-					labelDatoTAMFCFS.setText(String.valueOf(frmt.format(averageFCFS)));
-					labelDatoCDCFCFS.setText(String.valueOf(cbFCFS));
-				}
-				else {
-					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
-					labelDatoTAMFCFS.setText(" ");
-					labelDatoCDCFCFS.setText(" ");
-				}
-				
-				if(chckbxMostraSoluzioneSJF.isSelected()==true) {
-					jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,SJF,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
-					DecimalFormat frmt = new DecimalFormat();
-					frmt.setMaximumFractionDigits(3);
-					labelDatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
-					labelDatoCDCSJF.setText(String.valueOf(cbSJF));
-				}
-				else {
-					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
-					labelDatoTAMSJF.setText(" ");
-					labelDatoCDCSJF.setText(" ");
-				}
-				
-				if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
-					jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,SJFP,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
-					DecimalFormat frmt = new DecimalFormat();
-					frmt.setMaximumFractionDigits(3);
-					labelDatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
-					labelDatoCDCSJFP.setText(String.valueOf(cbSJFP));
-				}
-				else {
-					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
-					labelDatoTAMSJFP.setText(" ");
-					labelDatoCDCSJFP.setText(" ");
-				}
-				
-				if(chckbxMostraSoluzioneRR.isSelected()==true) {
 					jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
 					DecimalFormat frmt = new DecimalFormat();
 					frmt.setMaximumFractionDigits(3);
@@ -2366,6 +2209,455 @@ public SchProcessi(JFrame framechiamante) {
 	             }   
 			}
 		});	
+		
+	//EVENTO SUI BOTTONI PLAYSTEPbySTEP
+		labelFastForwardPiu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+			
+				if(labelFastForwardPiu.isEnabled()) {
+					labelFastForwardMeno.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
+					
+		
+					arrayPunti.clear();
+					arrayLinea.clear();
+					FCFS.clear();
+					SJF.clear();
+					SJFP.clear();
+					RR.clear();
+					averageFCFS=0;
+					averageSJF=0;
+					averageSJFP=0;
+					averageRR=0;
+					cbFCFS=0;
+					cbSJF=0;
+					cbSJFP=0;
+					cbRR=0;
+					quantum=0;
+					flag=flag+4;
+					comboBoxQRR.setEnabled(true);
+					
+					int numerofor=Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
+										
+					for(int i=0;i<numerofor;i++) {
+						if(i==0) {
+								
+								CreaLinee punto=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()));
+								CreaLinee linea=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()),Integer.valueOf( textDurataP1.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==1) {
+								CreaLinee punto=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()));
+								CreaLinee linea=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()),Integer.valueOf( textDurataP2.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==2) {
+								CreaLinee punto=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()));
+								CreaLinee linea=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()),Integer.valueOf( textDurataP3.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==3) {
+								CreaLinee punto=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()));
+								CreaLinee linea=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()),Integer.valueOf( textDurataP4.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==4) {
+								CreaLinee punto=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()));
+								CreaLinee linea=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()),Integer.valueOf( textDurataP5.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==5) {
+								CreaLinee punto=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()));
+								CreaLinee linea=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()),Integer.valueOf( textDurataP6.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}					
+					}
+					
+					CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
+
+					for(int l=0;l<arrayLinea.size();l++) {  
+							
+						linea[l]=arrayLinea.get(l);
+					}
+					
+					Arrays.sort(linea);
+					
+					FCFS=FCFSClass(linea);
+					SJF=SJFClass(linea);
+					SJFP=SJFPClass(linea);
+					String qua= (String) comboBoxQRR.getSelectedItem();
+					quantum=Integer.valueOf(qua);
+					//RR=RRClass(linea);
+									
+					if(flag<=FCFS.size()) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(FCFS.get(i));
+							array.add(FCFS.get(i+1));
+							array.add(FCFS.get(i+2));
+							array.add(FCFS.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
+							jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMFCFS.setText(String.valueOf(frmt.format(averageFCFS)));
+							labelDatoCDCFCFS.setText(String.valueOf(cbFCFS));
+						}
+						else {
+							jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMFCFS.setText(" ");
+							labelDatoCDCFCFS.setText(" ");
+						}
+					}
+					if(flag<=SJF.size()) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(SJF.get(i));
+							array.add(SJF.get(i+1));
+							array.add(SJF.get(i+2));
+							array.add(SJF.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneSJF.isSelected()==true) {
+							jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
+							labelDatoCDCSJF.setText(String.valueOf(cbSJF));
+						}
+						else {
+							jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMSJF.setText(" ");
+							labelDatoCDCSJF.setText(" ");
+						}
+					}
+					if(flag<=SJFP.size()) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(SJFP.get(i));
+							array.add(SJFP.get(i+1));
+							array.add(SJFP.get(i+2));
+							array.add(SJFP.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
+							jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
+							labelDatoCDCSJFP.setText(String.valueOf(cbSJFP));
+						}
+						else {
+							jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMSJFP.setText(" ");
+							labelDatoCDCSJFP.setText(" ");
+						}
+					}
+					if(flag<=RR.size()) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(RR.get(i));
+							array.add(RR.get(i+1));
+							array.add(RR.get(i+2));
+							array.add(RR.get(i+3));
+
+							i=i+4;
+						}	
+						if(chckbxMostraSoluzioneRR.isSelected()==true) {
+							jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
+							labelDatoCDCRR.setText(String.valueOf(cbRR));
+						}
+						else {
+							jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMRR.setText(" ");
+							labelDatoCDCRR.setText(" ");
+						}
+					}	
+				}
+				if(flag<=max(FCFS.size(),SJF.size(),SJFP.size(),RR.size())) {
+					labelFastForwardPiu.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
+				}
+				else {
+					labelFastForwardPiu.setEnabled(false);
+					labelMostraSoluzioni.setEnabled(false);
+				}
+		}
+
+		private int max(int length1, int length2, int length3, int length4) {
+
+			int[] array=new int [4];
+			
+			array[0]=length1;
+			array[1]=length2;
+			array[2]=length3;
+			array[3]=length4;
+			
+			int massimo=array[0];
+
+			for(int i=0; i<4; i++) {
+			      if( array[i]>massimo ) {
+			        massimo=array[i];
+			      }
+			    }
+			
+			return massimo;
+		}
+		
+	});
+	
+		//EVENTO SUI BOTTONI PLAYSTEPbySTEP
+		labelFastForwardMeno.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+			
+				if(labelFastForwardMeno.isEnabled()) {
+					
+					labelFastForwardPiu.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
+		
+
+					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+					jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+					
+					arrayPunti.clear();
+					arrayLinea.clear();
+					FCFS.clear();
+					SJF.clear();
+					SJFP.clear();
+					RR.clear();
+					averageFCFS=0;
+					averageSJF=0;
+					averageSJFP=0;
+					averageRR=0;
+					cbFCFS=0;
+					cbSJF=0;
+					cbSJFP=0;
+					cbRR=0;
+					quantum=0;
+					flag=flag-4;
+					comboBoxQRR.setEnabled(true);
+					
+					int numerofor=Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
+										
+					for(int i=0;i<numerofor;i++) {
+						if(i==0) {
+								
+								CreaLinee punto=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()));
+								CreaLinee linea=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()),Integer.valueOf( textDurataP1.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==1) {
+								CreaLinee punto=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()));
+								CreaLinee linea=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()),Integer.valueOf( textDurataP2.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==2) {
+								CreaLinee punto=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()));
+								CreaLinee linea=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()),Integer.valueOf( textDurataP3.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==3) {
+								CreaLinee punto=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()));
+								CreaLinee linea=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()),Integer.valueOf( textDurataP4.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==4) {
+								CreaLinee punto=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()));
+								CreaLinee linea=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()),Integer.valueOf( textDurataP5.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}
+						else
+						if(i==5) {
+								CreaLinee punto=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()));
+								CreaLinee linea=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()),Integer.valueOf( textDurataP6.getText()));
+	
+								arrayPunti.add(punto);
+								arrayLinea.add(linea);
+						}					
+					}
+					
+					CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
+
+					for(int l=0;l<arrayLinea.size();l++) {  
+							
+						linea[l]=arrayLinea.get(l);
+					}
+					
+					Arrays.sort(linea);
+					
+					FCFS=FCFSClass(linea);
+					SJF=SJFClass(linea);
+					SJFP=SJFPClass(linea);
+					String qua= (String) comboBoxQRR.getSelectedItem();
+					quantum=Integer.valueOf(qua);
+					//RR=RRClass(linea);
+									
+					if(flag>=0) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(FCFS.get(i));
+							array.add(FCFS.get(i+1));
+							array.add(FCFS.get(i+2));
+							array.add(FCFS.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
+							jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMFCFS.setText(String.valueOf(frmt.format(averageFCFS)));
+							labelDatoCDCFCFS.setText(String.valueOf(cbFCFS));
+						}
+						else {
+							jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMFCFS.setText(" ");
+							labelDatoCDCFCFS.setText(" ");
+						}
+					}
+					if(flag>=0) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(SJF.get(i));
+							array.add(SJF.get(i+1));
+							array.add(SJF.get(i+2));
+							array.add(SJF.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneSJF.isSelected()==true) {
+							jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
+							labelDatoCDCSJF.setText(String.valueOf(cbSJF));
+						}
+						else {
+							jPanelSJF.disegnaGriglia(jPanelSJF.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMSJF.setText(" ");
+							labelDatoCDCSJF.setText(" ");
+						}
+					}
+					if(flag>=0) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(SJFP.get(i));
+							array.add(SJFP.get(i+1));
+							array.add(SJFP.get(i+2));
+							array.add(SJFP.get(i+3));
+
+							i=i+4;
+						}
+						if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
+							jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
+							labelDatoCDCSJFP.setText(String.valueOf(cbSJFP));
+						}
+						else {
+							jPanelSJFP.disegnaGriglia(jPanelSJFP.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMSJFP.setText(" ");
+							labelDatoCDCSJFP.setText(" ");
+						}
+					}
+					if(flag>=0) {
+						ArrayList<Integer> array=new ArrayList<Integer>();
+						for(int i=0;i<flag;) {
+							array.add(RR.get(i));
+							array.add(RR.get(i+1));
+							array.add(RR.get(i+2));
+							array.add(RR.get(i+3));
+
+							i=i+4;
+						}	
+						if(chckbxMostraSoluzioneRR.isSelected()==true) {
+							jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+							DecimalFormat frmt = new DecimalFormat();
+							frmt.setMaximumFractionDigits(3);
+							labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
+							labelDatoCDCRR.setText(String.valueOf(cbRR));
+						}
+						else {
+							jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+							labelDatoTAMRR.setText(" ");
+							labelDatoCDCRR.setText(" ");
+						}
+					}	
+				}
+				if(flag>=min(FCFS.size(),SJF.size(),SJFP.size(),RR.size())) {
+					labelFastForwardMeno.setEnabled(true);
+
+				}
+				else {
+					labelFastForwardMeno.setEnabled(false);
+				}
+		}
+
+		private int min(int length1, int length2, int length3, int length4) {
+
+				int[] array=new int [4];
+				
+				array[0]=length1;
+				array[1]=length2;
+				array[2]=length3;
+				array[3]=length4;
+				
+				int minimo=array[0];
+
+				for(int i=0; i<4; i++) {
+				      if( array[i]<minimo ) {
+				    	  minimo=array[i];
+				      }
+				    }
+				
+				return minimo;
+			}
+		
+	});
 }
 
 
@@ -2555,24 +2847,25 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		      //Printing the Time Chart
 		      if(i != 0)
 		      {
-		       if(sel_proc != time_chart[i - 1])
-		        //If the CPU has been assigned to a different Process we need to print the current value of time and the name of 
-		        //the new Process
-		       {
-		        System.out.print("--" + i + "--P" + sel_proc);
-		        cambio++;
-		        array.add(i);
-		    	  array.add(sel_proc);
+		    	  if(sel_proc != time_chart[i - 1]){
+							    	   
+		    		  System.out.print("--" + i + "--P" + sel_proc);
+
+		    		  array.add(i);
+		    		  array.add(sel_proc);	
 		       }
 		      }
 		      else {
 		    	  System.out.print(i + "--P" + sel_proc);
+
 		    	  array.add(i);
 		    	  array.add(sel_proc);
 		      }
-		      if(i == total_time - 1)//All the process names have been printed now we have to print the time at which execution ends
+		      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
 		       System.out.print("--" + (i + 1));
+
 		      	array.add(i + 1);
+		      }
 		     }
 		     System.out.println();
 		     System.out.println();
@@ -2599,160 +2892,55 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     System.out.println("The Average WT is: " + WT + "ms");
 		     System.out.println("The Average TT is: " + TT + "ms");
 		     
-		     cbSJFP=cambio;
-		     averageSJFP=WT;
 		     int k= array.size();
 		    
+		     int tmp=0;
 		     
-		     	int tmp=0;
 		     for(int i=0;i<array.size();) {
-		    	 if(i+1<array.size()) {
-
-			    	 if(array.get(i+1)==0) {
-			    		 tmp=array.get(i+2);
-			    	 }
-			    	 else if((i+3)>=array.size() && (i+2)<array.size()) {
-			    		 punti.add(array.get(i));
-				    	 punti.add(array.get(i+1));
-				    	 tmp=array.get(i+1)+tmp;
-				    	 punti.add(tmp);
-				    	 punti.add(array.get(i+1));
-			    	 }
-			    	 else if((i+2)<array.size()){
-			    		 punti.add(array.get(i));
-				    	 punti.add(array.get(i+1));
-				    	 punti.add(array.get(i+2));
-				    	 punti.add(array.get(i+1));
-			    	 }
+		    	 
+		    	 if((i+1)<array.size() && array.get(i+1)!=0) {
+		    		 cambio++;		    		 
 		    	 }
 		    	 i=i+2;
 		     }
+		     
+		     for(int i=0;i<array.size();) {
+		    	 
+		    	 if(array.get(i+1)==0) {
+		    		 tmp=tmp+array.get(i+2)-array.get(i);
+		    		 i=i+2;
+		    	 }
+		    	 if((i+2)<array.size()) {
+		    		 if(i+3>=array.size()) {
+		    			 punti.add(array.get(i));
+				    	 punti.add(array.get(i+1));
+				    	 punti.add(array.get(i+2)+tmp);
+				    	 punti.add(array.get(i+1));
+				    	 break;
+		    		 }
+		    		 punti.add(array.get(i));
+			    	 punti.add(array.get(i+1));
+			    	 punti.add(array.get(i+2));
+			    	 punti.add(array.get(i+1));
+			    	 i=i+2;
+
+		    	 }
+		     }		  
+		     System.out.println();
+		     
+		     System.out.println();
+
+		     for(int i=0;i<punti.size();i++) {
+			     System.out.print(" "+punti.get(i));
+
+		     }
+		     System.out.println();
+
+		     cbSJFP=cambio-1;
+		     averageSJFP=WT;
 		     return punti;
 		 }
 		    
-	/*public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
-		
-		int n=lineaSJFP.length,cambio=0;
-		ArrayList<Integer> punti=new ArrayList<Integer>();
-		ArrayList<Integer> puntiArray=new ArrayList<Integer>();
-
-	       int proc[][] = new int[n + 1][4];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
-	       for(int i = 0; i < n; i++)
-	       {
-	      proc[lineaSJFP[i].getProcesso()][0] = lineaSJFP[i].getArrivo();
-	      proc[lineaSJFP[i].getProcesso()][1] = lineaSJFP[i].getDurata();
-
-	     }
-	       for(int i = 1; i <= n; i++)
-	       {
-	    	   System.out.print(proc[i][0]+" "+proc[i][1]+" ");
-	       }
-	     System.out.println();
-	     //Calculation of Total Time and Initialization of Time Chart array
-	     int total_time = 0;
-	     for(int i = 1; i <= n; i++)
-	     {
-	      total_time += proc[i][1];
-	     }
-	     int time_chart[] = new int[total_time];
-	     
-	     for(int i = 0; i < total_time; i++)
-	     {
-	      //Selection of shortest process which has arrived
-	      int sel_proc = 0;
-	      int min = 99999;
-	      for(int j = 1; j <= n; j++)
-	      {
-	       if(proc[j][0] <= i)//Condition to check if Process has arrived
-	       {
-	        if(proc[j][1] < min && proc[j][1] != 0)
-	        {
-	         min = proc[j][1];
-	         sel_proc = j;
-	        }
-	       }
-	      }
-	      
-	      //Assign selected process to current time in the Chart
-	      time_chart[i] = sel_proc;
-	      
-	      //Decrement Remaining Time of selected process by 1 since it has been assigned the CPU for 1 unit of time
-	      proc[sel_proc][1]--;
-	      
-	      //WT and TT Calculation
-	      for(int j = 1; j <= n; j++)
-	      {
-	       if(proc[j][0] <= i)
-	       {
-	        if(proc[j][1] != 0)
-	        {
-	         proc[j][3]++;//If process has arrived and it has not already completed execution its TT is incremented by 1
-	            if(j != sel_proc)//If the process has not been currently assigned the CPU and has arrived its WT is incremented by 1
-	             proc[j][2]++;
-	        }
-	        else if(j == sel_proc)//This is a special case in which the process has been assigned CPU and has completed its execution
-	         proc[j][3]++;
-	       }
-	      }
-	      
-	      //Printing the Time Chart
-	      if(i != 0)
-	      {
-	       if(sel_proc != time_chart[i - 1])
-	        //If the CPU has been assigned to a different Process we need to print the current value of time and the name of 
-	        //the new Process
-	       {
-	        cambio++;
-	        punti.add(i);
-	        punti.add(sel_proc);
-	        
-	       }
-	      }
-	      else{//If the current time is 0 i.e the printing has just started we need to print the name of the First selected Process
-	       punti.add(i);
-	        punti.add(sel_proc);
-	      }
-	      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
-	      
-	    	  punti.add((i+1));
-	    	  System.out.println(i+" ");
-	      }
-	     }
-
-	     
-	     //Printing the WT and TT for each Process
-	     
-	     
-	     //Printing the average WT & TT
-	     float WT = 0,TT = 0;
-	     for(int i = 1; i <= n; i++)
-	     {
-	      WT += proc[i][2];
-	      TT += proc[i][3];
-	     }
-	     WT /= n;
-	     TT /= n;
-	 
-	     for(int i = 0; i < punti.size();)
-	     {
-	    	 if(i+1<punti.size()) {
-	      puntiArray.add(punti.get(i));
-	      puntiArray.add(punti.get(i+1));
-	      puntiArray.add(punti.get(i+2));
-	      puntiArray.add(punti.get(i+1));
-	    	 }
-	      i=i+2;
-	     }
-	    
-	     cbSJFP=cambio;
-	     averageSJFP=WT;
-	     for(int i = 0; i < puntiArray.size();i++)
-	     {
-	    	 System.out.print(" "+puntiArray.get(i));
-	     }
-	     return puntiArray;
-	 }
-*/
 //METODO PER CALCOLARE RR
 	/*
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){

@@ -1325,6 +1325,8 @@ public class SchHD extends JFrame {
 				}
 			}
 		});
+		
+		
 	}	
 	
 /**-------------------------IMPLEMENTAZIONE ALGORTIMI UTILIZZATI--------------------------------*/
