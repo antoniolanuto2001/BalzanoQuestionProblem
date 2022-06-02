@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import java.util.Vector;
@@ -1519,10 +1520,9 @@ public class SchHD extends JFrame {
 		        }
 		    }
 		 
-		    System.out.print("Total number of seek operations = "
-		                        + seek_count + "\n");
+		    //System.out.print("Total number of seek operations = "    + seek_count + "\n");
 		 
-		    System.out.print("Seek Sequence is" + " \n");
+		    //System.out.print("Seek Sequence is" + " \n");
 		    int k=seek_sequence.size();
 		    
 			int array[]=new int[k+1];
@@ -1530,14 +1530,14 @@ public class SchHD extends JFrame {
 		    for (int i = 0; i < seek_sequence.size(); i++)
 		    {
 		    	array[i+1]=seek_sequence.get(i);
-		        System.out.print(seek_sequence.get(i) + " ");
+		        //System.out.print(seek_sequence.get(i) + " ");
 		    }
-		    System.out.println();
+		    //System.out.println();
 		    for (int i = 0; i < array.length; i++)
 		    {
-		        System.out.print(array[i] + " ");
+		        //System.out.print(array[i] + " ");
 		    }
-		    System.out.println();
+		    //System.out.println();
 
 		    distanzaSCAN=seek_count;
 		    return array;
@@ -1545,7 +1545,7 @@ public class SchHD extends JFrame {
 
 //ALGORITMO CSCAN NO
 	public int[] CSCAN(int[] arr, int testa, String direction, int disk_size){
-	    System.out.println("CSCAN");
+	    //System.out.println("CSCAN");
 
 		int head=testa;
 		int size=arr.length;
@@ -1626,13 +1626,12 @@ public class SchHD extends JFrame {
 		            head = cur_track;
 		        }
 		 
-		        System.out.println("Total number of seek "
-		                           + "operations = " + seek_count);
+		        //System.out.println("Total number of seek "+ "operations = " + seek_count);
 		 
-		        System.out.println("Seek Sequence is");
+		        //System.out.println("Seek Sequence is");
 		 
 		        for (int i = 0; i < seek_sequence.size(); i++) {
-		            System.out.println(seek_sequence.get(i));
+		            //System.out.println(seek_sequence.get(i));
 		        }
 		        
 		    
@@ -1643,45 +1642,21 @@ public class SchHD extends JFrame {
 			    for (int i = 0; i < seek_sequence.size(); i++)
 			    {
 			    	array[i+1]=seek_sequence.get(i);
-			        System.out.print(seek_sequence.get(i) + " ");
+			        //System.out.print(seek_sequence.get(i) + " ");
 			    }
-			    System.out.println();
+			    //System.out.println();
 			    for (int i = 0; i < array.length; i++)
 			    {
-			        System.out.print(array[i] + " ");
+			        //System.out.print(array[i] + " ");
 			    }
-			    System.out.println();
+			    //System.out.println();
 
 			    distanzaCSCAN=seek_count;
 			    return array;
 		    }
 		    else if (direction == "left") {
 		    	
-		    	  for (int i = 0; i < left.size(); i++) {
-			            cur_track = left.get(i);
-			 
-			            // Appending current track to
-			            // seek sequence
-			            seek_sequence.add(cur_track);
-			 
-			            // Calculate absolute distance
-			            distance = Math.abs(cur_track - head);
-			 
-			            // Increase the total count
-			            seek_count += distance;
-			 
-			            // Accessed track is now the new head
-			            head = cur_track;
-			        }
-		        // Once reached the right end
-		        // jump to the beggining.
-		        head = 0;
-		 
-		        // adding seek count for head returning from 199 to
-		        // 0
-		        seek_count += (disk_size - 1);
-		 
-		        for (int i = 0; i < right.size(); i++) {
+		    	for (int i = 0; i < right.size(); i++) {
 		            cur_track = right.get(i);
 		 
 		            // Appending current track to seek sequence
@@ -1696,38 +1671,86 @@ public class SchHD extends JFrame {
 		            // Accessed track is now new head
 		            head = cur_track;
 		        }
+		       
+		        // Once reached the right end
+		        // jump to the beggining.
+		        head = 0;
+		 
+		        // adding seek count for head returning from 199 to
+		        // 0
+		        seek_count += (disk_size - 1);
+		 
 		        // Now service the requests again
 		        // which are left.
-		      
+		        for (int i = 0; i < left.size(); i++) {
+		            cur_track = left.get(i);
 		 
-		        System.out.println("Total number of seek "
-		                           + "operations = " + seek_count);
+		            // Appending current track to
+		            // seek sequence
+		            seek_sequence.add(cur_track);
 		 
-		        System.out.println("Seek Sequence is");
+		            // Calculate absolute distance
+		            distance = Math.abs(cur_track - head);
 		 
-		        for (int i = 0; i < seek_sequence.size(); i++) {
-		            System.out.println(seek_sequence.get(i));
+		            // Increase the total count
+		            seek_count += distance;
+		 
+		            // Accessed track is now the new head
+		            head = cur_track;
+		        }
+		        //System.out.println(" QUA");
+		        int count=0;
+
+		        ArrayList<Integer>array=new ArrayList<Integer>();
+		        array.add(testa);
+		        head=testa;
+		        for(int i=left.size()-1;i>=0;i--) {
+		        	cur_track = left.get(i);
+		   		 
+		            // Appending current track to
+		            // seek sequence
+		            seek_sequence.add(cur_track);
+		 
+		            // Calculate absolute distance
+		            distance = Math.abs(cur_track - head);
+		 
+		            // Increase the total count
+		            count += distance;
+		 
+		            // Accessed track is now the new head
+		            head = cur_track;
+		        	//System.out.print(left.get(i)+" ");
+		        	array.add(left.get(i));
+		        }
+		        //System.out.println();
+		        for(int i=right.size()-1;i>=0;i--) {
+		        	//System.out.print(right.get(i)+" ");
+		        	cur_track = right.get(i);
+		   		 
+		            // Appending current track to seek sequence
+		            seek_sequence.add(cur_track);
+		 
+		            // Calculate absolute distance
+		            distance = Math.abs(cur_track - head);
+		 
+		            // Increase the total count
+		            count += distance;
+		 
+		            // Accessed track is now new head
+		            head = cur_track;
+		        	array.add(right.get(i));
+
 		        }
 		        
-		    
-		    	int k=seek_sequence.size();
-			    
-				int array[]=new int[k+1];
-				array[0]=testa;
-			    for (int i = 0; i < seek_sequence.size(); i++)
-			    {
-			    	array[i+1]=seek_sequence.get(i);
-			        System.out.print(seek_sequence.get(i) + " ");
-			    }
-			    System.out.println();
-			    for (int i = 0; i < array.length; i++)
-			    {
-			        System.out.print(array[i] + " ");
-			    }
-			    System.out.println();
+		        //System.out.println(" FINE");
+		        int[] ritorno=new int[array.size()];
+		        for(int i=0;i<array.size();i++) {
+		        	
+		        	ritorno[i]=array.get(i);
+		        }
 
-			    distanzaCSCAN=seek_count;
-			    return array;
+			    distanzaCSCAN=count;
+			    return ritorno;
 		    }
 		    return null;
 	}		
@@ -1769,8 +1792,7 @@ public class SchHD extends JFrame {
 	    {
 	        if (direction == "left")
 	        {
-	            for(int i = left.size() - 1;
-	                    i >= 0; i--)
+	            for(int i = left.size() - 1;i >= 0; i--)
 	            {
 	                cur_track = left.get(i);
 	   
@@ -1816,10 +1838,9 @@ public class SchHD extends JFrame {
 	        }
 	    }
 	     
-	    System.out.print("Total number of seek operations = "
-                + seek_count + "\n");
+	    //System.out.print("Total number of seek operations = "     + seek_count + "\n");
 
-		System.out.print("Seek Sequence is" + " \n");
+		//System.out.print("Seek Sequence is" + " \n");
 		int k=seek_sequence.size();
 		
 		int array[]=new int[k+1];
@@ -1827,25 +1848,25 @@ public class SchHD extends JFrame {
 		for (int i = 0; i < seek_sequence.size(); i++)
 		{
 			array[i+1]=seek_sequence.get(i);
-		    System.out.print(seek_sequence.get(i) + " ");
+		    //System.out.print(seek_sequence.get(i) + " ");
 		}
-		System.out.println();
+		//System.out.println();
 		for (int i = 0; i < array.length; i++)
 		{
-		    System.out.print(array[i] + " ");
+		    //System.out.print(array[i] + " ");
 		}
-		System.out.println();
+		//System.out.println();
 		
 		distanzaLOOK=seek_count;
 		return array;
 	}
 
 //ALGORITMO CLOOK no
-	public int[] CLOOK(int[] arr, int head, String direction, int disk_size){
-	    System.out.println("CLOOK");
+	public int[] CLOOK(int[] arr, int testa, String direction, int disk_size){
+	    //System.out.println("CLOOK");
 
+	    int head=testa;
 		int size=arr.length;
-		int[] array= new int[arr.length+1];
  
 	    int seek_count = 0;
 	    int distance, cur_track;
@@ -1919,18 +1940,123 @@ public class SchHD extends JFrame {
 		        // Accessed track is now the new head
 		        head = cur_track;
 		    }
-		     
+			int[] array= new int[seek_sequence.size()+1];
+
 		    for (int i = 0; i < array.length; i++)
 			{
-				if(i==0)array[i]=head;
+				if(i==0)array[i]=testa;
 				else array[i]=seek_sequence.get(i-1);
 			}
-		    
+		    //System.out.println();
+		    for (int i = 0; i < array.length; i++)
+			{
+		    	//System.out.print(" "+array[i]);
+			}
 		    distanzaCLOOK=seek_count;
 			return array;
 		}
 	    if(direction=="left") {
-	    	
+	    	 for(int i = 0; i < right.size(); i++)
+			    {
+			        cur_track = right.get(i);
+			   
+			        // Appending current track
+			        // to seek sequence
+			        seek_sequence.add(cur_track);
+			   
+			        // Calculate absolute distance
+			        distance = Math.abs(cur_track - head);
+			   
+			        // Increase the total count
+			        seek_count += distance;
+			   
+			        // Accessed track is now new head
+			        head = cur_track;
+			    }
+			   
+			    // Once reached the right end
+			    // jump to the last track that
+			    // is needed to be serviced in
+			    // left direction
+			    seek_count += Math.abs(head - left.get(0));
+			    head = left.get(0);
+			   
+			    // Now service the requests again
+			    // which are left
+			    for(int i = 0; i < left.size(); i++)
+			    {
+			        cur_track = left.get(i);
+			   
+			        // Appending current track to
+			        // seek sequence
+			        seek_sequence.add(cur_track);
+			   
+			        // Calculate absolute distance
+			        distance = Math.abs(cur_track - head);
+			   
+			        // Increase the total count
+			        seek_count += distance;
+			   
+			        // Accessed track is now the new head
+			        head = cur_track;
+			    }
+			    //System.out.println(" QUA");
+		        int count=0;
+
+		        ArrayList<Integer>array=new ArrayList<Integer>();
+		        array.add(testa);
+		        head=testa;
+		        for(int i=left.size()-1;i>=0;i--) {
+		        	 cur_track = left.get(i);
+				   
+			        // Appending current track to
+			        // seek sequence
+			        seek_sequence.add(cur_track);
+			   
+			        // Calculate absolute distance
+			        distance = Math.abs(cur_track - head);
+			   
+			        // Increase the total count
+			        seek_count += distance;
+		            count += distance;
+
+			        // Accessed track is now the new head
+			        head = cur_track;
+		        	//System.out.print(left.get(i)+" ");
+		        	array.add(left.get(i));
+		        }
+		        //System.out.println();
+		        for(int i=right.size()-1;i>=0;i--) {
+		        	//System.out.print(right.get(i)+" ");
+		        	cur_track = right.get(i);
+					   
+			        // Appending current track
+			        // to seek sequence
+			        seek_sequence.add(cur_track);
+			   
+			        // Calculate absolute distance
+			        distance = Math.abs(cur_track - head);
+			   
+			        // Increase the total count
+			        seek_count += distance;
+		            count += distance;
+
+			        // Accessed track is now new head
+			        head = cur_track;
+			        
+		        	array.add(right.get(i));
+
+		        }
+		        
+		        //System.out.println(" FINE");
+		        int[] ritorno=new int[array.size()];
+		        for(int i=0;i<array.size();i++) {
+		        	
+		        	ritorno[i]=array.get(i);
+		        }
+
+			    distanzaCLOOK=count;
+			    return ritorno;
 	    }
 	    return null;
 	}
