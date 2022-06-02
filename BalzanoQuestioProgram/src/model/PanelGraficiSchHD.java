@@ -56,10 +56,10 @@ public class PanelGraficiSchHD extends JPanel{
    				g.drawLine(successione[i]*5,5,successione[i]*5,7);
    			}
    		}*/
-   		System.out.println();
+   		/*System.out.println();
 		for(int i=0;i<numeriFCFS.length;i++) {
 			System.out.print(numeriFCFS[i]+" ");
-		}
+		}*/
 		for(int i=0;i<numeriFCFS.length;i++) {
 			if(nc==50) {
 				g.setColor(new Color(0, 153, 0));

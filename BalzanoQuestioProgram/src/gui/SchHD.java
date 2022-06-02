@@ -302,6 +302,29 @@ public class SchHD extends JFrame {
 			labelSlideIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/pdfIcon1.png")));
 			labelSlideIcon.setBounds(150, 75, 53, 46);
 			panelMainButton.add(labelSlideIcon);
+			labelSlideIcon.addMouseListener(new MouseAdapter() {
+	        	@Override
+	        	public void mouseClicked(MouseEvent e) {
+	        		Desktop d = Desktop.getDesktop();
+					try {
+						d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf#page=506"));
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (URISyntaxException e1) {
+						e1.printStackTrace();
+					}
+	        	}
+	        	@Override
+	        	public void mouseEntered(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.RED);
+	        	}
+	        	@Override
+	        	public void mouseExited(MouseEvent e) 
+	        	{
+	        		labelScrittaSlide.setForeground(Color.BLACK);
+	        	}
+	        });
 			
 /*----------------------------GRAFICI---------------------------*/
 	//GRAFICI
@@ -493,7 +516,7 @@ public class SchHD extends JFrame {
 				jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
 				textFieldRichieste.setBackground(Color.WHITE);
 				labelMessaggioErrore.setText("");
-				labelFastForwardMeno.setEnabled(true);
+				labelFastForwardMeno.setEnabled(false);
 				labelFastForwardPiu.setEnabled(true);
 				labelMostraSoluzioni.setEnabled(true);
 
@@ -508,6 +531,8 @@ public class SchHD extends JFrame {
 				labelDatoDistanzaLOOK.setText("");
 				labelDatoDistanzaSCAN.setText("");
 				labelDatoDistanzaSSTF.setText("");
+				
+				flag=0;
 				
 				successione=new int[10];
 				Random random = new Random();
