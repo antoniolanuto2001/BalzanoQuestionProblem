@@ -45,6 +45,8 @@ public class lineaRR implements Comparable<lineaRR>{
 	public int compareTo(lineaRR linea)
     {
         if (this.x1 != linea.getX1()) {
+        	//System.out.println(" "+(this.x1)+" "+ linea.getX2()+" "+(this.x2)+" "+ linea.getX1());
+        	//System.out.println(" "+(this.x1 - linea.getX2())+" "+(this.x2 - linea.getX1()));
             return this.x1 - linea.getX1();
         }
         Integer k=Integer.valueOf( this.y1);

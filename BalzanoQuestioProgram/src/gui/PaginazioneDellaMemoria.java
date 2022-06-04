@@ -444,6 +444,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			generaGrafici.setBackground(new Color(255, 255, 255));
 			generaGrafici.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			generaGrafici.setBounds(10, 137, 225, 21);
+			generaGrafici.setOpaque(true);
 			pannelloEditor.add(generaGrafici);
 			
 		JLabel btnMostraSoluzioni = new JLabel("");
@@ -481,6 +482,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			btnGeneraSuccessione.setBorder(new LineBorder(new Color (76, 175, 80), 2));
 			btnGeneraSuccessione.setFont(new Font("Tahoma", Font.PLAIN, 18));
 			btnGeneraSuccessione.setBounds(10, 32, 225, 32);
+			btnGeneraSuccessione.setOpaque(true);
 			pannelloEditor.add(btnGeneraSuccessione);
 			
 		JPanel pannelloHelp = new JPanel();

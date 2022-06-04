@@ -32,6 +32,7 @@ import java.util.Random;
 import javax.swing.border.LineBorder;
 
 import model.PanelGraficiSchProcessi;
+import model.lineaRR;
 import model.CreaLinee;
 
 import javax.swing.SwingConstants;
@@ -780,6 +781,7 @@ public SchProcessi(JFrame framechiamante) {
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 15));
 			btnGenera.setBorder(new LineBorder(new Color(100, 181, 246), 4));
+			btnGenera.setOpaque(true);
 			
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 			chckbxGriglia.setBounds(10, 270, 65, 21);
@@ -3209,25 +3211,25 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		      {
 		    	  if(sel_proc != time_chart[i - 1]){
 							    	   
-		    		  System.out.print("--" + i + "--P" + sel_proc);
+		    		 // System.out.print("--" + i + "--P" + sel_proc);
 
 		    		  array.add(i);
 		    		  array.add(sel_proc);	
 		       }
 		      }
 		      else {
-		    	  System.out.print(i + "--P" + sel_proc);
+		    	  //System.out.print(i + "--P" + sel_proc);
 
 		    	  array.add(i);
 		    	  array.add(sel_proc);
 		      }
 		      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
-		       System.out.print("--" + (i + 1));
+		       //System.out.print("--" + (i + 1));
 
 		      	array.add(i + 1);
 		      }
 		     }
-		     System.out.println();
+		   /*  System.out.println();
 		     System.out.println();
 		     
 		     //Printing the WT and TT for each Process
@@ -3238,7 +3240,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		      System.out.println();
 		     }
 		     
-		     System.out.println();
+		     System.out.println();*/
 		     
 		     //Printing the average WT & TT
 		     float WT = 0,TT = 0;
@@ -3249,9 +3251,6 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     }
 		     WT /= n;
 		     TT /= n;
-		     System.out.println("The Average WT is: " + WT + "ms");
-		     System.out.println("The Average TT is: " + TT + "ms");
-		     
 		    
 		     int tmp=0;
 		     
@@ -3288,13 +3287,13 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     System.out.println();
 		     
 		     System.out.println();
-
+/*
 		     for(int i=0;i<punti.size();i++) {
 			     System.out.print(" "+punti.get(i));
 
 		     }
 		     System.out.println();
-
+*/
 		     cbSJFP=cambio-1;
 		     averageSJFP=WT;
 		     return punti;
@@ -3305,13 +3304,13 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		
 		int n=lineaRR.length;
 		// name of the process 
-		String name[] = new String[6]; 
+		String name[] = new String[lineaRR.length]; 
 
 		// arrival for every process 
-		int arrivaltime[] = new int[6]; 
+		int arrivaltime[] = new int[lineaRR.length]; 
 
 		// burst time for every process 
-		int bursttime[] = new int[6]; 
+		int bursttime[] = new int[lineaRR.length]; 
 
 		for (int i = 0; i < n; i++) {
 			arrivaltime[i]=lineaRR[i].getArrivo();
@@ -3319,6 +3318,29 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 			name[i]=String.valueOf(	lineaRR[i].getProcesso());
 		
 		 }
+		int timer = 0, maxProccessIndex = 0;
+	    float avgWait = 0, avgTT = 0;
+		int tq=quantum;
+		
+		ArrayList<Integer> punti=new ArrayList<Integer>();
+		ArrayList<CreaLinee> ARRAY=new ArrayList<CreaLinee>();
+
+		int pid[] = new int[n];   // process ids
+		int ar[] = new int[n];     // arrival times
+		int bt[] = new int[n];     // burst or execution times
+		int ct[] = new int[n];     // completion times
+		int ta[] = new int[n];     // turn around times
+		int wt[] = new int[n];     // waiting times
+		float avgwt=0,avgta=0;
+		int duratatotale=0;
+		
+		for(int i = 0; i < n; i++){
+			ARRAY.add(lineaRR[i]);
+			ar[i]=lineaRR[i].getArrivo();
+			bt[i] = lineaRR[i].getDurata();
+			pid[i] = lineaRR[i].getProcesso();
+			duratatotale+=lineaRR[i].getDurata(); 
+		}
 		
 		// quantum time of each process 
 		int q = quantum; 
@@ -3326,20 +3348,288 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		// cal the function for output 
 		ArrayList<Integer> ciao=new ArrayList<Integer>(0);
 
-		ciao=roundRobin(name, arrivaltime, bursttime, q,lineaRR);
-		cbRR=0;
+		//ciao=roundRobin(name, arrivaltime, bursttime, q,lineaRR);
+		for(int i=0;i<n;i++) {
+			int jack=0;
+			int temp=bt[i];
+			while(bt[i]>0) {
+				ciao.add(ar[i]+quantum*jack);
+				ciao.add(pid[i]);
+				jack++;
+				
+				if(bt[i]>quantum) {
+					ciao.add(ar[i]+quantum*jack);
+					bt[i]-=quantum;
+				}
+				else {
+					ciao.add(ar[i]+temp);
+					bt[i]=0;
+				}
+				ciao.add(pid[i]);
+			}
+		}
+		
+		ArrayList<CreaLinee> arrayLineaTemp= new ArrayList<CreaLinee>();
+		
 		for(int i=0;i<ciao.size();) {
+			//System.out.println(" "+ciao.get(i+1)+" "+ciao.get(i)+" "+(ciao.get(i+2)-ciao.get(i)));
+			CreaLinee linea=new CreaLinee(ciao.get(i+1),ciao.get(i),(ciao.get(i+2)-ciao.get(i)));
+			arrayLineaTemp.add(linea);
+			i=i+4;
+		}
+
+		CreaLinee[] linea = new CreaLinee[arrayLineaTemp.size()];
+
+		for(int l=0;l<arrayLineaTemp.size();l++) {  
+
+			linea[l]=arrayLineaTemp.get(l);
+		}
+		ArrayList<Integer> Rosso=new ArrayList<Integer>();
+		/*System.out.println();
+		for(int l=0;l<arrayLineaTemp.size();l++) {  
+		System.out.println(" "+arrayLineaTemp.get(l).getProcesso()+" "+arrayLineaTemp.get(l).getArrivo()+" "+arrayLineaTemp.get(l).getDurata()+" ");
+		}
+		
+		System.out.println();
+		for(int l=0;l<lineaRR.length;l++) {  
+		System.out.println(" "+lineaRR[l].getProcesso()+" "+lineaRR[l].getArrivo()+" "+lineaRR[l].getDurata()+" ");
+		}
+		
+		System.out.println();
+		for(int l=0;l<linea.length;l++) {  
+		System.out.println(" "+linea[l].getProcesso()+" "+linea[l].getArrivo()+" "+linea[l].getDurata()+" ");
+		}
+		*/
+		Rosso=RRClassCalc(linea);
+		System.out.println();
+		for(int l=0;l<Rosso.size();) {  
+		System.out.println(" "+Rosso.get(l)+" "+Rosso.get(l+1)+" "+Rosso.get(l+2)+" "+Rosso.get(l+3)+" ");
+		l=l+4;
+		}
+		return Rosso;
+	}
+	public ArrayList<Integer> RRClassCalc(CreaLinee[] lineaSJFP){
+
+				
+				int n=lineaSJFP.length,cambio=0;
+				ArrayList<Integer> punti=new ArrayList<Integer>();
+				ArrayList<Integer> array=new ArrayList<Integer>();
+
+			       int proc[][] = new int[n + 1][5];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
+			       int questo[][] = new int[n + 1][5];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
+
+			       for(int i = 1; i <= n; i++)
+			       {
+			      proc[i][0] = lineaSJFP[i-1].getArrivo();
+			      proc[i][1] = lineaSJFP[i-1].getDurata();
+			      proc[i][4] = lineaSJFP[i-1].getProcesso();
+			      questo[i][0] = lineaSJFP[i-1].getArrivo();
+			      questo[i][1] = lineaSJFP[i-1].getDurata();
+			      questo[i][4] = lineaSJFP[i-1].getProcesso();
+			     }
+
+				     
+				       //Calculation of Total Time and Initialization of Time Chart array
+				     int total_time = 0;
+				     for(int i = 1; i <= n; i++)
+				     {
+				      total_time += proc[i][1];
+				     }
+				     int time_chart[] = new int[total_time];
+				     
+				     for(int i = 0; i < total_time; i++)
+				     {
+				      //Selection of shortest process which has arrived
+				      int sel_proc = 0;
+				      int min = 99999;
+				      for(int j = 1; j <= n; j++)
+				      {
+				       if(proc[j][0] <= i)//Condition to check if Process has arrived
+				       {
+				        if(proc[j][0] < min && proc[j][1] != 0)
+				        {
+				         min = proc[j][0];
+				         sel_proc = j;
+				        }
+				       }
+				      }
+				      
+				      //Assign selected process to current time in the Chart
+				      time_chart[i] = sel_proc;
+				      
+				      //Decrement Remaining Time of selected process by 1 since it has been assigned the CPU for 1 unit of time
+				      proc[sel_proc][1]--;
+				      
+				      //WT and TT Calculation
+				      for(int j = 1; j <= n; j++)
+				      {
+				       if(proc[j][0] <= i)
+				       {
+				        if(proc[j][1] != 0)
+				        {
+				         proc[j][3]++;//If process has arrived and it has not already completed execution its TT is incremented by 1
+				            if(j != sel_proc)//If the process has not been currently assigned the CPU and has arrived its WT is incremented by 1
+				             proc[j][2]++;
+				        }
+				        else if(j == sel_proc)//This is a special case in which the process has been assigned CPU and has completed its execution
+				         proc[j][3]++;
+				       }
+				      }
+				      
+				      //Printing the Time Chart
+				      if(i != 0)
+				      {
+				    	  if(sel_proc != time_chart[i - 1]){
+									    	   
+				    		 // System.out.print("--" + i + "--P" + sel_proc);
+
+				    		  array.add(i);
+				    		  array.add(sel_proc);	
+				       }
+				      }
+				      else {
+				    	  //System.out.print(i + "--P" + sel_proc);
+
+				    	  array.add(i);
+				    	  array.add(sel_proc);
+				      }
+				      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
+				       //System.out.print("--" + (i + 1));
+
+				      	array.add(i + 1);
+				      }
+				     }
+				   /*  System.out.println();
+				     System.out.println();
+				     
+				     //Printing the WT and TT for each Process
+				     System.out.println("P\t WT \t TT ");
+				     for(int i = 1; i <= n; i++)
+				     {
+				      System.out.printf("%d\t%2dms\t%2dms",i,proc[i][2],proc[i][3]);
+				      System.out.println();
+				     }
+				     
+				     System.out.println();*/
+				     
+				     //Printing the average WT & TT
+				     float WT = 0,TT = 0;
+				     for(int i = 1; i <= n; i++)
+				     {
+				      WT += proc[i][2];
+				      TT += proc[i][3];
+				     }
+				     WT /= n;
+				     TT /= n;
+				    
+				     int tmp=0;
+				     
+				     for(int i=0;i<array.size();) {
+				    	 
+				    	 if((i+1)<array.size() && array.get(i+1)!=0) {
+				    		 cambio++;		    		 
+				    	 }
+				    	 i=i+2;
+				     }
+				     
+				     for(int i=0;i<array.size();) {
+				    	 
+				    	 if((i+1)<array.size() && array.get(i+1)==0 ) {
+				    		 tmp=tmp+array.get(i+2)-array.get(i);
+				    		 i=i+2;
+				    	 }
+				    	 if((i+2)<array.size()) {
+				    		 if(i+3>=array.size()) {
+				    			 punti.add(array.get(i));
+						    	 punti.add(questo[array.get(i+1)][4]);
+						    	 punti.add(array.get(i+2)+tmp);
+						    	 punti.add(questo[array.get(i+1)][4]);
+						    	 break;
+				    		 }
+				    		 punti.add(array.get(i));
+					    	 punti.add(questo[array.get(i+1)][4]);
+					    	 punti.add(array.get(i+2));
+					    	 punti.add(questo[array.get(i+1)][4]);
+					    	 i=i+2;
+
+				    	 }
+				     }		  
+				     System.out.println();
+				     
+				     System.out.println();
+		/*
+				     for(int i=0;i<punti.size();i++) {
+					     System.out.print(" "+punti.get(i));
+
+				     }
+				     System.out.println();
+		*/
+				     cbRR=cambio-1;
+				     averageRR=WT;
+				     return punti;
+				 }
+/*
+		int controllo=0,xAttuale=0, succ=0, a=0,i=0;
+		
+		controllo=lineaRR[0].getProcesso();
+		xAttuale=lineaRR[0].getArrivo();
+		boolean interrupt=true;
+		//for(int i=0; i<lineaRR.length;) {
+		
+		/*while(interrupt) {
+			
+			if(i+1<lineaRR.length)succ=i+1;
+			else succ=0;
+			
+			while(controllo==lineaRR[i].getProcesso()) {
+				if(lineaRR[succ].getArrivo()>xAttuale && lineaRR[i].getDurata()>0) {
+					if(lineaRR[i].getDurata()>quantum) {
+						System.out.println("L: "+quantum+" P: "+controllo);
+						lineaRR[i].setDurata(lineaRR[i].getDurata()-quantum);
+						xAttuale+=quantum;
+					}
+					else if(lineaRR[i].getDurata()<quantum && lineaRR[i].getDurata()>0 ) {
+						System.out.println("L: "+lineaRR[i].getDurata()+" P: "+controllo);
+						lineaRR[i].setDurata(0);
+						xAttuale+=lineaRR[i].getDurata();
+					}
+				}
+				else if(lineaRR[succ].getArrivo()>xAttuale && lineaRR[i].getDurata()<=0){
+					xAttuale=lineaRR[succ].getArrivo();
+					controllo=lineaRR[succ].getProcesso();
+					//i=succ;
+				}else{
+					controllo=lineaRR[succ].getProcesso();
+					//i=succ;
+				}
+			}
+			if(i+1<lineaRR.length)i=i+1;
+			else i=0;
+			
+			for(int j=0; j<lineaRR.length;j++) {
+				if(lineaRR[j].getDurata()==0)a++;
+			}
+			
+			if(a==lineaRR.length) {
+				interrupt=false;
+				i=lineaRR.length+1;
+			}
+			else a=0;
+		}	*/
+		/*
+		cbRR=0;
+		/*for(int i=0;i<ciao.size();) {
 			
 			if(i==0)cbRR++;
 			else {
 				if(ciao.get(i+1)!=ciao.get(i-3))cbRR++;
 			}
 			i=i+4;
-		}
+		}*//*
 		cbRR=cbRR-1;
 		return ciao;
-	}
-	
+	}*/
+	/*
 		 public ArrayList<Integer> roundRobin(String p[], int a[], int b[], int n,CreaLinee[] lineaRR) 
 			{ 
 			// result of average times 
@@ -3351,15 +3641,22 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 
 			ArrayList<Integer> ordProc=new ArrayList<Integer>();
 			ArrayList<Integer> finale=new ArrayList<Integer>();
+			ArrayList<Integer> ford=new ArrayList<Integer>();
+
 			// copy the burst array and arrival array 
 			// for not effecting the actual array 
 			int res_b[] = new int[b.length]; 
 			int res_a[] = new int[a.length]; 
 			
 			for (int i = 0; i < res_b.length; i++) { 
-			res_b[i] = b[i]; 
-			res_a[i] = a[i]; 
+				res_b[i] = b[i]; 
+				res_a[i] = a[i]; 
 			} 
+			
+			for (int i = 0; i < lineaRR.length; i++) { 
+				System.out.println("A: "+a[i]+" B: "+b[i]+" RA: "+res_a[i]+" RB: "+res_b[i]);
+			}
+
 			
 			// critical time of system 
 			int t = 0; 
@@ -3386,8 +3683,14 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 			
 			               // make decrease the b time 
 			               t = t + n; 
+			               ford.add(res_a[i]);
+			               ford.add(Integer.valueOf(p[i]));
+			               
 			               res_b[i] = res_b[i] - n; 
 			               res_a[i] = res_a[i] + n; 
+			               
+			               ford.add(res_a[i]);
+			               ford.add(Integer.valueOf(p[i]));
 			               seq += "->C" + p[i]; 
 			               ordProc.add(Integer.valueOf(p[i]));
 			           } 
@@ -3542,13 +3845,13 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 			 }
 			 for(int jack=0;jack<finale.size();) {
 				 
-				System.out.println(finale.get(jack)+" "+finale.get(jack+1)+" "/*+finale.get(jack+2)+" "+finale.get(jack+3)+" "*/);
+				System.out.println(finale.get(jack)+" "+finale.get(jack+1)+" "/*+finale.get(jack+2)+" "+finale.get(jack+3)+" "*//*);
 				jack=jack+2;
 			 }
 			 
 			averageRR=(float)res / p.length;		
 			 return finale;
-			} 
+			} */
 
 
 		/*

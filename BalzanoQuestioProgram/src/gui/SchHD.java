@@ -133,6 +133,7 @@ public class SchHD extends JFrame {
 			btnGeneraEsercizio.setBorder(new LineBorder(new Color (0, 151, 167), 2, true));
 			btnGeneraEsercizio.setBackground(Color.WHITE);
 			btnGeneraEsercizio.setBounds(16, 160, 224, 34);
+			btnGeneraEsercizio.setOpaque(true);
 			pannelloParametri.add(btnGeneraEsercizio);
 			
 		JComboBox comboBoxSceltaNCilindri = new JComboBox();
@@ -520,12 +521,12 @@ public class SchHD extends JFrame {
 				labelFastForwardPiu.setEnabled(true);
 				labelMostraSoluzioni.setEnabled(true);
 
-				chckbxSCAN.setEnabled(false);
-				chckbxLOOK.setEnabled(false);
-				rdbtnDestraLOOK.setEnabled(false);
-				rdbtnDestraSCAN.setEnabled(false);
-				rdbtnSinistraLOOK.setEnabled(false);
-				rdbtnSinistraSCAN.setEnabled(false);
+				chckbxSCAN.setEnabled(true);
+				chckbxLOOK.setEnabled(true);
+				rdbtnDestraLOOK.setEnabled(true);
+				rdbtnDestraSCAN.setEnabled(true);
+				rdbtnSinistraLOOK.setEnabled(true);
+				rdbtnSinistraSCAN.setEnabled(true);
 				
 				labelDatoDistanzaFCFS.setText("");
 				labelDatoDistanzaLOOK.setText("");
@@ -942,15 +943,22 @@ public class SchHD extends JFrame {
 			public void mouseClicked(MouseEvent e){
 			
 				if(labelFastForwardPiu.isEnabled()) {
+					chckbxSCAN.setEnabled(false);
+					chckbxLOOK.setEnabled(false);
+					rdbtnDestraLOOK.setEnabled(false);
+					rdbtnDestraSCAN.setEnabled(false);
+					rdbtnSinistraLOOK.setEnabled(false);
+					rdbtnSinistraSCAN.setEnabled(false);
+					
 					labelFastForwardMeno.setEnabled(true);
 					labelMostraSoluzioni.setEnabled(true);
 					
 					textFieldRichieste.setBackground(Color.WHITE);
 					labelMessaggioErrore.setText("");
 					
-					chckbxSCAN.setEnabled(true);
-					chckbxLOOK.setEnabled(true);
-					
+					//chckbxSCAN.setEnabled(true);
+					//chckbxLOOK.setEnabled(true);
+					/*
 					if(rdbtnDestraLOOK.isSelected())rdbtnDestraLOOK.setEnabled(false);
 					else rdbtnDestraLOOK.setEnabled(true);
 					
@@ -962,6 +970,7 @@ public class SchHD extends JFrame {
 					
 					if(rdbtnSinistraSCAN.isSelected())rdbtnSinistraSCAN.setEnabled(false);
 					else rdbtnSinistraSCAN.setEnabled(true);
+					*/
 					
 					//GENERAZIONE MATRICI
 					String j= textFieldInzialeTestina.getText().toString();
@@ -1054,6 +1063,12 @@ public class SchHD extends JFrame {
 					else {
 						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
+						chckbxSCAN.setEnabled(true);
+						chckbxLOOK.setEnabled(true);
+						rdbtnDestraLOOK.setEnabled(true);
+						rdbtnDestraSCAN.setEnabled(true);
+						rdbtnSinistraLOOK.setEnabled(true);
+						rdbtnSinistraSCAN.setEnabled(true);
 					}
 				}
 			}
@@ -1087,15 +1102,22 @@ public class SchHD extends JFrame {
 			public void mouseClicked(MouseEvent e){
 			
 				if(labelFastForwardMeno.isEnabled()) {
+					chckbxSCAN.setEnabled(false);
+					chckbxLOOK.setEnabled(false);
+					rdbtnDestraLOOK.setEnabled(false);
+					rdbtnDestraSCAN.setEnabled(false);
+					rdbtnSinistraLOOK.setEnabled(false);
+					rdbtnSinistraSCAN.setEnabled(false);
+					
 					labelFastForwardPiu.setEnabled(true);
 					labelMostraSoluzioni.setEnabled(true);
 					
 					textFieldRichieste.setBackground(Color.WHITE);
 					labelMessaggioErrore.setText("");
 					
-					chckbxSCAN.setEnabled(true);
-					chckbxLOOK.setEnabled(true);
-					
+					//chckbxSCAN.setEnabled(true);
+					//chckbxLOOK.setEnabled(true);
+					/*
 					if(rdbtnDestraLOOK.isSelected())rdbtnDestraLOOK.setEnabled(false);
 					else rdbtnDestraLOOK.setEnabled(true);
 					
@@ -1107,7 +1129,7 @@ public class SchHD extends JFrame {
 					
 					if(rdbtnSinistraSCAN.isSelected())rdbtnSinistraSCAN.setEnabled(false);
 					else rdbtnSinistraSCAN.setEnabled(true);
-					
+					*/
 					//GENERAZIONE MATRICI
 					String j= textFieldInzialeTestina.getText().toString();
 					int s=Integer.valueOf(j);
@@ -1141,8 +1163,15 @@ public class SchHD extends JFrame {
 					
 					if(flag>0) {
 						int[] array=new int[flag];
-						for(int i=0;i<flag;i++) {
-							array[i]=numeriFCFS[i];
+						if(flag<numeriFCFS.length) {
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriFCFS[i];
+							}
+						}
+						else {
+							for(int i=0;i<numeriFCFS.length;i++) {
+								array[i]=numeriFCFS[i];
+							}
 						}
 						labelDatoDistanzaFCFS.setText(String.valueOf(distanzaFCFS));
 						jPanelFCFS.disegnaSoluzione(jPanelFCFS.getGraphics(),array,nc,distanzaFCFS,successione);
@@ -1150,8 +1179,15 @@ public class SchHD extends JFrame {
 					
 					if(flag>=0) {
 						int[] array=new int[flag];
-						for(int i=0;i<flag;i++) {
-							array[i]=numeriSSTF[i];
+						if(flag<numeriSSTF.length) {
+							for(int i=0;i<flag;i++) {
+								array[i]=numeriSSTF[i];
+							}
+						}
+						else {
+							for(int i=0;i<numeriSSTF.length;i++) {
+								array[i]=numeriSSTF[i];
+							}
 						}		
 						labelDatoDistanzaSSTF.setText(String.valueOf(distanzaSSTF));
 						jPanelSSFT.disegnaSoluzione(jPanelSSFT.getGraphics(),array,nc,distanzaSSTF,successione);
@@ -1160,18 +1196,32 @@ public class SchHD extends JFrame {
 					if(chckbxLOOK.isSelected()) {
 						if(flag>=0) {
 							int[] array=new int[flag];
-							for(int i=0;i<flag;i++) {
-								array[i]=numeriCLOOK[i];
-							}	
+							if(flag<numeriCLOOK.length) {
+								for(int i=0;i<flag;i++) {
+									array[i]=numeriCLOOK[i];
+								}
+							}
+							else {
+								for(int i=0;i<numeriCLOOK.length;i++) {
+									array[i]=numeriCLOOK[i];
+								}
+							}			
 						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
 						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),array,nc,distanzaCLOOK,successione);
 						}	
 					}else {
 						if(flag>=0) {
 							int[] array=new int[flag];
-							for(int i=0;i<flag;i++) {
-								array[i]=numeriLOOK[i];
+							if(flag<numeriLOOK.length) {
+								for(int i=0;i<flag;i++) {
+									array[i]=numeriLOOK[i];
+								}
 							}
+							else {
+								for(int i=0;i<numeriLOOK.length;i++) {
+									array[i]=numeriLOOK[i];
+								}
+							}	
 						labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
 						jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),array,nc,distanzaLOOK,successione);
 						}	
@@ -1180,18 +1230,32 @@ public class SchHD extends JFrame {
 					if(chckbxSCAN.isSelected()) {
 						if(flag>=0) {
 							int[] array=new int[flag];
-							for(int i=0;i<flag;i++) {
-								array[i]=numeriCSCAN[i];
-							}	
+							if(flag<numeriCSCAN.length) {
+								for(int i=0;i<flag;i++) {
+									array[i]=numeriCSCAN[i];
+								}
+							}
+							else {
+								for(int i=0;i<numeriCSCAN.length;i++) {
+									array[i]=numeriCSCAN[i];
+								}
+							}		
 						labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
 						jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),array,nc,distanzaCSCAN,successione);
 						}	
 					}else {
 						if(flag>=0) {
 							int[] array=new int[flag];
-							for(int i=0;i<flag;i++) {
-								array[i]=numeriSCAN[i];
+							if(flag<numeriSCAN.length) {
+								for(int i=0;i<flag;i++) {
+									array[i]=numeriSCAN[i];
+								}
 							}
+							else {
+								for(int i=0;i<numeriSCAN.length;i++) {
+									array[i]=numeriSCAN[i];
+								}
+							}	
 							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
 							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),array,nc,distanzaSCAN,successione);
 						}
@@ -1202,6 +1266,12 @@ public class SchHD extends JFrame {
 					}
 					else {
 						labelFastForwardMeno.setEnabled(false);
+						chckbxSCAN.setEnabled(true);
+						chckbxLOOK.setEnabled(true);
+						rdbtnDestraLOOK.setEnabled(true);
+						rdbtnDestraSCAN.setEnabled(true);
+						rdbtnSinistraLOOK.setEnabled(true);
+						rdbtnSinistraSCAN.setEnabled(true);
 					}
 				}
 			}
