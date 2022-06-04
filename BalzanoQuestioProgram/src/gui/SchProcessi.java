@@ -25,12 +25,15 @@ import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
 
 import model.PanelGraficiSchProcessi;
 import model.CreaLinee;
+import model.roundrobin;
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -62,6 +65,11 @@ public class SchProcessi extends JFrame {
 	/**
 	 * 
 	 */
+	/**/
+
+	
+
+	/**/
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JFrame frame;
@@ -69,6 +77,9 @@ public class SchProcessi extends JFrame {
 	
 	ArrayList<CreaLinee> arrayPunti= new ArrayList<CreaLinee>();
 	ArrayList<CreaLinee> arrayLinea= new ArrayList<CreaLinee>();
+
+	ArrayList<CreaLinee> arrayPuntiRR= new ArrayList<CreaLinee>();
+	ArrayList<CreaLinee> arrayLineaRR= new ArrayList<CreaLinee>();
 	ArrayList<Integer> FCFS=new ArrayList<Integer>(0);
 	ArrayList<Integer> SJF=new ArrayList<Integer>(0);
 	ArrayList<Integer> SJFP=new ArrayList<Integer>(0);
@@ -92,7 +103,7 @@ public SchProcessi(JFrame framechiamante) {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		setTitle("Balzano Question Problem : Scheduling della CPU");
+		setTitle("Operating Systems Simulator : Scheduling della CPU");
 		frame.setResizable(false);
 
 /**							PANNELLO PRINCIPALE								*/
@@ -887,7 +898,7 @@ public SchProcessi(JFrame framechiamante) {
 				
 				labelMostraSoluzioni.setEnabled(true);
 				labelFastForwardPiu.setEnabled(true);
-				labelFastForwardMeno.setEnabled(true);
+				labelFastForwardMeno.setEnabled(false);
 
 				comboBoxQRR.setEnabled(false);
 										
@@ -966,7 +977,7 @@ public SchProcessi(JFrame framechiamante) {
 				for (int i=0;i<numeroProcessi;i++){ 
 					
 					Random random = new Random();
-					int value = random.nextInt(15 + 0) + 0;
+					int value = random.nextInt(10 + 0) + 0;
 					if(i==0) {
 				labelP1.setEnabled(true);
 				labelP1.setText("P"+(i+1));	
@@ -1029,7 +1040,7 @@ public SchProcessi(JFrame framechiamante) {
 				textArrivoP6.setVisible(true);
 					}
 					
-					int value2 = random.nextInt(15 + 0) + 0;
+					int value2 = random.nextInt(10 + 1) + 1;
 					
 					if(i==0) {
 				textDurataP1.setEnabled(true);
@@ -1190,7 +1201,7 @@ public SchProcessi(JFrame framechiamante) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(labelMostraSoluzioni.isEnabled()) {
-					flag=0;
+
 					labelMostraSoluzioni.setEnabled(false);
 					labelFastForwardMeno.setEnabled(true);
 					labelFastForwardPiu.setEnabled(false);
@@ -1292,7 +1303,7 @@ public SchProcessi(JFrame framechiamante) {
 
 				Arrays.sort(linea);
 				
-				FCFS=FCFSClass(linea);
+				FCFS=FCFSClass(linea,0);
 				SJF=SJFClass(linea);
 				SJFP=SJFPClass(linea);
 				String qua= (String) comboBoxQRR.getSelectedItem();
@@ -1385,41 +1396,105 @@ public SchProcessi(JFrame framechiamante) {
 		});
 		
 	//EVENTO CAMBIO QUANTUM RR
-
-		comboBoxQRR.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-				CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
-
-				for(int l=0;l<arrayLinea.size();l++) {  
-						
-					linea[l]=arrayLinea.get(l);
-
-				}
-
-				Arrays.sort(linea);
-				String qua= (String) comboBoxQRR.getSelectedItem();
-				quantum=Integer.valueOf(qua);
-				//RR=RRClass(linea);
-				if(chckbxMostraSoluzioneRR.isSelected()==true) {
+		comboBoxQRR.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(comboBoxQRR.isEnabled()) {
+					labelMostraSoluzioni.setEnabled(true);
+					labelFastForwardPiu.setEnabled(true);
 					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-					jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
-					DecimalFormat frmt = new DecimalFormat();
-					frmt.setMaximumFractionDigits(3);
-					labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
-					labelDatoCDCRR.setText(String.valueOf(cbRR));
-				}
-				else {
+
+					/*
+					RR.clear();
+					arrayPunti.clear();
+					arrayLinea.clear();
+					cbRR=0;
+					averageRR=0;
+					comboBoxQRR.setEnabled(true);
+					
+					int numerofor=Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
+					
+					for(int i=0;i<numerofor;i++) {
+						if(i==0) {
+								
+								CreaLinee punto=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()));
+								CreaLinee linea=new CreaLinee(1,Integer.valueOf( textArrivoP1.getText()),Integer.valueOf( textDurataP1.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}
+						else
+						if(i==1) {
+								CreaLinee punto=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()));
+								CreaLinee linea=new CreaLinee(2,Integer.valueOf( textArrivoP2.getText()),Integer.valueOf( textDurataP2.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}
+						else
+						if(i==2) {
+								CreaLinee punto=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()));
+								CreaLinee linea=new CreaLinee(3,Integer.valueOf( textArrivoP3.getText()),Integer.valueOf( textDurataP3.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}
+						else
+						if(i==3) {
+								CreaLinee punto=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()));
+								CreaLinee linea=new CreaLinee(4,Integer.valueOf( textArrivoP4.getText()),Integer.valueOf( textDurataP4.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}
+						else
+						if(i==4) {
+								CreaLinee punto=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()));
+								CreaLinee linea=new CreaLinee(5,Integer.valueOf( textArrivoP5.getText()),Integer.valueOf( textDurataP5.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}
+						else
+						if(i==5) {
+								CreaLinee punto=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()));
+								CreaLinee linea=new CreaLinee(6,Integer.valueOf( textArrivoP6.getText()),Integer.valueOf( textDurataP6.getText()));
+	
+								arrayPuntiRR.add(punto);
+								arrayLineaRR.add(linea);
+						}			
+					}
 					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
-					labelDatoTAMRR.setText(" ");
-					labelDatoCDCRR.setText(" ");
+
+					CreaLinee[] linea = new CreaLinee[arrayLineaRR.size()];
+	
+					for(int l=0;l<arrayLineaRR.size();l++) {  
+							
+						linea[l]=arrayLineaRR.get(l);
+	
+					}
+	
+					Arrays.sort(linea);
+					String qua= (String) comboBoxQRR.getSelectedItem();
+					quantum=Integer.valueOf(qua);
+					System.out.println("QUASIMODO"+linea.length);
+					RR=RRClass(linea);
+					if(chckbxMostraSoluzioneRR.isSelected()==true) {
+						jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPuntiRR,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+						DecimalFormat frmt = new DecimalFormat();
+						frmt.setMaximumFractionDigits(3);
+						labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
+						labelDatoCDCRR.setText(String.valueOf(cbRR));
+					}
+					else {
+						labelDatoTAMRR.setText(" ");
+						labelDatoCDCRR.setText(" ");
+					}*/
 				}
 			}
 		});
 		
 		
 	//EVENTI SU MOSTRA SOLUZIONE FCFS,SJF,SJFP,RR
-		
 		chckbxMostraSoluzioneFCFS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
@@ -1906,7 +1981,7 @@ public SchProcessi(JFrame framechiamante) {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
 	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
-	                  e.consume();  //Ignora l'evento
+	            	e.consume();  //Ignora l'evento
 	             }   
 			}
 		});
@@ -2211,6 +2286,83 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		});	
 		
+		
+		
+		textArrivoP1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP1.isEnabled()) textArrivoP1.selectAll();
+			}
+		});
+		
+		textArrivoP2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP2.isEnabled()) textArrivoP2.selectAll();
+			}
+		});
+		textArrivoP3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP3.isEnabled()) textArrivoP3.selectAll();
+			}
+		});
+		textArrivoP4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP4.isEnabled()) textArrivoP4.selectAll();
+			}
+		});
+		textArrivoP5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP5.isEnabled()) textArrivoP5.selectAll();
+			}
+		});
+		textArrivoP6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textArrivoP6.isEnabled()) textArrivoP6.selectAll();
+			}
+		});
+		
+		textDurataP1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP1.isEnabled()) textDurataP1.selectAll();
+			}
+		});
+		textDurataP2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP2.isEnabled()) textDurataP2.selectAll();
+			}
+		});
+		textDurataP3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP3.isEnabled()) textDurataP3.selectAll();
+			}
+		});
+		textDurataP4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP4.isEnabled()) textDurataP4.selectAll();
+			}
+		});
+		textDurataP5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP5.isEnabled()) textDurataP5.selectAll();
+			}
+		});
+		textDurataP6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(textDurataP6.isEnabled()) textDurataP6.selectAll();
+			}
+		});
+		
 	//EVENTO SUI BOTTONI PLAYSTEPbySTEP
 		labelFastForwardPiu.addMouseListener(new MouseAdapter() {
 			@Override
@@ -2301,7 +2453,7 @@ public SchProcessi(JFrame framechiamante) {
 					
 					Arrays.sort(linea);
 					
-					FCFS=FCFSClass(linea);
+					FCFS=FCFSClass(linea,0);
 					SJF=SJFClass(linea);
 					SJFP=SJFPClass(linea);
 					String qua= (String) comboBoxQRR.getSelectedItem();
@@ -2529,7 +2681,7 @@ public SchProcessi(JFrame framechiamante) {
 					
 					Arrays.sort(linea);
 					
-					FCFS=FCFSClass(linea);
+					FCFS=FCFSClass(linea,0);
 					SJF=SJFClass(linea);
 					SJFP=SJFPClass(linea);
 					String qua= (String) comboBoxQRR.getSelectedItem();
@@ -2666,141 +2818,202 @@ public SchProcessi(JFrame framechiamante) {
 		comboBoxSceltaNProcessi.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
+				labelMostraSoluzioni.setEnabled(false);
+				labelFastForwardMeno.setEnabled(false);
+				labelFastForwardPiu.setEnabled(false);
 				labelP1.setText("");	
 				labelP2.setText("");	
 				labelP3.setText("");	
 				labelP4.setText("");	
 				labelP5.setText("");	
 				labelP6.setText("");
-				
+				/*
 				labelP1.setEnabled(false);
-				textDurataP1.setEnabled(false);
-				textDurataP1.setEditable(false);
-				textDurataP1.setVisible(false);
-				textArrivoP1.setEnabled(false);
-				textArrivoP1.setEditable(false);
-				textArrivoP1.setVisible(false);
+				//textDurataP1.setEnabled(false);
+				//textDurataP1.setEditable(false);
+				//textDurataP1.setVisible(false);
+				//textArrivoP1.setEnabled(false);
+				//textArrivoP1.setEditable(false);
+				//textArrivoP1.setVisible(false);
 				
 				labelP2.setEnabled(false);
-				textDurataP2.setEnabled(false);
-				textDurataP2.setEditable(false);
+				//textDurataP2.setEnabled(false);
+				//textDurataP2.setEditable(false);
 				textDurataP2.setVisible(false);
-				textArrivoP2.setEnabled(false);
-				textArrivoP2.setEditable(false);
+				//textArrivoP2.setEnabled(false);
+				//textArrivoP2.setEditable(false);
 				textArrivoP2.setVisible(false);
 				
 				labelP3.setEnabled(false);
-				textDurataP3.setEnabled(false);
-				textDurataP3.setEditable(false);
+				//textDurataP3.setEnabled(false);
+				//textDurataP3.setEditable(false);
 				textDurataP3.setVisible(false);
-				textArrivoP3.setEnabled(false);
-				textArrivoP3.setEditable(false);
+				//textArrivoP3.setEnabled(false);
+				//textArrivoP3.setEditable(false);
 				textArrivoP3.setVisible(false);
 				
 				labelP4.setEnabled(false);
-				textDurataP4.setEnabled(false);
-				textDurataP4.setEditable(false);
+				//textDurataP4.setEnabled(false);
+				//textDurataP4.setEditable(false);
 				textDurataP4.setVisible(false);
-				textArrivoP4.setEnabled(false);
-				textArrivoP4.setEditable(false);
+				//textArrivoP4.setEnabled(false);
+				//textArrivoP4.setEditable(false);
 				textArrivoP4.setVisible(false);
 				
 				labelP5.setEnabled(false);
-				textDurataP5.setEnabled(false);
-				textDurataP5.setEditable(false);
+				//textDurataP5.setEnabled(false);
+				//textDurataP5.setEditable(false);
 				textDurataP5.setVisible(false);
-				textArrivoP5.setEnabled(false);
-				textArrivoP5.setEditable(false);
+				//textArrivoP5.setEnabled(false);
+				//textArrivoP5.setEditable(false);
 				textArrivoP5.setVisible(false);
 				
 				labelP6.setEnabled(false);
-				textDurataP6.setEnabled(false);
-				textDurataP6.setEditable(false);
+				//textDurataP6.setEnabled(false);
+				//textDurataP6.setEditable(false);
 				textDurataP6.setVisible(false);
-				textArrivoP6.setEnabled(false);
-				textArrivoP6.setEditable(false);
+				//textArrivoP6.setEnabled(false);
+				//textArrivoP6.setEditable(false);
 				textArrivoP6.setVisible(false);
+				*/
 				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
 				int numeroProcessi=Integer.valueOf(scelta);
 				
-				for (int i=0;i<numeroProcessi;i++){ 
+				//for (int i=0;i<numeroProcessi;i++){ 
 					
-					if(i==0) {
+					if(0<numeroProcessi) {
 				labelP1.setEnabled(true);
-				labelP1.setText("P"+(i+1));	
+				labelP1.setText("P"+(0+1));	
 					}
-					if(i==1) {
+					if(1<numeroProcessi) {
 				labelP2.setEnabled(true);
-				labelP2.setText("P"+(i+1));	
+				labelP2.setText("P"+(1+1));	
 					}
-					if(i==2) {
+					if(2<numeroProcessi) {
 				labelP3.setEnabled(true);
-				labelP3.setText("P"+(i+1));	
+				labelP3.setText("P"+(2+1));	
 					}
-					if(i==3) {
+					if(3<numeroProcessi) {
 				labelP4.setEnabled(true);
-				labelP4.setText("P"+(i+1));	
+				labelP4.setText("P"+(3+1));	
 					}
-					if(i==4) {
+					if(4<numeroProcessi) {
 				labelP5.setEnabled(true);
-				labelP5.setText("P"+(i+1));	
+				labelP5.setText("P"+(4+1));	
 					}
-					if(i==5) {
+					if(5<numeroProcessi) {
 				labelP6.setEnabled(true);
-				labelP6.setText("P"+(i+1));	
+				labelP6.setText("P"+(5+1));	
 					}
 
-					if(i==0) {
+					if(0<numeroProcessi) {
 				textArrivoP1.setEnabled(true);
 				textArrivoP1.setVisible(true);
+				//textArrivoP1.setText(String.valueOf(0));
+					}else {
+						textArrivoP1.setEnabled(false);
+						textArrivoP1.setVisible(false);
 					}
-					if(i==1) {
+					if(1<numeroProcessi) {
 				textArrivoP2.setEnabled(true);
 				textArrivoP2.setVisible(true);
+				//textArrivoP2.setText(String.valueOf(0));
+					}else {
+						textArrivoP2.setEnabled(false);
+						textArrivoP2.setVisible(false);
 					}
-					if(i==2) {
+					
+					if(2<numeroProcessi) {
 				textArrivoP3.setEnabled(true);
 				textArrivoP3.setVisible(true);
+				//textArrivoP3.setText(String.valueOf(0));
+					}else {
+						textArrivoP3.setEnabled(false);
+						textArrivoP3.setVisible(false);
 					}
-					if(i==3) {
+					
+					if(3<numeroProcessi) {
 				textArrivoP4.setEnabled(true);
 				textArrivoP4.setVisible(true);
+				//textArrivoP4.setText(String.valueOf(0));
+					}else {
+						textArrivoP4.setEnabled(false);
+						textArrivoP4.setVisible(false);
 					}
-					if(i==4) {
+					
+					if(4<numeroProcessi) {
 				textArrivoP5.setEnabled(true);
 				textArrivoP5.setVisible(true);
+				//textArrivoP5.setText(String.valueOf(0));
+					}else {
+						textArrivoP5.setEnabled(false);
+						textArrivoP5.setVisible(false);
 					}
-					if(i==5) {
+					
+					if(5<numeroProcessi) {
 				textArrivoP6.setEnabled(true);
 				textArrivoP6.setVisible(true);
+				//textArrivoP6.setText(String.valueOf(0));
+					}else {
+						textArrivoP6.setEnabled(false);
+						textArrivoP6.setVisible(false);
 					}
 					
 					
-					if(i==0) {
-				textDurataP1.setEnabled(true);
-				textDurataP1.setVisible(true);
-					}
-					if(i==1) {
-				textDurataP2.setEnabled(true);
-				textDurataP2.setVisible(true);
-					}
-					if(i==2) {
-				textDurataP3.setEnabled(true);
-				textDurataP3.setVisible(true);
-					}
-					if(i==3) {
-				textDurataP4.setEnabled(true);
-				textDurataP4.setVisible(true);
-					}
-					if(i==4) {
-				textDurataP5.setEnabled(true);
-				textDurataP5.setVisible(true);
-					}
-					if(i==5) {
-				textDurataP6.setEnabled(true);
-				textDurataP6.setVisible(true);
-					}
-				}
+					if(0<numeroProcessi) {
+						textDurataP1.setEnabled(true);
+						textDurataP1.setVisible(true);
+						//textDurataP1.setText(String.valueOf(0));
+							}else {
+								textDurataP1.setEnabled(false);
+								textDurataP1.setVisible(false);
+							}
+							if(1<numeroProcessi) {
+						textDurataP2.setEnabled(true);
+						textDurataP2.setVisible(true);
+						//textDurataP2.setText(String.valueOf(0));
+							}else {
+								textDurataP2.setEnabled(false);
+								textDurataP2.setVisible(false);
+							}
+							
+							if(2<numeroProcessi) {
+						textDurataP3.setEnabled(true);
+						textDurataP3.setVisible(true);
+						//textDurataP3.setText(String.valueOf(0));
+							}else {
+								textDurataP3.setEnabled(false);
+								textDurataP3.setVisible(false);
+							}
+							
+							if(3<numeroProcessi) {
+						textDurataP4.setEnabled(true);
+						textDurataP4.setVisible(true);
+						//textDurataP4.setText(String.valueOf(0));
+							}else {
+								textDurataP4.setEnabled(false);
+								textDurataP4.setVisible(false);
+							}
+							
+							if(4<numeroProcessi) {
+						textDurataP5.setEnabled(true);
+						textDurataP5.setVisible(true);
+						//textDurataP5.setText(String.valueOf(0));
+							}else {
+								textDurataP5.setEnabled(false);
+								textDurataP5.setVisible(false);
+							}
+							
+							if(5<numeroProcessi) {
+						textDurataP6.setEnabled(true);
+						textDurataP6.setVisible(true);
+						//textDurataP6.setText(String.valueOf(0));
+							}else {
+								textDurataP6.setEnabled(false);
+								textDurataP6.setVisible(false);
+							}
+							
+				//}
 			}
 			
 		});
@@ -2810,7 +3023,7 @@ public SchProcessi(JFrame framechiamante) {
 /**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
 	
 //METODO PER CALCOLARE FCFS
-	public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS){
+	public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS, int flag){
 		
 		ArrayList<Integer> punti=new ArrayList<Integer>();
 		int n = lineaFCFS.length;
@@ -2852,13 +3065,15 @@ public SchProcessi(JFrame framechiamante) {
 		}
 		
 		float aver=(avgwt/n);
-		averageFCFS=aver;
-	
+		if(flag==0) averageFCFS=aver;
+		else averageRR=aver;
 		for(int  i = 0 ; i< n;  i++){
-			if(bt[i]!=0) cbFCFS++;
+			if(bt[i]!=0 && flag==0) cbFCFS++;
+			else cbRR++;
 		}
 		
-		cbFCFS=cbFCFS-1;
+		if(flag==0)cbFCFS=cbFCFS-1;
+		else cbRR-=1;
 		return punti;
 	}
 
@@ -3086,102 +3301,659 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     return punti;
 		 }
 		    
-	//METODO PER CALCOLARE RR
+//METODO PER CALCOLARE RR
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
 		
-		ArrayList<Integer>  array=new ArrayList<Integer>();
+		int n=lineaRR.length;
+		// name of the process 
+		String name[] = new String[6]; 
+
+		// arrival for every process 
+		int arrivaltime[] = new int[6]; 
+
+		// burst time for every process 
+		int bursttime[] = new int[6]; 
+
+		for (int i = 0; i < n; i++) {
+			arrivaltime[i]=lineaRR[i].getArrivo();
+			bursttime[i] = lineaRR[i].getDurata();
+			name[i]=String.valueOf(	lineaRR[i].getProcesso());
+		
+		 }
+		
+		// quantum time of each process 
+		int q = quantum; 
+
+		// cal the function for output 
+		ArrayList<Integer> ciao=new ArrayList<Integer>(0);
+
+		ciao=roundRobin(name, arrivaltime, bursttime, q,lineaRR);
+		cbRR=0;
+		for(int i=0;i<ciao.size();) {
+			
+			if(i==0)cbRR++;
+			else {
+				if(ciao.get(i+1)!=ciao.get(i-3))cbRR++;
+			}
+			i=i+4;
+		}
+		cbRR=cbRR-1;
+		return ciao;
+	}
+	
+		 public ArrayList<Integer> roundRobin(String p[], int a[], int b[], int n,CreaLinee[] lineaRR) 
+			{ 
+			// result of average times 
+			int res = 0; 
+			int resc = 0; 
+			
+			// for sequence storage 
+			String seq = new String(); 
+
+			ArrayList<Integer> ordProc=new ArrayList<Integer>();
+			ArrayList<Integer> finale=new ArrayList<Integer>();
+			// copy the burst array and arrival array 
+			// for not effecting the actual array 
+			int res_b[] = new int[b.length]; 
+			int res_a[] = new int[a.length]; 
+			
+			for (int i = 0; i < res_b.length; i++) { 
+			res_b[i] = b[i]; 
+			res_a[i] = a[i]; 
+			} 
+			
+			// critical time of system 
+			int t = 0; 
+			
+			// for store the waiting time 
+			int w[] = new int[p.length]; 
+			
+			// for store the Completion time 
+			int comp[] = new int[p.length]; 
+			
+			while (true) { 
+			boolean flag = true; 
+			for (int i = 0; i < p.length; i++) { 
+			
+			// these condition for if 
+			// arrival is not on zero 
+			
+			// check that if there come before qtime 
+			if (res_a[i] <= t) { 
+			   if (res_a[i] <= n) { 
+			       if (res_b[i] > 0) { 
+			           flag = false; 
+			           if (res_b[i] > n) { 
+			
+			               // make decrease the b time 
+			               t = t + n; 
+			               res_b[i] = res_b[i] - n; 
+			               res_a[i] = res_a[i] + n; 
+			               seq += "->C" + p[i]; 
+			               ordProc.add(Integer.valueOf(p[i]));
+			           } 
+			           else { 
+			
+			               // for last time 
+			               t = t + res_b[i]; 
+			
+			               // store comp time 
+			               comp[i] = t - a[i]; 
+			
+			               // store wait time 
+			               w[i] = t - b[i] - a[i]; 
+			               res_b[i] = 0; 
+			
+			               // add sequence 
+			               seq += "->A" + p[i]; 
+			               ordProc.add(Integer.valueOf(p[i]));
+			           } 
+			       } 
+			   } 
+			   else if (res_a[i] > n) { 
+			
+			       // is any have less arrival time 
+			       // the coming process then execute them 
+			       for (int j = 0; j < p.length; j++) { 
+			
+			           // compare 
+			           if (res_a[j] < res_a[i]) { 
+			               if (res_b[j] > 0) { 
+			                   flag = false; 
+			                   if (res_b[j] > n) { 
+			                       t = t + n; 
+			                       res_b[j] = res_b[j] - n; 
+			                       res_a[j] = res_a[j] + n; 
+			                       seq += "->W" + p[j]; 
+					               ordProc.add(Integer.valueOf(p[j]));
+			                   } 
+			                   else { 
+			                       t = t + res_b[j]; 
+			                       comp[j] = t - a[j]; 
+			                       w[j] = t - b[j] - a[j]; 
+			                       res_b[j] = 0; 
+			                       seq += "->F" + p[j]; 
+					               ordProc.add(Integer.valueOf(p[j]));
+			                   } 
+			               } 
+			           } 
+			       } 
+			
+			       // now the previous porcess according to 
+			       // ith is process 
+			       if (res_b[i] > 0) { 
+			           flag = false; 
+			
+			           // Check for greaters 
+			           if (res_b[i] > n) { 
+			               t = t + n; 
+			               res_b[i] = res_b[i] - n; 
+			               res_a[i] = res_a[i] + n; 
+			               seq += "->Z" + p[i]; 
+			               ordProc.add(Integer.valueOf(p[i]));
+			           } 
+			           else { 
+			               t = t + res_b[i]; 
+			               comp[i] = t - a[i]; 
+			               w[i] = t - b[i] - a[i]; 
+			               res_b[i] = 0; 
+			               seq += "->G" + p[i]; 
+			               ordProc.add(Integer.valueOf(p[i]));
+			           } 
+			       } 
+			   } 
+			} 
+			
+			// if no process is come on thse critical 
+			else if (res_a[i] > t) { 
+			   t++; 
+			   i--; 
+			} 
+			} 
+			// for exit the while loop 
+			if (flag) { 
+			break; 
+			} 
+			} 
+			
+			System.out.println("name  ctime  wtime"); 
+			for (int i = 0; i < p.length; i++) { 
+			System.out.println(" " + p[i] + "    " + comp[i] 
+			              + "    " + w[i]); 
+			
+			res = res + w[i]; 
+			resc = resc + comp[i]; 
+			} 
+			
+			System.out.println("Average waiting time is "
+			          + (float)res / p.length); 
+			System.out.println("Average compilation  time is "
+			          + (float)resc / p.length); 
+			System.out.println("Sequence is like that " + seq); 
+			
+			int arr=0;
+			for(int scorr=0;scorr<lineaRR.length;scorr++) {
+				if(lineaRR[scorr].getProcesso()==ordProc.get(0)) {
+					arr=lineaRR[scorr].getArrivo();
+				}
+			}
+			for(int jack=0;jack<ordProc.size();jack++) {
+				 
+				int processo= ordProc.get(jack);
+			 
+				for(int scorr=0;scorr<lineaRR.length;scorr++) {
+					if(lineaRR[scorr].getProcesso()==processo) {
+						if(lineaRR[scorr].getDurata()<n && lineaRR[scorr].getDurata()>0) {
+							if(lineaRR[scorr].getArrivo()>arr) {
+								finale.add(lineaRR[scorr].getArrivo());
+								finale.add(lineaRR[scorr].getProcesso());
+								finale.add(lineaRR[scorr].getArrivo()+lineaRR[scorr].getDurata());
+								arr=lineaRR[scorr].getArrivo()+lineaRR[scorr].getDurata();
+								finale.add(lineaRR[scorr].getProcesso());
+								lineaRR[scorr].setDurata(0);
+							}
+							else {
+								finale.add(arr);
+								finale.add(lineaRR[scorr].getProcesso());
+								finale.add(arr+lineaRR[scorr].getDurata());
+								arr=arr+lineaRR[scorr].getDurata();
+								finale.add(lineaRR[scorr].getProcesso());
+								lineaRR[scorr].setDurata(0);
+							}
+						}else {
+							if(lineaRR[scorr].getArrivo()>arr) {
+								finale.add(lineaRR[scorr].getArrivo());
+								finale.add(lineaRR[scorr].getProcesso());
+								finale.add(lineaRR[scorr].getArrivo()+n);
+								arr=lineaRR[scorr].getArrivo()+n;
+								finale.add(lineaRR[scorr].getProcesso());
+								lineaRR[scorr].setDurata(lineaRR[scorr].getDurata()-n);
+							}
+							else {
+								finale.add(arr);
+								finale.add(lineaRR[scorr].getProcesso());
+								finale.add(arr+n);
+								arr=arr+n;
+								finale.add(lineaRR[scorr].getProcesso());
+								lineaRR[scorr].setDurata(lineaRR[scorr].getDurata()-n);
+							}
+						}
+					}
+				}
+			 }
+			 for(int jack=0;jack<finale.size();) {
+				 
+				System.out.println(finale.get(jack)+" "+finale.get(jack+1)+" "/*+finale.get(jack+2)+" "+finale.get(jack+3)+" "*/);
+				jack=jack+2;
+			 }
+			 
+			averageRR=(float)res / p.length;		
+			 return finale;
+			} 
+
+
+		/*
+		int k, j, q, i, n, ts, temp;
+		int aw;
+		float awt;
+		int[] bt=new int[10], wt=new int[10], te=new int[10], rt=new int[10], at=new int[10];
+		int[] twp=new int[6];
+		j=0;
+		n=lineaRR.length;
+		ArrayList<Integer> array=new ArrayList<Integer>();
+		ArrayList<Integer> ordProc=new ArrayList<Integer>();
+		ArrayList<Integer> finale=new ArrayList<Integer>();
+
+		for (i = 0; i < n; i++) {
+			at[i]=lineaRR[i].getArrivo();
+			bt[i] = lineaRR[i].getDurata();
+			twp[i]=lineaRR[i].getDurata();
+			te[i] = 0;
+			wt[i] = 0;
+		 }
+		 for (i = 0; i < n; i++) {
+			 for (j = i + 1; j < n; j++) {
+				if (at[i] > at[j]) {
+			       temp = at[i]; //sorting according to arrival time
+			       at[i] = at[j];
+			       at[j] = temp;
+			       temp = bt[i];
+			       bt[i] = bt[j];
+			       bt[j] = temp;
+				}
+		  	}
+		 }
+		 for (i = 0; i < n; i++) {
+			   rt[i] = bt[i];
+		 }
+		 ts=quantum;
+		 q = 0;
+		 j=0;
+		 
+		 while (j <= n) {
+			   j++;
+			   for (i = 0; i < n; i++) {
+			     if (rt[i] == 0) continue;
+			     if (rt[i] > ts) {
+					 System.out.println("CIAO MAMMA "+q+" " +(lineaRR[i].getProcesso()));
+			       //printf("\n %d\t P%d", q, i + 1);
+			       array.add(q);
+			       ordProc.add(lineaRR[i].getProcesso());
+			       array.add(lineaRR[i].getProcesso());
+			       q = q + ts;
+			       rt[i] = rt[i] - ts;
+			       te[i] = te[i] + 1;
+			     } else {
+					 System.out.println("CIAO MAMMA "+q+" " +(lineaRR[i].getProcesso()));
+
+			       //printf("\n %d\t P%d", q, i + 1);
+		    	 	array.add(q);
+				    ordProc.add(lineaRR[i].getProcesso());
+					array.add(lineaRR[i].getProcesso());
+				    wt[i] = q - te[i] * ts;
+				    q = q + rt[i];
+				    rt[i] = rt[i] - rt[i];
+			     }
+			   }
+			 } //end of while    
+			 awt = 0;
+			// printf("\n Process   Waitnig time");
+			 for (i = 0; i < n; i++) {
+			   wt[i] = wt[i] - at[i];
+			  //printf("\n P%d      :   %d", i + 1, wt[i]);
+			   awt = awt + wt[i];
+			 }
+			 //aw = awt;
+			 averageRR=awt/n;
+			 //printf("\ntotal waiting time %d", aw);
+			 //printf("\n Avg wainting time %f ", awt / n);
+			 System.out.println("CIAO MAMMA "+array.size());
+	 
+			 for(int jack=0;jack<ordProc.size();jack++) {
+			 
+				int processo= ordProc.get(jack);
+			 
+				for(int scorr=0;scorr<lineaRR.length;scorr++) {
+					if(lineaRR[scorr].getProcesso()==processo) {
+						if(lineaRR[scorr].getDurata()<quantum && lineaRR[scorr].getDurata()>0) {
+							finale.add(lineaRR[scorr].getDurata());
+							finale.add(lineaRR[scorr].getProcesso());
+							lineaRR[scorr].setDurata(0);
+						}else {
+							finale.add(quantum);
+							finale.add(lineaRR[scorr].getProcesso());
+							lineaRR[scorr].setDurata(lineaRR[scorr].getDurata()-quantum);
+						}
+					}
+				}
+			 }
+			 for(int jack=0;jack<finale.size();) {
+				 */
+				 //System.out.println(finale.get(jack)+" "+finale.get(jack+1)+" "/*+finale.get(jack+2)+" "+finale.get(jack+3)+" "*/);
+				// jack=jack+2;
+			 //}
+			// return finale;
+			// */
+	//}
+	/*
+	ArrayList<Integer> display()
+	{
+		int i;
+		float tav=0;//average turn-around time
+		float wav=0;//average wait time			
+		for(i=0;i<n;i++) {
+			tav+=t[i];wav+=w[i];
+		}
+		tav/=n;
+		wav/=n;
+
+		//order.add(wav)
+		return order;
+	}*/
+
+		/*
+		ArrayList<Integer>  array=new ArrayList<Integer>(0);
 		int n=lineaRR.length;
 		int timer = 0, maxProccessIndex = 0;
 	    float avgWait = 0, avgTT = 0;
 		int tq=quantum;
-		return null;
-	}
 		
-		/*
-		int durtot=0, dur=0, tmp=0,prec=0;
-		for(int i=0;i<numProc;i++) {
-			
-			processo[i]=lineaRR[i].getProcesso();
-			arrivo[i]=lineaRR[i].getArrivo();
-			durata[i]=lineaRR[i].getDurata();
-			durtot+=lineaRR[i].getDurata();
+		ArrayList<Integer> punti=new ArrayList<Integer>();
+		ArrayList<CreaLinee> ARRAY=new ArrayList<CreaLinee>();
+
+		int pid[] = new int[n];   // process ids
+		int ar[] = new int[n];     // arrival times
+		int bt[] = new int[n];     // burst or execution times
+		int ct[] = new int[n];     // completion times
+		int ta[] = new int[n];     // turn around times
+		int wt[] = new int[n];     // waiting times
+		float avgwt=0,avgta=0;
+		int duratatotale=0;
+		
+		for(int i = 0; i < n; i++){
+			ARRAY.add(lineaRR[i]);
+			ar[i]=lineaRR[i].getArrivo();
+			bt[i] = lineaRR[i].getDurata();
+			pid[i] = lineaRR[i].getProcesso();
+			duratatotale+=lineaRR[i].getDurata(); 
 		}
 		
-		//while(dur<durtot) {
-				for(int i=0;i<processo.length;i++) {
-				if(i==0) {
-					array.add(arrivo[i]);
-					array.add(processo[i]);
-					
-					if(durata[i]<n) {
-						if(durata[i]>0) {
-							array.add(arrivo[i]+durata[i]);
-							dur+=durata[i];
-							prec=arrivo[i]+durata[i];
-							durata[i]=0;
-							array.add(processo[i]);
-						}
-					}else {
-						array.add(arrivo[i]+n);
-						dur+=n;
-						prec=arrivo[i]+n;
-						durata[i]=durata[i]-n;
-						array.add(processo[i]);
-					}
+		for(int  i = 0 ; i < n; i++){
+			if( i == 0){
+				ct[i] = ar[i] + bt[i];
+			}
+			else{
+				if( ar[i] > ct[i-1]){
+					ct[i] = ar[i] + bt[i];
+				}
+				else ct[i] = ct[i-1] + bt[i];
+			}
+			ta[i] = ct[i] - ar[i] ;          // turnaround time= completion time- arrival time
+			wt[i] = ta[i] - bt[i] ;          // waiting time= turnaround time- burst time
+			avgwt += wt[i] ;               // total waiting time
+			avgta += ta[i] ;               // total turnaround time
+		}	
+	
+		for(int  i = 0 ; i< n;  i++){
+			punti.add(ar[i]+wt[i]);
+			punti.add(pid[i]);
+			punti.add(ct[i]);
+			punti.add(pid[i]);
+		}
+		ArrayList<Integer> punti2=new ArrayList<Integer>();
+
+		for(int i=0;i<n;i++) {
+			int jack=0;
+			int temp=bt[i];
+			while(bt[i]>0) {
+				punti2.add(ar[i]+quantum*jack);
+				punti2.add(pid[i]);
+				jack++;
+				
+				if(bt[i]>quantum) {
+					punti2.add(ar[i]+quantum*jack);
+					bt[i]-=quantum;
 				}
 				else {
-					if(arrivo[i]<prec) {
-						array.add(prec);
-						array.add(processo[i]);
-						
-						if(durata[i]<n) {
-							if(durata[i]>0) {
-								array.add(arrivo[i]+durata[i]);
-								dur+=durata[i];
-								prec=arrivo[i]+durata[i];
-								durata[i]=0;
-								array.add(processo[i]);
-							}
-						}else {
-							array.add(arrivo[i]+n);
-							dur+=n;
-							prec=arrivo[i]+n;
-							durata[i]=durata[i]-n;
-							array.add(processo[i]);
-						}
-					}
-					else {
-						int k=i;
-						while( k>0 && durata[k-1]<=0) {
-							k=k-1;
-							tmp=k;
-						}
-						array.add(prec);
-						array.add(processo[tmp]);
-						
-						if(durata[tmp]<n) {
-							if(durata[tmp]>0) {
-								array.add(arrivo[tmp]+durata[tmp]);
-								dur+=durata[tmp];
-								prec=arrivo[tmp]+durata[tmp];
-								durata[tmp]=0;
-								array.add(processo[tmp]);
-							}
-						}else {
-							array.add(arrivo[tmp]+n);
-							dur+=n;
-							prec=arrivo[tmp]+n;
-							durata[tmp]=durata[tmp]-n;
-							array.add(processo[tmp]);
-						}
-					}
+					punti2.add(ar[i]+temp);
+					bt[i]=0;
 				}
+				punti2.add(pid[i]);
 			}
-		//}
+		}
 		
-		
-		for(int i=0;i<array.size();i++)System.out.print(" "+array.get(i));
-		return array;
+		ArrayList<CreaLinee> arrayPunto= new ArrayList<CreaLinee>();
 
+		for(int i=0;i<punti2.size();) {
+					
+			CreaLinee linea=new CreaLinee(punti2.get(i+1),punti2.get(i),punti2.get(i+2)-punti2.get(i));
+			arrayPunto.add(linea);
+			i=i+4;
+		}					
+		
+		CreaLinee[] linea = new CreaLinee[arrayPunto.size()];
+
+		for(int l=0;l<arrayPunto.size();l++) {  
+			linea[l]=arrayPunto.get(l);
+		}
+		Arrays.sort(linea);
+		*/
+		/**//*
+		ArrayList<Integer> PUNTO=new ArrayList<Integer>();
+
+		
+
+		int controllo=0;
+		controllo=ARRAY.get(0).getProcesso();
+		int succ;
+		int i;
+		i=0;
+		int dentro,dentro2;
+		dentro=0;
+		dentro2=0;
+		while(duratatotale>0) {
+			dentro++;
+			System.out.println("CIAO PRIMO "+dentro);
+			System.out.println("CIAO  "+controllo+ " "+ARRAY.get(i).getProcesso());
+
+				while(controllo==ARRAY.get(i).getProcesso()) {
+					dentro2++;
+					System.out.println("CIAO SECONDO "+dentro2);
+					succ=i+1;
+					System.out.println("CIAO SUCC "+succ);
+					if(succ>=lineaRR.length)succ=0;
+					System.out.println("CIAO SUCC2 "+succ);
+					System.out.println("CIAO ARRIVO PRIMO "+ARRAY.get(succ).getArrivo()+" SECONDO "+ARRAY.get(succ).getArrivo());
+
+					if(ARRAY.get(succ).getArrivo()>ARRAY.get(i).getArrivo()) {
+						int x1=ARRAY.get(i).getArrivo();
+						int y1=ARRAY.get(i).getProcesso();
+						System.out.println("X1 "+x1+"Y1 "+y1);
+
+						PUNTO.add(x1);
+						PUNTO.add(y1);
+						int x2, y2;
+						System.out.println("DUARATA "+ARRAY.get(i).getDurata());
+						if(ARRAY.get(i).getDurata()>quantum) {
+
+							x2=ARRAY.get(i).getArrivo()+quantum;
+							y2=ARRAY.get(i).getProcesso();
+							System.out.println("X2 "+x2+"Y2 "+y2);
+
+							ARRAY.get(i).setArrivo(lineaRR[i].getArrivo()+quantum);
+							ARRAY.get(i).setDurata(ARRAY.get(i).getDurata()-quantum);
+							System.out.println("ARRIVO MOD "+lineaRR[i].getArrivo()+" DUARAT MOD "+ARRAY.get(i).getDurata());
+							System.out.println("DT "+duratatotale);
+
+							duratatotale=duratatotale-quantum;
+							System.out.println("DT "+duratatotale);
+
+							PUNTO.add(x2);
+							PUNTO.add(y2);
+						}
+						else if(ARRAY.get(i).getDurata()>0){
+							x2=ARRAY.get(i).getArrivo()+ARRAY.get(i).getDurata();
+							y2=ARRAY.get(i).getProcesso();
+							System.out.println("X2 "+x2+"Y2 "+y2);
+
+							ARRAY.get(i).setArrivo(ARRAY.get(i).getArrivo()+ARRAY.get(i).getDurata());
+							ARRAY.get(i).setDurata(0);
+							System.out.println("ARRIVO MOD "+lineaRR[i].getArrivo()+" DUARAT MOD "+ARRAY.get(i).getDurata());
+
+							System.out.println("DT "+duratatotale);
+							duratatotale=duratatotale-ARRAY.get(i).getDurata();
+							System.out.println("DT "+duratatotale);
+
+							ARRAY.remove(i);
+							PUNTO.add(x2);
+							PUNTO.add(y2);
+						}
+						
+	
+					}
+					else if(ARRAY.get(succ).getArrivo()==ARRAY.get(i).getArrivo()){
+						System.out.println("controllo "+controllo);
+
+						controllo=ARRAY.get(succ).getProcesso();
+						System.out.println("DT "+controllo);
+
+					}
+					else if(ARRAY.get(succ).getArrivo()<ARRAY.get(i).getArrivo()) {
+						System.out.println("ARRIVO "+ARRAY.get(i).getArrivo());
+
+						ARRAY.get(succ).setArrivo(ARRAY.get(i).getArrivo());
+						System.out.println("ARRIVO "+ARRAY.get(i).getArrivo());
+
+						System.out.println("controllo "+controllo);
+
+						controllo=ARRAY.get(succ).getProcesso();
+						System.out.println("DT "+controllo);				
+					}
+					
+				}
+				
+			}
+			/*
+			else {
+				break;
+			}
+		}*/
+		/*
+		//punti20=FCFSClass(linea,1);		
+		
+	
+		float aver=(avgwt/n);
+
+		//cbRR=punti2.size()-1;
+		return PUNTO;
 	}*/
+	
+private float rraverage(CreaLinee[] lineaRR) {
+
+	 
+	       int q = quantum;
+	       int n = lineaRR.length;
+	       int proc[][] = new int[n + 1][4];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
+	       for(int i = 1; i <= n; i++)
+	       {
+	      proc[i][1] = lineaRR[i-1].getDurata();
+	      }
+	     
+	       //Calculation of Total Time and Initialization of Time Chart array
+	     int total_time = 0;
+	     for(int i = 1; i <= n; i++)
+	     {
+	      total_time += proc[i][1];
+	     }
+	     int time_chart[] = new int[total_time];
+	     
+	     int sel_proc = 1;
+	     int current_q = 0;
+	     for(int i = 0; i < total_time; i++)
+	     {
+	      //Assign selected process to current time in the Chart
+	      time_chart[i] = sel_proc;
+	      
+	      //Decrement Remaining Time of selected process by 1 since it has been assigned the CPU for 1 unit of time
+	      proc[sel_proc][1]--;
+	      
+	      //WT and TT Calculation
+	      for(int j = 1; j <= n; j++)
+	      {
+	       if(proc[j][1] != 0)
+	       {
+	        proc[j][3]++;//If process has not completed execution its TT is incremented by 1
+	        if(j != sel_proc)//If the process has not been currently assigned the CPU its WT is incremented by 1
+	         proc[j][2]++;
+	       }
+	       else if(j == sel_proc)//This is a special case in which the process has been assigned CPU and has completed its execution
+	        proc[j][3]++;
+	      }
+	      
+	      //Printing the Time Chart
+	      if(i != 0)
+	      {
+	       if(sel_proc != time_chart[i - 1])
+	        //If the CPU has been assigned to a different Process we need to print the current value of time and the name of 
+	        //the new Process
+	       {
+	        System.out.print("--" + i + "--P" + sel_proc);
+	       }
+	      }
+	      else//If the current time is 0 i.e the printing has just started we need to print the name of the First selected Process
+	       System.out.print(i + "--P" + sel_proc);
+	      if(i == total_time - 1)//All the process names have been printed now we have to print the time at which execution ends
+	       System.out.print("--" + (i + 1));
+	      
+	      //Updating value of sel_proc for next iteration
+	      current_q++;
+	      if(current_q == q || proc[sel_proc][1] == 0)//If Time slice has expired or the current process has completed execution
+	      {
+	       current_q = 0;
+	       //This will select the next valid value for sel_proc
+	       for(int j = 1; j <= n; j++)
+	       {
+	        sel_proc++;
+	        if(sel_proc == (n + 1))
+	            sel_proc = 1;
+	        if(proc[sel_proc][1] != 0)
+	         break;
+	       }
+	      }
+	     }
+	    
+	     
+	     //Printing the average WT & TT
+	     float WT = 0,TT = 0;
+	     for(int i = 1; i <= n; i++)
+	     {
+	      WT += proc[i][2];
+	      TT += proc[i][3];
+	     }
+	     WT /= n;
+	     TT /= n;   
+
+		return WT;
+	}
+	
 }
