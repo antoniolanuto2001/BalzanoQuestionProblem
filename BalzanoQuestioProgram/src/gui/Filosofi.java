@@ -123,14 +123,14 @@ public class Filosofi extends JFrame {
 		
 		JScrollPane scroll= new JScrollPane();
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scroll.setBounds(10, 200, 344, 530);
+		scroll.setBounds(0, 164, 300, 300);
 		scroll.setPreferredSize(new DimensionUIResource(344, 5000));
 		
 		
         textAreaLog.setBorder(new LineBorder(new Color(0, 0, 0)));
         textAreaLog.setBackground(new Color(255, 255, 255));
         textAreaLog.setFont(new Font("Arial", Font.PLAIN, 13));
-        textAreaLog.setBounds(10, 247, 344, 462);
+        textAreaLog.setBounds(10, 247, 344, 300);
         scroll.setViewportView(textAreaLog);
         DefaultCaret caret = (DefaultCaret)textAreaLog.getCaret();
 		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
@@ -165,13 +165,6 @@ public class Filosofi extends JFrame {
 		labelTavola.setIcon(imageTavola);
 		panelMainButton.add(labelTavola);
 		ButtonGroup groupSceltaStrategiaFilosofi = new ButtonGroup();
-        
-        
-        
-        JLabel labelLog = new JLabel(" LOG DEGLI EVENTI : ");
-        labelLog.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        labelLog.setBounds(92, 153, 172, 36);
-        panelMainButton.add(labelLog);
         
         JPanel panelDiControllo = new JPanel();
 		panelDiControllo.setBounds(1130, 76, 274, 664);
@@ -694,11 +687,6 @@ public class Filosofi extends JFrame {
         labelCtrl.setBounds(14, 11, 245, 54);
         panelDiControllo.add(labelCtrl);
         
-        JLabel labelScrittaIndietro = new JLabel(" Indietro");
-        labelScrittaIndietro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        labelScrittaIndietro.setBounds(10, 122, 53, 12);
-        panelMainButton.add(labelScrittaIndietro);
-        
         JLabel labelIndietroIcon = new JLabel("Exit");
         labelIndietroIcon.addMouseListener(new MouseAdapter() {
         	@Override
@@ -722,16 +710,6 @@ public class Filosofi extends JFrame {
 				frame.setVisible(false);
 				frame.dispose();
 			}
-        	@Override
-        	public void mouseEntered(MouseEvent e) 
-        	{
-        		labelScrittaIndietro.setForeground(Color.RED);
-        	}
-        	@Override
-        	public void mouseExited(MouseEvent e) 
-        	{
-        		labelScrittaIndietro.setForeground(Color.BLACK);
-        	}
         });
         labelIndietroIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/back-button.png")));
         labelIndietroIcon.setBounds(18, 86, 32, 32);
@@ -804,6 +782,35 @@ public class Filosofi extends JFrame {
         labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
         labelSlideIcon.setBounds(1027, 84, 53, 46);
         panelMainButton.add(labelSlideIcon);
+        
+        JScrollPane scrollPaneHelp = new JScrollPane();
+        scrollPaneHelp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPaneHelp.setBounds(10, 511, 290, 200);
+        panelMainButton.add(scrollPaneHelp);
+        
+        JTextArea txtrHashLaModello = new JTextArea();
+		scrollPaneHelp.setViewportView(txtrHashLaModello);
+		txtrHashLaModello.setBounds(0,0,290,1000);
+		txtrHashLaModello.setWrapStyleWord(true);
+		txtrHashLaModello.setText("Problema dei filosofi a cena \r\nSi considerino cinque filosofi che passano la vita pensando e mangiando, i filosofi condividono un tavolo rotondo circondato da cinque sedie, una per ciascun filosofo. Al centro del tavolo si trova una zuppiera colma di riso, e la tavola è apparecchiata con un numero di bacchette pari al numero di filosofi. Quando un filosofo pensa, non interagisce con i colleghi, quando gli viene fame tenta di prendere le bacchette più vicine: quelle che si trovano tra lui e i commensi alla sua destra e alla sua sinistra. Un filosofo affamato tiene in mano due bacchette contemporaneamente, mangia senza lasciare le bacchette. Terminato il pasto, le posa e riprende a pensare.\r\nPrima strategia: \r\nUn filosofo prende le bacchette solo se sono entrambe disponibili\r\nSeconda strategia (asimmetrica): \r\nUn filosofo dispari prende prima la bacchetta di sinistra, un filosofo pari prende prima quella di destra.\r\nTerza strategia: \r\nI filosofi non hanno mai fame tutti contemporaneamente, ne rimane sempre almeno uno che pensa");
+		txtrHashLaModello.setLineWrap(true);
+		txtrHashLaModello.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+		txtrHashLaModello.setEditable(false);
+		txtrHashLaModello.setCaretPosition(0);
+        
+        JLabel labelHelp = new JLabel("  Spiegazione Argomento : ");
+        labelHelp.setHorizontalAlignment(SwingConstants.CENTER);
+        labelHelp.setForeground(Color.RED);
+        labelHelp.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        labelHelp.setBounds(22, 475, 245, 25);
+        panelMainButton.add(labelHelp);
+        
+        JLabel labelLog = new JLabel("  Log degli Eventi :  ");
+        labelLog.setHorizontalAlignment(SwingConstants.CENTER);
+        labelLog.setForeground(Color.RED);
+        labelLog.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        labelLog.setBounds(28, 128, 245, 25);
+        panelMainButton.add(labelLog);
         
       
         
