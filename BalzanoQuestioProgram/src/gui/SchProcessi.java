@@ -46,6 +46,8 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import java.awt.Desktop;
+import java.awt.Dimension;
+
 import javax.swing.border.MatteBorder;
 import javax.swing.ImageIcon;
 import java.awt.GridBagLayout;
@@ -56,6 +58,7 @@ import javax.swing.Box;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.plaf.DimensionUIResource;
 import javax.swing.event.CaretEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -553,8 +556,9 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_horizontalStrut.gridy = 2;
 			panelTabella.add(horizontalStrut, gbc_horizontalStrut);
 			
-			JLabel labelP1 = new JLabel("");
+			JLabel labelP1 = new JLabel();
 			labelP1.setHorizontalAlignment(SwingConstants.CENTER);
+			
 			labelP1.setEnabled(false);
 			GridBagConstraints gbc_labelP1 = new GridBagConstraints();
 			gbc_labelP1.insets = new Insets(0, 0, 5, 5);
@@ -1005,26 +1009,32 @@ public SchProcessi(JFrame framechiamante) {
 					if(i==0) {
 				labelP1.setEnabled(true);
 				labelP1.setText("P"+(i+1));	
+				labelP1.setMinimumSize(new Dimension(20, 20));
 					}
 					if(i==1) {
 				labelP2.setEnabled(true);
 				labelP2.setText("P"+(i+1));	
+				labelP2.setMinimumSize(new Dimension(20, 20));
 					}
 					if(i==2) {
 				labelP3.setEnabled(true);
 				labelP3.setText("P"+(i+1));	
+				labelP3.setMinimumSize(new Dimension(20, 20));	
 					}
 					if(i==3) {
 				labelP4.setEnabled(true);
 				labelP4.setText("P"+(i+1));	
+				labelP4.setMinimumSize(new Dimension(20, 20));	
 					}
 					if(i==4) {
 				labelP5.setEnabled(true);
 				labelP5.setText("P"+(i+1));	
+				labelP5.setMinimumSize(new Dimension(20, 20));	
 					}
 					if(i==5) {
 				labelP6.setEnabled(true);
 				labelP6.setText("P"+(i+1));	
+				labelP6.setMinimumSize(new Dimension(20, 20));	
 					}
 
 					if(i==0) {
