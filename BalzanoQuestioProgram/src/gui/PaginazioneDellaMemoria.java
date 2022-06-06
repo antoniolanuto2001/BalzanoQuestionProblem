@@ -28,6 +28,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -505,7 +507,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 		JTextField stringaNumeri = new JTextField();
 			stringaNumeri.setBackground(Color.WHITE);
-			stringaNumeri.setEditable(false);
 			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 10));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
 			stringaNumeri.setBounds(5, 97, 235, 23);
@@ -876,6 +877,21 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 			}
 		});
+		
+		//EVENTO SU MUOVERE TEXTFIELD CODA DELLE RICHIESTE
+				stringaNumeri.addKeyListener(new KeyAdapter() {
+			         public void keyTyped(KeyEvent e) {
+			             char c = e.getKeyChar();
+			             if (c != KeyEvent.VK_HOME && c != KeyEvent.VK_END) {
+			                  e.consume();  //Ignora l'evento
+			             }  
+			             if (c == KeyEvent.VK_BACK_SPACE  || c==KeyEvent.VK_CANCEL) {
+			                  e.consume();  //Ignora l'evento
+
+			             }
+					}
+				});
+				
 	}
 	
 /**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
