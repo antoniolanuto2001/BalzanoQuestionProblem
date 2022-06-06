@@ -541,7 +541,6 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        	});
 	        	labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
 	        
-			
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
 		
