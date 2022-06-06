@@ -1,13 +1,11 @@
 # 🧩 Operating Systems SIMULATOR
 
 ## 📑 *Organizzazione e Scelte Progettuali*
--Codice Open Source del progetto
 
--Per la GUI dell'applicativo é stata utilizzata la Libreria Java Awt :  Swing
-
--Codice Eseguibile su : Mac-Os , Windows7/8/10/11,Linux
-
--Richiede installato Java
+- Codice Open Source del progetto
+- Per la GUI dell'applicativo é stata utilizzata la Libreria Java Awt :  Swing
+- Codice Eseguibile su : Mac-Os , Windows7/8/10/11,Linux
+- Richiede installato Java
 
 ## ©️ *Contribuenti*
 
