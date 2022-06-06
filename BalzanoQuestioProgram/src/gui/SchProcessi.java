@@ -2605,7 +2605,6 @@ public SchProcessi(JFrame framechiamante) {
 							arrayFinale.add(array.get(i+1));
 							arrayFinale.add(array.get(i+2));
 							arrayFinale.add(array.get(i+3));
-
 							i=i+4;
 						}
 						if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
