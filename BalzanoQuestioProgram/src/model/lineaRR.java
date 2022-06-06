@@ -27,6 +27,7 @@ public class lineaRR implements Comparable<lineaRR>{
 		return y2;
 	}
 	
+	
 	public void setX1(int newvalue) {
 		x1=newvalue;
 	}

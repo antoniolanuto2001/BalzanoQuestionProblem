@@ -2629,13 +2629,12 @@ public SchProcessi(JFrame framechiamante) {
 							System.out.println(SJF.get(i)+" "+SJF.get(i+1)+" "+SJF.get(i+2)+" "+SJF.get(i+3));
 							lineaRR nuova= new lineaRR(SJF.get(i),SJF.get(i+1),SJF.get(i+2),SJF.get(i+3));
 							array1.add(nuova);
-/*							
+/*					
 							array.add(FCFS.get(i));
 							array.add(FCFS.get(i+1));
 							array.add(FCFS.get(i+2));
 							array.add(FCFS.get(i+3));
-*/
-							i=i+4;
+*/							i=i+4;
 						}
 						lineaRR[] linea2 = new lineaRR[array1.size()];
 
