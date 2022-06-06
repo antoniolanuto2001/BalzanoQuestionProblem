@@ -783,10 +783,13 @@ public class SchHD extends JFrame {
 	             if (c != KeyEvent.VK_HOME && c != KeyEvent.VK_END) {
 	                  e.consume();  //Ignora l'evento
 	             }  
-	             if (c == KeyEvent.VK_BACK_SPACE  || c==KeyEvent.VK_CANCEL) {
+	         }
+         @Override
+			public void keyPressed(KeyEvent e) {
+	        	 if (e.getKeyCode()==8 || e.getKeyCode()==127) {
 	                  e.consume();  //Ignora l'evento
-
-	             }
+	             } 
+         
 			}
 		});
 		

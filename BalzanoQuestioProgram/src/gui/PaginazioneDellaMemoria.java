@@ -507,7 +507,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		
 		JTextField stringaNumeri = new JTextField();
 			stringaNumeri.setBackground(Color.WHITE);
-			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 10));
+			stringaNumeri.setFont(new Font("Arial", Font.BOLD, 12));
 			stringaNumeri.setHorizontalAlignment(SwingConstants.CENTER);
 			stringaNumeri.setBounds(5, 97, 235, 23);
 			pannelloEditor.add(stringaNumeri);
@@ -888,6 +888,12 @@ public class PaginazioneDellaMemoria extends JFrame {
 			                  e.consume();  //Ignora l'evento
 
 			             }
+					}
+					@Override
+					public void keyPressed(KeyEvent e) {
+			        	 if (e.getKeyCode()==8 || e.getKeyCode()==127) {
+			                  e.consume();  //Ignora l'evento
+			             }  
 					}
 				});
 				
