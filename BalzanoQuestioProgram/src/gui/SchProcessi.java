@@ -923,6 +923,7 @@ public SchProcessi(JFrame framechiamante) {
 				cbSJFP=0;
 				cbRR=0;
 				quantum=0;
+				flag=0;
 				
 				labelMostraSoluzioni.setEnabled(true);
 				labelFastForwardPiu.setEnabled(true);
@@ -2567,17 +2568,48 @@ public SchProcessi(JFrame framechiamante) {
 					//RR=RRClass(linea);
 									
 					if(flag<=FCFS.size()) {
+						
+						ArrayList<lineaRR> array1=new ArrayList<lineaRR>();
 						ArrayList<Integer> array=new ArrayList<Integer>();
-						for(int i=0;i<flag;) {
+						ArrayList<Integer> arrayFinale=new ArrayList<Integer>();
+
+						for(int i=0;i<FCFS.size();) {
+							lineaRR nuova= new lineaRR(FCFS.get(i),FCFS.get(i+1),FCFS.get(i+2),FCFS.get(i+3));
+							array1.add(nuova);
+/*							
 							array.add(FCFS.get(i));
 							array.add(FCFS.get(i+1));
 							array.add(FCFS.get(i+2));
 							array.add(FCFS.get(i+3));
+*/
+							i=i+4;
+						}
+						lineaRR[] linea2 = new lineaRR[array1.size()];
+
+						for(int l=0;l<array1.size();l++) {  
+								
+							linea2[l]=array1.get(l);
+						}
+						
+						Arrays.sort(linea2);
+						
+						for(int i=0;i<linea2.length;i++) {
+							array.add(linea2[i].getX1());
+							array.add(linea2[i].getY1());
+							array.add(linea2[i].getX2());
+							array.add(linea2[i].getY2());
+
+						}
+						for(int i=0; i<flag;) {
+							arrayFinale.add(array.get(i));
+							arrayFinale.add(array.get(i+1));
+							arrayFinale.add(array.get(i+2));
+							arrayFinale.add(array.get(i+3));
 
 							i=i+4;
 						}
 						if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
-							jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
+							jPanelFCFS.disegnaSoluzioneFCFS(jPanelFCFS.getGraphics(),arrayPunti,arrayFinale,chckbxMostraSoluzioneFCFS.isSelected(), chckbxGriglia.isSelected());
 							DecimalFormat frmt = new DecimalFormat();
 							frmt.setMaximumFractionDigits(3);
 							labelDatoTAMFCFS.setText(String.valueOf(frmt.format(averageFCFS)));
@@ -2590,17 +2622,48 @@ public SchProcessi(JFrame framechiamante) {
 						}
 					}
 					if(flag<=SJF.size()) {
+						ArrayList<lineaRR> array1=new ArrayList<lineaRR>();
 						ArrayList<Integer> array=new ArrayList<Integer>();
-						for(int i=0;i<flag;) {
-							array.add(SJF.get(i));
-							array.add(SJF.get(i+1));
-							array.add(SJF.get(i+2));
-							array.add(SJF.get(i+3));
+						ArrayList<Integer> arrayFinale=new ArrayList<Integer>();
+
+						for(int i=0;i<SJF.size();) {
+							System.out.println(SJF.get(i)+" "+SJF.get(i+1)+" "+SJF.get(i+2)+" "+SJF.get(i+3));
+							lineaRR nuova= new lineaRR(SJF.get(i),SJF.get(i+1),SJF.get(i+2),SJF.get(i+3));
+							array1.add(nuova);
+/*							
+							array.add(FCFS.get(i));
+							array.add(FCFS.get(i+1));
+							array.add(FCFS.get(i+2));
+							array.add(FCFS.get(i+3));
+*/
+							i=i+4;
+						}
+						lineaRR[] linea2 = new lineaRR[array1.size()];
+
+						for(int l=0;l<array1.size();l++) {  
+								
+							linea2[l]=array1.get(l);
+						}
+						
+						Arrays.sort(linea2);
+						
+						for(int i=0;i<linea2.length;i++) {
+							System.out.println(linea2[i].getX1()+" "+linea2[i].getY1()+" "+linea2[i].getX2()+" "+linea2[i].getY2());
+							array.add(linea2[i].getX1());
+							array.add(linea2[i].getY1());
+							array.add(linea2[i].getX2());
+							array.add(linea2[i].getY2());
+						}
+						for(int i=0; i<flag;) {
+							arrayFinale.add(array.get(i));
+							arrayFinale.add(array.get(i+1));
+							arrayFinale.add(array.get(i+2));
+							arrayFinale.add(array.get(i+3));
 
 							i=i+4;
 						}
 						if(chckbxMostraSoluzioneSJF.isSelected()==true) {
-							jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
+							jPanelSJF.disegnaSoluzioneSJF(jPanelSJF.getGraphics(),arrayPunti,arrayFinale,chckbxMostraSoluzioneSJF.isSelected(), chckbxGriglia.isSelected());
 							DecimalFormat frmt = new DecimalFormat();
 							frmt.setMaximumFractionDigits(3);
 							labelDatoTAMSJF.setText(String.valueOf(frmt.format(averageSJF)));
@@ -2613,17 +2676,47 @@ public SchProcessi(JFrame framechiamante) {
 						}
 					}
 					if(flag<=SJFP.size()) {
+						ArrayList<lineaRR> array1=new ArrayList<lineaRR>();
 						ArrayList<Integer> array=new ArrayList<Integer>();
-						for(int i=0;i<flag;) {
-							array.add(SJFP.get(i));
-							array.add(SJFP.get(i+1));
-							array.add(SJFP.get(i+2));
-							array.add(SJFP.get(i+3));
+						ArrayList<Integer> arrayFinale=new ArrayList<Integer>();
+
+						for(int i=0;i<SJFP.size();) {
+							lineaRR nuova= new lineaRR(SJFP.get(i),SJFP.get(i+1),SJFP.get(i+2),SJFP.get(i+3));
+							array1.add(nuova);
+/*							
+							array.add(FCFS.get(i));
+							array.add(FCFS.get(i+1));
+							array.add(FCFS.get(i+2));
+							array.add(FCFS.get(i+3));
+*/
+							i=i+4;
+						}
+						lineaRR[] linea2 = new lineaRR[array1.size()];
+
+						for(int l=0;l<array1.size();l++) {  
+								
+							linea2[l]=array1.get(l);
+						}
+						
+						Arrays.sort(linea2);
+						
+						for(int i=0;i<linea2.length;i++) {
+							array.add(linea2[i].getX1());
+							array.add(linea2[i].getY1());
+							array.add(linea2[i].getX2());
+							array.add(linea2[i].getY2());
+
+						}
+						for(int i=0; i<flag;) {
+							arrayFinale.add(array.get(i));
+							arrayFinale.add(array.get(i+1));
+							arrayFinale.add(array.get(i+2));
+							arrayFinale.add(array.get(i+3));
 
 							i=i+4;
 						}
 						if(chckbxMostraSoluzioneSJFP.isSelected()==true) {
-							jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,array,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
+							jPanelSJFP.disegnaSoluzioneSJFP(jPanelSJFP.getGraphics(),arrayPunti,arrayFinale,chckbxMostraSoluzioneSJFP.isSelected(), chckbxGriglia.isSelected());
 							DecimalFormat frmt = new DecimalFormat();
 							frmt.setMaximumFractionDigits(3);
 							labelDatoTAMSJFP.setText(String.valueOf(frmt.format(averageSJFP)));
