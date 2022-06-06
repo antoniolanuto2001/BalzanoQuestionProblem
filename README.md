@@ -6,6 +6,7 @@
 - Per la GUI dell'applicativo é stata utilizzata la Libreria Java Awt :  Swing
 - Codice Eseguibile su : Mac-Os , Windows7/8/10/11,Linux
 - Richiede installato Java
+- E possibile Trovare le Slide dei Argomenti Tratti [qui](https://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf)
 
 ## ©️ *Contribuenti*
 
