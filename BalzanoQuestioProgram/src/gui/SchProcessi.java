@@ -105,6 +105,7 @@ public SchProcessi(JFrame framechiamante) {
 		setContentPane(contentPane);
 		setTitle("Operating Systems Simulator : Scheduling della CPU");
 		frame.setResizable(false);
+		setLocationRelativeTo(null);
 
 /**							PANNELLO PRINCIPALE								*/
 		JPanel pannelloPrincipale = new JPanel();
@@ -492,7 +493,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelMostraSoluzioni.setBackground(Color.WHITE);
 			labelMostraSoluzioni.setEnabled(false);
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			labelMostraSoluzioni.setBounds(80, 300, 79, 35);
+			labelMostraSoluzioni.setBounds(46, 300, 79, 35);
 			labelMostraSoluzioni.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
 			pannelloEDITOR.add(labelMostraSoluzioni);
 			
@@ -502,10 +503,10 @@ public SchProcessi(JFrame framechiamante) {
 			labelFastForwardPiu.setEnabled(false);
 			labelFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
 			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 13));
-			labelFastForwardPiu.setBounds(163, 300, 70, 35);
+			labelFastForwardPiu.setBounds(137, 300, 70, 35);
 			pannelloEDITOR.add(labelFastForwardPiu);
 			
-		JLabel labelFastForwardMeno = new JLabel("");
+		/*JLabel labelFastForwardMeno = new JLabel("");
 			labelFastForwardMeno.setBackground(Color.WHITE);
 			labelFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
 			labelFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 13));
@@ -513,7 +514,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelFastForwardMeno.setBounds(5, 300, 70, 35);
 			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
 			pannelloEDITOR.add(labelFastForwardMeno);
-			
+			*/
 		//TABELLA PROCESSI
 		JPanel panelTabella = new JPanel();
 			panelTabella.setBorder(new LineBorder(new Color(100, 181, 246),2));
@@ -572,6 +573,7 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_textArrivoP1.gridx = 2;
 			gbc_textArrivoP1.gridy = 3;
 			panelTabella.add(textArrivoP1, gbc_textArrivoP1);
+			//textArrivoP1.set
 			
 			JTextField textDurataP1 = new JTextField("");
 			textDurataP1.setColumns(6);
@@ -774,6 +776,27 @@ public SchProcessi(JFrame framechiamante) {
 			gbc_labelDurata.gridy = 1;
 			panelTabella.add(labelDurata, gbc_labelDurata);
 			
+			labelP1.setMinimumSize(labelP1.getPreferredSize());
+			labelP2.setMinimumSize(labelP2.getPreferredSize());
+			labelP3.setMinimumSize(labelP3.getPreferredSize());
+			labelP4.setMinimumSize(labelP4.getPreferredSize());
+			labelP5.setMinimumSize(labelP5.getPreferredSize());
+			labelP6.setMinimumSize(labelP6.getPreferredSize());
+
+			textArrivoP1.setMinimumSize(textArrivoP1.getPreferredSize());
+			textArrivoP2.setMinimumSize(textArrivoP2.getPreferredSize());
+			textArrivoP3.setMinimumSize(textArrivoP3.getPreferredSize());
+			textArrivoP4.setMinimumSize(textArrivoP4.getPreferredSize());
+			textArrivoP5.setMinimumSize(textArrivoP5.getPreferredSize());
+			textArrivoP6.setMinimumSize(textArrivoP6.getPreferredSize());
+			
+			textDurataP1.setMinimumSize(textDurataP1.getPreferredSize());
+			textDurataP2.setMinimumSize(textDurataP2.getPreferredSize());
+			textDurataP3.setMinimumSize(textDurataP3.getPreferredSize());
+			textDurataP4.setMinimumSize(textDurataP4.getPreferredSize());
+			textDurataP5.setMinimumSize(textDurataP5.getPreferredSize());
+			textDurataP6.setMinimumSize(textDurataP6.getPreferredSize());
+			
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Esercizio");
 			btnGenera.setBounds(10, 230, 223, 35);
@@ -899,7 +922,7 @@ public SchProcessi(JFrame framechiamante) {
 				
 				labelMostraSoluzioni.setEnabled(true);
 				labelFastForwardPiu.setEnabled(true);
-				labelFastForwardMeno.setEnabled(false);
+				//labelFastForwardMeno.setEnabled(false);
 
 				comboBoxQRR.setEnabled(false);
 										
@@ -1204,7 +1227,7 @@ public SchProcessi(JFrame framechiamante) {
 				if(labelMostraSoluzioni.isEnabled()) {
 
 					labelMostraSoluzioni.setEnabled(false);
-					labelFastForwardMeno.setEnabled(true);
+					//labelFastForwardMeno.setEnabled(true);
 					labelFastForwardPiu.setEnabled(false);
 
 					jPanelFCFS.disegnaGriglia(jPanelFCFS.getGraphics(), chckbxGriglia.isSelected());
@@ -1362,10 +1385,10 @@ public SchProcessi(JFrame framechiamante) {
 					labelDatoTAMRR.setText(" ");
 					labelDatoCDCRR.setText(" ");
 				}
-				flag=max(FCFS.size(),SJF.size(),SJFP.size(),RR.size());
+				//flag=max(FCFS.size(),SJF.size(),SJFP.size(),RR.size());
 			}
 
-			private int max(int length1, int length2, int length3, int length4) {
+			/*private int max(int length1, int length2, int length3, int length4) {
 	
 				int[] array=new int [4];
 				
@@ -1384,7 +1407,7 @@ public SchProcessi(JFrame framechiamante) {
 				
 				return massimo;
 		
-			}
+			}*/
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
@@ -1573,6 +1596,8 @@ public SchProcessi(JFrame framechiamante) {
 				if(textArrivoP1.isEditable()){
 					if(textArrivoP1.getText().equals("")) {
 						textArrivoP1.setBackground(Color.red);
+//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1588,6 +1613,8 @@ public SchProcessi(JFrame framechiamante) {
 					}
 					else if(Integer.valueOf( textArrivoP1.getText())>15 || Integer.valueOf( textArrivoP1.getText())<0) {
 						textArrivoP1.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1602,6 +1629,8 @@ public SchProcessi(JFrame framechiamante) {
 						textDurataP6.setEditable(false);
 					}else {
 						textArrivoP1.setBackground(new Color(255,255,255));
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						labelMostraSoluzioni.setEnabled(true);
 						textArrivoP2.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -1621,7 +1650,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP1.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1633,6 +1662,8 @@ public SchProcessi(JFrame framechiamante) {
 				if(textArrivoP2.isEditable()){
 					if(textArrivoP2.getText().equals("")) {
 						textArrivoP2.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1648,6 +1679,8 @@ public SchProcessi(JFrame framechiamante) {
 					}
 					else if(Integer.valueOf( textArrivoP2.getText())>15 || Integer.valueOf( textArrivoP2.getText())<0) {
 						textArrivoP2.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1663,6 +1696,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textArrivoP2.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(true);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
 						textArrivoP4.setEditable(true);
@@ -1681,7 +1716,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP2.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1693,6 +1728,8 @@ public SchProcessi(JFrame framechiamante) {
 				if(textArrivoP3.isEditable()){
 					if(textArrivoP3.getText().equals("")) {
 						textArrivoP3.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -1708,6 +1745,8 @@ public SchProcessi(JFrame framechiamante) {
 					}
 					else if(Integer.valueOf( textArrivoP3.getText())>15 || Integer.valueOf( textArrivoP3.getText())<0) {
 						textArrivoP3.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -1723,6 +1762,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textArrivoP3.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP2.setEditable(true);
 						textArrivoP4.setEditable(true);
@@ -1741,7 +1782,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP3.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1754,6 +1795,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textArrivoP4.getText().equals("")) {
 						textArrivoP4.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -1769,6 +1812,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textArrivoP4.getText())>15 || Integer.valueOf( textArrivoP4.getText())<0) {
 						textArrivoP4.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -1783,6 +1828,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textArrivoP4.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
 						textArrivoP2.setEditable(true);
@@ -1801,7 +1848,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP4.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1813,6 +1860,8 @@ public SchProcessi(JFrame framechiamante) {
 				if(textArrivoP5.isEditable()){
 					if(textArrivoP5.getText().equals("")) {
 						textArrivoP5.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1828,6 +1877,8 @@ public SchProcessi(JFrame framechiamante) {
 					}
 					else if(Integer.valueOf( textArrivoP5.getText())>15 || Integer.valueOf( textArrivoP5.getText())<0) {
 						textArrivoP5.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1843,6 +1894,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textArrivoP5.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
 						textArrivoP4.setEditable(true);
@@ -1861,7 +1914,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP5.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1873,6 +1926,8 @@ public SchProcessi(JFrame framechiamante) {
 				if(textArrivoP6.isEditable()){
 					if(textArrivoP6.getText().equals("")) {
 						textArrivoP6.setBackground(Color.red);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1889,6 +1944,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textArrivoP6.getText())>15 || Integer.valueOf( textArrivoP6.getText())<0) {
 						textArrivoP6.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
 						textArrivoP4.setEditable(false);
@@ -1903,6 +1960,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textArrivoP6.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
 						textArrivoP4.setEditable(true);
@@ -1921,7 +1980,7 @@ public SchProcessi(JFrame framechiamante) {
 		textArrivoP6.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1934,6 +1993,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP1.getText().equals("")) {
 						textDurataP1.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1949,6 +2010,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP1.getText())>15 || Integer.valueOf( textDurataP1.getText())<0) {
 						textDurataP1.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -1963,6 +2026,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP1.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP2.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -1981,7 +2046,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP1.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	            	e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -1994,6 +2059,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP2.getText().equals("")) {
 						textDurataP2.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2009,6 +2076,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP2.getText())>15 || Integer.valueOf( textDurataP2.getText())<0) {
 						textDurataP2.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP2.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2023,6 +2092,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP2.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP2.setEditable(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -2041,7 +2112,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP2.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -2054,6 +2125,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP3.getText().equals("")) {
 						textDurataP3.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP3.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -2069,6 +2142,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP3.getText())>15 || Integer.valueOf( textDurataP3.getText())<0) {
 						textDurataP3.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP3.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP2.setEditable(false);
@@ -2083,6 +2158,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP3.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP3.setEditable(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP2.setEditable(true);
@@ -2101,7 +2178,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP3.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -2114,6 +2191,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP4.getText().equals("")) {
 						textDurataP4.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP4.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2129,6 +2208,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP4.getText())>15 || Integer.valueOf( textDurataP4.getText())<0) {
 						textDurataP4.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP4.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2143,6 +2224,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP4.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP4.setEditable(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -2161,7 +2244,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP4.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -2174,6 +2257,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP5.getText().equals("")) {
 						textDurataP5.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP5.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2189,6 +2274,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP5.getText())>15 || Integer.valueOf( textDurataP5.getText())<0) {
 						textDurataP5.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP5.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2203,6 +2290,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP5.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP5.setEditable(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -2221,7 +2310,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP5.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -2234,6 +2323,8 @@ public SchProcessi(JFrame framechiamante) {
 					if(textDurataP6.getText().equals("")) {
 						textDurataP6.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP6.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2249,6 +2340,8 @@ public SchProcessi(JFrame framechiamante) {
 					else if(Integer.valueOf( textDurataP6.getText())>15 || Integer.valueOf( textDurataP6.getText())<0) {
 						textDurataP6.setBackground(Color.red);
 						labelMostraSoluzioni.setEnabled(false);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
 						textArrivoP6.setEditable(false);
 						textArrivoP1.setEditable(false);
 						textArrivoP3.setEditable(false);
@@ -2263,6 +2356,8 @@ public SchProcessi(JFrame framechiamante) {
 					}else {
 						textDurataP6.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
+						//labelFastForwardMeno.setEnabled(false);
+						labelFastForwardPiu.setEnabled(true);
 						textArrivoP6.setEditable(true);
 						textArrivoP1.setEditable(true);
 						textArrivoP3.setEditable(true);
@@ -2281,7 +2376,7 @@ public SchProcessi(JFrame framechiamante) {
 		textDurataP6.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
-	             if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != ' ')) {
+	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
 	             }   
 			}
@@ -2370,7 +2465,7 @@ public SchProcessi(JFrame framechiamante) {
 			public void mouseClicked(MouseEvent e){
 			
 				if(labelFastForwardPiu.isEnabled()) {
-					labelFastForwardMeno.setEnabled(true);
+					//labelFastForwardMeno.setEnabled(true);
 					labelMostraSoluzioni.setEnabled(true);
 					
 		
@@ -2587,7 +2682,7 @@ public SchProcessi(JFrame framechiamante) {
 	});
 	
 		//EVENTO SUI BOTTONI PLAYSTEPbySTEP
-		labelFastForwardMeno.addMouseListener(new MouseAdapter() {
+		/*labelFastForwardMeno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
@@ -2812,16 +2907,81 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		
 	});
-		
+		*/
 	//EVENTO SU CAMBIAMENTO NUMERO PROCESSI
 
 
 		comboBoxSceltaNProcessi.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
-				labelMostraSoluzioni.setEnabled(false);
-				labelFastForwardMeno.setEnabled(false);
-				labelFastForwardPiu.setEnabled(false);
+				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
+				int numeroProcessi=Integer.valueOf(scelta);
+				int proc=0;
+				
+				for(int i=0; i<numeroProcessi;i++) {
+					
+					if(i==0) {
+						if(textArrivoP1.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==1) {
+						if(textArrivoP2.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==2) {
+						if(textArrivoP3.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==3) {
+						if(textArrivoP4.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==4) {
+						if(textArrivoP5.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==5) {
+						if(textArrivoP6.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+	
+					if(i==0) { 
+						if(textDurataP1.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==1) {
+						if(textDurataP2.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==2) {
+						if(textDurataP3.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==3) {
+						if(textDurataP4.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==4) {
+						if(textDurataP5.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+					else if(i==5) {
+						if(textDurataP6.getText().compareTo("")==0)proc--;
+						else proc++;
+					}
+	
+				}
+				if(proc>=(numeroProcessi*2)) {
+					labelMostraSoluzioni.setEnabled(true);
+					//labelFastForwardMeno.setEnabled(false);
+					labelFastForwardPiu.setEnabled(true);
+				}
+				else {
+					labelMostraSoluzioni.setEnabled(false);
+					//labelFastForwardMeno.setEnabled(false);
+					labelFastForwardPiu.setEnabled(false);
+				}
+				
 				labelP1.setText("");	
 				labelP2.setText("");	
 				labelP3.setText("");	
@@ -2877,9 +3037,7 @@ public SchProcessi(JFrame framechiamante) {
 				//textArrivoP6.setEditable(false);
 				textArrivoP6.setVisible(false);
 				*/
-				scelta= (String) comboBoxSceltaNProcessi.getSelectedItem();
-				int numeroProcessi=Integer.valueOf(scelta);
-				
+			
 				//for (int i=0;i<numeroProcessi;i++){ 
 					
 					if(0<numeroProcessi) {
@@ -3028,10 +3186,10 @@ public SchProcessi(JFrame framechiamante) {
 		
 		ArrayList<Integer> punti=new ArrayList<Integer>();
 		int n = lineaFCFS.length;
-		int pid[] = new int[n];   // process ids
-		int ar[] = new int[n];     // arrival times
-		int bt[] = new int[n];     // burst or execution times
-		int ct[] = new int[n];     // completion times
+		int pid[] = new int[n];		// id processo 
+		int ar[] = new int[n];		// tempo di attivo
+		int bt[] = new int[n];     // durata processo
+		int ct[] = new int[n];     // tempo di completamento
 		int ta[] = new int[n];     // turn around times
 		int wt[] = new int[n];     // waiting times
 		float avgwt=0,avgta=0;
@@ -3150,143 +3308,115 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		ArrayList<Integer> punti=new ArrayList<Integer>();
 		ArrayList<Integer> array=new ArrayList<Integer>();
 
-	       int proc[][] = new int[n + 1][4];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
-	       for(int i = 1; i <= n; i++)
-	       {
-	      proc[lineaSJFP[i-1].getProcesso()][0] = lineaSJFP[i-1].getArrivo();
-	      proc[lineaSJFP[i-1].getProcesso()][1] = lineaSJFP[i-1].getDurata();
+		int proc[][] = new int[n + 1][4];//proc[][0] is the AT array,[][1] - RT,[][2] - WT,[][3] - TT
+		for(int i = 1; i <= n; i++){
+			proc[lineaSJFP[i-1].getProcesso()][0] = lineaSJFP[i-1].getArrivo();
+			proc[lineaSJFP[i-1].getProcesso()][1] = lineaSJFP[i-1].getDurata();
 
-	     }
+		}
 
-		     
-		       //Calculation of Total Time and Initialization of Time Chart array
-		     int total_time = 0;
-		     for(int i = 1; i <= n; i++)
-		     {
-		      total_time += proc[i][1];
-		     }
-		     int time_chart[] = new int[total_time];
-		     
-		     for(int i = 0; i < total_time; i++)
-		     {
-		      //Selection of shortest process which has arrived
-		      int sel_proc = 0;
-		      int min = 99999;
-		      for(int j = 1; j <= n; j++)
-		      {
-		       if(proc[j][0] <= i)//Condition to check if Process has arrived
-		       {
-		        if(proc[j][1] < min && proc[j][1] != 0)
-		        {
-		         min = proc[j][1];
-		         sel_proc = j;
-		        }
-		       }
-		      }
-		      
-		      //Assign selected process to current time in the Chart
-		      time_chart[i] = sel_proc;
-		      
-		      //Decrement Remaining Time of selected process by 1 since it has been assigned the CPU for 1 unit of time
-		      proc[sel_proc][1]--;
-		      
-		      //WT and TT Calculation
-		      for(int j = 1; j <= n; j++)
-		      {
-		       if(proc[j][0] <= i)
-		       {
-		        if(proc[j][1] != 0)
-		        {
-		         proc[j][3]++;//If process has arrived and it has not already completed execution its TT is incremented by 1
-		            if(j != sel_proc)//If the process has not been currently assigned the CPU and has arrived its WT is incremented by 1
-		             proc[j][2]++;
-		        }
-		        else if(j == sel_proc)//This is a special case in which the process has been assigned CPU and has completed its execution
-		         proc[j][3]++;
-		       }
-		      }
-		      
-		      //Printing the Time Chart
-		      if(i != 0)
-		      {
-		    	  if(sel_proc != time_chart[i - 1]){
-							    	   
-		    		 // System.out.print("--" + i + "--P" + sel_proc);
+     
+		int total_time = 0;
+		for(int i = 1; i <= n; i++){
+			total_time += proc[i][1];
+		}
+		int time_chart[] = new int[total_time];
+		 
+		for(int i = 0; i < total_time; i++){
+			int sel_proc = 0;
+			int min = 99999;
+			for(int j = 1; j <= n; j++){
+				
+				if(proc[j][0] <= i){
+					if(proc[j][1] < min && proc[j][1] != 0){
+						
+						min = proc[j][1];
+						sel_proc = j;
+					}
+				}
+			}
+				  
+				  time_chart[i] = sel_proc;
+				  
+				  proc[sel_proc][1]--;
+				  
+				  for(int j = 1; j <= n; j++)
+				  {
+				   if(proc[j][0] <= i)
+				   {
+				    if(proc[j][1] != 0)
+				    {
+				     proc[j][3]++;
+				if(j != sel_proc)
+				     proc[j][2]++;
+				}
+				else if(j == sel_proc)
+				     proc[j][3]++;
+				   }
+				  }
+				  
+				  if(i != 0)
+				  {
+					  if(sel_proc != time_chart[i - 1]){
+								    	   
+				
+						  array.add(i);
+						  array.add(sel_proc);	
+				   }
+				  }
+				  else {
+				
+					  array.add(i);
+					  array.add(sel_proc);
+				  }
+				  if(i == total_time - 1){
+				
+				  	array.add(i + 1);
+				  }
+				 }
 
-		    		  array.add(i);
-		    		  array.add(sel_proc);	
-		       }
-		      }
-		      else {
-		    	  //System.out.print(i + "--P" + sel_proc);
-
-		    	  array.add(i);
-		    	  array.add(sel_proc);
-		      }
-		      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
-		       //System.out.print("--" + (i + 1));
-
-		      	array.add(i + 1);
-		      }
-		     }
-		   /*  System.out.println();
-		     System.out.println();
-		     
-		     //Printing the WT and TT for each Process
-		     System.out.println("P\t WT \t TT ");
-		     for(int i = 1; i <= n; i++)
-		     {
-		      System.out.printf("%d\t%2dms\t%2dms",i,proc[i][2],proc[i][3]);
-		      System.out.println();
-		     }
-		     
-		     System.out.println();*/
-		     
-		     //Printing the average WT & TT
-		     float WT = 0,TT = 0;
-		     for(int i = 1; i <= n; i++)
-		     {
-		      WT += proc[i][2];
-		      TT += proc[i][3];
-		     }
-		     WT /= n;
-		     TT /= n;
-		    
-		     int tmp=0;
-		     
-		     for(int i=0;i<array.size();) {
-		    	 
-		    	 if((i+1)<array.size() && array.get(i+1)!=0) {
-		    		 cambio++;		    		 
-		    	 }
-		    	 i=i+2;
-		     }
-		     
-		     for(int i=0;i<array.size();) {
-		    	 
-		    	 if((i+1)<array.size() && array.get(i+1)==0 ) {
-		    		 tmp=tmp+array.get(i+2)-array.get(i);
-		    		 i=i+2;
-		    	 }
-		    	 if((i+2)<array.size()) {
-		    		 if(i+3>=array.size()) {
-		    			 punti.add(array.get(i));
+ 
+			float WT = 0,TT = 0;
+			for(int i = 1; i <= n; i++){
+				WT += proc[i][2];
+				TT += proc[i][3];
+			}
+			WT /= n;
+			TT /= n;
+			
+			int tmp=0;
+ 
+			for(int i=0;i<array.size();) {
+			 
+				if((i+1)<array.size() && array.get(i+1)!=0) {
+					cambio++;		    		 
+				}
+				i=i+2;
+			}
+ 
+			 for(int i=0;i<array.size();) {
+				 
+				 if((i+1)<array.size() && array.get(i+1)==0 ) {
+					 tmp=tmp+array.get(i+2)-array.get(i);
+					 i=i+2;
+				 }
+				 if((i+2)<array.size()) {
+					 if(i+3>=array.size()) {
+						 punti.add(array.get(i));
 				    	 punti.add(array.get(i+1));
 				    	 punti.add(array.get(i+2)+tmp);
 				    	 punti.add(array.get(i+1));
 				    	 break;
-		    		 }
-		    		 punti.add(array.get(i));
+					 }
+					 punti.add(array.get(i));
 			    	 punti.add(array.get(i+1));
 			    	 punti.add(array.get(i+2));
 			    	 punti.add(array.get(i+1));
 			    	 i=i+2;
+			
+				 }
+			 }		  
 
-		    	 }
-		     }		  
-		     System.out.println();
-		     
-		     System.out.println();
 /*
 		     for(int i=0;i<punti.size();i++) {
 			     System.out.print(" "+punti.get(i));
@@ -3294,14 +3424,18 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		     }
 		     System.out.println();
 */
-		     cbSJFP=cambio-1;
-		     averageSJFP=WT;
-		     return punti;
+			 cbSJFP=cambio-1;
+			 averageSJFP=WT;
+			 return punti;
 		 }
 		    
 //METODO PER CALCOLARE RR
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
-		
+		ArrayList<Integer> punti=new ArrayList<Integer>(0);
+
+		return punti;
+	}
+		/*
 		int n=lineaRR.length;
 		// name of the process 
 		String name[] = new String[lineaRR.length]; 
@@ -3399,7 +3533,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		for(int l=0;l<linea.length;l++) {  
 		System.out.println(" "+linea[l].getProcesso()+" "+linea[l].getArrivo()+" "+linea[l].getDurata()+" ");
 		}
-		*/
+		*//*
 		Rosso=RRClassCalc(linea);
 		System.out.println();
 		for(int l=0;l<Rosso.size();) {  
@@ -3481,38 +3615,23 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 				      {
 				    	  if(sel_proc != time_chart[i - 1]){
 									    	   
-				    		 // System.out.print("--" + i + "--P" + sel_proc);
 
 				    		  array.add(i);
 				    		  array.add(sel_proc);	
 				       }
 				      }
 				      else {
-				    	  //System.out.print(i + "--P" + sel_proc);
 
 				    	  array.add(i);
 				    	  array.add(sel_proc);
 				      }
-				      if(i == total_time - 1){//All the process names have been printed now we have to print the time at which execution ends
-				       //System.out.print("--" + (i + 1));
+				      if(i == total_time - 1){
 
 				      	array.add(i + 1);
 				      }
 				     }
-				   /*  System.out.println();
-				     System.out.println();
+				   
 				     
-				     //Printing the WT and TT for each Process
-				     System.out.println("P\t WT \t TT ");
-				     for(int i = 1; i <= n; i++)
-				     {
-				      System.out.printf("%d\t%2dms\t%2dms",i,proc[i][2],proc[i][3]);
-				      System.out.println();
-				     }
-				     
-				     System.out.println();*/
-				     
-				     //Printing the average WT & TT
 				     float WT = 0,TT = 0;
 				     for(int i = 1; i <= n; i++)
 				     {
@@ -3563,7 +3682,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 
 				     }
 				     System.out.println();
-		*/
+		*//*
 				     cbRR=cambio-1;
 				     averageRR=WT;
 				     return punti;
@@ -4170,7 +4289,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		return PUNTO;
 	}*/
 	
-private float rraverage(CreaLinee[] lineaRR) {
+/*private float rraverage(CreaLinee[] lineaRR) {
 
 	 
 	       int q = quantum;
@@ -4256,6 +4375,6 @@ private float rraverage(CreaLinee[] lineaRR) {
 	     TT /= n;   
 
 		return WT;
-	}
+	}*/
 	
 }
