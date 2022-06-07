@@ -471,7 +471,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 		//PANNELLO EDITOR
 		JPanel pannelloEDITOR = new JPanel();
-			pannelloEDITOR.setBounds(10, 80, 245, 340);
+			pannelloEDITOR.setBounds(10, 80, 255, 340);
 			pannelloDiControllo.add(pannelloEDITOR);
 			pannelloEDITOR.setLayout(null);
 			//pannelloEDITOR.setBorder(new LineBorder(new Color(255, 204, 0), 3));
@@ -521,7 +521,7 @@ public SchProcessi(JFrame framechiamante) {
 		//TABELLA PROCESSI
 		JPanel panelTabella = new JPanel();
 			panelTabella.setBorder(new LineBorder(new Color(100, 181, 246),2));
-			panelTabella.setBounds(0, 30, 245, 207);
+			panelTabella.setBounds(0, 30, 250, 207);
 			pannelloEDITOR.add(panelTabella);
 			GridBagLayout gbl_panelTabella = new GridBagLayout();
 			gbl_panelTabella.columnWidths = new int[]{0, 70, 70, 70, 0};
@@ -803,7 +803,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Esercizio");
-			btnGenera.setBounds(10, 240, 223, 35);
+			btnGenera.setBounds(10, 245, 223, 35);
 			pannelloEDITOR.add(btnGenera);
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 15));

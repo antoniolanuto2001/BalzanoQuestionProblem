@@ -492,11 +492,11 @@ public class Hashing extends JFrame {
 		panelMainButton.add(labelFrecciaCodifica);
 		
 		JLabel labelFrecciaScrittaSomma = new JLabel("");
-		labelFrecciaScrittaSomma.setBounds(517, 328, 69, 14);
+		labelFrecciaScrittaSomma.setBounds(510, 290, 140, 14);
 		panelMainButton.add(labelFrecciaScrittaSomma);
 		
 		JLabel labelFrecciaScrittaCodifica = new JLabel("");
-		labelFrecciaScrittaCodifica.setBounds(794, 328, 89, 14);
+		labelFrecciaScrittaCodifica.setBounds(794, 290, 150, 14);
 		panelMainButton.add(labelFrecciaScrittaCodifica);
 		
 		JLabel labelScrittaChaning = new JLabel("       CHAINING : ");
@@ -506,7 +506,7 @@ public class Hashing extends JFrame {
 		
 		JLabel labelScrittaOpen = new JLabel("  OPEN ADDRESSING : ");
 		labelScrittaOpen.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelScrittaOpen.setBounds(798, 481, 152, 38);
+		labelScrittaOpen.setBounds(798, 481, 206, 38);
 		panelMainButton.add(labelScrittaOpen);
 		
 		labelNumero0 = new JLabel("");

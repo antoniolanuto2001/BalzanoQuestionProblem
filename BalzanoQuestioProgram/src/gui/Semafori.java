@@ -285,7 +285,7 @@ public class Semafori extends JFrame {
 		panelControlloProcessi.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		panelControllo.add(panelControlloProcessi);
 		panelControlloProcessi.setLayout(null);
-		
+		panelControlloProcessi.setOpaque(true);
 		
 		JButton GeneraEsercizioJButton = new JButton();
 		GeneraEsercizioJButton.setBackground(Color.WHITE);
