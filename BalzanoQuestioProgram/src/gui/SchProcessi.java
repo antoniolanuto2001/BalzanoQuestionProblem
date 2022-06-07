@@ -406,7 +406,7 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setSelectedIndex(2);
 				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				comboBoxQRR.setBackground(Color.WHITE);
-				comboBoxQRR.setBounds(432, 2, 50, 21);
+				comboBoxQRR.setBounds(432, 2, 73, 21);
 				pannelloRR.add(comboBoxQRR);
 			
 			
@@ -488,7 +488,7 @@ public SchProcessi(JFrame framechiamante) {
 			comboBoxSceltaNProcessi.setBackground(new Color(255, 255, 255));
 			comboBoxSceltaNProcessi.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6"}));
 			comboBoxSceltaNProcessi.setSelectedIndex(2);
-			comboBoxSceltaNProcessi.setBounds(185, 2, 50, 21);
+			comboBoxSceltaNProcessi.setBounds(165, 2, 70, 21);
 			pannelloEDITOR.add(comboBoxSceltaNProcessi);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
@@ -521,7 +521,7 @@ public SchProcessi(JFrame framechiamante) {
 		//TABELLA PROCESSI
 		JPanel panelTabella = new JPanel();
 			panelTabella.setBorder(new LineBorder(new Color(100, 181, 246),2));
-			panelTabella.setBounds(10, 30, 223, 187);
+			panelTabella.setBounds(0, 30, 245, 207);
 			pannelloEDITOR.add(panelTabella);
 			GridBagLayout gbl_panelTabella = new GridBagLayout();
 			gbl_panelTabella.columnWidths = new int[]{0, 70, 70, 70, 0};
@@ -803,7 +803,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Esercizio");
-			btnGenera.setBounds(10, 230, 223, 35);
+			btnGenera.setBounds(10, 240, 223, 35);
 			pannelloEDITOR.add(btnGenera);
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -811,7 +811,7 @@ public SchProcessi(JFrame framechiamante) {
 			btnGenera.setOpaque(true);
 			
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
-			chckbxGriglia.setBounds(10, 270, 65, 21);
+			chckbxGriglia.setBounds(10, 280, 98, 21);
 			pannelloEDITOR.add(chckbxGriglia);
 			chckbxGriglia.setSelected(true);
 			chckbxGriglia.setFont(new Font("Times New Roman", Font.PLAIN, 15));

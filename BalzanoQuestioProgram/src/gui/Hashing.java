@@ -254,13 +254,13 @@ public class Hashing extends JFrame {
 		comboBoxSceltaNParole.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 		comboBoxSceltaNParole.setBackground(new Color(255, 255, 255));
 		comboBoxSceltaNParole.setModel(new DefaultComboBoxModel(new String[] {"8","7","6", "5", "4"}));
-		comboBoxSceltaNParole.setBounds(193, 22, 51, 22);
+		comboBoxSceltaNParole.setBounds(175, 22, 69, 22);
 		panelPlot.add(comboBoxSceltaNParole);
 		
 		JLabel labelGrandezza = new JLabel("Grandezza Dizionario : ");
 		labelGrandezza.setEnabled(false);
 		labelGrandezza.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelGrandezza.setBounds(20, 22, 160, 22);
+		labelGrandezza.setBounds(2, 22, 180, 22);
 		panelPlot.add(labelGrandezza);
 		
 		JLabel labelPlay = new JLabel(">");
@@ -311,7 +311,7 @@ public class Hashing extends JFrame {
 		JRadioButton radioSommaMultipla = new JRadioButton("Somma di Caratteri Quadratica");
 		radioSommaMultipla.setEnabled(false);
 		radioSommaMultipla.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		radioSommaMultipla.setBounds(6, 74, 213, 31);
+		radioSommaMultipla.setBounds(6, 74, 242, 31);
 		panelSomma.add(radioSommaMultipla);
 		
 		JLabel labelSomma = new JLabel("    Somma : ");
@@ -656,7 +656,7 @@ public class Hashing extends JFrame {
 
 		JLabel labelNumeriChaining = new JLabel("   0      1       2      3      4       5      6      7 ");
 		labelNumeriChaining.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		labelNumeriChaining.setBounds(452, 518, 258, 23);
+		labelNumeriChaining.setBounds(452, 518, 274, 23);
 		panelMainButton.add(labelNumeriChaining);
 		
 		labelNumero0Addres = new JLabel("");
@@ -794,7 +794,7 @@ public class Hashing extends JFrame {
 		
 		JLabel labelNumeriAddres = new JLabel("   0      1       2      3      4       5      6      7 ");
 		labelNumeriAddres.setFont(new Font("Segoe UI", Font.BOLD, 13));
-		labelNumeriAddres.setBounds(746, 518, 258, 23);
+		labelNumeriAddres.setBounds(746, 518, 264, 23);
 		panelMainButton.add(labelNumeriAddres);
 		
 		scrollPaneHelp = new JScrollPane();

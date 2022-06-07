@@ -295,6 +295,7 @@ public class Semafori extends JFrame {
 		GeneraEsercizioJButton.setSize(141, 27);
 		GeneraEsercizioJButton.setLocation(57, 110);
 		GeneraEsercizioJButton.setVisible(true);
+		GeneraEsercizioJButton.setOpaque(true);
 		panelControlloProcessi.add(GeneraEsercizioJButton);
 	        
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
@@ -698,6 +699,7 @@ public class Semafori extends JFrame {
         						JButton buttonReset = new JButton("Back");
         						buttonReset.setBounds(118, 65, 121, 23);
         						panelControlloProcessi.add(buttonReset);
+        						buttonReset.setOpaque(true);
         						
         						buttonReset.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						buttonReset.setBackground(new Color(255, 255, 255));
@@ -707,6 +709,7 @@ public class Semafori extends JFrame {
         						panelControlloProcessi.add(toggleButtonStartPause);
         						toggleButtonStartPause.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						toggleButtonStartPause.setBackground(new Color(255, 255, 255));
+        						toggleButtonStartPause.setOpaque(true);
         						
         						JLabel labelAvvia = new JLabel("Movimento :");
         						labelAvvia.setForeground(Color.BLACK);

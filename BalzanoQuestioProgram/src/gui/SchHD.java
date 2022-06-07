@@ -141,7 +141,7 @@ public class SchHD extends JFrame {
 			comboBoxSceltaNCilindri.setSelectedIndex(2);
 			comboBoxSceltaNCilindri.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboBoxSceltaNCilindri.setBackground(Color.WHITE);
-			comboBoxSceltaNCilindri.setBounds(166, 125, 74, 22);
+			comboBoxSceltaNCilindri.setBounds(145, 125, 95, 22);
 			pannelloParametri.add(comboBoxSceltaNCilindri);
 			
 		JLabel labelPosizione = new JLabel("Numero Cilindri  :");
@@ -196,14 +196,14 @@ public class SchHD extends JFrame {
 			
 		JLabel labelPosizioneInziale = new JLabel("Posizione iniziale testina : ");
 			labelPosizioneInziale.setFont(new Font("Segoe UI", Font.BOLD, 14));
-			labelPosizioneInziale.setBounds(10, 11, 183, 22);
+			labelPosizioneInziale.setBounds(2, 11, 207, 22);
 			pannelloParametri.add(labelPosizioneInziale);
 			
 		JTextField textFieldInzialeTestina = new JTextField();
 			textFieldInzialeTestina.setFont(new Font("Arial", Font.PLAIN, 15));
 			textFieldInzialeTestina.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldInzialeTestina.setText("0");
-			textFieldInzialeTestina.setBounds(188, 13, 52, 20);
+			textFieldInzialeTestina.setBounds(200, 13, 52, 20);
 			pannelloParametri.add(textFieldInzialeTestina);
 			textFieldInzialeTestina.setColumns(10);
 			
@@ -1268,7 +1268,8 @@ public class SchHD extends JFrame {
 						}
 					}	
 							
-					if(flag>=min(numeriSSTF.length,numeriFCFS.length,numeriCSCAN.length,numeriCLOOK.length,numeriSCAN.length,numeriLOOK.length)) {
+					if(flag>0) {
+					//=min(numeriSSTF.length,numeriFCFS.length,numeriCSCAN.length,numeriCLOOK.length,numeriSCAN.length,numeriLOOK.length)) {
 						labelFastForwardMeno.setEnabled(true);
 					}
 					else {

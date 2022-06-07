@@ -93,7 +93,7 @@ public class MainWindows {
 		
 		JLabel labelScrittaPaginazione = new JLabel("PAGINAZIONE DELLA MEMORIA");
 		labelScrittaPaginazione.setForeground(new Color(0, 0, 0));
-		labelScrittaPaginazione.setBounds(230, 552, 195, 23);
+		labelScrittaPaginazione.setBounds(220, 552, 195, 23);
 		panelMainButton.add(labelScrittaPaginazione);
 		labelScrittaPaginazione.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaPaginazione.setFont(new Font("Segoe UI", Font.BOLD, 12));

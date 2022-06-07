@@ -424,7 +424,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			pannelloEditor.setBounds(10, 95, 245, 234);
 			panelDiControllo.add(pannelloEditor);
 			
-		JLabel labelSlotMemoria = new JLabel("Slot Memoria Disponibili :");
+		JLabel labelSlotMemoria = new JLabel("Slot Memoria Disponibili");
 			labelSlotMemoria.setEnabled(false);
 			labelSlotMemoria.setHorizontalAlignment(SwingConstants.CENTER);
 			labelSlotMemoria.setForeground(Color.BLACK);
@@ -437,7 +437,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 			comboSceltaSlotDisponibili.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6"}));
 			comboSceltaSlotDisponibili.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			comboSceltaSlotDisponibili.setBackground(Color.WHITE);
-			comboSceltaSlotDisponibili.setBounds(185, 3, 51, 22);
+			comboSceltaSlotDisponibili.setBounds(178, 3, 63, 22);
 			pannelloEditor.add(comboSceltaSlotDisponibili);
 			
 		JButton generaGrafici = new JButton("CALCOLA GRAFICI");
