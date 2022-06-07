@@ -66,9 +66,11 @@ public class MainWindows {
 		ImageIcon imageHashing = new ImageIcon(this.getClass().getResource("/img/hashingIcon1.png"));
 		ImageIcon imageHD = new ImageIcon(this.getClass().getResource("/img/hdIcon1.png"));
 		ImageIcon imageSemafori = new ImageIcon(this.getClass().getResource("/img/semaforoIcon1.png"));
+		
+		
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(187, 222, 251));
-		panelMainButton.setBounds(0, 0, 1424, 761);
+		panelMainButton.setBounds(0, 0, 1440, 800);
 		
 		frame.getContentPane().add(panelMainButton);
 		panelMainButton.setLayout(null);
@@ -98,7 +100,7 @@ public class MainWindows {
 		labelScrittaPaginazione.setHorizontalAlignment(SwingConstants.CENTER);
 		labelScrittaPaginazione.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		
-		JLabel labelScrittaSchProcessi = new JLabel("SCHEDULING DEI PROCESSI");
+		JLabel labelScrittaSchProcessi = new JLabel("SCHEDULING DELLA CPU");
 		labelScrittaSchProcessi.setForeground(new Color(0, 0, 0));
 		labelScrittaSchProcessi.setBounds(411, 552, 195, 23);
 		panelMainButton.add(labelScrittaSchProcessi);

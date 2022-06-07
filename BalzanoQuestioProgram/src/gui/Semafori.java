@@ -39,6 +39,7 @@ import javax.swing.border.TitledBorder;
 import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
+import java.awt.SystemColor;
 
 public class Semafori extends JFrame {
 	
@@ -697,12 +698,16 @@ public class Semafori extends JFrame {
 
         						
         						JButton buttonReset = new JButton("Back");
+        						buttonReset.addActionListener(new ActionListener() {
+        							public void actionPerformed(ActionEvent e) {
+        							}
+        						});
         						buttonReset.setBounds(118, 65, 121, 23);
         						panelControlloProcessi.add(buttonReset);
         						buttonReset.setOpaque(true);
         						
         						buttonReset.setFont(new Font("Times New Roman", Font.BOLD, 12));
-        						buttonReset.setBackground(new Color(255, 255, 255));
+        						buttonReset.setBackground(new Color(220,220,220));
         						
         						JToggleButton toggleButtonStartPause = new JToggleButton("Start/Pause");
         						toggleButtonStartPause.setBounds(118, 15, 121, 23);
@@ -3869,17 +3874,7 @@ public class Semafori extends JFrame {
         									timeToContinue=false;
         								}
         							}
-	
-        							
-        							@Override
-        							public void mouseEntered(MouseEvent e) 
-        							{
-        								toggleButtonStartPause.setBackground(Color.ORANGE);
-        							}
-        							@Override
-        							public void mouseExited(MouseEvent e) {
-        								toggleButtonStartPause.setBackground(Color.WHITE);
-        							}
+
         						});
         						
 
@@ -3967,16 +3962,7 @@ public class Semafori extends JFrame {
         								}
 
         							}
-        							@Override
-        							public void mouseEntered(MouseEvent e) 
-        							{
-        								
-        								buttonReset.setBackground(Color.ORANGE);
-        							}
-        							@Override
-        							public void mouseExited(MouseEvent e) {
-        								buttonReset.setBackground(Color.WHITE);
-        							}
+ 
         						});
         						
         						
