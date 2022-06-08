@@ -83,6 +83,8 @@ public class SchProcessi extends JFrame {
 	private JFrame frame;
 	private String scelta="0";
 	
+	private int comboboxscelto;
+	
 	ArrayList<CreaLinee> arrayPunti= new ArrayList<CreaLinee>();
 	ArrayList<CreaLinee> arrayLinea= new ArrayList<CreaLinee>();
 
@@ -1374,6 +1376,7 @@ public SchProcessi(JFrame framechiamante) {
 				SJFP=SJFPClass(linea);
 				String qua= (String) comboBoxQRR.getSelectedItem();
 				quantum=Integer.valueOf(qua);
+				comboboxscelto=quantum;
 				RR=RRClass(linea);
 				
 				if(chckbxMostraSoluzioneFCFS.isSelected()==true) {
@@ -1462,21 +1465,21 @@ public SchProcessi(JFrame framechiamante) {
 		});
 		
 	//EVENTO CAMBIO QUANTUM RR
-		comboBoxQRR.addItemListener(new ItemListener() {
+		/*comboBoxQRR.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if(comboBoxQRR.isEnabled()) {
-					labelMostraSoluzioni.setEnabled(true);
-					labelFastForwardPiu.setEnabled(true);
-					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+				if(comboBoxQRR.isEnabled()) {*/
+					//labelMostraSoluzioni.setEnabled(true);
+					//labelFastForwardPiu.setEnabled(true);
+					//jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
 
-					/*
-					RR.clear();
-					arrayPunti.clear();
-					arrayLinea.clear();
-					cbRR=0;
-					averageRR=0;
-					comboBoxQRR.setEnabled(true);
 					
+					//RR.clear();
+					//arrayPunti.clear();
+					//arrayLinea.clear();
+					cbRR=0;
+					//averageRR=0;
+					//comboBoxQRR.setEnabled(true);
+					/*
 					int numerofor=Integer.valueOf(comboBoxSceltaNProcessi.getSelectedItem().toString());
 					
 					for(int i=0;i<numerofor;i++) {
@@ -1528,14 +1531,14 @@ public SchProcessi(JFrame framechiamante) {
 								arrayPuntiRR.add(punto);
 								arrayLineaRR.add(linea);
 						}			
-					}
+					}*//*
 					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
 
-					CreaLinee[] linea = new CreaLinee[arrayLineaRR.size()];
+					CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
 	
-					for(int l=0;l<arrayLineaRR.size();l++) {  
+					for(int l=0;l<arrayLinea.size();l++) {  
 							
-						linea[l]=arrayLineaRR.get(l);
+						linea[l]=arrayLinea.get(l);
 	
 					}
 	
@@ -1545,7 +1548,7 @@ public SchProcessi(JFrame framechiamante) {
 					System.out.println("QUASIMODO"+linea.length);
 					RR=RRClass(linea);
 					if(chckbxMostraSoluzioneRR.isSelected()==true) {
-						jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPuntiRR,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+						jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
 						DecimalFormat frmt = new DecimalFormat();
 						frmt.setMaximumFractionDigits(3);
 						labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
@@ -1554,12 +1557,49 @@ public SchProcessi(JFrame framechiamante) {
 					else {
 						labelDatoTAMRR.setText(" ");
 						labelDatoCDCRR.setText(" ");
-					}*/
+					}
 				}
 			}
 		});
-		
-		
+		*/
+	comboBoxQRR.addItemListener(new ItemListener() {
+		public void itemStateChanged(ItemEvent e) {
+			if(comboBoxQRR.isEnabled()) {
+				String qua= (String) comboBoxQRR.getSelectedItem();
+				quantum=Integer.valueOf(qua);
+				
+				if(comboboxscelto!=quantum) {
+					comboboxscelto=quantum;
+					jPanelRR.disegnaGriglia(jPanelRR.getGraphics(), chckbxGriglia.isSelected());
+	
+					CreaLinee[] linea = new CreaLinee[arrayLinea.size()];
+					
+					for(int l=0;l<arrayLinea.size();l++) {  
+							
+						linea[l]=arrayLinea.get(l);
+	
+					}
+	
+					Arrays.sort(linea);
+					
+					System.out.println("QUASIMODO"+linea.length);
+					RR=RRClass(linea);
+					if(chckbxMostraSoluzioneRR.isSelected()==true) {
+						jPanelRR.disegnaSoluzioneRR(jPanelRR.getGraphics(),arrayPunti,RR,chckbxMostraSoluzioneRR.isSelected(), chckbxGriglia.isSelected());
+						DecimalFormat frmt = new DecimalFormat();
+						frmt.setMaximumFractionDigits(3);
+						labelDatoTAMRR.setText(String.valueOf(frmt.format(averageRR)));
+						labelDatoCDCRR.setText(String.valueOf(cbRR));
+					}
+					else {
+						labelDatoTAMRR.setText(" ");
+						labelDatoCDCRR.setText(" ");
+					}
+				}
+			}
+		}
+	});
+							
 	//EVENTI SU MOSTRA SOLUZIONE FCFS,SJF,SJFP,RR
 		chckbxMostraSoluzioneFCFS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
