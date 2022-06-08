@@ -26,7 +26,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Random;
 
 import javax.swing.border.LineBorder;
@@ -34,6 +36,9 @@ import javax.swing.border.LineBorder;
 import model.PanelGraficiSchProcessi;
 import model.lineaRR;
 import model.CreaLinee;
+import model.Process;
+import model.ProcessAverage;
+
 
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
@@ -480,7 +485,7 @@ public SchProcessi(JFrame framechiamante) {
 			labellNumeroDiProcessi.setHorizontalAlignment(SwingConstants.CENTER);
 			labellNumeroDiProcessi.setForeground(new Color(0, 0, 0));
 			labellNumeroDiProcessi.setFont(new Font("Arial", Font.BOLD, 15));
-			labellNumeroDiProcessi.setBounds(10, 2, 165, 23);
+			labellNumeroDiProcessi.setBounds(0, 2, 170, 23);
 			pannelloEDITOR.add(labellNumeroDiProcessi);
 		
 		JComboBox<String> comboBoxSceltaNProcessi = new JComboBox<String>();
@@ -1348,6 +1353,7 @@ public SchProcessi(JFrame framechiamante) {
 				} catch (Exception e2) {
 					labelErroreMeassage.setText("ERRORE: Grafici non generati");
 					lblPotrebberoMancareDei.setText("Potrebbero mancare dei dati!!!");
+					e2.printStackTrace();
 					labelMostraSoluzioni.setEnabled(false);
 					//labelFastForwardMeno.setEnabled(true);
 					labelFastForwardPiu.setEnabled(false);
@@ -1363,7 +1369,7 @@ public SchProcessi(JFrame framechiamante) {
 
 				Arrays.sort(linea);
 				
-				FCFS=FCFSClass(linea,0);
+				FCFS=FCFSClass(linea);
 				SJF=SJFClass(linea);
 				SJFP=SJFPClass(linea);
 				String qua= (String) comboBoxQRR.getSelectedItem();
@@ -2609,12 +2615,12 @@ public SchProcessi(JFrame framechiamante) {
 						
 						Arrays.sort(linea);
 						
-						FCFS=FCFSClass(linea,0);
+						FCFS=FCFSClass(linea);
 						SJF=SJFClass(linea);
 						SJFP=SJFPClass(linea);
 						String qua= (String) comboBoxQRR.getSelectedItem();
 						quantum=Integer.valueOf(qua);
-						//RR=RRClass(linea);
+						RR=RRClass(linea);
 										
 						if(flag<=FCFS.size()) {
 							
@@ -3362,7 +3368,7 @@ public SchProcessi(JFrame framechiamante) {
 /**										IMPLEMENTAZIONE METODI RICHIAMATI E USATI SOPRA 											*/
 	
 //METODO PER CALCOLARE FCFS
-	public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS, int flag){
+	public ArrayList<Integer> FCFSClass(CreaLinee[] lineaFCFS){
 		
 		ArrayList<Integer> punti=new ArrayList<Integer>();
 		int n = lineaFCFS.length;
@@ -3404,15 +3410,12 @@ public SchProcessi(JFrame framechiamante) {
 		}
 		
 		float aver=(avgwt/n);
-		if(flag==0) averageFCFS=aver;
-		else averageRR=aver;
+		averageFCFS=aver;
 		for(int  i = 0 ; i< n;  i++){
-			if(bt[i]!=0 && flag==0) cbFCFS++;
-			else cbRR++;
+			if(bt[i]!=0) cbFCFS++;
 		}
 		
-		if(flag==0)cbFCFS=cbFCFS-1;
-		else cbRR-=1;
+		cbFCFS=cbFCFS-1;
 		return punti;
 	}
 
@@ -3611,8 +3614,178 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		    
 //METODO PER CALCOLARE RR
 	public ArrayList<Integer> RRClass(CreaLinee[] lineaRR){
-		ArrayList<Integer> punti=new ArrayList<Integer>(0);
+		
+		ArrayList<Integer> arrayFinale=new ArrayList<Integer>(0);
+		ArrayList<Integer> arrayRitorno=new ArrayList<Integer>(0);
 
-		return punti;
+		int numeroProcessi= lineaRR.length;
+		
+		Process [] arrayProcessi = new Process[numeroProcessi];
+		ArrayList<ProcessAverage> arrayProcessiNuovi= new ArrayList<ProcessAverage>();
+		Queue<Process> rimanentiCoda = new LinkedList<>();
+		Deque<Process> readyCoda = new LinkedList<>();
+		
+		
+		for (int i = 0; i < arrayProcessi.length; i++) 
+		{
+			arrayProcessi[i]=new Process();
+			/*
+			System.out.println("Processo n "+(i+1));
+			arrayProcessi[i].nomeProcesso="P"+(i+1);
+			System.out.println("Arrivo : ");
+			arrayProcessi[i].arrivo=input.nextInt();
+			System.out.println("Durata : ");
+			arrayProcessi[i].durataRimanente=input.nextInt();
+			*/
+			arrayProcessi[i].nomeProcesso=lineaRR[i].getProcesso();
+			arrayProcessi[i].arrivo=lineaRR[i].getArrivo();
+			arrayProcessi[i].durataRimanente=lineaRR[i].getDurata();
+			arrayProcessi[i].durataOriginale=arrayProcessi[i].durataRimanente;
+				
+		}
+	
+		Arrays.sort(arrayProcessi);
+		rimanentiCoda.addAll(Arrays.asList(arrayProcessi));
+		
+		
+		int i=1;
+		//int quantum=3; //TODO dovrebbe diventare variabile nel programma di Balzano
+		int tempoinziale=1;
+		boolean possiamoInziare=false;
+		boolean puoiCambiareTuIlTempo=true;
+		System.out.println("Rimanenti :"+rimanentiCoda.size()+" Ready "+readyCoda.size());
+		while (rimanentiCoda.size() != 0 || readyCoda.size() !=0) 
+		{
+			puoiCambiareTuIlTempo=true;
+			if(  rimanentiCoda.size()!=0 && rimanentiCoda.element().arrivo <= tempoinziale)
+			{
+				possiamoInziare=true;
+				Process processoDaInserire=rimanentiCoda.poll();
+				readyCoda.offerFirst(processoDaInserire);
+			}
+			if ( readyCoda.size()!=0 && possiamoInziare ) 
+			{
+				Process processoDaScalare = readyCoda.poll();
+				if (processoDaScalare.durataRimanente-quantum>=0) 
+				{
+					processoDaScalare.durataRimanente-=quantum;
+					processoDaScalare.tempoimpiegato+=quantum;
+					//! for attenzione alle X
+					for (int j = 0; j < quantum; j++) 
+					{
+						System.out.println(i+":"+processoDaScalare.nomeProcesso+"->");
+						arrayFinale.add(i);
+						arrayFinale.add(processoDaScalare.nomeProcesso);
+						ProcessAverage nuovo = new ProcessAverage(i,processoDaScalare.nomeProcesso);
+						arrayProcessiNuovi.add(nuovo);
+						i++;
+						tempoinziale++;
+					}
+					puoiCambiareTuIlTempo=false;
+					readyCoda.add(processoDaScalare);
+				}
+				else if(quantum>1)
+				{
+					if (processoDaScalare.finito==false) 
+					{
+						
+						if (processoDaScalare.durataRimanente-quantum<0) 
+						{
+							int rimanente=processoDaScalare.durataOriginale-processoDaScalare.tempoimpiegato;
+							//! for attenzione alle X
+							for (int j = 0; j < rimanente; j++) 
+							{
+								System.out.println(i+":"+processoDaScalare.nomeProcesso+"->");
+								arrayFinale.add(i);
+								arrayFinale.add(processoDaScalare.nomeProcesso);
+								ProcessAverage nuovo = new ProcessAverage(i,processoDaScalare.nomeProcesso);
+								arrayProcessiNuovi.add(nuovo);
+								i++;
+								tempoinziale++;
+							}
+							puoiCambiareTuIlTempo=false;
+							processoDaScalare.tempoimpiegato=processoDaScalare.durataOriginale;
+							processoDaScalare.finito=true;
+						}	
+					}
+				}
+				else 
+				{
+					//Vuoto Nessuna Cella
+					//!attenzione alle X
+					System.out.println(i+": Vtn");
+				}
+			}
+			else 
+			{
+				//Vuoto Nessuna Cella
+				//!attenzione alle X
+				System.out.println(i+": Vtn");
+			}
+			if (puoiCambiareTuIlTempo)
+			{
+				tempoinziale++;
+				i++;	
+			}
+		}
+		
+		for(int z=0;z<arrayFinale.size();) {
+			
+			arrayRitorno.add(arrayFinale.get(z));
+			arrayRitorno.add(arrayFinale.get(z+1));
+			arrayRitorno.add((arrayFinale.get(z))+1);
+			arrayRitorno.add(arrayFinale.get(z+1));
+			z=z+2;
+
+		}
+		
+		cbRR=0;
+		for(int z=0;z<arrayFinale.size();) {
+			
+			if(z==0);
+			else if(arrayFinale.get(z+1)!=arrayFinale.get(z-1)) {
+				cbRR++;
+			}
+			z=z+2;
+		}
+		
+		
+		ProcessAverage[] linea = new ProcessAverage[arrayProcessiNuovi.size()];
+
+		for(int l=0;l<arrayProcessiNuovi.size();l++) {  
+				
+			linea[l]=arrayProcessiNuovi.get(l);
+		}
+
+		Arrays.sort(linea);
+		
+		ArrayList<Integer> waiting= new ArrayList<Integer>();
+		for(int l=0;l<linea.length;l++) {
+			System.out.print(" "+linea[l].getNomeProcesso());
+			int k=l;
+			int durataTot=0;
+			if((k+1)>=linea[l].getNomeProcesso()) {
+				int ct=(linea[k].getArrivo())+1-linea[l].getArrivo()-durataTot;
+				waiting.add(ct);
+			}else {
+				while(linea[k].getNomeProcesso()==linea[k+1].getNomeProcesso()) {
+					k++;
+					if(k>=linea[l].getNomeProcesso())break;
+					durataTot++;
+				}
+				int ct=(linea[k].getArrivo())+1-linea[l].getArrivo()-durataTot;
+				waiting.add(ct);
+			}
+		}
+		
+		float wtTotal=0;
+		for(int a=0;a<waiting.size();a++) wtTotal+=waiting.get(a);
+		
+       	averageRR=(float) (wtTotal) / (float)numeroProcessi;
+      // 	averageRR=AverageRR(lineaRR);
+		return arrayRitorno;
 	}
+	
+	
+		    
 }
