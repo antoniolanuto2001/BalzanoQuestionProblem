@@ -102,7 +102,7 @@ public class PanelGraficiPaginazioneMemoria extends JPanel {
 	}
 	
 	public void disegnaSoluzione(Graphics g, int[] punti){
-			
+
 		g.setColor(new Color(0, 153, 0));
 		
 		g.drawLine(25+punti[1]*15,103-punti[0]*15,25+punti[3]*15,103-punti[2]*15);

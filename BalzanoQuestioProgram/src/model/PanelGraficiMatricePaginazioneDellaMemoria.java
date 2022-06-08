@@ -33,7 +33,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	}
    	
    	public void disegnaSoluzioneFIFO(Graphics g, int array[][], int slot,int page, int numeri[]){
-   		
+
    		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
@@ -75,7 +75,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	}
    	
 	public void disegnaSoluzioneOPT(Graphics g, int array[][], int slot,int page, int numeri[]){
-   		
+
    		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
@@ -118,7 +118,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	}
 	
 	public void disegnaSoluzioneLRU(Graphics g, int array[][], int slot,int page, int numeri[]){
-   		
+
    		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		/*
    		for(int j=0;j<page;j++) {
@@ -160,7 +160,7 @@ public class PanelGraficiMatricePaginazioneDellaMemoria extends JPanel {
    	}
 	
 	public void disegnaSoluzioneCLOCK(Graphics g, int array[][], int slot,int page, int numeri[]){
-   		
+
    		g.setFont(new Font("ARIAL", Font.BOLD, 15));
    		
    		/*for(int j=0;j<page;j++) {

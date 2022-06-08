@@ -67,6 +67,12 @@ import javax.swing.plaf.DimensionUIResource;
 import javax.swing.event.CaretEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class SchProcessi extends JFrame {
 
@@ -256,27 +262,27 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneFCFS.setSelected(true);
 				chckbxMostraSoluzioneFCFS.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				chckbxMostraSoluzioneFCFS.setBounds(513, 3, 150, 25);
+				chckbxMostraSoluzioneFCFS.setBounds(513, 1, 150, 25);
 				pannelloFCFS.add(chckbxMostraSoluzioneFCFS);
 			
 			JLabel labelTAMFCFS = new JLabel("Tempo di attesa medio:");
 				labelTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelTAMFCFS.setBounds(670, 3, 150, 25);
+				labelTAMFCFS.setBounds(670, 1, 150, 25);
 				pannelloFCFS.add(labelTAMFCFS);
 			
 			JLabel labelDatoTAMFCFS = new JLabel("");
 				labelDatoTAMFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoTAMFCFS.setBounds(821, 3, 45, 25);
+				labelDatoTAMFCFS.setBounds(821, 1, 45, 25);
 				pannelloFCFS.add(labelDatoTAMFCFS);
 				
 			JLabel labelCDCFCFS = new JLabel("Cambi di contesto: ");
 				labelCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelCDCFCFS.setBounds(887, 3, 130, 25);
+				labelCDCFCFS.setBounds(887, 1, 130, 25);
 				pannelloFCFS.add(labelCDCFCFS);
 			
 			JLabel labelDatoCDCFCFS = new JLabel("");
 				labelDatoCDCFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoCDCFCFS.setBounds(1014, 3, 45, 25);
+				labelDatoCDCFCFS.setBounds(1014, 1, 45, 25);
 				pannelloFCFS.add(labelDatoCDCFCFS);
 			
 	//PANNELLO SHORTEST JOB FIRST
@@ -297,27 +303,27 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneSJF.setSelected(true);
 				chckbxMostraSoluzioneSJF.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				chckbxMostraSoluzioneSJF.setBounds(513, 3, 150, 25);
+				chckbxMostraSoluzioneSJF.setBounds(513, 1, 150, 25);
 				pannelloSJF.add(chckbxMostraSoluzioneSJF);
 			
 			JLabel labelTAMSJF = new JLabel("Tempo di attesa medio:");
 				labelTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelTAMSJF.setBounds(670, 3, 150, 25);
+				labelTAMSJF.setBounds(670, 1, 150, 25);
 				pannelloSJF.add(labelTAMSJF);
 			
 			JLabel labelDatoTAMSJF = new JLabel("");
 				labelDatoTAMSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoTAMSJF.setBounds(821, 3, 45, 25);
+				labelDatoTAMSJF.setBounds(821, 1, 45, 25);
 				pannelloSJF.add(labelDatoTAMSJF);
 				
 			JLabel labelCDCSJF = new JLabel("Cambi di contesto: ");
 				labelCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelCDCSJF.setBounds(887, 3, 130, 25);
+				labelCDCSJF.setBounds(887, 1, 130, 25);
 				pannelloSJF.add(labelCDCSJF);
 			
 			JLabel labelDatoCDCSJF = new JLabel("");
 				labelDatoCDCSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoCDCSJF.setBounds(1014, 3, 45, 25);
+				labelDatoCDCSJF.setBounds(1014, 1, 45, 25);
 				pannelloSJF.add(labelDatoCDCSJF);
 			
 	//PANNELLO SHORTEST JOB FIRST PREEMPTIVE
@@ -338,27 +344,27 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneSJFP.setSelected(true);
 				chckbxMostraSoluzioneSJFP.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				chckbxMostraSoluzioneSJFP.setBounds(513, 3, 150, 25);
+				chckbxMostraSoluzioneSJFP.setBounds(513, 1, 150, 25);
 				pannelloSJFP.add(chckbxMostraSoluzioneSJFP);
 			
 			JLabel labelTAMSJFP = new JLabel("Tempo di attesa medio:");
 				labelTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelTAMSJFP.setBounds(670, 3, 150, 25);
+				labelTAMSJFP.setBounds(670, 1, 150, 25);
 				pannelloSJFP.add(labelTAMSJFP);
 	
 			JLabel labelDatoTAMSJFP = new JLabel("");
 				labelDatoTAMSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoTAMSJFP.setBounds(821, 3, 45, 25);
+				labelDatoTAMSJFP.setBounds(821, 1, 45, 25);
 				pannelloSJFP.add(labelDatoTAMSJFP);
 				
 			JLabel labelCDCSJFP = new JLabel("Cambi di contesto: ");
 				labelCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelCDCSJFP.setBounds(887, 3, 130, 25);
+				labelCDCSJFP.setBounds(887, 1, 130, 25);
 				pannelloSJFP.add(labelCDCSJFP);
 			
 			JLabel labelDatoCDCSJFP = new JLabel("");
 				labelDatoCDCSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoCDCSJFP.setBounds(1014, 3, 45, 25);
+				labelDatoCDCSJFP.setBounds(1014, 1, 45, 25);
 				pannelloSJFP.add(labelDatoCDCSJFP);
 		
 	//PANNELLO ROUND ROBIN
@@ -379,32 +385,32 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneRR.setSelected(true);
 				chckbxMostraSoluzioneRR.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				chckbxMostraSoluzioneRR.setBounds(513, 3, 150, 25);
+				chckbxMostraSoluzioneRR.setBounds(400, 1, 150, 25);
 				pannelloRR.add(chckbxMostraSoluzioneRR);
 			
 			JLabel labelTAMRR = new JLabel("Tempo di attesa medio:");
 				labelTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelTAMRR.setBounds(670, 3, 150, 25);
+				labelTAMRR.setBounds(560, 1, 150, 25);
 				pannelloRR.add(labelTAMRR);
 	
 			JLabel labelDatoTAMRR = new JLabel("");
 				labelDatoTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoTAMRR.setBounds(821, 3, 45, 25);
+				labelDatoTAMRR.setBounds(700, 1, 45, 25);
 				pannelloRR.add(labelDatoTAMRR);
 				
 			JLabel labelCDCRR = new JLabel("Cambi di contesto: ");
 				labelCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelCDCRR.setBounds(887, 3, 130, 25);
+				labelCDCRR.setBounds(770, 1, 124, 25);
 				pannelloRR.add(labelCDCRR);
 			
 			JLabel labelDatoCDCRR = new JLabel("");
 				labelDatoCDCRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoCDCRR.setBounds(1014, 3, 45, 25);
+				labelDatoCDCRR.setBounds(895, 1, 45, 25);
 				pannelloRR.add(labelDatoCDCRR);
 			
 			JLabel labelQRR = new JLabel("Q =");
 				labelQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelQRR.setBounds(407, 0, 32, 25);
+				labelQRR.setBounds(940, 1, 32, 25);
 				pannelloRR.add(labelQRR);
 			
 			JComboBox<Object> comboBoxQRR = new JComboBox<Object>();
@@ -413,9 +419,8 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setSelectedIndex(2);
 				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				comboBoxQRR.setBackground(Color.WHITE);
-				comboBoxQRR.setBounds(432, 2, 73, 21);
+				comboBoxQRR.setBounds(980, 1, 73, 21);
 				pannelloRR.add(comboBoxQRR);
-			
 			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
 				
@@ -528,7 +533,7 @@ public SchProcessi(JFrame framechiamante) {
 		//TABELLA PROCESSI
 		JPanel panelTabella = new JPanel();
 			panelTabella.setBorder(new LineBorder(new Color(100, 181, 246),2));
-			panelTabella.setBounds(0, 30, 250, 207);
+			panelTabella.setBounds(0, 30, 255, 212);
 			pannelloEDITOR.add(panelTabella);
 			GridBagLayout gbl_panelTabella = new GridBagLayout();
 			gbl_panelTabella.columnWidths = new int[]{0, 70, 70, 70, 0};
@@ -810,7 +815,7 @@ public SchProcessi(JFrame framechiamante) {
 			
 		//BOTTONE GENERA
 		JButton btnGenera = new JButton("Genera Esercizio");
-			btnGenera.setBounds(10, 245, 223, 35);
+			btnGenera.setBounds(0, 245, 255, 35);
 			pannelloEDITOR.add(btnGenera);
 			btnGenera.setBackground(Color.WHITE);
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 15));
@@ -1030,7 +1035,7 @@ public SchProcessi(JFrame framechiamante) {
 				for (int i=0;i<numeroProcessi;i++){ 
 					
 					Random random = new Random();
-					int value = random.nextInt(10 + 0) + 0;
+					int value = random.nextInt(9 + 1) + 1;
 					if(i==0) {
 				labelP1.setEnabled(true);
 				labelP1.setText("P"+(i+1));	
@@ -1099,7 +1104,7 @@ public SchProcessi(JFrame framechiamante) {
 				textArrivoP6.setVisible(true);
 					}
 					
-					int value2 = random.nextInt(10 + 1) + 1;
+					int value2 = random.nextInt(9 + 1) + 1;
 					
 					if(i==0) {
 				textDurataP1.setEnabled(true);
@@ -1562,6 +1567,8 @@ public SchProcessi(JFrame framechiamante) {
 			}
 		});
 		*/
+
+					
 	comboBoxQRR.addItemListener(new ItemListener() {
 		public void itemStateChanged(ItemEvent e) {
 			if(comboBoxQRR.isEnabled()) {
@@ -3825,7 +3832,4 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
       // 	averageRR=AverageRR(lineaRR);
 		return arrayRitorno;
 	}
-	
-	
-		    
 }
