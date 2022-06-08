@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
-import javax.swing.plaf.ColorUIResource;
+
 
 public class PanelGraficiSchHD extends JPanel{
 

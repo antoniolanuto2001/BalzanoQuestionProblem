@@ -17,7 +17,6 @@ public class parolaHashing
 	
 	public parolaHashing(String ingressoString ,int indexMatrice ,int indexPersonale) 
 	{
-		// TODO Auto-generated constructor stub
 		parola=ingressoString;
 		indexString=indexMatrice;
 		indexParola=indexPersonale;

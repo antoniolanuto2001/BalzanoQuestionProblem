@@ -67,27 +67,27 @@ public class Semafori extends JFrame {
 	public int temporaryValue5B;
 	
 	public boolean startforfirst;
-	public boolean pauseforfirst;
-	public boolean pauseforsecond;
+	public boolean pausefor1;
+	public boolean pausefor2;
 	public boolean startforsecond;
 	public boolean startforthird;
-	public boolean pauseforthird;
-	public boolean pauseforfourth;
+	public boolean pausefor3;
+	public boolean pausefor4;
 	public boolean startforfourth;
 	public boolean startforfifth;
-	public boolean pauseforfifth;
+	public boolean pausefor5;
 	
 	public boolean startforfirstB;
-	public boolean pauseforfirstB;
-	public boolean pauseforsecondB;
+	public boolean pausefor1B;
+	public boolean pausefor2B;
 	public boolean startforsecondB;
 	
 	public boolean startforthirdB;
-	public boolean pauseforthirdB;
-	public boolean pauseforfourthB;
+	public boolean pausefor3B;
+	public boolean pausefor4B;
 	public boolean startforfourthB;
 	public boolean startforfifthB;
-	public boolean pauseforfifthB;
+	public boolean pausefor5B;
 	
 	public boolean entered1,entered2,entered3,entered4;
 	
@@ -126,25 +126,25 @@ public class Semafori extends JFrame {
 		
 		startforsecond=false;
 		startforfirst=false;
-		pauseforfirst=false;
-		pauseforsecond=false;
+		pausefor1=false;
+		pausefor2=false;
 		startforthird=false;
-		pauseforthird=false;
+		pausefor3=false;
 		startforfourth=false;
-		pauseforfourth=false;
+		pausefor4=false;
 		startforfifth=false;
-		pauseforfifth=false;
+		pausefor5=false;
 		
 		startforsecondB=false;
 		startforfirstB=false;
-		pauseforfirstB=false;
-		pauseforsecondB=false;
+		pausefor1B=false;
+		pausefor2B=false;
 		startforthirdB=false;
-		pauseforthirdB=false;
+		pausefor3B=false;
 		startforfourthB=false;
-		pauseforfourthB=false;
+		pausefor4B=false;
 		startforfifthB=false;
-		pauseforfifthB=false;
+		pausefor5B=false;
 		
 		entered1=entered2=entered3=entered4=false;
 		
@@ -1092,20 +1092,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -1113,7 +1113,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=false;
         												}
         													
@@ -1139,7 +1139,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA
-        												if(pauseforfirst==true && startforfirst==false) {
+        												if(pausefor1==true && startforfirst==false) {
         													temporaryValue1=Indicator1JPanel.getX();
         													Indicator1JPanel.Reset(temporaryValue1);
         													BaseProgressBar1JPanel.repaint();
@@ -1164,7 +1164,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO
-        												else if (i==299 && pauseforfirst==true) 
+        												else if (i==299 && pausefor1==true) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(temporaryValue1);
@@ -1181,7 +1181,7 @@ public class Semafori extends JFrame {
 
         												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
         												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-        												 if((pauseforfirst==false && startforfirst ==false) || (pauseforfirst==false && startforfirst==true)) 
+        												 if((pausefor1==false && startforfirst ==false) || (pausefor1==false && startforfirst==true)) 
         												 {
         													Indicator1JPanel.moveForward();
         													
@@ -1230,20 +1230,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -1251,7 +1251,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 2 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=false;
         												}
             											
@@ -1279,7 +1279,7 @@ public class Semafori extends JFrame {
         										
 
         												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA
-        												if(pauseforsecond==true && startforsecond==false) {
+        												if(pausefor2==true && startforsecond==false) {
         													temporaryValue2=Indicator2JPanel.getX();
         													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
@@ -1292,7 +1292,7 @@ public class Semafori extends JFrame {
         													temporaryValue2=Indicator2JPanel.getX();
         													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();      					
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=false;
         													break;
         												}
@@ -1306,7 +1306,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
         												//ZONA CRITICA DEL PRIMO INDICATORE
-        												else if (i==299 && pauseforsecond==true) 
+        												else if (i==299 && pausefor2==true) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -1320,7 +1320,7 @@ public class Semafori extends JFrame {
         													ripartenza[1]=0;
         												}
 
-        												 if((pauseforsecond==false && startforsecond==false) || (pauseforsecond==false && startforsecond==true)) {
+        												 if((pausefor2==false && startforsecond==false) || (pausefor2==false && startforsecond==true)) {
         													Indicator2JPanel.moveForward();
         												}
         													
@@ -1411,20 +1411,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -1443,20 +1443,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -1466,7 +1466,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=false;
         												}
         													
@@ -1492,7 +1492,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA
-        												if(pauseforfirst==true && startforfirst==false) {
+        												if(pausefor1==true && startforfirst==false) {
         													temporaryValue1=Indicator1JPanel.getX();
         													Indicator1JPanel.Reset(temporaryValue1);
         													BaseProgressBar1JPanel.repaint();
@@ -1517,7 +1517,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO
-        												else if (i==299 && pauseforfirst==true) 
+        												else if (i==299 && pausefor1==true) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(temporaryValue1);
@@ -1534,7 +1534,7 @@ public class Semafori extends JFrame {
 
         												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
         												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-        												 if((pauseforfirst==false && startforfirst ==false) || (pauseforfirst==false && startforfirst==true)) 
+        												 if((pausefor1==false && startforfirst ==false) || (pausefor1==false && startforfirst==true)) 
         												 {
         													Indicator1JPanel.moveForward();
         													
@@ -1582,20 +1582,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -1615,20 +1615,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -1638,7 +1638,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 2 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=false;
         												}
             											
@@ -1666,7 +1666,7 @@ public class Semafori extends JFrame {
         										
 
         												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA
-        												if(pauseforsecond==true && startforsecond==false) {
+        												if(pausefor2==true && startforsecond==false) {
         													temporaryValue2=Indicator2JPanel.getX();
         													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
@@ -1691,7 +1691,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
         												//ZONA CRITICA DEL PRIMO INDICATORE
-        												else if (i==299 && pauseforsecond==true) 
+        												else if (i==299 && pausefor2==true) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -1705,7 +1705,7 @@ public class Semafori extends JFrame {
         													ripartenza[1]=0;
         												}
 
-        												 if((pauseforsecond==false && startforsecond==false) || (pauseforsecond==false && startforsecond==true)) {
+        												 if((pausefor2==false && startforsecond==false) || (pausefor2==false && startforsecond==true)) {
         													Indicator2JPanel.moveForward();
         												}
         													
@@ -1748,20 +1748,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -1780,20 +1780,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -1803,7 +1803,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 3 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforthird=false;
+        													pausefor3=false;
         													startforthird=false;
         												}
         													
@@ -1829,7 +1829,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL TERZO INDICATORE PERCHE' IL SECONDO O IL PRIMO SONO IN ZONA CRITICA
-        												if(pauseforthird==true && startforthird==false) {
+        												if(pausefor3==true && startforthird==false) {
         													temporaryValue3=Indicator3JPanel.getX();
         													Indicator3JPanel.Reset(temporaryValue3);
         													BaseProgressBar3JPanel.repaint();
@@ -1854,7 +1854,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL TERZO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO
-        												else if (i==299 && pauseforthird==true) 
+        												else if (i==299 && pausefor3==true) 
         												{
         													i=0;
         													Indicator3JPanel.Reset(temporaryValue3);
@@ -1870,7 +1870,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforthird==false && startforthird ==false) || (pauseforthird==false && startforthird==true)) 
+        												 if((pausefor3==false && startforthird ==false) || (pausefor3==false && startforthird==true)) 
         												 {
         													Indicator3JPanel.moveForward();
         													
@@ -1968,20 +1968,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2000,20 +2000,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2032,20 +2032,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2055,7 +2055,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=false;
         												}
         													
@@ -2081,7 +2081,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA
-        												if(pauseforfirst==true && startforfirst==false) {
+        												if(pausefor1==true && startforfirst==false) {
         													temporaryValue1=Indicator1JPanel.getX();
         													Indicator1JPanel.Reset(temporaryValue1);
         													BaseProgressBar1JPanel.repaint();
@@ -2106,7 +2106,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO
-        												else if (i==299 && pauseforfirst==true) 
+        												else if (i==299 && pausefor1==true) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(temporaryValue1);
@@ -2123,7 +2123,7 @@ public class Semafori extends JFrame {
 
         												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
         												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-        												 if((pauseforfirst==false && startforfirst ==false) || (pauseforfirst==false && startforfirst==true)) 
+        												 if((pausefor1==false && startforfirst ==false) || (pausefor1==false && startforfirst==true)) 
         												 {
         													Indicator1JPanel.moveForward();
         													
@@ -2171,20 +2171,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -2202,20 +2202,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -2235,20 +2235,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -2258,7 +2258,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 2 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=false;
         												}
             											
@@ -2286,7 +2286,7 @@ public class Semafori extends JFrame {
         										
 
         												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA
-        												if(pauseforsecond==true && startforsecond==false) {
+        												if(pausefor2==true && startforsecond==false) {
         													temporaryValue2=Indicator2JPanel.getX();
         													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
@@ -2311,7 +2311,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
         												//ZONA CRITICA DEL PRIMO INDICATORE
-        												else if (i==299 && pauseforsecond==true) 
+        												else if (i==299 && pausefor2==true) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -2325,7 +2325,7 @@ public class Semafori extends JFrame {
         													ripartenza[1]=0;
         												}
 
-        												 if((pauseforsecond==false && startforsecond==false) || (pauseforsecond==false && startforsecond==true)) {
+        												 if((pausefor2==false && startforsecond==false) || (pausefor2==false && startforsecond==true)) {
         													Indicator2JPanel.moveForward();
         												}
         													
@@ -2370,20 +2370,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforthird==true)
+        													else if(pausefor3==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -2400,20 +2400,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -2432,20 +2432,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -2455,7 +2455,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 3 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforthird=false;
+        													pausefor3=false;
         													startforthird=false;
         												}
         													
@@ -2481,7 +2481,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL TERZO INDICATORE PERCHE' IL SECONDO O IL PRIMO SONO IN ZONA CRITICA
-        												if(pauseforthird==true && startforthird==false) {
+        												if(pausefor3==true && startforthird==false) {
         													temporaryValue3=Indicator3JPanel.getX();
         													Indicator3JPanel.Reset(temporaryValue3);
         													BaseProgressBar3JPanel.repaint();
@@ -2506,7 +2506,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL TERZO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO
-        												else if (i==299 && pauseforthird==true) 
+        												else if (i==299 && pausefor3==true) 
         												{
         													i=0;
         													Indicator3JPanel.Reset(temporaryValue3);
@@ -2522,7 +2522,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforthird==false && startforthird ==false) || (pauseforthird==false && startforthird==true)) 
+        												 if((pausefor3==false && startforthird ==false) || (pausefor3==false && startforthird==true)) 
         												 {
         													Indicator3JPanel.moveForward();
         													
@@ -2569,20 +2569,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -2599,20 +2599,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -2631,20 +2631,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -2654,7 +2654,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 4 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfourth=false;
+        													pausefor4=false;
         													startforfourth=false;
         												}
         													
@@ -2680,7 +2680,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL QUARTO INDICATORE PERCHE' IL SECONDO O IL PRIMO O IL TERZO SONO IN ZONA CRITICA
-        												if(pauseforfourth==true && startforfourth==false) {
+        												if(pausefor4==true && startforfourth==false) {
         													temporaryValue4=Indicator4JPanel.getX();
         													Indicator4JPanel.Reset(temporaryValue4);
         													BaseProgressBar4JPanel.repaint();
@@ -2705,7 +2705,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL QUARTO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO O TERZO
-        												else if (i==299 && pauseforfourth==true) 
+        												else if (i==299 && pausefor4==true) 
         												{
         													i=0;
         													Indicator4JPanel.Reset(temporaryValue4);
@@ -2721,7 +2721,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforfourth==false && startforfourth ==false) || (pauseforfourth==false && startforfourth==true)) 
+        												 if((pausefor4==false && startforfourth ==false) || (pausefor4==false && startforfourth==true)) 
         												 {
         													Indicator4JPanel.moveForward();
         													
@@ -2833,20 +2833,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2863,20 +2863,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2895,20 +2895,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2927,20 +2927,20 @@ public class Semafori extends JFrame {
         															Indicator1JPanel.getX()==iniziocritica3_1-1	) 
         													{
         														
-        														pauseforfirst=true;
+        														pausefor1=true;
         														startforfirst=false;
             													
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforfirst=false;
+            													pausefor1=false;
             													startforfirst=true;
         													}
         													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfirst=false;
+        														pausefor1=false;
         														startforfirst=false;
         													}
         														
@@ -2950,7 +2950,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=false;
         												}
         													
@@ -2977,7 +2977,7 @@ public class Semafori extends JFrame {
         												
         												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO 
         												//O IL TERZO O IL QUARTO O IL QUINTO SONO IN ZONA CRITICA
-        												if(pauseforfirst==true && startforfirst==false) {
+        												if(pausefor1==true && startforfirst==false) {
         													temporaryValue1=Indicator1JPanel.getX();
         													Indicator1JPanel.Reset(temporaryValue1);
         													BaseProgressBar1JPanel.repaint();
@@ -3002,7 +3002,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O DEL TERZO O DEL QUARTO O DEL QUINTO
-        												else if (i==299 && pauseforfirst==true) 
+        												else if (i==299 && pausefor1==true) 
         												{
         													i=0;
         													Indicator1JPanel.Reset(temporaryValue1);
@@ -3018,7 +3018,7 @@ public class Semafori extends JFrame {
         												}
 
         												 //QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforfirst==false && startforfirst ==false) || (pauseforfirst==false && startforfirst==true)) 
+        												 if((pausefor1==false && startforfirst ==false) || (pausefor1==false && startforfirst==true)) 
         												 {
         													Indicator1JPanel.moveForward();
         													
@@ -3067,20 +3067,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -3099,20 +3099,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -3130,20 +3130,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -3163,20 +3163,20 @@ public class Semafori extends JFrame {
         															Indicator2JPanel.getX()==iniziocritica3_2-1	) 
         													{
         														
-        														pauseforsecond=true;
+        														pausefor2=true;
         														startforsecond=false;
             													
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforsecond==true)
+        													else if(pausefor2==true)
         													{
-            													pauseforsecond=false;
+            													pausefor2=false;
             													startforsecond=true;
         													}
         													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforsecond=false;
+        														pausefor2=false;
         														startforsecond=false;
         													}
         														
@@ -3186,7 +3186,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 2 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=false;
         												}
             											
@@ -3215,7 +3215,7 @@ public class Semafori extends JFrame {
 
         												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO
         												//O IL TERZO O IL QUARTO O IL QUINTO SONO IN ZONA CRITICA
-        												if(pauseforsecond==true && startforsecond==false) {
+        												if(pausefor2==true && startforsecond==false) {
         													temporaryValue2=Indicator2JPanel.getX();
         													Indicator2JPanel.Reset(temporaryValue2);
         													BaseProgressBar2JPanel.repaint();
@@ -3240,7 +3240,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
         												//ZONA CRITICA DEL PRIMO INDICATORE O DEL TERZO O DEL QUARTO O DEL QUINTO
-        												else if (i==299 && pauseforsecond==true) 
+        												else if (i==299 && pausefor2==true) 
         												{
         													i=0;
         													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -3254,7 +3254,7 @@ public class Semafori extends JFrame {
         													ripartenza[1]=0;
         												}
 
-        												 if((pauseforsecond==false && startforsecond==false) || (pauseforsecond==false && startforsecond==true)) {
+        												 if((pausefor2==false && startforsecond==false) || (pausefor2==false && startforsecond==true)) {
         													Indicator2JPanel.moveForward();
         												}
         													
@@ -3299,20 +3299,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforthird==true)
+        													else if(pausefor3==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -3330,20 +3330,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforthird==true)
+        													else if(pausefor3==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -3360,20 +3360,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -3392,20 +3392,20 @@ public class Semafori extends JFrame {
         															Indicator3JPanel.getX()==iniziocritica3_3-1	) 
         													{
         														
-        														pauseforthird=true;
+        														pausefor3=true;
         														startforthird=false;
             													
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfirst==true)
+        													else if(pausefor1==true)
         													{
-            													pauseforthird=false;
+            													pausefor3=false;
             													startforthird=true;
         													}
         													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforthird=false;
+        														pausefor3=false;
         														startforthird=false;
         													}
         														
@@ -3415,7 +3415,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 3 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforthird=false;
+        													pausefor3=false;
         													startforthird=false;
         												}
         													
@@ -3441,7 +3441,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL TERZO INDICATORE PERCHE' IL SECONDO O IL PRIMO SONO IN ZONA CRITICA
-        												if(pauseforthird==true && startforthird==false) {
+        												if(pausefor3==true && startforthird==false) {
         													temporaryValue3=Indicator3JPanel.getX();
         													Indicator3JPanel.Reset(temporaryValue3);
         													BaseProgressBar3JPanel.repaint();
@@ -3466,7 +3466,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL TERZO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO
-        												else if (i==299 && pauseforthird==true) 
+        												else if (i==299 && pausefor3==true) 
         												{
         													i=0;
         													Indicator3JPanel.Reset(temporaryValue3);
@@ -3482,7 +3482,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforthird==false && startforthird ==false) || (pauseforthird==false && startforthird==true)) 
+        												 if((pausefor3==false && startforthird ==false) || (pausefor3==false && startforthird==true)) 
         												 {
         													Indicator3JPanel.moveForward();
         													
@@ -3529,20 +3529,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -3560,20 +3560,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -3590,20 +3590,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -3622,20 +3622,20 @@ public class Semafori extends JFrame {
         															Indicator4JPanel.getX()==iniziocritica3_4-1	) 
         													{
         														
-        														pauseforfourth=true;
+        														pausefor4=true;
         														startforfourth=false;
             													
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfourth=false;
+            													pausefor4=false;
             													startforfourth=true;
         													}
         													//L'INDICATORE 4 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfourth=false;
+        														pausefor4=false;
         														startforfourth=false;
         													}
         														
@@ -3645,7 +3645,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 4 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfourth=false;
+        													pausefor4=false;
         													startforfourth=false;
         												}
         													
@@ -3671,7 +3671,7 @@ public class Semafori extends JFrame {
         												}
         												
         												//E' IL MOMENTO DI FERMARE IL QUARTO INDICATORE PERCHE' IL SECONDO O IL PRIMO O IL TERZO SONO IN ZONA CRITICA
-        												if(pauseforfourth==true && startforfourth==false) {
+        												if(pausefor4==true && startforfourth==false) {
         													temporaryValue4=Indicator4JPanel.getX();
         													Indicator4JPanel.Reset(temporaryValue4);
         													BaseProgressBar4JPanel.repaint();
@@ -3696,7 +3696,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL QUARTO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO O TERZO
-        												else if (i==299 && pauseforfourth==true) 
+        												else if (i==299 && pausefor4==true) 
         												{
         													i=0;
         													Indicator4JPanel.Reset(temporaryValue4);
@@ -3712,7 +3712,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforfourth==false && startforfourth ==false) || (pauseforfourth==false && startforfourth==true)) 
+        												 if((pausefor4==false && startforfourth ==false) || (pausefor4==false && startforfourth==true)) 
         												 {
         													Indicator4JPanel.moveForward();
         													
@@ -3759,20 +3759,20 @@ public class Semafori extends JFrame {
         															Indicator5JPanel.getX()==iniziocritica3_5-1	) 
         													{
         														
-        														pauseforfifth=true;
+        														pausefor5=true;
         														startforfifth=false;
             													
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfifth==true)
+        													else if(pausefor5==true)
         													{
-            													pauseforfifth=false;
+            													pausefor5=false;
             													startforfifth=true;
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfifth=false;
+        														pausefor5=false;
         														startforfifth=false;
         													}
         														
@@ -3790,20 +3790,20 @@ public class Semafori extends JFrame {
         															Indicator5JPanel.getX()==iniziocritica3_5-1	) 
         													{
         														
-        														pauseforfifth=true;
+        														pausefor5=true;
         														startforfifth=false;
             													
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfifth==true)
+        													else if(pausefor5==true)
         													{
-            													pauseforfifth=false;
+            													pausefor5=false;
             													startforfifth=true;
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfifth=false;
+        														pausefor5=false;
         														startforfifth=false;
         													}
         														
@@ -3820,20 +3820,20 @@ public class Semafori extends JFrame {
         															Indicator5JPanel.getX()==iniziocritica3_5-1	) 
         													{
         														
-        														pauseforfifth=true;
+        														pausefor5=true;
         														startforfifth=false;
             													
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfourth==true)
+        													else if(pausefor4==true)
         													{
-            													pauseforfifth=false;
+            													pausefor5=false;
             													startforfifth=true;
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfifth=false;
+        														pausefor5=false;
         														startforfifth=false;
         													}
         														
@@ -3852,20 +3852,20 @@ public class Semafori extends JFrame {
         															Indicator5JPanel.getX()==iniziocritica3_5-1	) 
         													{
         														
-        														pauseforfifth=true;
+        														pausefor5=true;
         														startforfifth=false;
             													
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA MA STAVA IN PAUSA PER POI RIPARTIRE
-        													else if(pauseforfifth==true)
+        													else if(pausefor5==true)
         													{
-            													pauseforfifth=false;
+            													pausefor5=false;
             													startforfifth=true;
         													}
         													//L'INDICATORE 5 NON STA PER ENTRARE IN ZONA CRITICA E NON ERA NEMMENO IN PAUSA
         													else 
         													{
-        														pauseforfifth=false;
+        														pausefor5=false;
         														startforfifth=false;
         													}
         														
@@ -3875,7 +3875,7 @@ public class Semafori extends JFrame {
         												// ALTRIMENTI L'INDICATORE 5 PROCEDE SENZA MODIFICHE
         												else 
         												{
-        													pauseforfifth=false;
+        													pausefor5=false;
         													startforfifth=false;
         												}
         													
@@ -3902,7 +3902,7 @@ public class Semafori extends JFrame {
         												
         												//E' IL MOMENTO DI FERMARE IL QUINTO INDICATORE PERCHE' IL SECONDO O IL PRIMO O IL TERZO
         												//O IL QUARTO SONO IN ZONA CRITICA
-        												if(pauseforfifth==true && startforfifth==false) {
+        												if(pausefor5==true && startforfifth==false) {
         													temporaryValue5=Indicator5JPanel.getX();
         													Indicator5JPanel.Reset(temporaryValue5);
         													BaseProgressBar5JPanel.repaint();
@@ -3927,7 +3927,7 @@ public class Semafori extends JFrame {
         												
         												//L'INDICE i DEL QUINTO INDICATORE E' ARRIVATO A 300 MA
         												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO O TERZO O QUARTO
-        												else if (i==299 && pauseforfifth==true) 
+        												else if (i==299 && pausefor5==true) 
         												{
         													i=0;
         													Indicator5JPanel.Reset(temporaryValue5);
@@ -3943,7 +3943,7 @@ public class Semafori extends JFrame {
         												}
 
         												//QUANDO SI MUOVE L'INDICATORE
-        												 if((pauseforfifth==false && startforfifth ==false) || (pauseforfifth==false && startforfifth==true)) 
+        												 if((pausefor5==false && startforfifth ==false) || (pausefor5==false && startforfifth==true)) 
         												 {
         													Indicator5JPanel.moveForward();
         													
@@ -4185,7 +4185,7 @@ public class Semafori extends JFrame {
     															
     													{
     														
-    														pauseforfirst=true;
+    														pausefor1=true;
     														startforfirst=false;
     													
         													
@@ -4193,20 +4193,20 @@ public class Semafori extends JFrame {
 
     													
     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforfirst==true)
+    													else if(pausefor1==true)
     													{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=true;
     													}
     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforfirst=false;
+    														pausefor1=false;
     														startforfirst=false;
     													}
     														
     												}else {
-    													pauseforfirst=false;
+    													pausefor1=false;
     													startforfirst=false;
     												}
     									
@@ -4224,21 +4224,21 @@ public class Semafori extends JFrame {
      															
      													{
      														
-     														pauseforfirstB=true;
+     														pausefor1B=true;
      														startforfirstB=false;
      													
          													
      													}
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pauseforfirstB==true)
+     													else if(pausefor1B==true)
      													{
-         													pauseforfirstB=false;
+         													pausefor1B=false;
          													startforfirstB=true;
      													}
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
      													else 
      													{
-     														pauseforfirstB=false;
+     														pausefor1B=false;
      														startforfirstB=false;
      													}
     												 }
@@ -4246,7 +4246,7 @@ public class Semafori extends JFrame {
     												else
     												{
 
-    													pauseforfirstB=false;
+    													pausefor1B=false;
     													startforfirstB=false;
 
     												}
@@ -4295,7 +4295,7 @@ public class Semafori extends JFrame {
     									
     												
     												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA A
-    												if(pauseforfirst==true && startforfirst==false) 
+    												if(pausefor1==true && startforfirst==false) 
     														 
     												{
     													temporaryValue1=Indicator1JPanel.getX();
@@ -4304,7 +4304,7 @@ public class Semafori extends JFrame {
 
     												}
     												
-    												 if(pauseforfirstB==true && startforfirstB==false) 
+    												 if(pausefor1B==true && startforfirstB==false) 
 														 
     												{
     													temporaryValue1B=Indicator1JPanel.getX();
@@ -4332,7 +4332,7 @@ public class Semafori extends JFrame {
     												
     												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
     												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO
-    												else if (i==299 && (pauseforfirst==true || pauseforfirstB==true))
+    												else if (i==299 && (pausefor1==true || pausefor1B==true))
     												{
     													i=0;
     													Indicator1JPanel.Reset(temporaryValue1);
@@ -4349,8 +4349,8 @@ public class Semafori extends JFrame {
 
     												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
     												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-      												 if( (pauseforfirst==false && startforfirst==false && pauseforfirstB==false && startforfirstB==false) ||
-      														 (pauseforfirst==false && startforfirst==true && pauseforfirstB==false && startforfirstB==true) )
+      												 if( (pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
+      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true) )
     												 {
     													Indicator1JPanel.moveForward();
     												}
@@ -4386,10 +4386,10 @@ public class Semafori extends JFrame {
     													i=0;
     												
     												//DEADLOCK
-    												if( (pauseforfirstB==true && (pauseforsecondB==true && pauseforthirdB==true) ||
-    													(pauseforfirst==true && (pauseforsecond==true && pauseforthird==true )) ||
-    													(pauseforsecondB==true && (pauseforthirdB==true && pauseforfirstB==true ) || 
-    													(pauseforsecond==true && (pauseforfirst==true && pauseforthird==true)) ) ))
+    												if( (pausefor1B==true && (pausefor2B==true && pausefor3B==true) ||
+    													(pausefor1==true && (pausefor2==true && pausefor3==true )) ||
+    													(pausefor2B==true && (pausefor3B==true && pausefor1B==true ) || 
+    													(pausefor2==true && (pausefor1==true && pausefor3==true)) ) ))
     												{
     													Thread deadlock = new Thread(new Runnable() {
     														@Override
@@ -4443,26 +4443,26 @@ public class Semafori extends JFrame {
     															Indicator2JPanel.getX()==iniziocritica3_2-1) 
     													{
     														
-    														pauseforsecond=true;
+    														pausefor2=true;
     														startforsecond=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecond==true)
+    													else if(pausefor2==true)
     													{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecond=false;
+    														pausefor2=false;
     														startforsecond=false;
     													}
 
     												}else 
     												{
-														pauseforsecond=false;
+														pausefor2=false;
 														startforsecond=false;
     												}
     												
@@ -4477,20 +4477,20 @@ public class Semafori extends JFrame {
     															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
     													{
     														
-    														pauseforsecondB=true;
+    														pausefor2B=true;
     														startforsecondB=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecondB==true)
+    													else if(pausefor2B==true)
     													{
-        													pauseforsecondB=false;
+        													pausefor2B=false;
         													startforsecondB=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecondB=false;
+    														pausefor2B=false;
     														startforsecondB=false;
     													}
     													
@@ -4498,7 +4498,7 @@ public class Semafori extends JFrame {
     												
     												else 
     												{
-														pauseforsecondB=false;
+														pausefor2B=false;
 														startforsecondB=false;
 													}
 
@@ -4549,7 +4549,7 @@ public class Semafori extends JFrame {
     										
 
     												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA A
-    												if(pauseforsecond==true && startforsecond==false)
+    												if(pausefor2==true && startforsecond==false)
     												{
     													temporaryValue2=Indicator2JPanel.getX();
     													Indicator2JPanel.Reset(temporaryValue2);
@@ -4559,7 +4559,7 @@ public class Semafori extends JFrame {
     												
     												
     												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA B
-    												 if(pauseforsecondB==true && startforsecondB==false)
+    												 if(pausefor2B==true && startforsecondB==false)
     												{
     													temporaryValue2B=Indicator2JPanel.getX();
     													Indicator2JPanel.Reset(temporaryValue2B);
@@ -4588,7 +4588,7 @@ public class Semafori extends JFrame {
     												
     												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
     												//ZONA CRITICA DEL PRIMO INDICATORE
-    												else if (i==299 && (pauseforsecond==true || pauseforsecondB==true))
+    												else if (i==299 && (pausefor2==true || pausefor2B==true))
     												{
     													i=0;
     													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -4602,8 +4602,8 @@ public class Semafori extends JFrame {
     													ripartenza[1]=0;
     												}
 
-     												 if( (startforsecond==false && pauseforsecond==false && startforsecondB==false && pauseforsecondB==false) ||
-     														(startforsecond==true && pauseforsecond==false && startforsecondB==true && pauseforsecondB==false) )
+     												 if( (startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
+     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false) )
     												 {
     													Indicator2JPanel.moveForward();
     												}	
@@ -4627,7 +4627,8 @@ public class Semafori extends JFrame {
     									threadmuovereIndicatore1.start();
     									threadmuovereIndicatore2.start();
     								}
-        								
+        							
+									//!3 Processi
     								else if(toggleButtonStartPause.isSelected() && NumProcessi==3)
     								{
     									timeToContinue=true;
@@ -4708,12 +4709,12 @@ public class Semafori extends JFrame {
     												{
     													
     													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA A
-    													if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 || 
-    															Indicator1JPanel.getX()==iniziocritica3_1-1)
+    													if(Indicator1JPanel.getX()==iniziocritica1_1 || Indicator1JPanel.getX()==iniziocritica2_1 || 
+    															Indicator1JPanel.getX()==iniziocritica3_1)
     															
     													{
     														
-    														pauseforfirst=true;
+    														pausefor1=true;
     														startforfirst=false;
     													
         													
@@ -4721,21 +4722,21 @@ public class Semafori extends JFrame {
 
     													
     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforfirst==true)
+    													else if(pausefor1==true)
     													{
-        													pauseforfirst=false;
+        													pausefor1=false;
         													startforfirst=true;
     													}
     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforfirst=false;
+    														pausefor1=false;
     														startforfirst=false;
     													}
     														
     												}else
     												{
-    													pauseforfirst=false;
+    													pausefor1=false;
     													startforfirst=false;
     												}
     									
@@ -4748,26 +4749,26 @@ public class Semafori extends JFrame {
     												 {
     													 
     													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA B
-     													if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 || 
-     															Indicator1JPanel.getX()==iniziocritica3B_1-1)
+     													if(Indicator1JPanel.getX()==iniziocritica1B_1 || Indicator1JPanel.getX()==iniziocritica2B_1 || 
+     															Indicator1JPanel.getX()==iniziocritica3B_1)
      															
      													{
      														
-     														pauseforfirstB=true;
+     														pausefor1B=true;
      														startforfirstB=false;
      													
          													
      													}
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pauseforfirstB==true)
+     													else if(pausefor1B==true)
      													{
-         													pauseforfirstB=false;
+         													pausefor1B=false;
          													startforfirstB=true;
      													}
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
      													else 
      													{
-     														pauseforfirstB=false;
+     														pausefor1B=false;
      														startforfirstB=false;
      													}
     												 }
@@ -4775,7 +4776,7 @@ public class Semafori extends JFrame {
     												else
     												{
 
-    													pauseforfirstB=false;
+    													pausefor1B=false;
     													startforfirstB=false;
 
     												}
@@ -4801,7 +4802,7 @@ public class Semafori extends JFrame {
      															
      													{
      														
-     														pauseforfirst=true;
+     														pausefor1=true;
      														startforfirst=false;
      													
          													
@@ -4809,53 +4810,53 @@ public class Semafori extends JFrame {
 
      													
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pauseforfirst==true)
+     													else if(pausefor1==true)
      													{
-         													pauseforfirst=false;
+         													pausefor1=false;
          													startforfirst=true;
      													}
      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
      													else 
      													{
-     														pauseforfirst=false;
+     														pausefor1=false;
      														startforfirst=false;
      													}
      														
      												}else 
      												{
-     													pauseforfirst=false;
+     													pausefor1=false;
      													startforfirst=false;
      												}
      									
      												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 3 SI TROVA IN ZONA CRITICA B
      									
      												//SE L'INDICATORE 3 SI TROVA IN UNA DELLE ZONE CRITICHE B
-     												 if((Indicator3JPanel.getX()>=iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
+     												 if((Indicator3JPanel.getX()>iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
+     														(Indicator3JPanel.getX()>iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
+     														(Indicator3JPanel.getX()>iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
      												 {
      													 
      													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA B
-      													if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 || 
-      															Indicator1JPanel.getX()==iniziocritica3B_1-1)
+      													if(Indicator1JPanel.getX()==iniziocritica1B_1 || Indicator1JPanel.getX()==iniziocritica2B_1 || 
+      															Indicator1JPanel.getX()==iniziocritica3B_1)
       															
       													{
       														
-      														pauseforfirstB=true;
+      														pausefor1B=true;
       														startforfirstB=false;
       													
           													
       													}
       													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pauseforfirstB==true)
+      													else if(pausefor1B==true)
       													{
-          													pauseforfirstB=false;
+          													pausefor1B=false;
           													startforfirstB=true;
       													}
       													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
       													else 
       													{
-      														pauseforfirstB=false;
+      														pausefor1B=false;
       														startforfirstB=false;
       													}
      												 }
@@ -4863,7 +4864,7 @@ public class Semafori extends JFrame {
      												 else 
      												{
 
-     													pauseforfirstB=false;
+     													pausefor1B=false;
      													startforfirstB=false;
 
      												}
@@ -4913,8 +4914,7 @@ public class Semafori extends JFrame {
     									
     												
     												//E' IL MOMENTO DI FERMARE IL PRIMO INDICATORE PERCHE' IL SECONDO E' IN ZONA CRITICA A
-    												if(pauseforfirst==true && startforfirst==false) 
-    														 
+    												if(pausefor1==true && startforfirst==false) 	 
     												{
     													temporaryValue1=Indicator1JPanel.getX();
     													Indicator1JPanel.Reset(temporaryValue1);
@@ -4922,7 +4922,7 @@ public class Semafori extends JFrame {
 
     												}
     												
-    												 if(pauseforfirstB==true && startforfirstB==false) 
+    												 if(pausefor1B==true && startforfirstB==false) 
 														 
     												{
     													temporaryValue1B=Indicator1JPanel.getX();
@@ -4950,7 +4950,7 @@ public class Semafori extends JFrame {
     												
     												//L'INDICE DEL PRIMO INDICATORE E' ARRIVATO A 300 MA IL PRIMO INDICATORE
     												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO
-    												else if (i==299 && (pauseforfirst==true || pauseforfirstB==true))
+    												else if (i==299 && (pausefor1==true || pausefor1B==true))
     												{
     													i=0;
     													Indicator1JPanel.Reset(temporaryValue1);
@@ -4967,8 +4967,8 @@ public class Semafori extends JFrame {
 
     												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
     												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-      												 if( (pauseforfirst==false && startforfirst==false && pauseforfirstB==false && startforfirstB==false) ||
-      														 (pauseforfirst==false && startforfirst==true && pauseforfirstB==false && startforfirstB==true) )
+      												 if( (pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
+      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true) )
     												 {
     													Indicator1JPanel.moveForward();
     												}
@@ -5014,30 +5014,30 @@ public class Semafori extends JFrame {
     												{		
     													
     													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA A 
-    													if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3_2-1) 
+    													if(Indicator2JPanel.getX()==iniziocritica1_2|| Indicator2JPanel.getX()==iniziocritica2_2 || 
+    															Indicator2JPanel.getX()==iniziocritica3_2) 
     													{
     														
-    														pauseforsecond=true;
+    														pausefor2=true;
     														startforsecond=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecond==true)
+    													else if(pausefor2==true)
     													{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecond=false;
+    														pausefor2=false;
     														startforsecond=false;
     													}
 
     												}else 
     												{
-														pauseforsecond=false;
+														pausefor2=false;
 														startforsecond=false;
     												}
     												
@@ -5050,24 +5050,24 @@ public class Semafori extends JFrame {
     												{
     													
     													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA  B
-    													if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
+    													if(Indicator2JPanel.getX()==iniziocritica1B_2 || Indicator2JPanel.getX()==iniziocritica2B_2 || 
+    															Indicator2JPanel.getX()==iniziocritica3B_2) 
     													{
     														
-    														pauseforsecondB=true;
+    														pausefor2B=true;
     														startforsecondB=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecondB==true)
+    													else if(pausefor2B==true)
     													{
-        													pauseforsecondB=false;
+        													pausefor2B=false;
         													startforsecondB=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecondB=false;
+    														pausefor2B=false;
     														startforsecondB=false;
     													}
     													
@@ -5075,7 +5075,7 @@ public class Semafori extends JFrame {
     												
     												else
     												{
-														pauseforsecondB=false;
+														pausefor2B=false;
 														startforsecondB=false;
 													}
 
@@ -5094,27 +5094,27 @@ public class Semafori extends JFrame {
     															Indicator2JPanel.getX()==iniziocritica3_2-1) 
     													{
     														
-    														pauseforsecond=true;
+    														pausefor2=true;
     														startforsecond=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecond==true)
+    													else if(pausefor2==true)
     													{
-        													pauseforsecond=false;
+        													pausefor2=false;
         													startforsecond=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecond=false;
+    														pausefor2=false;
     														startforsecond=false;
     													}
 
     												}else 
     												{
     													
-														pauseforsecond=false;
+														pausefor2=false;
 														startforsecond=false;
     												}
     												
@@ -5132,20 +5132,20 @@ public class Semafori extends JFrame {
     															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
     													{
     														
-    														pauseforsecondB=true;
+    														pausefor2B=true;
     														startforsecondB=false;
         													
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pauseforsecondB==true)
+    													else if(pausefor2B==true)
     													{
-        													pauseforsecondB=false;
+        													pausefor2B=false;
         													startforsecondB=true;
     													}
     													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
     													else 
     													{
-    														pauseforsecondB=false;
+    														pausefor2B=false;
     														startforsecondB=false;
     													}
     													
@@ -5153,7 +5153,7 @@ public class Semafori extends JFrame {
     												
     												else 
     												{
-														pauseforsecondB=false;
+														pausefor2B=false;
 														startforsecondB=false;
 													}
 
@@ -5205,7 +5205,7 @@ public class Semafori extends JFrame {
     										
 
     												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA A
-    												if(pauseforsecond==true && startforsecond==false)
+    												if(pausefor2==true && startforsecond==false)
     												{
     													temporaryValue2=Indicator2JPanel.getX();
     													Indicator2JPanel.Reset(temporaryValue2);
@@ -5215,7 +5215,7 @@ public class Semafori extends JFrame {
     												
     												
     												//E' IL MOMENTO DI FERMARE IL SECONDO INDICATORE PERCHE' IL PRIMO E' IN ZONA CRITICA B
-    												 if(pauseforsecondB==true && startforsecondB==false)
+    												 if(pausefor2B==true && startforsecondB==false)
     												{
     													temporaryValue2B=Indicator2JPanel.getX();
     													Indicator2JPanel.Reset(temporaryValue2B);
@@ -5244,7 +5244,7 @@ public class Semafori extends JFrame {
     												
     												//L'INDICE i HA RAGGIUNTO I 300 MA L'INDICATORE DUE SI TROVA IN PAUSA PER
     												//ZONA CRITICA DEL PRIMO INDICATORE
-    												else if (i==299 && (pauseforsecond==true || pauseforsecondB==true))
+    												else if (i==299 && (pausefor2==true || pausefor2B==true))
     												{
     													i=0;
     													Indicator2JPanel.Reset(Indicator2JPanel.getX());
@@ -5258,8 +5258,8 @@ public class Semafori extends JFrame {
     													ripartenza[1]=0;
     												}
 
-     												 if( (startforsecond==false && pauseforsecond==false && startforsecondB==false && pauseforsecondB==false) ||
-     														(startforsecond==true && pauseforsecond==false && startforsecondB==true && pauseforsecondB==false) )
+     												 if( (startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
+     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false) )
     												 {
     													Indicator2JPanel.moveForward();
     												}	
@@ -5290,16 +5290,60 @@ public class Semafori extends JFrame {
     											for(int i=0; i<300; i++) 
     											{	
     												if(i==299)
-    													i=0;
+													{
+														i=0;	
+													}
+    													
     												
     												
-    												// se c'è la pausa per un qualsiasi elemento del primo && un qualsiasi elemento del secondo && un qualsiasi elemento del terzo --> deadlock 
+    												// se c'e la pausa per un qualsiasi elemento del primo && un qualsiasi elemento del secondo && un qualsiasi elemento del terzo --> deadlock 
     												//DEADLOCK
-    												if ( 	  (pauseforfirst==true && startforfirst==false) || (pauseforfirstB==true && startforfirstB==false)  && 
-    														  (pauseforsecond==true && startforsecond==false) || (pauseforsecondB==true && startforsecondB==false) &&
-    														  (pauseforthird==true && startforthird==false) || (pauseforthirdB==true && startforthirdB==false) || 
-    														  
-    															)
+													boolean deadlockFlag=false;
+    												//  !P1 Deadlock
+													if (pausefor1B == false && pausefor1 == false)
+													{
+														//Non fare niente
+													}
+													
+													else if( (pausefor1B==false && pausefor1 ==true) && ( (pausefor3B ==true && pausefor3==false) ||(pausefor2B==true && pausefor2==false)))
+													{
+														deadlockFlag=true;
+													}
+													else if ((pausefor1B==true && pausefor1==false) && ((pausefor3B==false && pausefor3==true)||(pausefor2B==false && pausefor2==true)))
+													{
+														deadlockFlag=true;
+													}
+													
+													//  !Processo 2
+													if (pausefor2 == false && pausefor2B == false)
+													{
+														//Non fare niente
+													}
+													else if( (pausefor2B==false && pausefor2==true) && ((pausefor1B==true && pausefor1==false)||(pausefor3B==true && pausefor3==false)))
+													{
+														deadlockFlag=true;
+													}
+													else if ((pausefor2B==true && pausefor2==false) && ((pausefor1B==false && pausefor1==true)||(pausefor3B==false && pausefor3==true)))
+													{
+														deadlockFlag=true;
+													}
+													
+													//  !Processo 3
+													if (pausefor3 == false && pausefor3B == false)
+													{
+														//Non fare niente
+													}
+													else if( (pausefor3B ==false && pausefor3 ==true) && ((pausefor1B == true && pausefor1 ==false)||(pausefor2B==true && pausefor2==false)))
+													{
+														deadlockFlag=true;
+													}
+													else if ((pausefor3B==true && pausefor3==false) && ((pausefor1B==false && pausefor1==true)||(pausefor2B==false && pausefor2==true)))
+													{
+														deadlockFlag=true;
+													} 
+													 
+													
+													if(deadlockFlag)
     												{
     													Thread deadlock = new Thread(new Runnable() {
     														@Override
@@ -5336,7 +5380,7 @@ public class Semafori extends JFrame {
     														}
     													});
     													deadlock.start();
-
+														deadlockFlag=false;
     													break;
     												}
     												
@@ -5352,12 +5396,12 @@ public class Semafori extends JFrame {
      												{
      													
      													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA A
-     													if(Indicator3JPanel.getX()==iniziocritica1_3-1 || Indicator3JPanel.getX()==iniziocritica2_3-1 || 
-     															Indicator3JPanel.getX()==iniziocritica3_3-1)
+     													if(Indicator3JPanel.getX()==iniziocritica1_3 || Indicator3JPanel.getX()==iniziocritica2_3 || 
+     															Indicator3JPanel.getX()==iniziocritica3_3)
      															
      													{
      														
-     														pauseforthird=true;
+     														pausefor3=true;
      														startforthird=false;
      													
          													
@@ -5365,21 +5409,21 @@ public class Semafori extends JFrame {
 
      													
      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pauseforthird==true)
+     													else if(pausefor3==true)
      													{
-         													pauseforthird=false;
+         													pausefor3=false;
          													startforthird=true;
      													}
      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
      													else 
      													{
-     														pauseforthird=false;
+     														pausefor3=false;
      														startforthird=false;
      													}
      											
      												}else
      												{
-     													pauseforthird=false;
+     													pausefor3=false;
      													startforthird=false;
      												}
      												
@@ -5396,12 +5440,12 @@ public class Semafori extends JFrame {
       												{
       													
       													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA B
-      													if(Indicator3JPanel.getX()==iniziocritica1B_3-1 || Indicator3JPanel.getX()==iniziocritica2B_3-1 || 
-      															Indicator3JPanel.getX()==iniziocritica3B_3-1)
+      													if(Indicator3JPanel.getX()==iniziocritica1B_3 || Indicator3JPanel.getX()==iniziocritica2B_3 || 
+      															Indicator3JPanel.getX()==iniziocritica3B_3)
       															
       													{
       														
-      														pauseforthirdB=true;
+      														pausefor3B=true;
       														startforthirdB=false;
       													
           													
@@ -5409,21 +5453,21 @@ public class Semafori extends JFrame {
 
       													
       													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pauseforthirdB==true)
+      													else if(pausefor3B==true)
       													{
-          													pauseforthirdB=false;
+          													pausefor3B=false;
           													startforthirdB=true;
       													}
       													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
       													else 
       													{
-      														pauseforthirdB=false;
+      														pausefor3B=false;
       														startforthirdB=false;
       													}
       														
       												}else
       												{
-      													pauseforthirdB=false;
+      													pausefor3B=false;
       													startforthirdB=false;
       												}
      												 
@@ -5447,21 +5491,21 @@ public class Semafori extends JFrame {
       															
       													{
       														
-      														pauseforthirdB=true;
+      														pausefor3B=true;
       														startforthirdB=false;
       													
           													
       													}
       													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pauseforthirdB==true)
+      													else if(pausefor3B==true)
       													{
-          													pauseforthirdB=false;
+          													pausefor3B=false;
           													startforthirdB=true;
       													}
       													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
       													else 
       													{
-      														pauseforthirdB=false;
+      														pausefor3B=false;
       														startforthirdB=false;
       													}
      												 }
@@ -5469,7 +5513,7 @@ public class Semafori extends JFrame {
      												else 
      												{
 
-     													pauseforthirdB=false;
+     													pausefor3B=false;
      													startforthirdB=false;
 
      												}
@@ -5522,7 +5566,7 @@ public class Semafori extends JFrame {
     												
 
     												//E' IL MOMENTO DI FERMARE IL TERZO INDICATORE PERCHE' IL SECONDO O IL PRIMO SONO IN ZONA CRITICA
-    												if(pauseforthird==true && startforthird==false) {
+    												if(pausefor3==true && startforthird==false) {
     													temporaryValue3=Indicator3JPanel.getX();
     													Indicator3JPanel.Reset(temporaryValue3);
     													BaseProgressBar3JPanel.repaint();
@@ -5530,7 +5574,7 @@ public class Semafori extends JFrame {
     												}
     												
     												
-    												if(pauseforthirdB==true && startforthirdB==false) {
+    												if(pausefor3B==true && startforthirdB==false) {
     													temporaryValue3B=Indicator3JPanel.getX();
     													Indicator3JPanel.Reset(temporaryValue3B);
     													BaseProgressBar3JPanel.repaint();
@@ -5558,7 +5602,7 @@ public class Semafori extends JFrame {
     												
     												//L'INDICE i DEL TERZO INDICATORE E' ARRIVATO A 300 MA
     												//SI TROVA IN PAUSA PER ZONA CRITICA DEL SECONDO O PRIMO
-    												else if (i==299 && (pauseforthird==true || pauseforthirdB))
+    												else if (i==299 && (pausefor3==true || pausefor3B))
     												{
     													i=0;
     													Indicator3JPanel.Reset(temporaryValue3);
@@ -5574,8 +5618,8 @@ public class Semafori extends JFrame {
     												}
 
     												//QUANDO SI MUOVE L'INDICATORE
-    												 if( (startforthird==false && pauseforthird==false && startforthirdB==false && pauseforthirdB==false) ||
-      														(startforthird==true && pauseforthird==false && startforthirdB==true && pauseforthirdB==false) ) 
+    												 if( (startforthird==false && pausefor3==false && startforthirdB==false && pausefor3B==false) ||
+      														(startforthird==true && pausefor3==false && startforthirdB==true && pausefor3B==false) ) 
     												 {
     													Indicator3JPanel.moveForward();
     													
