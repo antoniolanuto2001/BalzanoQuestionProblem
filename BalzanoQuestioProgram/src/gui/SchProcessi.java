@@ -3844,7 +3844,6 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		for(int a=0;a<waiting.size();a++) wtTotal+=waiting.get(a);
 		
        	averageRR=(float) (wtTotal) / (float)numeroProcessi;
-      // 	averageRR=AverageRR(lineaRR);
 		return arrayRitorno;
 	}
 }
