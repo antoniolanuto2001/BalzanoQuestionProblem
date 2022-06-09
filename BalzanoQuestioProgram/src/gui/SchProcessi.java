@@ -59,6 +59,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
+
+import javax.print.attribute.standard.PrinterInfo;
 import javax.swing.Box;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -395,7 +397,7 @@ public SchProcessi(JFrame framechiamante) {
 	
 			JLabel labelDatoTAMRR = new JLabel("");
 				labelDatoTAMRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-				labelDatoTAMRR.setBounds(700, 1, 45, 25);
+				labelDatoTAMRR.setBounds(705, 1, 45, 25);
 				pannelloRR.add(labelDatoTAMRR);
 				
 			JLabel labelCDCRR = new JLabel("Cambi di contesto: ");
@@ -3731,7 +3733,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 					puoiCambiareTuIlTempo=false;
 					readyCoda.add(processoDaScalare);
 				}
-				else if(quantum>1)
+				else if(quantum>=1)
 				{
 					if (processoDaScalare.finito==false) 
 					{
@@ -3795,10 +3797,11 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 			}
 			z=z+2;
 		}
-		
+		ProcessAverage nuovo = new ProcessAverage(9999,100);
+		arrayProcessiNuovi.add(nuovo);
 		
 		ProcessAverage[] linea = new ProcessAverage[arrayProcessiNuovi.size()];
-
+	
 		for(int l=0;l<arrayProcessiNuovi.size();l++) {  
 				
 			linea[l]=arrayProcessiNuovi.get(l);
@@ -3807,24 +3810,42 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		Arrays.sort(linea);
 		
 		ArrayList<Integer> waiting= new ArrayList<Integer>();
+		
+		
+		for(int l=0;l<linea.length;l++) {
+			
+			if(linea[l].getNomeProcesso()==100)break;
+			int procAttual=linea[l].getNomeProcesso();
+			int m=0;
+			while(lineaRR[m].getProcesso()!=procAttual)m++;
+			int tempoArrivo=lineaRR[m].getArrivo();
+			int temposervizio=0;
+			
+			while(procAttual==linea[l+1].getNomeProcesso()) {
+				l++;
+				temposervizio++;
+			}
+			int tc=(linea[l].getArrivo()+1)-tempoArrivo;
+			//System.out.println(tc+"="+linea[l].getArrivo()+"+1-"+tempoArrivo);
+
+			int ta=tc-(temposervizio+1);
+			//System.out.println(ta+"="+tc+"-"+temposervizio+"+1");
+
+			waiting.add(ta);
+		}
+/*		
+		System.out.println();
 		for(int l=0;l<linea.length;l++) {
 			System.out.print(" "+linea[l].getNomeProcesso());
-			int k=l;
-			int durataTot=0;
-			if((k+1)>=linea[l].getNomeProcesso()) {
-				int ct=(linea[k].getArrivo())+1-linea[l].getArrivo()-durataTot;
-				waiting.add(ct);
-			}else {
-				while(linea[k].getNomeProcesso()==linea[k+1].getNomeProcesso()) {
-					k++;
-					if(k>=linea[l].getNomeProcesso())break;
-					durataTot++;
-				}
-				int ct=(linea[k].getArrivo())+1-linea[l].getArrivo()-durataTot;
-				waiting.add(ct);
-			}
 		}
-		
+		System.out.println();
+
+		for(int l=0;l<linea.length;l++) {
+			System.out.print(" "+linea[l].getArrivo());
+		}
+		System.out.println();
+*/
+		//for(int p=0;p<waiting.size();p++) System.out.print(" "+waiting.get(p));
 		float wtTotal=0;
 		for(int a=0;a<waiting.size();a++) wtTotal+=waiting.get(a);
 		
