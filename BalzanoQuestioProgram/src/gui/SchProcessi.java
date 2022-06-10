@@ -68,6 +68,7 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.CaretEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.Toolkit;
 
 
 public class SchProcessi extends JFrame {
@@ -108,6 +109,8 @@ public class SchProcessi extends JFrame {
 	int flag=0;
 
 public SchProcessi(JFrame framechiamante) {
+	setIconImage(Toolkit.getDefaultToolkit().getImage(SchProcessi.class.getResource("/img/logoUninaIcon2.png")));
+
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(50, 0, 1440, 800);
@@ -118,6 +121,7 @@ public SchProcessi(JFrame framechiamante) {
 		setTitle("Operating Systems Simulator : Scheduling della CPU");
 		frame.setResizable(false);
 		setLocationRelativeTo(null);
+		
 
 /**							PANNELLO PRINCIPALE								*/
 		JPanel pannelloPrincipale = new JPanel();
