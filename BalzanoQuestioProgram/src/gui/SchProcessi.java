@@ -143,13 +143,16 @@ public SchProcessi(JFrame framechiamante) {
 	        labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
 	        labelIndietroIcon.setBounds(10, 78, 53, 46);
 	        pannelloPrincipale.add(labelIndietroIcon);
+	        labelIndietroIcon.setToolTipText("Torna alla schermata principale");
 	        
 	        JLabel labelScrittaYoutube = new JLabel("Lezione");
 	        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	        labelScrittaYoutube.setBounds(80, 120, 50, 12);
 	        pannelloPrincipale.add(labelScrittaYoutube);
+	        
 	        JLabel labelYoutubeIcon = new JLabel("");
+	        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
 	        labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelYoutubeIcon.addMouseListener(new MouseAdapter() {
 	        	@Override
@@ -183,6 +186,8 @@ public SchProcessi(JFrame framechiamante) {
 	        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
 	        labelScrittaSlide.setBounds(156, 119, 40, 15);
 	        pannelloPrincipale.add(labelScrittaSlide);
+	        labelScrittaSlide.setToolTipText("Slide dell'argomento trattato");
+
 	        JLabel labelSlideIcon = new JLabel("");
 	        labelSlideIcon.setHorizontalAlignment(SwingConstants.CENTER);
 	        labelSlideIcon.addMouseListener(new MouseAdapter() {
@@ -263,6 +268,7 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneFCFS.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneFCFS.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				chckbxMostraSoluzioneFCFS.setBounds(513, 1, 150, 25);
+				chckbxMostraSoluzioneFCFS.setToolTipText("Seleziona per mostrare la soluzione dell'algoritmo");
 				pannelloFCFS.add(chckbxMostraSoluzioneFCFS);
 			
 			JLabel labelTAMFCFS = new JLabel("Tempo di attesa medio:");
@@ -304,6 +310,7 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneSJF.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneSJF.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				chckbxMostraSoluzioneSJF.setBounds(513, 1, 150, 25);
+				chckbxMostraSoluzioneSJF.setToolTipText("Seleziona per mostrare la soluzione dell'algoritmo");
 				pannelloSJF.add(chckbxMostraSoluzioneSJF);
 			
 			JLabel labelTAMSJF = new JLabel("Tempo di attesa medio:");
@@ -345,6 +352,7 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneSJFP.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneSJFP.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				chckbxMostraSoluzioneSJFP.setBounds(513, 1, 150, 25);
+				chckbxMostraSoluzioneSJFP.setToolTipText("Seleziona per mostrare la soluzione dell'algoritmo");
 				pannelloSJFP.add(chckbxMostraSoluzioneSJFP);
 			
 			JLabel labelTAMSJFP = new JLabel("Tempo di attesa medio:");
@@ -386,6 +394,7 @@ public SchProcessi(JFrame framechiamante) {
 				chckbxMostraSoluzioneRR.setHorizontalAlignment(SwingConstants.CENTER);
 				chckbxMostraSoluzioneRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				chckbxMostraSoluzioneRR.setBounds(400, 1, 150, 25);
+				chckbxMostraSoluzioneRR.setToolTipText("Seleziona per mostrare la soluzione dell'algoritmo");
 				pannelloRR.add(chckbxMostraSoluzioneRR);
 			
 			JLabel labelTAMRR = new JLabel("Tempo di attesa medio:");
@@ -420,6 +429,7 @@ public SchProcessi(JFrame framechiamante) {
 				comboBoxQRR.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 				comboBoxQRR.setBackground(Color.WHITE);
 				comboBoxQRR.setBounds(980, 1, 73, 21);
+				comboBoxQRR.setToolTipText("Quanto di tempo disponibile per processo");
 				pannelloRR.add(comboBoxQRR);
 			
 /**						PANNELLI CON GRAFICO CARTESIANO						*/			
@@ -501,6 +511,7 @@ public SchProcessi(JFrame framechiamante) {
 			comboBoxSceltaNProcessi.setModel(new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4", "5", "6"}));
 			comboBoxSceltaNProcessi.setSelectedIndex(2);
 			comboBoxSceltaNProcessi.setBounds(165, 2, 70, 21);
+			comboBoxSceltaNProcessi.setToolTipText("Seleziona il numero di processi in entrata");
 			pannelloEDITOR.add(comboBoxSceltaNProcessi);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
@@ -510,6 +521,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			labelMostraSoluzioni.setBounds(46, 300, 79, 35);
 			labelMostraSoluzioni.setIcon(new ImageIcon(Hashing.class.getResource("/img/playIcon2.png")));
+			labelMostraSoluzioni.setToolTipText("Clicca per generare tutte le soluzioni");
 			pannelloEDITOR.add(labelMostraSoluzioni);
 			
 		JLabel labelFastForwardPiu = new JLabel("");
@@ -518,6 +530,7 @@ public SchProcessi(JFrame framechiamante) {
 			labelFastForwardPiu.setEnabled(false);
 			labelFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
 			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+			labelFastForwardPiu.setToolTipText("Clicca per mostrare le soluzioni passo dopo passo");
 			labelFastForwardPiu.setBounds(137, 300, 70, 35);
 			pannelloEDITOR.add(labelFastForwardPiu);
 			
@@ -821,11 +834,13 @@ public SchProcessi(JFrame framechiamante) {
 			btnGenera.setFont(new Font("Segoe UI", Font.BOLD, 15));
 			btnGenera.setBorder(new LineBorder(new Color(100, 181, 246), 4));
 			btnGenera.setOpaque(true);
+			btnGenera.setToolTipText("Genera tabella dei processi");
 			
 		JCheckBox chckbxGriglia = new JCheckBox("Griglia");
 			chckbxGriglia.setBounds(10, 280, 98, 21);
 			pannelloEDITOR.add(chckbxGriglia);
 			chckbxGriglia.setSelected(true);
+			chckbxGriglia.setToolTipText("Selezeiona per mostrare griglia grafico cartesiano");
 			chckbxGriglia.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 			
 

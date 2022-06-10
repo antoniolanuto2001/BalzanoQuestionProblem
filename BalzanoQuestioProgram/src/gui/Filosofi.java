@@ -370,6 +370,7 @@ public class Filosofi extends JFrame {
         radioCoda.setFont(new Font("Tahoma", Font.PLAIN, 14));
         groupSceltaStrategiaFilosofi.add(radioCoda);
         
+        
         JRadioButton radioAtomico = new JRadioButton("Schema Atomico");
         radioAtomico.setBounds(6,85, 175, 36);
         panelModalita.add(radioAtomico);
@@ -674,10 +675,11 @@ public class Filosofi extends JFrame {
         panelVelocita.add(labelSliderMangia);
         labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 14));
         
-        JLabel labelVelocit = new JLabel("   Velocità  :");
+        JLabel labelVelocit = new JLabel("   Velocita'\u00A0  :");
+        labelVelocit.setHorizontalAlignment(SwingConstants.CENTER);
         labelVelocit.setForeground(Color.RED);
         labelVelocit.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        labelVelocit.setBounds(82, 317, 118, 25);
+        labelVelocit.setBounds(14, 317, 245, 25);
         panelDiControllo.add(labelVelocit);
         
         JLabel labelCtrl = new JLabel("Pannello Di Controllo");
@@ -715,7 +717,8 @@ public class Filosofi extends JFrame {
         labelIndietroIcon.setBounds(18, 86, 32, 32);
         panelMainButton.add(labelIndietroIcon);
         
-        JLabel labelScrittaYoutube = new JLabel("Video Lezione");
+        JLabel labelScrittaYoutube = new JLabel("Lezione");
+        labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
         labelScrittaYoutube.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelScrittaYoutube.setBounds(918, 132, 82, 12);
         panelMainButton.add(labelScrittaYoutube);
@@ -749,7 +752,8 @@ public class Filosofi extends JFrame {
         labelYoutubeIcon.setBounds(933, 84, 53, 46);
         panelMainButton.add(labelYoutubeIcon);
         
-        JLabel labelScrittaSlide = new JLabel("Slide Argomento");
+        JLabel labelScrittaSlide = new JLabel("Slide");
+        labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
         labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
         labelScrittaSlide.setBounds(1007, 132, 95, 15);
         panelMainButton.add(labelScrittaSlide);
@@ -782,6 +786,11 @@ public class Filosofi extends JFrame {
         labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
         labelSlideIcon.setBounds(1027, 84, 53, 46);
         panelMainButton.add(labelSlideIcon);
+        
+        
+        labelIndietroIcon.setToolTipText("Torna alla schermata principale");
+        labelSlideIcon.setToolTipText("Slide dell'argomento trattato");
+        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
         
         JScrollPane scrollPaneHelp = new JScrollPane();
         scrollPaneHelp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);

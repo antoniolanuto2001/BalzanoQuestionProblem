@@ -135,6 +135,7 @@ public class SchHD extends JFrame {
 			btnGeneraEsercizio.setBounds(16, 160, 224, 34);
 			btnGeneraEsercizio.setOpaque(true);
 			pannelloParametri.add(btnGeneraEsercizio);
+			btnGeneraEsercizio.setToolTipText("Genera coda delle richieste e posizione iniziale testina");
 			
 		JComboBox comboBoxSceltaNCilindri = new JComboBox();
 			comboBoxSceltaNCilindri.setModel(new DefaultComboBoxModel(new String[] {"50", "100", "200", "400", "500", "600", "800", "1000"}));
@@ -143,6 +144,7 @@ public class SchHD extends JFrame {
 			comboBoxSceltaNCilindri.setBackground(Color.WHITE);
 			comboBoxSceltaNCilindri.setBounds(145, 125, 95, 22);
 			pannelloParametri.add(comboBoxSceltaNCilindri);
+			comboBoxSceltaNCilindri.setToolTipText("Seleziona il numero di cilindri disponibili");
 			
 		JLabel labelPosizione = new JLabel("Numero Cilindri  :");
 			labelPosizione.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -150,6 +152,7 @@ public class SchHD extends JFrame {
 			pannelloParametri.add(labelPosizione);
 		
 		JLabel labelMostraSoluzioni = new JLabel("");
+			labelMostraSoluzioni.setToolTipText("Clicca per generare tutte le soluzioni");
 			labelMostraSoluzioni.setEnabled(false);
 			labelMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
 			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -168,6 +171,7 @@ public class SchHD extends JFrame {
 			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 25));
 			labelFastForwardPiu.setBounds(179, 210, 52, 35);
 			pannelloParametri.add(labelFastForwardPiu);
+			labelFastForwardPiu.setToolTipText("Clicca per mostrare le soluzioni passo dopo passo");
 			
 		JLabel labelFastForwardMeno = new JLabel("");
 			labelFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
@@ -178,6 +182,7 @@ public class SchHD extends JFrame {
 			//btnFastForwardMeno.setBorder(new LineBorder(Color.black,2));
 			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
 			pannelloParametri.add(labelFastForwardMeno);
+			labelFastForwardMeno.setToolTipText("Clicca per mostrare le soluzioni passo dopo passo");
 			
 		JTextField textFieldRichieste = new JTextField();
 			textFieldRichieste.setHorizontalAlignment(SwingConstants.CENTER);
@@ -258,6 +263,7 @@ public class SchHD extends JFrame {
 			labelIndietroIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/back-button.png")));
 			labelIndietroIcon.setBounds(10, 78, 53, 46);
 			panelMainButton.add(labelIndietroIcon);
+	        labelIndietroIcon.setToolTipText("Torna alla schermata principale");
 
 		JLabel labelScrittaYoutube = new JLabel("Lezione");
 			labelScrittaYoutube.setHorizontalAlignment(SwingConstants.CENTER);
@@ -266,6 +272,7 @@ public class SchHD extends JFrame {
 			panelMainButton.add(labelScrittaYoutube);
 		
 		JLabel labelYoutubeIcon = new JLabel("");
+        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
 			labelYoutubeIcon.setHorizontalAlignment(SwingConstants.CENTER);
 			labelYoutubeIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/youtubeIcon2.png")));
 			labelYoutubeIcon.setBounds(80, 75, 47, 46);
@@ -300,6 +307,7 @@ public class SchHD extends JFrame {
 			panelMainButton.add(labelScrittaSlide);
 			
 		JLabel labelSlideIcon = new JLabel("");
+        labelScrittaSlide.setToolTipText("Slide dell'argomento trattato");
 			labelSlideIcon.setIcon(new ImageIcon(SchHD.class.getResource("/img/pdfIcon1.png")));
 			labelSlideIcon.setBounds(150, 75, 53, 46);
 			panelMainButton.add(labelSlideIcon);
@@ -430,6 +438,7 @@ public class SchHD extends JFrame {
 					chckbxSCAN.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					chckbxSCAN.setBounds(0, 95, 98, 21);
 					pannelloSCAN.add(chckbxSCAN);
+					chckbxSCAN.setToolTipText("Seleziona per mostrare l'algoritmo C-Scan");
 					
 				JLabel labelDirezioneSCAN = new JLabel("direzione");
 					labelDirezioneSCAN.setHorizontalAlignment(SwingConstants.CENTER);
@@ -442,6 +451,7 @@ public class SchHD extends JFrame {
 					rdbtnDestraSCAN.setEnabled(false);
 					rdbtnDestraSCAN.setBounds(90, 120, 23, 21);
 					pannelloSCAN.add(rdbtnDestraSCAN);
+					rdbtnDestraSCAN.setToolTipText("Direzione destra");
 					
 				JRadioButton rdbtnSinistraSCAN = new JRadioButton("");
 					rdbtnSinistraSCAN.setSelected(true);
@@ -449,6 +459,7 @@ public class SchHD extends JFrame {
 					rdbtnSinistraSCAN.setEnabled(false);
 					rdbtnSinistraSCAN.setBounds(0, 120, 23, 21);
 					pannelloSCAN.add(rdbtnSinistraSCAN);
+					rdbtnSinistraSCAN.setToolTipText("Direzione sinistra");
 			
 	//PANNELLO LOOK
 		JPanel pannelloLOOK = new JPanel();
@@ -485,7 +496,8 @@ public class SchHD extends JFrame {
 					chckbxLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					chckbxLOOK.setBounds(0, 95, 98, 20);
 					pannelloLOOK.add(chckbxLOOK);
-					
+					chckbxLOOK.setToolTipText("Seleziona per mostrare l'algoritmo C-Look");
+
 				JLabel labelDirezioneLOOK = new JLabel("direzione");
 					labelDirezioneLOOK.setHorizontalAlignment(SwingConstants.CENTER);
 					labelDirezioneLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -497,14 +509,16 @@ public class SchHD extends JFrame {
 					rdbtnDestraLOOK.setEnabled(false);
 					rdbtnDestraLOOK.setBounds(90, 120, 23, 21);
 					pannelloLOOK.add(rdbtnDestraLOOK);
-					
+					rdbtnDestraLOOK.setToolTipText("Direzione destra");
+
 				JRadioButton rdbtnSinistraLOOK = new JRadioButton("");
 					rdbtnSinistraLOOK.setSelected(true);
 					rdbtnSinistraLOOK.setFont(new Font("Times New Roman", Font.PLAIN, 15));
 					rdbtnSinistraLOOK.setEnabled(false);
 					rdbtnSinistraLOOK.setBounds(0, 120, 23, 21);
 					pannelloLOOK.add(rdbtnSinistraLOOK);
-					
+					rdbtnSinistraLOOK.setToolTipText("Direzione sinistra");
+
 /**--------------------------------IMPLEMENTAZIONE EVENTI-------------------------------------------*/
 			
 	//EVENTO BOTTONE GENERA ESERCIZIO

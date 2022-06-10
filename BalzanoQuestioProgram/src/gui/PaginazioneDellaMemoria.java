@@ -122,7 +122,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        labelYoutubeIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/youtubeIcon2.png")));
 		        labelYoutubeIcon.setBounds(105, 75, 53, 46);
 		        pannelloPrincipale.add(labelYoutubeIcon);
-		        
+
 	        JLabel labelScrittaSlide = new JLabel("Slide");
 	        	labelScrittaSlide.setHorizontalAlignment(SwingConstants.CENTER);
 		        labelScrittaSlide.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -155,7 +155,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 		        labelSlideIcon.setIcon(new ImageIcon(Filosofi.class.getResource("/img/pdfIcon1.png")));
 		        labelSlideIcon.setBounds(186, 75, 53, 46);
 		        pannelloPrincipale.add(labelSlideIcon);
-		
+
 /**							PANNELLO TITOLO									*/
 		JPanel pannelloTitolo = new JPanel();
 			pannelloTitolo.setBorder(new LineBorder(new Color(0, 153, 0), 7));
@@ -439,7 +439,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 			comboSceltaSlotDisponibili.setBackground(Color.WHITE);
 			comboSceltaSlotDisponibili.setBounds(178, 3, 63, 22);
 			pannelloEditor.add(comboSceltaSlotDisponibili);
-			
+			comboSceltaSlotDisponibili.setToolTipText("Seleziona il numero di slot di memoria disponibili");
+
 		JButton generaGrafici = new JButton("CALCOLA GRAFICI");
 			generaGrafici.setEnabled(false);
 			generaGrafici.setBorder(new LineBorder(new Color(0, 204, 0), 2));
@@ -448,36 +449,40 @@ public class PaginazioneDellaMemoria extends JFrame {
 			generaGrafici.setBounds(10, 137, 225, 21);
 			generaGrafici.setOpaque(true);
 			pannelloEditor.add(generaGrafici);
+			generaGrafici.setToolTipText("Genera e mostra i grafici cartesiani");
 			
-		JLabel btnMostraSoluzioni = new JLabel("");
-			btnMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
-			btnMostraSoluzioni.setEnabled(false);
-			btnMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			btnMostraSoluzioni.setBounds(80, 185, 79, 35);
-			btnMostraSoluzioni.setBackground(new Color(255, 255, 255));
+		JLabel labelMostraSoluzioni = new JLabel("");
+			labelMostraSoluzioni.setToolTipText("Clicca per generare tutte le soluzioni");
+			labelMostraSoluzioni.setHorizontalAlignment(SwingConstants.CENTER);
+			labelMostraSoluzioni.setEnabled(false);
+			labelMostraSoluzioni.setFont(new Font("Times New Roman", Font.PLAIN, 15));
+			labelMostraSoluzioni.setBounds(80, 185, 79, 35);
+			labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
 			//btnMostraSoluzioni.setBorder(new LineBorder(Color.black, 2));
-			btnMostraSoluzioni.setIcon(new ImageIcon(PaginazioneDellaMemoria.class.getResource("/img/playIcon2.png")));
-			pannelloEditor.add(btnMostraSoluzioni);
+			labelMostraSoluzioni.setIcon(new ImageIcon(PaginazioneDellaMemoria.class.getResource("/img/playIcon2.png")));
+			pannelloEditor.add(labelMostraSoluzioni);
 			
-		JLabel btnFastForwardPiu = new JLabel("");
-			btnFastForwardPiu.setHorizontalAlignment(SwingConstants.CENTER);
-			btnFastForwardPiu.setEnabled(false);
-			btnFastForwardPiu.setBackground(new Color(255, 255, 255));
+		JLabel labelFastForwardPiu = new JLabel("");
+			labelFastForwardPiu.setHorizontalAlignment(SwingConstants.CENTER);
+			labelFastForwardPiu.setEnabled(false);
+			labelFastForwardPiu.setBackground(new Color(255, 255, 255));
 			//btnFastForwardPiu.setBorder(new LineBorder(Color.black,2));
-			btnFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
-			btnFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-			btnFastForwardPiu.setBounds(166, 185, 52, 35);
-			pannelloEditor.add(btnFastForwardPiu);
-			
-		JLabel btnFastForwardMeno = new JLabel("");
-			btnFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
-			btnFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 25));
-			btnFastForwardMeno.setEnabled(false);
-			btnFastForwardMeno.setBounds(24, 185, 52, 35);
-			btnFastForwardMeno.setBackground(new Color(255, 255, 255));
+			labelFastForwardPiu.setIcon(new ImageIcon(Hashing.class.getResource("/img/fastFowardIcon1.png")));
+			labelFastForwardPiu.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+			labelFastForwardPiu.setBounds(166, 185, 52, 35);
+			pannelloEditor.add(labelFastForwardPiu);
+			labelFastForwardPiu.setToolTipText("Clicca per generare le soluzioni passo dopo passo");
+
+		JLabel labelFastForwardMeno = new JLabel("");
+			labelFastForwardMeno.setToolTipText("Clicca per generare le soluzioni passo dopo passo");
+			labelFastForwardMeno.setHorizontalAlignment(SwingConstants.CENTER);
+			labelFastForwardMeno.setFont(new Font("Segoe UI", Font.PLAIN, 25));
+			labelFastForwardMeno.setEnabled(false);
+			labelFastForwardMeno.setBounds(24, 185, 52, 35);
+			labelFastForwardMeno.setBackground(new Color(255, 255, 255));
 			//btnFastForwardMeno.setBorder(new LineBorder(Color.black,2));
-			btnFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
-			pannelloEditor.add(btnFastForwardMeno);
+			labelFastForwardMeno.setIcon(new ImageIcon(SchProcessi.class.getResource("/img/fastFowardIconRovescio.png")));
+			pannelloEditor.add(labelFastForwardMeno);
 			
 		JButton btnGeneraSuccessione = new JButton("Genera successione");
 			btnGeneraSuccessione.setBackground(new Color(255, 255, 255));
@@ -486,7 +491,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 			btnGeneraSuccessione.setBounds(10, 32, 225, 32);
 			btnGeneraSuccessione.setOpaque(true);
 			pannelloEditor.add(btnGeneraSuccessione);
-			
+			btnGeneraSuccessione.setToolTipText("Genera successione di riferimento");
+
 		JPanel pannelloHelp = new JPanel();
 			pannelloHelp.setLayout(null);
 			pannelloHelp.setBounds(10, 354, 245, 254);
@@ -540,7 +546,10 @@ public class PaginazioneDellaMemoria extends JFrame {
 	        	
 	        	});
 	        	labelIndietroIcon.setIcon(new ImageIcon(Semafori.class.getResource("/img/back-button.png")));
-	        
+		        labelIndietroIcon.setToolTipText("Torna alla schermata principale");
+		        labelSlideIcon.setToolTipText("Slide dell'argomento trattato");
+		        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
+
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 /**							IMPLEMENTAZIONE EVENTI												*/
 		
@@ -564,9 +573,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 				
 				comboSceltaSlotDisponibili.setEnabled(true);
 				labelSlotMemoria.setEnabled(true);
-				btnFastForwardMeno.setEnabled(true);
-				btnFastForwardPiu.setEnabled(true);
-				btnMostraSoluzioni.setEnabled(true);
+				labelFastForwardMeno.setEnabled(true);
+				labelFastForwardPiu.setEnabled(true);
+				labelMostraSoluzioni.setEnabled(true);
 				
 				stringaNumeri.setText("");
 				numeri=new int[25];
@@ -665,14 +674,14 @@ public class PaginazioneDellaMemoria extends JFrame {
 		});
 
 	//EVENTO SUI BOTTONI PLAY 
-		btnMostraSoluzioni.addMouseListener(new MouseAdapter() {
+		labelMostraSoluzioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
-				if(btnMostraSoluzioni.isEnabled()) {
-					btnFastForwardMeno.setEnabled(true);
-					btnFastForwardPiu.setEnabled(false);
-					btnMostraSoluzioni.setEnabled(false);
+				if(labelMostraSoluzioni.isEnabled()) {
+					labelFastForwardMeno.setEnabled(true);
+					labelFastForwardPiu.setEnabled(false);
+					labelMostraSoluzioni.setEnabled(false);
 					
 					flag=25;
 					
@@ -701,24 +710,24 @@ public class PaginazioneDellaMemoria extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				
-				if(btnMostraSoluzioni.isEnabled())
-					btnMostraSoluzioni.setBackground(Color.red);
+				if(labelMostraSoluzioni.isEnabled())
+					labelMostraSoluzioni.setBackground(Color.red);
 				}
 			@Override
 			public void mouseExited(MouseEvent e){
 				
-				btnMostraSoluzioni.setBackground(new Color(255, 255, 255));
+				labelMostraSoluzioni.setBackground(new Color(255, 255, 255));
 			}
 		});
 		
 	//EVENTO SUI BOTTONI PLAYSTEPbySTEP
-		btnFastForwardPiu.addMouseListener(new MouseAdapter() {
+		labelFastForwardPiu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 			
-				if(btnFastForwardPiu.isEnabled()) {
-					btnFastForwardMeno.setEnabled(true);
-					btnMostraSoluzioni.setEnabled(true);
+				if(labelFastForwardPiu.isEnabled()) {
+					labelFastForwardMeno.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
 
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 					int s=Integer.valueOf(j);
@@ -762,8 +771,8 @@ public class PaginazioneDellaMemoria extends JFrame {
 
 					}	
 					else {
-						btnFastForwardPiu.setEnabled(false);
-						btnMostraSoluzioni.setEnabled(false);
+						labelFastForwardPiu.setEnabled(false);
+						labelMostraSoluzioni.setEnabled(false);
 
 					}
 				}
@@ -771,23 +780,23 @@ public class PaginazioneDellaMemoria extends JFrame {
 			
 			@Override
 			public void mouseEntered(MouseEvent e){
-				if(btnFastForwardPiu.isEnabled())
-				btnFastForwardPiu.setBackground(Color.red);
+				if(labelFastForwardPiu.isEnabled())
+				labelFastForwardPiu.setBackground(Color.red);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				
-				btnFastForwardPiu.setBackground(new Color(255, 255, 255));
+				labelFastForwardPiu.setBackground(new Color(255, 255, 255));
 			}
 		});
 		
-		btnFastForwardMeno.addMouseListener(new MouseAdapter() {
+		labelFastForwardMeno.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 				
-				if(btnFastForwardMeno.isEnabled()) {
-					btnFastForwardPiu.setEnabled(true);
-					btnMostraSoluzioni.setEnabled(true);
+				if(labelFastForwardMeno.isEnabled()) {
+					labelFastForwardPiu.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
 
 					String j= comboSceltaSlotDisponibili.getSelectedItem().toString();
 					int s=Integer.valueOf(j);
@@ -839,19 +848,19 @@ public class PaginazioneDellaMemoria extends JFrame {
 
 					}	
 					else {
-						btnFastForwardMeno.setEnabled(false);
+						labelFastForwardMeno.setEnabled(false);
 					}
 				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e){
-				if(btnFastForwardMeno.isEnabled())
-					btnFastForwardMeno.setBackground(Color.red);
+				if(labelFastForwardMeno.isEnabled())
+					labelFastForwardMeno.setBackground(Color.red);
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {
 				
-				btnFastForwardMeno.setBackground(new Color(255, 255, 255));
+				labelFastForwardMeno.setBackground(new Color(255, 255, 255));
 			}
 		});
 		
@@ -864,9 +873,9 @@ public class PaginazioneDellaMemoria extends JFrame {
 				else {
 					//generaGrafici.setEnabled(true);
 					flag=0;
-					btnFastForwardMeno.setEnabled(true);
-					btnFastForwardPiu.setEnabled(true);
-					btnMostraSoluzioni.setEnabled(true);
+					labelFastForwardMeno.setEnabled(true);
+					labelFastForwardPiu.setEnabled(true);
+					labelMostraSoluzioni.setEnabled(true);
 					jPanelFIFOMATRICE.resetGrafico(jPanelFIFOMATRICE.getGraphics());
 					jPanelOPTMATRICE.resetGrafico(jPanelOPTMATRICE.getGraphics());
 					jPanelLRUMATRICE.resetGrafico(jPanelLRUMATRICE.getGraphics());

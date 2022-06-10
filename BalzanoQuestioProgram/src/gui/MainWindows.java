@@ -76,6 +76,7 @@ public class MainWindows {
 		panelMainButton.setLayout(null);
 		
 		JLabel labelSfondo = new JLabel("");
+		labelSfondo.setToolTipText("Clicca per aprire sito prof.Balzano");
 		labelSfondo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -163,8 +164,10 @@ public class MainWindows {
 		labelSitoWeb.setFont(new Font("Segoe UI", Font.BOLD, 21));
 		labelSitoWeb.setBounds(346, 696, 205, 54);
 		panelMainButton.add(labelSitoWeb);
+		labelSitoWeb.setToolTipText("Apri sito prof.Balzano");
 		
 		JLabel labelVideolezioni = new JLabel("VIDEOLEZIONI");
+		labelVideolezioni.setToolTipText("Apri canale YouTube prof.Balzano");
 		labelVideolezioni.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -194,6 +197,7 @@ public class MainWindows {
 		panelMainButton.add(labelVideolezioni);
 		
 		JLabel labellSlideCorso = new JLabel("SLIDE CORSO");
+		labellSlideCorso.setToolTipText("Apri slide del corso");
 		labellSlideCorso.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -224,6 +228,7 @@ public class MainWindows {
 		panelMainButton.add(labellSlideCorso);
 		
 		JLabel labelPaginazione = new JLabel("Paginzione Icon");
+		labelPaginazione.setToolTipText("Clicca per aprire sezione esercizi Paginazione della Memoria");
 		labelPaginazione.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -243,10 +248,11 @@ public class MainWindows {
 			}
 		});
 		labelPaginazione.setIcon(new ImageIcon(MainWindows.class.getResource("/img/paginazioneIcon2.png")));
-		labelPaginazione.setBounds(270, 442, 117, 99);
+		labelPaginazione.setBounds(255, 442, 117, 99);
 		panelMainButton.add(labelPaginazione);
 		
 		JLabel labelCpu = new JLabel("Cpu Icon");
+		labelCpu.setToolTipText("Clicca per aprire sezione esercizi Scheduling della CPU");
 		labelCpu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) 
@@ -271,6 +277,7 @@ public class MainWindows {
 		panelMainButton.add(labelCpu);
 		
 		JLabel labelFilosofo = new JLabel("Filosofo Icon");
+		labelFilosofo.setToolTipText("Clicca per aprire sezione esercizi Filosofi a Cena");
 		labelFilosofo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -294,6 +301,7 @@ public class MainWindows {
 		panelMainButton.add(labelFilosofo);
 		
 		JLabel labelHashing = new JLabel("Hashing Icon");
+		labelHashing.setToolTipText("Clicca per aprire sezione esercizi Hashing");
 		labelHashing.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -317,6 +325,7 @@ public class MainWindows {
 		panelMainButton.add(labelHashing);
 		
 		JLabel labelHD = new JLabel("Sch HD");
+		labelHD.setToolTipText("Clicca per aprire sezione esercizi Scheduling HD");
 		labelHD.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -340,6 +349,7 @@ public class MainWindows {
 		panelMainButton.add(labelHD);
 		
 		JLabel labelSemaforo = new JLabel("Semafori");
+		labelSemaforo.setToolTipText("Clicca per aprire sezione esercizi Semafori");
 		labelSemaforo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

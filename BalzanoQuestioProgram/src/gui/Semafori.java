@@ -217,7 +217,10 @@ public class Semafori extends JFrame {
 		labelScrittaYoutube.setBounds(78,122,50,12);
 		panelMainButton.add(labelScrittaYoutube);
 		
-		
+	    labelIndietroIcon.setToolTipText("Torna alla schermata principale");
+        labelSlideIcon.setToolTipText("Slide dell'argomento trattato");
+        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
+        
 		//SCRITTA MUTEX DEL SEMAFORO 1 CON VALORE 1
 		JLabel JLabelTextMutex1_1 = new JLabel("Mutex=1");
 		JLabelTextMutex1_1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
@@ -338,7 +341,9 @@ public class Semafori extends JFrame {
 		GeneraEsercizioJButton.setLocation(57, 110);
 		GeneraEsercizioJButton.setVisible(true);
 		panelControlloProcessi.add(GeneraEsercizioJButton);
-	        
+		GeneraEsercizioJButton.setOpaque(true);
+		GeneraEsercizioJButton.setToolTipText("Genera tabella processi");
+		
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
 		StartTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
 		StartTimeIndexJLabel.setBounds(548, 502, 53, 14);
@@ -718,7 +723,8 @@ public class Semafori extends JFrame {
         				panelSceltaProcessi.add(NumSemaforiComboBox);
         				NumSemaforiComboBox.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
         				NumSemaforiComboBox.setMaximumRowCount(2);
-        				
+        				NumSemaforiComboBox.setToolTipText("Seleziona il numero di semafori disponibili");
+
         				
         				
         				
@@ -728,6 +734,7 @@ public class Semafori extends JFrame {
         						NumProcessiComboBox.setBounds(180, 13, 58, 22);
         						panelSceltaProcessi.add(NumProcessiComboBox);
         						NumProcessiComboBox.setModel(new DefaultComboBoxModel(new String[]{"1","2","3","4","5"}));
+        						NumProcessiComboBox.setToolTipText("Seleziona il numero di processi in entrata");
         						
         						JLabel labelNumProcessi = new JLabel("Numero Processi : ");
         						labelNumProcessi.setBounds(10, 11, 139, 22);
@@ -740,6 +747,7 @@ public class Semafori extends JFrame {
         						JButton BackJButton = new JButton("Back");
         						BackJButton.setBounds(118, 65, 121, 23);
         						panelControlloProcessi.add(BackJButton);
+        						BackJButton.setToolTipText("Riavvia indicatore semafori");
         						
         						BackJButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						BackJButton.setBackground(new Color(255, 255, 255));
@@ -749,6 +757,7 @@ public class Semafori extends JFrame {
         						panelControlloProcessi.add(toggleButtonStartPause);
         						toggleButtonStartPause.setFont(new Font("Times New Roman", Font.BOLD, 12));
         						toggleButtonStartPause.setBackground(new Color(255, 255, 255));
+        						toggleButtonStartPause.setToolTipText("Clicca per avviare/fermare i semafori");
         						
         						JLabel labelAvvia = new JLabel("Movimento :");
         						labelAvvia.setForeground(Color.BLACK);

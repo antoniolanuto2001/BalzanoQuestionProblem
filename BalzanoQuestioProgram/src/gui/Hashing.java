@@ -228,6 +228,7 @@ public class Hashing extends JFrame {
 		panelPlot.setLayout(null);
 		
 		JButton buttonGeneraEsempio = new JButton("GENERA PAROLE");
+		buttonGeneraEsempio.setToolTipText("Clicca per generare un set di parole");
 		buttonGeneraEsempio.setOpaque(true);
 		buttonGeneraEsempio.setBackground(Color.WHITE);
 		buttonGeneraEsempio.addMouseListener(new MouseAdapter() {
@@ -248,7 +249,7 @@ public class Hashing extends JFrame {
 		panelPlot.add(buttonGeneraEsempio);
 		
 		JComboBox comboBoxSceltaNParole = new JComboBox();
-		
+		comboBoxSceltaNParole.setToolTipText("Seleziona la grandezza del dizionario\n(il numero di parole da generare)");
 		
 		comboBoxSceltaNParole.setEnabled(false);
 		comboBoxSceltaNParole.setFont(new Font("Times New Roman", Font.PLAIN, 15));
@@ -404,7 +405,10 @@ public class Hashing extends JFrame {
         labelSlideIcon.setBounds(154, 76, 53, 46);
         panelMainButton.add(labelSlideIcon);
         
-      
+        labelIndietroIcon.setToolTipText("Torna alla schermata principale");
+        labelSlideIcon.setToolTipText("Slide dell'argomento trattato");
+        labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
+        
 		JLabel labelCodifica = new JLabel("Codifica :");
 		labelCodifica.setForeground(Color.RED);
 		labelCodifica.setVerticalAlignment(SwingConstants.BOTTOM);
