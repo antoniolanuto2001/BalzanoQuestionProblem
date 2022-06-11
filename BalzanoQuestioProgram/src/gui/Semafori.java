@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
@@ -89,6 +90,8 @@ public class Semafori extends JFrame {
 	public boolean startforfifthB;
 	public boolean pausefor5B;
 	
+	public boolean deadlockFlag;
+	
 	public boolean entered1,entered2,entered3,entered4;
 	
 	
@@ -113,6 +116,7 @@ public class Semafori extends JFrame {
 	public Semafori(JFrame framechiamante) 
 	
 	{
+		
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Operating Systems Simulator : Semafori");
@@ -123,6 +127,7 @@ public class Semafori extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
 		
 		startforsecond=false;
 		startforfirst=false;
@@ -4178,86 +4183,68 @@ public class Semafori extends JFrame {
     												if(i==299)
     													i=0;
     												
-    												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA A
     												
-    												//SE L'INDICATORE DUE SI TROVA IN UNA DELLE ZONE CRITICHE A 
-    												if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2))
-												
-    																																				
+    												if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 ||
+    														Indicator1JPanel.getX()==iniziocritica3_1-1)
     												{
-    													
-    													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA A
-    													if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 || 
-    															Indicator1JPanel.getX()==iniziocritica3_1-1)
-    															
+    													//controllo se c'e' l'indicatore 2  che e' gia' in rosso
+    													if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2) 
+    															)
     													{
-    														
     														pausefor1=true;
     														startforfirst=false;
-    													
-        													
+    														
     													}
-
-    													
-    													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor1==true)
-    													{
-        													pausefor1=false;
-        													startforfirst=true;
-    													}
-    													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor1=false;
     														startforfirst=false;
     													}
-    														
-    												}else {
+    												}
+    												else if(pausefor1==true && !deadlockFlag)
+    												{
+    													pausefor1=false;
+    													startforfirst=true;
+    												} 
+    												else if(!deadlockFlag)  
+    												{
     													pausefor1=false;
     													startforfirst=false;
     												}
-    									
-    												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA B
-    									
-    												//SE L'INDICATORE DUE SI TROVA IN UNA DELLE ZONE CRITICHE B
-    												 if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2))
-    												 {
-    													 
-    													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA B
-     													if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 || 
-     															Indicator1JPanel.getX()==iniziocritica3B_1-1)
-     															
-     													{
-     														
-     														pausefor1B=true;
-     														startforfirstB=false;
-     													
-         													
-     													}
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pausefor1B==true)
-     													{
-         													pausefor1B=false;
-         													startforfirstB=true;
-     													}
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
-     													else 
-     													{
-     														pausefor1B=false;
-     														startforfirstB=false;
-     													}
-    												 }
-    												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
-    												else
+    												
+    												
+    												
+    												
+    												if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 ||
+    														Indicator1JPanel.getX()==iniziocritica3B_1-1)
     												{
-
+    													//controllo se c'e' l'indicatore 2  che e' gia' in rosa
+    													if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2) 
+    															)
+    													{
+    														pausefor1B=true;
+    														startforfirstB=false;
+    														
+    													}
+    													else
+    													{
+    														pausefor1B=false;
+    														startforfirstB=false;
+    													}
+    												}
+    												else if(pausefor1B==true && !deadlockFlag)
+    												{
+    													pausefor1B=false;
+    													startforfirstB=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
     													pausefor1B=false;
     													startforfirstB=false;
-
     												}
 	
     												
@@ -4358,8 +4345,8 @@ public class Semafori extends JFrame {
 
     												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
     												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-      												 if( (pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
-      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true) )
+      												 if( ((pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
+      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true)) && !deadlockFlag)
     												 {
     													Indicator1JPanel.moveForward();
     												}
@@ -4394,19 +4381,44 @@ public class Semafori extends JFrame {
     												if(i==299)
     													i=0;
     												
-    												//DEADLOCK
-    												if( (pausefor1B==true && (pausefor2B==true && pausefor3B==true) ||
-    													(pausefor1==true && (pausefor2==true && pausefor3==true )) ||
-    													(pausefor2B==true && (pausefor3B==true && pausefor1B==true ) || 
-    													(pausefor2==true && (pausefor1==true && pausefor3==true)) ) ))
+    												//  !P1 Deadlock
+													
+    												if( (pausefor1B==false  && pausefor1 ==true && startforfirst==false) && (pausefor2B==true && startforsecondB==false && pausefor2==false))
+													{
+														deadlockFlag=true;
+													}
+													else if ((pausefor1B==true && startforfirstB==false && pausefor1==false) && (pausefor2B==false && pausefor2==true && !startforsecond))
+													{
+														deadlockFlag=true;
+													}
+													
+													//  !Processo 2
+													if( (pausefor2B==false && pausefor2==true && !startforsecond) && ((pausefor1B==true && !startforfirstB && pausefor1==false)))
+													{
+														deadlockFlag=true;
+													}
+													else if ((pausefor2B==true && !startforsecondB && pausefor2==false) && ((pausefor1B==false && pausefor1==true && !startforfirst)))
+													{
+														deadlockFlag=true;
+													}
+    												
+    												
+    												
+    												
+    												
+													if(deadlockFlag)
     												{
+														
+														toggleButtonStartPause.setEnabled(false);
+														
     													Thread deadlock = new Thread(new Runnable() {
     														@Override
     														public void run()
     														{
-
-    															while(toggleButtonStartPause.isSelected()) 
-    															{ 
+    															while(toggleButtonStartPause.isSelected())
+    															{
+    																
+    															
     																try 
         																{
         																	Thread.sleep(300);
@@ -4423,93 +4435,86 @@ public class Semafori extends JFrame {
         		    													
         																	e1.printStackTrace();
         																}
-    																
-    																
     															}
+    																
     															
+    															toggleButtonStartPause.setEnabled(true);
     	    													Indicator1JPanel.setVisible(true);
     	    													Indicator2JPanel.setVisible(true);
+    															deadlockFlag=false;
     														}
     													});
     													deadlock.start();
-
+														
     													break;
     												}
-    												
-
-    												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA A
-    												
-    												//SE L'INDICATORE UNO SI TROVA IN UNA DELLE ZONE CRITICHE A
-    												if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1)
-)
-    												{		
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA A 
-    													if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3_2-1) 
+													
+													
+													if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 ||
+    														Indicator2JPanel.getX()==iniziocritica3_2-1)
+    												{
+    													//controllo se c'e' l'indicatore 1 che e'in rosso
+    													if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1) 
+    															)
     													{
-    														
     														pausefor2=true;
     														startforsecond=false;
-        													
+    														
     													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2==true)
-    													{
-        													pausefor2=false;
-        													startforsecond=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor2=false;
     														startforsecond=false;
     													}
-
-    												}else 
+    												}
+    												else if(pausefor2==true && !deadlockFlag)
     												{
-														pausefor2=false;
-														startforsecond=false;
+    													pausefor2=false;
+    													startforsecond=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
+    													pausefor2=false;
+    													startforsecond=false;
     												}
     												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA B
-    												if((Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1))
+    												
+    												
+    												
+    												if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 ||
+    														Indicator2JPanel.getX()==iniziocritica3B_2-1)
     												{
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA  B
-    													if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
+    													//controllo se c'e' l'indicatore 1 che e' in rosa
+    													if((Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1) 
+    															)
     													{
-    														
     														pausefor2B=true;
     														startforsecondB=false;
-        													
+    														
     													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2B==true)
-    													{
-        													pausefor2B=false;
-        													startforsecondB=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor2B=false;
     														startforsecondB=false;
     													}
-    													
     												}
-    												
-    												else 
+    												else if(pausefor2B==true && !deadlockFlag)
     												{
-														pausefor2B=false;
-														startforsecondB=false;
-													}
+    													pausefor2B=false;
+    													startforsecondB=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
+    													pausefor2B=false;
+    													startforsecondB=false;
+    												}
+													
+													
+
 
     										
     												//GESTIONE CAMBIAMENTO COLORE SEMAFORO PER INIZIO DELLE 3 ZONE CRITICHE A DEL SECONDO INDICATORE
@@ -4611,8 +4616,8 @@ public class Semafori extends JFrame {
     													ripartenza[1]=0;
     												}
 
-     												 if( (startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
-     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false) )
+     												 if( ((startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
+     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false)) && !deadlockFlag )
     												 {
     													Indicator2JPanel.moveForward();
     												}	
@@ -4642,6 +4647,7 @@ public class Semafori extends JFrame {
     								{
     									timeToContinue=true;
     									timeToPause=false;
+    									deadlockFlag=false;
     									
     									
     									iniziocritica1_1=StartEndProcessi.get(0).inizioZonaCritica1;
@@ -4707,172 +4713,78 @@ public class Semafori extends JFrame {
     												if(i==299)
     													i=0;
     												
+    												//mi sto apprestando ad entrare in una delle zone critiche rosse
     												
-    												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 3 SI TROVA IN ZONA CRITICA A
-     												
-     												//SE L'INDICATORE 3 SI TROVA IN UNA DELLE ZONE CRITICHE A 
-     												if((Indicator3JPanel.getX()>=iniziocritica1_3 && Indicator3JPanel.getX()<=finecritica1_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica2_3 && Indicator3JPanel.getX()<=finecritica2_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica3_3 && Indicator3JPanel.getX()<=finecritica3_3))
- 												
-     																																				
-     												{
-     													
-     													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA A
-     													if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 || 
-     															Indicator1JPanel.getX()==iniziocritica3_1-1)
-     															
-     													{
-     														
-     														pausefor1=true;
-     														startforfirst=false;
-     													
-         													
-     													}
-
-     													
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pausefor1==true)
-     													{
-         													pausefor1=false;
-         													startforfirst=true;
-     													}
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
-     													else 
-     													{
-     														pausefor1=false;
-     														startforfirst=false;
-     													}
-     														
-     												}
-     												
-     												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA A
-    												
-    												//SE L'INDICATORE DUE SI TROVA IN UNA DELLE ZONE CRITICHE A 
-     												 else	if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2))
-												
-    																																				
+    												if(Indicator1JPanel.getX()==iniziocritica1_1-1 || Indicator1JPanel.getX()==iniziocritica2_1-1 ||
+    														Indicator1JPanel.getX()==iniziocritica3_1-1)
     												{
-    													
-    													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA A
-    													if(Indicator1JPanel.getX()==iniziocritica1_1-1|| Indicator1JPanel.getX()==iniziocritica2_1-1 || 
-    															Indicator1JPanel.getX()==iniziocritica3_1-1)
-    															
+    													//controllo se c'e' l'indicatore 2 o 3 che e' gia' in rosso
+    													if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2) 
+    															||
+    															(Indicator3JPanel.getX()>=iniziocritica1_3 && Indicator3JPanel.getX()<=finecritica1_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica2_3 && Indicator3JPanel.getX()<=finecritica2_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica3_3 && Indicator3JPanel.getX()<=finecritica3_3))
     													{
-    														
     														pausefor1=true;
     														startforfirst=false;
-    													
-        													
+    														
     													}
-
-    													
-    													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor1==true)
-    													{
-        													pausefor1=false;
-        													startforfirst=true;
-    													}
-    													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor1=false;
     														startforfirst=false;
     													}
-    														
     												}
-     												
-     												 else 
-     												 {
-     													 pausefor1=false;
-     													 startforfirst=false;
-     												 }
-     												
-   
-     									
-     												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 3 SI TROVA IN ZONA CRITICA B
-     									
-     												//SE L'INDICATORE 3 SI TROVA IN UNA DELLE ZONE CRITICHE B
-     												if((Indicator3JPanel.getX()>=iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
-     														(Indicator3JPanel.getX()>=iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
-     												 {
-     													 
-     													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA B
-      													if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 || 
-      															Indicator1JPanel.getX()==iniziocritica3B_1-1)
-      															
-      													{
-      														
-      														pausefor1B=true;
-      														startforfirstB=false;
-      													
-          													
-      													}
-      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pausefor1B==true)
-      													{
-          													pausefor1B=false;
-          													startforfirstB=true;
-      													}
-      													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
-      													else 
-      													{
-      														pausefor1B=false;
-      														startforfirstB=false;
-      													}
-     												 }
-     			
-    												
-    												
-    									
-    												//GESTIONE PAUSA PER INDICATORE 1 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA B
-    									
-    												//SE L'INDICATORE DUE SI TROVA IN UNA DELLE ZONE CRITICHE B
-     												 else if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
-    														(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2))
-    												 {
-    													 
-    													//SE L'INDICATORE 1 STA PER ENTRARE IN UNA ZONA CRITICA B
-     													if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 || 
-     															Indicator1JPanel.getX()==iniziocritica3B_1-1)
-     															
-     													{
-     														
-     														pausefor1B=true;
-     														startforfirstB=false;
-     													
-         													
-     													}
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-     													else if(pausefor1B==true)
-     													{
-         													pausefor1B=false;
-         													startforfirstB=true;
-     													}
-     													//L'INDICATORE 1 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
-     													else 
-     													{
-     														pausefor1B=false;
-     														startforfirstB=false;
-     													}
-    												 }
-     												
-     												
-     												
-    												// ALTRIMENTI L'INDICATORE 1 PROCEDE SENZA MODIFICHE
-    												else
+    												else if(pausefor1==true && !deadlockFlag)
     												{
-
+    													pausefor1=false;
+    													startforfirst=true;
+    												} 
+    												else if(!deadlockFlag)  
+    												{
+    													pausefor1=false;
+    													startforfirst=false;
+    												}
+    												
+    												
+    												
+    												
+    												if(Indicator1JPanel.getX()==iniziocritica1B_1-1 || Indicator1JPanel.getX()==iniziocritica2B_1-1 ||
+    														Indicator1JPanel.getX()==iniziocritica3B_1-1)
+    												{
+    													//controllo se c'e' l'indicatore 2 o 3 che e' gia' in rosa
+    													if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2) 
+    															||
+    															(Indicator3JPanel.getX()>=iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
+    													{
+    														pausefor1B=true;
+    														startforfirstB=false;
+    														
+    													}
+    													else
+    													{
+    														pausefor1B=false;
+    														startforfirstB=false;
+    													}
+    												}
+    												else if(pausefor1B==true && !deadlockFlag)
+    												{
+    													pausefor1B=false;
+    													startforfirstB=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
     													pausefor1B=false;
     													startforfirstB=false;
-
     												}
-    												 
-    								
+    												
+    												
     												 
      												
 	
@@ -4973,8 +4885,8 @@ public class Semafori extends JFrame {
 
     												//L'INDICATORE SI MUOVE SE E SOLO SE: PAUSEFORFIRST E STARTFORFIRST SONO FALSE
     												// O SE PAUSEFORFIRST=FALSE E STARTFORFIRST=TRUE
-      												 if( (pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
-      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true) )
+      												 if( ( (pausefor1==false && startforfirst==false && pausefor1B==false && startforfirstB==false) ||
+      														 (pausefor1==false && startforfirst==true && pausefor1B==false && startforfirstB==true) )&& !deadlockFlag )
     												 {
     													Indicator1JPanel.moveForward();
     												}
@@ -5009,145 +4921,77 @@ public class Semafori extends JFrame {
     												if(i==299)
     													i=0;
     												
+
     												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 3 SI TROVA IN ZONA CRITICA A
-    												
-    												//SE L'INDICATORE 3 SI TROVA IN UNA DELLE ZONE CRITICHE A
-    												if((Indicator3JPanel.getX()>=iniziocritica1_3 && Indicator3JPanel.getX()<=finecritica1_3) ||
-    														(Indicator3JPanel.getX()>=iniziocritica2_3 && Indicator3JPanel.getX()<=finecritica2_3) ||
-    														(Indicator3JPanel.getX()>=iniziocritica3_3 && Indicator3JPanel.getX()<=finecritica3_3))
-    												{		
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA A 
-    													if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3_2-1) 
+    												if(Indicator2JPanel.getX()==iniziocritica1_2-1 || Indicator2JPanel.getX()==iniziocritica2_2-1 ||
+    														Indicator2JPanel.getX()==iniziocritica3_2-1)
+    												{
+    													//controllo se c'e' l'indicatore 1 o 3 che e' gia' in rosso
+    													if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1) 
+    															||
+    															(Indicator3JPanel.getX()>=iniziocritica1_3 && Indicator3JPanel.getX()<=finecritica1_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica2_3 && Indicator3JPanel.getX()<=finecritica2_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica3_3 && Indicator3JPanel.getX()<=finecritica3_3))
     													{
-    														
     														pausefor2=true;
     														startforsecond=false;
-        													
+    														
     													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2==true)
-    													{
-        													pausefor2=false;
-        													startforsecond=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor2=false;
     														startforsecond=false;
     													}
-
     												}
-    												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA A
-    												
-    												//SE L'INDICATORE UNO SI TROVA IN UNA DELLE ZONE CRITICHE A
-    												else if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1))
-    												{		
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA A 
-    													if(Indicator2JPanel.getX()==iniziocritica1_2-1|| Indicator2JPanel.getX()==iniziocritica2_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3_2-1) 
-    													{
-    														
-    														pausefor2=true;
-    														startforsecond=false;
-        													
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2==true)
-    													{
-        													pausefor2=false;
-        													startforsecond=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA A E NON ERA NEMMENO IN PAUSA
-    													else 
-    													{
-    														pausefor2=false;
-    														startforsecond=false;
-    													}
-
-    												}
-    												
-    												else 
+    												else if(pausefor2==true && !deadlockFlag)
+    												{
+    													pausefor2=false;
+    													startforsecond=true;
+    												} 
+    												else if(!deadlockFlag)
     												{
     													pausefor2=false;
     													startforsecond=false;
     												}
     												
     												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 3 SI TROVA IN ZONA CRITICA B
-    												if((Indicator3JPanel.getX()>=iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
-    														(Indicator3JPanel.getX()>=iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
-    														(Indicator3JPanel.getX()>=iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
+    												
+    												
+    												if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 ||
+    														Indicator2JPanel.getX()==iniziocritica3B_2-1)
     												{
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA  B
-    													if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
+    													//controllo se c'e' l'indicatore 1 o 3 che e' gia' in rosa
+    													if((Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1) 
+    															||
+    															(Indicator3JPanel.getX()>=iniziocritica1B_3 && Indicator3JPanel.getX()<=finecritica1B_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica2B_3 && Indicator3JPanel.getX()<=finecritica2B_3) ||
+    															(Indicator3JPanel.getX()>=iniziocritica3B_3 && Indicator3JPanel.getX()<=finecritica3B_3))
     													{
-    														
     														pausefor2B=true;
     														startforsecondB=false;
-        													
+    														
     													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2B==true)
-    													{
-        													pausefor2B=false;
-        													startforsecondB=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
-    													else 
+    													else
     													{
     														pausefor2B=false;
     														startforsecondB=false;
     													}
-    													
+    												}
+    												else if(pausefor2B==true && !deadlockFlag)
+    												{
+    													pausefor2B=false;
+    													startforsecondB=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
+    													pausefor2B=false;
+    													startforsecondB=false;
     												}
     												
-    												//GESTIONE PAUSA PER INDICATORE 2 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA B
-    												else if((Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
-    														(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1))
-    												{
-    													
-    													//SE L'INDICATORE 2 STA PER ENTRARE IN UNA ZONA CRITICA  B
-    													if(Indicator2JPanel.getX()==iniziocritica1B_2-1 || Indicator2JPanel.getX()==iniziocritica2B_2-1 || 
-    															Indicator2JPanel.getX()==iniziocritica3B_2-1) 
-    													{
-    														
-    														pausefor2B=true;
-    														startforsecondB=false;
-        													
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B MA STAVA IN PAUSA PER POI RIPARTIRE
-    													else if(pausefor2B==true)
-    													{
-        													pausefor2B=false;
-        													startforsecondB=true;
-    													}
-    													//L'INDICATORE 2 NON STA PER ENTRARE IN ZONA CRITICA B E NON ERA NEMMENO IN PAUSA
-    													else 
-    													{
-    														pausefor2B=false;
-    														startforsecondB=false;
-    													}
-    													
-    												}
-    												
-    												
-    												
-    												else
-    												{
-														pausefor2B=false;
-														startforsecondB=false;
-													}
 
     			
     										
@@ -5250,8 +5094,8 @@ public class Semafori extends JFrame {
     													ripartenza[1]=0;
     												}
 
-     												 if( (startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
-     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false) )
+     												 if( ((startforsecond==false && pausefor2==false && startforsecondB==false && pausefor2B==false) ||
+     														(startforsecond==true && pausefor2==false && startforsecondB==true && pausefor2B==false)) && !deadlockFlag )
     												 {
     													Indicator2JPanel.moveForward();
     												}	
@@ -5279,71 +5123,67 @@ public class Semafori extends JFrame {
     										public void run() 
     										{
     											
+    											
     											for(int i=0; i<300; i++) 
     											{	
     												if(i==299)
 													{
 														i=0;	
 													}
-    													
     												
-    												
-    												// se c'e la pausa per un qualsiasi elemento del primo && un qualsiasi elemento del secondo && un qualsiasi elemento del terzo --> deadlock 
-    												//DEADLOCK
-													boolean deadlockFlag=false;
     												//  !P1 Deadlock
-													if (pausefor1B == false && pausefor1 == false)
-													{
-														//Non fare niente
-													}
 													
-													else if( (pausefor1B==false && pausefor1 ==true) && ( (pausefor3B ==true && pausefor3==false) ||(pausefor2B==true && pausefor2==false)))
+    												if( (pausefor1B==false  && pausefor1 ==true && startforfirst==false) && 
+    													((pausefor3B ==true && startforthirdB==false && pausefor3==false) ||(pausefor2B==true && startforsecondB==false && pausefor2==false)))
 													{
 														deadlockFlag=true;
 													}
-													else if ((pausefor1B==true && pausefor1==false) && ((pausefor3B==false && pausefor3==true)||(pausefor2B==false && pausefor2==true)))
+													else if ((pausefor1B==true && startforfirstB==false && pausefor1==false) &&
+															((pausefor3B==false && pausefor3==true && !startforthird)||(pausefor2B==false && pausefor2==true && !startforsecond)))
 													{
 														deadlockFlag=true;
 													}
 													
-													//  !Processo 2
-													if (pausefor2 == false && pausefor2B == false)
-													{
-														//Non fare niente
-													}
-													else if( (pausefor2B==false && pausefor2==true) && ((pausefor1B==true && pausefor1==false)||(pausefor3B==true && pausefor3==false)))
+    												//  !P2 Deadlock
+													if( (pausefor2B==false && pausefor2==true && !startforsecond) && 
+														((pausefor1B==true && !startforfirstB && pausefor1==false)||(pausefor3B==true && !startforthirdB && pausefor3==false)))
 													{
 														deadlockFlag=true;
 													}
-													else if ((pausefor2B==true && pausefor2==false) && ((pausefor1B==false && pausefor1==true)||(pausefor3B==false && pausefor3==true)))
+													else if ((pausefor2B==true && !startforsecondB && pausefor2==false) && 
+															((pausefor1B==false && pausefor1==true && !startforfirst)||(pausefor3B==false && pausefor3==true && !startforthird)))
 													{
 														deadlockFlag=true;
 													}
 													
-													//  !Processo 3
-													if (pausefor3 == false && pausefor3B == false)
-													{
-														//Non fare niente
-													}
-													else if( (pausefor3B ==false && pausefor3 ==true) && ((pausefor1B == true && pausefor1 ==false)||(pausefor2B==true && pausefor2==false)))
+													//  !P3 Deadlock
+													if( (pausefor3B ==false && pausefor3 ==true && !startforthird) && 
+														((pausefor1B == true && !startforfirstB && pausefor1 ==false) ||(pausefor2B==true && !startforsecondB && pausefor2==false)))
 													{
 														deadlockFlag=true;
 													}
-													else if ((pausefor3B==true && pausefor3==false) && ((pausefor1B==false && pausefor1==true)||(pausefor2B==false && pausefor2==true)))
+													else if ((pausefor3B==true && !startforthirdB && pausefor3==false) && 
+															((pausefor1B==false && pausefor1==true && !startforfirst) ||(pausefor2B==false && pausefor2==true && !startforsecond)))
 													{
 														deadlockFlag=true;
 													} 
-													 
+    											
+													
+													
 													
 													if(deadlockFlag)
     												{
+														
+														toggleButtonStartPause.setEnabled(false);
+														
     													Thread deadlock = new Thread(new Runnable() {
     														@Override
     														public void run()
     														{
-
-    															while(toggleButtonStartPause.isSelected()) 
-    															{ 
+    															while(toggleButtonStartPause.isSelected())
+    															{
+    																
+    															
     																try 
         																{
         																	Thread.sleep(300);
@@ -5362,188 +5202,106 @@ public class Semafori extends JFrame {
         		    													
         																	e1.printStackTrace();
         																}
-    																
-    																
     															}
+    																
     															
+    															toggleButtonStartPause.setEnabled(true);
     	    													Indicator1JPanel.setVisible(true);
     	    													Indicator2JPanel.setVisible(true);
     	    													Indicator3JPanel.setVisible(true);
+
+    															deadlockFlag=false;
     														}
     													});
     													deadlock.start();
-														deadlockFlag=false;
+														
     													break;
     												}
+													
     												
 													
-     												//GESTIONE PAUSA PER INDICATORE 3 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA A
-      		     									
-     												//SE L'INDICATORE 2 SI TROVA IN UNA DELLE ZONE CRITICHE A
-     												 if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
-     														(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
-     														(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2))
-     												 {
-     													 
-     													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA A
-      													if(Indicator3JPanel.getX()==iniziocritica1_3-1 || Indicator3JPanel.getX()==iniziocritica2_3-1 || 
-      															Indicator3JPanel.getX()==iniziocritica3_3-1)
-      															
-      													{
-      														
-      														pausefor3=true;
-      														startforthird=false;
-      													
-          													
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pausefor3==true)
-      													{
-          													pausefor3=false;
-          													startforthird=true;
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
-      													else 
-      													{
-      														pausefor3=false;
-      														startforthird=false;
-      													}
-     												 }
-     												 
-     												 
-     												//GESTIONE PAUSA PER INDICATORE 3 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA A
-      												
-      												//SE L'INDICATORE 1 SI TROVA IN UNA DELLE ZONE CRITICHE A 
-      												else	if((Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
-      														(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
-      														(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1))
-  												
-      																																				
-      												{
-      													
-      													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA A
-      													if(Indicator3JPanel.getX()==iniziocritica1_3-1 || Indicator3JPanel.getX()==iniziocritica2_3-1 || 
-      															Indicator3JPanel.getX()==iniziocritica3_3-1)
-      															
-      													{
-      														
-      														pausefor3=true;
-      														startforthird=false;
-      													
-          													
-      													}
-
-      													
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pausefor3==true)
-      													{
-          													pausefor3=false;
-          													startforthird=true;
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "A" E NON ERA NEMMENO IN PAUSA
-      													else 
-      													{
-      														pausefor3=false;
-      														startforthird=false;
-      													}
-      											
-      												}
-     												 
-      												else 
-      												{
-      													pausefor3=false;
-      													startforthird=false;
-      												}
-     												 
-     												 
-     												 
-     												 
-     												 
-     							
-     												 
-     												//GESTIONE PAUSA PER INDICATORE 3 QUANDO INDICATORE 2 SI TROVA IN ZONA CRITICA B
-     									
-     												//SE L'INDICATORE 2 SI TROVA IN UNA DELLE ZONE CRITICHE B
-     												 if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
-     														(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
-     														(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2))
-     												 {
-     													 
-     													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA B
-      													if(Indicator3JPanel.getX()==iniziocritica1B_3-1 || Indicator3JPanel.getX()==iniziocritica2B_3-1 || 
-      															Indicator3JPanel.getX()==iniziocritica3B_3-1)
-      															
-      													{
-      														
-      														pausefor3B=true;
-      														startforthirdB=false;
-      													
-          													
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pausefor3B==true)
-      													{
-          													pausefor3B=false;
-          													startforthirdB=true;
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
-      													else 
-      													{
-      														pausefor3B=false;
-      														startforthirdB=false;
-      													}
-     												 }
-     											
-		
+													
+													
+													
+													
+													
+													
+    												
+													
+    												if(Indicator3JPanel.getX()==iniziocritica1_3-1 || Indicator3JPanel.getX()==iniziocritica2_3-1 ||
+    														Indicator3JPanel.getX()==iniziocritica3_3-1)
+    												{
+    													//controllo se c'e' l'indicatore 2 o 1 che e' gia' in rosso
+    													if((Indicator2JPanel.getX()>=iniziocritica1_2 && Indicator2JPanel.getX()<=finecritica1_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2_2 && Indicator2JPanel.getX()<=finecritica2_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3_2 && Indicator2JPanel.getX()<=finecritica3_2) 
+    															||
+    															(Indicator1JPanel.getX()>=iniziocritica1_1 && Indicator1JPanel.getX()<=finecritica1_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2_1 && Indicator1JPanel.getX()<=finecritica2_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3_1 && Indicator1JPanel.getX()<=finecritica3_1))
+    													{
+    														pausefor3=true;
+    														startforthird=false;
+    														
+    													}
+    													else
+    													{
+    														pausefor3=false;
+    														startforthird=false;
+    													}
+    												}
+    												else if(pausefor3==true && !deadlockFlag)
+    												{
+    													pausefor3=false;
+    													startforthird=true;
+    												} 
+    												else if(!deadlockFlag)
+    												{
+    													pausefor3=false;
+    													startforthird=false;
+    												}
     												
     												
-     												
-     												
-     												//GESTIONE PAUSA PER INDICATORE 3 QUANDO INDICATORE 1 SI TROVA IN ZONA CRITICA B
-      												
-      												//SE L'INDICATORE 1 SI TROVA IN UNA DELLE ZONE CRITICHE B 
-     												else	if((Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
-      														(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
-      														(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1))
-  												
-      																																				
-      												{
-      													
-      													//SE L'INDICATORE 3 STA PER ENTRARE IN UNA ZONA CRITICA B
-      													if(Indicator3JPanel.getX()==iniziocritica1B_3-1 || Indicator3JPanel.getX()==iniziocritica2B_3-1 || 
-      															Indicator3JPanel.getX()==iniziocritica3B_3-1)
-      															
-      													{
-      														
-      														pausefor3B=true;
-      														startforthirdB=false;
-      													
-          													
-      													}
+    												
+    												
+    												if(Indicator3JPanel.getX()==iniziocritica1B_3-1 || Indicator3JPanel.getX()==iniziocritica2B_3-1 ||
+    														Indicator3JPanel.getX()==iniziocritica3B_3-1)
+    												{
+    													//controllo se c'e' l'indicatore 2 o 1 che e' gia' in rosa
+    													if((Indicator2JPanel.getX()>=iniziocritica1B_2 && Indicator2JPanel.getX()<=finecritica1B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica2B_2 && Indicator2JPanel.getX()<=finecritica2B_2) ||
+    															(Indicator2JPanel.getX()>=iniziocritica3B_2 && Indicator2JPanel.getX()<=finecritica3B_2) 
+    															||
+    															(Indicator1JPanel.getX()>=iniziocritica1B_1 && Indicator1JPanel.getX()<=finecritica1B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica2B_1 && Indicator1JPanel.getX()<=finecritica2B_1) ||
+    															(Indicator1JPanel.getX()>=iniziocritica3B_1 && Indicator1JPanel.getX()<=finecritica3B_1))
+    													{
+    														pausefor3B=true;
+    														startforthirdB=false;
+    														
+    													}
+    													else
+    													{
+    														pausefor3B=false;
+    														startforthirdB=false;
+    													}
+    												}
+    												else if(pausefor3B==true && !deadlockFlag)
+    												{
+    													pausefor3B=false;
+    													startforthirdB=true;
+    												}
+    												else if(!deadlockFlag)
+    												{
+    													pausefor3B=false;
+    													startforthirdB=false;
+    												}
+    												
+    												
+    												
 
-      													
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" MA STAVA IN PAUSA PER POI RIPARTIRE
-      													else if(pausefor3B==true)
-      													{
-          													pausefor3B=false;
-          													startforthirdB=true;
-      													}
-      													//L'INDICATORE 3 NON STA PER ENTRARE IN ZONA CRITICA "B" E NON ERA NEMMENO IN PAUSA
-      													else 
-      													{
-      														pausefor3B=false;
-      														startforthirdB=false;
-      													}
-      														
-      												}
-     												
-     												
-     												
-     												else
-      												{
-      													pausefor3B=false;
-      													startforthirdB=false;
-      												}
+    												
+				
       												
    
     												
@@ -5616,6 +5374,8 @@ public class Semafori extends JFrame {
     													BaseProgressBar3JPanel.repaint();
     													break;
     												}
+    												
+    												
 
     												//IL TERZO INDICATORE HA RAGGIUNTO IL LIMITE X DEI 300
     												else if (Indicator3JPanel.LimitReached()) 
@@ -5642,8 +5402,8 @@ public class Semafori extends JFrame {
     												}
 
     												//QUANDO SI MUOVE L'INDICATORE
-    												 if( (startforthird==false && pausefor3==false && startforthirdB==false && pausefor3B==false) ||
-      														(startforthird==true && pausefor3==false && startforthirdB==true && pausefor3B==false) ) 
+    												 if( ((startforthird==false && pausefor3==false && startforthirdB==false && pausefor3B==false) ||
+      														(startforthird==true && pausefor3==false && startforthirdB==true && pausefor3B==false))  && !deadlockFlag) 
     												 {
     													Indicator3JPanel.moveForward();
     													
