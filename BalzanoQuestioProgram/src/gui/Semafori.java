@@ -4381,27 +4381,20 @@ public class Semafori extends JFrame {
     												if(i==299)
     													i=0;
     												
-    												//  !P1 Deadlock
-													
-    												if( (pausefor1B==false  && pausefor1 ==true && startforfirst==false) && (pausefor2B==true && startforsecondB==false && pausefor2==false))
-													{
-														deadlockFlag=true;
-													}
-													else if ((pausefor1B==true && startforfirstB==false && pausefor1==false) && (pausefor2B==false && pausefor2==true && !startforsecond))
-													{
-														deadlockFlag=true;
-													}
-													
-													//  !Processo 2
-													if( (pausefor2B==false && pausefor2==true && !startforsecond) && ((pausefor1B==true && !startforfirstB && pausefor1==false)))
-													{
-														deadlockFlag=true;
-													}
-													else if ((pausefor2B==true && !startforsecondB && pausefor2==false) && ((pausefor1B==false && pausefor1==true && !startforfirst)))
-													{
-														deadlockFlag=true;
-													}
+    												//  DEADLOCK CONDITIONS
     												
+    												if(pausefor1 && !startforfirst && pausefor2B && !startforsecondB)
+    													deadlockFlag=true;
+    													
+    												else if(pausefor1B && !startforfirstB && pausefor2 && !startforsecond)
+    													deadlockFlag=true;
+    													
+    													
+    												if(pausefor2 && !startforsecond && pausefor1B && !startforfirstB)
+    													deadlockFlag=true;
+    													
+    												else if(pausefor2B && !startforsecondB && pausefor1 && !startforfirst)
+    													deadlockFlag=true;
     												
     												
     												
@@ -5131,45 +5124,35 @@ public class Semafori extends JFrame {
 														i=0;	
 													}
     												
-    												//  !P1 Deadlock
+    												//  DEADLOCK CONDITIONS
+    												
+    												if(pausefor1 && !startforfirst && pausefor2B && !startforsecondB && 
+    														(pausefor3 && !startforthird || pausefor3B && !startforthirdB))
+    													deadlockFlag=true;
+    													
+    												else if(pausefor1B && !startforfirstB && pausefor2 && !startforsecond 
+    														&& (pausefor3 && !startforthird || pausefor3B && !startforthirdB))
+    													deadlockFlag=true;
+    													
+    													
+    												if(pausefor2 && !startforsecond && pausefor1B && !startforfirstB 
+    														&& (pausefor3 && !startforthird || pausefor3B && !startforthirdB))
+    													deadlockFlag=true;
+    													
+    												else if(pausefor2B && !startforsecondB && pausefor1 && !startforfirst 
+    														&& (pausefor3 && !startforthird || pausefor3B && !startforthirdB))
+    													deadlockFlag=true;
+    												
+    												
 													
-    												if( (pausefor1B==false  && pausefor1 ==true && startforfirst==false) && 
-    													((pausefor3B ==true && startforthirdB==false && pausefor3==false) ||(pausefor2B==true && startforsecondB==false && pausefor2==false)))
-													{
-														deadlockFlag=true;
-													}
-													else if ((pausefor1B==true && startforfirstB==false && pausefor1==false) &&
-															((pausefor3B==false && pausefor3==true && !startforthird)||(pausefor2B==false && pausefor2==true && !startforsecond)))
-													{
-														deadlockFlag=true;
-													}
-													
-    												//  !P2 Deadlock
-													if( (pausefor2B==false && pausefor2==true && !startforsecond) && 
-														((pausefor1B==true && !startforfirstB && pausefor1==false)||(pausefor3B==true && !startforthirdB && pausefor3==false)))
-													{
-														deadlockFlag=true;
-													}
-													else if ((pausefor2B==true && !startforsecondB && pausefor2==false) && 
-															((pausefor1B==false && pausefor1==true && !startforfirst)||(pausefor3B==false && pausefor3==true && !startforthird)))
-													{
-														deadlockFlag=true;
-													}
-													
-													//  !P3 Deadlock
-													if( (pausefor3B ==false && pausefor3 ==true && !startforthird) && 
-														((pausefor1B == true && !startforfirstB && pausefor1 ==false) ||(pausefor2B==true && !startforsecondB && pausefor2==false)))
-													{
-														deadlockFlag=true;
-													}
-													else if ((pausefor3B==true && !startforthirdB && pausefor3==false) && 
-															((pausefor1B==false && pausefor1==true && !startforfirst) ||(pausefor2B==false && pausefor2==true && !startforsecond)))
-													{
-														deadlockFlag=true;
-													} 
-    											
-													
-													
+    												if(pausefor3 && !startforthird && pausefor1B && !startforfirstB 
+    														&& (pausefor2 && !startforsecond || pausefor2B && !startforsecondB))
+    													deadlockFlag=true;
+    												else if(pausefor3B && !startforthirdB && pausefor1 && !startforfirst 
+    														&& (pausefor2 && !startforsecond || pausefor2B && !startforsecondB))
+    													deadlockFlag=true;
+    												
+    												
 													
 													if(deadlockFlag)
     												{
