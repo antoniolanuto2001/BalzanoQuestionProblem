@@ -3793,10 +3793,18 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 		
 		for(int z=0;z<arrayFinale.size();) {
 			
-			arrayRitorno.add(arrayFinale.get(z));
-			arrayRitorno.add(arrayFinale.get(z+1));
-			arrayRitorno.add((arrayFinale.get(z))+1);
-			arrayRitorno.add(arrayFinale.get(z+1));
+			if(lineaRR[0].getArrivo()==0) {
+				arrayRitorno.add((arrayFinale.get(z))-1);
+				arrayRitorno.add(arrayFinale.get(z+1));
+				arrayRitorno.add((arrayFinale.get(z)));
+				arrayRitorno.add(arrayFinale.get(z+1));
+			}else {
+				arrayRitorno.add(arrayFinale.get(z));
+				arrayRitorno.add(arrayFinale.get(z+1));
+				arrayRitorno.add((arrayFinale.get(z))+1);
+				arrayRitorno.add(arrayFinale.get(z+1));
+			}
+		
 			z=z+2;
 
 		}
