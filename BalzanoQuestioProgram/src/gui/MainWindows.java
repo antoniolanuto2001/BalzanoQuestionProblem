@@ -393,6 +393,12 @@ public class MainWindows {
 		SviluppatoriJLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		SviluppatoriJLabel.setBounds(10, 732, 310, 18);
 		panelMainButton.add(SviluppatoriJLabel);
+		
+		JLabel labelFedericoII_1 = new JLabel("");
+		labelFedericoII_1.setHorizontalAlignment(SwingConstants.CENTER);
+		labelFedericoII_1.setIcon(new ImageIcon(MainWindows.class.getResource("/img/logo2.png")));
+		labelFedericoII_1.setBounds(10, 11, 71, 50);
+		panelMainButton.add(labelFedericoII_1);
 	
 		
 		
