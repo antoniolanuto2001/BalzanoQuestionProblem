@@ -31,6 +31,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 
 
@@ -51,6 +52,7 @@ public class Filosofi extends JFrame {
 	 */
 	public Filosofi(JFrame framechiamante) 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Filosofi.class.getResource("/img/logoApplicationEVO1.png")));
 		frame=this;
 		
 		textAreaLog = new JTextArea();

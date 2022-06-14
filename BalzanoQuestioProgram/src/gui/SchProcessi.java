@@ -109,7 +109,7 @@ public class SchProcessi extends JFrame {
 	int flag=0;
 
 public SchProcessi(JFrame framechiamante) {
-	setIconImage(Toolkit.getDefaultToolkit().getImage(SchProcessi.class.getResource("/img/logoUninaIcon2.png")));
+	setIconImage(Toolkit.getDefaultToolkit().getImage(SchProcessi.class.getResource("/img/logoApplicationEVO1.png")));
 
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

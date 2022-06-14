@@ -36,6 +36,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Toolkit;
 
 public class Hashing extends JFrame {
 
@@ -146,6 +147,7 @@ public class Hashing extends JFrame {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Hashing(JFrame framechiamante) 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Hashing.class.getResource("/img/logoApplicationEVO1.png")));
 
 		for (int i = 0; i < listChaing.length; i++) 
 		{	

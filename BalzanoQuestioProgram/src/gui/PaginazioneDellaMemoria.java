@@ -37,6 +37,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import java.awt.Desktop;
 import javax.swing.border.MatteBorder;
+import java.awt.Toolkit;
 
 
 
@@ -70,6 +71,7 @@ public class PaginazioneDellaMemoria extends JFrame {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public PaginazioneDellaMemoria(JFrame framechiamante) {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PaginazioneDellaMemoria.class.getResource("/img/logoApplicationEVO1.png")));
 		
 		frame=this;
 		

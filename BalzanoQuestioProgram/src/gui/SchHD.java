@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -76,6 +77,7 @@ public class SchHD extends JFrame {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SchHD(JFrame framechiamante) 
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(SchHD.class.getResource("/img/logoApplicationEVO1.png")));
 		frame=this;
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -42,6 +42,7 @@ import javax.swing.border.TitledBorder;
 import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
+import java.awt.Toolkit;
 
 public class Semafori extends JFrame {
 	
@@ -116,6 +117,7 @@ public class Semafori extends JFrame {
 	public Semafori(JFrame framechiamante) 
 	
 	{
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Semafori.class.getResource("/img/logoApplicationEVO1.png")));
 		
 		frame=this;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
