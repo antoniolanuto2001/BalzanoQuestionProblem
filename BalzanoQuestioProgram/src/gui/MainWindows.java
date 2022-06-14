@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.SwingConstants;
+import java.awt.Toolkit;
 
 public class MainWindows {
 
@@ -55,6 +56,7 @@ public class MainWindows {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindows.class.getResource("/img/logoApplicationEVO1.png")));
 		frame.setBounds(100, 100, 1440, 800);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
