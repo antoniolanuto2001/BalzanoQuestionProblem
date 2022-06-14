@@ -459,8 +459,9 @@ public class Hashing extends JFrame {
 		panelControllo.add(labelPnlCtrl);
 		
 		JLabel labelDizionario = new JLabel("PAROLE ORIGINALI : ");
+		labelDizionario.setHorizontalAlignment(SwingConstants.CENTER);
 		labelDizionario.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelDizionario.setBounds(339, 186, 139, 38);
+		labelDizionario.setBounds(294, 186, 213, 38);
 		panelMainButton.add(labelDizionario);
 		
 		JTextArea textParoleSommate = new JTextArea();
