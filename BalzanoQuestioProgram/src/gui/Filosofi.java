@@ -677,7 +677,7 @@ public class Filosofi extends JFrame {
         panelVelocita.add(labelSliderMangia);
         labelSliderMangia.setFont(new Font("Segoe UI", Font.BOLD, 14));
         
-        JLabel labelVelocit = new JLabel("   Velocita'\u00A0  :");
+        JLabel labelVelocit = new JLabel("Velocita'\u00A0di simulazione :");
         labelVelocit.setHorizontalAlignment(SwingConstants.CENTER);
         labelVelocit.setForeground(Color.RED);
         labelVelocit.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -803,7 +803,7 @@ public class Filosofi extends JFrame {
 		scrollPaneHelp.setViewportView(txtrHashLaModello);
 		txtrHashLaModello.setBounds(0,0,290,1000);
 		txtrHashLaModello.setWrapStyleWord(true);
-		txtrHashLaModello.setText("Problema dei filosofi a cena \r\nSi considerino cinque filosofi che passano la vita pensando e mangiando, i filosofi condividono un tavolo rotondo circondato da cinque sedie, una per ciascun filosofo. Al centro del tavolo si trova una zuppiera colma di riso, e la tavola è apparecchiata con un numero di bacchette pari al numero di filosofi. Quando un filosofo pensa, non interagisce con i colleghi, quando gli viene fame tenta di prendere le bacchette più vicine: quelle che si trovano tra lui e i commensi alla sua destra e alla sua sinistra. Un filosofo affamato tiene in mano due bacchette contemporaneamente, mangia senza lasciare le bacchette. Terminato il pasto, le posa e riprende a pensare.\r\nPrima strategia: \r\nUn filosofo prende le bacchette solo se sono entrambe disponibili\r\nSeconda strategia (asimmetrica): \r\nUn filosofo dispari prende prima la bacchetta di sinistra, un filosofo pari prende prima quella di destra.\r\nTerza strategia: \r\nI filosofi non hanno mai fame tutti contemporaneamente, ne rimane sempre almeno uno che pensa");
+		txtrHashLaModello.setText("Problema dei filosofi a cena \r\nSi considerino cinque filosofi che passano la vita pensando e mangiando, i filosofi condividono un tavolo rotondo circondato da cinque sedie, una per ciascun filosofo. Al centro del tavolo si trova una zuppiera colma di riso, e la tavola e' apparecchiata con un numero di bacchette pari al numero di filosofi. Quando un filosofo pensa, non interagisce con i colleghi, quando gli viene fame tenta di prendere le bacchette pi\u00F9 vicine: quelle che si trovano tra lui e i commensi alla sua destra e alla sua sinistra. Un filosofo affamato tiene in mano due bacchette contemporaneamente, mangia senza lasciare le bacchette. Terminato il pasto, le posa e riprende a pensare.\r\n\r\nPrima strategia: \r\nUn filosofo prende le bacchette solo se sono entrambe disponibili\r\n\r\nSeconda strategia (asimmetrica): \r\nUn filosofo dispari prende prima la bacchetta di sinistra, un filosofo pari prende prima quella di destra.\r\n\r\nTerza strategia: \r\nI filosofi non hanno mai fame tutti contemporaneamente, ne rimane sempre almeno uno che pensa\r\n\r\n\r\n\r\n\r\n");
 		txtrHashLaModello.setLineWrap(true);
 		txtrHashLaModello.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		txtrHashLaModello.setEditable(false);
