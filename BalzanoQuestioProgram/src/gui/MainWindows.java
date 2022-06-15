@@ -63,7 +63,7 @@ public class MainWindows {
 		
 
 
-		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindows.class.getResource("/img/logoApplicationEVO1.png")));
+		
 		frame.setBounds(100, 100, 1440, 800);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
@@ -75,7 +75,8 @@ public class MainWindows {
 		ImageIcon imageHashing = new ImageIcon(this.getClass().getResource("/img/hashingIcon1.png"));
 		ImageIcon imageHD = new ImageIcon(this.getClass().getResource("/img/hdIcon1.png"));
 		ImageIcon imageSemafori = new ImageIcon(this.getClass().getResource("/img/semaforoIcon1.png"));
-		
+		ImageIcon logo = new ImageIcon(this.getClass().getResource("/img/logo2.png"));
+		frame.setIconImage(logo.getImage());
 		
 		JPanel panelMainButton = new JPanel();
 		panelMainButton.setBackground(new Color(187, 222, 251));

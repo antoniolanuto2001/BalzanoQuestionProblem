@@ -473,7 +473,7 @@ public class Hashing extends JFrame {
 		
 		JLabel labelCodifica1 = new JLabel("SOMMA CARATTERI : ");
 		labelCodifica1.setFont(new Font("Segoe UI", Font.BOLD, 14));
-		labelCodifica1.setBounds(653, 189, 152, 32);
+		labelCodifica1.setBounds(635, 189, 170, 32);
 		panelMainButton.add(labelCodifica1);
 		
 		JLabel labelSomma2 = new JLabel("CODIFICA FINALE :");
