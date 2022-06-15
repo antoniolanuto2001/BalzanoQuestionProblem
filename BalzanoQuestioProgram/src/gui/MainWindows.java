@@ -19,10 +19,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import javax.swing.SwingConstants;
 
-
-
-import java.awt.Toolkit;
-
 public class MainWindows {
 
 	private JFrame frame;
