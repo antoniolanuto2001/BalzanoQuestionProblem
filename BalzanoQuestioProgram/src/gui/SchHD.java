@@ -1388,7 +1388,15 @@ public class SchHD extends JFrame {
 					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
 
 					labelDatoDistanzaSCAN.setText("");
+					if(chckbxSCAN.isSelected()) {
+						labelSCAN.setText("C-SCAN");
+					}
+					else {
+						labelSCAN.setText("SCAN");
+
+					}
 				}
+				
 				if(labelMostraSoluzioni.isEnabled()==false) {
 					if(chckbxSCAN.isEnabled()) {
 						if(chckbxSCAN.isSelected()) {
@@ -1459,6 +1467,12 @@ public class SchHD extends JFrame {
 				if(chckbxLOOK.isEnabled()) {
 					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
 					labelDatoDistanzaLOOK.setText("");
+					if(chckbxLOOK.isSelected()) {
+						labelLOOK.setText("C-LOOK");
+					}
+					else {
+						labelLOOK.setText("LOOK");
+					}
 				}
 				
 				if(labelMostraSoluzioni.isEnabled()==false) {
