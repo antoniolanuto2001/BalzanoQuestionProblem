@@ -20,7 +20,6 @@ import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -828,6 +827,7 @@ public class SchHD extends JFrame {
 						int nc=Integer.valueOf(k);
 						
 						String direzioneS = new String();
+						@SuppressWarnings("unused")
 						String direzioneL = new String();
 											
 						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
@@ -1300,6 +1300,7 @@ public class SchHD extends JFrame {
 				}
 			}
 
+			@SuppressWarnings("unused")
 			private int min(int length1, int length2, int length3, int length4, int length5,	int length6) {
 
 				int[] array=new int [6];
@@ -1339,6 +1340,7 @@ public class SchHD extends JFrame {
 						int nc=Integer.valueOf(k);
 						
 						String direzioneS = new String();
+						@SuppressWarnings("unused")
 						String direzioneL = new String();
 											
 						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
@@ -1365,6 +1367,7 @@ public class SchHD extends JFrame {
 						int nc=Integer.valueOf(k);
 						
 						String direzioneS = new String();
+						@SuppressWarnings("unused")
 						String direzioneL = new String();
 											
 						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
@@ -1400,6 +1403,7 @@ public class SchHD extends JFrame {
 						int nc=Integer.valueOf(k);
 						
 						String direzioneS = new String();
+						@SuppressWarnings("unused")
 						String direzioneL = new String();
 											
 						if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
@@ -1426,6 +1430,7 @@ public class SchHD extends JFrame {
 						int nc=Integer.valueOf(k);
 						
 						String direzioneS = new String();
+						@SuppressWarnings("unused")
 						String direzioneL = new String();
 											
 						if(rdbtnDestraLOOK.isSelected()) direzioneS="right";

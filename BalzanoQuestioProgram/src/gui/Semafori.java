@@ -6,16 +6,13 @@ import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.TexturePaint;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Timer;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.DefaultComboBoxModel;
@@ -39,7 +36,6 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.imageio.plugins.tiff.FaxTIFFTagSet;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
 import java.awt.Toolkit;
@@ -8742,7 +8738,9 @@ public class Semafori extends JFrame {
 	        	@Override
 				public void mouseClicked(MouseEvent e) 
 	        	{
+					@SuppressWarnings("unused")
 					int rowCount = tabella.getRowCount();
+					@SuppressWarnings("unused")
 					int columnCount = tabella.getColumnCount();
 					int randomNum=0;
 					int startpoint=0,endpoint=0;

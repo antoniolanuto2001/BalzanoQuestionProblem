@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class PanelGraficiSchProcessi extends JPanel {

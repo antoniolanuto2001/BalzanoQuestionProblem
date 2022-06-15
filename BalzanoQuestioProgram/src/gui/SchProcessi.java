@@ -59,7 +59,6 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Component;
 
-import javax.print.attribute.standard.PrinterInfo;
 import javax.swing.Box;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -3440,6 +3439,7 @@ public SchProcessi(JFrame framechiamante) {
 		int ct[] = new int[n];     // tempo di completamento
 		int ta[] = new int[n];     // turn around times
 		int wt[] = new int[n];     // waiting times
+		@SuppressWarnings("unused")
 		float avgwt=0,avgta=0;
 	
 		for(int i = 0; i < n; i++){
@@ -3494,6 +3494,7 @@ public SchProcessi(JFrame framechiamante) {
 		int wt[] = new int[n];  //wt means waiting time
 		int f[] = new int[n];  // f means it is flag it checks process is completed or not
 		int st=0, tot=0;
+		@SuppressWarnings("unused")
 		float avgwt=0, avgta=0;
 	 
 		for(int i=0;i<n;i++){
@@ -3621,6 +3622,7 @@ public ArrayList<Integer> SJFPClass(CreaLinee[] lineaSJFP){
 				 }
 
  
+			@SuppressWarnings("unused")
 			float WT = 0,TT = 0;
 			for(int i = 1; i <= n; i++){
 				WT += proc[i][2];
