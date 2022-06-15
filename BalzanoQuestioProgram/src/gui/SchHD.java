@@ -206,6 +206,7 @@ public class SchHD extends JFrame {
 			pannelloParametri.add(labelPosizioneInziale);
 			
 		JTextField textFieldInzialeTestina = new JTextField();
+			textFieldInzialeTestina.setEditable(false);
 			textFieldInzialeTestina.setFont(new Font("Arial", Font.PLAIN, 15));
 			textFieldInzialeTestina.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldInzialeTestina.setText("0");
@@ -535,13 +536,18 @@ public class SchHD extends JFrame {
 				labelFastForwardMeno.setEnabled(false);
 				labelFastForwardPiu.setEnabled(true);
 				labelMostraSoluzioni.setEnabled(true);
-
+				
+				textFieldInzialeTestina.setEditable(true);
 				chckbxSCAN.setEnabled(true);
 				chckbxLOOK.setEnabled(true);
-				rdbtnDestraLOOK.setEnabled(true);
-				rdbtnDestraSCAN.setEnabled(true);
-				rdbtnSinistraLOOK.setEnabled(true);
-				rdbtnSinistraSCAN.setEnabled(true);
+				if(rdbtnDestraLOOK.isSelected())rdbtnDestraLOOK.setEnabled(false);
+				else rdbtnDestraLOOK.setEnabled(true);
+				if(rdbtnDestraSCAN.isSelected())rdbtnDestraSCAN.setEnabled(false);
+				else rdbtnDestraSCAN.setEnabled(true);
+				if(rdbtnSinistraLOOK.isSelected())rdbtnSinistraLOOK.setEnabled(false);
+				else rdbtnSinistraLOOK.setEnabled(true);
+				if(rdbtnSinistraSCAN.isSelected())rdbtnSinistraSCAN.setEnabled(false);
+				else rdbtnSinistraSCAN.setEnabled(true);
 				
 				labelDatoDistanzaFCFS.setText("");
 				labelDatoDistanzaLOOK.setText("");
@@ -695,6 +701,7 @@ public class SchHD extends JFrame {
 		textFieldInzialeTestina.addCaretListener(new CaretListener() {
 			public void caretUpdate(CaretEvent e) {
 				if(textFieldInzialeTestina.isEditable()){
+					
 					int diff=0;
 					int count=0;
 					if(successione.length>0) {
@@ -727,22 +734,34 @@ public class SchHD extends JFrame {
 						}
 						if(count==0){
 							textFieldInzialeTestina.setBackground(new Color(255,255,255));
+
 							labelMostraSoluzioni.setEnabled(true);
-							labelFastForwardMeno.setEnabled(true);
+							labelFastForwardMeno.setEnabled(false);
 							labelFastForwardPiu.setEnabled(true);
 							textFieldRichieste.setBackground(Color.white);
 							labelMessaggioErrore.setText("");
+							jPanelFCFS.resetGrafico(jPanelFCFS.getGraphics());
+							jPanelSSFT.resetGrafico(jPanelSSFT.getGraphics());
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+							jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+
+							labelDatoDistanzaFCFS.setText("");
+							labelDatoDistanzaLOOK.setText("");
+							labelDatoDistanzaSCAN.setText("");
+							labelDatoDistanzaSSTF.setText("");
 						}	
 					}
 				}
 			}
+		
 		});
 		textFieldInzialeTestina.addKeyListener(new KeyAdapter() {
 	         public void keyTyped(KeyEvent e) {
 	             char c = e.getKeyChar();
 	             if ( ((c < '0') || (c > '9'))) {
 	                  e.consume();  //Ignora l'evento
-	             }   
+	             }
+	             
 			}
 		});
 
@@ -781,13 +800,23 @@ public class SchHD extends JFrame {
 					if(count==0){
 						textFieldInzialeTestina.setBackground(new Color(255,255,255));
 						labelMostraSoluzioni.setEnabled(true);
-						labelFastForwardMeno.setEnabled(true);
+						labelFastForwardMeno.setEnabled(false);
 						labelFastForwardPiu.setEnabled(true);
 						textFieldRichieste.setBackground(Color.white);
 						labelMessaggioErrore.setText("");
 					}
 				
 				}
+				
+				jPanelFCFS.resetGrafico(jPanelFCFS.getGraphics());
+				jPanelSSFT.resetGrafico(jPanelSSFT.getGraphics());
+				jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+				jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+
+				labelDatoDistanzaFCFS.setText("");
+				labelDatoDistanzaLOOK.setText("");
+				labelDatoDistanzaSCAN.setText("");
+				labelDatoDistanzaSSTF.setText("");
 			}
 		});
 		
@@ -812,73 +841,86 @@ public class SchHD extends JFrame {
 		rdbtnSinistraSCAN.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(rdbtnSinistraSCAN.isEnabled()) {
-					if(rdbtnSinistraSCAN.isSelected()) {
-						rdbtnSinistraSCAN.setEnabled(false);
-						rdbtnDestraSCAN.setSelected(false);
-						rdbtnDestraSCAN.setEnabled(true);
-						
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-						@SuppressWarnings("unused")
-						String direzioneL = new String();
-											
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
-						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+					if(rdbtnSinistraSCAN.isEnabled()) {
+						if(rdbtnSinistraSCAN.isSelected()) {
+							rdbtnSinistraSCAN.setEnabled(false);
+							rdbtnDestraSCAN.setSelected(false);
+							rdbtnDestraSCAN.setEnabled(true);
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+
+							labelDatoDistanzaSCAN.setText("");
+							if(labelMostraSoluzioni.isEnabled()==false) {
+
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+
+							labelDatoDistanzaSCAN.setText("");
+
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+							@SuppressWarnings("unused")
+							String direzioneL = new String();
+												
+							if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+							
+							if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+							else numeriSCAN=SCAN(successione,s,direzioneS,nc);
+		
+							if(chckbxSCAN.isSelected()) {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+							}else {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+							}
 						}
-					}
-				}	
+					}	
+				}
 			}
 		});
 		rdbtnDestraSCAN.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(rdbtnDestraSCAN.isEnabled()) {
-					if(rdbtnDestraSCAN.isSelected()) {
-						rdbtnDestraSCAN.setEnabled(false);
-						rdbtnSinistraSCAN.setSelected(false);
-						rdbtnSinistraSCAN.setEnabled(true);
-						
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						labelDatoDistanzaSCAN.setText("");
-	
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-											
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
-						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+					if(rdbtnDestraSCAN.isEnabled()) {
+						if(rdbtnDestraSCAN.isSelected()) {
+							rdbtnDestraSCAN.setEnabled(false);
+							rdbtnSinistraSCAN.setSelected(false);
+							rdbtnSinistraSCAN.setEnabled(true);
+							
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+							labelDatoDistanzaSCAN.setText("");
+							
+							if(labelMostraSoluzioni.isEnabled()==false) {
+
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+							labelDatoDistanzaSCAN.setText("");
+		
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+												
+							if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+							
+							if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+							else numeriSCAN=SCAN(successione,s,direzioneS,nc);
+		
+							if(chckbxSCAN.isSelected()) {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+							}else {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+							}
 						}
 					}
 				}
@@ -889,34 +931,41 @@ public class SchHD extends JFrame {
 		rdbtnSinistraLOOK.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(rdbtnSinistraLOOK.isEnabled()) {
-					if(rdbtnSinistraLOOK.isSelected()) {
-						rdbtnSinistraLOOK.setEnabled(false);
-						rdbtnDestraLOOK.setSelected(false);
-						rdbtnDestraLOOK.setEnabled(true);
-						
-						jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-						
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-											
-						if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
-						
-						if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
-						else numeriLOOK=LOOK(successione,s,direzioneS,nc);
-	
-						if(chckbxLOOK.isSelected()) {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-							jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
-						}else {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-							jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+					if(rdbtnSinistraLOOK.isEnabled()) {
+						if(rdbtnSinistraLOOK.isSelected()) {
+							rdbtnSinistraLOOK.setEnabled(false);
+							rdbtnDestraLOOK.setSelected(false);
+							rdbtnDestraLOOK.setEnabled(true);
+							
+							jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+							labelDatoDistanzaLOOK.setText("");
+							
+							if(labelMostraSoluzioni.isEnabled()==false) {
+
+							jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+							labelDatoDistanzaLOOK.setText("");
+
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+												
+							if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
+							
+							if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
+							else numeriLOOK=LOOK(successione,s,direzioneS,nc);
+		
+							if(chckbxLOOK.isSelected()) {
+								labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
+								jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+							}else {
+								labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
+								jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+							}
 						}
 					}
 				}
@@ -925,35 +974,40 @@ public class SchHD extends JFrame {
 		rdbtnDestraLOOK.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(rdbtnDestraLOOK.isEnabled()) {
-					if(rdbtnDestraLOOK.isSelected()) {
-						rdbtnDestraLOOK.setEnabled(false);
-						rdbtnSinistraLOOK.setSelected(false);
-						rdbtnSinistraLOOK.setEnabled(true);
-						
-						jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-						labelDatoDistanzaLOOK.setText("");
-	
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-											
-						if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
-						
-						if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
-						else numeriLOOK=LOOK(successione,s,direzioneS,nc);
-	
-						if(chckbxLOOK.isSelected()) {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
-							jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
-						}else {
-							labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
-							jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+					if(rdbtnDestraLOOK.isEnabled()) {
+						if(rdbtnDestraLOOK.isSelected()) {
+							rdbtnDestraLOOK.setEnabled(false);
+							rdbtnSinistraLOOK.setSelected(false);
+							rdbtnSinistraLOOK.setEnabled(true);
+							jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+							labelDatoDistanzaLOOK.setText("");
+							
+							if(labelMostraSoluzioni.isEnabled()==false) {
+
+							jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+							labelDatoDistanzaLOOK.setText("");
+		
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+												
+							if(rdbtnDestraLOOK.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraLOOK.isSelected())direzioneS="left";
+							
+							if(chckbxLOOK.isSelected())numeriCLOOK=CLOOK(successione,s,direzioneS,nc);
+							else numeriLOOK=LOOK(successione,s,direzioneS,nc);
+		
+							if(chckbxLOOK.isSelected()) {
+								labelDatoDistanzaLOOK.setText(String.valueOf(distanzaCLOOK));
+								jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriCLOOK,nc,distanzaCLOOK,successione);
+							}else {
+								labelDatoDistanzaLOOK.setText(String.valueOf(distanzaLOOK));
+								jPanelLOOK.disegnaSoluzione(jPanelLOOK.getGraphics(),numeriLOOK,nc,distanzaLOOK,successione);
+							}
 						}
 					}
 				}
@@ -1084,6 +1138,7 @@ public class SchHD extends JFrame {
 						labelMostraSoluzioni.setEnabled(true);
 					}
 					else {
+						flag=max(numeriSSTF.length,numeriFCFS.length,numeriCSCAN.length,numeriCLOOK.length,numeriSCAN.length,numeriLOOK.length);
 						labelFastForwardPiu.setEnabled(false);
 						labelMostraSoluzioni.setEnabled(false);
 						chckbxSCAN.setEnabled(true);
@@ -1330,58 +1385,67 @@ public class SchHD extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(chckbxSCAN.isEnabled()) {
-					if(chckbxSCAN.isSelected()) {
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-						@SuppressWarnings("unused")
-						String direzioneL = new String();
-											
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
+					jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+
+					labelDatoDistanzaSCAN.setText("");
+				}
+				if(labelMostraSoluzioni.isEnabled()==false) {
+					if(chckbxSCAN.isEnabled()) {
 						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+
+							labelDatoDistanzaSCAN.setText("");
+
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+							@SuppressWarnings("unused")
+							String direzioneL = new String();
+												
+							if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+							
+							if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+							else numeriSCAN=SCAN(successione,s,direzioneS,nc);
+		
+							if(chckbxSCAN.isSelected()) {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+							}else {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+							}
 						}
-					}
-					else {
-						jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
-						
-						String j= textFieldInzialeTestina.getText().toString();
-						int s=Integer.valueOf(j);
-	
-						String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
-						int nc=Integer.valueOf(k);
-						
-						String direzioneS = new String();
-						@SuppressWarnings("unused")
-						String direzioneL = new String();
-											
-						if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
-						else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
-						
-						if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
-						else numeriSCAN=SCAN(successione,s,direzioneS,nc);
-	
-						if(chckbxSCAN.isSelected()) {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
-						}else {
-							labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
-							jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+						else {
+							jPanelSCAN.resetGrafico(jPanelSCAN.getGraphics());
+							
+							String j= textFieldInzialeTestina.getText().toString();
+							int s=Integer.valueOf(j);
+		
+							String k= comboBoxSceltaNCilindri.getSelectedItem().toString();
+							int nc=Integer.valueOf(k);
+							
+							String direzioneS = new String();
+							@SuppressWarnings("unused")
+							String direzioneL = new String();
+												
+							if(rdbtnDestraSCAN.isSelected()) direzioneS="right";
+							else if(rdbtnSinistraSCAN.isSelected())direzioneS="left";
+							
+							if(chckbxSCAN.isSelected())numeriCSCAN=CSCAN(successione,s,direzioneS,nc);
+							else numeriSCAN=SCAN(successione,s,direzioneS,nc);
+		
+							if(chckbxSCAN.isSelected()) {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaCSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriCSCAN,nc,distanzaCSCAN,successione);
+							}else {
+								labelDatoDistanzaSCAN.setText(String.valueOf(distanzaSCAN));
+								jPanelSCAN.disegnaSoluzione(jPanelSCAN.getGraphics(),numeriSCAN,nc,distanzaSCAN,successione);
+							}
 						}
 					}
 				}
@@ -1393,9 +1457,16 @@ public class SchHD extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(chckbxLOOK.isEnabled()) {
+					jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
+					labelDatoDistanzaLOOK.setText("");
+				}
+				
+				if(labelMostraSoluzioni.isEnabled()==false) {
+				if(chckbxLOOK.isEnabled()) {
 					if(chckbxLOOK.isSelected()) {
 						jPanelLOOK.resetGrafico(jPanelLOOK.getGraphics());
-						
+						labelDatoDistanzaLOOK.setText("");
+
 						String j= textFieldInzialeTestina.getText().toString();
 						int s=Integer.valueOf(j);
 	
@@ -1448,6 +1519,7 @@ public class SchHD extends JFrame {
 						}
 					}
 				}
+			}
 			}
 		});
 		
