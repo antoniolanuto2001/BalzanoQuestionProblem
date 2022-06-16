@@ -225,30 +225,30 @@ public class Semafori extends JFrame {
         labelYoutubeIcon.setToolTipText("Videolezione dell'argomento trattato");
         
 		//SCRITTA MUTEX DEL SEMAFORO 1 CON VALORE 1
-		JLabel JLabelTextMutex1_1 = new JLabel("Mutex=1");
-		JLabelTextMutex1_1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1_1.setBounds(155, 607, 79, 14);
+		JLabel JLabelTextMutex1_1 = new JLabel("Mutex A=1");
+		JLabelTextMutex1_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		JLabelTextMutex1_1.setBounds(155, 607, 108, 14);
 		panelMainButton.add(JLabelTextMutex1_1);
 		JLabelTextMutex1_1.setVisible(true);
 		
 		//SCRITTA MUTEX DEL SEMAFORO 2 CON VALORE 1
-		JLabel JLabelTextMutex2_1 = new JLabel("Mutex=1");
-		JLabelTextMutex2_1.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2_1.setBounds(391, 607, 79, 14);
+		JLabel JLabelTextMutex2_1 = new JLabel("Mutex B=1");
+		JLabelTextMutex2_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		JLabelTextMutex2_1.setBounds(391, 607, 108, 14);
 		panelMainButton.add(JLabelTextMutex2_1);
 		JLabelTextMutex2_1.setVisible(false);
 		
 		//SCRITTA MUTEX DEL SEMAFORO 1 CON VALORE 0
-		JLabel JLabelTextMutex1_0 = new JLabel("Mutex=0");
-		JLabelTextMutex1_0.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex1_0.setBounds(155, 607, 79, 14);
+		JLabel JLabelTextMutex1_0 = new JLabel("Mutex A=0");
+		JLabelTextMutex1_0.setFont(new Font("Dialog", Font.BOLD, 16));
+		JLabelTextMutex1_0.setBounds(155, 607, 108, 14);
 		panelMainButton.add(JLabelTextMutex1_0);
 		JLabelTextMutex1_0.setVisible(false);
 		
 		//SCRITTA MUTEX DEL SEMAFORO 2 CON VALORE 0
-		JLabel JLabelTextMutex2_0 = new JLabel("Mutex=0");
-		JLabelTextMutex2_0.setFont(new Font("Sitka Subheading", Font.BOLD, 13));
-		JLabelTextMutex2_0.setBounds(391, 607, 79, 14);
+		JLabel JLabelTextMutex2_0 = new JLabel("Mutex B=0");
+		JLabelTextMutex2_0.setFont(new Font("Dialog", Font.BOLD, 16));
+		JLabelTextMutex2_0.setBounds(391, 607, 108, 14);
 		panelMainButton.add(JLabelTextMutex2_0);
 		JLabelTextMutex2_0.setVisible(false);
 		
@@ -348,19 +348,19 @@ public class Semafori extends JFrame {
 		GeneraEsercizioJButton.setToolTipText("Genera tabella processi");
 		
 		JLabel StartTimeIndexJLabel = new JLabel("Tempo 0");
-		StartTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-		StartTimeIndexJLabel.setBounds(548, 502, 53, 14);
+		StartTimeIndexJLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		StartTimeIndexJLabel.setBounds(546, 483, 75, 16);
 		panelMainButton.add(StartTimeIndexJLabel);
 	        
 		JLabel EndTimeIndexJLabel = new JLabel("Tempo 300");
-		EndTimeIndexJLabel.setFont(new Font("Tempus Sans ITC", Font.BOLD, 11));
-		EndTimeIndexJLabel.setBounds(790, 502, 64, 14);
+		EndTimeIndexJLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		EndTimeIndexJLabel.setBounds(766, 483, 88, 16);
 		panelMainButton.add(EndTimeIndexJLabel);
 		
 		
 		JPanel BaseProgressBar1JPanel = new JPanel();
 		BaseProgressBar1JPanel.setBackground(new Color(211,211,211));
-		BaseProgressBar1JPanel.setBounds(548, 527, 300, 29);
+		BaseProgressBar1JPanel.setBounds(548, 500, 300, 40);
 		panelMainButton.add(BaseProgressBar1JPanel);
 		BaseProgressBar1JPanel.setLayout(null);
 		BaseProgressBar1JPanel.setOpaque(true);
@@ -370,7 +370,7 @@ public class Semafori extends JFrame {
 		BaseProgressBar2JPanel.setVisible(false);
 		BaseProgressBar2JPanel.setLayout(null);
 		BaseProgressBar2JPanel.setBackground(new Color(211,211,211));
-		BaseProgressBar2JPanel.setBounds(548, 567, 300, 29);
+		BaseProgressBar2JPanel.setBounds(548, 550, 300, 40);
 		panelMainButton.add(BaseProgressBar2JPanel);
 		BaseProgressBar2JPanel.setOpaque(true);
 	        
@@ -378,7 +378,7 @@ public class Semafori extends JFrame {
 		BaseProgressBar3JPanel.setVisible(false);
 		BaseProgressBar3JPanel.setLayout(null);
 		BaseProgressBar3JPanel.setBackground(new Color(211,211,211));
-		BaseProgressBar3JPanel.setBounds(548, 607, 300, 29);
+		BaseProgressBar3JPanel.setBounds(548, 600, 300, 40);
 		panelMainButton.add(BaseProgressBar3JPanel);
 		BaseProgressBar3JPanel.setOpaque(true);
 	        
@@ -386,7 +386,7 @@ public class Semafori extends JFrame {
         BaseProgressBar4JPanel.setVisible(false);
         BaseProgressBar4JPanel.setLayout(null);
         BaseProgressBar4JPanel.setBackground(new Color(211,211,211));
-        BaseProgressBar4JPanel.setBounds(548, 645, 300, 29);
+        BaseProgressBar4JPanel.setBounds(548, 650, 300, 40);
         panelMainButton.add(BaseProgressBar4JPanel);
         BaseProgressBar4JPanel.setOpaque(true);
 	        
@@ -395,36 +395,40 @@ public class Semafori extends JFrame {
         BaseProgressBar5JPanel.setVisible(false);
         BaseProgressBar5JPanel.setLayout(null);
         BaseProgressBar5JPanel.setBackground(new Color(211,211,211));
-        BaseProgressBar5JPanel.setBounds(548, 685, 300, 29);
+        BaseProgressBar5JPanel.setBounds(548, 700, 300, 40);
         panelMainButton.add(BaseProgressBar5JPanel);
         BaseProgressBar5JPanel.setOpaque(true);
 
 		
 		GraficaIndicatoreSemafori Indicator1JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
-		Indicator1JPanel.setSize(4, 29);
+		Indicator1JPanel.setSize(4, 40);
 		BaseProgressBar1JPanel.add(Indicator1JPanel);
 		Indicator1JPanel.setLayout(null);
 		Indicator1JPanel.setVisible(true);
 		
 		GraficaIndicatoreSemafori Indicator2JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		Indicator2JPanel.setSize(4, 40);
 		BaseProgressBar2JPanel.add(Indicator2JPanel);
 		Indicator2JPanel.setLayout(null);
 		Indicator2JPanel.setVisible(true);
 		
 		
 		GraficaIndicatoreSemafori Indicator3JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		Indicator3JPanel.setSize(4, 40);
 		BaseProgressBar3JPanel.add(Indicator3JPanel);
 		Indicator3JPanel.setLayout(null);
 		Indicator3JPanel.setVisible(true);
         
 		
 		GraficaIndicatoreSemafori Indicator4JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		Indicator4JPanel.setSize(4, 40);
 		BaseProgressBar4JPanel.add(Indicator4JPanel);
 		Indicator4JPanel.setLayout(null);
 		Indicator4JPanel.setVisible(true);
 		
 		
 		GraficaIndicatoreSemafori Indicator5JPanel = new GraficaIndicatoreSemafori(0, 0, 4, 29);
+		Indicator5JPanel.setSize(4, 40);
 		BaseProgressBar5JPanel.add(Indicator5JPanel);
 		Indicator5JPanel.setLayout(null);
 		Indicator5JPanel.setVisible(true);
@@ -811,42 +815,42 @@ public class Semafori extends JFrame {
         						DeadLockJLabel.setHorizontalAlignment(SwingConstants.CENTER);
         						DeadLockJLabel.setFont(new Font("VAGRounded BT", Font.BOLD | Font.ITALIC, 35));
         						DeadLockJLabel.setForeground(Color.RED);
-        						DeadLockJLabel.setBounds(558, 438, 284, 46);
+        						DeadLockJLabel.setBounds(558, 434, 284, 46);
         						panelMainButton.add(DeadLockJLabel);
         						DeadLockJLabel.setVisible(false);
         						
         						JLabel ScrittaP1JLabel = new JLabel("P1");
         						ScrittaP1JLabel.setForeground(Color.GRAY);
-        						ScrittaP1JLabel.setFont(new Font("Tekton Pro Ext", Font.BOLD | Font.ITALIC, 13));
-        						ScrittaP1JLabel.setBounds(858, 527, 46, 29);
+        						ScrittaP1JLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
+        						ScrittaP1JLabel.setBounds(858, 500, 46, 29);
         						panelMainButton.add(ScrittaP1JLabel);
         						ScrittaP1JLabel.setVisible(true);
         						
         						JLabel ScrittaP2JLabel = new JLabel("P2");
         						ScrittaP2JLabel.setForeground(Color.GRAY);
-        						ScrittaP2JLabel.setFont(new Font("Tekton Pro Ext", Font.BOLD | Font.ITALIC, 13));
-        						ScrittaP2JLabel.setBounds(858, 567, 46, 29);
+        						ScrittaP2JLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
+        						ScrittaP2JLabel.setBounds(858, 550, 46, 29);
         						panelMainButton.add(ScrittaP2JLabel);
         						ScrittaP2JLabel.setVisible(false);
         						
         						JLabel ScrittaP3JLabel = new JLabel("P3");
         						ScrittaP3JLabel.setForeground(Color.GRAY);
-        						ScrittaP3JLabel.setFont(new Font("Tekton Pro Ext", Font.BOLD | Font.ITALIC, 13));
-        						ScrittaP3JLabel.setBounds(858, 607, 46, 29);
+        						ScrittaP3JLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
+        						ScrittaP3JLabel.setBounds(858, 600, 46, 29);
         						panelMainButton.add(ScrittaP3JLabel);
         						ScrittaP3JLabel.setVisible(false);
         						
         						JLabel ScrittaP4JLabel = new JLabel("P4");
         						ScrittaP4JLabel.setForeground(Color.GRAY);
-        						ScrittaP4JLabel.setFont(new Font("Tekton Pro Ext", Font.BOLD | Font.ITALIC, 13));
-        						ScrittaP4JLabel.setBounds(858, 645, 46, 29);
+        						ScrittaP4JLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
+        						ScrittaP4JLabel.setBounds(858, 650, 46, 29);
         						panelMainButton.add(ScrittaP4JLabel);
         						ScrittaP4JLabel.setVisible(false);
         						
         						JLabel ScrittaP5JLabel = new JLabel("P5");
         						ScrittaP5JLabel.setForeground(Color.GRAY);
-        						ScrittaP5JLabel.setFont(new Font("Tekton Pro Ext", Font.BOLD | Font.ITALIC, 13));
-        						ScrittaP5JLabel.setBounds(858, 685, 46, 29);
+        						ScrittaP5JLabel.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 16));
+        						ScrittaP5JLabel.setBounds(858, 700, 46, 29);
         						panelMainButton.add(ScrittaP5JLabel);
         						ScrittaP5JLabel.setVisible(false);
         						
@@ -9258,7 +9262,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 				CriticalArea1JPanel1.setVisible(true);
 	        
@@ -9269,7 +9273,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 				CriticalArea2JPanel1.setVisible(true);
 				
@@ -9277,7 +9281,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 				CriticalArea3JPanel1.setVisible(true);
 				
@@ -9285,7 +9289,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(JobDuration1JPanel);
 		        JobDuration1JPanel.setVisible(true);
 		       
@@ -9311,7 +9315,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 				CriticalArea1JPanel1.setVisible(true);
 	        
@@ -9322,7 +9326,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 				CriticalArea2JPanel1.setVisible(true);
 				
@@ -9330,7 +9334,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 				CriticalArea3JPanel1.setVisible(true);
 				
@@ -9338,7 +9342,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(JobDuration1JPanel);
 		        JobDuration1JPanel.setVisible(true);
 		        //PROCESSO 2 !!!
@@ -9349,7 +9353,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 				CriticalArea1JPanel2.setVisible(true);
 	        
@@ -9357,7 +9361,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 				CriticalArea2JPanel2.setVisible(true);
 				
@@ -9365,7 +9369,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 				CriticalArea3JPanel2.setVisible(true);
 				
@@ -9373,7 +9377,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioProcesso;
 				endpoint=StartEndProcessi.get(1).fineProcesso;
 				System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 		        JobDuration2JPanel.setVisible(true);
 		       
@@ -9522,7 +9526,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 					CriticalArea1JPanel1.setVisible(true);
 		        
@@ -9533,7 +9537,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 					CriticalArea2JPanel1.setVisible(true);
 					
@@ -9541,7 +9545,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 					CriticalArea3JPanel1.setVisible(true);
 					
@@ -9549,7 +9553,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioProcesso;
 					endpoint=StartEndProcessi.get(0).fineProcesso;
 					System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(JobDuration1JPanel);
 			        JobDuration1JPanel.setVisible(true);
 			        //PROCESSO 2 !!!
@@ -9560,7 +9564,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 					CriticalArea1JPanel2.setVisible(true);
 		        
@@ -9568,7 +9572,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 					CriticalArea2JPanel2.setVisible(true);
 					
@@ -9576,7 +9580,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 					CriticalArea3JPanel2.setVisible(true);
 					
@@ -9584,7 +9588,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioProcesso;
 					endpoint=StartEndProcessi.get(1).fineProcesso;
 					System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 			        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 			        JobDuration2JPanel.setVisible(true);
 				
@@ -9597,7 +9601,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea1JPanel3);
 				CriticalArea1JPanel3.setVisible(true);
 	        
@@ -9605,7 +9609,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea2JPanel3);
 				CriticalArea2JPanel3.setVisible(true);
 				
@@ -9613,7 +9617,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea3JPanel3);
 				CriticalArea3JPanel3.setVisible(true);
 				
@@ -9621,7 +9625,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioProcesso;
 				endpoint=StartEndProcessi.get(2).fineProcesso;
 				System.out.println("[DURATA DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
 		        JobDuration3JPanel.setVisible(true);
 		     
@@ -9634,7 +9638,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea1JPanel4);
 				CriticalArea1JPanel4.setVisible(true);
 	        
@@ -9642,7 +9646,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea2JPanel4);
 				CriticalArea2JPanel4.setVisible(true);
 				
@@ -9650,7 +9654,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea3JPanel4);
 				CriticalArea3JPanel4.setVisible(true);
 
@@ -9658,13 +9662,13 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioProcesso;
 				endpoint=StartEndProcessi.get(3).fineProcesso;
 				System.out.println("[DURATA DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
 		        JobDuration4JPanel.setVisible(true);
 			}
 			else if(sceltaNumero==5)
 			{
-//Repaint di P1 e P2
+				//Repaint di P1 e P2
 				
 				/*	BaseProgressBar1JPanel.removeAll();
 					BaseProgressBar1JPanel.repaint();
@@ -9681,7 +9685,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea1JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 					CriticalArea1JPanel1.setVisible(true);
 		        
@@ -9692,7 +9696,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea2JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 					CriticalArea2JPanel1.setVisible(true);
 					
@@ -9700,7 +9704,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea3JPanel1.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 					CriticalArea3JPanel1.setVisible(true);
 					
@@ -9708,7 +9712,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioProcesso;
 					endpoint=StartEndProcessi.get(0).fineProcesso;
 					System.out.println("[INIZIO DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(JobDuration1JPanel);
 			        JobDuration1JPanel.setVisible(true);
 			        //PROCESSO 2 !!!
@@ -9719,7 +9723,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea1JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 					CriticalArea1JPanel2.setVisible(true);
 		        
@@ -9727,7 +9731,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea2JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 					CriticalArea2JPanel2.setVisible(true);
 					
@@ -9735,7 +9739,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					CriticalArea3JPanel2.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 					CriticalArea3JPanel2.setVisible(true);
 					
@@ -9743,7 +9747,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioProcesso;
 					endpoint=StartEndProcessi.get(1).fineProcesso;
 					System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 			        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 			        JobDuration2JPanel.setVisible(true);
 				
@@ -9756,7 +9760,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea1JPanel3);
 				CriticalArea1JPanel3.setVisible(true);
 	        
@@ -9764,7 +9768,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea2JPanel3);
 				CriticalArea2JPanel3.setVisible(true);
 				
@@ -9772,7 +9776,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel3.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar3JPanel.add(CriticalArea3JPanel3);
 				CriticalArea3JPanel3.setVisible(true);
 				
@@ -9780,7 +9784,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioProcesso;
 				endpoint=StartEndProcessi.get(2).fineProcesso;
 				System.out.println("[DURATA DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
 		        JobDuration3JPanel.setVisible(true);
 		     
@@ -9793,7 +9797,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea1JPanel4);
 				CriticalArea1JPanel4.setVisible(true);
 	        
@@ -9801,7 +9805,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea2JPanel4);
 				CriticalArea2JPanel4.setVisible(true);
 				
@@ -9809,7 +9813,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel4.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar4JPanel.add(CriticalArea3JPanel4);
 				CriticalArea3JPanel4.setVisible(true);
 
@@ -9817,7 +9821,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioProcesso;
 				endpoint=StartEndProcessi.get(3).fineProcesso;
 				System.out.println("[DURATA DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
 		        JobDuration4JPanel.setVisible(true);
 		        
@@ -9830,7 +9834,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea1JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				 BaseProgressBar5JPanel.add(CriticalArea1JPanel5);
 				CriticalArea1JPanel5.setVisible(true);
 	        
@@ -9838,7 +9842,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea2JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				 BaseProgressBar5JPanel.add(CriticalArea2JPanel5);
 				CriticalArea2JPanel5.setVisible(true);
 				
@@ -9846,7 +9850,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				CriticalArea3JPanel5.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				 BaseProgressBar5JPanel.add(CriticalArea3JPanel5);
 				CriticalArea3JPanel5.setVisible(true);
 	
@@ -9854,7 +9858,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioProcesso;
 				endpoint=StartEndProcessi.get(4).fineProcesso;
 				System.out.println("[DURATA DI P5] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration5JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration5JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar5JPanel.add(JobDuration5JPanel);
 		        JobDuration5JPanel.setVisible(true);
 			}
@@ -10554,7 +10558,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 				CriticalArea1JPanel1.setVisible(true);
 	        
@@ -10565,7 +10569,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 				CriticalArea2JPanel1.setVisible(true);
 				
@@ -10573,7 +10577,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 				CriticalArea3JPanel1.setVisible(true);
 				
@@ -10582,7 +10586,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea1BJPanel1);
 				CriticalArea1BJPanel1.setVisible(true);
 	        
@@ -10590,7 +10594,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea2BJPanel1);
 				CriticalArea2BJPanel1.setVisible(true);
 				
@@ -10598,7 +10602,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea3BJPanel1);
 				CriticalArea3BJPanel1.setVisible(true);
 				
@@ -10608,7 +10612,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(JobDuration1JPanel);
 		        JobDuration1JPanel.setVisible(true);
 		       
@@ -10634,7 +10638,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 				CriticalArea1JPanel1.setVisible(true);
 	        
@@ -10645,7 +10649,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 				CriticalArea2JPanel1.setVisible(true);
 				
@@ -10653,7 +10657,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 				CriticalArea3JPanel1.setVisible(true);
 				
@@ -10662,7 +10666,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea1BJPanel1);
 				CriticalArea1BJPanel1.setVisible(true);
 	        
@@ -10670,7 +10674,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea2BJPanel1);
 				CriticalArea2BJPanel1.setVisible(true);
 				
@@ -10678,7 +10682,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(0).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar1JPanel.add(CriticalArea3BJPanel1);
 				CriticalArea3BJPanel1.setVisible(true);
 				
@@ -10687,7 +10691,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(0).inizioProcesso;
 				endpoint=StartEndProcessi.get(0).fineProcesso;
 				System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 				BaseProgressBar1JPanel.add(JobDuration1JPanel);
 		        JobDuration1JPanel.setVisible(true);
 		        //PROCESSO 2 !!!
@@ -10698,7 +10702,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 				CriticalArea1JPanel2.setVisible(true);
 	        
@@ -10706,7 +10710,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 				CriticalArea2JPanel2.setVisible(true);
 				
@@ -10714,7 +10718,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 				CriticalArea3JPanel2.setVisible(true);
 				
@@ -10723,7 +10727,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea1BJPanel2);
 				CriticalArea1BJPanel2.setVisible(true);
 	        
@@ -10731,7 +10735,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea2BJPanel2);
 				CriticalArea2BJPanel2.setVisible(true);
 				
@@ -10739,7 +10743,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(1).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar2JPanel.add(CriticalArea3BJPanel2);
 				CriticalArea3BJPanel2.setVisible(true);
 				
@@ -10755,7 +10759,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(1).inizioProcesso;
 				endpoint=StartEndProcessi.get(1).fineProcesso;
 				System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 		        JobDuration2JPanel.setVisible(true);
 		       
@@ -10781,7 +10785,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 					CriticalArea1JPanel1.setVisible(true);
 		        
@@ -10792,7 +10796,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 					CriticalArea2JPanel1.setVisible(true);
 					
@@ -10800,7 +10804,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 					CriticalArea3JPanel1.setVisible(true);
 					
@@ -10808,7 +10812,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1BJPanel1);
 					CriticalArea1BJPanel1.setVisible(true);
 		        
@@ -10816,7 +10820,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2BJPanel1);
 					CriticalArea2BJPanel1.setVisible(true);
 					
@@ -10824,7 +10828,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3BJPanel1);
 					CriticalArea3BJPanel1.setVisible(true);
 					
@@ -10832,7 +10836,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioProcesso;
 					endpoint=StartEndProcessi.get(0).fineProcesso;
 					System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(JobDuration1JPanel);
 			        JobDuration1JPanel.setVisible(true);
 			        //PROCESSO 2 !!!
@@ -10843,7 +10847,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 					CriticalArea1JPanel2.setVisible(true);
 		        
@@ -10851,7 +10855,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 					CriticalArea2JPanel2.setVisible(true);
 					
@@ -10859,7 +10863,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 					CriticalArea3JPanel2.setVisible(true);
 					
@@ -10867,7 +10871,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1BJPanel2);
 					CriticalArea1BJPanel2.setVisible(true);
 		        
@@ -10875,7 +10879,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2BJPanel2);
 					CriticalArea2BJPanel2.setVisible(true);
 					
@@ -10883,7 +10887,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3BJPanel2);
 					CriticalArea3BJPanel2.setVisible(true);
 					
@@ -10891,7 +10895,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioProcesso;
 					endpoint=StartEndProcessi.get(1).fineProcesso;
 					System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 			        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 			        JobDuration2JPanel.setVisible(true);
 				
@@ -10904,7 +10908,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1JPanel3);
 				CriticalArea1JPanel3.setVisible(true);
 	        
@@ -10912,7 +10916,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2JPanel3);
 				CriticalArea2JPanel3.setVisible(true);
 				
@@ -10920,7 +10924,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3JPanel3);
 				CriticalArea3JPanel3.setVisible(true);
 				
@@ -10930,7 +10934,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1BJPanel3);
 				CriticalArea1BJPanel3.setVisible(true);
 	        
@@ -10938,7 +10942,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2BJPanel3);
 				CriticalArea2BJPanel3.setVisible(true);
 				
@@ -10946,7 +10950,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3BJPanel3);
 				CriticalArea3BJPanel3.setVisible(true);
 				
@@ -10954,7 +10958,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioProcesso;
 				endpoint=StartEndProcessi.get(2).fineProcesso;
 				System.out.println("[DURATA DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
 		        JobDuration3JPanel.setVisible(true);
 		     
@@ -10978,7 +10982,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 					CriticalArea1JPanel1.setVisible(true);
 		        
@@ -10989,7 +10993,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 					CriticalArea2JPanel1.setVisible(true);
 					
@@ -10997,7 +11001,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 					CriticalArea3JPanel1.setVisible(true);
 					
@@ -11005,7 +11009,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1BJPanel1);
 					CriticalArea1BJPanel1.setVisible(true);
 		        
@@ -11013,7 +11017,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2BJPanel1);
 					CriticalArea2BJPanel1.setVisible(true);
 					
@@ -11021,7 +11025,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3BJPanel1);
 					CriticalArea3BJPanel1.setVisible(true);
 					
@@ -11029,7 +11033,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioProcesso;
 					endpoint=StartEndProcessi.get(0).fineProcesso;
 					System.out.println("[DURATA DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(JobDuration1JPanel);
 			        JobDuration1JPanel.setVisible(true);
 			        //PROCESSO 2 !!!
@@ -11040,7 +11044,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 					CriticalArea1JPanel2.setVisible(true);
 		        
@@ -11048,7 +11052,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 					CriticalArea2JPanel2.setVisible(true);
 					
@@ -11056,7 +11060,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 					CriticalArea3JPanel2.setVisible(true);
 					
@@ -11064,7 +11068,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1BJPanel2);
 					CriticalArea1BJPanel2.setVisible(true);
 		        
@@ -11072,7 +11076,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2BJPanel2);
 					CriticalArea2BJPanel2.setVisible(true);
 					
@@ -11080,7 +11084,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3BJPanel2);
 					CriticalArea3BJPanel2.setVisible(true);
 					
@@ -11088,7 +11092,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioProcesso;
 					endpoint=StartEndProcessi.get(1).fineProcesso;
 					System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 			        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 			        JobDuration2JPanel.setVisible(true);
 				
@@ -11101,7 +11105,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1JPanel3);
 				CriticalArea1JPanel3.setVisible(true);
 	        
@@ -11109,7 +11113,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2JPanel3);
 				CriticalArea2JPanel3.setVisible(true);
 				
@@ -11117,7 +11121,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3JPanel3);
 				CriticalArea3JPanel3.setVisible(true);
 				
@@ -11126,7 +11130,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1BJPanel3);
 				CriticalArea1BJPanel3.setVisible(true);
 	        
@@ -11134,7 +11138,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2BJPanel3);
 				CriticalArea2BJPanel3.setVisible(true);
 				
@@ -11142,7 +11146,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3BJPanel3);
 				CriticalArea3BJPanel3.setVisible(true);
 				
@@ -11150,7 +11154,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioProcesso;
 				endpoint=StartEndProcessi.get(2).fineProcesso;
 				System.out.println("[DURATA DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
 		        JobDuration3JPanel.setVisible(true);
 		     
@@ -11163,7 +11167,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea1JPanel4);
 				CriticalArea1JPanel4.setVisible(true);
 	        
@@ -11171,7 +11175,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea2JPanel4);
 				CriticalArea2JPanel4.setVisible(true);
 				
@@ -11179,7 +11183,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea3JPanel4);
 				CriticalArea3JPanel4.setVisible(true);
 				
@@ -11187,7 +11191,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea1BJPanel4);
 				CriticalArea1BJPanel4.setVisible(true);
 	        
@@ -11195,7 +11199,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea2BJPanel4);
 				CriticalArea2BJPanel4.setVisible(true);
 				
@@ -11203,7 +11207,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea3BJPanel4);
 				CriticalArea3BJPanel4.setVisible(true);
 				
@@ -11214,13 +11218,13 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioProcesso;
 				endpoint=StartEndProcessi.get(3).fineProcesso;
 				System.out.println("[DURATA DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
 		        JobDuration4JPanel.setVisible(true);
 			}
 			else if(sceltaNumero==5)
 			{
-//Repaint di P1 e P2
+				//Repaint di P1 e P2
 				
 				/*	BaseProgressBar1JPanel.removeAll();
 					BaseProgressBar1JPanel.repaint();
@@ -11237,7 +11241,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1JPanel1);
 					CriticalArea1JPanel1.setVisible(true);
 		        
@@ -11245,7 +11249,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2JPanel1);
 					CriticalArea2JPanel1.setVisible(true);
 					
@@ -11253,7 +11257,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel1.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel1.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3JPanel1);
 					CriticalArea3JPanel1.setVisible(true);
 					
@@ -11261,7 +11265,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea1BJPanel1);
 					CriticalArea1BJPanel1.setVisible(true);
 		        
@@ -11269,7 +11273,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea2BJPanel1);
 					CriticalArea2BJPanel1.setVisible(true);
 					
@@ -11277,7 +11281,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(0).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel1.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar1JPanel.add(CriticalArea3BJPanel1);
 					CriticalArea3BJPanel1.setVisible(true);
 					
@@ -11285,7 +11289,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(0).inizioProcesso;
 					endpoint=StartEndProcessi.get(0).fineProcesso;
 					System.out.println("[INIZIO DI P1] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration1JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 					BaseProgressBar1JPanel.add(JobDuration1JPanel);
 			        JobDuration1JPanel.setVisible(true);
 			        //PROCESSO 2 !!!
@@ -11296,7 +11300,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1;
 					System.out.println("[ZONA CRITICA 1 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea1JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1JPanel2);
 					CriticalArea1JPanel2.setVisible(true);
 		        
@@ -11304,7 +11308,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2;
 					System.out.println("[ZONA CRITICA 2 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea2JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2JPanel2);
 					CriticalArea2JPanel2.setVisible(true);
 					
@@ -11312,7 +11316,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3;
 					System.out.println("[ZONA CRITICA 3 di P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3JPanel2.setBounds(startpoint, 15, endpoint-startpoint, 14);
+					CriticalArea3JPanel2.setBounds(startpoint, 20, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3JPanel2);
 					CriticalArea3JPanel2.setVisible(true);
 					
@@ -11320,7 +11324,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica1B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica1B;
 					System.out.println("[ZONA CRITICA 1B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);				
-					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea1BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea1BJPanel2);
 					CriticalArea1BJPanel2.setVisible(true);
 		        
@@ -11328,7 +11332,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica2B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica2B;
 					System.out.println("[ZONA CRITICA 2B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea2BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea2BJPanel2);
 					CriticalArea2BJPanel2.setVisible(true);
 					
@@ -11336,7 +11340,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioZonaCritica3B;
 					endpoint=StartEndProcessi.get(1).fineZonaCritica3B;
 					System.out.println("[ZONA CRITICA 3B DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);
-					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 15);
+					CriticalArea3BJPanel2.setBounds(startpoint, 0, endpoint-startpoint, 20);
 					BaseProgressBar2JPanel.add(CriticalArea3BJPanel2);
 					CriticalArea3BJPanel2.setVisible(true);
 					
@@ -11348,7 +11352,7 @@ public class Semafori extends JFrame {
 					startpoint=StartEndProcessi.get(1).inizioProcesso;
 					endpoint=StartEndProcessi.get(1).fineProcesso;
 					System.out.println("[DURATA DI P2] : Valori in posizione: " +startpoint + " e "+endpoint);			
-					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+					JobDuration2JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 			        BaseProgressBar2JPanel.add(JobDuration2JPanel);
 			        JobDuration2JPanel.setVisible(true);
 				
@@ -11361,7 +11365,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1JPanel3);
 				CriticalArea1JPanel3.setVisible(true);
 	        
@@ -11369,7 +11373,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2JPanel3);
 				CriticalArea2JPanel3.setVisible(true);
 				
@@ -11377,7 +11381,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel3.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel3.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3JPanel3);
 				CriticalArea3JPanel3.setVisible(true);
 				
@@ -11385,7 +11389,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea1BJPanel3);
 				CriticalArea1BJPanel3.setVisible(true);
 	        
@@ -11393,7 +11397,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea2BJPanel3);
 				CriticalArea2BJPanel3.setVisible(true);
 				
@@ -11401,7 +11405,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(2).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel3.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar3JPanel.add(CriticalArea3BJPanel3);
 				CriticalArea3BJPanel3.setVisible(true);
 				
@@ -11409,7 +11413,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(2).inizioProcesso;
 				endpoint=StartEndProcessi.get(2).fineProcesso;
 				System.out.println("[DURATA DI P3] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration3JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar3JPanel.add(JobDuration3JPanel);
 		        JobDuration3JPanel.setVisible(true);
 		     
@@ -11422,7 +11426,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea1JPanel4);
 				CriticalArea1JPanel4.setVisible(true);
 	        
@@ -11430,7 +11434,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea2JPanel4);
 				CriticalArea2JPanel4.setVisible(true);
 				
@@ -11438,7 +11442,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel4.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel4.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea3JPanel4);
 				CriticalArea3JPanel4.setVisible(true);
 				
@@ -11446,7 +11450,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea1BJPanel4);
 				CriticalArea1BJPanel4.setVisible(true);
 	        
@@ -11454,7 +11458,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea2BJPanel4);
 				CriticalArea2BJPanel4.setVisible(true);
 				
@@ -11462,7 +11466,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(3).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel4.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar4JPanel.add(CriticalArea3BJPanel4);
 				CriticalArea3BJPanel4.setVisible(true);
 
@@ -11470,7 +11474,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(3).inizioProcesso;
 				endpoint=StartEndProcessi.get(3).fineProcesso;
 				System.out.println("[DURATA DI P4] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration4JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar4JPanel.add(JobDuration4JPanel);
 		        JobDuration4JPanel.setVisible(true);
 		        
@@ -11483,7 +11487,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica1;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica1;
 				System.out.println("[ZONA CRITICA 1 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1JPanel5.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea1JPanel5.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				 BaseProgressBar5JPanel.add(CriticalArea1JPanel5);
 				CriticalArea1JPanel5.setVisible(true);
 	        
@@ -11491,7 +11495,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica2;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica2;
 				System.out.println("[ZONA CRITICA 2 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2JPanel5.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea2JPanel5.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				 BaseProgressBar5JPanel.add(CriticalArea2JPanel5);
 				CriticalArea2JPanel5.setVisible(true);
 				
@@ -11499,7 +11503,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica3;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica3;
 				System.out.println("[ZONA CRITICA 3 di P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3JPanel5.setBounds(startpoint, 15, endpoint-startpoint, 14);
+				CriticalArea3JPanel5.setBounds(startpoint, 20, endpoint-startpoint, 20);
 				 BaseProgressBar5JPanel.add(CriticalArea3JPanel5);
 				CriticalArea3JPanel5.setVisible(true);
 				
@@ -11507,7 +11511,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica1B;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica1B;
 				System.out.println("[ZONA CRITICA 1B DI P5] : Valori in posizione: " +startpoint + " e "+endpoint);				
-				CriticalArea1BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea1BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar5JPanel.add(CriticalArea1BJPanel5);
 				CriticalArea1BJPanel5.setVisible(true);
 	        
@@ -11515,7 +11519,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica2B;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica2B;
 				System.out.println("[ZONA CRITICA 2B DI P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea2BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea2BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar5JPanel.add(CriticalArea2BJPanel5);
 				CriticalArea2BJPanel5.setVisible(true);
 				
@@ -11523,7 +11527,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioZonaCritica3B;
 				endpoint=StartEndProcessi.get(4).fineZonaCritica3B;
 				System.out.println("[ZONA CRITICA 3B DI P5] : Valori in posizione: " +startpoint + " e "+endpoint);
-				CriticalArea3BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 15);
+				CriticalArea3BJPanel5.setBounds(startpoint, 0, endpoint-startpoint, 20);
 				BaseProgressBar5JPanel.add(CriticalArea3BJPanel5);
 				CriticalArea3BJPanel5.setVisible(true);
 				
@@ -11534,7 +11538,7 @@ public class Semafori extends JFrame {
 				startpoint=StartEndProcessi.get(4).inizioProcesso;
 				endpoint=StartEndProcessi.get(4).fineProcesso;
 				System.out.println("[DURATA DI P5] : Valori in posizione: " +startpoint + " e "+endpoint);			
-				JobDuration5JPanel.setBounds(startpoint, 0, endpoint-startpoint, 29);
+				JobDuration5JPanel.setBounds(startpoint, 0, endpoint-startpoint, 40);
 		        BaseProgressBar5JPanel.add(JobDuration5JPanel);
 		        JobDuration5JPanel.setVisible(true);
 			}

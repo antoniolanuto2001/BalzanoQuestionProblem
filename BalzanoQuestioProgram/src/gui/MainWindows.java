@@ -209,7 +209,7 @@ public class MainWindows {
 			public void mouseClicked(MouseEvent e) {
 				Desktop d = Desktop.getDesktop();
 				try {
-					d.browse(new URI ("http://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf"));
+					d.browse(new URI ("https://drive.google.com/file/d/16twDBr-hOxiU8CmTnOmmI4zgFcHqsWyK/view"));
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				} catch (URISyntaxException e1) {
