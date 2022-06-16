@@ -70,10 +70,20 @@ public class FilosofiClassica implements Runnable
             // Decommentare per forzare lo stallo
             //Thread.sleep(1000);
             tavolaClassica.raccogli_dx(index);   // raccoglie la bacchetta destra
+            
             if (tempoPensa==tempoMangia &&tempoMangia==3000) 
             {
 				iterazioniDeadlock++;
 				if (iterazioniDeadlock==3) 
+				{
+					deadlockCheck=true;
+					stop();
+				}
+			}
+            else if (tempoPensa==tempoMangia && tempoMangia==300) 
+            {
+				iterazioniDeadlock++;
+				if (iterazioniDeadlock==8) 
 				{
 					deadlockCheck=true;
 					stop();
