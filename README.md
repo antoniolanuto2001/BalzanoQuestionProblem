@@ -1,35 +1,62 @@
-# 🧩 Operating Systems SIMULATOR
+# 🧩 Operating Systems Simulator
 
-## 📑 *Organizzazione e Scelte Progettuali*
+The application aims to simulate the behavior of a generic operating system, using the most common algorithms.
+In particular, the application is able to simulate:
 
-- Codice Open Source del progetto
-- Per la GUI dell'applicativo é stata utilizzata la Libreria Java Awt :  Swing
-- Codice Eseguibile su : Mac-Os , Windows7/8/10/11,Linux
-- Richiede installato Java
-- E possibile Trovare le Slide dei Argomenti Tratti [qui](https://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf)
+1) Process scheduling
+2) Pagination of memory
+3) Hard Disk Scheduling
+4) Process synchronization using Mutex
+5) The problem of: "The Philosophers at Dinner"
+6) Hashing
 
-## ©️ *Contribuenti*
+-------
+* 🇮🇹 Version*
 
-👨‍💼  Antonio Lanuto            : N86003762
+L'applicazione si pone l'obiettivo di simulare il comportamento di un sistema operativo generico, utilizzando gli algoritmi più comuni.
+In particolare l'applicazione è in grado di simulare:
 
-🙎‍♂️  Erasmo Prosciutto         : N86003546
+1) Scheduling dei processi
+2) Paginazione della memoria
+3) Scheduling dell'Hard Disck
+4) Sincronizzazione dei processi con uso di Mutex
+5) Il problema de:  "I Filosofi a Cena"
+6) Hashing
+
+
+
+## 📑 *Organization and Design Choices*
+
+- Open Source Source Code
+- Application GUI has been done with the Java Awt Library: Swing
+- The application is available for: MacOS (ARM and x86 Intel), Windows and Linux (Debian and Red Hat) 
+- Java installation may be required: https://www.java.com/it/download/manual.jsp
+- Topics covered during the course: https://balzanoslidesistemiopera.altervista.org/Slides_Sistemi_Operativi.pdf
+
+## ©️ *Developers*
+
+🙎‍♂️  Erasmo Prosciutto        : N86003546
+
+👨‍💼  Antonio Lanuto           : N86003762
 
 🕵  Biagio Scotto Di Covella : N86003605
 
 
 
 
-### 📬 *Contatti*
-
-@ an.lanuto@studenti.unina.it
+### 📬 *Contacts*
 
 @ e.prosciutto@studenti.unina.it
 
+@ an.lanuto@studenti.unina.it
+
 @ b.scottodicovella@studenti.unina.it
 
-## 🏬 *Info*
+
+## 🏬 *Infos*
 
 - Università degli Studi di Napoli: "Federico II" 
 - Dipartimento di Ingegneria Elettrica e delle Tecnologie dell'Informazione
-- Corso di Laurea in Informatica
-- Il docente Relatore : Walter Balzano 
+- CDL in Informatica: corso di Sistemi Operativi 2021/2022
+- Il docente : Walter Balzano 
+
