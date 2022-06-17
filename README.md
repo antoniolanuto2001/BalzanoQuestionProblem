@@ -11,7 +11,7 @@ In particular, the application is able to simulate:
 6) Hashing
 
 -------
-* 🇮🇹 Version*
+*IT Version*
 
 L'applicazione si pone l'obiettivo di simulare il comportamento di un sistema operativo generico, utilizzando gli algoritmi più comuni.
 In particolare l'applicazione è in grado di simulare:
